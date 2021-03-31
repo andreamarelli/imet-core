@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  composer:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: imet_core_artisan
+    volumes:
+      - ../:/var/www/
+    working_dir: /var/www/imet-core
+    entrypoint: [ 'composer' ]
+    # docker-compose run --rm composer ______
+
+  npm:
+    build:
+      context: .
+      dockerfile: docker/npm/Dockerfile
+    container_name: imet_core_npm
+    volumes:
+      - ../:/var/www
+    working_dir: /var/www/imet-core
+    entrypoint: [ 'npm' ]
+    # docker-compose run --rm npm ______
