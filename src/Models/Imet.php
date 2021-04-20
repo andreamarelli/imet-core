@@ -261,6 +261,29 @@ class Imet extends Form
     }
 
     /**
+     * Import all modules from records array
+     *
+     * @param $records
+     * @param $formID
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \ReflectionException
+     */
+    public static function importModules($records, $formID)
+    {
+        $modules_imported = [];
+        /** @var \AndreaMarelli\ImetCore\Models\v2\Modules\Component\ImetModule $module_class */
+        foreach (static::allModules() as $module_class) {
+            if (array_key_exists($module_class::getShortClassName(), $records)) {
+                $modules_imported[] = $module_class::getShortClassName();
+                foreach ($records[$module_class::getShortClassName()] as $record) {
+                    $module_class::importModule($formID, $record);
+                }
+            }
+        }
+        return $modules_imported;
+    }
+
+    /**
      * Generate a filename for exporting form
      * @param $extension
      * @return string
@@ -274,6 +297,7 @@ class Imet extends Form
             '-' . $this->Year .
             '-' . $name .
             '-' . $now .
+            '-' . $this->FormID .
             '.' . $extension;
     }
 
