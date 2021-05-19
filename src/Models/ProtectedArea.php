@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models;
 
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\BaseModel;
+use Illuminate\Support\Collection;
 
 /**
  * Class ProtectedArea
@@ -93,6 +94,36 @@ class ProtectedArea extends BaseModel
         $values .= "'".$this->iucn_category."', ";
         $values .= $this->creation_date!==null ? "'".$this->creation_date."'" : "NULL";
         return 'INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('.$values.');';
+    }
+
+    /**
+     * Search by key or country
+     *
+     * @param string|null $search_key
+     * @param string|null $country
+     * @return \Illuminate\Support\Collection
+     */
+    public static function searchByKeyOrCountry(?string $search_key = null, string $country = null): Collection
+    {
+        $pas = static::like($search_key)
+            ->where(function ($query) use($country) {
+                if($country!==null && $country!=='' && $country!=='null') {
+                    $query->where('country', $country);
+                }
+            })
+            ->orderBy('name')
+            ->get();
+
+        $countries = Country::select(['iso3', 'name_'.Locale::lower()])
+            ->whereIn('iso3', array_values($pas->pluck('country')->unique()->toArray()))
+            ->pluck('name_'.Locale::lower(), 'iso3')
+            ->sort()
+            ->toArray();
+
+        return $pas->map(function($item) use($countries){
+            $item['country_name'] = $countries[$item->country];
+            return $item;
+        });
     }
 
 }

@@ -9,7 +9,7 @@ use AndreaMarelli\ModularForms\Controllers\FormController as BaseFormController;
  *
  * @package App\Http\Controllers\Components
  */
-class Controller extends BaseFormController
+class __Controller extends BaseFormController
 {
 
 }
