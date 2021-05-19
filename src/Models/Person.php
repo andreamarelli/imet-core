@@ -2,15 +2,15 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
-use AndreaMarelli\ModularForms\Models\User\User as BaseUser;
+use AndreaMarelli\ModularForms\Models\User\Person as BasePerson;
 
 /**
- * Class User
+ * Class Person
  *
  * @mixin \Illuminate\Database\Eloquent\Model
  * @mixin \Illuminate\Database\Eloquent\Builder
  * @package AndreaMarelli\ImetCore\Models
  */
-class User extends BaseUser{
+class Person extends BasePerson{
 
 }

@@ -263,7 +263,8 @@ class Controller extends __Controller
         }
         $path = $files[0];
         if (count($files) > 1) {
-            $path = Compress::zipFile($files);
+            $fileName = "IMETS_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip";
+            $path = Compress::zipFile($files, $fileName);
         }
         return File::download($path);
     }

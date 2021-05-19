@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
+use AndreaMarelli\ImetCore\Controllers\RoleController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ImetCore\Controllers\StaffController;
 use AndreaMarelli\ModularForms\Controllers\UploadFileController;
@@ -107,6 +108,13 @@ Route::group(['middleware' => 'setLocale'], function () {
         });
 
 
+    });
+
+    // Roles
+    Route::group(['prefix' => 'admin/role/imet'], function () {
+        Route::match(['get', 'post'], 'imet', [RoleController::class, 'index']);
+        Route::post('imet/grant', [RoleController::class, 'grant']);
+        Route::post('imet/revoke', [RoleController::class, 'revoke']);
     });
 
 });
