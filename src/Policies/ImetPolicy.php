@@ -3,7 +3,7 @@
 namespace AndreaMarelli\ImetCore\Policies;
 
 use AndreaMarelli\ImetCore\Models\Role;
-use AndreaMarelli\ImetCore\Models\User;
+use AndreaMarelli\ModularForms\Models\User\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 
@@ -14,7 +14,7 @@ class ImetPolicy
     /**
      * Determine whether the user can: INDEX
      *
-     * @param \AndreaMarelli\ImetCore\Models\User $user
+     * @param \AndreaMarelli\ModularForms\Models\User\User $user
      * @param $model
      * @return bool
      */
@@ -27,7 +27,7 @@ class ImetPolicy
     /**
      * Determine whether the user can: VIEW
      *
-     * @param \AndreaMarelli\ImetCore\Models\User $user
+     * @param \AndreaMarelli\ModularForms\Models\User\User $user
      * @param $model
      * @return bool
      */
@@ -40,7 +40,7 @@ class ImetPolicy
     /**
      * Determine whether the user can: CREATE
      *
-     * @param \AndreaMarelli\ImetCore\Models\User $user
+     * @param \AndreaMarelli\ModularForms\Models\User\User $user
      * @param $model
      * @return bool
      */
@@ -53,7 +53,7 @@ class ImetPolicy
     /**
      * Determine whether the user can: EDIT
      *
-     * @param \AndreaMarelli\ImetCore\Models\User $user
+     * @param \AndreaMarelli\ModularForms\Models\User\User $user
      * @param $model
      * @return bool
      */
@@ -66,7 +66,7 @@ class ImetPolicy
     /**
      * Determine whether the user can: DELETE
      *
-     * @param \AndreaMarelli\ImetCore\Models\User $user
+     * @param \AndreaMarelli\ModularForms\Models\User\User $user
      * @param $model
      * @return bool
      */

@@ -106,7 +106,7 @@ class Controller extends __Controller
 
         }
 
-        return view('admin.' . static::$form_view . '.list', [
+        return view('imet-core::list', [
             'controller' => static::class,
             'list' => $list,
             'request' => $request,
