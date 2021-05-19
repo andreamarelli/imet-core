@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Collection;
  * @property-read string $name
  * @property-read string $binomial
  *
- * @package App\Models\Species
+ * @package AndreaMarelli\ImetCore\Models\Animals
  */
 class Animal extends BaseModel
 {
@@ -104,7 +104,7 @@ class Animal extends BaseModel
      *
      * @param string|null $taxonomy
      * @param string $separator
-     * @return \App\Models\Species\Animal|\Illuminate\Database\Eloquent\Model
+     * @return \AndreaMarelli\ImetCore\Models\Animal|\Illuminate\Database\Eloquent\Model
      */
     public static function getByTaxonomy(string $taxonomy = null, string $separator = '|')
     {
