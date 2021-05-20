@@ -16,25 +16,34 @@
 
 <nav class="steps">
 
-    <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'edit'], [$item->getKey()]) }}"
-       class="step @if('context'==$phase) selected @endif"
-    >
-        {{ ucfirst(trans('form/imet/common.context_long')) }}
-    </a>
+    @if($item->version=='v1')
 
-    <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], [$item->getKey()]) }}"
-       class="step @if('evaluation'==$phase) selected @endif"
-    >
-        {{ ucfirst(trans('form/imet/common.evaluation_long')) }}
-    </a>
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'edit'], [$item->getKey()]) }}"
+           class="step @if('context'==$phase) selected @endif"
+        >{{ ucfirst(trans('form/imet/common.context_long')) }}</a>
 
-    <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'report'], [$item->getKey()]) }}"
-       class="step @if('report'==$phase) selected @endif"
-    >
-        {{ ucfirst(trans('form/imet/common.report_long')) }}
-    </a>
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class, 'edit'], [$item->getKey()]) }}"
+           class="step @if('evaluation'==$phase) selected @endif"
+        >{{ ucfirst(trans('form/imet/common.evaluation_long')) }}</a>
+
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report'], [$item->getKey()]) }}"
+           class="step @if('report'==$phase) selected @endif"
+        >{{ ucfirst(trans('form/imet/common.report_long')) }}</a>
+
+    @else
+
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'edit'], [$item->getKey()]) }}"
+           class="step @if('context'==$phase) selected @endif"
+        >{{ ucfirst(trans('form/imet/common.context_long')) }}</a>
+
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], [$item->getKey()]) }}"
+           class="step @if('evaluation'==$phase) selected @endif"
+        >{{ ucfirst(trans('form/imet/common.evaluation_long')) }}</a>
+
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class, 'report'], [$item->getKey()]) }}"
+           class="step @if('report'==$phase) selected @endif"
+        >{{ ucfirst(trans('form/imet/common.report_long')) }}</a>
+
+    @endif
 
 </nav>
-
-
-{{-- <h3>{{ ucfirst(trans('form/imet/common.context_long')) }}</h3> --}}

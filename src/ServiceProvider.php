@@ -38,7 +38,6 @@ class ServiceProvider extends BaseServiceProvider
 
         // Routes
         $this->loadRoutesFrom(__DIR__.'/../src/Routes/web.php');
-        $this->loadRoutesFrom(__DIR__.'/../src/Routes/api.php');
 
         // Config
         $this->publishes([__DIR__.'/../config/config.php' => config_path('imet-core.php')], 'config');

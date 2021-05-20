@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
@@ -11,39 +10,46 @@ use Illuminate\Http\Request;
 
 use function view;
 
-trait ReportV2{
 
+class ReportControllerV2 extends Controller {
+
+    protected static $form_class = Imet::class;
+    protected static $form_view_prefix = 'imet-core::v2.report';
+
+    public const AUTHORIZE_BY_POLICY = true;
     /**
      * Manage "report" edit route
      *
-     * @param \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param $item
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException|\ReflectionException
      */
-    public function report(Imet $item)
+    public function report($item)
     {
-        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
-        $this->authorize('update', $item);
+        $imet = Imet::find($item);
 
-        return view(static::$form_view_prefix . 'v2.report.edit',
-                    $this->__retrieve_report_data($item));
+        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
+        $this->authorize('update', $imet);
+
+        return view(static::$form_view_prefix . '.edit', $this->__retrieve_report_data($imet));
     }
 
     /**
      * Manage "report" edit route
      *
-     * @param \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param $item
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \ReflectionException
      */
-    public function report_show(Imet $item)
+    public function report_show($item)
     {
-        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
-        $this->authorize('view', $item);
+        $imet = Imet::find($item);
 
-        return view(static::$form_view_prefix . 'v2.report.show',
-                    $this->__retrieve_report_data($item));
+        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
+        $this->authorize('view', $imet);
+
+        return view(static::$form_view_prefix . '.show', $this->__retrieve_report_data($imet));
     }
 
     /**
@@ -54,7 +60,7 @@ trait ReportV2{
      * @return string[]
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function report_update($item, Request $request)
+    public function report_update($item, Request $request): array
     {
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
         $this->authorize('update', (static::$form_class)::find($item));
@@ -84,7 +90,7 @@ trait ReportV2{
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
 
-        $global_assessement = (array) ControllerV2::assessment($form_id, 'global', true)->getData();
+        $global_assessement = (array) EvalController::assessment($form_id, 'global', true)->getData();
 
         return [
             'item' => $item,
@@ -109,12 +115,12 @@ trait ReportV2{
             ],
             'assessment' =>  [
                 'global' => $global_assessement,
-                'context' => (array) ControllerV2::assessment($form_id, 'context')->getData(),
-                'planning' => (array) ControllerV2::assessment($form_id, 'planning')->getData(),
-                'inputs' => (array) ControllerV2::assessment($form_id, 'inputs')->getData(),
-                'process' => (array) ControllerV2::assessment($form_id, 'process')->getData(),
-                'outputs' => (array) ControllerV2::assessment($form_id, 'outputs')->getData(),
-                'outcomes' => (array) ControllerV2::assessment($form_id, 'outcomes')->getData(),
+                'context' => (array) EvalController::assessment($form_id, 'context')->getData(),
+                'planning' => (array) EvalController::assessment($form_id, 'planning')->getData(),
+                'inputs' => (array) EvalController::assessment($form_id, 'inputs')->getData(),
+                'process' => (array) EvalController::assessment($form_id, 'process')->getData(),
+                'outputs' => (array) EvalController::assessment($form_id, 'outputs')->getData(),
+                'outcomes' => (array) EvalController::assessment($form_id, 'outcomes')->getData(),
                 'labels' => $global_assessement['labels']
             ],
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v2\Report::getByForm($form_id),

@@ -405,7 +405,7 @@ function score_class_threats($value, $additional_classes=''){
                 this.error = false;
                 window.axios({
                     method: 'post',
-                    url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'report_update'], ['item' => $item->getKey()]) }}',
+                    url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report_update'], ['item' => $item->getKey()]) }}',
                     data: {
                         _token: window.Laravel.csrfToken,
                         _method: 'PATCH',

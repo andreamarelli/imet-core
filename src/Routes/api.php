@@ -1,6 +1,5 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'imet'], function () {
+Route::group(['prefix' => 'api/imet'], function () {
 
     Route::match(['get', 'post'],'/',[EvalController::class, 'pame']);
     Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);

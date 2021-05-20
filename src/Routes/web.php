@@ -3,8 +3,11 @@
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
+use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\RoleController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
@@ -69,9 +72,9 @@ Route::group(['middleware' => 'setLocale'], function () {
                 Route::patch('{item}',           [EvalControllerV1::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [ControllerV1::class, 'report']);
-                Route::get('{item}/show', [ControllerV1::class, 'report_show']);
-                Route::patch('{item}', [ControllerV1::class, 'report_update']);
+                Route::get('{item}/edit', [ReportControllerV1::class, 'report']);
+                Route::get('{item}/show', [ReportControllerV1::class, 'report_show']);
+                Route::patch('{item}', [ReportControllerV1::class, 'report_update']);
             });
         });
 
@@ -94,9 +97,9 @@ Route::group(['middleware' => 'setLocale'], function () {
                 Route::patch('{item}',           [EvalControllerV2::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [ControllerV2::class, 'report']);
-                Route::get('{item}/show', [ControllerV2::class, 'report_show']);
-                Route::patch('{item}', [ControllerV2::class, 'report_update']);
+                Route::get('{item}/edit', [ReportControllerV2::class, 'report']);
+                Route::get('{item}/show', [ReportControllerV2::class, 'report_show']);
+                Route::patch('{item}', [ReportControllerV2::class, 'report_update']);
             });
 
         });
@@ -115,6 +118,19 @@ Route::group(['middleware' => 'setLocale'], function () {
         Route::match(['get', 'post'], 'imet', [RoleController::class, 'index']);
         Route::post('imet/grant', [RoleController::class, 'grant']);
         Route::post('imet/revoke', [RoleController::class, 'revoke']);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::group(['prefix' => 'api/imet'], function () {
+
+        Route::match(['get', 'post'],'/',[EvalController::class, 'pame']);
+        Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
+
     });
 
 });

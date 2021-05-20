@@ -253,7 +253,7 @@ function score_class_threats($value, $additional_classes=''){
         <div class="scrollButtons" v-cloak>
             {{-- Save --}}
             <div class="standalone" v-show=status==='changed'>
-                <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
+                <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
                     @method('PATCH')
                     @csrf
                     <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('common.save')) }}</span>
@@ -405,7 +405,7 @@ function score_class_threats($value, $additional_classes=''){
                 this.error = false;
                 window.axios({
                     method: 'post',
-                    url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'report_update'], ['item' => $item->getKey()]) }}',
+                    url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class, 'report_update'], ['item' => $item->getKey()]) }}',
                     data: {
                         _token: window.Laravel.csrfToken,
                         _method: 'PATCH',

@@ -29,7 +29,7 @@ class EvalController extends __Controller
         $form = new static::$form_class();
         $form = $form->find($item);
         $step = $step==null ? 'context' : $step;
-        return view(static::$form_view_prefix . 'evaluation.edit', [
+        return view(static::$form_view_prefix . '.edit', [
             'item' => $form,
             'step' => $step
         ]);

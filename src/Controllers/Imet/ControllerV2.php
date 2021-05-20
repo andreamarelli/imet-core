@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ReportV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
@@ -15,7 +15,6 @@ use function view;
 
 class ControllerV2 extends Controller
 {
-    use ReportV2;
 
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::v2.context';
