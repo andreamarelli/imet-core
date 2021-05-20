@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component;
 
-use App;
+use Illuminate\Support\Facades\App;
 use AndreaMarelli\ModularForms\Models\Module;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Config;
  * @property integer $iso2
  * @property integer $iso3
  * @property string $name
+ * @property string $Name
  *
  * @package AndreaMarelli\ImetCore\Models
  */

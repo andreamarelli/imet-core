@@ -1,0 +1,28 @@
+<?php
+$item = \AndreaMarelli\ImetCore\Models\Person::find(0);
+
+?>
+
+@extends('layouts.admin')
+
+@section('admin_breadcrumbs')
+    @include('modular-forms::page.breadcrumbs', ['show' => !is_imet_environment(), 'links' => [
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('form/imet/common.imet_short')
+    ]])
+@endsection
+
+@section('admin_page_title')
+    @lang('entities.staff.user_info')
+@endsection
+
+@section('content')
+
+    @include('modular-forms::module.edit.container', [
+        'controller' => \AndreaMarelli\ImetCore\Controllers\StaffController::class,
+        'module_class' => \App\Models\Person\Modules\GeneralInfo::class,
+        'form_id' => $item->getKey()
+    ])
+
+@endsection
+
+

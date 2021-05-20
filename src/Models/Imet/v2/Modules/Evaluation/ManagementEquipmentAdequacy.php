@@ -15,9 +15,9 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_code = 'I5';
         $this->module_title = trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.title');
         $this->module_fields = [
-            ['name' => 'Equipment',  'type' => 'blade-admin.imet.v2.evaluation.fields.management_equipment_adequacy_equipment',   'label' => trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.v2.evaluation.fields.management_equipment_adequacy_evaluationscore',   'label' => trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.fields.EvaluationScore')],
-            ['name' => 'Importance',  'type' => 'blade-admin.imet.components.rating-0to2',   'label' => trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.fields.Importance')],
+            ['name' => 'Equipment',  'type' => 'blade-imet-core::v2.evaluation.fields.management_equipment_adequacy_equipment',   'label' => trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::v2.evaluation.fields.management_equipment_adequacy_evaluationscore',   'label' => trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.fields.EvaluationScore')],
+            ['name' => 'Importance',  'type' => 'blade-imet-core::components.rating-0to2',   'label' => trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.fields.Importance')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ManagementEquipmentAdequacy.fields.Comments')],
         ];
 

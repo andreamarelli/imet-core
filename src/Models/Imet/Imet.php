@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function session;
 
@@ -246,7 +247,7 @@ class Imet extends Form
     {
         $return = parent::updateModuleAndForm($item, $request);
 
-        $user = \Auth::user()
+        $user = Auth::user()
             ->person
             ->only(['first_name', 'last_name', 'organisation', 'function']);
 

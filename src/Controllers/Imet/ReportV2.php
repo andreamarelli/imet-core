@@ -25,7 +25,8 @@ trait ReportV2{
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
         $this->authorize('update', $item);
 
-        return view('admin.imet.v2.report.edit', $this->__retrieve_report_data($item));
+        return view(static::$form_view_prefix . 'v2.report.edit',
+                    $this->__retrieve_report_data($item));
     }
 
     /**
@@ -41,7 +42,8 @@ trait ReportV2{
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
         $this->authorize('view', $item);
 
-        return view('admin.imet.v2.report.show', $this->__retrieve_report_data($item));
+        return view(static::$form_view_prefix . 'v2.report.show',
+                    $this->__retrieve_report_data($item));
     }
 
     /**

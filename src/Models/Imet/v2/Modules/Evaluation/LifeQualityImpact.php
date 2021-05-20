@@ -15,7 +15,7 @@ class LifeQualityImpact extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.LifeQualityImpact.title');
         $this->module_fields = [
             ['name' => 'Element',           'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.LifeQualityImpact.fields.Element')],
-            ['name' => 'EvaluationScore',   'type' => 'blade-admin.imet.components.rating-Minus3to3WithNA',   'label' => trans('form/imet/v2/evaluation.LifeQualityImpact.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-Minus3to3WithNA',   'label' => trans('form/imet/v2/evaluation.LifeQualityImpact.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.LifeQualityImpact.fields.Comments')],
         ];
 

@@ -16,8 +16,8 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C1.5';
         $this->module_title = trans('form/imet/v2/evaluation.ImportanceEcosystemServices.title');
         $this->module_fields = [
-            ['name' => 'Aspect', 'type' => 'blade-admin.imet.v2.evaluation.fields.importance_ecosystem_services_aspect',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.EvaluationScore')],
+            ['name' => 'Aspect', 'type' => 'blade-imet-core::v2.evaluation.fields.importance_ecosystem_services_aspect',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.EvaluationScore')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.Comments')],
         ];

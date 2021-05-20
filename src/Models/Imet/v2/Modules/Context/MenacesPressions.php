@@ -32,11 +32,11 @@ class MenacesPressions extends Modules\Component\ImetModule
         $this->module_title = trans('form/imet/v2/context.MenacesPressions.title');
         $this->module_fields = [
             ['name' => 'Value',         'type' => 'text-area',               'label' => trans('form/imet/v2/context.MenacesPressions.fields.Value')],
-            ['name' => 'Impact',        'type' => 'blade-admin.imet.components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Impact')],
-            ['name' => 'Extension',     'type' => 'blade-admin.imet.components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Extension')],
-            ['name' => 'Duration',      'type' => 'blade-admin.imet.components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Duration')],
-            ['name' => 'Trend',         'type' => 'blade-admin.imet.components.rating-Minus2to2',   'label' => trans('form/imet/v2/context.MenacesPressions.fields.Trend')],
-            ['name' => 'Probability',   'type' => 'blade-admin.imet.components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Probability')],
+            ['name' => 'Impact',        'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Impact')],
+            ['name' => 'Extension',     'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Extension')],
+            ['name' => 'Duration',      'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Duration')],
+            ['name' => 'Trend',         'type' => 'blade-imet-core::components.rating-Minus2to2',   'label' => trans('form/imet/v2/context.MenacesPressions.fields.Trend')],
+            ['name' => 'Probability',   'type' => 'blade-imet-core::components.rating-0to3',        'label' => trans('form/imet/v2/context.MenacesPressions.fields.Probability')],
         ];
 
         $this->module_groups = [

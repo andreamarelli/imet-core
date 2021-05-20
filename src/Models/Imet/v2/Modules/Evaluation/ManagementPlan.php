@@ -18,8 +18,8 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
             ['name' => 'PlanUptoDate',     'type' => 'toggle-yes_no',    'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.PlanUptoDate')],
             ['name' => 'PlanApproved',     'type' => 'toggle-yes_no',    'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.PlanApproved')],
             ['name' => 'PlanImplemented',     'type' => 'toggle-yes_no',    'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.PlanImplemented')],
-            ['name' => 'VisionAdequacy',     'type' => 'blade-admin.imet.components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.VisionAdequacy')],
-            ['name' => 'PlanAdequacyScore',     'type' => 'blade-admin.imet.components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.PlanAdequacyScore')],
+            ['name' => 'VisionAdequacy',     'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.VisionAdequacy')],
+            ['name' => 'PlanAdequacyScore',     'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.PlanAdequacyScore')],
             ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('form/imet/v2/evaluation.ManagementPlan.fields.Comments')],
         ];
 

@@ -15,7 +15,7 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.RegulationsAdequacy.title');
         $this->module_fields = [
             ['name' => 'Regulation',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.RegulationsAdequacy.fields.Regulation')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.RegulationsAdequacy.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.RegulationsAdequacy.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.RegulationsAdequacy.fields.Comments')],
         ];
 

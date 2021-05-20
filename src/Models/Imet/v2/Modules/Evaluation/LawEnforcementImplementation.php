@@ -15,7 +15,7 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.LawEnforcementImplementation.title');
         $this->module_fields = [
             ['name' => 'Element',   'type' => 'text-area',          'label' => trans('form/imet/v2/evaluation.LawEnforcementImplementation.fields.Element'), 'other'=>'rows="3"'],
-            ['name' => 'Adequacy',  'type' => 'blade-admin.imet.components.rating-0to3WithNA',  'label' => trans('form/imet/v2/evaluation.LawEnforcementImplementation.fields.Adequacy')],
+            ['name' => 'Adequacy',  'type' => 'blade-imet-core::components.rating-0to3WithNA',  'label' => trans('form/imet/v2/evaluation.LawEnforcementImplementation.fields.Adequacy')],
             ['name' => 'Comments',  'type' => 'text-area',               'label' => trans('form/imet/v2/evaluation.LawEnforcementImplementation.fields.Comments')],
         ];
 

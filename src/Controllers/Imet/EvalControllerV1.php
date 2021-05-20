@@ -10,6 +10,6 @@ class EvalControllerV1 extends EvalController
 {
 
     protected static $form_class = Imet_Eval::class;
-    protected static $form_view = 'imet/v1';
+    protected static $form_view_prefix = 'imet-core::v1';
 
 }

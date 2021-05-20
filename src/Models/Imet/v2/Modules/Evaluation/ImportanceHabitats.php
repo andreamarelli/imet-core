@@ -18,9 +18,9 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C1.3';
         $this->module_title = trans('form/imet/v2/evaluation.ImportanceHabitats.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'blade-admin.imet.v2.evaluation.fields.show',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.EvaluationScore')],
-            ['name' => 'EvaluationScore2',  'type' => 'blade-admin.imet.components.rating-1to3',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.EvaluationScore2')],
+            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore2',  'type' => 'blade-imet-core::components.rating-1to3',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.EvaluationScore2')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceHabitats.fields.Comments')],
         ];

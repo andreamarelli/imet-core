@@ -17,7 +17,7 @@ class ClimateChange extends Modules\Component\ImetModule
         $this->module_fields = [
             ['name' => 'Value',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.ClimateChange.fields.Value')],
             ['name' => 'Description',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.ClimateChange.fields.Description')],
-            ['name' => 'Trend',  'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/context.ClimateChange.fields.Trend')],
+            ['name' => 'Trend',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/context.ClimateChange.fields.Trend')],
             ['name' => 'Notes',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.ClimateChange.fields.Notes')],
         ];
 

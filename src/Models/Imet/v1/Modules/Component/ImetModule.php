@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component;
 
 use AndreaMarelli\ModularForms\Models\Module;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
+use Illuminate\Support\Facades\App;
 
 
 class ImetModule extends Module
@@ -51,8 +52,8 @@ class ImetModule extends Module
         // Force Language
         if($form_id!==null){
             $FormLang = Imet::getLanguage($form_id);
-            if($FormLang != \App::getLocale()){
-                \App::setLocale($FormLang);
+            if($FormLang != App::getLocale()){
+                App::setLocale($FormLang);
             }
         }
         return parent::getPredefined($form_id);

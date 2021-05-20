@@ -18,8 +18,8 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
             ['name' => 'PlanUptoDate',     'type' => 'toggle-yes_no',    'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.PlanUptoDate')],
             ['name' => 'PlanApproved',     'type' => 'toggle-yes_no',    'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.PlanApproved')],
             ['name' => 'PlanImplemented',     'type' => 'toggle-yes_no',    'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.PlanImplemented')],
-            ['name' => 'VisionAdequacy',     'type' => 'blade-admin.imet.components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.VisionAdequacy')],
-            ['name' => 'PlanAdequacyScore',     'type' => 'blade-admin.imet.components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.PlanAdequacyScore')],
+            ['name' => 'VisionAdequacy',     'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.VisionAdequacy')],
+            ['name' => 'PlanAdequacyScore',     'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.PlanAdequacyScore')],
             ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('form/imet/v2/evaluation.WorkPlan.fields.Comments')],
         ];
 

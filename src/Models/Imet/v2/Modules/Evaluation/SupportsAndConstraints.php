@@ -16,8 +16,8 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.SupportsAndConstraints.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.SupportsAndConstraints.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-1to3WithNA',   'label' => trans('form/imet/v2/evaluation.SupportsAndConstraints.fields.EvaluationScore')],
-            ['name' => 'EvaluationScore2',  'type' => 'blade-admin.imet.components.rating-Minus3to3',   'label' => trans('form/imet/v2/evaluation.SupportsAndConstraints.fields.EvaluationScore2')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-1to3WithNA',   'label' => trans('form/imet/v2/evaluation.SupportsAndConstraints.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore2',  'type' => 'blade-imet-core::components.rating-Minus3to3',   'label' => trans('form/imet/v2/evaluation.SupportsAndConstraints.fields.EvaluationScore2')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.SupportsAndConstraints.fields.Comments')],
         ];
 

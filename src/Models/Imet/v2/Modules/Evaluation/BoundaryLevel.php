@@ -19,12 +19,12 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.BoundaryLevel.title');
         $this->module_fields = [
             ['name' => 'Adequacy',          'type' => 'text-area',               'label' => trans('form/imet/v2/evaluation.BoundaryLevel.fields.Adequacy')],
-            ['name' => 'EvaluationScore',   'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.BoundaryLevel.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.BoundaryLevel.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',               'label' => trans('form/imet/v2/evaluation.BoundaryLevel.fields.Comments')],
         ];
 
         $this->module_common_fields =[
-            ['name' => 'Boundaries',            'type' => 'blade-admin.imet.components.rating-0to6',        'label' => trans('form/imet/v2/evaluation.BoundaryLevel.fields.Boundaries')],
+            ['name' => 'Boundaries',            'type' => 'blade-imet-core::components.rating-0to6',        'label' => trans('form/imet/v2/evaluation.BoundaryLevel.fields.Boundaries')],
             ['name' => 'BoundariesComments',    'type' => 'text-area',               'label' => trans('form/imet/v2/evaluation.BoundaryLevel.fields.BoundariesComments')],
         ];
 

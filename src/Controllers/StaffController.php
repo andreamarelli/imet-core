@@ -4,7 +4,7 @@ namespace AndreaMarelli\ImetCore\Controllers;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ModularForms\Controllers\StaffController as BaseStaffController;
-use AndreaMarelli\ModularForms\Models\User\Person;
+use AndreaMarelli\ImetCore\Models\Person;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,7 @@ class StaffController extends BaseStaffController
     /**
      * Manage "update" OFFLINE user
      *
-     * @param \AndreaMarelli\ModularForms\Models\User\Person $item
+     * @param Person $item
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */

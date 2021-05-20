@@ -15,8 +15,8 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         $this->module_code = 'PR7';
         $this->module_title = trans('form/imet/v2/evaluation.ManagementActivities.title');
         $this->module_fields = [
-            ['name' => 'Activity',  'type' => 'blade-admin.imet.v2.evaluation.fields.show_species',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.Activity')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.EvaluationScore')],
+            ['name' => 'Activity',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.Activity')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.EvaluationScore')],
             ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.InManagementPlan')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.Comments')],
         ];

@@ -15,8 +15,8 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
         $this->module_code = 'I1';
         $this->module_title = trans('form/imet/v2/evaluation.InformationAvailability.title');
         $this->module_fields = [
-            ['name' => 'Element',  'type' => 'blade-admin.imet.v2.evaluation.fields.show_species',   'label' => trans('form/imet/v2/evaluation.InformationAvailability.fields.Element')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.InformationAvailability.fields.EvaluationScore')],
+            ['name' => 'Element',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('form/imet/v2/evaluation.InformationAvailability.fields.Element')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.InformationAvailability.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.InformationAvailability.fields.Comments')],
         ];
 

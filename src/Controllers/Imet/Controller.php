@@ -38,7 +38,7 @@ class Controller extends __Controller
     use Pame;
 
     protected static $form_class = Imet::class;
-    protected static $form_view = 'imet';
+    protected static $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
     public const AUTHORIZE_BY_POLICY = true;
@@ -106,7 +106,7 @@ class Controller extends __Controller
 
         }
 
-        return view('imet-core::list', [
+        return view(static::$form_view_prefix . 'list', [
             'controller' => static::class,
             'list' => $list,
             'request' => $request,
@@ -144,7 +144,7 @@ class Controller extends __Controller
             )
             ->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
 
-        return view('admin.' . static::$form_view . '.offline.export', [
+        return view(static::$form_view_prefix . 'offline.export', [
             'list' => $list,
             'request' => $request,
             'countries' => array_map(function ($item) {
@@ -232,7 +232,7 @@ class Controller extends __Controller
             unset($temp_array[$key]);
         }
 
-        return view('admin.imet.v2.tools.export_csv',
+        return view(static::$form_view_prefix . 'v2.tools.export_csv',
                     [
                         'modules' => $modules_final_list,
                         'imet_keys' => $imet_keys,
@@ -313,7 +313,7 @@ class Controller extends __Controller
      */
     public function import_view()
     {
-        return view('admin.imet.import');
+        return view(static::$form_view_prefix . 'import');
     }
 
     /**
@@ -429,7 +429,7 @@ class Controller extends __Controller
             return [
                 'status' => 'success',
                 'entity_label' => Imet::find($formID)->{Imet::LABEL},
-                'edit_url' => 'admin/' . static::$form_view . '/v2/context/' . $formID . '/edit'
+                'edit_url' => 'admin/imet/v2/context/' . $formID . '/edit'
             ];
         } catch (Exception $e) {
             DB::rollback();
@@ -447,7 +447,7 @@ class Controller extends __Controller
     {
         $form = Imet::find($item);
 
-        return view('admin.imet.merge.list', [
+        return view(static::$form_view_prefix . 'merge.list', [
             'primary_form' => $form,
             'duplicated_forms' => $form->getDuplicates()
         ]);

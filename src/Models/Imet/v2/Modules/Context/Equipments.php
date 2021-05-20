@@ -16,7 +16,7 @@ class Equipments extends Modules\Component\ImetModule
         $this->module_title = trans('form/imet/v2/context.Equipments.title');
         $this->module_fields = [
             ['name' => 'Resource',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.Equipments.fields.Resource')],
-            ['name' => 'AdequacyLevel',  'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/context.Equipments.fields.AdequacyLevel')],
+            ['name' => 'AdequacyLevel',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/context.Equipments.fields.AdequacyLevel')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.Equipments.fields.Comments')],
         ];
 

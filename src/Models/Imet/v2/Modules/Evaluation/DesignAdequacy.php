@@ -15,7 +15,7 @@ class DesignAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.DesignAdequacy.title');
         $this->module_fields = [
             ['name' => 'Values',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.DesignAdequacy.fields.Values')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.DesignAdequacy.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.DesignAdequacy.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.DesignAdequacy.fields.Comments')],
         ];
 

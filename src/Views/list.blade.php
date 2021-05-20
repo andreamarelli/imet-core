@@ -12,7 +12,7 @@ use AndreaMarelli\ModularForms\Models\User\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
-$can_encode = User::isAdmin(Auth::user()) || Role::isEncoder(Auth::user());
+$can_encode = User::isAdmin(\Illuminate\Support\Facades\Auth::user()) || Role::isEncoder(\Illuminate\Support\Facades\Auth::user());
 $current_route = URL::route('index');
 ?>
 
@@ -52,7 +52,7 @@ $current_route = URL::route('index');
     @endif
 
     @if($show_filters)
-        @include('admin.imet.components.common_filters', [
+        @include('imet-core::components.common_filters', [
             'request'=>$request,
             'url' => $current_route,
             'no_filter_selected' => $no_filter_selected,
@@ -124,23 +124,23 @@ $current_route = URL::route('index');
 
                             {{-- Show --}}
                             <span v-if="item.version==='v2'">
-                                @include('admin.imet.components.button_show', ['version' => 'v2'])
+                                @include('imet-core::components.button_show', ['version' => 'v2'])
                             </span>
 
                             @if($can_encode)
 
                                 {{-- Edit --}}
                                 <span v-if="item.version==='v1'">
-                                    @include('admin.imet.components.button_edit', ['version' => 'v1'])
+                                    @include('imet-core::components.button_edit', ['version' => 'v1'])
                                 </span>
                                 <span v-else-if="item.version==='v2'">
-                                    @include('admin.imet.components.button_edit', ['version' => 'v2'])
+                                    @include('imet-core::components.button_edit', ['version' => 'v2'])
                                 </span>
 
                                 {{-- Upgrade --}}
                                 {{--
                                 <span v-if="item.version==='v1'">
-                                    @include('admin.imet.components.button_upgrade', [
+                                    @include('imet-core::components.button_upgrade', [
                                         'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                                         'item' => 'item.FormID'
                                     ])

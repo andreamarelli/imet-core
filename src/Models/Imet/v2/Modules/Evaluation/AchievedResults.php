@@ -17,7 +17,7 @@ class AchievedResults extends Modules\Component\ImetModule_Eval
             ['name' => 'Category',          'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.AchievedResults.fields.Category')],
             ['name' => 'Activity',          'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.AchievedResults.fields.Activity')],
             ['name' => 'TargetedOutput',    'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.AchievedResults.fields.TargetedOutput')],
-            ['name' => 'EvaluationScore',   'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.AchievedResults.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.AchievedResults.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.AchievedResults.fields.Comments')],
         ];
 

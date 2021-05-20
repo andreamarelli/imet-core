@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+
 
 /**
  * Check if App::environment is IMET related (ex. imetoffline or imetglobal)

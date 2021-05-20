@@ -14,7 +14,7 @@ class BudgetAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_code = 'I3';
         $this->module_title = trans('form/imet/v2/evaluation.BudgetAdequacy.title');
         $this->module_fields = [
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to5',   'label' => trans('form/imet/v2/evaluation.BudgetAdequacy.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to5',   'label' => trans('form/imet/v2/evaluation.BudgetAdequacy.fields.EvaluationScore')],
             ['name' => 'Percentage',  'type' => 'integer',   'label' => trans('form/imet/v2/evaluation.BudgetAdequacy.fields.Percentage')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.BudgetAdequacy.fields.Comments')],
         ];

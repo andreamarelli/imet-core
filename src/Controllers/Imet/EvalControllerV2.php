@@ -12,7 +12,7 @@ class EvalControllerV2 extends EvalController
 {
 
     protected static $form_class = Imet_Eval::class;
-    protected static $form_view = 'imet/v2';
+    protected static $form_view_prefix = 'imet-core::v2';
 
     /**
      * Override show route
@@ -29,7 +29,7 @@ class EvalControllerV2 extends EvalController
         $form = new static::$form_class();
         $form = $form->find($item);
         $step = $step==null ? 'context' : $step;
-        return view('admin.'.static::$form_view.'.evaluation.show', [
+        return view(static::$form_view_prefix . 'v2.evaluation.show', [
             'item' => $form,
             'step' => $step
         ]);

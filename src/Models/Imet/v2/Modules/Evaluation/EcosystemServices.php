@@ -15,8 +15,8 @@ class EcosystemServices extends Modules\Component\ImetModule_Eval
         $this->module_code = 'PR18';
         $this->module_title = trans('form/imet/v2/evaluation.EcosystemServices.title');
         $this->module_fields = [
-            ['name' => 'Intervention',      'type' => 'blade-admin.imet.v2.evaluation.fields.show',  'label' => trans('form/imet/v2/evaluation.EcosystemServices.fields.Intervention')],
-            ['name' => 'EvaluationScore',   'type' => 'blade-admin.imet.components.rating-0to3WithNA',      'label' => trans('form/imet/v2/evaluation.EcosystemServices.fields.EvaluationScore')],
+            ['name' => 'Intervention',      'type' => 'blade-imet-core::v2.evaluation.fields.show',  'label' => trans('form/imet/v2/evaluation.EcosystemServices.fields.Intervention')],
+            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-0to3WithNA',      'label' => trans('form/imet/v2/evaluation.EcosystemServices.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',                   'label' => trans('form/imet/v2/evaluation.EcosystemServices.fields.Comments')],
         ];
 

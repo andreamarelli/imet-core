@@ -17,7 +17,7 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Equipment',         'type' => 'text-area',                'label' => trans('form/imet/v2/evaluation.EquipmentMaintenance.fields.Equipment')],
             ['name' => 'AdequacyLevel',     'type' => 'disabled',             'label' => trans('form/imet/v2/evaluation.EquipmentMaintenance.fields.AdequacyLevel')],
-            ['name' => 'EvaluationScore',   'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.EquipmentMaintenance.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.EquipmentMaintenance.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',                'label' => trans('form/imet/v2/evaluation.EquipmentMaintenance.fields.Comments')],
         ];
 

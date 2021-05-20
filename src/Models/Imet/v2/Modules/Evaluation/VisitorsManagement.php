@@ -15,7 +15,7 @@ class VisitorsManagement extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.VisitorsManagement.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.VisitorsManagement.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.VisitorsManagement.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.VisitorsManagement.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.VisitorsManagement.fields.Comments')],
         ];
 

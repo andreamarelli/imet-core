@@ -17,7 +17,7 @@ class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
             ['name' => 'Category',            'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.WorkProgramImplementation.fields.Category')],
             ['name' => 'Activity',          'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.WorkProgramImplementation.fields.Activity')],
             ['name' => 'TargetedActivity',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.WorkProgramImplementation.fields.TargetedActivity')],
-            ['name' => 'EvaluationScore',   'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.WorkProgramImplementation.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.WorkProgramImplementation.fields.EvaluationScore')],
             ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.WorkProgramImplementation.fields.Comments')],
         ];
 

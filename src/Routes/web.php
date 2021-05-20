@@ -23,9 +23,9 @@ Route::group(['middleware' => 'setLocale'], function () {
 
         Route::get('file/{hash}',      [UploadFileController::class, 'download']);
 
-        Route::get('admin/imet/offline/close', function () { return view('admin.imet.offline.close'); });
-        Route::get('admin/confirm_user', function () { return view('admin.imet.offline.confirm_user'); });
-        Route::get('admin/offline_user', function () { return view('admin.imet.offline.edit_user'); });
+        Route::get('admin/imet/offline/close', function () { return view('imet-core::offline.close'); });
+        Route::get('admin/confirm_user', function () { return view('imet-core::offline.confirm_user'); });
+        Route::get('admin/offline_user', function () { return view('imet-core::offline.edit_user'); });
         Route::patch('admin/staff/{item}', [StaffController::class, 'update_offline']);
 
         Route::group(['prefix' => 'ajax'], function () {

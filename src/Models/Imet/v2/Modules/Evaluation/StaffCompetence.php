@@ -16,8 +16,8 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.StaffCompetence.title');
         $this->module_fields = [
             ['name' => 'Theme',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.StaffCompetence.fields.Theme')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.StaffCompetence.fields.EvaluationScore')],
-            ['name' => 'PercentageLevel',  'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.StaffCompetence.fields.PercentageLevel')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.StaffCompetence.fields.EvaluationScore')],
+            ['name' => 'PercentageLevel',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.StaffCompetence.fields.PercentageLevel')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.StaffCompetence.fields.Comments')],
         ];
 

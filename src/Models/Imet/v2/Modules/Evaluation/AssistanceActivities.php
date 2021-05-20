@@ -15,7 +15,7 @@ class AssistanceActivities extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.AssistanceActivities.title');
         $this->module_fields = [
             ['name' => 'Activity',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.AssistanceActivities.fields.Activity')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.AssistanceActivities.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.AssistanceActivities.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.AssistanceActivities.fields.Comments')],
         ];
 

@@ -18,7 +18,7 @@ class ControllerV2 extends Controller
     use ReportV2;
 
     protected static $form_class = Imet::class;
-    protected static $form_view = 'imet/v2/context';
+    protected static $form_view_prefix = 'imet-core::v2.context';
     protected static $form_default_step = 'general_info';
 
     public const AUTHORIZE_BY_POLICY = true;
@@ -71,7 +71,7 @@ class ControllerV2 extends Controller
 
         $form = new static::$form_class();
         $form = $form->find($item);
-        $view = view('admin.'.static::$form_view.'.print', [
+        $view = view(static::$form_view_prefix . 'print', [
             'item' => $form
         ]);
         return File::exportToPDF($form->filename('pdf'), $view);

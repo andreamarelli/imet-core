@@ -15,7 +15,7 @@ class ImportanceClassification extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('form/imet/v2/evaluation.ImportanceClassification.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceClassification.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-admin.imet.components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.ImportanceClassification.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.ImportanceClassification.fields.EvaluationScore')],
             ['name' => 'SignificativeClassification',  'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/evaluation.ImportanceClassification.fields.SignificativeClassification')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceClassification.fields.Comments')],
         ];
