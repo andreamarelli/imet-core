@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Console\Commands;
+namespace AndreaMarelli\ImetCore\Commands;
 
 use AndreaMarelli\ImetCore\Jobs;
 use Illuminate\Console\Command;

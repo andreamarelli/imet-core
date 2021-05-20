@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Console\Commands;
+namespace AndreaMarelli\ImetCore\Commands;
 
 
 trait Utils{

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Console\Commands;
+namespace AndreaMarelli\ImetCore\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

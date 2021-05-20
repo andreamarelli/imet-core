@@ -2,14 +2,14 @@
 
 namespace AndreaMarelli\ImetCore;
 
-use AndreaMarelli\ImetCore\Console\Commands\ApplySQL;
-use AndreaMarelli\ImetCore\Console\Commands\Export;
-use AndreaMarelli\ImetCore\Console\Commands\GetSerialNumber;
-use AndreaMarelli\ImetCore\Console\Commands\Import;
-use AndreaMarelli\ImetCore\Console\Commands\InitDB;
-use AndreaMarelli\ImetCore\Console\Commands\PopulateMetadata;
-use AndreaMarelli\ImetCore\Console\Commands\PopulateSpecies;
-use AndreaMarelli\ImetCore\Console\Commands\SetSerialNumber;
+use AndreaMarelli\ImetCore\Commands\ApplySQL;
+use AndreaMarelli\ImetCore\Commands\Export;
+use AndreaMarelli\ImetCore\Commands\GetSerialNumber;
+use AndreaMarelli\ImetCore\Commands\Import;
+use AndreaMarelli\ImetCore\Commands\InitDB;
+use AndreaMarelli\ImetCore\Commands\PopulateMetadata;
+use AndreaMarelli\ImetCore\Commands\PopulateSpecies;
+use AndreaMarelli\ImetCore\Commands\SetSerialNumber;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 
