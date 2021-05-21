@@ -78,16 +78,12 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record = static::addField($record, 'EvaluationScore');
-            $record = static::addField($record, 'IncludeInStatistics');
-        }
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record = static::addField($record, 'EvaluationScore');
+//        $record = static::addField($record, 'IncludeInStatistics');
+//        return $record;
+//    }
 
     public static function updateModule(Request $request): array
     {

@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component;
 
+use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
 use Illuminate\Support\Facades\App;
 use AndreaMarelli\ModularForms\Models\Module;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
@@ -9,7 +10,6 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 
 class ImetModule extends Module
 {
-
     use Upgrade;
 
     public const CREATED_AT = 'UpdateDate';
@@ -23,18 +23,6 @@ class ImetModule extends Module
     public $module_subTitle = null;
     public $module_info_EvaluationQuestion = null;
     public $module_info_Rating = null;
-
-    /**
-     * Override: upgrade module before importing
-     *
-     * @param $form_id
-     * @param $data
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
-    public static function importModule($form_id, $data)
-    {
-        parent::importModule($form_id, $data);
-    }
 
     /**
      * Relation to IMET form

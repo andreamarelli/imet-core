@@ -54,16 +54,12 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         return $new_records;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record = static::dropField($record, 'Percentage');
-            $record = static::addField($record, 'AdequacyLevel');
-        }
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record = static::dropField($record, 'Percentage');
+//        $record = static::addField($record, 'AdequacyLevel');
+//        return $record;
+//    }
 
     private static function calculateEquipementAdequacy($form_id)
     {

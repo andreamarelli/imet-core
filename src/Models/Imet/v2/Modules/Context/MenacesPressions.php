@@ -113,21 +113,17 @@ class MenacesPressions extends Modules\Component\ImetModule
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record = static::replacePredefinedValue($record, 'Value', 'Réseaux et linéaires de services et de communication (électrique, téléphone, aqueduc…)','Réseaux et lignes de services publics et de communication (électricité, téléphone, aqueduc, etc.)');
-            $record = static::replacePredefinedValue($record, 'Value', 'Voies maritimes et couloirs de navigation','Voies navigables et voies de navigation maritimes');
-            $record = static::replacePredefinedValue($record, 'Value', 'Cueillette de plantes', 'Cueillette de produits des plantes');
-            $record = static::replacePredefinedValue($record, 'Value',  'Prélèvement de plantes', 'Prélèvement des plantes vivantes');
-            $record = static::replacePredefinedValue($record, 'Value',  'Charge en nutriments', 'Charge en éléments nutritifs');
-            $record = static::replacePredefinedValue($record, 'Value',  'Epaves des moyens', 'Déchets libérés par les voitures/ par les bateaux');
-            $record = static::replacePredefinedValue($record, 'Value',  'Autre: Augmentation des pluies et changements saisonnières', 'Augmentation des pluies et changements saisonniers');
-        }
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record = static::replacePredefinedValue($record, 'Value', 'Réseaux et linéaires de services et de communication (électrique, téléphone, aqueduc…)','Réseaux et lignes de services publics et de communication (électricité, téléphone, aqueduc, etc.)');
+//        $record = static::replacePredefinedValue($record, 'Value', 'Voies maritimes et couloirs de navigation','Voies navigables et voies de navigation maritimes');
+//        $record = static::replacePredefinedValue($record, 'Value', 'Cueillette de plantes', 'Cueillette de produits des plantes');
+//        $record = static::replacePredefinedValue($record, 'Value',  'Prélèvement de plantes', 'Prélèvement des plantes vivantes');
+//        $record = static::replacePredefinedValue($record, 'Value',  'Charge en nutriments', 'Charge en éléments nutritifs');
+//        $record = static::replacePredefinedValue($record, 'Value',  'Epaves des moyens', 'Déchets libérés par les voitures/ par les bateaux');
+//        $record = static::replacePredefinedValue($record, 'Value',  'Autre: Augmentation des pluies et changements saisonnières', 'Augmentation des pluies et changements saisonniers');
+//        return $record;
+//    }
 
     public static function updateModule(Request $request): array
     {

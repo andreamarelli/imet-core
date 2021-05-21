@@ -77,15 +77,7 @@ class Staff extends Modules\Component\ImetModule_Eval
         return $new_records;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            return null;  // fully incompatible
-        }
 
-        return $record;
-    }
 
     private static function calculateStaffStatus($actual, $expected)
     {

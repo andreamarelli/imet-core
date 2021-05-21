@@ -32,16 +32,18 @@ class HabitatsMarine extends Modules\Component\ImetModule
 
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record = static::replacePredefinedValue($record, 'HabitatType', 'Barrière coralliènne', 'Barrière corallienne');
-        }
         // #### not in predefined lists ####
         $record['Presence'] = static::dropIfValueNotInPredefinedList($record['Presence'], 'MarineHabitatsPresence');
 
         return $record;
     }
+
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record = static::replacePredefinedValue($record, 'HabitatType', 'Barrière coralliènne', 'Barrière corallienne');
+//        return $record;
+//    }
 
 }

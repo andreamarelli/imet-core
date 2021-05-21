@@ -26,14 +26,10 @@ class BudgetSecurization extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record['EvaluationScore'] = null;
-            $record['Percentage'] = null;
-        }
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record['EvaluationScore'] = null;
+//        $record['Percentage'] = null;
+//        return $record;
+//    }
 }

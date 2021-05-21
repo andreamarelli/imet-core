@@ -45,15 +45,11 @@ class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
             );
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record = static::forceCurrency($record, 'Currency', ['Amount']);
-        }
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record = static::forceCurrency($record, 'Currency', ['Amount']);
+//        return $record;
+//    }
 
     public static function copyCurrencyFromCTX213($data)
     {

@@ -345,15 +345,15 @@ class Controller extends __Controller
                 // Create new form and return ID
                 $formID = v1\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
-                $modules_imported['Context'] = v1\Imet::importModules($json['Context'], $formID);
-                $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID);
+                $modules_imported['Context'] = v1\Imet::importModules($json['Context'], $formID, $imet_version);
+                $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
             } elseif ($version === 'v2') {
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
-                $modules_imported['Context'] = v2\Imet::importModules($json['Context'], $formID, false, $imet_version);
-                $modules_imported['Evaluation'] = v2\Imet_Eval::importModules($json['Evaluation'], $formID, false, $imet_version);
+                $modules_imported['Context'] = v2\Imet::importModules($json['Context'], $formID, $imet_version);
+                $modules_imported['Evaluation'] = v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
             }
             DB::commit();
@@ -372,39 +372,6 @@ class Controller extends __Controller
 
         return response()->json($response);
     }
-
-    /**
-     * Upgrade an IMET v1 to v2
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $item
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function upgrade(Request $request, v1\Imet $item)
-    {
-        $json = static::export($item, false);
-        $json['Imet']['version'] = 'v2';
-
-        DB::beginTransaction();
-
-        try {
-            // Create new form and return ID
-            $formID = v2\Imet::importForm($json['Imet']);
-            // Populate Imet & Imet_Eval modules
-            v2\Imet::importModules($json['Context'], $formID, true);
-            v2\Imet_Eval::importModules($json['Evaluation'], $formID, true);
-            Encoder::importModule($formID, $json['Encoders'] ?? null);
-
-            DB::commit();
-            Session::flash('message', trans('form/imet/common.upgrade_success'));
-        } catch (Exception $e) {
-            DB::rollback();
-            Session::flash('', trans('form/imet/common.upgrade_failed'));
-        }
-
-        return redirect()->action('\\' . static::class . '@index');
-    }
-
 
     public function store_prefilled(Request $request, $prev_year_selection)
     {

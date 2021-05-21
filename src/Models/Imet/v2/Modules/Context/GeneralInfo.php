@@ -61,21 +61,16 @@ class GeneralInfo extends Modules\Component\ImetModule
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // #### v1.0 -> v2.0 ####
-
-        // Ecotype
-        $ecotypes = json_decode($record['Ecotype']);
-        $ecotypes = collect($ecotypes)->filter(function($item){
-            return in_array($item, array_keys(SelectionList::getList('ImetV2_EcoType')));
-        });
-        $record['Ecotype'] = json_encode($ecotypes->toArray(), JSON_UNESCAPED_UNICODE);
-
-        // ReferenceTextDocument
-        $record = static::dropField($record, 'ReferenceTextDocument');
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        // Ecotype
+//        $ecotypes = json_decode($record['Ecotype']);
+//        $ecotypes = collect($ecotypes)->filter(function($item){
+//            return in_array($item, array_keys(SelectionList::getList('ImetV2_EcoType')));
+//        });
+//        $record['Ecotype'] = json_encode($ecotypes->toArray(), JSON_UNESCAPED_UNICODE);
+//        $record = static::dropField($record, 'ReferenceTextDocument');
+//        return $record;
+//    }
 
 }

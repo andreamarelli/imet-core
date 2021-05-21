@@ -1,10 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component;
+namespace AndreaMarelli\ImetCore\Models\Imet\Components;
 
 use AndreaMarelli\ImetCore\Models\Currency;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use AndreaMarelli\ModularForms\Helpers\Type\JSON;
 
 Trait Upgrade
 {
@@ -13,14 +12,13 @@ Trait Upgrade
      * Upgrade module record from a previous version (need to be instantiated wherever necessary)
      *
      * @param $records
-     * @param bool $v1_to_v2
      * @param null $imet_version
      * @return mixed
      */
-    public static function upgradeModuleRecords($records, $v1_to_v2 = false, $imet_version = null)
+    public static function upgradeModuleRecords($records, $imet_version = null)
     {
         foreach ($records as $i=>$record){
-            $records[$i] = static::upgradeModule($record, $v1_to_v2, $imet_version);
+            $records[$i] = static::upgradeModule($record, $imet_version);
         }
         return $records;
     }
@@ -29,11 +27,10 @@ Trait Upgrade
      * Upgrade module record from a previous version (need to be instantiated wherever necessary)
      *
      * @param $record
-     * @param bool $v1_to_v2
      * @param null $imet_version
      * @return mixed
      */
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null)
     {
         return $record;
     }

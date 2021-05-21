@@ -270,11 +270,12 @@ class Imet extends Form
      *
      * @param $records
      * @param $formID
+     * @return array
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \ReflectionException
      */
-    public static function importModules($records, $formID)
+    public static function importModules($records, $formID, $imet_version = null): array
     {
+        $records = static::upgradeModules($records, $imet_version);
         $modules_imported = [];
         /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class */
         foreach (static::allModules() as $module_class) {
@@ -286,6 +287,26 @@ class Imet extends Form
             }
         }
         return $modules_imported;
+    }
+
+    /**
+     * Upgrade modules from previous versions
+     *
+     * @param $data
+     * @param null $imet_version
+     * @return array
+     */
+    public static function upgradeModules($data, $imet_version = null): array
+    {
+        $upgraded_data = [];
+        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class */
+        foreach (static::allModules() as $module_class) {
+            if(array_key_exists($module_class::getShortClassName(), $data)){
+                $upgraded_data[$module_class::getShortClassName()]
+                    = $module_class::upgradeModuleRecords($data[$module_class::getShortClassName()], $imet_version);
+            }
+        }
+        return $upgraded_data;
     }
 
     /**

@@ -26,7 +26,6 @@ Route::group(['middleware' => 'setLocale'], function () {
 
         Route::get('file/{hash}',      [UploadFileController::class, 'download']);
 
-        Route::get('admin/imet/offline/close', function () { return view('imet-core::offline.close'); });
         Route::get('admin/confirm_user', function () { return view('imet-core::offline.confirm_user'); });
         Route::get('admin/offline_user', function () { return view('imet-core::offline.edit_user'); });
         Route::patch('admin/staff/{item}', [StaffController::class, 'update_offline']);
@@ -34,13 +33,13 @@ Route::group(['middleware' => 'setLocale'], function () {
         Route::group(['prefix' => 'ajax'], function () {
             Route::post('upload', [UploadFileController::class, 'upload']);
             Route::get('download', [UploadFileController::class, 'download']);
-            Route::post('protected_areas/getLabels', [ProtectedAreaController::class, 'getLabels']);
             Route::group(['prefix' => 'search'], function () {
                 Route::post('protected_areas', [ProtectedAreaController::class, 'search']);
                 Route::post('species', [SpeciesController::class, 'search']);
             });
         });
     }
+
 
 
     Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function () {
@@ -58,8 +57,6 @@ Route::group(['middleware' => 'setLocale'], function () {
         Route::post('import',      [Controller::class, 'import']);
         Route::get('{item}/merge',  [Controller::class, 'merge_view']);
         Route::post('merge',      [Controller::class, 'merge']);
-        Route::post('{item}/upgrade',      [Controller::class, 'upgrade']);
-
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
@@ -126,10 +123,14 @@ Route::group(['middleware' => 'setLocale'], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(['prefix' => 'api/imet'], function () {
+    Route::group(['prefix' => 'api'], function () {
 
-        Route::match(['get', 'post'],'/',[EvalController::class, 'pame']);
-        Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
+        Route::match(['get', 'post'], 'protected_areas/pairs',         [ProtectedAreaController::class, 'get_pairs']);
+
+        Route::group(['prefix' => 'imet'], function () {
+            Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
+            Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
+        });
 
     });
 

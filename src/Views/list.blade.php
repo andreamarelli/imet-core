@@ -137,17 +137,6 @@ $current_route = URL::route('index');
                                     @include('imet-core::components.button_edit', ['version' => 'v2'])
                                 </span>
 
-                                {{-- Upgrade --}}
-                                {{--
-                                <span v-if="item.version==='v1'">
-                                    @include('imet-core::components.button_upgrade', [
-                                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                                        'item' => 'item.FormID'
-                                    ])
-                                </span>
-                                --}}
-
-
                                 {{-- Merge tool --}}
                                 <span v-if="item.has_duplicates">
                                     @include('modular-forms::buttons._generic', [

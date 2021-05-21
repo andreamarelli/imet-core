@@ -4,9 +4,11 @@
 if($version==='v1'){
     $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class;
     $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class;
+    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class;
 } else {
     $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class;
     $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class;
+    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class;
 }
 ?>
 
@@ -49,7 +51,7 @@ if($version==='v1'){
             {{-- Analysis Report --}}
             @if($version==='v2')
                 @include('modular-forms::buttons._generic', [
-                    'controller' => $controller_context,
+                    'controller' => $controller_report,
                     'action' =>'report_show',
                     'item' => 'item.FormID',
                     'label' => ucfirst(trans('form/imet/common.report')),

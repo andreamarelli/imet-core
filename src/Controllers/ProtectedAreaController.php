@@ -41,7 +41,7 @@ class ProtectedAreaController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public static function getLabels(Request $request): JsonResponse
+    public static function get_pairs(Request $request): JsonResponse
     {
         $result = [];
         if($request->filled('ids')){
@@ -59,4 +59,5 @@ class ProtectedAreaController extends Controller
         }
         return response()->json($result);
     }
+
 }

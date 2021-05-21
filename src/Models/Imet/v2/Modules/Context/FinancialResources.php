@@ -53,15 +53,11 @@ class FinancialResources extends Modules\Component\ImetModule
                 ->Currency ?? null;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record = static::forceCurrency($record, 'Currency', ['ManagementFinancialPlanCosts', 'OperationalWorkPlanCosts', 'TotalBudget']);
-        }
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record = static::forceCurrency($record, 'Currency', ['ManagementFinancialPlanCosts', 'OperationalWorkPlanCosts', 'TotalBudget']);
+//        return $record;
+//    }
 
     public static function getTotalBudget($form_id)
     {

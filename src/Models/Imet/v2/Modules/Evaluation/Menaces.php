@@ -96,15 +96,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            return null;  // fully incompatible
-        }
 
-        return $record;
-    }
 
     public static function updateModule(Request $request): array
     {

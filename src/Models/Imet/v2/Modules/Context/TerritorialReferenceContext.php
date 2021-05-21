@@ -27,14 +27,10 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function upgradeModule($record, $v1_to_v2 = false, $imet_version = null)
-    {
-        // ####  v1 -> v2  ####
-        if($v1_to_v2) {
-            $record = static::addField($record, 'NoTakeArea');
-        }
-
-        return $record;
-    }
+//    public static function convert_v1_to_v2($record)
+//    {
+//        $record = static::addField($record, 'NoTakeArea');
+//        return $record;
+//    }
 
 }

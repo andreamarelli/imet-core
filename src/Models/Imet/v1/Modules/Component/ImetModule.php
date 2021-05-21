@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component;
 
+use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
 use AndreaMarelli\ModularForms\Models\Module;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use Illuminate\Support\Facades\App;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\App;
 
 class ImetModule extends Module
 {
+    use Upgrade;
 
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';

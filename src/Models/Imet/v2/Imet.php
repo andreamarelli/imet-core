@@ -106,48 +106,20 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
     }
 
     /**
-     * Upgrade modules from previous versions
+     * Override: apply changes
      *
      * @param $data
-     * @param bool $v1_to_v2
      * @param null $imet_version
      * @return array
-     * @throws \ReflectionException
      */
-    public static function upgradeModules($data, $v1_to_v2 = false, $imet_version = null)
+    public static function upgradeModules($data, $imet_version = null): array
     {
         if(array_key_exists('FinancialResources', $data)){
             $data = FinancialAvailableResources::copyCurrencyFromCTX213($data);
             $data = FinancialResourcesBudgetLines::copyCurrencyFromCTX213($data);
             $data = FinancialResourcesPartners::copyCurrencyFromCTX213($data);
         }
-
-        $upgraded_data = [];
-        /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class */
-        foreach (static::allModules() as $module_class) {
-            if(array_key_exists($module_class::getShortClassName(), $data)){
-                $upgraded_data[$module_class::getShortClassName()]
-                    = $module_class::upgradeModuleRecords($data[$module_class::getShortClassName()], $v1_to_v2, $imet_version);
-            }
-        }
-        return $upgraded_data;
+        return parent::upgradeModules($data, $imet_version);
     }
-
-    /**
-     * Override: upgrade records before importing
-     *
-     * @param $data
-     * @param $formID
-     * @param bool $v1_to_v2
-     * @param null $imet_version
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \ReflectionException
-     */
-    public static function importModules($data, $formID, $v1_to_v2 = false, $imet_version = null)
-    {
-        $data = static::upgradeModules($data, $v1_to_v2, $imet_version);
-        return parent::importModules($data, $formID);
-    }
-
 
 }
