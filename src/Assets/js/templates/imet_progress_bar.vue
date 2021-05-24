@@ -1,9 +1,9 @@
 <template>
-    
+
     <div class="pgr-bar">
 
         <div v-if="showLimits" class="pgr-bar__limit-left">{{ min }}%</div>
-        
+
         <!-- bootstrap progress bar -->
         <div class="pgr-bar__bar progress">
             <div class="progress-bar progress-bar-striped" role="progressbar"
@@ -11,14 +11,14 @@
                 <span v-if="value!==null">{{ value }} %</span>
             </div>
         </div>
-        
+
         <div v-if="showLimits" class="pgr-bar__limit-right">{{ max }}%</div>
 
     </div>
 
 </template>
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" scoped>
 
     .pgr-bar{
         font-size: 10px;

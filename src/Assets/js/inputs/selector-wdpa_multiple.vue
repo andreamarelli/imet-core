@@ -61,9 +61,9 @@
 
 </template>
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" scoped>
 
-    @import "../../../sass/abstracts/all";
+    @import "vendor/andreamarelli/modular-forms/src/Assets/sass/abstracts/all";
 
     .module-container .selector-wdpa_multiple {
 
@@ -91,15 +91,12 @@
 
 <script>
 
-
-    import modal_api_search from './components/modal-api-search.vue';
-
     export default {
 
         components: {
             'flag': window.ModularForms.Template.flag,
             'modal-selector': window.ModularForms.Input.modalSelector,
-            'modal_api_search': modal_api_search
+            'modal_api_search': window.ModularForms.Input.modalApiSearch
         },
 
         mixins: [

@@ -19,7 +19,7 @@ $other_attributes = $other ?? '';
 
 ?>
 
-@if(\Illuminate\Support\Str::contains($type, 'selector-wdpa'))
+@if($type === 'imet-core::selector-wdpa')
     <selector-wdpa
         {!! $vue_attributes !!}
         :data-countries='@json(\AndreaMarelli\ImetCore\Models\ProtectedArea::getCountries()
@@ -28,7 +28,7 @@ $other_attributes = $other ?? '';
                 ->toArray())'
     ></selector-wdpa>
 
-@elseif(\Illuminate\Support\Str::contains($type, 'selector-wdpa_multiple'))
+@elseif($type === 'imet-core::selector-wdpa_multiple')
     <selector-wdpa_multiple {!! $vue_attributes !!} ></selector-wdpa_multiple>
 
 
