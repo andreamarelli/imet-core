@@ -18,14 +18,13 @@ $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['m
     @include('modular-forms::module.edit.field.module-to-vue', [
         'definitions' => $definitions,
         'field' => $definitions['fields'][0],
-        'vue_record_index' => $vue_record_index,
-        'vue_directives' => 'v-on:change="toggleVisibility()"'
+        'vue_record_index' => $vue_record_index
     ])
 
 @endcomponent
 
 
-<div id="geographical_location_exist">
+<div id="geographical_location_exist" v-show="limit_exists">
 
     @foreach($definitions['fields'] as $index=>$field)
 
@@ -58,20 +57,9 @@ $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['m
             el: '#module_{{ $definitions['module_key'] }}',
             data: @json($vue_data),
 
-            methods: {
-
-                mountedCallback: function(){
-                    this.toggleVisibility();
-                },
-
-                toggleVisibility: function () {
-                    let limitsExist = this.records[0]['LimitsExist'];
-                    if(limitsExist==="true" || limitsExist===true){
-                        $('#geographical_location_exist').css('display', 'block');
-                    } else {
-                        this.cleanAll();
-                        $('#geographical_location_exist').css('display', 'none');
-                    }
+            computed: {
+                limit_exists (){
+                    return this.records[0]['LimitsExist']==="true" || this.records[0]['LimitsExist']===true;
                 }
             }
         });

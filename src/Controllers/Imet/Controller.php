@@ -373,38 +373,6 @@ class Controller extends __Controller
         return response()->json($response);
     }
 
-    public function store_prefilled(Request $request, $prev_year_selection)
-    {
-        $records = json_decode($request->input('records_json'), true);
-
-        $json = static::export(Imet::find($prev_year_selection), false);
-        $json['Imet']['Year'] = $records[0]['Year'];
-        $json['Imet']['UpdateDate'] = Carbon::now()->format('Y-m-d H:i:s');
-
-        DB::beginTransaction();
-
-        try {
-            // Create new form and return ID
-            $formID = v2\Imet::importForm($json['Imet']);
-            // Populate Imet & Imet_Eval modules
-            v2\Imet::importModules($json['Context'], $formID);
-            v2\Imet_Eval::importModules($json['Evaluation'], $formID);
-            Encoder::importModule($formID, $json['Encoders'] ?? null);
-
-            DB::commit();
-            Session::flash('message', trans('common.saved_successfully'));
-            return [
-                'status' => 'success',
-                'entity_label' => Imet::find($formID)->{Imet::LABEL},
-                'edit_url' => 'admin/imet/v2/context/' . $formID . '/edit'
-            ];
-        } catch (Exception $e) {
-            DB::rollback();
-            Session::flash('message', trans('common.saved_error'));
-            throw $e;
-        }
-    }
-
     /**
      * Open the merge tool view
      * @param $item

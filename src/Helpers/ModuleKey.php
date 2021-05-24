@@ -33,4 +33,27 @@ class ModuleKey{
         return null;
     }
 
+    /**
+     * Return view for the given module
+     *
+     * @param $module_key
+     * @param null $view_type (null, or 'show')
+     * @return string|null
+     */
+    public static function KeyToView($module_key, $view_type = null): ?string
+    {
+        $path = $view_type == 'show'
+            ? 'modules_show'
+            : 'modules';
+
+        $view = Str::replaceLast(\AndreaMarelli\ImetCore\Helpers\ModuleKey::separator, '.' . $path . '.', $module_key);
+        $view = str_replace(\AndreaMarelli\ImetCore\Helpers\ModuleKey::separator, '.', $view);
+        $view = Str::replaceFirst('imet.', 'imet-core::', $view);
+        if(view()->exists($view)){
+            return $view;
+        }
+
+        return null;
+    }
+
 }

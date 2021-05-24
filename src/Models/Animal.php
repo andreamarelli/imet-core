@@ -120,7 +120,7 @@ class Animal extends BaseModel
      * @param string|null $taxonomy
      * @return bool
      */
-    protected static function isTaxonomy(string $taxonomy = null): bool
+    public static function isTaxonomy(string $taxonomy = null): bool
     {
         return $taxonomy!== null && substr_count($taxonomy, '|') === 5;
     }
@@ -132,7 +132,7 @@ class Animal extends BaseModel
      * @param string $separator
      * @return array
      */
-    protected static function parseTaxonomy(string $taxonomy, string $separator = '|'): array
+    public static function parseTaxonomy(string $taxonomy, string $separator = '|'): array
     {
         if(Animal::isTaxonomy($taxonomy)) {
             $taxonomy_array = explode($separator, $taxonomy);

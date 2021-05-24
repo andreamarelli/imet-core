@@ -21,7 +21,8 @@ $legend = array_key_exists($fieldName, $legend) ? $legend[$fieldName] : [];
 $legend = array_values($legend);
 
 // retrieve rating type
-$ratingType = explode('-', $type)[2];
+$type_as_array = explode('-', $type);
+$ratingType = end($type_as_array);
 ?>
 
 <rating

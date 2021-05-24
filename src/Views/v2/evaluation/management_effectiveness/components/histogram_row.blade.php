@@ -53,7 +53,7 @@ $echo_rating = "{{ ".$rating." }}";
                     @include('imet-core::v2.evaluation.management_effectiveness.components.progress_bar', ['rating' => $rating, 'is_negative' => true])
                 </div>
             </div>
-            <div class="col-lg-5 progress_bar_limits_right">0%</div>
+            <div class="histogram-row__progress-bar__limit-right">0%</div>
             <div class="histogram-row__progress-bar__spacer"></div>
 
         @elseif($row_type==='minus100_to_100')
