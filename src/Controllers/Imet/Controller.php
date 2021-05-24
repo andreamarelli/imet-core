@@ -14,6 +14,7 @@ use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Helpers\File\Compress;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
+use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Helpers\Module;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
@@ -78,7 +79,10 @@ class Controller extends __Controller
         // set filter status
         $show_filters = Imet::count() > 10;
         $no_filter_selected = empty(array_filter($request->except('_token')));
-        $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
+        $countries = ProtectedArea::getCountries()
+            ->keyBy('iso3')
+            ->sort()
+            ->toArray();
         $years = Imet::getAvailableYears();
 
         $list = [];

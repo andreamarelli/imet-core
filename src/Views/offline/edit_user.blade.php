@@ -19,7 +19,7 @@ $item = \AndreaMarelli\ImetCore\Models\Person::find(0);
 
     @include('modular-forms::module.edit.container', [
         'controller' => \AndreaMarelli\ImetCore\Controllers\StaffController::class,
-        'module_class' => \App\Models\Person\Modules\GeneralInfo::class,
+        'module_class' => \AndreaMarelli\ImetCore\Models\UserGeneralInfo::class,
         'form_id' => $item->getKey()
     ])
 

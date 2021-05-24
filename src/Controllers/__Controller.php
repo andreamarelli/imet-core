@@ -7,7 +7,7 @@ use AndreaMarelli\ModularForms\Controllers\FormController as BaseFormController;
 /**
  * Class FormController
  *
- * @package App\Http\Controllers\Components
+ * @package AndreaMarelli\ImetCore\Controllers
  */
 class __Controller extends BaseFormController
 {

@@ -3,7 +3,8 @@
 namespace AndreaMarelli\ImetCore\Models;
 
 use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\BaseModel;
+use AndreaMarelli\ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
+
 use Illuminate\Support\Collection;
 
 /**
@@ -18,36 +19,11 @@ use Illuminate\Support\Collection;
  *
  * @package AndreaMarelli\ImetCore\Models
  */
-class ProtectedArea extends BaseModel
+class ProtectedArea extends BaseProtectedArea
 {
 
     protected $table = 'imet.imet_pas';
-
     public $primaryKey = 'global_id';
-    public $incrementing = false;       // required for textual primary_key
-
-    public const LABEL = 'name';
-
-    public const EXPORT = [
-        'global_id',
-        'country',
-        'wdpa_id',
-        'name',
-        'iucn_category',
-        'creation_date'
-    ];
-
-    /**
-     * Get by WDPA id
-     *
-     * @param string $wdpa
-     * @return \AndreaMarelli\ImetCore\Models\ProtectedArea
-     */
-    public static function getByWdpa(string $wdpa): ProtectedArea
-    {
-        return static::where('wdpa_id', $wdpa)
-            ->firstOrFail();
-    }
 
     /**
      * Get by global_id (to be deprecated)
@@ -66,7 +42,7 @@ class ProtectedArea extends BaseModel
      *
      * @return array
      */
-    public static function getCountries(): array
+    public static function getCountries()
     {
         $countries = static::selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
             ->distinct()
@@ -75,25 +51,9 @@ class ProtectedArea extends BaseModel
             ->sort()
             ->toArray();
 
-        return Country::select(['iso3', 'name_'.Locale::lower()])
+        return Country::select(['iso3', 'iso2', 'name_'.Locale::lower()])
             ->whereIn('iso3', array_values($countries))
-            ->pluck('name_'.Locale::lower(), 'iso3')
-            ->sort()
-            ->toArray();
-    }
-
-    /**
-     * @return string
-     */
-    public function rawQueryToImet(): string
-    {
-        $values = "'".$this->global_id."', ";
-        $values .= "'".$this->country."', ";
-        $values .= "'".$this->wdpa_id."', ";
-        $values .= "'".str_replace("'", "''", $this->name)."', ";
-        $values .= "'".$this->iucn_category."', ";
-        $values .= $this->creation_date!==null ? "'".$this->creation_date."'" : "NULL";
-        return 'INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('.$values.');';
+            ->get();
     }
 
     /**
@@ -126,4 +86,17 @@ class ProtectedArea extends BaseModel
         });
     }
 
+    /**
+     * @return string
+     */
+    public function rawQueryToImet(): string
+    {
+        $values = "'".$this->global_id."', ";
+        $values .= "'".$this->country."', ";
+        $values .= "'".$this->wdpa_id."', ";
+        $values .= "'".str_replace("'", "''", $this->name)."', ";
+        $values .= "'".$this->iucn_category."', ";
+        $values .= $this->creation_date!==null ? "'".$this->creation_date."'" : "NULL";
+        return 'INSERT into imet.imet_pas (global_id, country, wdpa_id, name, iucn_category, creation_date) VALUES ('.$values.');';
+    }
 }

@@ -3,7 +3,7 @@
 \Illuminate\Support\Facades\Auth::login(\AndreaMarelli\ModularForms\Models\User\User::find(0), true);
 
 $item = \AndreaMarelli\ImetCore\Models\Person::find(0);
-$fields = \App\Models\Person\Modules\GeneralInfo::getDefinitions()['fields'];
+$fields = \AndreaMarelli\ImetCore\Models\UserGeneralInfo::getDefinitions()['fields'];
 ?>
 
 @extends('layouts.admin')
