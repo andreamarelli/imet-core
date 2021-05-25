@@ -12,18 +12,18 @@ class Sectors extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 2.3';
-        $this->module_title = trans('form/imet/v2/context.Sectors.title');
+        $this->module_title = trans('imet-core::form/v2/context.Sectors.title');
         $this->module_fields = [
-            ['name' => 'Name',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.Sectors.fields.Name')],
-            ['name' => 'UnderControlArea',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.Sectors.fields.UnderControlArea')],
-            ['name' => 'UnderControlPatrolKm',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.Sectors.fields.UnderControlPatrolKm')],
-            ['name' => 'UnderControlPatrolManDay',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.Sectors.fields.UnderControlPatrolManDay')],
+            ['name' => 'Name',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Sectors.fields.Name')],
+            ['name' => 'UnderControlArea',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.Sectors.fields.UnderControlArea')],
+            ['name' => 'UnderControlPatrolKm',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.Sectors.fields.UnderControlPatrolKm')],
+            ['name' => 'UnderControlPatrolManDay',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.Sectors.fields.UnderControlPatrolManDay')],
         ];
 
         $this->module_common_fields = [
-            ['name' => 'SectorMap',  'type' => 'upload',   'label' => trans('form/imet/v2/context.Sectors.fields.SectorMap')],
-            ['name' => 'Source',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.Sectors.fields.Source')],
-            ['name' => 'Observations',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.Sectors.fields.Observations')],
+            ['name' => 'SectorMap',  'type' => 'upload',   'label' => trans('imet-core::form/v2/context.Sectors.fields.SectorMap')],
+            ['name' => 'Source',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Sectors.fields.Source')],
+            ['name' => 'Observations',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Sectors.fields.Observations')],
         ];
 
         parent::__construct($attributes);

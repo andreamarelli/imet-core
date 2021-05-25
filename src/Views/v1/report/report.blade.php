@@ -48,13 +48,13 @@ function score_class_threats($value, $additional_classes=''){
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => !is_imet_environment(), 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('form/imet/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
     ]])
 @endsection
 
 @if(!is_imet_environment())
     @section('admin_page_title')
-        @lang('form/imet/common.imet')
+        @lang('imet-core::form/common.imet')
     @endsection
 @endif
 
@@ -97,16 +97,16 @@ function score_class_threats($value, $additional_classes=''){
     <div class="module-container">
         <div class="module-header"><div class="module-title">Evaluation of the protected area management cycle elements</div></div>
         <div class="module-body">
-            <imet_charts form_id={{ $item->getKey() }} :show_histogram="true"></imet_charts>
+            @include('imet-core::components.imet_charts', ['form_id' => $item->getKey(), 'version' => 'v1'])
             <table id="global_scores">
                 <tr>
-                    <th>@lang('form/imet/v1/common.steps_eval.context')</th>
-                    <th>@lang('form/imet/v1/common.steps_eval.planning')</th>
-                    <th>@lang('form/imet/v1/common.steps_eval.inputs')</th>
-                    <th>@lang('form/imet/v1/common.steps_eval.process')</th>
-                    <th>@lang('form/imet/v1/common.steps_eval.outputs')</th>
-                    <th>@lang('form/imet/v1/common.steps_eval.outcomes')</th>
-                    <th>@lang('form/imet/v1/common.indexes.imet')</th>
+                    <th>@lang('imet-core::form/v1/common.steps_eval.context')</th>
+                    <th>@lang('imet-core::form/v1/common.steps_eval.planning')</th>
+                    <th>@lang('imet-core::form/v1/common.steps_eval.inputs')</th>
+                    <th>@lang('imet-core::form/v1/common.steps_eval.process')</th>
+                    <th>@lang('imet-core::form/v1/common.steps_eval.outputs')</th>
+                    <th>@lang('imet-core::form/v1/common.steps_eval.outcomes')</th>
+                    <th>@lang('imet-core::form/v1/common.indexes.imet')</th>
                 </tr>
                 <tr>
                     <td {!! score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
@@ -256,18 +256,18 @@ function score_class_threats($value, $additional_classes=''){
                 <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
                     @method('PATCH')
                     @csrf
-                    <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('common.save')) }}</span>
+                    <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} @lang_u('common.save')</span>
                 </form>
             </div>
             <div class="standalone" v-show=status==='loading' >
                 <i class="fa fa-spinner fa-spin primary-800"></i>
-                {{ ucfirst(trans('common.saving')) }}
+                @lang_u('common.saving')
             </div>
-            <div v-show=status==='saved' class="standalone highlight">{{ ucfirst(trans('common.saved_successfully')) }}!</div>
-            <div v-show=status==='error' class="standalone error">{{ ucfirst(trans('common.saved_error')) }}!</div>
+            <div v-show=status==='saved' class="standalone highlight">@lang_u('common.saved_successfully')!</div>
+            <div v-show=status==='error' class="standalone error">@lang_u('common.saved_error')!</div>
 
             {{-- Print --}}
-            <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
+            <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} @lang_u('common.print')</div>
         </div>
     @endif
 

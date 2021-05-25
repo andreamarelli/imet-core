@@ -7,7 +7,7 @@ $item = \AndreaMarelli\ImetCore\Models\Person::find(0);
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => !is_imet_environment(), 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('form/imet/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
     ]])
 @endsection
 

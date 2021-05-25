@@ -36,7 +36,7 @@
                             </td>
                             <td  class="align-baseline text-center">
                                 <br/>
-                                <button type="submit" class="btn-nav rounded mt-2">{{ ucfirst(trans('common.apply_filters')) }}</button>
+                                <button type="submit" class="btn-nav rounded mt-2">@lang_u('common.apply_filters')</button>
                             </td>
                         </tr>
                     </table>
@@ -56,9 +56,9 @@
                                 <th class="text-center">
                                 <th class=" text-center">
                                     @if (in_array($step_key, $imet_keys))
-                                        <strong>@lang('form/imet/v2/common.steps.'.$step_key)</strong>
+                                        <strong>@lang('imet-core::form/v2/common.steps.'.$step_key)</strong>
                                     @else
-                                        <strong>@lang('form/imet/v2/common.steps_eval.'.$step_key)</strong>
+                                        <strong>@lang('imet-core::form/v2/common.steps_eval.'.$step_key)</strong>
                                     @endif
                                 </th>
                                 <th class="text-center">

@@ -17,26 +17,26 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.2';
-        $this->module_title = trans('form/imet/v2/evaluation.ImportanceSpecies.title');
+        $this->module_title = trans('imet-core::form/v2/evaluation.ImportanceSpecies.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',      'label' => trans('form/imet/v2/evaluation.ImportanceSpecies.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('form/imet/v2/evaluation.ImportanceSpecies.fields.EvaluationScore')],
-            ['name' => 'SignificativeSpecies',  'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/evaluation.ImportanceSpecies.fields.SignificativeSpecies')],
-            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/evaluation.ImportanceSpecies.fields.IncludeInStatistics')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceSpecies.fields.Comments')],
+            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',      'label' => trans('imet-core::form/v2/evaluation.ImportanceSpecies.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/evaluation.ImportanceSpecies.fields.EvaluationScore')],
+            ['name' => 'SignificativeSpecies',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/evaluation.ImportanceSpecies.fields.SignificativeSpecies')],
+            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/evaluation.ImportanceSpecies.fields.IncludeInStatistics')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ImportanceSpecies.fields.Comments')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('form/imet/v2/evaluation.ImportanceSpecies.groups.group0'),
-            'group1' => trans('form/imet/v2/evaluation.ImportanceSpecies.groups.group1'),
+            'group0' => trans('imet-core::form/v2/evaluation.ImportanceSpecies.groups.group0'),
+            'group1' => trans('imet-core::form/v2/evaluation.ImportanceSpecies.groups.group1'),
         ];
 
-        $this->module_subTitle = trans('form/imet/v2/evaluation.ImportanceSpecies.module_subTitle');
-        $this->module_info_EvaluationQuestion = trans('form/imet/v2/evaluation.ImportanceSpecies.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('form/imet/v2/evaluation.ImportanceSpecies.module_info_Rating');
-        $this->ratingLegend = trans('form/imet/v2/evaluation.ImportanceSpecies.ratingLegend');
+        $this->module_subTitle = trans('imet-core::form/v2/evaluation.ImportanceSpecies.module_subTitle');
+        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.ImportanceSpecies.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.ImportanceSpecies.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::form/v2/evaluation.ImportanceSpecies.ratingLegend');
 
-        $this->validation_3to10 = trans('form/imet/v2/evaluation.ImportanceSpecies.validation_3to10');
+        $this->validation_3to10 = trans('imet-core::form/v2/evaluation.ImportanceSpecies.validation_3to10');
 
         parent::__construct($attributes);
 
@@ -69,7 +69,7 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('form/imet/v2/evaluation.ImportanceSpecies.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/evaluation.ImportanceSpecies.warning_on_save');
         return $vue_data;
     }
 

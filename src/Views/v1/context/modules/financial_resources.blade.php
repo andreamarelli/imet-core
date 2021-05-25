@@ -47,10 +47,10 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
 
     <tr>
         <td></td>
-        <th class="text-center" style="width: 200px;">@lang('form/imet/v1/context.FinancialResources.amount')</th>
-        <th class="text-center">@lang('form/imet/v1/context.FinancialResources.functioning_costs')</th>
-        <th class="text-center">@lang('form/imet/v1/context.FinancialResources.estimation_financial_plan')</th>
-        <th class="text-center">@lang('form/imet/v1/context.FinancialResources.estimation_operational_plan')</th>
+        <th class="text-center" style="width: 200px;">@lang('imet-core::form/v1/context.FinancialResources.amount')</th>
+        <th class="text-center">@lang('imet-core::form/v1/context.FinancialResources.functioning_costs')</th>
+        <th class="text-center">@lang('imet-core::form/v1/context.FinancialResources.estimation_financial_plan')</th>
+        <th class="text-center">@lang('imet-core::form/v1/context.FinancialResources.estimation_operational_plan')</th>
     </tr>
 
     <tr>

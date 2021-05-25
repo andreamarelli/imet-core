@@ -8,7 +8,7 @@ $synthetic_indicator = isset($synthetic_indicator) ? $synthetic_indicator : fals
 
 if($synthetic_indicator){
     $code = '';
-    $title = '<b class="text-uppercase">'.trans('form/imet/v2/common.synthetic_indicator').'</b>';
+    $title = '<b class="text-uppercase">'.trans('imet-core::form/v2/common.synthetic_indicator').'</b>';
     $rating =  'synthetic_indicator';
 } else {
     $code = isset($index) ? "{{ labels['".$index."'].code }}" : "{{ labels[index].code }}";

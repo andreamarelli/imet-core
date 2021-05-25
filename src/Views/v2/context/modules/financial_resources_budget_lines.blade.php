@@ -30,10 +30,10 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
             @endif
         @endforeach
         <th class="text-center">
-            {{ ucfirst(trans('form/imet/v2/context.FinancialResourcesBudgetLines.fields.function_costs')) }}
+            @lang_u('imet-core::form/v2/context.FinancialResourcesBudgetLines.fields.function_costs')
         </th>
         <th class="text-center">
-            {{ ucfirst(trans('form/imet/v2/context.FinancialResourcesBudgetLines.fields.percentage')) }}
+            @lang_u('imet-core::form/v2/context.FinancialResourcesBudgetLines.fields.percentage')
         </th>
     </tr>
     </thead>
@@ -88,7 +88,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
         <td colspan="4">
             <div v-if="!totalIsValid" class="text-danger text-left" style="font-size: 0.9em;">
                 <i class="fa fa-exclamation-triangle"></i>
-                {!!  ucfirst(trans('form/imet/v2/context.FinancialResourcesBudgetLines.sum_error')) !!}
+                {!!  ucfirst(trans('imet-core::form/v2/context.FinancialResourcesBudgetLines.sum_error')) !!}
             </div>
         </td>
     </tr>

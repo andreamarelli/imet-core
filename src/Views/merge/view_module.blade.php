@@ -7,7 +7,7 @@ $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
 ?>
 
 <div style="display: inline-block;"
-     data-toggle="tooltip" data-placement="top" data-original-title="{{ ucfirst(trans('common.show')) }}">
+     data-toggle="tooltip" data-placement="top" data-original-title="@lang_u('common.show')">
     <button type="button"
             class="btn-nav small"
             data-toggle="modal" data-target="#{{ $modal_id }}">

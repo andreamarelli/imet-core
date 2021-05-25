@@ -10,7 +10,7 @@ class ObjectivesSupportsAndConstraints extends _Objectives
     public function __construct(array $attributes = [])
     {
         $this->module_code = 'C2';
-        $this->module_info = trans('form/imet/v2/evaluation.ObjectivesSupportsAndConstraints.module_info');
+        $this->module_info = trans('imet-core::form/v2/evaluation.ObjectivesSupportsAndConstraints.module_info');
 
         parent::__construct($attributes);
     }

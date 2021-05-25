@@ -28,10 +28,10 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
             @endif
         @endforeach
         <th class="text-center">
-            {{ ucfirst(trans('form/imet/v2/context.FinancialAvailableResources.fields.total')) }}
+            @lang_u('imet-core::form/v2/context.FinancialAvailableResources.fields.total')
         </th>
         <th class="text-center">
-            {{ ucfirst(trans('form/imet/v2/context.FinancialAvailableResources.fields.percentage')) }}
+            @lang_u('imet-core::form/v2/context.FinancialAvailableResources.fields.percentage')
         </th>
     </tr>
     </thead>
@@ -78,7 +78,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
         <td colspan="5">
             <div v-if="!totalIsValid" class="text-danger text-right" style="font-size: 0.9em;">
                 <i class="fa fa-exclamation-triangle"></i>
-                {!!  ucfirst(trans('form/imet/v2/context.FinancialAvailableResources.sum_error')) !!}
+                {!!  ucfirst(trans('imet-core::form/v2/context.FinancialAvailableResources.sum_error')) !!}
             </div>
         </td>
         <td>

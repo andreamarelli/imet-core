@@ -7,11 +7,11 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
 
 ?>
 <div style="display: inline-block;"
-     data-toggle="tooltip" data-placement="top" data-original-title="{{ ucfirst(trans('common.apply')) }}">
+     data-toggle="tooltip" data-placement="top" data-original-title="@lang_u('common.apply')">
     <button type="button"
             class="btn-nav small yellow"
             data-toggle="modal" data-target="#{{ $modal_id }}">
-        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!} {{ ucfirst(trans('common.apply')) }}
+        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!} @lang_u('common.apply')
     </button>
 </div>
 
@@ -42,14 +42,14 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                 </div>
                 <div class="alert alert-danger" role="alert" style="padding: 10px;">Any existing data will be overwritten!</div>
                 <div style="text-align: right">
-                    <b>@lang('form/imet/common.confirm_merge')?</b>
+                    <b>@lang('imet-core::form/common.confirm_merge')?</b>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button"
                         data-dismiss="modal"
                         class="btn-nav small red btn-sm">
-                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('times-circle', 'white') !!} {{ ucfirst(trans('common.cancel')) }}
+                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('times-circle', 'white') !!} @lang_u('common.cancel')
                 </button>
                 <form action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'merge']) }}" method="POST" style="display: inline;">
                     {{ csrf_field() }}
@@ -58,7 +58,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                     <input type="hidden" name="destination_form" value="{{ $destination->FormID }}">
                     <button type="button"
                             class="btn-nav small" onclick="this.form.submit();">
-                        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle', 'white') !!} {{ ucfirst(trans('common.confirm')) }}
+                        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle', 'white') !!} @lang_u('common.confirm')
                     </button>
                 </form>
             </div>

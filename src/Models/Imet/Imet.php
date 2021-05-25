@@ -130,7 +130,7 @@ class Imet extends Form
         return $language;
     }
 
-    public static function getResponsibles($form_id, $version)
+    public static function getResponsibles($form_id, $version): array
     {
         $internal = $version === 'v1'
             ? v1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
@@ -143,6 +143,15 @@ class Imet extends Form
             'encoders' => Encoder::getNames($form_id),
             'internal' => $internal,
             'external' => $external
+        ];
+    }
+
+    public static function getResponsiblesLabels(): array
+    {
+        return [
+            'encoders' => trans('imet-core::form/common.encoders'),
+            'internal' => trans('imet-core::form/common.responsible_internal'),
+            'external' => trans('imet-core::form/common.responsible_external')
         ];
     }
 

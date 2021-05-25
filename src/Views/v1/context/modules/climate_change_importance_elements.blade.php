@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
-$labels = trans('form/imet/v1/context.ClimateChangeImportanceElements.Element');
+$labels = trans('imet-core::form/v1/context.ClimateChangeImportanceElements.Element');
 foreach ($vue_data['records'] as $index=>$record){
     $vue_data['records'][$index]['Element'] = $labels[$index];
 }

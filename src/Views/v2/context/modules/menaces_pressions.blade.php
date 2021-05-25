@@ -47,7 +47,7 @@ function injectCategoryTitle($view, $module_key, $beforeGroup, $category_index, 
 foreach(\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions::$groupByCategory as $i => $category){
     $group = $category[0];
     $category_index = $i+1;
-    $view_groupTable = injectCategoryTitle($view_groupTable, $definitions['module_key'], $group, $i, trans('form/imet/v2/context.MenacesPressions.categories.title'.$category_index));
+    $view_groupTable = injectCategoryTitle($view_groupTable, $definitions['module_key'], $group, $i, trans('imet-core::form/v2/context.MenacesPressions.categories.title'.$category_index));
 }
 
 // inject row and group stats

@@ -21,7 +21,7 @@ class Create extends Modules\Component\ImetModule
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'SIMPLE';
-        $this->module_title = trans('form/imet/common.create');
+        $this->module_title = trans('imet-core::form/common.create');
         $this->module_fields = [
             ['name' => 'version',                   'type' => 'blade-imet-core::v2.context.fields.version',   'label' => trans('common.version')],
             ['name' => 'Year',                      'type' => 'yearMaxCurrent',             'label' => trans('entities.common.year')],

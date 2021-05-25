@@ -12,12 +12,12 @@ class ManagementStaffPartners extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.1.2';
-        $this->module_title = trans('form/imet/v1/context.ManagementStaffPartners.title');
+        $this->module_title = trans('imet-core::form/v1/context.ManagementStaffPartners.title');
         $this->module_fields = [
-            ['name' => 'Partner',  'type' => 'text-area',   'label' => trans('form/imet/v1/context.ManagementStaffPartners.fields.Partner')],
-            ['name' => 'Coordinators',  'type' => 'integer',   'label' => trans('form/imet/v1/context.ManagementStaffPartners.fields.Coordinators')],
-            ['name' => 'Technicians',  'type' => 'integer',   'label' => trans('form/imet/v1/context.ManagementStaffPartners.fields.Technicians')],
-            ['name' => 'Auxiliaries',  'type' => 'integer',   'label' => trans('form/imet/v1/context.ManagementStaffPartners.fields.Auxiliaries')],
+            ['name' => 'Partner',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/context.ManagementStaffPartners.fields.Partner')],
+            ['name' => 'Coordinators',  'type' => 'integer',   'label' => trans('imet-core::form/v1/context.ManagementStaffPartners.fields.Coordinators')],
+            ['name' => 'Technicians',  'type' => 'integer',   'label' => trans('imet-core::form/v1/context.ManagementStaffPartners.fields.Technicians')],
+            ['name' => 'Auxiliaries',  'type' => 'integer',   'label' => trans('imet-core::form/v1/context.ManagementStaffPartners.fields.Auxiliaries')],
         ];
 
 

@@ -13,27 +13,27 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR7';
-        $this->module_title = trans('form/imet/v2/evaluation.ManagementActivities.title');
+        $this->module_title = trans('imet-core::form/v2/evaluation.ManagementActivities.title');
         $this->module_fields = [
-            ['name' => 'Activity',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.Activity')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.EvaluationScore')],
-            ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.InManagementPlan')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ManagementActivities.fields.Comments')],
+            ['name' => 'Activity',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('imet-core::form/v2/evaluation.ManagementActivities.fields.Activity')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::form/v2/evaluation.ManagementActivities.fields.EvaluationScore')],
+            ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::form/v2/evaluation.ManagementActivities.fields.InManagementPlan')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ManagementActivities.fields.Comments')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('form/imet/v2/evaluation.ManagementActivities.groups.group0'),
-            'group1' => trans('form/imet/v2/evaluation.ManagementActivities.groups.group1'),
-            'group2' => trans('form/imet/v2/evaluation.ManagementActivities.groups.group2'),
-            'group3' => trans('form/imet/v2/evaluation.ManagementActivities.groups.group3'),
-            'group4' => trans('form/imet/v2/evaluation.ManagementActivities.groups.group4'),
-            'group5' => trans('form/imet/v2/evaluation.ManagementActivities.groups.group5'),
-            'group6' => trans('form/imet/v2/evaluation.ManagementActivities.groups.group6'),
+            'group0' => trans('imet-core::form/v2/evaluation.ManagementActivities.groups.group0'),
+            'group1' => trans('imet-core::form/v2/evaluation.ManagementActivities.groups.group1'),
+            'group2' => trans('imet-core::form/v2/evaluation.ManagementActivities.groups.group2'),
+            'group3' => trans('imet-core::form/v2/evaluation.ManagementActivities.groups.group3'),
+            'group4' => trans('imet-core::form/v2/evaluation.ManagementActivities.groups.group4'),
+            'group5' => trans('imet-core::form/v2/evaluation.ManagementActivities.groups.group5'),
+            'group6' => trans('imet-core::form/v2/evaluation.ManagementActivities.groups.group6'),
         ];
 
-        $this->module_info_EvaluationQuestion = trans('form/imet/v2/evaluation.ManagementActivities.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('form/imet/v2/evaluation.ManagementActivities.module_info_Rating');
-        $this->ratingLegend = trans('form/imet/v2/evaluation.ManagementActivities.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.ManagementActivities.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.ManagementActivities.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::form/v2/evaluation.ManagementActivities.ratingLegend');
 
         parent::__construct($attributes);
 

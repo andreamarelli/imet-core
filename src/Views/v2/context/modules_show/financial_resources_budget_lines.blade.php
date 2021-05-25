@@ -28,10 +28,10 @@ $totalBudget = array_key_exists('FormID', $record) ? \AndreaMarelli\ImetCore\Mod
             @endif
         @endforeach
         <th class="text-center">
-            {{ ucfirst(trans('form/imet/v2/context.FinancialResourcesBudgetLines.fields.function_costs')) }}
+            @lang_u('imet-core::form/v2/context.FinancialResourcesBudgetLines.fields.function_costs')
         </th>
         <th class="text-center">
-            {{ ucfirst(trans('form/imet/v2/context.FinancialResourcesBudgetLines.fields.percentage')) }}
+            @lang_u('imet-core::form/v2/context.FinancialResourcesBudgetLines.fields.percentage')
         </th>
     </tr>
     </thead>

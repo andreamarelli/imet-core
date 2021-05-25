@@ -34,11 +34,11 @@ use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $dom = HtmlPageCrawler::create('<div>'.$view.'</div>');
 $dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')
-    ->before(injectTitleAndHistogram(trans('form/imet/v2/context.EcosystemServices.categories.title1'), '0'));
+    ->before(injectTitleAndHistogram(trans('imet-core::form/v2/context.EcosystemServices.categories.title1'), '0'));
 $dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')
-    ->before(injectTitleAndHistogram(trans('form/imet/v2/context.EcosystemServices.categories.title2'), '1'));
+    ->before(injectTitleAndHistogram(trans('imet-core::form/v2/context.EcosystemServices.categories.title2'), '1'));
 $dom->filter('h5.group_title_'.$definitions['module_key'].'_group6')
-    ->before(injectTitleAndHistogram(trans('form/imet/v2/context.EcosystemServices.categories.title3'), '2'));
+    ->before(injectTitleAndHistogram(trans('imet-core::form/v2/context.EcosystemServices.categories.title3'), '2'));
 
 ?>
 {!! $dom->saveHTML() !!}

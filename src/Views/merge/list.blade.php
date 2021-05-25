@@ -27,19 +27,19 @@ if($primary_form->version==='v1'){
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => !is_imet_environment(), 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('form/imet/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
     ]])
 @endsection
 
 @if(!is_imet_environment())
     @section('admin_page_title')
-        @lang('form/imet/common.imet')
+        @lang('imet-core::form/common.imet')
     @endsection
 @endif
 
 @section('content')
 
-    <h1>@lang('form/imet/common.merge_tool')</h1>
+    <h1>@lang('imet-core::form/common.merge_tool')</h1>
 
     <div class="entity-heading">
         <div class="name">{{ $primary_form->Name }}</div>
@@ -54,6 +54,7 @@ if($primary_form->version==='v1'){
                     <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                         <imet_encoders_responsibles
                             :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($primary_form->getKey(), $primary_form->version))'
+                            :labels='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsiblesLabels())'
                         ></imet_encoders_responsibles>
                     </div>
                 </th>
@@ -67,6 +68,7 @@ if($primary_form->version==='v1'){
                         <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                             <imet_encoders_responsibles
                                     :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($duplicated_form_id, $primary_form->version))'
+                                    :labels='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsiblesLabels())'
                             ></imet_encoders_responsibles>
                         </div>
 
@@ -74,10 +76,10 @@ if($primary_form->version==='v1'){
                         <div style="margin-top: 10px"
                              data-toggle="tooltip"
                              data-placement="top"
-                             data-original-title="{{ ucfirst(trans('form/imet/common.set_as_destination_form')) }}">
+                             data-original-title="@lang_u('imet-core::form/common.set_as_destination_form')">
                             <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'merge_view'], [$duplicated_form_id]) }}"
                                class="btn-nav small yellow"
-                            >{!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!} {{ ucfirst(trans('form/imet/common.destination_form')) }}
+                            >{!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!} @lang_u('imet-core::form/common.destination_form')
                             </a>
                         </div>
 

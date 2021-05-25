@@ -27,7 +27,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
                     @if($field['name']==="ActualPermanent")
                         </th>
                         <th class="text-center">
-                            {{ ucfirst(trans('form/imet/v1/context.ManagementStaff.fields.difference')) }}
+                            @lang_u('imet-core::form/v1/context.ManagementStaff.fields.difference')
                     @endif
 
                 </th>

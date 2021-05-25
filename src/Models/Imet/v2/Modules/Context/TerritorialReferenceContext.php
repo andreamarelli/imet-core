@@ -12,16 +12,16 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 2.4';
-        $this->module_title = trans('form/imet/v2/context.TerritorialReferenceContext.title');
+        $this->module_title = trans('imet-core::form/v2/context.TerritorialReferenceContext.title');
         $this->module_fields = [
-            ['name' => 'ReferenceEcosystemAreaEstimation',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaEstimation')],
-            ['name' => 'ReferenceEcosystemAreaPopulation',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaPopulation')],
-            ['name' => 'EcologicalAspects',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.EcologicalAspects')],
-            ['name' => 'FunctionalArea',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.FunctionalArea')],
-            ['name' => 'NoTakeArea',  'type' => 'toggle-yes_no',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.NoTakeArea')],
-            ['name' => 'FunctionalAreaPopulation',  'type' => 'numeric',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.FunctionalAreaPopulation')],
-            ['name' => 'SocioEconomicAspects',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.SocioEconomicAspects')],
-            ['name' => 'SpillOverEffect',  'type' => 'text-area',   'label' => trans('form/imet/v2/context.TerritorialReferenceContext.fields.SpillOverEffect')],
+            ['name' => 'ReferenceEcosystemAreaEstimation',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaEstimation')],
+            ['name' => 'ReferenceEcosystemAreaPopulation',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.ReferenceEcosystemAreaPopulation')],
+            ['name' => 'EcologicalAspects',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.EcologicalAspects')],
+            ['name' => 'FunctionalArea',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.FunctionalArea')],
+            ['name' => 'NoTakeArea',  'type' => 'toggle-yes_no',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.NoTakeArea')],
+            ['name' => 'FunctionalAreaPopulation',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.FunctionalAreaPopulation')],
+            ['name' => 'SocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.SocioEconomicAspects')],
+            ['name' => 'SpillOverEffect',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.TerritorialReferenceContext.fields.SpillOverEffect')],
         ];
 
         parent::__construct($attributes);

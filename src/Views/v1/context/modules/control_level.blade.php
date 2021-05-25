@@ -13,17 +13,17 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
 <table id="table_imet__context__control_level" class="table module-table">
     <tr>
         <td></td>
-        <th class="text-center" colspan="2">@lang('form/imet/v1/context.ControlLevel.area')</th>
+        <th class="text-center" colspan="2">@lang('imet-core::form/v1/context.ControlLevel.area')</th>
         <td></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
-        <th rowspan="4" style="width: 400px;">@lang('form/imet/v1/context.ControlLevel.under_control_area')</th>
+        <th rowspan="4" style="width: 400px;">@lang('imet-core::form/v1/context.ControlLevel.under_control_area')</th>
         <td class="text-center"><label for="{{  $definitions['fields'][0]['name'] }}">{!! ucfirst($definitions['fields'][0]['label']) !!}</label></td>
-        <td class="text-center"><label for="area_percentage">@lang('form/imet/v1/context.ControlLevel.area_percentage')</label></td>
+        <td class="text-center"><label for="area_percentage">@lang('imet-core::form/v1/context.ControlLevel.area_percentage')</label></td>
         <td class="text-center"><label for="{{  $definitions['fields'][1]['name'] }}">{!! ucfirst($definitions['fields'][1]['label']) !!}</label></td>
-        <td class="text-center"><label for="average_time">@lang('form/imet/v1/context.ControlLevel.average_time')</label></td>
+        <td class="text-center"><label for="average_time">@lang('imet-core::form/v1/context.ControlLevel.average_time')</label></td>
     </tr>
     <tr>
         <td>
@@ -49,8 +49,8 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
     </tr>
     <tr>
         <td><label for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label></td>
-        <th>@lang('form/imet/v1/context.ControlLevel.area_percentage_conversion')</th>
-        <th>@lang('form/imet/v1/context.ControlLevel.average_time_controlled')</th>
+        <th>@lang('imet-core::form/v1/context.ControlLevel.area_percentage_conversion')</th>
+        <th>@lang('imet-core::form/v1/context.ControlLevel.average_time_controlled')</th>
     </tr>
     <tr>
         <td>

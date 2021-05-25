@@ -13,24 +13,24 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.2.2';
-        $this->module_title = trans('form/imet/v2/context.FinancialAvailableResources.title');
+        $this->module_title = trans('imet-core::form/v2/context.FinancialAvailableResources.title');
         $this->module_fields = [
-            ['name' => 'BudgetType',        'type' => 'disabled',   'label' => trans('form/imet/v2/context.FinancialAvailableResources.fields.BudgetType')],
-            ['name' => 'NationalBudget',    'type' => 'integer',   'label' => trans('form/imet/v2/context.FinancialAvailableResources.fields.NationalBudget')],
-            ['name' => 'OwnRevenues',       'type' => 'integer',   'label' => trans('form/imet/v2/context.FinancialAvailableResources.fields.OwnRevenues')],
-            ['name' => 'Disputes',          'type' => 'integer',   'label' => trans('form/imet/v2/context.FinancialAvailableResources.fields.Disputes')],
-            ['name' => 'Partners',          'type' => 'integer',   'label' => trans('form/imet/v2/context.FinancialAvailableResources.fields.Partners')],
+            ['name' => 'BudgetType',        'type' => 'disabled',   'label' => trans('imet-core::form/v2/context.FinancialAvailableResources.fields.BudgetType')],
+            ['name' => 'NationalBudget',    'type' => 'integer',   'label' => trans('imet-core::form/v2/context.FinancialAvailableResources.fields.NationalBudget')],
+            ['name' => 'OwnRevenues',       'type' => 'integer',   'label' => trans('imet-core::form/v2/context.FinancialAvailableResources.fields.OwnRevenues')],
+            ['name' => 'Disputes',          'type' => 'integer',   'label' => trans('imet-core::form/v2/context.FinancialAvailableResources.fields.Disputes')],
+            ['name' => 'Partners',          'type' => 'integer',   'label' => trans('imet-core::form/v2/context.FinancialAvailableResources.fields.Partners')],
         ];
 
-        $this->module_info = trans('form/imet/v2/context.FinancialAvailableResources.module_info');
+        $this->module_info = trans('imet-core::form/v2/context.FinancialAvailableResources.module_info');
 
         $this->predefined_values = [
             'field' => 'BudgetType',
-            'values' => trans('form/imet/v2/context.FinancialAvailableResources.predefined_values')
+            'values' => trans('imet-core::form/v2/context.FinancialAvailableResources.predefined_values')
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Currency', 'type' => 'disabled', 'label' => trans('form/imet/v2/context.FinancialResources.fields.Currency')],
+            ['name' => 'Currency', 'type' => 'disabled', 'label' => trans('imet-core::form/v2/context.FinancialResources.fields.Currency')],
         ];
 
         parent::__construct($attributes);

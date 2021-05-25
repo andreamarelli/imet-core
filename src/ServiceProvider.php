@@ -42,6 +42,9 @@ class ServiceProvider extends BaseServiceProvider
         // Config
         $this->publishes([__DIR__.'/../config/config.php' => config_path('imet-core.php')], 'config');
 
+        //Lang
+        $this->loadTranslationsFrom(__DIR__.'/../src/Lang', 'imet-core');
+
         // Commands
         if ($this->app->runningInConsole()) {
             $this->commands([

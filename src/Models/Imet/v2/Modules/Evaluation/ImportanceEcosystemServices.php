@@ -14,12 +14,12 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.5';
-        $this->module_title = trans('form/imet/v2/evaluation.ImportanceEcosystemServices.title');
+        $this->module_title = trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.title');
         $this->module_fields = [
-            ['name' => 'Aspect', 'type' => 'blade-imet-core::v2.evaluation.fields.importance_ecosystem_services_aspect',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.EvaluationScore')],
-            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.IncludeInStatistics')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceEcosystemServices.fields.Comments')],
+            ['name' => 'Aspect', 'type' => 'blade-imet-core::v2.evaluation.fields.importance_ecosystem_services_aspect',   'label' => trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.fields.EvaluationScore')],
+            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.fields.IncludeInStatistics')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.fields.Comments')],
         ];
 
         $this->predefined_values = [
@@ -27,10 +27,10 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
             'values' => null
         ];
 
-        $this->module_subTitle = trans('form/imet/v2/evaluation.ImportanceEcosystemServices.module_subTitle');
-        $this->module_info_EvaluationQuestion = trans('form/imet/v2/evaluation.ImportanceEcosystemServices.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('form/imet/v2/evaluation.ImportanceEcosystemServices.module_info_Rating');
-        $this->ratingLegend = trans('form/imet/v2/evaluation.ImportanceEcosystemServices.ratingLegend');
+        $this->module_subTitle = trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.module_subTitle');
+        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -74,7 +74,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('form/imet/v2/evaluation.ImportanceEcosystemServices.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/evaluation.ImportanceEcosystemServices.warning_on_save');
         return $vue_data;
     }
 

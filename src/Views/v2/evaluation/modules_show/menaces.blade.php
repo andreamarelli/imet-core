@@ -17,11 +17,11 @@ $dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($r
         ? '<div class="text-left" style="padding: 4px;">
                 <b class="highlight">'.round($records[$index]['_rank'], 2).'</b>&nbsp;&nbsp;
                 <span style="font-size: 0.85em; font-style: italic; ">
-                    ('.trans('form/imet/v2/context.MenacesPressions.fields.Impact').': <b>'.$records[$index]['_Impact'].'</b>,&nbsp;&nbsp;
-                    '.trans('form/imet/v2/context.MenacesPressions.fields.Extension').': <b>'.$records[$index]['_Extension'].'</b>,&nbsp;&nbsp;
-                    '.trans('form/imet/v2/context.MenacesPressions.fields.Duration').': <b>'.$records[$index]['_Duration'].'</b>,&nbsp;&nbsp;
-                    '.trans('form/imet/v2/context.MenacesPressions.fields.Trend').': <b>'.$records[$index]['_Trend'].'</b>,&nbsp;&nbsp;
-                    '.trans('form/imet/v2/context.MenacesPressions.fields.Probability').': <b>'.$records[$index]['_Probability'].'</b>)
+                    ('.trans('imet-core::form/v2/context.MenacesPressions.fields.Impact').': <b>'.$records[$index]['_Impact'].'</b>,&nbsp;&nbsp;
+                    '.trans('imet-core::form/v2/context.MenacesPressions.fields.Extension').': <b>'.$records[$index]['_Extension'].'</b>,&nbsp;&nbsp;
+                    '.trans('imet-core::form/v2/context.MenacesPressions.fields.Duration').': <b>'.$records[$index]['_Duration'].'</b>,&nbsp;&nbsp;
+                    '.trans('imet-core::form/v2/context.MenacesPressions.fields.Trend').': <b>'.$records[$index]['_Trend'].'</b>,&nbsp;&nbsp;
+                    '.trans('imet-core::form/v2/context.MenacesPressions.fields.Probability').': <b>'.$records[$index]['_Probability'].'</b>)
                 </span>
             </div>'
         : '';

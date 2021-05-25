@@ -12,16 +12,16 @@ class ObjectivesProcessus extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PRX';
-        $this->module_title = trans('form/imet/v1/evaluation.ObjectivesProcessus.title');
+        $this->module_title = trans('imet-core::form/v1/evaluation.ObjectivesProcessus.title');
         $this->module_fields = [
-            ['name' => 'Status',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.ObjectivesProcessus.fields.Status')],
-            ['name' => 'Benchmark1',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.ObjectivesProcessus.fields.Benchmark1')],
-            ['name' => 'Benchmark2',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.ObjectivesProcessus.fields.Benchmark2')],
-            ['name' => 'Benchmark3',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.ObjectivesProcessus.fields.Benchmark3')],
-            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.ObjectivesProcessus.fields.Objective')],
+            ['name' => 'Status',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesProcessus.fields.Status')],
+            ['name' => 'Benchmark1',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesProcessus.fields.Benchmark1')],
+            ['name' => 'Benchmark2',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesProcessus.fields.Benchmark2')],
+            ['name' => 'Benchmark3',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesProcessus.fields.Benchmark3')],
+            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesProcessus.fields.Objective')],
         ];
 
-        $this->module_info = trans('form/imet/v1/evaluation.ObjectivesProcessus.module_info');
+        $this->module_info = trans('imet-core::form/v1/evaluation.ObjectivesProcessus.module_info');
 
         parent::__construct($attributes);
 

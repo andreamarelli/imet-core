@@ -20,13 +20,13 @@ $current_route = URL::route('index');
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => !is_imet_environment(), 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('form/imet/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
     ]])
 @endsection
 
 @if(!is_imet_environment())
 @section('admin_page_title')
-    @lang('form/imet/common.imet')
+    @lang('imet-core::form/common.imet')
 @endsection
 @endif
 
@@ -38,15 +38,15 @@ $current_route = URL::route('index');
             {{-- Import json IMETs --}}
             <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
-                {{ ucfirst(trans('common.import')) }}
+                @lang_u('common.import')
             </a>
             {{-- Export json IMETs --}}
             <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
-                {{ ucfirst(trans('common.export')) }}
+                @lang_u('common.export')
             </a>
             {{-- Create new IMET --}}
-            @include('modular-forms::buttons.create', ['controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'label' => trans('form/imet/common.create')])
+            @include('modular-forms::buttons.create', ['controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'label' => trans('imet-core::form/common.create')])
         </div>
 
     @endif
@@ -73,7 +73,7 @@ $current_route = URL::route('index');
                     <th class="text-center width60px">@lang('entities.common.id')</th>
                     @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('entities.common.year'), 'class' => 'width90px'])
                     @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('entities.protected_area.protected_area', 1)])
-                    <th class="text-center">@lang('form/imet/common.encoders_responsible')</th>
+                    <th class="text-center">@lang('imet-core::form/common.encoders_responsible')</th>
                     <th>{{-- radar --}}</th>
                     <th class="width200px">{{-- actions --}}</th>
                 </tr>
@@ -98,13 +98,13 @@ $current_route = URL::route('index');
 
                                 {{-- language --}}
                                 <div>
-                                    {{ ucfirst(trans('form/imet/common.encoding_language')) }}:
+                                    @lang_u('imet-core::form/common.encoding_language'):
                                     <flag :iso2=item.language></flag>
                                 </div>
 
                                 {{-- version --}}
                                 <div>
-                                    {{ ucfirst(trans('common.version')) }}:
+                                    @lang_u('common.version'):
                                     <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
                                     <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
                                 </div>
@@ -115,6 +115,7 @@ $current_route = URL::route('index');
                         <td class="align-baseline">
                             <imet_encoders_responsibles
                                 :items=item.encoders_responsibles
+                                :labels='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsiblesLabels())'
                             ></imet_encoders_responsibles>
                         </td>
                         <td>

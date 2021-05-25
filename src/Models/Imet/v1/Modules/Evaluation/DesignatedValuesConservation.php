@@ -12,24 +12,24 @@ class DesignatedValuesConservation extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'E/I2';
-        $this->module_title = trans('form/imet/v1/evaluation.DesignatedValuesConservation.title');
+        $this->module_title = trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.title');
         $this->module_fields = [
-            ['name' => 'Value',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.fields.Value')],
-            ['name' => 'EvaluationScore',  'type' => 'rating-Minus3to3WithNA',   'label' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.fields.Comments')],
+            ['name' => 'Value',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.fields.Value')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-Minus3to3WithNA',   'label' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.fields.Comments')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.groups.group0'),
-            'group1' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.groups.group1'),
-            'group2' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.groups.group2'),
-            'group3' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.groups.group3'),
-            'group4' => trans('form/imet/v1/evaluation.DesignatedValuesConservation.groups.group4'),
+            'group0' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.groups.group0'),
+            'group1' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.groups.group1'),
+            'group2' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.groups.group2'),
+            'group3' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.groups.group3'),
+            'group4' => trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.groups.group4'),
         ];
 
-        $this->module_info_EvaluationQuestion = trans('form/imet/v1/evaluation.DesignatedValuesConservation.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('form/imet/v1/evaluation.DesignatedValuesConservation.module_info_Rating');
-        $this->ratingLegend = trans('form/imet/v1/evaluation.DesignatedValuesConservation.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::form/v1/evaluation.DesignatedValuesConservation.ratingLegend');
 
         parent::__construct($attributes);
 

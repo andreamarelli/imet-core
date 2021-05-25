@@ -94,9 +94,13 @@
                 type: [Object],
                 default: () => null
             },
+            labels:{
+                type: [Object],
+                default: () => null
+            },
             show_histogram: {
                 type: Boolean,
-                default: false
+                default: true
             },
             steps: {
                 type: Array,
@@ -141,24 +145,12 @@
                 return this.api_data!==null ? this.api_data.version : null;
             },
 
-            labels(){
-                let _this = this;
-                return this.version!==null ? [
-                    Locale.getLabel('form/imet/' + _this.version + '/common.steps_eval.context'),
-                    Locale.getLabel('form/imet/' + _this.version + '/common.steps_eval.planning'),
-                    Locale.getLabel('form/imet/' + _this.version + '/common.steps_eval.inputs'),
-                    Locale.getLabel('form/imet/' + _this.version + '/common.steps_eval.process'),
-                    Locale.getLabel('form/imet/' + _this.version + '/common.steps_eval.outputs'),
-                    Locale.getLabel('form/imet/' + _this.version + '/common.steps_eval.outcomes'),
-                ] : [];
-            },
-
             values(){
                 let _this = this;
                 let values = [];
                 this.steps.forEach(function(step, index){
                     values.push({
-                        'label': _this.labels[index],
+                        'label': _this.get_label(index),
                         'value': _this.get_key_from_api(step),
                         'color': _this.colors[index],
                     });
@@ -179,6 +171,12 @@
         },
 
         methods: {
+
+            get_label(index){
+                return this.api_data!==null
+                    ? this.labels[this.version]['full'][index]
+                    : null;
+            },
 
             get_key_from_api(key){
                 return this.api_data!==null && this.api_data.hasOwnProperty(key) && this.api_data[key]!==null

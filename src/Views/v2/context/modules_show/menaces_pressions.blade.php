@@ -20,7 +20,7 @@ $groupByCategory = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Menace
 foreach($groupByCategory as $i => $category){
     $title = ' <div class="module-row">
                     <div style="width: 60%;">
-                        <h3>'.($i+1).'. '.trans('form/imet/v2/context.MenacesPressions.categories.title'.($i+1)).'</h3>
+                        <h3>'.($i+1).'. '.trans('imet-core::form/v2/context.MenacesPressions.categories.title'.($i+1)).'</h3>
                     </div>
                     <div class="module-row__input">
 

@@ -12,16 +12,16 @@ class FinancialResources extends Modules\Component\ImetModule
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 3.2.1';
-        $this->module_title = trans('form/imet/v1/context.FinancialResources.title');
+        $this->module_title = trans('imet-core::form/v1/context.FinancialResources.title');
         $this->module_fields = [
-            ['name' => 'Currency',                      'type' => 'dropdown-ImetV1_Currency',   'label' => trans('form/imet/v1/context.FinancialResources.fields.Currency')],
-            ['name' => 'ReferenceYear',                 'type' => 'integer',   'label' => trans('form/imet/v1/context.FinancialResources.fields.ReferenceYear')],
-            ['name' => 'ManagementFinancialPlanCosts',  'type' => 'currency',   'label' => trans('form/imet/v1/context.FinancialResources.fields.ManagementFinancialPlanCosts')],
-            ['name' => 'OperationalWorkPlanCosts',      'type' => 'currency',   'label' => trans('form/imet/v1/context.FinancialResources.fields.OperationalWorkPlanCosts')],
-            ['name' => 'TotalBudget',                   'type' => 'currency',   'label' => trans('form/imet/v1/context.FinancialResources.fields.TotalBudget')],
+            ['name' => 'Currency',                      'type' => 'dropdown-ImetV1_Currency',   'label' => trans('imet-core::form/v1/context.FinancialResources.fields.Currency')],
+            ['name' => 'ReferenceYear',                 'type' => 'integer',   'label' => trans('imet-core::form/v1/context.FinancialResources.fields.ReferenceYear')],
+            ['name' => 'ManagementFinancialPlanCosts',  'type' => 'currency',   'label' => trans('imet-core::form/v1/context.FinancialResources.fields.ManagementFinancialPlanCosts')],
+            ['name' => 'OperationalWorkPlanCosts',      'type' => 'currency',   'label' => trans('imet-core::form/v1/context.FinancialResources.fields.OperationalWorkPlanCosts')],
+            ['name' => 'TotalBudget',                   'type' => 'currency',   'label' => trans('imet-core::form/v1/context.FinancialResources.fields.TotalBudget')],
         ];
 
-        $this->module_info = trans('form/imet/v1/context.FinancialResources.module_info');
+        $this->module_info = trans('imet-core::form/v1/context.FinancialResources.module_info');
 
 
 

@@ -17,9 +17,9 @@ $dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($r
         ? '<div class="text-left" style="padding: 4px;">
                 <b class="highlight">'.round($records[$index]['_rank'], 2).'</b>&nbsp;&nbsp;
                 <span style="font-size: 0.85em; font-style: italic; ">
-                    ('.trans('form/imet/v2/context.EcosystemServices.fields.Importance').': <b>'.$records[$index]['_Importance'].'</b>,&nbsp;&nbsp;
-                    '.trans('form/imet/v2/context.EcosystemServices.fields.ImportanceRegional').': <b>'.$records[$index]['_ImportanceRegional'].'</b>,&nbsp;&nbsp;
-                    '.trans('form/imet/v2/context.EcosystemServices.fields.ImportanceGlobal').': <b>'.$records[$index]['_ImportanceGlobal'].'</b>)
+                    ('.trans('imet-core::form/v2/context.EcosystemServices.fields.Importance').': <b>'.$records[$index]['_Importance'].'</b>,&nbsp;&nbsp;
+                    '.trans('imet-core::form/v2/context.EcosystemServices.fields.ImportanceRegional').': <b>'.$records[$index]['_ImportanceRegional'].'</b>,&nbsp;&nbsp;
+                    '.trans('imet-core::form/v2/context.EcosystemServices.fields.ImportanceGlobal').': <b>'.$records[$index]['_ImportanceGlobal'].'</b>)
                 </span>
             </div>'
         : '';

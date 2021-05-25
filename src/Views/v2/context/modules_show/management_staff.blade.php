@@ -12,7 +12,7 @@ $dom = HtmlPageCrawler::create(
 );
 
 $table_dom = $dom->filter('table#table_'.$definitions['module_key']);
-$table_dom->filter('thead tr th')->eq(2)->after('<th>'.ucfirst(trans('form/imet/v2/context.ManagementStaff.fields.difference')).'</th>');
+$table_dom->filter('thead tr th')->eq(2)->after('<th>'.ucfirst(trans('imet-core::form/v2/context.ManagementStaff.fields.difference')).'</th>');
 $table_dom->filter('tbody tr')->each(function ($tr, $index) use($records) {
     $tr->filter('td')->eq(2)->after(
         '<td>'.

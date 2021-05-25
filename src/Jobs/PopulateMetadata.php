@@ -60,11 +60,11 @@ class PopulateMetadata implements ShouldQueue
 
         // metadata statistics
         DB::select('DELETE FROM imet.imet_metadata_statistics;');
-        $items = trans('form/imet/v2/common.assessment');
+        $items = trans('imet-core::form/v2/common.assessment');
         foreach ($items as $code => $item) {
             static::insert_metadata_statistics('v2', $code, $item);
         }
-        $items = trans('form/imet/v1/common.assessment');
+        $items = trans('imet-core::form/v1/common.assessment');
         foreach ($items as $code => $item) {
             static::insert_metadata_statistics('v1', $code, $item);
         }
@@ -97,14 +97,14 @@ class PopulateMetadata implements ShouldQueue
         return str_replace(
             "'",
             "''",
-            trans('form/imet/' . $version . '/' . $phase . '.' . $className . '.title', [], $lang)
+            trans('imet-core::form/' . $version . '/' . $phase . '.' . $className . '.title', [], $lang)
         );
     }
 
     public static function insert_metadata_statistics($version, $code, $labels)
     {
-        $label_en = str_replace("'", "''", trans('form/imet/' . $version . '/common.assessment.' . $code, [], 'en')[1]);
-        $label_fr = str_replace("'", "''", trans('form/imet/' . $version . '/common.assessment.' . $code, [], 'fr')[1]);
+        $label_en = str_replace("'", "''", trans('imet-core::form/' . $version . '/common.assessment.' . $code, [], 'en')[1]);
+        $label_fr = str_replace("'", "''", trans('imet-core::form/' . $version . '/common.assessment.' . $code, [], 'fr')[1]);
 
         DB::select(
             "INSERT into imet.imet_metadata_statistics

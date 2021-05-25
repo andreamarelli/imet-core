@@ -7,7 +7,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
 ?>
 
 <div id="assessment_step_{{ $step }}">
-    <h5>@lang('form/imet/v1/common.steps_eval.'.$step)</h5>
+    <h5>@lang('imet-core::form/v1/common.steps_eval.'.$step)</h5>
 
     <div class="row">
         <div class="col-lg-8 step_indicators">
@@ -29,7 +29,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
         </div>
         <div class="col-lg-4 synthetic_indicator">
             {{-- Step synthetic indicator --}}
-            <b class="text-uppercase">@lang('form/imet/v1/common.synthetic_indicator')</b>
+            <b class="text-uppercase">@lang('imet-core::form/v1/common.synthetic_indicator')</b>
             <div class="progress">
                 <div class="progress-bar progress-bar-striped"
                      role="progressbar"

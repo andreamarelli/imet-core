@@ -13,21 +13,21 @@ class VegetalSpecies extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.2';
-        $this->module_title = trans('form/imet/v2/context.VegetalSpecies.title');
+        $this->module_title = trans('imet-core::form/v2/context.VegetalSpecies.title');
         $this->module_fields = [
-            ['name' => 'Species',                   'type' => 'text-area',               'label' => trans('form/imet/v2/context.VegetalSpecies.fields.Species')],
-            ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/context.VegetalSpecies.fields.FlagshipSpecies')],
-            ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/context.VegetalSpecies.fields.EndangeredSpecies')],
-            ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/context.VegetalSpecies.fields.EndemicSpecies')],
-            ['name' => 'ExploitedSpecies',          'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/context.VegetalSpecies.fields.ExploitedSpecies')],
-            ['name' => 'InvasiveSpecies',           'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/context.VegetalSpecies.fields.InvasiveSpecies')],
-            ['name' => 'InsufficientDataSpecies',   'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/context.VegetalSpecies.fields.InsufficientDataSpecies')],
-            ['name' => 'PopulationEstimation',      'type' => 'numeric',            'label' => trans('form/imet/v2/context.VegetalSpecies.fields.PopulationEstimation')],
-            ['name' => 'DesiredPopulation',         'type' => 'numeric',            'label' => trans('form/imet/v2/context.VegetalSpecies.fields.DesiredPopulation')],
-            ['name' => 'Comments',                  'type' => 'text-area',          'label' => trans('form/imet/v2/context.VegetalSpecies.fields.Comments')],
+            ['name' => 'Species',                   'type' => 'text-area',               'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.Species')],
+            ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.FlagshipSpecies')],
+            ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.EndangeredSpecies')],
+            ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.EndemicSpecies')],
+            ['name' => 'ExploitedSpecies',          'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.ExploitedSpecies')],
+            ['name' => 'InvasiveSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.InvasiveSpecies')],
+            ['name' => 'InsufficientDataSpecies',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.InsufficientDataSpecies')],
+            ['name' => 'PopulationEstimation',      'type' => 'numeric',            'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.PopulationEstimation')],
+            ['name' => 'DesiredPopulation',         'type' => 'numeric',            'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.DesiredPopulation')],
+            ['name' => 'Comments',                  'type' => 'text-area',          'label' => trans('imet-core::form/v2/context.VegetalSpecies.fields.Comments')],
         ];
 
-        $this->module_info = trans('form/imet/v2/context.VegetalSpecies.module_info');
+        $this->module_info = trans('imet-core::form/v2/context.VegetalSpecies.module_info');
 
 
         parent::__construct($attributes);
@@ -37,7 +37,7 @@ class VegetalSpecies extends Modules\Component\ImetModule
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('form/imet/v2/context.VegetalSpecies.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/context.VegetalSpecies.warning_on_save');
         return $vue_data;
     }
 

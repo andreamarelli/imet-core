@@ -3,9 +3,9 @@
 ?>
 
 <div id="assessment_global">
-    <h5>@lang('form/imet/v1/common.steps_eval.management_effectiveness')</h5>
+    <h5>@lang('imet-core::form/v1/common.steps_eval.management_effectiveness')</h5>
 
-    <imet_charts :form_id={{ $item_id }} :show_histogram="true"></<imet_charts>
+    @include('imet-core::components.imet_charts', ['form_id' => $item_id, 'version' => 'v1'])
 
 </div>
 

@@ -14,12 +14,12 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.4';
-        $this->module_title = trans('form/imet/v2/evaluation.ImportanceClimateChange.title');
+        $this->module_title = trans('imet-core::form/v2/evaluation.ImportanceClimateChange.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceClimateChange.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('form/imet/v2/evaluation.ImportanceClimateChange.fields.EvaluationScore')],
-            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('form/imet/v2/evaluation.ImportanceClimateChange.fields.IncludeInStatistics')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v2/evaluation.ImportanceClimateChange.fields.Comments')],
+            ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ImportanceClimateChange.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::form/v2/evaluation.ImportanceClimateChange.fields.EvaluationScore')],
+            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/evaluation.ImportanceClimateChange.fields.IncludeInStatistics')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ImportanceClimateChange.fields.Comments')],
         ];
 
         $this->predefined_values = [
@@ -27,10 +27,10 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
             'values' => null
         ];
 
-        $this->module_subTitle = trans('form/imet/v2/evaluation.ImportanceClimateChange.module_subTitle');
-        $this->module_info_EvaluationQuestion = trans('form/imet/v2/evaluation.ImportanceClimateChange.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('form/imet/v2/evaluation.ImportanceClimateChange.module_info_Rating');
-        $this->ratingLegend = trans('form/imet/v2/evaluation.ImportanceClimateChange.ratingLegend');
+        $this->module_subTitle = trans('imet-core::form/v2/evaluation.ImportanceClimateChange.module_subTitle');
+        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.ImportanceClimateChange.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.ImportanceClimateChange.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::form/v2/evaluation.ImportanceClimateChange.ratingLegend');
 
         parent::__construct($attributes);
 
@@ -77,7 +77,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('form/imet/v2/evaluation.ImportanceClimateChange.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/evaluation.ImportanceClimateChange.warning_on_save');
         return $vue_data;
     }
 

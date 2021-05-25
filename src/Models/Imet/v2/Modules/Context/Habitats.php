@@ -13,17 +13,17 @@ class Habitats extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.3.1';
-        $this->module_title = trans('form/imet/v2/context.Habitats.title');
+        $this->module_title = trans('imet-core::form/v2/context.Habitats.title');
         $this->module_fields = [
-            ['name' => 'EcosystemType',             'type' => 'text-area',   'label' => trans('form/imet/v2/context.Habitats.fields.EcosystemType')],
-            ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('form/imet/v2/context.Habitats.fields.Value')],
-            ['name' => 'Area',                      'type' => 'numeric',   'label' => trans('form/imet/v2/context.Habitats.fields.Area')],
-            ['name' => 'DesiredConservationStatus', 'type' => 'numeric',   'label' => trans('form/imet/v2/context.Habitats.fields.DesiredConservationStatus')],
-            ['name' => 'Sectors',                   'type' => 'text-area',   'label' => trans('form/imet/v2/context.Habitats.fields.Sectors')],
-            ['name' => 'Comments',                  'type' => 'text-area',   'label' => trans('form/imet/v2/context.Habitats.fields.Comments')],
+            ['name' => 'EcosystemType',             'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Habitats.fields.EcosystemType')],
+            ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Habitats.fields.Value')],
+            ['name' => 'Area',                      'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.Habitats.fields.Area')],
+            ['name' => 'DesiredConservationStatus', 'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.Habitats.fields.DesiredConservationStatus')],
+            ['name' => 'Sectors',                   'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Habitats.fields.Sectors')],
+            ['name' => 'Comments',                  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Habitats.fields.Comments')],
         ];
 
-        $this->module_info = trans('form/imet/v2/context.Habitats.module_info');
+        $this->module_info = trans('imet-core::form/v2/context.Habitats.module_info');
 
         parent::__construct($attributes);
 
@@ -32,7 +32,7 @@ class Habitats extends Modules\Component\ImetModule
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('form/imet/v2/context.Habitats.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/context.Habitats.warning_on_save');
         return $vue_data;
     }
 

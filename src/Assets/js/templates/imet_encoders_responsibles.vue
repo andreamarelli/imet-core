@@ -3,7 +3,7 @@
     <div class="imet_responsible">
 
         <div v-if="to_be_shown['internal'].length>0">
-            <b>{{ Locale.getLabel('form/imet/common.responsible_internal') }}</b>:<br />
+            <b>{{ labels.internal }}</b>:<br />
             <ul>
                 <li v-for="resp in to_be_shown['internal']"
                     >{{ resp['Name'] }} <span v-if="resp['Institution']"><i>({{ resp['Institution'] }})</i></span></li>
@@ -11,7 +11,7 @@
         </div>
 
         <div v-if="to_be_shown['external'].length>0">
-            <b>{{ Locale.getLabel('form/imet/common.responsible_external') }}</b>:
+            <b>{{ labels.external }}</b>:
             <ul>
                 <li v-for="resp in to_be_shown['external']"
                     >{{ resp['Name'] }} <span v-if="resp['Institution']"><i>({{ resp['Institution'] }})</i></span></li>
@@ -19,7 +19,7 @@
         </div>
 
         <div v-if="to_be_shown['encoders'].length>0">
-            <b>{{ Locale.getLabel('form/imet/common.encoders') }}</b>:
+            <b>{{ labels.encoders }}</b>:
             <ul>
                 <li v-for="resp in to_be_shown['encoders']"
                     >{{ resp['name']}} <span v-if="resp['institution']"><i>({{ resp['institution'] }})</i></span></li>
@@ -57,6 +57,10 @@
                         'encoders': [],
                     }
                 }
+            },
+            labels: {
+                type: [Object],
+                default: () => null
             }
         },
 

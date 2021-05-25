@@ -94,7 +94,7 @@ trait Assessment{
         return response()->json($labels);
     }
 
-    public static function radar_assessment($item)
+    public static function radar_assessment($item, $abbreviations = true)
     {
         $stats = static::assessment($item, 'global', true);
         $values = [
@@ -105,12 +105,40 @@ trait Assessment{
             $stats->original["outputs"],
             $stats->original["outcomes"]
         ];
-        if($stats->original['version']=='v1'){
-            $labels = ['C', 'P', 'I', 'PR', 'R', 'EI'];
-        } else{
-            $labels = ['C', 'P', 'I', 'PR', 'OP', 'OC'];
-        }
+        $labels = static::assessment_steps_labels()[$stats->original['version']][$abbreviations ? 'abbreviations' : 'full'];
         return array_combine($labels, $values);
+    }
+
+    /**
+     * @return array[]
+     */
+    public static function assessment_steps_labels(): array
+    {
+
+        return [
+            'v1' => [
+                'abbreviations' => ['C', 'P', 'I', 'PR', 'R', 'EI'],
+                'full' => [
+                    trans('imet-core::form/v1/common.steps_eval.context'),
+                    trans('imet-core::form/v1/common.steps_eval.planning'),
+                    trans('imet-core::form/v1/common.steps_eval.inputs'),
+                    trans('imet-core::form/v1/common.steps_eval.process'),
+                    trans('imet-core::form/v1/common.steps_eval.outputs'),
+                    trans('imet-core::form/v1/common.steps_eval.outcomes'),
+                ]
+            ],
+            'v2' => [
+                'abbreviations' => ['C', 'P', 'I', 'PR', 'OP', 'OC'],
+                'full' => [
+                    trans('imet-core::form/v2/common.steps_eval.context'),
+                    trans('imet-core::form/v2/common.steps_eval.planning'),
+                    trans('imet-core::form/v2/common.steps_eval.inputs'),
+                    trans('imet-core::form/v2/common.steps_eval.process'),
+                    trans('imet-core::form/v2/common.steps_eval.outputs'),
+                    trans('imet-core::form/v2/common.steps_eval.outcomes'),
+                ]
+            ],
+        ];
     }
 
 }

@@ -96,7 +96,7 @@ class Controller extends __Controller
                         $item->iso3                 = $countries[$item->Country]['iso3'] ?? null;
                         $item->country_name         = $countries[$item->Country]['name'] ?? null;
                         $item->encoders_responsibles = Imet::getResponsibles($item->getKey(), $item->version);
-                        $item->assessment = Assessment::radar_assessment($item->getKey());
+                        $item->assessment = Assessment::radar_assessment($item->getKey(), true);
                         return $item;
                     }
                 )

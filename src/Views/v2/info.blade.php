@@ -31,7 +31,7 @@
         </div>
         <div class="message">
             {{-- Methodology --}}
-            <b class="blue">@lang('form/imet/v2/common.methodology')</b>
+            <b class="blue">@lang('imet-core::form/v2/common.methodology')</b>
             @if(is_array($definitions['module_info_EvaluationQuestion']))
                 <ul>
                     @foreach($definitions['module_info_EvaluationQuestion'] as $method)
@@ -45,7 +45,7 @@
             @endif
             {{-- Criteria --}}
             @if($definitions['module_info_Rating']!==null)
-                <b class="blue">@lang('form/imet/v2/common.criteria')</b>
+                <b class="blue">@lang('imet-core::form/v2/common.criteria')</b>
                 @if(is_array($definitions['module_info_Rating']))
                     <ul>
                         @foreach($definitions['module_info_Rating'] as $criteria)

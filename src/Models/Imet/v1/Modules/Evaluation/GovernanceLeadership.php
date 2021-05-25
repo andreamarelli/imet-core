@@ -12,16 +12,16 @@ class GovernanceLeadership extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'PR4';
-        $this->module_title = trans('form/imet/v1/evaluation.GovernanceLeadership.title');
+        $this->module_title = trans('imet-core::form/v1/evaluation.GovernanceLeadership.title');
         $this->module_fields = [
-            ['name' => 'EvaluationScoreGovernace',  'type' => 'rating-0to3',   'label' => trans('form/imet/v1/evaluation.GovernanceLeadership.fields.EvaluationScoreGovernace')],
-            ['name' => 'EvaluationScoreLeadership',  'type' => 'rating-0to3',   'label' => trans('form/imet/v1/evaluation.GovernanceLeadership.fields.EvaluationScoreLeadership')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('form/imet/v1/evaluation.GovernanceLeadership.fields.Comments')],
+            ['name' => 'EvaluationScoreGovernace',  'type' => 'rating-0to3',   'label' => trans('imet-core::form/v1/evaluation.GovernanceLeadership.fields.EvaluationScoreGovernace')],
+            ['name' => 'EvaluationScoreLeadership',  'type' => 'rating-0to3',   'label' => trans('imet-core::form/v1/evaluation.GovernanceLeadership.fields.EvaluationScoreLeadership')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.GovernanceLeadership.fields.Comments')],
         ];
 
-        $this->module_info_EvaluationQuestion = trans('form/imet/v1/evaluation.GovernanceLeadership.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('form/imet/v1/evaluation.GovernanceLeadership.module_info_Rating');
-        $this->ratingLegend = trans('form/imet/v1/evaluation.GovernanceLeadership.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.GovernanceLeadership.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.GovernanceLeadership.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::form/v1/evaluation.GovernanceLeadership.ratingLegend');
 
         parent::__construct($attributes);
     }

@@ -22,7 +22,7 @@ if($version==='v1'){
 
     <div :id="'popover_edit_'+item.FormID" style="display: none">
         <div class="popover-heading">
-            {{ ucfirst(trans('form/imet/common.encode')) }}
+            @lang_u('imet-core::form/common.encode')
         </div>
         <div class="popover-body">
 
@@ -31,7 +31,7 @@ if($version==='v1'){
                 'controller' => $controller_context,
                 'action' =>'edit',
                 'item' => 'item.FormID',
-                'label' => ucfirst(trans('form/imet/common.context')),
+                'label' => ucfirst(trans('imet-core::form/common.context')),
                 'icon' => 'list',
                 'class' => 'yellow',
                 'new_page' => false
@@ -42,7 +42,7 @@ if($version==='v1'){
                 'controller' => $controller_eval,
                 'action' =>'edit',
                 'item' => 'item.FormID',
-                'label' => ucfirst(trans('form/imet/common.evaluation')),
+                'label' => ucfirst(trans('imet-core::form/common.evaluation')),
                 'icon' => 'check-circle',
                 'class' => 'yellow',
                 'new_page' => false
@@ -54,7 +54,7 @@ if($version==='v1'){
                     'controller' => $controller_report,
                     'action' =>'report',
                     'item' => 'item.FormID',
-                    'label' => ucfirst(trans('form/imet/common.report')),
+                    'label' => ucfirst(trans('imet-core::form/common.report')),
                     'icon' => 'flag-checkered',
                     'class' => 'yellow',
                     'new_page' => false
