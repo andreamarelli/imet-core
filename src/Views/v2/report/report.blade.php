@@ -428,63 +428,44 @@ function score_class_threats($value, $additional_classes=''){
             },
 
             loadMap(){
-                let _this = this;
-                window.mapboxgl.accessToken = 'pk.eyJ1IjoiYmxpc2h0ZW4iLCJhIjoiMEZrNzFqRSJ9.0QBRA2HxTb8YHErUFRMPZg';
-                let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
                 let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly_2";
-                let mapPaLayer = "WDPA2019MayPoly";
 
-                this.report_map = new window.mapboxgl.Map({
-                    container: 'map',
-                    style: biopamaBaseLayer,
-                    center: [15, 0],
-                    zoom: 3,
+                this.report_map = window.Leaflet.map('map', {
+                    center: [0, 10],
+                    zoom: 2,
                     minZoom: 0,
-                    maxZoom: 18
-                });
-
-                this.report_map.on('load', function(){
-                    _this.report_map.addSource("BIOPAMA_Poly", {
-                        "type": 'vector',
-                        "tiles": [mapPolyHostURL+"/{z}/{x}/{y}.pbf"],
-                        "minZoom": 0,
-                        "maxZoom": 12,
-                    });
-
-                    _this.report_map.addLayer({
-                        "id": "wdpaBase",
-                        "type": "fill",
-                        "source": "BIOPAMA_Poly",
-                        "source-layer": mapPaLayer,
-                        "minzoom": 1,
-                        "paint": {
-                            "fill-color": [
-                                "match",
-                                ["get", "MARINE"],
-                                ["1"],
-                                "hsla(173, 21%, 51%, 0.1)",
-                                "hsla(87, 47%, 53%, 0.1)"
-                            ],
-                        }
-                    });
-
-                    _this.report_map.addLayer({
-                        "id": "wdpaSelected",
-                        "type": "line",
-                        "source": "BIOPAMA_Poly",
-                        "source-layer": mapPaLayer,
-                        "layout": {"visibility": "none"},
-                        "paint": {
-                            "line-color": "#679b95",
-                            "line-width": 2,
-                        },
-                        "transition": {
-                            "duration": 300,
-                            "delay": 0
-                        }
-                    });
-                    _this.report_map.setFilter("wdpaSelected", ['in','WDPAID', {{ $item->wdpa_id }}]);
-                    _this.report_map.setLayoutProperty("wdpaSelected", 'visibility', 'visible');
+                    maxZoom: 18,
+                    layers: [
+                        window.Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }),
+                        window.Leaflet.vectorGrid.protobuf(mapPolyHostURL + '/{z}/{x}/{y}.pbf', {
+                            vectorTileLayerStyles: {
+                                WDPA2019MayPoly: function(properties, zoom){
+                                    if(properties.WDPAID === {{ $item->wdpa_id }}){
+                                        return {
+                                            color: '#66aa66',
+                                            opacity: 0.6,
+                                            weight: 2,
+                                            fillColor: '#aaccaa',
+                                            fillOpacity: 0.6,
+                                            fill: true
+                                        }
+                                    } else {
+                                        return {
+                                            opacity: 0,
+                                            fill: false
+                                        }
+                                    }
+                                },
+                                ACP_Countries: {opacity: 0},
+                                ACP_EEZ: {opacity: 0},
+                                ACP_GAUL: {opacity: 0},
+                                ACP_SubGroups: {opacity: 0},
+                                non_acp_countries: {opacity: 0},
+                            }
+                        })
+                    ]
                 });
             }
         }
