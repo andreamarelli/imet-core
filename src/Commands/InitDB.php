@@ -42,7 +42,7 @@ class InitDB extends Command
      */
     public function handle(): int
     {
-        $sql_files = Storage::disk('imet')->files();
+        $sql_files = Storage::disk('imet_db_sql')->files();
         sort($sql_files);
         foreach ($sql_files as $sql_file){
             $this->dispatch(Jobs\ApplySQL::class, $sql_file);
