@@ -14,6 +14,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Storage;
 
+
 class PopulateSpecies implements ShouldQueue
 {
     use Dispatchable;
@@ -147,19 +148,16 @@ class PopulateSpecies implements ShouldQueue
                 'genus' => $genus,
                 'species' => $species
             ]
-        )->firstOrFail();
-
+        )->first();
 
         // Not found : add
-        if ($db_item->isEmpty()) {
+        if ($db_item === null) {
             $db_item = new Animal();
-            $this->apply_values($db_item, $api_item);
             $this->apply_values($db_item, $api_item);
             $db_item->save();
             $this->added_count++;
         } // Found
         else {
-            $db_item = $db_item->first();
             $this->apply_values($db_item, $api_item);
             // Changed: update
             if ($db_item->isDirty()) {
