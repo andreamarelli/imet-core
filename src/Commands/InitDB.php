@@ -45,7 +45,7 @@ class InitDB extends Command
         $sql_files = Storage::disk('imet_db_sql')->files();
         sort($sql_files);
         foreach ($sql_files as $sql_file){
-            $this->dispatch(Jobs\ApplySQL::class, $sql_file);
+            $this->dispatch(Jobs\ApplySQL::class, Storage::disk('imet_db_sql')->path($sql_file));
         }
 
         $this->dispatch(Jobs\PopulateMetadata::class);

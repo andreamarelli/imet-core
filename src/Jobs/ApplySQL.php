@@ -38,9 +38,9 @@ class ApplySQL implements ShouldQueue
      */
     public function handle()
     {
-        static::log('Applying file: '.$this->sql_file);
+        static::log('Applying file: '.basename($this->sql_file));
         DB::unprepared(
-            file_get_contents(Storage::disk('imet_db_sql')->path($this->sql_file))
+            file_get_contents($this->sql_file)
         );
     }
 }
