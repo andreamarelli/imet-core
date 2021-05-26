@@ -26,7 +26,8 @@ class PopulateSpecies implements ShouldQueue
 
     public const common_names_csv = 'species_names_crosstab.csv';
 
-    private $storage;
+    private $storage_cache;
+    private $storage_csv;
 
     private $countries;
     private $common_names;
@@ -44,7 +45,8 @@ class PopulateSpecies implements ShouldQueue
      */
     public function __construct()
     {
-        $this->storage = Storage::disk(File::PRIVATE_STORAGE);
+        $this->storage_cache = Storage::disk(File::PRIVATE_STORAGE);
+        $this->storage_csv = Storage::disk('imet_db_sql');
     }
 
     /**
@@ -57,11 +59,11 @@ class PopulateSpecies implements ShouldQueue
     {
         // check common names CSV file exists
         try{
-            if(!$this->storage->exists(self::common_names_csv)){
+            if(!$this->storage_csv->exists(self::common_names_csv)){
                 throw new FileNotFoundException();
             }
         } catch (FileNotFoundException $e){
-            static::log('Common names CSV file not found in: '.$this->storage->path(''));
+            static::log('Common names CSV file not found in: '.$this->storage_csv->path(''));
             return;
         }
 
@@ -74,11 +76,11 @@ class PopulateSpecies implements ShouldQueue
 
             if($this->imet_offline){
                 $cache_filename = 'api_country_redlist_th_list_'.$iso3.'.json';
-                if($this->storage->exists($cache_filename)){
-                    $api_list = json_decode($this->storage->get($cache_filename));
+                if($this->storage_cache->exists($cache_filename)){
+                    $api_list = json_decode($this->storage_cache->get($cache_filename));
                 } else {
                     $api_list = $this->retrieve_species($iso3);
-                    $this->storage->put($cache_filename, json_encode($api_list));
+                    $this->storage_cache->put($cache_filename, json_encode($api_list));
                 }
             } else {
                 $api_list = $this->retrieve_species($iso3);
@@ -118,7 +120,7 @@ class PopulateSpecies implements ShouldQueue
      */
     private function retrieve_common_names()
     {
-        $csv_file = file($this->storage->path(self::common_names_csv));
+        $csv_file = file($this->storage_csv->path(self::common_names_csv));
         $this->common_names = [];
         foreach ($csv_file as $csv_line){
             $line = str_getcsv($csv_line,  '|');
