@@ -40,7 +40,7 @@ class ApplySQL implements ShouldQueue
     {
         static::log('Applying file: '.$this->sql_file);
         DB::unprepared(
-            file_get_contents(Storage::disk('imet')->path($this->sql_file))
+            file_get_contents(Storage::disk('imet_db_sql')->path($this->sql_file))
         );
     }
 }
