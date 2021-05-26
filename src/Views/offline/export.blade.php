@@ -15,12 +15,6 @@ $no_filter_selected = true;
     ]])
 @endsection
 
-@if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('imet-core::form/common.imet')
-@endsection
-@endif
-
 @section('content')
 
     @include('imet-core::components.common_filters', [
