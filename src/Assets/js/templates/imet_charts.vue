@@ -77,12 +77,12 @@
 
 <script>
 
-    import Progress_bar from "./imet_progress_bar";
+    import progress_bar from "./imet_progress_bar.vue";
 
     export default {
 
         components: {
-            Progress_bar
+            progress_bar
         },
 
         props: {

@@ -20,14 +20,10 @@
 
 <script>
 
-
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
-
 export default {
     name: "multipleUpload.vue",
     components: {
-        vueDropzone: vue2Dropzone
+        vueDropzone: window.Vue2Dropzone
     },
     data() {
         const Locale = window.Locale;

@@ -17,8 +17,8 @@
     },
     "repositories": {
         "andreamarelli/modular-forms": {
-            "type": "path",
-            "url": "../modular-forms"
+            "type": "vcs",
+            "url": "https://github.com/andreamarelli/modular-forms"
         }
     },
     "autoload": {
