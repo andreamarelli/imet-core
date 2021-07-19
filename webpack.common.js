@@ -1,20 +1,21 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
 
     entry: {
-        index: './src/assets/index.js',
-        vendor: './src/assets/vendor.js'
+        index: ['./src/assets/index.js', './src/assets/index.scss'],
+        vendor: ['./src/assets/vendor.js', './src/assets/vendor.scss'],
     },
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'imet_core_[name].js'
     },
 
     resolve: {
         alias: {
+            '~$': path.resolve(__dirname, '../', 'node_modules/'),
             '~vendor': path.resolve(__dirname, '../', 'vendor/'),
         }
     },
@@ -22,10 +23,20 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                enforce: "pre",
+                use: ["source-map-loader"],
+            },
+            {
                 test: /\.[s]*css$/,
                 use: [
                     'vue-style-loader',
-                    'style-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: false,
+                        },
+                    },
                     'css-loader',
                     'sass-loader'
                 ],
@@ -42,7 +53,8 @@ module.exports = {
                         options: {
                             limit: 8192,
                             name: '[name].[ext]',
-                            outputPath: 'images'
+                            outputPath: 'images',
+                            publicPath: 'images'
                         },
                     },
                 ],

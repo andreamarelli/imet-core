@@ -9,7 +9,3 @@ Vue.component('imet_radar',                     require('./js/templates/imet_rad
 Vue.component('multiple-files-upload',          require('./js/inputs/multiple-files-upload.vue').default);
 Vue.component('selector-wdpa',                  require('./js/inputs/selector-wdpa.vue').default);
 Vue.component('selector-wdpa_multiple',         require('./js/inputs/selector-wdpa_multiple.vue').default);
-
-// Stylesheets
-import './sass/components/components.scss';
-import './sass/pages/pages.scss';
