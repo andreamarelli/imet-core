@@ -148,7 +148,7 @@ class Controller extends __Controller
             )
             ->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
 
-        return view(static::$form_view_prefix . 'offline.export', [
+        return view(static::$form_view_prefix . 'export', [
             'list' => $list,
             'request' => $request,
             'countries' => array_map(function ($item) {
