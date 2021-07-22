@@ -27,8 +27,8 @@
         </div>
 
 
-        <button class="btn-nav small" v-if="total_count>max_visible && !showHidden" @click=toggleShown ><i class="fas fa-plus-square" /> {{ Locale.getLabel('common.view_all') }}</button>
-        <button class="btn-nav small" v-if="showHidden" @click=toggleShown ><i class="fas fa-minus-square" /> {{ Locale.getLabel('common.hide') }}</button>
+        <button class="btn-nav small" v-if="total_count>max_visible && !showHidden" @click=toggleShown ><i class="fas fa-plus-square" /> {{ Locale.getLabel('modular-forms::common.view_all') }}</button>
+        <button class="btn-nav small" v-if="showHidden" @click=toggleShown ><i class="fas fa-minus-square" /> {{ Locale.getLabel('modular-forms::common.hide') }}</button>
 
     </div>
 

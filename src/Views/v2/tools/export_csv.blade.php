@@ -23,20 +23,20 @@
                     <table class="table module-table">
                         <tr id="imet_details">
                             <td class="align-baseline text-center">
-                                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('country', trans('entities.common.country')) !!}
+                                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('country', trans('imet-core::common.country')) !!}
                                 {!! \AndreaMarelli\ModularForms\Helpers\Input\DropDown::simple('country', $request->input('country'), $countries) !!}
                             </td>
                             <td class="align-baseline text-center">
-                                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('year', trans('entities.common.year')) !!}
+                                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('year', trans('imet-core::common.year')) !!}
                                 {!! \AndreaMarelli\ModularForms\Helpers\Input\DropDown::simple('year', $request->input('year'), $years) !!}
                             </td>
                             <td  class="align-baseline text-center">
-                                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('wdpa', trans_choice('entities.protected_area.protected_area', 2)) !!}
+                                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('wdpa', trans_choice('imet-core::common.protected_area.protected_area', 2)) !!}
                                 {!! \AndreaMarelli\ModularForms\Helpers\Input\DropDown::simple('wdpa', $request->input('wdpa'), $wdpa) !!}
                             </td>
                             <td  class="align-baseline text-center">
                                 <br/>
-                                <button type="submit" class="btn-nav rounded mt-2">@lang_u('common.apply_filters')</button>
+                                <button type="submit" class="btn-nav rounded mt-2">@lang_u('modular-forms::common.apply_filters')</button>
                             </td>
                         </tr>
                     </table>
@@ -80,7 +80,7 @@
             @endif
         @endforeach
     @else
-        @lang('common.no_record_found')
+        @lang('modular-forms::common.no_record_found')
     @endif
 
 @endsection

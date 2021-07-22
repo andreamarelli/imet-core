@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="btn btn-danger mb-2" v-on:click="clearDropzone">{{ Locale.getLabel('common.upload.remove_all') }}</button>
+        <button class="btn btn-danger mb-2" v-on:click="clearDropzone">{{ Locale.getLabel('modular-forms::common.upload.remove_all') }}</button>
         <vue-dropzone
             ref="myVueDropzone"
             id="dropzone"
@@ -12,7 +12,7 @@
             v-on:vdropzone-file-added="fileAdded"
         >
             <div class="dropzone-custom-content" style="margin-top: 100px">
-                <h3 class="dropzone-custom-title">{{ Locale.getLabel('common.upload.multiple_files_description') }}</h3>
+                <h3 class="dropzone-custom-title">{{ Locale.getLabel('modular-forms::common.upload.multiple_files_description') }}</h3>
             </div>
         </vue-dropzone>
     </div>
@@ -42,16 +42,16 @@ export default {
                 maxFilesize: 1,
                 acceptedFiles: ".json,.zip",
                 autoProcessQueue: true,
-                dictDefaultMessage: Locale.getLabel('common.upload.dict_default_message'),
-                dictFallbackMessage: Locale.getLabel('common.upload.dict_fallback_message'),
-                dictFallbackText: Locale.getLabel('common.upload.dict_fallback_text'),
-                dictFileTooBig: Locale.getLabel('common.upload.dict_file_too_big'),
-                dictInvalidFileType: Locale.getLabel('common.upload.dict_invalid_file_type'),
-                dictResponseError: Locale.getLabel('common.upload.dict_response_error'),
-                dictCancelUpload: Locale.getLabel('common.upload.dict_cancel_upload'),
-                dictUploadCanceled: Locale.getLabel('common.upload.dict_upload_canceled'),
-                dictRemoveFile: Locale.getLabel('common.upload.dict_remove_file'),
-                dictMaxFilesExceeded: Locale.getLabel('common.upload.dictMaxFilesExceeded'),
+                dictDefaultMessage: Locale.getLabel('modular-forms::common.upload.dict_default_message'),
+                dictFallbackMessage: Locale.getLabel('modular-forms::common.upload.dict_fallback_message'),
+                dictFallbackText: Locale.getLabel('modular-forms::common.upload.dict_fallback_text'),
+                dictFileTooBig: Locale.getLabel('modular-forms::common.upload.dict_file_too_big'),
+                dictInvalidFileType: Locale.getLabel('modular-forms::common.upload.dict_invalid_file_type'),
+                dictResponseError: Locale.getLabel('modular-forms::common.upload.dict_response_error'),
+                dictCancelUpload: Locale.getLabel('modular-forms::common.upload.dict_cancel_upload'),
+                dictUploadCanceled: Locale.getLabel('modular-forms::common.upload.dict_upload_canceled'),
+                dictRemoveFile: Locale.getLabel('modular-forms::common.upload.dict_remove_file'),
+                dictMaxFilesExceeded: Locale.getLabel('modular-forms::common.upload.dictMaxFilesExceeded'),
             },
             formatTypes: ["application/json", "application/zip"]
         };
@@ -106,11 +106,11 @@ export default {
             dropzoneArea.append(...nodesArray);
         },
         uploadError(file, message) {
-            let errorMessage = Locale.getLabel('common.upload.upload_error');
+            let errorMessage = Locale.getLabel('modular-forms::common.upload.upload_error');
             if (message['message']) {
                 errorMessage += message['message'];
             } else if (!this.formatTypes.includes(file.type)) {
-                errorMessage = Locale.getLabel('common.upload.not_valid_format');
+                errorMessage = Locale.getLabel('modular-forms::common.upload.not_valid_format');
             } else {
                 errorMessage += message;
             }
@@ -118,11 +118,11 @@ export default {
             this.progressBarConfiguration(file, errorMessage, 'red', '100%');
         },
         processing(file) {
-            this.progressBarConfiguration(file, Locale.getLabel('common.upload.uploading'));
+            this.progressBarConfiguration(file, Locale.getLabel('modular-forms::common.upload.uploading'));
         },
         uploadedSuccessfully(file, response) {
 
-            let message = Locale.getLabel('common.upload.uploaded');
+            let message = Locale.getLabel('modular-forms::common.upload.uploaded');
             if (response.length > 1) {
                 let filesDidNotUploaded = 0;
                 response.forEach((r => {
@@ -132,7 +132,7 @@ export default {
                 }))
                 const totalFiles = response.length;
 
-                message += Locale.getLabel('common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
+                message += Locale.getLabel('modular-forms::common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
             }
             this.hideShowRemoveLink(file, 'block');
             this.progressBarConfiguration(file, message, "green");

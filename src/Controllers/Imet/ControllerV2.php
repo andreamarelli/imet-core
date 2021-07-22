@@ -80,7 +80,7 @@ class ControllerV2 extends Controller
             Encoder::importModule($formID, $json['Encoders'] ?? null);
 
             DB::commit();
-            Session::flash('message', trans('common.saved_successfully'));
+            Session::flash('message', trans('modular-forms::common.saved_successfully'));
             return [
                 'status' => 'success',
                 'entity_label' => Imet::find($formID)->{Imet::LABEL},
@@ -89,7 +89,7 @@ class ControllerV2 extends Controller
             ];
         } catch (\Exception $e) {
             DB::rollback();
-            Session::flash('message', trans('common.saved_error'));
+            Session::flash('message', trans('modular-forms::common.saved_error'));
             throw $e;
         }
     }

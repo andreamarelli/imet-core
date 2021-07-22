@@ -27,8 +27,8 @@
                 :key-min-length=3
             >
                 <template v-slot:modal_search_results_filters>
-                    <i>{{ Locale.getLabel('common.filter_results') }}: </i>&nbsp;&nbsp;&nbsp;&nbsp;
-                    {{ Locale.getLabel('entities.common.country') }}
+                    <i>{{ Locale.getLabel('modular-forms::common.filter_results') }}: </i>&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{ Locale.getLabel('imet-core::common.country') }}
                     <select v-model=filterByCountry @change="filterList()" class="field-edit">
                         <option value="null"> - - </option>
                         <option v-for="(label, key) in countries" :value=key>
@@ -51,7 +51,7 @@
                         class="btn-nav dark small"
                         :disabled="selectedValue===null"
                         v-on:click="confirmSelection" >
-                    {{ Locale.getLabel('common.confirm_select') }}
+                    {{ Locale.getLabel('modular-forms::common.confirm_select') }}
                 </button>
             </div>
 
@@ -175,10 +175,10 @@
             resultTableHeader(){
                 return [
                     '',
-                    Locale.getLabel('entities.common.name'),
-                    Locale.getLabel('entities.protected_area.wdpa_id',1),
-                    Locale.getLabel('entities.common.country'),
-                    Locale.getLabel('entities.protected_area.iucn_category'),
+                    Locale.getLabel('imet-core::common.name'),
+                    Locale.getLabel('imet-core::common.protected_area.wdpa_id',1),
+                    Locale.getLabel('imet-core::common.country'),
+                    Locale.getLabel('imet-core::common.protected_area.iucn_category'),
                 ]
             },
 

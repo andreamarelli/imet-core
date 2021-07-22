@@ -83,7 +83,7 @@ if($primary_form->version==='v1'){
                             @include('modular-forms::buttons.delete', [
                                 'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                                 'item' => $duplicated_form_id,
-                                'label' => ucfirst(trans('common.delete'))
+                                'label' => ucfirst(trans('modular-forms::common.delete'))
                             ])
                         </div>
 
@@ -103,7 +103,7 @@ if($primary_form->version==='v1'){
                         @if(!$module_primary->isEmpty())
                             @include('imet-core::merge.view_module', ['module' => $module_primary, 'formID' => $primary_form->getKey(), 'module_class' => $module_class ])
                         @else
-                            <small><i>@lang('common.no_data')</i></small>
+                            <small><i>@lang('modular-forms::common.no_data')</i></small>
                         @endif
                     </td>
                     <td style="max-width: 300px;">
@@ -117,13 +117,13 @@ if($primary_form->version==='v1'){
                             @endphp
                             @if(!$module->isEmpty())
                                 @if($module_class::areIdentical($module, $module_primary_orig))
-                                     <b class="highlight">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle') !!}  @lang('common.no_differences')</b>
+                                     <b class="highlight">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle') !!}  @lang('modular-forms::common.no_differences')</b>
                                 @else
                                     @include('imet-core::merge.view_module', ['module' => $module, 'formID' => $duplicated_form_id, 'module_class' => $module_class ])
                                     @include('imet-core::merge.confirm_merge', ['source' => $imet_class::find($duplicated_form_id), 'destination' => $primary_form, 'module' => $module_class ])
                                 @endif
                             @else
-                                <small><i>@lang('common.no_data')</i></small>
+                                <small><i>@lang('modular-forms::common.no_data')</i></small>
                             @endif
                         </td>
                     @endforeach

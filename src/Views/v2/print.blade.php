@@ -24,7 +24,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
     <div id="print_body" class="print_body">
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) }}" class="btn-nav rounded" style="margin-bottom: 20px;">@lang_u('common.go_back')</a>
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) }}" class="btn-nav rounded" style="margin-bottom: 20px;">@lang_u('modular-forms::common.go_back')</a>
 
         @component('layouts.components.title_ribbon')
                 @lang('imet-core::form/common.imet')

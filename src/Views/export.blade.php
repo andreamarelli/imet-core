@@ -37,7 +37,7 @@ $no_filter_selected = true;
                 </form>
             </div>
             <div class="col">
-                <span class="float-right mt-3"> <b>@{{ totalCount }}</b> {{ totalCount==1 ? "<?php echo trans_choice('common.record_found', 1); ?>" :  "<?php echo trans_choice('common.record_found', 2); ?>" }}.</span>
+                <span class="float-right mt-3"> <b>@{{ totalCount }}</b> {{ totalCount==1 ? "<?php echo trans_choice('modular-forms::common.record_found', 1); ?>" :  "<?php echo trans_choice('modular-forms::common.record_found', 2); ?>" }}.</span>
             </div>
         </div>
         <table class="striped">
@@ -45,11 +45,11 @@ $no_filter_selected = true;
             <tr>
                 <th class="text-center width60px"><input type='checkbox' class="ml-1" @click="checkAll"
                                                          v-model="isCheckAll"></th>
-                <th class="text-center width90px">@lang('entities.common.year')</th>
-                <th class="text-center fit-width">@lang('common.protected_area')</th>
-                <th class="text-center fit-width">@lang('entities.common.country')</th>
-                <th class="text-center fit-width">@lang('common.version')</th>
-                <th class="text-center fit-width">@lang('entities.common.language')</th>
+                <th class="text-center width90px">@lang('imet-core::common.year')</th>
+                <th class="text-center fit-width">@choice('imet-core::common.protected_area.protected_area, 1')</th>
+                <th class="text-center fit-width">@lang('imet-core::common.country')</th>
+                <th class="text-center fit-width">@lang('imet-core::common.version')</th>
+                <th class="text-center fit-width">@lang('imet-core::common.language')</th>
             </tr>
             </thead>
             <tbody>

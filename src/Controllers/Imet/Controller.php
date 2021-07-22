@@ -183,7 +183,7 @@ class Controller extends __Controller
         $records = $query->makeHidden(['UpdateBy', 'UpdateDate', 'id'])->toArray();
 
         if (count($records) === 0) {
-            return trans('common.no_record_found');
+            return trans('modular-forms::common.no_record_found');
         }
         $title = str_replace(' ', '_', $query->pluck('module_code')->first());
         return File::exportTo('CSV', $title . '.csv', $records);
@@ -455,11 +455,11 @@ class Controller extends __Controller
             }
 
             if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
-                return response()->json(["message" => trans('common.upload.no_files_found')], 500);
+                return response()->json(["message" => trans('modular-forms::common.upload.no_files_found')], 500);
             }
         } catch (Exception $e) {
             report($e);
-            return response()->json(["message" => trans('common.upload.generic_error')], 500);
+            return response()->json(["message" => trans('modular-forms::common.upload.generic_error')], 500);
         }
 
         return response()->json($files);

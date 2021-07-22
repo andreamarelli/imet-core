@@ -64,7 +64,7 @@ function score_class_threats($value, $additional_classes=''){
         <div class="module-header"><div class="module-title">General elements of the protected area</div></div>
         <div class="module-body">
             <div id="map" v-if=connection></div>
-            <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
+            <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
             <div style="display: flex;">
                 @if($connection)
                     <div id="radar">
@@ -239,7 +239,7 @@ function score_class_threats($value, $additional_classes=''){
                     ></dopa_indicators_table>
 
                 </div>
-                <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
+                <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
             </div>
         </div>
     </div>
@@ -251,18 +251,18 @@ function score_class_threats($value, $additional_classes=''){
                 <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
                     @method('PATCH')
                     @csrf
-                    <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} @lang_u('common.save')</span>
+                    <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} @lang_u('modular-forms::common.save')</span>
                 </form>
             </div>
             <div class="standalone" v-show=status==='loading' >
                 <i class="fa fa-spinner fa-spin primary-800"></i>
-                @lang_u('common.saving')
+                @lang_u('modular-forms::common.saving')
             </div>
-            <div v-show=status==='saved' class="standalone highlight">@lang_u('common.saved_successfully')!</div>
-            <div v-show=status==='error' class="standalone error">@lang_u('common.saved_error')!</div>
+            <div v-show=status==='saved' class="standalone highlight">@lang_u('modular-forms::common.saved_successfully')!</div>
+            <div v-show=status==='error' class="standalone error">@lang_u('modular-forms::common.saved_error')!</div>
 
             {{-- Print --}}
-            <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} @lang_u('common.print')</div>
+            <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} @lang_u('modular-forms::common.print')</div>
         </div>
     @endif
 

@@ -16,7 +16,7 @@ use AndreaMarelli\ModularForms\Controllers\UploadFileController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'setLocale'], function () {
+Route::group(['middleware' => ['setLocale', 'web']], function () {
 
 
     Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function () {
