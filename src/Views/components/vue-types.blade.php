@@ -25,7 +25,7 @@ $other_attributes = $other ?? '';
         :data-countries='@json(\AndreaMarelli\ImetCore\Models\ProtectedArea::getCountries()
                 ->sortBy('name_'.\AndreaMarelli\ModularForms\Helpers\Locale::lower())
                 ->pluck('name_'.\AndreaMarelli\ModularForms\Helpers\Locale::lower(), 'iso3')
-                ->toArray())'
+                ->toArray(), JSON_HEX_APOS)'
     ></selector-wdpa>
 
 @elseif($type === 'imet-core::selector-wdpa_multiple')
