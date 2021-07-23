@@ -114,7 +114,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                     Object.entries(_this.api_labels).forEach(function (item) {
                         labels[item[0]] = {
                             code: item[1]['code_label'],
-                            title: item[1]['title_'+Lang.getLocale()],
+                            title: item[1]['title_' + Locale.getLocale()],
                             min: 0,
                             max: 100
                         };
