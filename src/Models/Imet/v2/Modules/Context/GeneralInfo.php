@@ -2,7 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
+use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
+use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 
@@ -47,16 +49,16 @@ class GeneralInfo extends Modules\Component\ImetModule
     {
         $vue_data = parent::getVueData($form_id, $collection);
 
-        $imet = \AndreaMarelli\ImetCore\Models\Imet\v2\Imet::find($vue_data['form_id']);
-        $pa = ProtectedArea::getByWdpa($imet->wdpa_id);
+        $imet = Imet::find($vue_data['form_id']);
+        $pa = Imet::getProtectedArea($imet->wdpa_id);
 
-        $vue_data['records'][0]['CompleteName'] = $vue_data['records'][0]['CompleteName']!==null ? $vue_data['records'][0]['CompleteName'] : $pa->name;
-        $vue_data['records'][0]['WDPA'] = $vue_data['records'][0]['WDPA']!==null ? $vue_data['records'][0]['WDPA'] : $pa->wdpa_id;
-        $vue_data['records'][0]['Type'] = $vue_data['records'][0]['Type']!==null ? $vue_data['records'][0]['Type'] : $imet->Type;
-        $vue_data['records'][0]['IUCNCategory1'] = $vue_data['records'][0]['IUCNCategory1']!==null ? $vue_data['records'][0]['IUCNCategory1'] : $pa->iucn_category;
-        $vue_data['records'][0]['Country'] = $vue_data['records'][0]['Country']!==null ? $vue_data['records'][0]['Country'] : $pa->country;
-        $vue_data['records'][0]['CreationYear'] = $vue_data['records'][0]['CreationYear']!==null ? $vue_data['records'][0]['CreationYear']
-            : ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
+        $vue_data['records'][0]['CompleteName'] = $vue_data['records'][0]['CompleteName'] ?? $pa->name;
+        $vue_data['records'][0]['WDPA'] = $vue_data['records'][0]['WDPA'] ?? (ProtectedAreaNonWdpa::isNonWdpa($pa->wdpa_id) ? null : $pa->wdpa_id);
+        $vue_data['records'][0]['Type'] = $vue_data['records'][0]['Type'] ?? $imet->Type;
+        $vue_data['records'][0]['IUCNCategory1'] = $vue_data['records'][0]['IUCNCategory1'] ?? $pa->iucn_category;
+        $vue_data['records'][0]['Country'] = $vue_data['records'][0]['Country'] ?? $pa->country;
+        $vue_data['records'][0]['CreationYear'] = $vue_data['records'][0]['CreationYear'] ??
+            ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
 
         return $vue_data;
     }

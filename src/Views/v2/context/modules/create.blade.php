@@ -10,13 +10,30 @@ $vue_record_index = 0;
 
 @foreach($definitions['fields'] as $i=>$field)
 
-    @if($i!=3)
+    @component('admin.components.module.components.row', [
+        'name' => $field['name'],
+        'label' => $field['label'] ?? '',
+        'label_width' => $definitions['label_width']
+    ])
 
-        @component('modular-forms::module.field_container', [
-                'name' => $field['name'],
-                'label' => $field['label'] ?? '',
-                'label_width' => $definitions['label_width']
-            ])
+        @if($field['name']==='language')
+
+            <div v-if="show_language">
+                @include('admin.components.module.edit.field.auto_vue', [
+                    'definitions' => $definitions,
+                    'field' => $field,
+                    'vue_record_index' => $vue_record_index
+                ])
+            </div>
+            <div v-else>
+                <span class="toggle">
+                    <span role="group" class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-sm act-btn-lighter act-btn-basic"> - </button>
+                    </span>
+                </span>
+            </div>
+
+        @else
 
             {{-- input field --}}
             @include('modular-forms::module.edit.field.module-to-vue', [
@@ -25,21 +42,27 @@ $vue_record_index = 0;
                 'vue_record_index' => $vue_record_index
             ])
 
-        @endcomponent
+        @endif
 
-    @endif
+    @endcomponent
 
 @endforeach
 
-<div class="module-row" v-if="available_years!==null">
+{{--  #########  Previous year selector  #########  --}}
+<div class="module-row" v-if="retrieving_years || available_years!==null" style="margin: 40px 0px 20px 0;">
 
-    {{-- label  --}}
-    <div class="module-row__label">
-        <label for="prev_year_selector">{!! ucfirst(trans('imet-core::form/v2/common.prefill_prev_year')) !!}</label>
+    {{--  label  --}}
+    <div class="module-row__label text-lg green_dark" style="width: 40%;" >
+        <label for="prev_year_selector">{!! ucfirst(trans('imet-core::form/imet/v2/context.Create.fields.prefill_prev_year')) !!} ?</label>
     </div>
 
-    {{-- input field --}}
-    <div  class="module-row__input">
+    {{--  loading..  --}}
+    <div  class="module-row__input" v-if="retrieving_years">
+        <i class="fa fa-spinner fa-spin fa-2x green_dark"></i>
+    </div>
+
+    {{--  selector  --}}
+    <div  class="module-row__input" v-if="available_years!==null">
         <toggle
             :data-values=JSON.stringify(available_years)
             id="prev_year_selector"
@@ -49,23 +72,6 @@ $vue_record_index = 0;
 
 </div>
 
-<div class="module-row" v-if="show_language">
-
-    {{-- label  --}}
-    <div class="module-row__label">
-        <label for="{{ $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
-    </div>
-
-    {{-- input field --}}
-    <div class="module-row__input">
-        @include('modular-forms::module.edit.field.module-to-vue', [
-            'definitions' => $definitions,
-            'field' => $definitions['fields'][3],
-            'vue_record_index' => $vue_record_index
-        ])
-    </div>
-
-</div>
 
 @push('scripts')
     <script>
@@ -94,6 +100,10 @@ $vue_record_index = 0;
                 show_language:{
                     type: Boolean,
                     default: true
+                },
+                retrieving_years:{
+                    type: Boolean,
+                    default: false
                 }
             },
 
@@ -103,49 +113,83 @@ $vue_record_index = 0;
                         this.show_language = true;
                     } else {
                         this.show_language = false;
-                        this.records[0]['language'] = null;
                     }
-                    this.records[0]['prev_year_selection'] = value;
-                    this.showSaveBar();
+                    let record =  this.records[0];
+                    record['prev_year_selection'] = value;
+                    this.$set(this.records, 0, record);
+                },
+                records: {
+                    handler: async function () {
+                        await this.recordChangedCallback();
+                        if (this.status !== 'init') {
+                            let _this = this;
+                            _this.status = (_this.status !== 'changed') ? 'changed' : _this.status;
+                            _this.__sync_common_fields();
+                        }
+                    },
+                    deep: true
                 }
             },
 
             methods: {
 
-                recordChangedCallback(){
-                    if(this.current_pa !== this.records[0]['wdpa_id']
-                        || this.current_year !== this.records[0]['Year']){
+                async recordChangedCallback(){
+                    // empty prev_year_selection if wdpa or year changes
+                    if(this.current_pa !== this.records[0]['wdpa_id'] &&
+                        this.current_year !== this.records[0]['Year']
+                    ){
                         this.prev_year_selection = null;
-
-                        this.current_year = this.records[0]['Year'];
-                        this.current_pa = this.records[0]['wdpa_id'];
-                        if(this.current_year!==null && this.current_pa!==null){
-                            this.retrievePreviousYears();
-                        } else if(this.current_year===null && this.current_pa===null) {
+                        this.available_years = null;
+                    }
+                    // retrieve prev_year_selection
+                    if(![null, ""].includes(this.records[0]['wdpa_id']) &&
+                        ![null, ""].includes(this.records[0]['Year']) &&
+                        (this.current_pa !== this.records[0]['wdpa_id'] ||
+                            this.current_year !== this.records[0]['Year'])
+                    ){
+                        try {
+                            const response = await this.retrievePreviousYears();
+                            this.retrieving_years = false;
+                            if (Object.values(response.data).length > 0) {
+                                console
+                                this.parseAvailableYears(response.data);
+                            } else {
+                                this.available_years = null;
+                            }
+                        }
+                        catch(e){
+                            this.retrieving_years = false;
                             this.available_years = null;
                         }
                     }
-                    this.showSaveBar();
+                    // show SAVE bar only when all fields have been selected
+                    if(![null, ""].includes(this.records[0]['Year']) &&
+                        ![null, ""].includes(this.records[0]['wdpa_id']) &&
+                        (
+                            (this.prev_year_selection==='no_import' && this.records[0]['language']!==null) ||
+                            (this.prev_year_selection!=='no_import' && this.prev_year_selection!==null) ||
+                            (this.available_years === null && this.records[0]['language']!==null)
+                        )
+                    ){
+                        this.status = 'idle';
+                    } else {
+                        this.status = 'init';
+                    }
+                    // store selections
+                    this.current_pa = this.records[0]['wdpa_id'];
+                    this.current_year = this.records[0]['Year'];
                 },
 
-                showSaveBar(){
-                    let _this = this;
-                    Vue.nextTick(function () {
-                        if(_this.current_year!==null && _this.current_pa!==null &&
-                            (_this.prev_year_selection!=null
-                                || (_this.prev_year_selection===null && _this.available_years===null))){
-                            _this.status = 'changed';
-                        } else{
-                            _this.status = 'init';
-                        }
-                    });
+                resetModuleCallback(){
+                    this.reset_status = 'init';
                 },
 
-                retrievePreviousYears(){
+                async retrievePreviousYears(){
                     let _this = this;
                     _this.available_years = null;
+                    _this.retrieving_years = true;
 
-                    window.axios({
+                    return window.axios({
                         method: 'post',
                         url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'retrieve_prev_years']) }}',
                         data: {
@@ -154,18 +198,30 @@ $vue_record_index = 0;
                             wdpa_id: _this.records[0]['wdpa_id']
                         }
                     })
-                        .then(function (response) {
-                            if(Object.values(response.data).length>0){
-                                _this.available_years = response.data;
-                                _this.available_years['no_import'] = 'No';
-                            } else{
-                                _this.available_years = null;
-                            }
-                            _this.showSaveBar();
-                        })
-                        .catch(function (response) {
-                        })
-                        .finally(function (response) {});
+                },
+
+                parseAvailableYears(data){
+                    let _this = this;
+                    this.available_years = data;
+                    this.available_years['no_import'] = 'No';
+                    let years = Object.values(this.available_years);
+                    let duplicates = this.foundDuplicates(years);
+                    Object.keys(this.available_years).forEach(function(key){
+                        if(duplicates.includes(_this.available_years[key])){
+                            _this.available_years[key] = _this.available_years[key] + ' (IMET #' + key + ')';
+                        }
+                    });
+                },
+
+                foundDuplicates(list){
+                    let sorted_arr = list.slice().sort();
+                    let results = [];
+                    for (let i = 0; i < sorted_arr.length - 1; i++) {
+                        if (sorted_arr[i + 1] === sorted_arr[i]) {
+                            results.push(sorted_arr[i]);
+                        }
+                    }
+                    return results;
                 }
 
 

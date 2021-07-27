@@ -6,9 +6,6 @@ return [
         'fr'        => 'french',
         'en'        => 'english'
     ],
-    'regions' => [
-        'OFAC' => 'OFAC - COMIFAC countries',
-    ],
 
     'PaType' => [
         'Terrestrial',

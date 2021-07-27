@@ -10,7 +10,9 @@
     <div class="name">
         {!! \AndreaMarelli\ModularForms\Helpers\Template::flag($item->Country) !!}
         {{ $item->name }}
-        (<a target="_blank" href="{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL  }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+        @if(!\AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa( $item->wdpa_id))
+            (<a target="_blank" href="{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL  }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+        @endif
     </div>
 </div>
 

@@ -4,7 +4,7 @@
 /** @var array $countries */
 /** @var array $years */
 $url = \Illuminate\Support\Facades\URL::route('export_view');
-$no_filter_selected = true;
+$filter_selected = false;
 ?>
 
 @extends('layouts.admin')
@@ -20,7 +20,7 @@ $no_filter_selected = true;
     @include('imet-core::components.common_filters', [
             'request'=>$request,
             'url' => $url,
-            'no_filter_selected' => $no_filter_selected,
+            'filter_selected' => $filter_selected,
             'countries' => $countries,
             'years' => $years
         ])

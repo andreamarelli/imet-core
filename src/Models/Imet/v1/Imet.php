@@ -3,6 +3,9 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v1;
 
 
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
+
 class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
 {
     public const version = 'v1';
@@ -72,5 +75,23 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             Modules\Context\Objectives7::class,
         ]
     ];
+
+    public function responsible_interviees()
+    {
+        return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
+    }
+
+    public function responsible_interviers()
+    {
+        return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','Name']);
+    }
+
+
+    public function assessment()
+    {
+        return $this->hasOne(Assessment::class, 'formid', 'FormID');
+    }
 
 }

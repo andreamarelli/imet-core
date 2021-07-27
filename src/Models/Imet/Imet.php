@@ -2,10 +2,12 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet;
 
+use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Encoder;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
+use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
@@ -28,6 +30,27 @@ class Imet extends Form
     public static $sortDirection = 'desc';
 
     public static $modules = [];
+
+    /**
+     * Relation to Country
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function country(): \Illuminate\Database\Eloquent\Relations\hasOne
+    {
+        return $this->hasOne(Country::class, 'iso3', 'Country');
+    }
+
+    /**
+     * Relation to Encoder (only name)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function encoder()
+    {
+        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
+            ->select(['FormID','first_name', 'last_name'])
+            ;
+    }
 
     /**
      * Mutator: ensure to retrieve in lowercase
@@ -78,13 +101,15 @@ class Imet extends Form
      */
     public function scopeFilterList(Builder $query, Request $request): Builder
     {
-        // filter
         $query->whereHasPermission();
+
+        // filters
         $this->commonFilters($query, $request);
         if($request->filled('search')){
             $query->whereRaw('unaccent(name) ILIKE unaccent(?)', '%'.$request->input('search').'%')
                 ->orWhere('wdpa_id', 'LIKE', '%'.$request->input('search').'%');
         }
+        $this->where('version', static::version);
 
         // sort
         $query
@@ -105,13 +130,21 @@ class Imet extends Form
     /**
      * Check and add missing Pa data (country, wdpa_id, pa_name) to form
      */
-    public function checkMissingPaData()
+    public static function checkMissingPaData()
     {
-        $pa = ProtectedArea::getByWdpa($this->wdpa_id);
-        $this->Country = $pa->country;
-        $this->wdpa_id = $pa->wdpa_id;
-        $this->name = $pa->name;
-        $this->save();
+        Imet::where('Country', null)
+            ->orWhere('wdpa_id', null)
+            ->orWhere('name', null)
+            ->get()
+            ->map(function ($imet){
+                /** @var Imet $imet */
+                $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
+                    ? ProtectedAreaNonWdpa::find($imet->wdpa_id)
+                    : ProtectedArea::getByWdpa($imet->wdpa_id);
+                $imet->Country = $pa->country;
+                $imet->name = $pa->name;
+                $imet->save();
+            });
     }
 
     /**
@@ -175,10 +208,6 @@ class Imet extends Form
         return $form ? $form->only(['id', 'version']) : null;
     }
 
-    public static function getDistinctField($field){
-        return static::getAvailableYears($field);
-    }
-
     /**
      * Retrieve specific fields and return them in different arrays in an array
      *
@@ -203,18 +232,49 @@ class Imet extends Form
     }
 
     /**
-     * string $column
-     * Retrieve years for existing IMETs
+     * Retrieve an array of distinct values for the given field
+     *
+     * @param string $field
      * @return array
      */
-    public static function getAvailableYears($column = 'Year')
+    private static function getDistinctField(string $field): array
     {
-        return static::select($column)
+        return static::select($field)
             ->distinct()
-            ->orderBy($column)
+            ->orderBy($field)
             ->get()
-            ->pluck($column)
+            ->pluck($field)
             ->toArray();
+    }
+
+    /**
+     * Retrieve years for existing IMETs
+     *
+     * @return array
+     */
+    public static function getAvailableYears(): array
+    {
+        return static::getDistinctField('Year');
+    }
+
+    /**
+     * Retrieve protected area data
+     *
+     * @param $wdpa_id
+     * @return \AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa|\AndreaMarelli\ImetCore\Models\ProtectedArea
+     */
+    public static function getProtectedArea($wdpa_id)
+    {
+        if(ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)){
+            $pa = ProtectedAreaNonWdpa::find($wdpa_id);
+            $pa->wdpa_id = $pa->id;
+            $pa->Type = null;
+            $pa->iucn_category = null;
+            $pa->creation_date = $pa->creation_date ?? null;
+        } else {
+            $pa = ProtectedArea::getByWdpa($wdpa_id);
+        }
+        return $pa;
     }
 
 
@@ -226,9 +286,11 @@ class Imet extends Form
      */
     public static function importForm($data)
     {
-        $pa = !array_key_exists('wdpa_id', $data) || $data['wdpa_id']===null
-            ? ProtectedArea::getByGlobalId($data['protected_area_global_id'])
-            : ProtectedArea::getByWdpa($data['wdpa_id']);
+        if(!array_key_exists('wdpa_id', $data) || $data['wdpa_id']===null){
+            $pa = ProtectedArea::getByGlobalId($data['protected_area_global_id']);
+        } else {
+            $pa = static::getProtectedArea($data['wdpa_id']);
+        }
 
         unset($data['Type']);
         unset($data['protected_area_global_id']);
@@ -327,8 +389,11 @@ class Imet extends Form
     {
         $name = Chars::clean(Chars::replaceAccents($this->name));
         $now = Carbon::now()->format('Y-m-d');
+
+        $wdpa_id = ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '-' . $this->wdpa_id;
+
         return 'IMET' .
-            '-' . $this->wdpa_id  .
+            $wdpa_id  .
             '-' . $this->Year .
             '-' . $name .
             '-' . $now .
