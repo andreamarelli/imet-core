@@ -61,6 +61,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::get('{item}/show/{step?}',[ControllerV2::class, 'show']);
                 Route::patch('{item}',           [ControllerV2::class, 'update']);
                 Route::get('create',            [ControllerV2::class, 'create']);
+                Route::get('create_non_wdpa', [ControllerV2::class, 'create_non_wdpa']);
                 Route::post('store',            [ControllerV2::class, 'store']);
                 Route::post('prev_years',            [ControllerV2::class, 'retrieve_prev_years']);
             });
