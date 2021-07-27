@@ -50,9 +50,9 @@
 
 <script>
 
-import preview_item from "./basket/preview_item";
-import drop_drag_area from "./drag_and_drop/drop_drag_area";
-import draggable_item from "./drag_and_drop/draggable_item";
+import preview_item from "./basket/preview_item.vue";
+import drop_drag_area from "./drag_and_drop/drop_drag_area.vue";
+import draggable_item from "./drag_and_drop/draggable_item.vue";
 
 export default {
   name: "printable_template",

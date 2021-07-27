@@ -1,5 +1,5 @@
 <script>
-import datatable from './datatable';
+import datatable from './datatable.vue';
 
 export default {
   name: "datatable_custom.vue",

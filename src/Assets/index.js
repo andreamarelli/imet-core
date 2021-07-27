@@ -1,3 +1,6 @@
+window.ImetCore = {};
+
+
 // Templates
 Vue.component('dopa_radar',                     require('./js/templates/dopa_radar.vue').default);
 Vue.component('imet_charts',                    require('./js/templates/imet_charts.vue').default);
@@ -11,4 +14,4 @@ Vue.component('selector-wdpa',                  require('./js/inputs/selector-wd
 Vue.component('selector-wdpa_multiple',         require('./js/inputs/selector-wdpa_multiple.vue').default);
 
 // Components for IMET scaling up
-require('./scaling_up_analysis/components');
+require('./js/scaling_up_analysis/components.js');

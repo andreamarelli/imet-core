@@ -33,7 +33,7 @@
 <script>
 
 
-import datatable_custom from './datatable_custom';
+import datatable_custom from './datatable_custom.vue';
 
 export default {
   name: "datatable_scaling.vue",

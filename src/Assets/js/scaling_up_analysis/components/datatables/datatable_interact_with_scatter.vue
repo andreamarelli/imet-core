@@ -1,6 +1,6 @@
 <script>
 
-import datatable_interact_with_radar from "./datatable_interact_with_radar";
+import datatable_interact_with_radar from "./datatable_interact_with_radar.vue";
 
 export default {
   name: "datatable_interact_with_scatter",

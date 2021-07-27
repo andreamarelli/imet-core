@@ -1,3 +1,12 @@
+window.ImetCore.ScalingUp = {};
+
+// Loading mixins
+window.ImetCore.ScalingUp.Mixins = {
+    'resize': require('./mixins/resize.mixin.js').default,
+    'ajax': require('./mixins/ajax.mixin.js').default,
+    // datatable.scaling.mixin.js NOT USED?
+};
+
 Vue.component('app',    require('./components/app.vue').default);
 
 Vue.component('general_info', require('./components/general_info.vue').default);
@@ -35,14 +44,9 @@ Vue.component('basket', require('./components/basket.vue').default);
 
 Vue.component('small_menu',    require('./components/menus/small_menu.vue').default);
 
-
 Vue.component('imet_basic_bars',        require('./components/imet_basic_bars.vue').default);
 Vue.component('action-button',          require('./components/action-button.vue').default);
 Vue.component('action-button-cookie',   require('./components/action-button-cookie.vue').default);
 Vue.component('label-cloud',            require('./components/label-cloud.vue').default);
-Vue.component('dopa_coverage_table',            require('./components/dopa_coverage_table').default);
-
-
-
-
+Vue.component('dopa_coverage_table',            require('./components/dopa_coverage_table.vue').default);
 

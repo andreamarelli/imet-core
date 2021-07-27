@@ -1,6 +1,5 @@
 <template></template>
 <script>
-import * as htmlToImage from 'html-to-image';
 
 export default {
   name: "html_to_image",
@@ -54,7 +53,7 @@ export default {
       window.element = element;
       this.show_hide_excluded_elements();
       this.hide_editor(element);
-      htmlToImage.toPng(document.getElementById(this.random_element), {
+      window.htmlToImage.toPng(document.getElementById(this.random_element), {
         canvasWidth: 1024,
         filter: (node) => {
           const classNames = node?.className;

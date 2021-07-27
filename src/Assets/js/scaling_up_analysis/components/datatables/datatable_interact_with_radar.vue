@@ -7,7 +7,7 @@
 
 <script>
 
-import datatable_scaling from "./datatable_scaling";
+import datatable_scaling from "./datatable_scaling.vue";
 
 export default {
   name: "datatable_interact_with_radar",

@@ -3,10 +3,11 @@
 </template>
 
 <script>
-import resize from './../../mixins/resize.mixin'
 
 export default {
-  mixins: [resize],
+  mixins: [
+      window.ImetCore.Mixins.resize
+  ],
   inject: ['stores'],
   props: {
     width: {

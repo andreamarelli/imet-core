@@ -8,7 +8,7 @@
 
 <script>
 
-import basket_store from "../stores/basket.store";
+import basket_store from "../stores/basket.store.js";
 
 export default {
   name: "preview_template",

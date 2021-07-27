@@ -10,12 +10,14 @@
 </template>
 
 <script>
-import container from './container';
-import Radar_multiple_values from "./../various_charts/radar_multiple_values";
+import container from './container.vue';
+import Radar_multiple_values from "./../various_charts/radar_multiple_values.vue";
 
 
 export default {
-  components: {Radar_multiple_values},
+  components: {
+      Radar_multiple_values
+  },
   props: {
     width: {
       type: Number,

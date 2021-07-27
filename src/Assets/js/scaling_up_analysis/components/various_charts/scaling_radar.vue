@@ -3,8 +3,7 @@
 </template>
 <script>
 
-import imet_radar from "./radar_multiple_values";
-import resize from './../../mixins/resize.mixin'
+import imet_radar from "./radar_multiple_values.vue";
 
 export default {
   name: "scaling_radar",
@@ -15,7 +14,7 @@ export default {
     }
   },
   mixins: [
-    resize,
+      window.ImetCore.Mixins.resize,
     imet_radar
 
   ],

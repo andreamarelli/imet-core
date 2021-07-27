@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import actionButton from './action-button';
+import actionButton from './action-button.vue';
 
 export default {
   name: "label-cloud.vue",
@@ -135,7 +135,7 @@ export default {
 }
 </script>
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" scoped>
 .results-cloud {
   max-height: 300px;
   overflow: auto;

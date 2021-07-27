@@ -98,7 +98,7 @@
 
 <script>
 
-import elements from './management_context/elements'
+import elements from './management_context/elements.vue'
 
 export default {
   components: {elements},

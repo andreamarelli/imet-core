@@ -19,17 +19,19 @@
 </template>
 
 <script>
-import ajax from './../../mixins/ajax.mixin';
-import small_menu from './../menus/small_menu';
+
+import small_menu from './../menus/small_menu.vue';
 
 
 export default {
   name: "container.vue",
   inject: ['stores'],
   mixins: [
-    ajax
+      window.ImetCore.Mixins.ajax
   ],
-  components: {small_menu},
+  components: {
+      small_menu
+  },
   props: {
     element: {
       type: String,

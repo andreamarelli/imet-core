@@ -13,16 +13,12 @@
 
 <script>
 
-import filter from './../../../mixins/filter.mixin';
-import sorter from './../../../mixins/sorter.mixin';
-import paginate from './../../../mixins/paginate.mixin';
-
 export default {
   name: "datatable.vue",
   mixins: [
-    filter,
-    sorter,
-    paginate
+      window.ModularForms.MixinsVue.filter,
+      window.ModularForms.MixinsVue.sorter,
+      window.ModularForms.MixinsVue.paginate
   ],
   props: {
     columns: {

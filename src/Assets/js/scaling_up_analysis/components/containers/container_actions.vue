@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import html_to_image from "../../tools/html_to_image";
-import editor from "./../editor";
+import html_to_image from "../../tools/html_to_image.vue";
+import editor from "./../editor.vue";
 
 export default {
   name: "container_actions",

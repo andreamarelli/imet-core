@@ -1,5 +1,5 @@
 <script>
-import bar from './bar';
+import bar from './bar.vue';
 
 export default {
   name: "bar_reverse",

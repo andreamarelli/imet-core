@@ -10,7 +10,7 @@
 </template>
 
 
-<style lang="scss" type="text/scss" scoped>
+<style lang="scss" scoped>
 .text-editor-edit {
   @media print {
     display: none;
@@ -28,15 +28,12 @@
 
 <script>
 
-import CKEditor from '@ckeditor/ckeditor5-vue';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
 export default {
 
   name: "editor",
   inject:['state'],
   components: {
-    ckeditor: CKEditor.component
+    ckeditor: window.CKEditor.component
   },
 
   props: {
@@ -69,7 +66,7 @@ export default {
 
   data() {
     return {
-      editor: ClassicEditor,
+      editor: window.ClassicEditor,
       editorData: null,
       editorConfig: {
         toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList'],

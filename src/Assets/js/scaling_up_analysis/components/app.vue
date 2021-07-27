@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import config from './../config/config';
+import config from './../config/config.js';
 import LocalStore from './../stores/local.storage.store';
 import basket_store from './../stores/basket.store';
 import base_store from './../stores/base.store';

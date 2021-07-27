@@ -3,11 +3,12 @@
 </template>
 
 <script>
-import resize from './../../mixins/resize.mixin';
 
 export default {
   name: "bar_category_stack",
-  mixins: [resize],
+  mixins: [
+      window.ImetCore.Mixins.resize
+  ],
   props: {
     width: {
       type: String,

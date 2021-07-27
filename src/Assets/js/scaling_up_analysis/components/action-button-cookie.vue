@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import actionButton from './action-button'
+import actionButton from './action-button.vue'
 
 export default {
   name: "action-button-cookie.vue",
