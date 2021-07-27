@@ -11,6 +11,14 @@ use function response;
 
 trait Assessment{
 
+    private static $indicators = [
+        'context',
+        'planning',
+        'inputs',
+        'process',
+        'outputs',
+        'outcomes'
+    ];
 
     /**
      * Retrieve the IMET assessment statistics
@@ -24,7 +32,7 @@ trait Assessment{
     {
         $version = Imet::getVersion($item);
         $assessment_schema = $version=='v1'
-            ? 'imet_assessment'
+            ? 'imet_assessment_v1_to_v2'
             : 'imet_assessment_v2';
 
         if($version!==null) {
@@ -69,6 +77,26 @@ trait Assessment{
         return response()->json($stats);
     }
 
+
+    public static function getUpperLimit($indicator): array
+    {
+        $upperLimit = [];
+        foreach (static::$indicators as $v) {
+            $upperLimit[$v] = max($indicator[$v]);
+        }
+
+        return $upperLimit;
+    }
+
+    public static function getLowerLimit($indicator): array
+    {
+        $lowerLimit = [];
+        foreach (static::$indicators as $v) {
+            $lowerLimit[$v] = min($indicator[$v]);
+        }
+
+        return $lowerLimit;
+    }
 
     /**
      * Retrieve the IMET assessment labels

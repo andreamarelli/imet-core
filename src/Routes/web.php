@@ -8,6 +8,8 @@ use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
+use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\RoleController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
@@ -76,6 +78,16 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::get('{item}/show', [ReportControllerV2::class, 'report_show']);
                 Route::patch('{item}', [ReportControllerV2::class, 'report_update']);
             });
+
+            // Scaling Up Analysis
+            Route::get('{items}/scaling/up',    [ScalingUpAnalysisController::class, 'report_scaling_up'])->name('scaling_up');
+            Route::get('scaling/up/preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
+            Route::post('scaling/analysis',     [ScalingUpAnalysisController::class, 'get_ajax_responses']);
+            Route::post('scaling/basket/add',   [ScalingUpBasketController::class, 'save']);
+            Route::post('scaling/basket/get',   [ScalingUpBasketController::class, 'retrieve']);
+            Route::post('scaling/basket/all',   [ScalingUpBasketController::class, 'all']);
+            Route::delete( 'scaling/basket/delete/{id}',[ScalingUpBasketController::class, 'delete']);
+            Route::post('scaling/basket/clear', [ScalingUpBasketController::class, 'clear']);
 
         });
 
