@@ -441,10 +441,9 @@ function score_class_threats($value, $additional_classes=''){
 
                 loadMap(){
                     let _this = this;
-                    window.mapboxgl.accessToken = 'pk.eyJ1IjoiYmxpc2h0ZW4iLCJhIjoiMEZrNzFqRSJ9.0QBRA2HxTb8YHErUFRMPZg';
                     let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
-                    let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly_2";
-                    let mapPaLayer = "WDPA2019MayPoly";
+                    let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly";
+                    let mapPaLayer = "2021_July_ACP";
 
                     this.report_map = new window.mapboxgl.Map({
                         container: 'map',
