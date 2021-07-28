@@ -99,7 +99,7 @@ function score_class_threats($value, $additional_classes=''){
         <div class="module-container">
             <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.evaluation_elements')</div></div>
             <div class="module-body">
-                <imet_charts form_id={{ $item->getKey() }} :show_histogram="true"></imet_charts>
+                <imet_charts form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Controllers\Imet\Assessment::assessment_steps_labels())' :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::form/v1/common.steps_eval.context')</th>
