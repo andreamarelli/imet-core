@@ -82,7 +82,7 @@ class ProtectedAreaNonWdpa extends BaseModel
      */
     public static function import($data)
     {
-        unset($data['id']);
+        unset($data['wdpa_id']);
 
         $pa = ProtectedAreaNonWdpa::firstOrNew($data);
         if($pa->isDirty()){
