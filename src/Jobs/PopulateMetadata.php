@@ -97,14 +97,14 @@ class PopulateMetadata implements ShouldQueue
         return str_replace(
             "'",
             "''",
-            trans('imet-core::form/' . $version . '/' . $phase . '.' . $className . '.title', [], $lang)
+            trans('imet-core::' . $version . '_' . $phase . '.' . $className . '.title', [], $lang)
         );
     }
 
     public static function insert_metadata_statistics($version, $code, $labels)
     {
-        $label_en = str_replace("'", "''", trans('imet-core::form/' . $version . '/common.assessment.' . $code, [], 'en')[1]);
-        $label_fr = str_replace("'", "''", trans('imet-core::form/' . $version . '/common.assessment.' . $code, [], 'fr')[1]);
+        $label_en = str_replace("'", "''", trans('imet-core::' . $version . '_common.assessment.' . $code, [], 'en')[1]);
+        $label_fr = str_replace("'", "''", trans('imet-core::' . $version . '_common.assessment.' . $code, [], 'fr')[1]);
 
         DB::select(
             "INSERT into imet.imet_metadata_statistics
