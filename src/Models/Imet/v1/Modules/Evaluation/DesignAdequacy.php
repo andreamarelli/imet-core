@@ -12,21 +12,21 @@ class DesignAdequacy extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'P2';
-        $this->module_title = trans('imet-core::form/v1/evaluation.DesignAdequacy.title');
+        $this->module_title = trans('imet-core::v1_evaluation.DesignAdequacy.title');
         $this->module_fields = [
-            ['name' => 'Values',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.DesignAdequacy.fields.Values')],
-            ['name' => 'EvaluationScore',  'type' => 'rating-Minus3to3WithNA',   'label' => trans('imet-core::form/v1/evaluation.DesignAdequacy.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.DesignAdequacy.fields.Comments')],
+            ['name' => 'Values',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.DesignAdequacy.fields.Values')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-Minus3to3WithNA',   'label' => trans('imet-core::v1_evaluation.DesignAdequacy.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.DesignAdequacy.fields.Comments')],
         ];
 
         $this->predefined_values = [
             'field' => 'Values',
-            'values' => trans('imet-core::form/v1/evaluation.DesignAdequacy.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.DesignAdequacy.predefined_values')
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.DesignAdequacy.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.DesignAdequacy.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v1/evaluation.DesignAdequacy.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.DesignAdequacy.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v1_evaluation.DesignAdequacy.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v1_evaluation.DesignAdequacy.ratingLegend');
 
         parent::__construct($attributes);
 

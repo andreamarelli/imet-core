@@ -12,20 +12,20 @@ class Habitats extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.3.1';
-        $this->module_title = trans('imet-core::form/v1/context.Habitats.title');
+        $this->module_title = trans('imet-core::v1_context.Habitats.title');
         $this->module_fields = [
-            ['name' => 'EcosystemType',             'type' => 'text-area',   'label' => trans('imet-core::form/v1/context.Habitats.fields.EcosystemType')],
-            ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::form/v1/context.Habitats.fields.Value')],
-            ['name' => 'Area',                      'type' => 'integer',   'label' => trans('imet-core::form/v1/context.Habitats.fields.Area')],
-            ['name' => 'DesiredConservationStatus', 'type' => 'integer',   'label' => trans('imet-core::form/v1/context.Habitats.fields.DesiredConservationStatus')],
-            ['name' => 'Trend',                     'type' => 'rating-Minus2to2',   'label' => trans('imet-core::form/v1/context.Habitats.fields.Trend')],
-            ['name' => 'Reliability',               'type' => 'dropdown-ImetV1_SpeciesReliability',   'label' => trans('imet-core::form/v1/context.Habitats.fields.Reliability'), 'class' => 'width100px'],
-            ['name' => 'Sectors',                   'type' => 'text-area',   'label' => trans('imet-core::form/v1/context.Habitats.fields.Sectors')],
+            ['name' => 'EcosystemType',             'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.EcosystemType')],
+            ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.Value')],
+            ['name' => 'Area',                      'type' => 'integer',   'label' => trans('imet-core::v1_context.Habitats.fields.Area')],
+            ['name' => 'DesiredConservationStatus', 'type' => 'integer',   'label' => trans('imet-core::v1_context.Habitats.fields.DesiredConservationStatus')],
+            ['name' => 'Trend',                     'type' => 'rating-Minus2to2',   'label' => trans('imet-core::v1_context.Habitats.fields.Trend')],
+            ['name' => 'Reliability',               'type' => 'dropdown-ImetV1_SpeciesReliability',   'label' => trans('imet-core::v1_context.Habitats.fields.Reliability'), 'class' => 'width100px'],
+            ['name' => 'Sectors',                   'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.Sectors')],
         ];
 
 
-        $this->module_info = trans('imet-core::form/v1/context.Habitats.module_info');
-        $this->ratingLegend = trans('imet-core::form/v1/context.Habitats.ratingLegend');
+        $this->module_info = trans('imet-core::v1_context.Habitats.module_info');
+        $this->ratingLegend = trans('imet-core::v1_context.Habitats.ratingLegend');
 
         parent::__construct($attributes);
 

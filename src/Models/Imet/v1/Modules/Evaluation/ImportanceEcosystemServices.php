@@ -13,22 +13,22 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.6';
-        $this->module_title = trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.title');
+        $this->module_title = trans('imet-core::v1_evaluation.ImportanceEcosystemServices.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.fields.Aspect')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.fields.Comments')],
+            ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ImportanceEcosystemServices.fields.Aspect')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ImportanceEcosystemServices.fields.Comments')],
         ];
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.ImportanceEcosystemServices.predefined_values')
         ];
 
-        $this->module_info = trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.module_info');
-        $this->module_subTitle = trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.module_subTitle');
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.ImportanceEcosystemServices.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v1/evaluation.ImportanceClimateChange.ratingLegend');
+        $this->module_info = trans('imet-core::v1_evaluation.ImportanceEcosystemServices.module_info');
+        $this->module_subTitle = trans('imet-core::v1_evaluation.ImportanceEcosystemServices.module_subTitle');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.ImportanceEcosystemServices.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v1_evaluation.ImportanceEcosystemServices.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v1_evaluation.ImportanceClimateChange.ratingLegend');
 
 
         parent::__construct($attributes);

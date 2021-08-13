@@ -12,16 +12,16 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'P3';
-        $this->module_title = trans('imet-core::form/v1/evaluation.BoundaryLevel.title');
+        $this->module_title = trans('imet-core::v1_evaluation.BoundaryLevel.title');
         $this->module_fields = [
-            ['name' => 'EvaluationScore',  'type' => 'rating-0to4',   'label' => trans('imet-core::form/v1/evaluation.BoundaryLevel.fields.EvaluationScore')],
-            ['name' => 'PercentageLevel',  'type' => 'integer',   'label' => trans('imet-core::form/v1/evaluation.BoundaryLevel.fields.PercentageLevel')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.BoundaryLevel.fields.Comments')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to4',   'label' => trans('imet-core::v1_evaluation.BoundaryLevel.fields.EvaluationScore')],
+            ['name' => 'PercentageLevel',  'type' => 'integer',   'label' => trans('imet-core::v1_evaluation.BoundaryLevel.fields.PercentageLevel')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.BoundaryLevel.fields.Comments')],
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.BoundaryLevel.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.BoundaryLevel.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v1/evaluation.BoundaryLevel.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.BoundaryLevel.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v1_evaluation.BoundaryLevel.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v1_evaluation.BoundaryLevel.ratingLegend');
 
         parent::__construct($attributes);
 

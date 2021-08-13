@@ -13,22 +13,22 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'I5';
-        $this->module_title = trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.title');
+        $this->module_title = trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.title');
         $this->module_fields = [
-            ['name' => 'Equipment',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
-            ['name' => 'Importance',  'type' => 'rating-0to2',   'label' => trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.fields.Importance')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.fields.Comments')],
+            ['name' => 'Equipment',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
+            ['name' => 'Importance',  'type' => 'rating-0to2',   'label' => trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.fields.Importance')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.fields.Comments')],
         ];
 
         $this->predefined_values = [
             'field' => 'Equipment',
-            'values' => array_values(trans('imet-core::form/v1/context.Equipments.groups'))   // Comes from context->Equipments
+            'values' => array_values(trans('imet-core::v1_context.Equipments.groups'))   // Comes from context->Equipments
         ];
 
-        $this->module_info = trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.module_info');
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v1/evaluation.ManagementEquipmentAdequacy.ratingLegend');
+        $this->module_info = trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.module_info');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v1_evaluation.ManagementEquipmentAdequacy.ratingLegend');
 
         parent::__construct($attributes);
 
@@ -66,7 +66,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
     private static function calculateEquipementAdequacy($form_id)
     {
-        $adequacy = array_keys(trans('imet-core::form/v1/context.Equipments.groups'));
+        $adequacy = array_keys(trans('imet-core::v1_context.Equipments.groups'));
         $adequacy = array_fill_keys($adequacy, [
             'sum' => 0,
             'count' => 0

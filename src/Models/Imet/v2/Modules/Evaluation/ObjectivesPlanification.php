@@ -10,7 +10,7 @@ class ObjectivesPlanification extends _Objectives
     public function __construct(array $attributes = [])
     {
         $this->module_code = 'PX';
-        $this->module_info = trans('imet-core::form/v2/evaluation.ObjectivesPlanification.module_info');
+        $this->module_info = trans('imet-core::v2_evaluation.ObjectivesPlanification.module_info');
 
         parent::__construct($attributes);
     }

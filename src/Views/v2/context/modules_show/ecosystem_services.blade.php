@@ -17,7 +17,7 @@ $stats = array_key_exists('FormID', $records[0]) ? \AndreaMarelli\ImetCore\Model
 foreach($groupByCategory as $i => $category){
     $title = ' <div class="module-row">
                     <div style="width: 60%;">
-                        <h3>'.($i+1).'. '.trans('imet-core::form/v2/context.EcosystemServices.categories.title'.($i+1)).'</h3>
+                        <h3>'.($i+1).'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.($i+1)).'</h3>
                     </div>
                     <div  class="module-row__input">
 

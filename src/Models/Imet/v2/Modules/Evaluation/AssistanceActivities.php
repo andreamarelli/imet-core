@@ -12,29 +12,29 @@ class AssistanceActivities extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR11';
-        $this->module_title = trans('imet-core::form/v2/evaluation.AssistanceActivities.title');
+        $this->module_title = trans('imet-core::v2_evaluation.AssistanceActivities.title');
         $this->module_fields = [
-            ['name' => 'Activity',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AssistanceActivities.fields.Activity')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::form/v2/evaluation.AssistanceActivities.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AssistanceActivities.fields.Comments')],
+            ['name' => 'Activity',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AssistanceActivities.fields.Activity')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.AssistanceActivities.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AssistanceActivities.fields.Comments')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('imet-core::form/v2/evaluation.AssistanceActivities.groups.group0'),
-            'group1' => trans('imet-core::form/v2/evaluation.AssistanceActivities.groups.group1'),
+            'group0' => trans('imet-core::v2_evaluation.AssistanceActivities.groups.group0'),
+            'group1' => trans('imet-core::v2_evaluation.AssistanceActivities.groups.group1'),
         ];
 
         $this->predefined_values = [
             'field' => 'Activity',
             'values' => [
-                'group0' => trans('imet-core::form/v2/evaluation.AssistanceActivities.predefined_values.group0'),
-                'group1' => trans('imet-core::form/v2/evaluation.AssistanceActivities.predefined_values.group1')
+                'group0' => trans('imet-core::v2_evaluation.AssistanceActivities.predefined_values.group0'),
+                'group1' => trans('imet-core::v2_evaluation.AssistanceActivities.predefined_values.group1')
             ]
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.AssistanceActivities.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.AssistanceActivities.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.AssistanceActivities.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.AssistanceActivities.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.AssistanceActivities.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.AssistanceActivities.ratingLegend');
 
         parent::__construct($attributes);
     }

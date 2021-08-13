@@ -13,12 +13,12 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR1';
-        $this->module_title = trans('imet-core::form/v2/evaluation.StaffCompetence.title');
+        $this->module_title = trans('imet-core::v2_evaluation.StaffCompetence.title');
         $this->module_fields = [
-            ['name' => 'Theme',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.StaffCompetence.fields.Theme')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/evaluation.StaffCompetence.fields.EvaluationScore')],
-            ['name' => 'PercentageLevel',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/evaluation.StaffCompetence.fields.PercentageLevel')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.StaffCompetence.fields.Comments')],
+            ['name' => 'Theme',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.StaffCompetence.fields.Theme')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.StaffCompetence.fields.EvaluationScore')],
+            ['name' => 'PercentageLevel',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.StaffCompetence.fields.PercentageLevel')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.StaffCompetence.fields.Comments')],
         ];
 
         $this->predefined_values = [
@@ -26,10 +26,10 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
             'values' => null
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.StaffCompetence.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.StaffCompetence.module_info_Rating');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.StaffCompetence.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.StaffCompetence.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.StaffCompetence.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.StaffCompetence.module_info_Rating');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.StaffCompetence.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.StaffCompetence.ratingLegend');
 
         $this->max_rows = 14;
 

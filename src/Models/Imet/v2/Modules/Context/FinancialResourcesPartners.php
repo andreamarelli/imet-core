@@ -12,20 +12,20 @@ class FinancialResourcesPartners extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.2.4';
-        $this->module_title = trans('imet-core::form/v2/context.FinancialResourcesPartners.title');
+        $this->module_title = trans('imet-core::v2_context.FinancialResourcesPartners.title');
         $this->module_fields = [
-            ['name' => 'Partner',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.FinancialResourcesPartners.fields.Partner')],
-            ['name' => 'Funding',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.FinancialResourcesPartners.fields.Funding')],
-            ['name' => 'Contribution',  'type' => 'integer',   'label' => trans('imet-core::form/v2/context.FinancialResourcesPartners.fields.Contribution')],
-            ['name' => 'StartDate',  'type' => 'date',   'label' => trans('imet-core::form/v2/context.FinancialResourcesPartners.fields.StartDate')],
-            ['name' => 'EndDate',  'type' => 'date',   'label' => trans('imet-core::form/v2/context.FinancialResourcesPartners.fields.EndDate')],
-            ['name' => 'Observations',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.FinancialResourcesPartners.fields.Observations')],
+            ['name' => 'Partner',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.FinancialResourcesPartners.fields.Partner')],
+            ['name' => 'Funding',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.FinancialResourcesPartners.fields.Funding')],
+            ['name' => 'Contribution',  'type' => 'integer',   'label' => trans('imet-core::v2_context.FinancialResourcesPartners.fields.Contribution')],
+            ['name' => 'StartDate',  'type' => 'date',   'label' => trans('imet-core::v2_context.FinancialResourcesPartners.fields.StartDate')],
+            ['name' => 'EndDate',  'type' => 'date',   'label' => trans('imet-core::v2_context.FinancialResourcesPartners.fields.EndDate')],
+            ['name' => 'Observations',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.FinancialResourcesPartners.fields.Observations')],
         ];
 
-        $this->module_info = trans('imet-core::form/v2/context.FinancialResourcesPartners.module_info');
+        $this->module_info = trans('imet-core::v2_context.FinancialResourcesPartners.module_info');
 
         $this->module_common_fields = [
-            ['name' => 'Currency', 'type' => 'disabled', 'label' => trans('imet-core::form/v2/context.FinancialResources.fields.Currency')],
+            ['name' => 'Currency', 'type' => 'disabled', 'label' => trans('imet-core::v2_context.FinancialResources.fields.Currency')],
         ];
 
         parent::__construct($attributes);

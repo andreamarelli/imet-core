@@ -30,13 +30,13 @@
             {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-alt', '', '1.4em') !!}
         </div>
         <div class="message">
-            <b class="blue">@lang('imet-core::form/v1/common.indicator')</b>: @lang('imet-core::form/v1/evaluation.'.$definitions['module_class'].'.title')
+            <b class="blue">@lang('imet-core::v1_common.indicator')</b>: @lang('imet-core::v1_evaluation.'.$definitions['module_class'].'.title')
             @if($definitions['module_info_EvaluationQuestion']!==null)
-                <br /><b class="blue">@lang('imet-core::form/v1/common.methodology')</b>:
+                <br /><b class="blue">@lang('imet-core::v1_common.methodology')</b>:
                 {!! $definitions['module_info_EvaluationQuestion'] !!}
             @endif
             @if($definitions['module_info_Rating']!==null)
-                <br /><b class="blue">@lang('imet-core::form/v1/common.criteria')</b>:
+                <br /><b class="blue">@lang('imet-core::v1_common.criteria')</b>:
                 {!! $definitions['module_info_Rating'] !!}
             @endif
         </div>

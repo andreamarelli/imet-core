@@ -10,7 +10,7 @@ class ObjectivesIntrants extends _Objectives
     public function __construct(array $attributes = [])
     {
         $this->module_code = 'IX';
-        $this->module_info = trans('imet-core::form/v2/evaluation.ObjectivesIntrants.module_info');
+        $this->module_info = trans('imet-core::v2_evaluation.ObjectivesIntrants.module_info');
 
         parent::__construct($attributes);
     }

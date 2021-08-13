@@ -10,7 +10,7 @@ class ObjectivesClassification extends _Objectives
     public function __construct(array $attributes = [])
     {
         $this->module_code = 'C1.1';
-        $this->module_info = trans('imet-core::form/v2/evaluation.ObjectivesClassification.module_info');
+        $this->module_info = trans('imet-core::v2_evaluation.ObjectivesClassification.module_info');
 
         parent::__construct($attributes);
     }

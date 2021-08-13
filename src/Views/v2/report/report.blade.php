@@ -51,13 +51,13 @@ function score_class_threats($value, $additional_classes=''){
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
 @if(!is_imet_environment())
 @section('admin_page_title')
-    @lang('imet-core::form/common.imet')
+    @lang('imet-core::common.imet')
 @endsection
 @endif
 
@@ -70,7 +70,7 @@ function score_class_threats($value, $additional_classes=''){
 
         @if($show_api)
             <div class="module-container">
-                <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.general_elements')</div></div>
+                <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
                 <div class="module-body">
                     <div id="map" v-if=connection></div>
                     <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
@@ -82,17 +82,17 @@ function score_class_threats($value, $additional_classes=''){
                             </div>
                         @endif
                         <div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.surface'):</div>{{ $area }} [km2]</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.biome'):</div>{{ $general_info['Biome']  }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
-                            <div><div class="strong">@lang('imet-core::form/v2/report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.biome'):</div>{{ $general_info['Biome']  }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                         </div>
                     </div>
                 </div>
@@ -105,18 +105,18 @@ function score_class_threats($value, $additional_classes=''){
         ])
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.evaluation_elements')</div></div>
+            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div></div>
             <div class="module-body">
                 <imet_charts form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Controllers\Imet\Assessment::assessment_steps_labels())' :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>
-                        <th>@lang('imet-core::form/v2/common.steps_eval.context')</th>
-                        <th>@lang('imet-core::form/v2/common.steps_eval.planning')</th>
-                        <th>@lang('imet-core::form/v2/common.steps_eval.inputs')</th>
-                        <th>@lang('imet-core::form/v2/common.steps_eval.process')</th>
-                        <th>@lang('imet-core::form/v2/common.steps_eval.outputs')</th>
-                        <th>@lang('imet-core::form/v2/common.steps_eval.outcomes')</th>
-                        <th>@lang('imet-core::form/v2/common.indexes.imet')</th>
+                        <th>@lang('imet-core::v2_common.steps_eval.context')</th>
+                        <th>@lang('imet-core::v2_common.steps_eval.planning')</th>
+                        <th>@lang('imet-core::v2_common.steps_eval.inputs')</th>
+                        <th>@lang('imet-core::v2_common.steps_eval.process')</th>
+                        <th>@lang('imet-core::v2_common.steps_eval.outputs')</th>
+                        <th>@lang('imet-core::v2_common.steps_eval.outcomes')</th>
+                        <th>@lang('imet-core::v2_common.indexes.imet')</th>
                     </tr>
                     <tr>
                         <td {!! score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
@@ -132,37 +132,37 @@ function score_class_threats($value, $additional_classes=''){
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.management_context')</div></div>
+            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.management_context')</div></div>
             <div class="module-body">
-                <h5>@lang('imet-core::form/v2/report.key_species')</h5>
+                <h5>@lang('imet-core::v2_report.key_species')</h5>
                 <ul>
                     @foreach($key_elements['species'] as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'key_species_comment'])
-                <h5>@lang('imet-core::form/v2/report.terrestial_marine_habitats')</h5>
+                <h5>@lang('imet-core::v2_report.terrestial_marine_habitats')</h5>
                 <ul>
                     @foreach($key_elements['habitats'] as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'habitats_comment'])
-                <h5>@lang('imet-core::form/v2/report.climate_change')</h5>
+                <h5>@lang('imet-core::v2_report.climate_change')</h5>
                 <ul>
                     @foreach($key_elements['climate_change'] as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'climate_change_comment'])
-                <h5>@lang('imet-core::form/v2/report.ecosystem_services')</h5>
+                <h5>@lang('imet-core::v2_report.ecosystem_services')</h5>
                 <ul>
                     @foreach($key_elements['ecosystem_services'] as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'ecosystem_services_comment'])
-                <h5>@lang('imet-core::form/v2/report.threats')</h5>
+                <h5>@lang('imet-core::v2_report.threats')</h5>
                 <ul>
                     @foreach($key_elements['threats'] as $elem)
                         <li>{{ $elem }}</li>
@@ -174,25 +174,25 @@ function score_class_threats($value, $additional_classes=''){
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.management_effectiveness')</div></div>
+            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.management_effectiveness')</div></div>
             <div class="module-body">
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'analysis'])
-                <h5>@lang('imet-core::form/v2/report.characteristics_elements')</h5>
+                <h5>@lang('imet-core::v2_report.characteristics_elements')</h5>
                 <div class="swot">
                     <div>
-                        <b>@lang('imet-core::form/v2/report.strengths')</b>
+                        <b>@lang('imet-core::v2_report.strengths')</b>
                         @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'strengths_swot'])
                     </div>
                     <div>
-                        <b>@lang('imet-core::form/v2/report.weaknesses')</b>
+                        <b>@lang('imet-core::v2_report.weaknesses')</b>
                         @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'weaknesses_swot'])
                     </div>
                     <div>
-                        <b>@lang('imet-core::form/v2/report.opportunities')</b>
+                        <b>@lang('imet-core::v2_report.opportunities')</b>
                         @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'opportunities_swot'])
                     </div>
                     <div>
-                        <b>@lang('imet-core::form/v2/report.threats')</b>
+                        <b>@lang('imet-core::v2_report.threats')</b>
                         @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'threats_swot'])
                     </div>
                 </div>
@@ -200,20 +200,20 @@ function score_class_threats($value, $additional_classes=''){
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.operation_recommendations')</div></div>
+            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.operation_recommendations')</div></div>
             <div class="module-body">
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'recommendations'])
             </div>
         </div>
 
         <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.key_questions')</div></div>
+            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.key_questions')</div></div>
             <div class="module-body">
-                <h5>@lang('imet-core::form/v2/report.management_priorities')</h5>
+                <h5>@lang('imet-core::v2_report.management_priorities')</h5>
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'priorities'])
-                <h5>@lang('imet-core::form/v2/report.operating_budget')</h5>
+                <h5>@lang('imet-core::v2_report.operating_budget')</h5>
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'minimum_budget'])
-                <h5>@lang('imet-core::form/v2/report.additional_funding')</h5>
+                <h5>@lang('imet-core::v2_report.additional_funding')</h5>
                 @include('imet-core::v2.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'additional_funding'])
             </div>
         </div>
@@ -225,7 +225,7 @@ function score_class_threats($value, $additional_classes=''){
                     <div>
                         <div v-if=connection>
 
-                            <b>@lang('imet-core::form/v2/report.forest_cover')</b>
+                            <b>@lang('imet-core::v2_report.forest_cover')</b>
                             <dopa_indicators_table
                                 :title=dopa_indicators.forest_cover.title_table
                                 :indicators=dopa_indicators.forest_cover.indicators
@@ -239,7 +239,7 @@ function score_class_threats($value, $additional_classes=''){
 
                             <hr />
 
-                            <b>@lang('imet-core::form/v2/report.total_carbon')</b>
+                            <b>@lang('imet-core::v2_report.total_carbon')</b>
                             <dopa_indicators_table
                                 :title=dopa_indicators.total_carbon.title_table
                                 :indicators=dopa_indicators.total_carbon.indicators
@@ -247,7 +247,7 @@ function score_class_threats($value, $additional_classes=''){
                             ></dopa_indicators_table>
 
 
-                            <b>@lang('imet-core::form/v2/report.agricultural_pressure')</b>
+                            <b>@lang('imet-core::v2_report.agricultural_pressure')</b>
                             <dopa_indicators_table
                                 :title=dopa_indicators.agricultural_pressure.title_table
                                 :indicators=dopa_indicators.agricultural_pressure.indicators
@@ -298,7 +298,7 @@ function score_class_threats($value, $additional_classes=''){
                 api_data: @json($dopa_indicators),
                 dopa_indicators: {
                     forest_cover: {
-                        title_table: "@lang('imet-core::form/v2/report.forest_cover')",
+                        title_table: "@lang('imet-core::v2_report.forest_cover')",
                         title_chart: '@lang("form/imet/v2/report.forest_cover_percent") (%)',
                         indicators: [
                             {

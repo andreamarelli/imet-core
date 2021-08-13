@@ -18,13 +18,13 @@ $url        = URL::route('index');
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
 @if(!is_imet_environment())
 @section('admin_page_title')
-    @lang('imet-core::form/common.imet')
+    @lang('imet-core::common.imet')
 @endsection
 @endif
 
@@ -46,11 +46,11 @@ $url        = URL::route('index');
                 {{-- Create new IMET --}}
                 @include('modular-forms::buttons.create', [
                     'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                    'label' => trans('imet-core::form/v2/context.Create.title')
+                    'label' => trans('imet-core::v2_context.Create.title')
                 ])
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'create_non_wdpa']) }}">
                     {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
-                    {{ ucfirst(trans('imet-core::form/v2/context.CreateNonWdpa.title')) }}
+                    {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
                 </a>
         </div>
 
@@ -75,7 +75,7 @@ $url        = URL::route('index');
                 <th class="text-center width60px">@lang('entities.common.id')</th>
                 @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('entities.common.year'), 'class' => 'width90px'])
                 @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('entities.protected_area.protected_area', 1)])
-                <th class="text-center">@lang('imet-core::form/common.encoders_responsible')</th>
+                <th class="text-center">@lang('imet-core::common.encoders_responsible')</th>
                 <th>{{-- radar --}}</th>
                 <th class="width200px">{{-- actions --}}</th>
             </tr>
@@ -102,7 +102,7 @@ $url        = URL::route('index');
                         <br />
                         {{-- language --}}
                         <div>
-                            {{ ucfirst(trans('imet-core::form/common.encoding_language')) }}:
+                            {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
                             <flag :iso2=item.language></flag>
                         </div>
                         {{-- version --}}

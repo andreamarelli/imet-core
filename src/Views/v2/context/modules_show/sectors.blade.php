@@ -21,10 +21,10 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
                 <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
             @endif
             @if($f_index==1)
-                <th class="text-center">@lang('imet-core::form/v2/context.Sectors.area_percentage')</th>
+                <th class="text-center">@lang('imet-core::v2_context.Sectors.area_percentage')</th>
             @endif
             @if($f_index==3)
-                <th class="text-center">@lang('imet-core::form/v2/context.Sectors.average_time')</th>
+                <th class="text-center">@lang('imet-core::v2_context.Sectors.average_time')</th>
             @endif
         @endforeach
 

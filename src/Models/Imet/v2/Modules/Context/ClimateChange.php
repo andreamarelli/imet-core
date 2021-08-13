@@ -13,25 +13,25 @@ class ClimateChange extends Modules\Component\ImetModule
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 6.1';
-        $this->module_title = trans('imet-core::form/v2/context.ClimateChange.title');
+        $this->module_title = trans('imet-core::v2_context.ClimateChange.title');
         $this->module_fields = [
-            ['name' => 'Value',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.ClimateChange.fields.Value')],
-            ['name' => 'Description',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.ClimateChange.fields.Description')],
-            ['name' => 'Trend',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/context.ClimateChange.fields.Trend')],
-            ['name' => 'Notes',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.ClimateChange.fields.Notes')],
+            ['name' => 'Value',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Value')],
+            ['name' => 'Description',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Description')],
+            ['name' => 'Trend',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Trend')],
+            ['name' => 'Notes',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Notes')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('imet-core::form/v2/context.ClimateChange.groups.group0'),
-            'group1' => trans('imet-core::form/v2/context.ClimateChange.groups.group1'),
-            'group2' => trans('imet-core::form/v2/context.ClimateChange.groups.group2'),
-            'group3' => trans('imet-core::form/v2/context.ClimateChange.groups.group3'),
-            'group4' => trans('imet-core::form/v2/context.ClimateChange.groups.group4'),
-            'group5' => trans('imet-core::form/v2/context.ClimateChange.groups.group5')
+            'group0' => trans('imet-core::v2_context.ClimateChange.groups.group0'),
+            'group1' => trans('imet-core::v2_context.ClimateChange.groups.group1'),
+            'group2' => trans('imet-core::v2_context.ClimateChange.groups.group2'),
+            'group3' => trans('imet-core::v2_context.ClimateChange.groups.group3'),
+            'group4' => trans('imet-core::v2_context.ClimateChange.groups.group4'),
+            'group5' => trans('imet-core::v2_context.ClimateChange.groups.group5')
         ];
 
-        $this->module_info = trans('imet-core::form/v2/context.ClimateChange.module_info');
-        $this->ratingLegend = trans('imet-core::form/v2/context.ClimateChange.ratingLegend');
+        $this->module_info = trans('imet-core::v2_context.ClimateChange.module_info');
+        $this->ratingLegend = trans('imet-core::v2_context.ClimateChange.ratingLegend');
 
 
         parent::__construct($attributes);
@@ -41,7 +41,7 @@ class ClimateChange extends Modules\Component\ImetModule
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/context.ClimateChange.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.ClimateChange.warning_on_save');
         return $vue_data;
     }
 

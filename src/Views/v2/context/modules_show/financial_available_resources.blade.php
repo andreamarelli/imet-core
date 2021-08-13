@@ -26,8 +26,8 @@ $dom = HtmlPageCrawler::create(
 $table_dom = $dom->filter('table#table_'.$definitions['module_key']);
 
     $table_dom->filter('thead tr th')->eq(4)->after(
-        '<th class="text-center">'.ucfirst(trans('imet-core::form/v2/context.FinancialAvailableResources.fields.total')).'</th>
-         <th class="text-center">'.ucfirst(trans('imet-core::form/v2/context.FinancialAvailableResources.fields.percentage')).'</th>
+        '<th class="text-center">'.ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.total')).'</th>
+         <th class="text-center">'.ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.percentage')).'</th>
     ');
 
     $table_dom->filter('tbody tr')->each(function ($tr, $index) use($records) {

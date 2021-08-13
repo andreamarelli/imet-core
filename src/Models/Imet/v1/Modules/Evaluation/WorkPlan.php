@@ -12,17 +12,17 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'P5';
-        $this->module_title = trans('imet-core::form/v1/evaluation.WorkPlan.title');
+        $this->module_title = trans('imet-core::v1_evaluation.WorkPlan.title');
         $this->module_fields = [
-            ['name' => 'PlanExistenceScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::form/v1/evaluation.WorkPlan.fields.PlanExistenceScore')],
-            ['name' => 'PlanApplicationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::form/v1/evaluation.WorkPlan.fields.PlanApplicationScore')],
-            ['name' => 'PercentageLevel',  'type' => 'integer',   'label' => trans('imet-core::form/v1/evaluation.WorkPlan.fields.PercentageLevel')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.WorkPlan.fields.Comments')],
+            ['name' => 'PlanExistenceScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::v1_evaluation.WorkPlan.fields.PlanExistenceScore')],
+            ['name' => 'PlanApplicationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::v1_evaluation.WorkPlan.fields.PlanApplicationScore')],
+            ['name' => 'PercentageLevel',  'type' => 'integer',   'label' => trans('imet-core::v1_evaluation.WorkPlan.fields.PercentageLevel')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.WorkPlan.fields.Comments')],
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.WorkPlan.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.WorkPlan.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v1/evaluation.WorkPlan.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.WorkPlan.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v1_evaluation.WorkPlan.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v1_evaluation.WorkPlan.ratingLegend');
 
         parent::__construct($attributes);
 
