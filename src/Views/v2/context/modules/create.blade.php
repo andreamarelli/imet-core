@@ -53,7 +53,7 @@ $vue_record_index = 0;
 
     {{--  label  --}}
     <div class="module-row__label text-lg green_dark" style="width: 40%;" >
-        <label for="prev_year_selector">{!! ucfirst(trans('imet-core::form/v2/context.Create.fields.prefill_prev_year')) !!} ?</label>
+        <label for="prev_year_selector">{!! ucfirst(trans('imet-core::v2_context.Create.fields.prefill_prev_year')) !!} ?</label>
     </div>
 
     {{--  loading..  --}}

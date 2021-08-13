@@ -56,9 +56,9 @@
                                 <th class="text-center">
                                 <th class=" text-center">
                                     @if (in_array($step_key, $imet_keys))
-                                        <strong>@lang('imet-core::form/v2/common.steps.'.$step_key)</strong>
+                                        <strong>@lang('imet-core::v2_common.steps.'.$step_key)</strong>
                                     @else
-                                        <strong>@lang('imet-core::form/v2/common.steps_eval.'.$step_key)</strong>
+                                        <strong>@lang('imet-core::v2_common.steps_eval.'.$step_key)</strong>
                                     @endif
                                 </th>
                                 <th class="text-center">

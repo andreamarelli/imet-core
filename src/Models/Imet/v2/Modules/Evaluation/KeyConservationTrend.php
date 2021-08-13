@@ -13,27 +13,27 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'O/C2';
-        $this->module_title = trans('imet-core::form/v2/evaluation.KeyConservationTrend.title');
+        $this->module_title = trans('imet-core::v2_evaluation.KeyConservationTrend.title');
         $this->module_fields = [
-            ['name' => 'Element',   'type' => 'blade-imet-core::v2.evaluation.fields.show_species',           'label' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.fields.Element')],
-            ['name' => 'Condition', 'type' => 'blade-imet-core::components.rating-Minus3to3WithNA',    'label' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.fields.Condition')],
-            ['name' => 'Trend',     'type' => 'blade-imet-core::components.rating-Minus3to3WithNA',    'label' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.fields.Trend')],
-            ['name' => 'Reliability',  'type' => 'dropdown-ImetV2_SpeciesReliability',   'label' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.fields.Reliability'), 'class' => 'width100px'],
-            ['name' => 'Comments',  'type' => 'text-area',           'label' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.fields.Comments')],
+            ['name' => 'Element',   'type' => 'blade-imet-core::v2.evaluation.fields.show_species',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Element')],
+            ['name' => 'Condition', 'type' => 'blade-imet-core::components.rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Condition')],
+            ['name' => 'Trend',     'type' => 'blade-imet-core::components.rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Trend')],
+            ['name' => 'Reliability',  'type' => 'dropdown-ImetV2_SpeciesReliability',   'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Reliability'), 'class' => 'width100px'],
+            ['name' => 'Comments',  'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Comments')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.groups.group0'),
-            'group1' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.groups.group1'),
-            'group2' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.groups.group2'),
-            'group3' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.groups.group3'),
-            'group4' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.groups.group4'),
-            'group5' => trans('imet-core::form/v2/evaluation.KeyConservationTrend.groups.group5'),
+            'group0' => trans('imet-core::v2_evaluation.KeyConservationTrend.groups.group0'),
+            'group1' => trans('imet-core::v2_evaluation.KeyConservationTrend.groups.group1'),
+            'group2' => trans('imet-core::v2_evaluation.KeyConservationTrend.groups.group2'),
+            'group3' => trans('imet-core::v2_evaluation.KeyConservationTrend.groups.group3'),
+            'group4' => trans('imet-core::v2_evaluation.KeyConservationTrend.groups.group4'),
+            'group5' => trans('imet-core::v2_evaluation.KeyConservationTrend.groups.group5'),
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.KeyConservationTrend.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.KeyConservationTrend.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.KeyConservationTrend.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.KeyConservationTrend.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.KeyConservationTrend.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.KeyConservationTrend.ratingLegend');
 
 
         parent::__construct($attributes);

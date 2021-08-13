@@ -12,21 +12,21 @@ class AdministrativeManagement extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR5';
-        $this->module_title = trans('imet-core::form/v2/evaluation.AdministrativeManagement.title');
+        $this->module_title = trans('imet-core::v2_evaluation.AdministrativeManagement.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AdministrativeManagement.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to4WithNA',   'label' => trans('imet-core::form/v2/evaluation.AdministrativeManagement.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AdministrativeManagement.fields.Comments')],
+            ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AdministrativeManagement.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to4WithNA',   'label' => trans('imet-core::v2_evaluation.AdministrativeManagement.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AdministrativeManagement.fields.Comments')],
         ];
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => trans('imet-core::form/v2/evaluation.AdministrativeManagement.predefined_values')
+            'values' => trans('imet-core::v2_evaluation.AdministrativeManagement.predefined_values')
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.AdministrativeManagement.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.AdministrativeManagement.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.AdministrativeManagement.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.AdministrativeManagement.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.AdministrativeManagement.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.AdministrativeManagement.ratingLegend');
 
         parent::__construct($attributes);
     }

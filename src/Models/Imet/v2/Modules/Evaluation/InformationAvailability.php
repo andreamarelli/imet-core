@@ -13,25 +13,25 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'I1';
-        $this->module_title = trans('imet-core::form/v2/evaluation.InformationAvailability.title');
+        $this->module_title = trans('imet-core::v2_evaluation.InformationAvailability.title');
         $this->module_fields = [
-            ['name' => 'Element',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('imet-core::form/v2/evaluation.InformationAvailability.fields.Element')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/evaluation.InformationAvailability.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.InformationAvailability.fields.Comments')],
+            ['name' => 'Element',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Element')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Comments')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('imet-core::form/v2/evaluation.InformationAvailability.groups.group0'),
-            'group1' => trans('imet-core::form/v2/evaluation.InformationAvailability.groups.group1'),
-            'group2' => trans('imet-core::form/v2/evaluation.InformationAvailability.groups.group2'),
-            'group3' => trans('imet-core::form/v2/evaluation.InformationAvailability.groups.group3'),
-            'group4' => trans('imet-core::form/v2/evaluation.InformationAvailability.groups.group4'),
-            'group5' => trans('imet-core::form/v2/evaluation.InformationAvailability.groups.group5')
+            'group0' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group0'),
+            'group1' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group1'),
+            'group2' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group2'),
+            'group3' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group3'),
+            'group4' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group4'),
+            'group5' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group5')
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.InformationAvailability.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.InformationAvailability.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.InformationAvailability.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.InformationAvailability.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.InformationAvailability.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.InformationAvailability.ratingLegend');
 
         parent::__construct($attributes);
 

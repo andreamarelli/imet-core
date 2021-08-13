@@ -21,19 +21,19 @@ $fields = [
 
 @if($show_non_wdpa)
     <div class="module-container">
-        <div class="module-header"><div class="module-title">@lang('imet-core::form/v2/report.general_elements')</div></div>
+        <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
         <div class="module-body">
 
             @foreach($fields as $field)
                 @component('modular-forms::module.field_container', [
                     'name' => $field,
-                    'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.'.$field)
+                    'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.'.$field)
                 ])
                     <div class="field-preview">
                         @if($field === 'pa_def')
-                            @lang('imet-core::form/v2/lists.NonWdpaPaDef.'.$non_wdpa[$field])
+                            @lang('imet-core::v2_lists.NonWdpaPaDef.'.$non_wdpa[$field])
                         @elseif($field === 'marine')
-                            @lang('imet-core::form/v2/lists.NonWdpaTypology.'.$non_wdpa[$field])
+                            @lang('imet-core::v2_lists.NonWdpaTypology.'.$non_wdpa[$field])
                         @else
                             {{ $non_wdpa[$field] ?? '-' }}
                         @endif

@@ -12,18 +12,18 @@ class AchievedResults extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'O/P2';
-        $this->module_title = trans('imet-core::form/v2/evaluation.AchievedResults.title');
+        $this->module_title = trans('imet-core::v2_evaluation.AchievedResults.title');
         $this->module_fields = [
-            ['name' => 'Category',          'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AchievedResults.fields.Category')],
-            ['name' => 'Activity',          'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AchievedResults.fields.Activity')],
-            ['name' => 'TargetedOutput',    'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AchievedResults.fields.TargetedOutput')],
-            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/evaluation.AchievedResults.fields.EvaluationScore')],
-            ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AchievedResults.fields.Comments')],
+            ['name' => 'Category',          'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedResults.fields.Category')],
+            ['name' => 'Activity',          'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedResults.fields.Activity')],
+            ['name' => 'TargetedOutput',    'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedResults.fields.TargetedOutput')],
+            ['name' => 'EvaluationScore',   'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.AchievedResults.fields.EvaluationScore')],
+            ['name' => 'Comments',          'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedResults.fields.Comments')],
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.AchievedResults.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.AchievedResults.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.AchievedResults.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.AchievedResults.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.AchievedResults.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.AchievedResults.ratingLegend');
 
         parent::__construct($attributes);
 

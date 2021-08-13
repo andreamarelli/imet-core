@@ -12,15 +12,15 @@ class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.2.3';
-        $this->module_title = trans('imet-core::form/v1/context.FinancialResourcesBudgetLines.title');
+        $this->module_title = trans('imet-core::v1_context.FinancialResourcesBudgetLines.title');
         $this->module_fields = [
-            ['name' => 'Line',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/context.FinancialResourcesBudgetLines.fields.Line')],
-            ['name' => 'Amount',  'type' => 'integer',   'label' => trans('imet-core::form/v1/context.FinancialResourcesBudgetLines.fields.Amount')],
-            ['name' => 'BudgetSource',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/context.FinancialResourcesBudgetLines.fields.BudgetSource')],
+            ['name' => 'Line',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.FinancialResourcesBudgetLines.fields.Line')],
+            ['name' => 'Amount',  'type' => 'integer',   'label' => trans('imet-core::v1_context.FinancialResourcesBudgetLines.fields.Amount')],
+            ['name' => 'BudgetSource',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.FinancialResourcesBudgetLines.fields.BudgetSource')],
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Currency',  'type' => 'dropdown-ImetV1_Currency',   'label' => trans('imet-core::form/v1/context.FinancialResourcesBudgetLines.fields.Currency')],
+            ['name' => 'Currency',  'type' => 'dropdown-ImetV1_Currency',   'label' => trans('imet-core::v1_context.FinancialResourcesBudgetLines.fields.Currency')],
         ];
 
         parent::__construct($attributes);

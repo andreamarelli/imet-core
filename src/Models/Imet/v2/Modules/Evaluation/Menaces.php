@@ -14,11 +14,11 @@ class Menaces extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C3';
-        $this->module_title = trans('imet-core::form/v2/evaluation.Menaces.title');
+        $this->module_title = trans('imet-core::v2_evaluation.Menaces.title');
         $this->module_fields = [
-            ['name' => 'Aspect',                'type' => 'blade-imet-core::v2.evaluation.fields.menaces_aspect',   'label' => trans('imet-core::form/v2/evaluation.Menaces.fields.Aspect')],
-            ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/evaluation.Menaces.fields.IncludeInStatistics')],
-            ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.Menaces.fields.Comments')],
+            ['name' => 'Aspect',                'type' => 'blade-imet-core::v2.evaluation.fields.menaces_aspect',   'label' => trans('imet-core::v2_evaluation.Menaces.fields.Aspect')],
+            ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.Menaces.fields.IncludeInStatistics')],
+            ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.Menaces.fields.Comments')],
         ];
 
         $this->predefined_values = [
@@ -26,8 +26,8 @@ class Menaces extends Modules\Component\ImetModule_Eval
             'values' => null
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.Menaces.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.Menaces.module_info_Rating');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.Menaces.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.Menaces.module_info_Rating');
 
         parent::__construct($attributes);
     }
@@ -92,7 +92,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/evaluation.Menaces.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.Menaces.warning_on_save');
         return $vue_data;
     }
 

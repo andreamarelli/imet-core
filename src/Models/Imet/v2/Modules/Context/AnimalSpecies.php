@@ -16,23 +16,23 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.1';
-        $this->module_title = trans('imet-core::form/v2/context.AnimalSpecies.title');
+        $this->module_title = trans('imet-core::v2_context.AnimalSpecies.title');
         $this->module_fields = [
-            ['name' => 'species',                   'type' => 'selector-species_animal_withFreeText',   'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.SpeciesID')],
-            ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.FlagshipSpecies')],
-            ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.EndangeredSpecies')],
-            ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.EndemicSpecies')],
-            ['name' => 'ExploitedSpecies',          'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.ExploitedSpecies')],
-            ['name' => 'InvasiveSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.InvasiveSpecies')],
-            ['name' => 'InsufficientDataSpecies',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.InsufficientDataSpecies')],
-            ['name' => 'PopulationEstimation',      'type' => 'numeric',            'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.PopulationEstimation')],
-            ['name' => 'DesiredPopulation',         'type' => 'numeric',            'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.DesiredPopulation')],
-            ['name' => 'Comments',                  'type' => 'text-area',           'label' => trans('imet-core::form/v2/context.AnimalSpecies.fields.Comments')],
+            ['name' => 'species',                   'type' => 'selector-species_animal_withFreeText',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.SpeciesID')],
+            ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.FlagshipSpecies')],
+            ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndangeredSpecies')],
+            ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndemicSpecies')],
+            ['name' => 'ExploitedSpecies',          'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.ExploitedSpecies')],
+            ['name' => 'InvasiveSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.InvasiveSpecies')],
+            ['name' => 'InsufficientDataSpecies',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.InsufficientDataSpecies')],
+            ['name' => 'PopulationEstimation',      'type' => 'numeric',            'label' => trans('imet-core::v2_context.AnimalSpecies.fields.PopulationEstimation')],
+            ['name' => 'DesiredPopulation',         'type' => 'numeric',            'label' => trans('imet-core::v2_context.AnimalSpecies.fields.DesiredPopulation')],
+            ['name' => 'Comments',                  'type' => 'text-area',           'label' => trans('imet-core::v2_context.AnimalSpecies.fields.Comments')],
         ];
 
-        $this->module_info = trans('imet-core::form/v2/context.AnimalSpecies.module_info');
+        $this->module_info = trans('imet-core::v2_context.AnimalSpecies.module_info');
 
-        $this->validation_min3 = trans('imet-core::form/v2/context.AnimalSpecies.validation_min3');
+        $this->validation_min3 = trans('imet-core::v2_context.AnimalSpecies.validation_min3');
 
         parent::__construct($attributes);
 
@@ -41,7 +41,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/context.AnimalSpecies.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.AnimalSpecies.warning_on_save');
         return $vue_data;
     }
 

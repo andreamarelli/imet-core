@@ -13,12 +13,12 @@ class Staff extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'I2';
-        $this->module_title = trans('imet-core::form/v2/evaluation.Staff.title');
+        $this->module_title = trans('imet-core::v2_evaluation.Staff.title');
         $this->module_fields = [
-            ['name' => 'Theme',                 'type' => 'text-area',           'label' => trans('imet-core::form/v2/evaluation.Staff.fields.Theme')],
-            ['name' => 'StaffNumberAdequacy',   'type' => 'disabled',    'label' => trans('imet-core::form/v2/evaluation.Staff.fields.StaffNumberAdequacy')],
-            ['name' => 'StaffCapacityAdequacy', 'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('imet-core::form/v2/evaluation.Staff.fields.StaffCapacityAdequacy')],
-            ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('imet-core::form/v2/evaluation.Staff.fields.Comments')],
+            ['name' => 'Theme',                 'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.Staff.fields.Theme')],
+            ['name' => 'StaffNumberAdequacy',   'type' => 'disabled',    'label' => trans('imet-core::v2_evaluation.Staff.fields.StaffNumberAdequacy')],
+            ['name' => 'StaffCapacityAdequacy', 'type' => 'blade-imet-core::components.rating-0to3',    'label' => trans('imet-core::v2_evaluation.Staff.fields.StaffCapacityAdequacy')],
+            ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.Staff.fields.Comments')],
         ];
 
         $this->predefined_values = [
@@ -26,9 +26,9 @@ class Staff extends Modules\Component\ImetModule_Eval
             'values' => null
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.Staff.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.Staff.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.Staff.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.Staff.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.Staff.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.Staff.ratingLegend');
 
         $this->max_rows = 14;
 

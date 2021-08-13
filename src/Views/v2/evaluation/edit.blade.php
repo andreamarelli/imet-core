@@ -12,7 +12,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -25,7 +25,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     @include('modular-forms::page.steps', [
         'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], ['item'=>$item->getKey()]),
         'current_step' => $step,
-        'label_prefix' =>  'imet-core::form/v2/common.steps_eval.',
+        'label_prefix' =>  'imet-core::v2_common.steps_eval.',
         'steps' => array_keys($item::modules())
     ])
 

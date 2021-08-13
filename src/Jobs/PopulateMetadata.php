@@ -60,11 +60,11 @@ class PopulateMetadata implements ShouldQueue
 
         // metadata statistics
         DB::select('DELETE FROM imet.imet_metadata_statistics;');
-        $items = trans('imet-core::form/v2/common.assessment');
+        $items = trans('imet-core::v2_common.assessment');
         foreach ($items as $code => $item) {
             static::insert_metadata_statistics('v2', $code, $item);
         }
-        $items = trans('imet-core::form/v1/common.assessment');
+        $items = trans('imet-core::v1_common.assessment');
         foreach ($items as $code => $item) {
             static::insert_metadata_statistics('v1', $code, $item);
         }

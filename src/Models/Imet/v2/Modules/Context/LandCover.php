@@ -13,19 +13,19 @@ class LandCover extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.4';
-        $this->module_title = trans('imet-core::form/v2/context.LandCover.title');
+        $this->module_title = trans('imet-core::v2_context.LandCover.title');
         $this->module_fields = [
-            ['name' => 'CoverType',  'type' => 'suggestion-ImetV2_LandCoverUseTake',   'label' => trans('imet-core::form/v2/context.LandCover.fields.CoverType')],
-            ['name' => 'HistoricalArea',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.LandCover.fields.HistoricalArea')],
-            ['name' => 'ConservationStatusArea',  'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.LandCover.fields.ConservationStatusArea')],
-            ['name' => 'Notes',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.LandCover.fields.Notes')],
+            ['name' => 'CoverType',  'type' => 'suggestion-ImetV2_LandCoverUseTake',   'label' => trans('imet-core::v2_context.LandCover.fields.CoverType')],
+            ['name' => 'HistoricalArea',  'type' => 'numeric',   'label' => trans('imet-core::v2_context.LandCover.fields.HistoricalArea')],
+            ['name' => 'ConservationStatusArea',  'type' => 'numeric',   'label' => trans('imet-core::v2_context.LandCover.fields.ConservationStatusArea')],
+            ['name' => 'Notes',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.LandCover.fields.Notes')],
         ];
 
         $this->module_common_fields = [
-            ['name' => 'HistoricalAreaData',  'type' => 'date',   'label' => trans('imet-core::form/v2/context.LandCover.fields.HistoricalAreaData')],
+            ['name' => 'HistoricalAreaData',  'type' => 'date',   'label' => trans('imet-core::v2_context.LandCover.fields.HistoricalAreaData')],
         ];
 
-        $this->module_info = trans('imet-core::form/v2/context.LandCover.module_info');
+        $this->module_info = trans('imet-core::v2_context.LandCover.module_info');
 
         parent::__construct($attributes);
 
@@ -34,7 +34,7 @@ class LandCover extends Modules\Component\ImetModule
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/context.LandCover.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.LandCover.warning_on_save');
         return $vue_data;
     }
 

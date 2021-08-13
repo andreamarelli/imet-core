@@ -10,7 +10,7 @@ class ObjectivesMenaces extends _Objectives
     public function __construct(array $attributes = [])
     {
         $this->module_code = 'C3';
-        $this->module_info = trans('imet-core::form/v2/evaluation.ObjectivesMenaces.module_info');
+        $this->module_info = trans('imet-core::v2_evaluation.ObjectivesMenaces.module_info');
 
         parent::__construct($attributes);
     }
