@@ -299,48 +299,48 @@ function score_class_threats($value, $additional_classes=''){
                 dopa_indicators: {
                     forest_cover: {
                         title_table: "@lang('imet-core::v2_report.forest_cover')",
-                        title_chart: '@lang("form/imet/v2/report.forest_cover_percent") (%)',
+                        title_chart: '@lang("imet-core::v2_report.forest_cover_percent") (%)',
                         indicators: [
                             {
                                 field: 'gfc_treecover_km2',
-                                label: '@lang("form/imet/v2/report.forest_cover") [km2]',
+                                label: '@lang("imet-core::v2_report.forest_cover") [km2]',
                                 color: '#5b5b5b'
                             },
                             {
                                 field: 'gfc_treecover_perc',
-                                label: '@lang("form/imet/v2/report.forest_cover") [%]',
+                                label: '@lang("imet-core::v2_report.forest_cover") [%]',
                                 color: '#5b5b5b'
                             },
                             {
                                 field: 'gfc_loss_km2',
-                                label: '@lang("form/imet/v2/report.forest_loss") [km2]',
+                                label: '@lang("imet-core::v2_report.forest_loss") [km2]',
                                 color: '#D9534F'
                             },
                             {
                                 field: 'gfc_loss_perc',
-                                label: '@lang("form/imet/v2/report.forest_loss") [%]',
+                                label: '@lang("imet-core::v2_report.forest_loss") [%]',
                                 color: '#D9534F'
                             },
                             {
                                 field: 'gfc_gain_km2',
-                                label: '@lang("form/imet/v2/report.forest_gain") [km2]',
+                                label: '@lang("imet-core::v2_report.forest_gain") [km2]',
                                 color: '#337AB7'
                             },
                             {
                                 field: 'gfc_gain_perc',
-                                label: '@lang("form/imet/v2/report.forest_gain") [%]',
+                                label: '@lang("imet-core::v2_report.forest_gain") [%]',
                                 color: '#337AB7'
                             },
                         ],
                         bar_indicators: [
                             {
                                 field: 'gfc_loss_perc',
-                                label: '@lang("form/imet/v2/report.forest_loss") [%]',
+                                label: '@lang("imet-core::v2_report.forest_loss") [%]',
                                 color: '#D9534F'
                             },
                             {
                                 field: 'gfc_gain_perc',
-                                label: '@lang("form/imet/v2/report.forest_gain") [%]',
+                                label: '@lang("imet-core::v2_report.forest_gain") [%]',
                                 color: '#337AB7'
                             },
                         ]
@@ -350,23 +350,23 @@ function score_class_threats($value, $additional_classes=''){
                         indicators: [
                             {
                                 field: 'carbon_min_c_mg',
-                                label: '@lang("form/imet/v2/report.min") [Mg]'
+                                label: '@lang("imet-core::v2_report.min") [Mg]'
                             },
                             {
                                 field: 'carbon_mean_c_mg',
-                                label: '@lang("form/imet/v2/report.mean") [Mg]'
+                                label: '@lang("imet-core::v2_report.mean") [Mg]'
                             },
                             {
                                 field: 'carbon_max_c_mg',
-                                label: '@lang("form/imet/v2/report.max") [Mg]'
+                                label: '@lang("imet-core::v2_report.max") [Mg]'
                             },
                             {
                                 field: 'carbon_stdev_c_mg',
-                                label: '@lang("form/imet/v2/report.std_dev") [Mg]'
+                                label: '@lang("imet-core::v2_report.std_dev") [Mg]'
                             },
                             {
                                 field: 'carbon_tot_c_mg',
-                                label: '@lang("form/imet/v2/report.sum") [Pg]'
+                                label: '@lang("imet-core::v2_report.sum") [Pg]'
                             },
                         ]
                     },
@@ -375,11 +375,11 @@ function score_class_threats($value, $additional_classes=''){
                         indicators: [
                             {
                                 field: 'agri_ind_pa',
-                                label: '@lang("form/imet/v2/report.protected_area") [%]'
+                                label: '@lang("imet-core::v2_report.protected_area") [%]'
                             },
                             {
                                 field: 'agri_ind_bu',
-                                label: '@lang("form/imet/v2/report.unprotected_buffer") [%]'
+                                label: '@lang("imet-core::v2_report.unprotected_buffer") [%]'
                             }
                         ]
                     }
