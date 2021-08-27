@@ -36,12 +36,12 @@ $url        = URL::route('index');
                 {{-- Import json IMETs --}}
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
                     {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
-                    {{ ucfirst(trans('modular_forms::common.import')) }}
+                    {{ ucfirst(trans('modular-forms::common.import')) }}
                 </a>
                 {{-- Export json IMETs --}}
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
                     {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
-                    {{ ucfirst(trans('modular_forms::common.export')) }}
+                    {{ ucfirst(trans('modular-forms::common.export')) }}
                 </a>
                 {{-- Create new IMET --}}
                 @include('modular-forms::buttons.create', [
@@ -146,7 +146,7 @@ $url        = URL::route('index');
                                     'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                                     'action' =>'merge_view',
                                     'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('modular_forms::common.merge')),
+                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
                                     'icon' => 'clone',
                                     'class' => 'btn-primary'
                                 ])
@@ -159,7 +159,7 @@ $url        = URL::route('index');
                         'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                         'action' =>'export',
                         'item' => 'item.FormID',
-                        'tooltip' => ucfirst(trans('modular_forms::common.export')),
+                        'tooltip' => ucfirst(trans('modular-forms::common.export')),
                         'icon' => 'cloud-download-alt',
                         'class' => 'btn-primary'
                     ])
@@ -170,7 +170,7 @@ $url        = URL::route('index');
                                 'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
                                 'action' =>'print',
                                 'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('modular_forms::common.print')),
+                                'tooltip' => ucfirst(trans('modular-forms::common.print')),
                                 'icon' => 'print',
                                 'class' => 'btn-primary'
                             ])

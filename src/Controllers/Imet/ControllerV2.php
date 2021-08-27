@@ -110,7 +110,7 @@ class ControllerV2 extends Controller
             return parent::store($request);
 
         } catch (\Exception $e) {
-            Session::flash('message', trans('modular_forms::common.saved_error'));
+            Session::flash('message', trans('modular-forms::common.saved_error'));
             throw $e;
         }
     }
