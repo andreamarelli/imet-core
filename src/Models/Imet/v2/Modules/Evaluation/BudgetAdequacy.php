@@ -12,16 +12,16 @@ class BudgetAdequacy extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'I3';
-        $this->module_title = trans('imet-core::form/v2/evaluation.BudgetAdequacy.title');
+        $this->module_title = trans('imet-core::v2_evaluation.BudgetAdequacy.title');
         $this->module_fields = [
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to5',   'label' => trans('imet-core::form/v2/evaluation.BudgetAdequacy.fields.EvaluationScore')],
-            ['name' => 'Percentage',  'type' => 'integer',   'label' => trans('imet-core::form/v2/evaluation.BudgetAdequacy.fields.Percentage')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.BudgetAdequacy.fields.Comments')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to5',   'label' => trans('imet-core::v2_evaluation.BudgetAdequacy.fields.EvaluationScore')],
+            ['name' => 'Percentage',  'type' => 'integer',   'label' => trans('imet-core::v2_evaluation.BudgetAdequacy.fields.Percentage')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.BudgetAdequacy.fields.Comments')],
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.BudgetAdequacy.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.BudgetAdequacy.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.BudgetAdequacy.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.BudgetAdequacy.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.BudgetAdequacy.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.BudgetAdequacy.ratingLegend');
 
         parent::__construct($attributes);
 

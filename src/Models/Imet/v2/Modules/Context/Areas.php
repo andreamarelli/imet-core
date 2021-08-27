@@ -13,58 +13,58 @@ class Areas extends Modules\Component\ImetModule
     {
         $this->module_type   = 'SIMPLE';
         $this->module_code   = 'CTX 2.2';
-        $this->module_title  = trans('imet-core::form/v2/context.Areas.title');
+        $this->module_title  = trans('imet-core::v2_context.Areas.title');
         $this->module_fields = [
             [
                 'name' => 'AdministrativeArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.AdministrativeArea')
+                'label' => trans('imet-core::v2_context.Areas.fields.AdministrativeArea')
             ],
-            ['name' => 'WDPAArea', 'type' => 'numeric', 'label' => trans('imet-core::form/v2/context.Areas.fields.WDPAArea')],
-            ['name' => 'GISArea', 'type' => 'numeric', 'label' => trans('imet-core::form/v2/context.Areas.fields.GISArea')],
+            ['name' => 'WDPAArea', 'type' => 'numeric', 'label' => trans('imet-core::v2_context.Areas.fields.WDPAArea')],
+            ['name' => 'GISArea', 'type' => 'numeric', 'label' => trans('imet-core::v2_context.Areas.fields.GISArea')],
             [
                 'name' => 'BoundaryLength',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.BoundaryLength')
+                'label' => trans('imet-core::v2_context.Areas.fields.BoundaryLength')
             ],
             [
                 'name' => 'TerrestrialArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.TerrestrialArea')
+                'label' => trans('imet-core::v2_context.Areas.fields.TerrestrialArea')
             ],
             [
                 'name' => 'MarineArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.MarineArea')
+                'label' => trans('imet-core::v2_context.Areas.fields.MarineArea')
             ],
             [
                 'name' => 'PercentageNationalNetwork',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.PercentageNationalNetwork')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageNationalNetwork')
             ],
             [
                 'name' => 'PercentageEcoregion',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.PercentageEcoregion')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageEcoregion')
             ],
             [
                 'name' => 'PercentageTransnationalNetwork',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.PercentageTransnationalNetwork')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageTransnationalNetwork')
             ],
             [
                 'name' => 'PercentageLandscapeNetwork',
                 'type' => 'numeric',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.PercentageLandscapeNetwork')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageLandscapeNetwork')
             ],
-            ['name' => 'Index', 'type' => 'text-area', 'label' => trans('imet-core::form/v2/context.Areas.fields.Index')],
+            ['name' => 'Index', 'type' => 'text-area', 'label' => trans('imet-core::v2_context.Areas.fields.Index')],
         ];
 
         $this->module_common_fields = [
             [
                 'name' => 'Observations',
                 'type' => 'text-area',
-                'label' => trans('imet-core::form/v2/context.Areas.fields.Observations')
+                'label' => trans('imet-core::v2_context.Areas.fields.Observations')
             ],
         ];
 

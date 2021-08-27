@@ -12,16 +12,16 @@ class ObjectivesSpecies extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.3';
-        $this->module_title = trans('imet-core::form/v1/evaluation.ObjectivesSpecies.title');
+        $this->module_title = trans('imet-core::v1_evaluation.ObjectivesSpecies.title');
         $this->module_fields = [
-            ['name' => 'Status',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesSpecies.fields.Status')],
-            ['name' => 'Benchmark1',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesSpecies.fields.Benchmark1')],
-            ['name' => 'Benchmark2',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesSpecies.fields.Benchmark2')],
-            ['name' => 'Benchmark3',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesSpecies.fields.Benchmark3')],
-            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesSpecies.fields.Objective')],
+            ['name' => 'Status',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesSpecies.fields.Status')],
+            ['name' => 'Benchmark1',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesSpecies.fields.Benchmark1')],
+            ['name' => 'Benchmark2',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesSpecies.fields.Benchmark2')],
+            ['name' => 'Benchmark3',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesSpecies.fields.Benchmark3')],
+            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesSpecies.fields.Objective')],
         ];
 
-        $this->module_info = trans('imet-core::form/v1/evaluation.ObjectivesSpecies.module_info');
+        $this->module_info = trans('imet-core::v1_evaluation.ObjectivesSpecies.module_info');
 
         parent::__construct($attributes);
 

@@ -42,7 +42,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                 </div>
                 <div class="alert alert-danger" role="alert" style="padding: 10px;">Any existing data will be overwritten!</div>
                 <div style="text-align: right">
-                    <b>@lang('imet-core::form/common.confirm_merge')?</b>
+                    <b>@lang('imet-core::common.confirm_merge')?</b>
                 </div>
             </div>
             <div class="modal-footer">

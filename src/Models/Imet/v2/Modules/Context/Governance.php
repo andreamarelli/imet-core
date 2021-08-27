@@ -14,18 +14,18 @@ class Governance extends Modules\Component\ImetModule
 
         $this->module_type = 'ACCORDION';
         $this->module_code = 'CTX 1.2';
-        $this->module_title = trans('imet-core::form/v2/context.Governance.title');
+        $this->module_title = trans('imet-core::v2_context.Governance.title');
         $this->module_fields = [
-            ['name' => 'Partner',               'type' => 'text-area',         'label' => trans('imet-core::form/v2/context.Governance.fields.Partner'),            'other' => 'style="width:200px"'],
-            ['name' => 'InstitutionType',       'type' => 'dropdown-ImetV2_InstitutionType',      'label' => trans('imet-core::form/v2/context.Governance.fields.InstitutionType'),    'other' => 'style="width:205px"'],
-            ['name' => 'PartnershipsType1',     'type' => 'dropdown-ImetV2_PartnershipsType',     'label' => trans('imet-core::form/v2/context.Governance.fields.PartnershipsType1'),  'other' => 'style="width:205px"'],
-            ['name' => 'PartnershipsType2',     'type' => 'dropdown-ImetV2_PartnershipsType',     'label' => trans('imet-core::form/v2/context.Governance.fields.PartnershipsType2'),  'other' => 'style="width:205px"'],
-            ['name' => 'PartnershipsType3',     'type' => 'dropdown-ImetV2_PartnershipsType',     'label' => trans('imet-core::form/v2/context.Governance.fields.PartnershipsType3'),  'other' => 'style="width:205px"'],
+            ['name' => 'Partner',               'type' => 'text-area',         'label' => trans('imet-core::v2_context.Governance.fields.Partner'),            'other' => 'style="width:200px"'],
+            ['name' => 'InstitutionType',       'type' => 'dropdown-ImetV2_InstitutionType',      'label' => trans('imet-core::v2_context.Governance.fields.InstitutionType'),    'other' => 'style="width:205px"'],
+            ['name' => 'PartnershipsType1',     'type' => 'dropdown-ImetV2_PartnershipsType',     'label' => trans('imet-core::v2_context.Governance.fields.PartnershipsType1'),  'other' => 'style="width:205px"'],
+            ['name' => 'PartnershipsType2',     'type' => 'dropdown-ImetV2_PartnershipsType',     'label' => trans('imet-core::v2_context.Governance.fields.PartnershipsType2'),  'other' => 'style="width:205px"'],
+            ['name' => 'PartnershipsType3',     'type' => 'dropdown-ImetV2_PartnershipsType',     'label' => trans('imet-core::v2_context.Governance.fields.PartnershipsType3'),  'other' => 'style="width:205px"'],
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'dropdown-ImetV2_GovernanceType',   'label' => trans('imet-core::form/v2/context.Governance.fields.Type')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.Governance.fields.Comments')],
+            ['name' => 'Type',      'type' => 'dropdown-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.Comments')],
         ];
 
         parent::__construct($attributes);

@@ -12,17 +12,17 @@ class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.2.3';
-        $this->module_title = trans('imet-core::form/v2/context.FinancialResourcesBudgetLines.title');
+        $this->module_title = trans('imet-core::v2_context.FinancialResourcesBudgetLines.title');
         $this->module_fields = [
-            ['name' => 'Line',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.FinancialResourcesBudgetLines.fields.Line')],
-            ['name' => 'Amount',  'type' => 'integer',   'label' => trans('imet-core::form/v2/context.FinancialResourcesBudgetLines.fields.Amount')],
-            ['name' => 'BudgetSource',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.FinancialResourcesBudgetLines.fields.BudgetSource')],
+            ['name' => 'Line',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.FinancialResourcesBudgetLines.fields.Line')],
+            ['name' => 'Amount',  'type' => 'integer',   'label' => trans('imet-core::v2_context.FinancialResourcesBudgetLines.fields.Amount')],
+            ['name' => 'BudgetSource',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.FinancialResourcesBudgetLines.fields.BudgetSource')],
         ];
 
-        $this->module_info = trans('imet-core::form/v2/context.FinancialResourcesBudgetLines.module_info');
+        $this->module_info = trans('imet-core::v2_context.FinancialResourcesBudgetLines.module_info');
 
         $this->module_common_fields = [
-            ['name' => 'Currency', 'type' => 'disabled', 'label' => trans('imet-core::form/v2/context.FinancialResources.fields.Currency')],
+            ['name' => 'Currency', 'type' => 'disabled', 'label' => trans('imet-core::v2_context.FinancialResources.fields.Currency')],
         ];
 
         parent::__construct($attributes);

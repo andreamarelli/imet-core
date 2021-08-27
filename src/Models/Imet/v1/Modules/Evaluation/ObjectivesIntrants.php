@@ -12,16 +12,16 @@ class ObjectivesIntrants extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'IX';
-        $this->module_title = trans('imet-core::form/v1/evaluation.ObjectivesIntrants.title');
+        $this->module_title = trans('imet-core::v1_evaluation.ObjectivesIntrants.title');
         $this->module_fields = [
-            ['name' => 'Status',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesIntrants.fields.Status')],
-            ['name' => 'Benchmark1',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesIntrants.fields.Benchmark1')],
-            ['name' => 'Benchmark2',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesIntrants.fields.Benchmark2')],
-            ['name' => 'Benchmark3',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesIntrants.fields.Benchmark3')],
-            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.ObjectivesIntrants.fields.Objective')],
+            ['name' => 'Status',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesIntrants.fields.Status')],
+            ['name' => 'Benchmark1',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesIntrants.fields.Benchmark1')],
+            ['name' => 'Benchmark2',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesIntrants.fields.Benchmark2')],
+            ['name' => 'Benchmark3',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesIntrants.fields.Benchmark3')],
+            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.ObjectivesIntrants.fields.Objective')],
         ];
 
-        $this->module_info = trans('imet-core::form/v1/evaluation.ObjectivesIntrants.module_info');
+        $this->module_info = trans('imet-core::v1_evaluation.ObjectivesIntrants.module_info');
 
         parent::__construct($attributes);
 
