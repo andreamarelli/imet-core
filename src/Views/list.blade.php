@@ -72,9 +72,9 @@ $url        = URL::route('index');
         <table class="striped">
             <thead>
             <tr>
-                <th class="text-center width60px">@lang('imet-core::entities.id')</th>
-                @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('imet-core::entities.year'), 'class' => 'width90px'])
-                @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('imet-core::entities.protected_area.protected_area', 1)])
+                <th class="text-center width60px">@lang('imet-core::common.id')</th>
+                @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('imet-core::common.year'), 'class' => 'width90px'])
+                @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('imet-core::common.protected_area.protected_area', 1)])
                 <th class="text-center">@lang('imet-core::common.encoders_responsible')</th>
                 <th>{{-- radar --}}</th>
                 <th class="width200px">{{-- actions --}}</th>
