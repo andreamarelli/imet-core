@@ -100,7 +100,7 @@ function score_class_threats($value, $additional_classes=''){
         <div class="module-container">
             <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div></div>
             <div class="module-body">
-                <imet_charts form_id={{ $item->getKey() }} :show_histogram="true"></imet_charts>
+                <imet_charts form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Controllers\Imet\Assessment::assessment_steps_labels())' :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::form/v1/common.steps_eval.context')</th>
@@ -432,10 +432,9 @@ function score_class_threats($value, $additional_classes=''){
 
                 loadMap(){
                     let _this = this;
-                    window.mapboxgl.accessToken = 'pk.eyJ1IjoiYmxpc2h0ZW4iLCJhIjoiMEZrNzFqRSJ9.0QBRA2HxTb8YHErUFRMPZg';
                     let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
-                    let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly_2";
-                    let mapPaLayer = "WDPA2019MayPoly";
+                    let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly";
+                    let mapPaLayer = "2021_July_ACP";
 
                     this.report_map = new window.mapboxgl.Map({
                         container: 'map',
