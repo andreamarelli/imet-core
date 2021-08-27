@@ -15,16 +15,16 @@ class Networks extends Modules\Component\ImetModule
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 1.4';
-        $this->module_title = trans('imet-core::form/v1/context.Networks.title');
+        $this->module_title = trans('imet-core::v1_context.Networks.title');
         $this->module_fields = [
-            ['name' => 'NetworkName',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/context.Networks.fields.NetworkName')],
-            ['name' => 'ProtectedAreas',  'type' => 'imet-core::selector-wdpa_multiple',   'label' => trans('imet-core::form/v1/context.Networks.fields.ProtectedAreas')],
+            ['name' => 'NetworkName',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.Networks.fields.NetworkName')],
+            ['name' => 'ProtectedAreas',  'type' => 'imet-core::selector-wdpa_multiple',   'label' => trans('imet-core::v1_context.Networks.fields.ProtectedAreas')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('imet-core::form/v1/context.Networks.groups.group0'),
-            'group1' => trans('imet-core::form/v1/context.Networks.groups.group1'),
-            'group2' => trans('imet-core::form/v1/context.Networks.groups.group2'),
+            'group0' => trans('imet-core::v1_context.Networks.groups.group0'),
+            'group1' => trans('imet-core::v1_context.Networks.groups.group1'),
+            'group2' => trans('imet-core::v1_context.Networks.groups.group2'),
         ];
 
         parent::__construct($attributes);

@@ -12,16 +12,16 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'O/C1';
-        $this->module_title = trans('imet-core::form/v2/evaluation.AchievedObjectives.title');
+        $this->module_title = trans('imet-core::v2_evaluation.AchievedObjectives.title');
         $this->module_fields = [
-            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AchievedObjectives.fields.Objective')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/evaluation.AchievedObjectives.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.AchievedObjectives.fields.Comments')],
+            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedObjectives.fields.Objective')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.AchievedObjectives.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.AchievedObjectives.fields.Comments')],
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.AchievedObjectives.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.AchievedObjectives.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.AchievedObjectives.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.AchievedObjectives.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.AchievedObjectives.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.AchievedObjectives.ratingLegend');
 
         parent::__construct($attributes);
     }

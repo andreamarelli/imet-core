@@ -19,23 +19,23 @@ class CreateNonWdpa extends Modules\Component\ImetModule
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'SIMPLE';
-        $this->module_title = trans('imet-core::form/v2/context.CreateNonWdpa.title');
+        $this->module_title = trans('imet-core::v2_context.CreateNonWdpa.title');
         $this->module_fields = [
-            ['name' => 'version',       'type' => 'blade-admin.imet.v2.context.fields.version', 'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.version')],
-            ['name' => 'Year',          'type' => 'yearMaxCurrent',                             'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.Year')],
-            ['name' => 'language',      'type' => 'toggle-ImetV2_languages',                    'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.language')],
-            ['name' => 'pa_def',        'type' => 'dropdown-ImetV2_NonWdpaPaDef',               'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.pa_def')],
-            ['name' => 'country',       'type' => 'dropdown-Country',                           'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.country')],
-            ['name' => 'name',          'type' => 'text-area',                                  'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.name')],
-            ['name' => 'origin_name',   'type' => 'text-area',                                  'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.origin_name')],
-            ['name' => 'designation',   'type' => 'text-area',                                  'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.designation')],
-            ['name' => 'designation_eng',   'type' => 'blade-admin.imet.v2.context.fields.designation_eng', 'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.designation_eng')],
-            ['name' => 'designation_type',  'type' => 'toggle-ImetV2_NonWdpaDesignType',        'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.designation_type')],
-            ['name' => 'marine',        'type' => 'dropdown-ImetV2_NonWdpaTypology',            'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.marine')],
-            ['name' => 'rep_m_area',    'type' => 'numeric',                                  'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.rep_m_area')],
-            ['name' => 'rep_area',      'type' => 'numeric',                                  'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.rep_area')],
-            ['name' => 'status',        'type' => 'toggle-ImetV2_NonWdpaStatus',              'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.status')],
-            ['name' => 'status_year',    'type' => 'year',                                      'label' => trans('imet-core::form/v2/context.CreateNonWdpa.fields.status_year')],
+            ['name' => 'version',       'type' => 'blade-admin.imet.v2.context.fields.version', 'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.version')],
+            ['name' => 'Year',          'type' => 'yearMaxCurrent',                             'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.Year')],
+            ['name' => 'language',      'type' => 'toggle-ImetV2_languages',                    'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.language')],
+            ['name' => 'pa_def',        'type' => 'dropdown-ImetV2_NonWdpaPaDef',               'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.pa_def')],
+            ['name' => 'country',       'type' => 'dropdown-Country',                           'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.country')],
+            ['name' => 'name',          'type' => 'text-area',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.name')],
+            ['name' => 'origin_name',   'type' => 'text-area',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.origin_name')],
+            ['name' => 'designation',   'type' => 'text-area',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.designation')],
+            ['name' => 'designation_eng',   'type' => 'blade-admin.imet.v2.context.fields.designation_eng', 'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.designation_eng')],
+            ['name' => 'designation_type',  'type' => 'toggle-ImetV2_NonWdpaDesignType',        'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.designation_type')],
+            ['name' => 'marine',        'type' => 'dropdown-ImetV2_NonWdpaTypology',            'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.marine')],
+            ['name' => 'rep_m_area',    'type' => 'numeric',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.rep_m_area')],
+            ['name' => 'rep_area',      'type' => 'numeric',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.rep_area')],
+            ['name' => 'status',        'type' => 'toggle-ImetV2_NonWdpaStatus',              'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.status')],
+            ['name' => 'status_year',    'type' => 'year',                                      'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.status_year')],
         ];
 
         parent::__construct($attributes);

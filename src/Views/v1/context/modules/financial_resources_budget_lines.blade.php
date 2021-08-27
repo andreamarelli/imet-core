@@ -30,10 +30,10 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
             @endif
         @endforeach
         <th class="text-center">
-            @lang_u('imet-core::form/v1/context.FinancialResourcesBudgetLines.fields.function_costs')
+            @lang_u('imet-core::v1_context.FinancialResourcesBudgetLines.fields.function_costs')
         </th>
         <th class="text-center">
-            @lang_u('imet-core::form/v1/context.FinancialResourcesBudgetLines.fields.percentage')
+            @lang_u('imet-core::v1_context.FinancialResourcesBudgetLines.fields.percentage')
         </th>
     </tr>
     </thead>

@@ -12,17 +12,17 @@ class ResponsablesInterviewers extends Modules\Component\ImetModule
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 1.0.1';
-        $this->module_title = trans('imet-core::form/v2/context.ResponsablesInterviewers.title');
+        $this->module_title = trans('imet-core::v2_context.ResponsablesInterviewers.title');
         $this->module_fields = [
-            ['name' => 'Name',              'type' => 'text-area',       'label' => trans('imet-core::form/v2/context.ResponsablesInterviewers.fields.Name'),         'class' => 'width300px'],
-            ['name' => 'Institution',       'type' => 'text-area',       'label' => trans('imet-core::form/v2/context.ResponsablesInterviewers.fields.Institution'),  'class' => 'width300px'],
-            ['name' => 'Function',          'type' => 'text-area',       'label' => trans('imet-core::form/v2/context.ResponsablesInterviewers.fields.Function')],
-            ['name' => 'Contacts',          'type' => 'text-area',       'label' => trans('imet-core::form/v2/context.ResponsablesInterviewers.fields.Contacts')]
+            ['name' => 'Name',              'type' => 'text-area',       'label' => trans('imet-core::v2_context.ResponsablesInterviewers.fields.Name'),         'class' => 'width300px'],
+            ['name' => 'Institution',       'type' => 'text-area',       'label' => trans('imet-core::v2_context.ResponsablesInterviewers.fields.Institution'),  'class' => 'width300px'],
+            ['name' => 'Function',          'type' => 'text-area',       'label' => trans('imet-core::v2_context.ResponsablesInterviewers.fields.Function')],
+            ['name' => 'Contacts',          'type' => 'text-area',       'label' => trans('imet-core::v2_context.ResponsablesInterviewers.fields.Contacts')]
         ];
 
         $this->module_common_fields = [
-            ['name' => 'EncodingDate',      'type' => 'date',       'label' => trans('imet-core::form/v2/context.ResponsablesInterviewers.fields.EncodingDate')],
-            ['name' => 'EncodingDuration',  'type' => 'text-area',       'label' => trans('imet-core::form/v2/context.ResponsablesInterviewers.fields.EncodingDuration')]
+            ['name' => 'EncodingDate',      'type' => 'date',       'label' => trans('imet-core::v2_context.ResponsablesInterviewers.fields.EncodingDate')],
+            ['name' => 'EncodingDuration',  'type' => 'text-area',       'label' => trans('imet-core::v2_context.ResponsablesInterviewers.fields.EncodingDuration')]
         ];
 
         parent::__construct($attributes);

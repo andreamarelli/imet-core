@@ -13,19 +13,19 @@ class HabitatsMarine extends Modules\Component\ImetModule
 
         $this->module_type = 'ACCORDION';
         $this->module_code = 'CTX 4.3.2';
-        $this->module_title = trans('imet-core::form/v2/context.HabitatsMarine.title');
+        $this->module_title = trans('imet-core::v2_context.HabitatsMarine.title');
         $this->module_fields = [
-            ['name' => 'HabitatType',   'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.HabitatsMarine.fields.HabitatType')],
-            ['name' => 'Presence',      'type' => 'dropdown-ImetV2_MarineHabitatsPresence',   'label' => trans('imet-core::form/v2/context.HabitatsMarine.fields.Presence')],
-            ['name' => 'Area',          'type' => 'numeric',   'label' => trans('imet-core::form/v2/context.HabitatsMarine.fields.Area')],
-            ['name' => 'Fragmentation', 'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.HabitatsMarine.fields.Fragmentation')],
-            ['name' => 'Source',        'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.HabitatsMarine.fields.Source')],
-            ['name' => 'Description',   'type' => 'text-area',   'label' => trans('imet-core::form/v2/context.HabitatsMarine.fields.Description')],
+            ['name' => 'HabitatType',   'type' => 'text-area',   'label' => trans('imet-core::v2_context.HabitatsMarine.fields.HabitatType')],
+            ['name' => 'Presence',      'type' => 'dropdown-ImetV2_MarineHabitatsPresence',   'label' => trans('imet-core::v2_context.HabitatsMarine.fields.Presence')],
+            ['name' => 'Area',          'type' => 'numeric',   'label' => trans('imet-core::v2_context.HabitatsMarine.fields.Area')],
+            ['name' => 'Fragmentation', 'type' => 'text-area',   'label' => trans('imet-core::v2_context.HabitatsMarine.fields.Fragmentation')],
+            ['name' => 'Source',        'type' => 'text-area',   'label' => trans('imet-core::v2_context.HabitatsMarine.fields.Source')],
+            ['name' => 'Description',   'type' => 'text-area',   'label' => trans('imet-core::v2_context.HabitatsMarine.fields.Description')],
         ];
 
         $this->predefined_values = [
             'field' => 'HabitatType',
-            'values' => trans('imet-core::form/v2/context.HabitatsMarine.predefined_values')
+            'values' => trans('imet-core::v2_context.HabitatsMarine.predefined_values')
         ];
 
         parent::__construct($attributes);

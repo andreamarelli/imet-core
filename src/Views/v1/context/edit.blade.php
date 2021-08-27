@@ -12,14 +12,14 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
 
 @section('content')
 
-    <h2>@lang_u('imet-core::form/common.context_long')</h2>
+    <h2>@lang_u('imet-core::common.context_long')</h2>
     <div class="entity-heading">
         <div class="id">#{{ $item->getKey() }}</div>
         <div class="name">{{ $item->Name }}</div>
@@ -30,7 +30,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     @include('modular-forms::page.steps', [
         'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'edit'], ['item'=>$item->getKey()]),
         'current_step' => $step,
-        'label_prefix' =>  'imet-core::form/v1/common.steps.',
+        'label_prefix' =>  'imet-core::v1_common.steps.',
         'steps' => array_keys($item::modules())
     ])
 

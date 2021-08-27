@@ -13,21 +13,21 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR17';
-        $this->module_title = trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.title');
+        $this->module_title = trans('imet-core::v2_evaluation.ClimateChangeMonitoring.title');
         $this->module_fields = [
-            ['name' => 'Program',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.fields.Program')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.fields.EvaluationScore')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.fields.Comments')],
+            ['name' => 'Program',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Program')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Comments')],
         ];
 
         $this->predefined_values = [
             'field' => 'Program',
-            'values' => trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.predefined_values')
+            'values' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.predefined_values')
         ];
 
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ClimateChangeMonitoring.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.ClimateChangeMonitoring.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.ClimateChangeMonitoring.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -42,7 +42,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         $preLoaded = [
             'field' => 'Program',
             'values' => array_merge(
-                trans('imet-core::form/v2/evaluation.ClimateChangeMonitoring.predefined_values'),
+                trans('imet-core::v2_evaluation.ClimateChangeMonitoring.predefined_values'),
                 Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item){
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray()

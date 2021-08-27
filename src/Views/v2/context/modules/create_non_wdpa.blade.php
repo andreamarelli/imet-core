@@ -6,7 +6,7 @@
 
 ?>
 
-@include('admin.components.module.edit.type.simple', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.simple', compact(['collection', 'vue_data', 'definitions']))
 
 
 @push('scripts')

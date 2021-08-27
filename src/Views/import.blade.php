@@ -2,7 +2,7 @@
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -11,7 +11,7 @@
     <div class="module-container" id="import_imet">
         <div class="module-header">
             <div class="module-title">
-                @lang('imet-core::form/common.import_imet')
+                @lang('imet-core::common.import_imet')
             </div>
         </div>
         <div class="module-body">

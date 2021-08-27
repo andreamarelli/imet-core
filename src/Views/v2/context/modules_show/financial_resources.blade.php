@@ -55,10 +55,10 @@ $area = array_key_exists('FormID', $record) ? \AndreaMarelli\ImetCore\Models\Ime
     <thead>
         <tr>
             <th></th>
-            <th class="text-center" style="width: 200px;">@lang('imet-core::form/v2/context.FinancialResources.amount')</th>
-            <th class="text-center">@lang('imet-core::form/v2/context.FinancialResources.functioning_costs')</th>
-            <th class="text-center">@lang('imet-core::form/v2/context.FinancialResources.estimation_financial_plan')</th>
-            <th class="text-center">@lang('imet-core::form/v2/context.FinancialResources.estimation_operational_plan')</th>
+            <th class="text-center" style="width: 200px;">@lang('imet-core::v2_context.FinancialResources.amount')</th>
+            <th class="text-center">@lang('imet-core::v2_context.FinancialResources.functioning_costs')</th>
+            <th class="text-center">@lang('imet-core::v2_context.FinancialResources.estimation_financial_plan')</th>
+            <th class="text-center">@lang('imet-core::v2_context.FinancialResources.estimation_operational_plan')</th>
         </tr>
     </thead>
 

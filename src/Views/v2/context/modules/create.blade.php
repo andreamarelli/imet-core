@@ -10,7 +10,7 @@ $vue_record_index = 0;
 
 @foreach($definitions['fields'] as $i=>$field)
 
-    @component('admin.components.module.components.row', [
+    @component('modular-forms::module.field_container', [
         'name' => $field['name'],
         'label' => $field['label'] ?? '',
         'label_width' => $definitions['label_width']
@@ -19,7 +19,7 @@ $vue_record_index = 0;
         @if($field['name']==='language')
 
             <div v-if="show_language">
-                @include('admin.components.module.edit.field.auto_vue', [
+                @include('modular-forms::module.edit.field.module-to-vue', [
                     'definitions' => $definitions,
                     'field' => $field,
                     'vue_record_index' => $vue_record_index
@@ -53,7 +53,7 @@ $vue_record_index = 0;
 
     {{--  label  --}}
     <div class="module-row__label text-lg green_dark" style="width: 40%;" >
-        <label for="prev_year_selector">{!! ucfirst(trans('imet-core::form/imet/v2/context.Create.fields.prefill_prev_year')) !!} ?</label>
+        <label for="prev_year_selector">{!! ucfirst(trans('imet-core::v2_context.Create.fields.prefill_prev_year')) !!} ?</label>
     </div>
 
     {{--  loading..  --}}

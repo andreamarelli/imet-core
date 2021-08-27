@@ -26,10 +26,10 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
                     <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
                 @endif
                 @if($index==1)
-                    <th class="text-center">@lang('imet-core::form/v2/context.Sectors.area_percentage')</th>
+                    <th class="text-center">@lang('imet-core::v2_context.Sectors.area_percentage')</th>
                 @endif
                 @if($index==3)
-                    <th class="text-center">@lang('imet-core::form/v2/context.Sectors.average_time')</th>
+                    <th class="text-center">@lang('imet-core::v2_context.Sectors.average_time')</th>
                 @endif
             @endforeach
 
@@ -113,7 +113,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
             <td colspan="6">
                 <div v-if="!isValidArea" class="text-danger text-left" style="font-size: 0.9em;">
                     <i class="fa fa-exclamation-triangle"></i>
-                    {!!  ucfirst(trans('imet-core::form/v2/context.Sectors.sum_error')) !!}
+                    {!!  ucfirst(trans('imet-core::v2_context.Sectors.sum_error')) !!}
                 </div>
             </td>
         </tr>

@@ -13,11 +13,11 @@ class Staff extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'TABLE';
         $this->module_code = 'I2';
-        $this->module_title = trans('imet-core::form/v1/evaluation.Staff.title');
+        $this->module_title = trans('imet-core::v1_evaluation.Staff.title');
         $this->module_fields = [
-            ['name' => 'Theme',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.Staff.fields.Theme')],
-            ['name' => 'PercentageLevel',  'type' => 'integer',   'label' => trans('imet-core::form/v1/evaluation.Staff.fields.PercentageLevel')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v1/evaluation.Staff.fields.Comments')],
+            ['name' => 'Theme',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.Staff.fields.Theme')],
+            ['name' => 'PercentageLevel',  'type' => 'integer',   'label' => trans('imet-core::v1_evaluation.Staff.fields.PercentageLevel')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_evaluation.Staff.fields.Comments')],
         ];
 
         $this->predefined_values = [
@@ -25,10 +25,10 @@ class Staff extends Modules\Component\ImetModule_Eval
             'values' => null
         ];
 
-        $this->module_info = trans('imet-core::form/v1/evaluation.Staff.module_info');
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v1/evaluation.Staff.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v1/evaluation.Staff.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v1/evaluation.Staff.ratingLegend');
+        $this->module_info = trans('imet-core::v1_evaluation.Staff.module_info');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.Staff.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v1_evaluation.Staff.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v1_evaluation.Staff.ratingLegend');
 
         $this->max_rows = 14;
 

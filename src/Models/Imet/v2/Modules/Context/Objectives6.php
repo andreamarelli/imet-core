@@ -9,7 +9,7 @@ class Objectives6 extends _Objectives
     public function __construct(array $attributes = []) {
 
         $this->module_code = 'CTX 6.2';
-        $this->module_info = trans('imet-core::form/v2/context.Objectives6.module_info');
+        $this->module_info = trans('imet-core::v2_context.Objectives6.module_info');
 
         parent::__construct($attributes);
 

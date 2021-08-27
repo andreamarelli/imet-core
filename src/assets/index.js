@@ -2,7 +2,9 @@ window.ImetCore = {};
 
 
 // Templates
-Vue.component('dopa_radar',                     require('./js/templates/dopa_radar.vue').default);
+Vue.component('dopa_chart_bar',                 window.ModularForms.Dopa.chart_bar);
+Vue.component('dopa_indicators_table',          window.ModularForms.Dopa.indicators_table);
+Vue.component('dopa_radar',                     window.ModularForms.Dopa.chart_radar);
 Vue.component('imet_charts',                    require('./js/templates/imet_charts.vue').default);
 Vue.component('imet_encoders_responsibles',     require('./js/templates/imet_encoders_responsibles.vue').default);
 Vue.component('imet_progress_bar',              require('./js/templates/imet_progress_bar.vue').default);

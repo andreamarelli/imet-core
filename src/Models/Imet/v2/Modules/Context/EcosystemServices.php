@@ -20,47 +20,47 @@ class EcosystemServices extends Modules\Component\ImetModule
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 7.1';
-        $this->module_title = trans('imet-core::form/v2/context.EcosystemServices.title');
+        $this->module_title = trans('imet-core::v2_context.EcosystemServices.title');
         $this->module_fields = [
-            ['name' => 'Element',               'type' => 'text-area',          'label' => trans('imet-core::form/v2/context.EcosystemServices.fields.Element')],
-            ['name' => 'Importance',            'type' => 'toggle-ImetV2_EcosystemServicesImportance',   'label' => trans('imet-core::form/v2/context.EcosystemServices.fields.Importance')],
-            ['name' => 'ImportanceRegional',    'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/context.EcosystemServices.fields.ImportanceRegional')],
-            ['name' => 'ImportanceGlobal',      'type' => 'blade-imet-core::components.rating-Minus2to2',   'label' => trans('imet-core::form/v2/context.EcosystemServices.fields.ImportanceGlobal')],
-            ['name' => 'Observations',          'type' => 'text-area',          'label' => trans('imet-core::form/v2/context.EcosystemServices.fields.Observations')],
+            ['name' => 'Element',               'type' => 'text-area',          'label' => trans('imet-core::v2_context.EcosystemServices.fields.Element')],
+            ['name' => 'Importance',            'type' => 'toggle-ImetV2_EcosystemServicesImportance',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.Importance')],
+            ['name' => 'ImportanceRegional',    'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceRegional')],
+            ['name' => 'ImportanceGlobal',      'type' => 'blade-imet-core::components.rating-Minus2to2',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceGlobal')],
+            ['name' => 'Observations',          'type' => 'text-area',          'label' => trans('imet-core::v2_context.EcosystemServices.fields.Observations')],
         ];
 
         $this->predefined_values = [
             'field' => 'Element',
             'values' => [
-                'group0' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group0'),
-                'group1' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group1'),
-                'group2' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group2'),
-                'group3' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group3'),
-                'group4' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group4'),
-                'group5' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group5'),
-                'group6' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group6'),
-                'group7' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group7'),
-                'group8' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group8'),
-                'group9' => trans('imet-core::form/v2/context.EcosystemServices.predefined_values.group9'),
+                'group0' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group0'),
+                'group1' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group1'),
+                'group2' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group2'),
+                'group3' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group3'),
+                'group4' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group4'),
+                'group5' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group5'),
+                'group6' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group6'),
+                'group7' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group7'),
+                'group8' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group8'),
+                'group9' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group9'),
             ]
         ];
 
         $this->module_groups = [
-            'group0' => trans('imet-core::form/v2/context.EcosystemServices.groups.group0'),
-            'group1' => trans('imet-core::form/v2/context.EcosystemServices.groups.group1'),
-            'group2' => trans('imet-core::form/v2/context.EcosystemServices.groups.group2'),
-            'group3' => trans('imet-core::form/v2/context.EcosystemServices.groups.group3'),
-            'group4' => trans('imet-core::form/v2/context.EcosystemServices.groups.group4'),
-            'group5' => trans('imet-core::form/v2/context.EcosystemServices.groups.group5'),
-            'group6' => trans('imet-core::form/v2/context.EcosystemServices.groups.group6'),
-            'group7' => trans('imet-core::form/v2/context.EcosystemServices.groups.group7'),
-            'group8' => trans('imet-core::form/v2/context.EcosystemServices.groups.group8'),
-            'group9' => trans('imet-core::form/v2/context.EcosystemServices.groups.group9'),
+            'group0' => trans('imet-core::v2_context.EcosystemServices.groups.group0'),
+            'group1' => trans('imet-core::v2_context.EcosystemServices.groups.group1'),
+            'group2' => trans('imet-core::v2_context.EcosystemServices.groups.group2'),
+            'group3' => trans('imet-core::v2_context.EcosystemServices.groups.group3'),
+            'group4' => trans('imet-core::v2_context.EcosystemServices.groups.group4'),
+            'group5' => trans('imet-core::v2_context.EcosystemServices.groups.group5'),
+            'group6' => trans('imet-core::v2_context.EcosystemServices.groups.group6'),
+            'group7' => trans('imet-core::v2_context.EcosystemServices.groups.group7'),
+            'group8' => trans('imet-core::v2_context.EcosystemServices.groups.group8'),
+            'group9' => trans('imet-core::v2_context.EcosystemServices.groups.group9'),
         ];
 
 
-        $this->module_info = trans('imet-core::form/v2/context.EcosystemServices.module_info');
-        $this->ratingLegend = trans('imet-core::form/v2/context.EcosystemServices.ratingLegend');
+        $this->module_info = trans('imet-core::v2_context.EcosystemServices.module_info');
+        $this->ratingLegend = trans('imet-core::v2_context.EcosystemServices.ratingLegend');
         parent::__construct($attributes);
 
     }
@@ -69,7 +69,7 @@ class EcosystemServices extends Modules\Component\ImetModule
     {
         $vue_data = parent::getVueData($form_id, $collection);
         $vue_data['groupByCategory'] = static::$groupByCategory;
-        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/context.EcosystemServices.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.EcosystemServices.warning_on_save');
         return $vue_data;
     }
 

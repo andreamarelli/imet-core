@@ -16,26 +16,26 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.3';
-        $this->module_title = trans('imet-core::form/v2/evaluation.ImportanceHabitats.title');
+        $this->module_title = trans('imet-core::v2_evaluation.ImportanceHabitats.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show',   'label' => trans('imet-core::form/v2/evaluation.ImportanceHabitats.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::form/v2/evaluation.ImportanceHabitats.fields.EvaluationScore')],
-            ['name' => 'EvaluationScore2',  'type' => 'blade-imet-core::components.rating-1to3',   'label' => trans('imet-core::form/v2/evaluation.ImportanceHabitats.fields.EvaluationScore2')],
-            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::form/v2/evaluation.ImportanceHabitats.fields.IncludeInStatistics')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::form/v2/evaluation.ImportanceHabitats.fields.Comments')],
+            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'blade-imet-core::components.rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore2',  'type' => 'blade-imet-core::components.rating-1to3',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.EvaluationScore2')],
+            ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.IncludeInStatistics')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.Comments')],
         ];
 
         $this->module_groups = [
-            'group0' => trans('imet-core::form/v2/evaluation.ImportanceHabitats.groups.group0'),
-            'group1' => trans('imet-core::form/v2/evaluation.ImportanceHabitats.groups.group1'),
+            'group0' => trans('imet-core::v2_evaluation.ImportanceHabitats.groups.group0'),
+            'group1' => trans('imet-core::v2_evaluation.ImportanceHabitats.groups.group1'),
         ];
 
-        $this->module_subTitle = trans('imet-core::form/v2/evaluation.ImportanceHabitats.module_subTitle');
-        $this->module_info_EvaluationQuestion = trans('imet-core::form/v2/evaluation.ImportanceHabitats.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::form/v2/evaluation.ImportanceHabitats.module_info_Rating');
-        $this->ratingLegend = trans('imet-core::form/v2/evaluation.ImportanceHabitats.ratingLegend');
+        $this->module_subTitle = trans('imet-core::v2_evaluation.ImportanceHabitats.module_subTitle');
+        $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ImportanceHabitats.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::v2_evaluation.ImportanceHabitats.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::v2_evaluation.ImportanceHabitats.ratingLegend');
 
-        $this->validation_3to10 = trans('imet-core::form/v2/evaluation.ImportanceHabitats.validation_3to10');
+        $this->validation_3to10 = trans('imet-core::v2_evaluation.ImportanceHabitats.validation_3to10');
 
         parent::__construct($attributes);
 
@@ -68,7 +68,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::form/v2/evaluation.ImportanceHabitats.warning_on_save');
+        $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.ImportanceHabitats.warning_on_save');
         return $vue_data;
     }
 

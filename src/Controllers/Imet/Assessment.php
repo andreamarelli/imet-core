@@ -147,23 +147,23 @@ trait Assessment{
             'v1' => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'R', 'EI'],
                 'full' => [
-                    trans('imet-core::form/v1/common.steps_eval.context'),
-                    trans('imet-core::form/v1/common.steps_eval.planning'),
-                    trans('imet-core::form/v1/common.steps_eval.inputs'),
-                    trans('imet-core::form/v1/common.steps_eval.process'),
-                    trans('imet-core::form/v1/common.steps_eval.outputs'),
-                    trans('imet-core::form/v1/common.steps_eval.outcomes'),
+                    trans('imet-core::v1_common.steps_eval.context'),
+                    trans('imet-core::v1_common.steps_eval.planning'),
+                    trans('imet-core::v1_common.steps_eval.inputs'),
+                    trans('imet-core::v1_common.steps_eval.process'),
+                    trans('imet-core::v1_common.steps_eval.outputs'),
+                    trans('imet-core::v1_common.steps_eval.outcomes'),
                 ]
             ],
             'v2' => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'OP', 'OC'],
                 'full' => [
-                    trans('imet-core::form/v2/common.steps_eval.context'),
-                    trans('imet-core::form/v2/common.steps_eval.planning'),
-                    trans('imet-core::form/v2/common.steps_eval.inputs'),
-                    trans('imet-core::form/v2/common.steps_eval.process'),
-                    trans('imet-core::form/v2/common.steps_eval.outputs'),
-                    trans('imet-core::form/v2/common.steps_eval.outcomes'),
+                    trans('imet-core::v2_common.steps_eval.context'),
+                    trans('imet-core::v2_common.steps_eval.planning'),
+                    trans('imet-core::v2_common.steps_eval.inputs'),
+                    trans('imet-core::v2_common.steps_eval.process'),
+                    trans('imet-core::v2_common.steps_eval.outputs'),
+                    trans('imet-core::v2_common.steps_eval.outcomes'),
                 ]
             ],
         ];
