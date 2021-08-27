@@ -36,12 +36,12 @@ $url        = URL::route('index');
                 {{-- Import json IMETs --}}
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
                     {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
-                    {{ ucfirst(trans('common.import')) }}
+                    {{ ucfirst(trans('modular-forms::common.import')) }}
                 </a>
                 {{-- Export json IMETs --}}
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
                     {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
-                    {{ ucfirst(trans('common.export')) }}
+                    {{ ucfirst(trans('modular-forms::common.export')) }}
                 </a>
                 {{-- Create new IMET --}}
                 @include('modular-forms::buttons.create', [
@@ -90,9 +90,9 @@ $url        = URL::route('index');
                            @click="check_all()"
                            v-model="are_checked_all">
                 </th>
-                <th class="text-center width60px">@lang('entities.common.id')</th>
-                @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('entities.common.year'), 'class' => 'width90px'])
-                @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('entities.protected_area.protected_area', 1)])
+                <th class="text-center width60px">@lang('imet-core::common.id')</th>
+                @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('imet-core::common.year'), 'class' => 'width90px'])
+                @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('imet-core::common.protected_area.protected_area', 1)])
                 <th class="text-center">@lang('imet-core::common.encoders_responsible')</th>
                 <th>{{-- radar --}}</th>
                 <th class="width200px">{{-- actions --}}</th>
@@ -133,7 +133,7 @@ $url        = URL::route('index');
                         </div>
                         {{-- version --}}
                         <div>
-                            {{ ucfirst(trans('common.version')) }}:
+                            {{ ucfirst(trans('imet-core::common.version')) }}:
                             <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
                             <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
                         </div>
@@ -172,7 +172,7 @@ $url        = URL::route('index');
                                     'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                                     'action' =>'merge_view',
                                     'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('common.merge')),
+                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
                                     'icon' => 'clone',
                                     'class' => 'btn-primary'
                                 ])
@@ -185,7 +185,7 @@ $url        = URL::route('index');
                         'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                         'action' =>'export',
                         'item' => 'item.FormID',
-                        'tooltip' => ucfirst(trans('common.export')),
+                        'tooltip' => ucfirst(trans('modular-forms::common.export')),
                         'icon' => 'cloud-download-alt',
                         'class' => 'btn-primary'
                     ])
@@ -196,7 +196,7 @@ $url        = URL::route('index');
                                 'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
                                 'action' =>'print',
                                 'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('common.print')),
+                                'tooltip' => ucfirst(trans('modular-forms::common.print')),
                                 'icon' => 'print',
                                 'class' => 'btn-primary'
                             ])

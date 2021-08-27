@@ -8,7 +8,7 @@ $only_label = $only_label ?? false;
 
 ?>
 
-@if(\Illuminate\Support\Str::contains($type, 'selector-wdpa_multiple"))
+@if(\Illuminate\Support\Str::contains($type, 'selector-wdpa_multiple'))
     <?php
     if($value!==null){
         $values = array_map(function($value) use($type){

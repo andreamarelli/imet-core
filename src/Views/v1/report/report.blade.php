@@ -72,7 +72,7 @@ function score_class_threats($value, $additional_classes=''){
 
             <div class="module-body">
                 <div id="map" v-if=connection></div>
-                <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
+                <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
                 <div style="display: flex;">
                     @if($connection)
                         <div id="radar">
@@ -247,7 +247,7 @@ function score_class_threats($value, $additional_classes=''){
                         ></dopa_indicators_table>
 
                     </div>
-                    <div v-else class="dopa_not_available">@lang('entities.dopa_not_available')</div>
+                    <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
                 </div>
             </div>
         </div>
@@ -259,18 +259,18 @@ function score_class_threats($value, $additional_classes=''){
                     <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
                         @method('PATCH')
                         @csrf
-                        <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('common.save')) }}</span>
+                        <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
                 <div class="standalone" v-show=status==='loading' >
                     <i class="fa fa-spinner fa-spin green_dark"></i>
-                    {{ ucfirst(trans('common.saving')) }}
+                    {{ ucfirst(trans('modular-forms::common.saving')) }}
                 </div>
-                <div v-show=status==='saved' class="standalone highlight">{{ ucfirst(trans('common.saved_successfully')) }}!</div>
-                <div v-show=status==='error' class="standalone error">{{ ucfirst(trans('common.saved_error')) }}!</div>
+                <div v-show=status==='saved' class="standalone highlight">{{ ucfirst(trans('modular-forms::common.saved_successfully')) }}!</div>
+                <div v-show=status==='error' class="standalone error">{{ ucfirst(trans('modular-forms::common.saved_error')) }}!</div>
 
                 {{-- Print --}}
-                <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
+                <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
 
