@@ -179,15 +179,6 @@ class Imet extends Form
         ];
     }
 
-    public static function getResponsiblesLabels(): array
-    {
-        return [
-            'encoders' => trans('imet-core::form/common.encoders'),
-            'internal' => trans('imet-core::form/common.responsible_internal'),
-            'external' => trans('imet-core::form/common.responsible_external')
-        ];
-    }
-
     public static function getVersion($form_id)
     {
         $form = static::find($form_id);

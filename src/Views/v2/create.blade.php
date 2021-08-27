@@ -15,12 +15,12 @@ $is_wdpa = $is_wdpa ?? true;
 @section('content')
 
     @if($is_wdpa)
-        @include('admin.components.module.edit.container', [
+        @include('modular-forms::module.edit.container', [
             'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
             'module_class' => \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Create::class,
             'form_id' => null])
     @else
-        @include('admin.components.module.edit.container', [
+        @include('modular-forms::module.edit.container', [
            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
            'module_class' => \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\CreateNonWdpa::class,
            'form_id' => null])

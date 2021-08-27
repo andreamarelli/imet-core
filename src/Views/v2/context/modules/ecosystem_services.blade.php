@@ -38,9 +38,9 @@ $dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')
 $dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')
     ->before(injectTitleAndHistogram(trans('imet-core::form/v2/context.EcosystemServices.categories.title2'), '1'));
 $dom->filter('h5.group_title_'.$definitions['module_key'].'_group5')
-    ->before(injectTitleAndHistogram(trans('imet-core::form/imet/v2/context.EcosystemServices.categories.title3'), '2'));
+    ->before(injectTitleAndHistogram(trans('imet-core::form/v2/context.EcosystemServices.categories.title3'), '2'));
 $dom->filter('h5.group_title_'.$definitions['module_key'].'_group9')
-    ->before(injectTitleAndHistogram(trans('imet-core::form/imet/v2/context.EcosystemServices.categories.title4'), '3'));
+    ->before(injectTitleAndHistogram(trans('imet-core::form/v2/context.EcosystemServices.categories.title4'), '3'));
 
 ?>
 {!! $dom->saveHTML() !!}

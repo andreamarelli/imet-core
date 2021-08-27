@@ -49,7 +49,6 @@ if($primary_form->version==='v1'){
                     <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                         <imet_encoders_responsibles
                             :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($primary_form->getKey(), $primary_form->version))'
-                            :labels='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsiblesLabels())'
                         ></imet_encoders_responsibles>
                     </div>
                 </th>
@@ -63,7 +62,6 @@ if($primary_form->version==='v1'){
                         <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                             <imet_encoders_responsibles
                                     :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($duplicated_form_id, $primary_form->version))'
-                                    :labels='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsiblesLabels())'
                             ></imet_encoders_responsibles>
                         </div>
 

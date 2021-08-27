@@ -10,21 +10,21 @@ use AndreaMarelli\ImetCore\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
-$can_encode = User::isAdmin(Auth::user()) || Role::isEncoder(Auth::user());
+$can_encode = \AndreaMarelli\ImetCore\Models\User::isAdmin(Auth::user()) || Role::isEncoder(Auth::user());
 $url        = URL::route('index');
 ?>
 
 @extends('layouts.admin')
 
 @section('admin_breadcrumbs')
-    @include('admin.components.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/imet/common.imet_short')
+    @include('modular-forms::page.breadcrumbs', ['links' => [
+        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/common.imet_short')
     ]])
 @endsection
 
 @if(!is_imet_environment())
 @section('admin_page_title')
-    @lang('imet-core::form/imet/common.imet')
+    @lang('imet-core::form/common.imet')
 @endsection
 @endif
 
@@ -32,29 +32,27 @@ $url        = URL::route('index');
 
     @if($can_encode)
 
-        @component('admin.components.functional_buttons')
-            @slot('buttons')
+        <div class="functional_buttons">
                 {{-- Import json IMETs --}}
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
-                    {!! \AndreaMarelli\ImetCore\Helpers\Template::icon('file-import', 'white') !!}
+                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
                     {{ ucfirst(trans('common.import')) }}
                 </a>
                 {{-- Export json IMETs --}}
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
-                    {!! \AndreaMarelli\ImetCore\Helpers\Template::icon('file-export', 'white') !!}
+                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
                     {{ ucfirst(trans('common.export')) }}
                 </a>
                 {{-- Create new IMET --}}
-                @include('admin.components.buttons.create', [
+                @include('modular-forms::buttons.create', [
                     'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                    'label' => trans('imet-core::form/imet/v2/context.Create.title')
+                    'label' => trans('imet-core::form/v2/context.Create.title')
                 ])
                 <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'create_non_wdpa']) }}">
-                    {!! \AndreaMarelli\ImetCore\Helpers\Template::icon('plus-circle', 'white') !!}
-                    {{ ucfirst(trans('imet-core::form/imet/v2/context.CreateNonWdpa.title')) }}
+                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
+                    {{ ucfirst(trans('imet-core::form/v2/context.CreateNonWdpa.title')) }}
                 </a>
-            @endslot
-        @endcomponent
+        </div>
 
     @endif
 
@@ -81,7 +79,7 @@ $url        = URL::route('index');
             :label="'Save choices'">
         </action-button-cookie>
 
-        @include('admin.components.table.sort_on_client.num_records')
+        @include('modular-forms::tables.sort_on_client.num_records')
 
         <table class="striped">
             <thead>
@@ -93,9 +91,9 @@ $url        = URL::route('index');
                            v-model="are_checked_all">
                 </th>
                 <th class="text-center width60px">@lang('entities.common.id')</th>
-                @include('admin.components.table.sort_on_client.th', ['column' => 'Year', 'label' => trans('entities.common.year'), 'class' => 'width90px'])
-                @include('admin.components.table.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('entities.protected_area.protected_area', 1)])
-                <th class="text-center">@lang('imet-core::form/imet/common.encoders_responsible')</th>
+                @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('entities.common.year'), 'class' => 'width90px'])
+                @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('entities.protected_area.protected_area', 1)])
+                <th class="text-center">@lang('imet-core::form/common.encoders_responsible')</th>
                 <th>{{-- radar --}}</th>
                 <th class="width200px">{{-- actions --}}</th>
             </tr>
@@ -130,7 +128,7 @@ $url        = URL::route('index');
                         <br />
                         {{-- language --}}
                         <div>
-                            {{ ucfirst(trans('imet-core::form/imet/common.encoding_language')) }}:
+                            {{ ucfirst(trans('imet-core::form/common.encoding_language')) }}:
                             <flag :iso2=item.language></flag>
                         </div>
                         {{-- version --}}
@@ -170,7 +168,7 @@ $url        = URL::route('index');
 
                         {{-- Merge tool --}}
                         <span v-if="item.has_duplicates">
-                                @include('admin.components.buttons._generic', [
+                                @include('modular-forms::buttons._generic', [
                                     'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                                     'action' =>'merge_view',
                                     'item' => 'item.FormID',
@@ -183,7 +181,7 @@ $url        = URL::route('index');
                     @endif
 
                     {{-- Export --}}
-                    @include('admin.components.buttons._generic', [
+                    @include('modular-forms::buttons._generic', [
                         'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                         'action' =>'export',
                         'item' => 'item.FormID',
@@ -194,7 +192,7 @@ $url        = URL::route('index');
 
                     {{-- Print --}}
                     <span v-if="item.version==='v2'">
-                            @include('admin.components.buttons._generic', [
+                            @include('modular-forms::buttons._generic', [
                                 'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
                                 'action' =>'print',
                                 'item' => 'item.FormID',
@@ -207,7 +205,7 @@ $url        = URL::route('index');
                     @if($can_encode)
 
                         {{-- Delete --}}
-                        @include('admin.components.buttons.delete', [
+                        @include('modular-forms::buttons.delete', [
                             'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                             'item' => 'item.FormID'
                         ])
@@ -226,7 +224,7 @@ $url        = URL::route('index');
 
         <script>
 
-            new SortedTable({
+            new window.ModularForms.SortableTable({
                 el: '#sortable_list',
                 data: {
                     list: @json($list),

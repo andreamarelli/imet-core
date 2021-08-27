@@ -6,7 +6,7 @@
 /** @var array $years */
 ?>
 
-@component('admin.components.filters', ['url'=>$url, 'request'=>$request, 'method'=>'POST', 'expanded'=>$filter_selected])
+@component('modular-forms::page.filters-accordion', ['url'=>$url, 'request'=>$request, 'method'=>'POST', 'expanded'=>$filter_selected])
     @slot('filter_content')
 
         {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('search', trans('common.search')) !!}
