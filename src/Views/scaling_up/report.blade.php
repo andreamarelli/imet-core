@@ -8,7 +8,7 @@
 
 @if(!is_imet_environment())
 @section('admin_page_title')
-    @lang('imet-core::form/imet/common.imet')
+    @lang('imet-core::common.imet')
 @endsection
 @endif
 

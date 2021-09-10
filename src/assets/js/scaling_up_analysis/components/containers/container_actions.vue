@@ -74,7 +74,7 @@ export default {
   },
     mounted() {
         if(this.comment_title === null) {
-            this.title = this.stores.BaseStore.localization('form/imet/analysis_report/report.comments');
+            this.title = this.stores.BaseStore.localization('imet-core::form/imet/analysis_report.comments');
         }
         else{
             this.title = this.comment_title;

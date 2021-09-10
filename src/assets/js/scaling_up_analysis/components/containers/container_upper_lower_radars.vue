@@ -83,7 +83,7 @@ export default {
       margin:'0px',
       columns: [
         {
-          "label": window.Locale.getLabel('common.protected_area.protected_area'),
+          "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
           "field": "name"
         },
         {
