@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('admin_breadcrumbs')
-    @include('admin.components.breadcrumbs', ['links' => [
+    @include('modular-forms::page.breadcrumbs', ['links' => [
         action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::form/imet/common.imet_short')
     ]])
 @endsection
@@ -29,9 +29,9 @@
                         </div>
                     </div>
                 </div>
-                @include('admin.imet.scaling_up.components.scaling_up_template')
+                @include('imet-core::scaling_up.components.scaling_up_template')
                 @foreach($templates as $key => $template)
-                    @include('admin.imet.scaling_up.components.'.$template['name'],
+                    @include('imet-core::scaling_up.components.'.$template['name'],
                                 [   'name' => $template['name'],
                                    'title' => $template['title'],
                                    'snapshot_id' => $template['snapshot_id'],
@@ -46,7 +46,7 @@
         new Vue({
             el: '#imet_report',
             data: {
-                url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'get_ajax_responses']) }}'
+                url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController::class, 'get_ajax_responses']) }}'
             }
         });
 

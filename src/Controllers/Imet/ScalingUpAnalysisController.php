@@ -86,7 +86,7 @@ class ScalingUpAnalysisController
 
         ];
 
-        return view('admin.imet.scaling_up.report', [
+        return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,
             'pa_ids' => $pa_ids,
             'protected_areas' => $areas_names_concat,
@@ -110,7 +110,7 @@ class ScalingUpAnalysisController
             $areas_names_concat = implode(', ', $areas_names);
         }
 
-        return view('admin.imet.scaling_up.preview_template', [
+        return view('imet-core::scaling_up.preview_template', [
             "scaling_up_id" => $id,
             'protected_areas' => $areas_names_concat
         ]);

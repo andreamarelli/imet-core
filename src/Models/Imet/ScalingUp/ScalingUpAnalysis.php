@@ -77,7 +77,6 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_protected_area($form_ids)
     {
-
         $protected_area = [];
         foreach ($form_ids as $form_id) {
             $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id);
@@ -970,15 +969,7 @@ class ScalingUpAnalysis extends Model
     public static function get_protected_area_data($form_id)
     {
         $action = 'get_protected_area_data';
-        $cache_key = Cache::buildKey($action, ['form_id' => $form_id]);
-
-        if (($cache_value = Cache::get($cache_key)) !== false) {
-            return $cache_value;
-        }
-
         $protected_area = Imet::where('FormID', $form_id)->get();
-        Cache::put($cache_key, $protected_area, static::$ttl);
-
         return $protected_area;
     }
 }

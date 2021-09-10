@@ -16,7 +16,7 @@ export default {
 
     mixins: [
         window.ImetCore.ScalingUp.Mixins.resize,
-        window.ModularForms.Template.chart_doughnut
+        window.ModularForms.Dopa.chart_doughnut
     ],
 
     methods: {

@@ -49,15 +49,13 @@ export default {
     }
   },
   data() {
-    const Locale = window.Locale;
-    const token = window.Laravel.csrfToken;
     return {
-      Locale: Locale,
+      Locale: window.Locale,
+      _token: window.Laravel.csrfToken,
       modalIsOpen: false,
       selections: [],
       value: [],
-      ids: [],
-      _token: token
+      ids: []
     };
   },
   mounted: function () {
@@ -96,7 +94,7 @@ export default {
     },
     get_raw_values(){
       if (this.is_cookie()) {
-        const cookie = window.Cookies.getByName(this.cookieName);
+        const cookie = window.ModularForms.Mixins.Cookies.getByName(this.cookieName);
         if(cookie) {
           const data = cookie.split('=');
           return JSON.parse(data[1]);
@@ -122,13 +120,13 @@ export default {
     clear_all: async function () {
       this.selections = [];
       if (this.is_cookie()) {
-        window.Cookies.delete(this.cookieName);
+          window.ModularForms.Mixins.Cookies.delete(this.cookieName);
       }
     },
     update: function () {
       if (this.is_cookie()) {
         const updated_values = JSON.stringify([...this.selections]);
-        window.Cookies.update(this.cookieName, updated_values);
+          window.ModularForms.Mixins.Cookies.update(this.cookieName, updated_values);
       }
     }
   }
