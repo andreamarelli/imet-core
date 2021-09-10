@@ -7,7 +7,7 @@
 export default {
   name: "bar_category_stack",
   mixins: [
-      window.ImetCore.Mixins.resize
+      window.ImetCore.ScalingUp.Mixins.resize
   ],
   props: {
     width: {

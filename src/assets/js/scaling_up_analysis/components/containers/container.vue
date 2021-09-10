@@ -27,7 +27,7 @@ export default {
   name: "container.vue",
   inject: ['stores'],
   mixins: [
-      window.ImetCore.Mixins.ajax
+      window.ImetCore.ScalingUp.Mixins.ajax
   ],
   components: {
       small_menu

@@ -7,7 +7,7 @@
 export default {
   name: "scatter",
   mixins: [
-      window.ImetCore.Mixins.resize
+      window.ImetCore.ScalingUp.Mixins.resize
   ],
   props: {
     width: {
