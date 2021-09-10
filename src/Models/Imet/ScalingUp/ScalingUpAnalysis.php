@@ -350,7 +350,7 @@ class ScalingUpAnalysis extends Model
         }
 
         foreach ($species_count as $k => $group) {
-            key_elements['species'][$k] = array_filter($key_elements['species'][$k], function ($v) {
+            $key_elements['species'][$k] = array_filter($key_elements['species'][$k], function ($v) {
                 return count($v[0]) > 1;
             });
 
