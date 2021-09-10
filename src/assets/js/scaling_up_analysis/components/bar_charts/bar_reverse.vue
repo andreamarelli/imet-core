@@ -35,6 +35,12 @@ export default {
             interval: 0
           }
         },
+          grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              containLabel: true
+          },
         series: [{
           data: this.values,
           label: {

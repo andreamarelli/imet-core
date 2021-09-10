@@ -46,6 +46,7 @@ export default {
   computed: {
     bar_options() {
       const {values, error_data, legends, indicators} = this.getValues();
+        console.log({error_data});
       return {
         title: {
           text: ''
@@ -92,10 +93,10 @@ export default {
     grid: function () {
       return {
         grid: {
-          y: 20,
-          y2: 70,
-          x: 110,
-          x2: 50
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
         }
       }
     },
@@ -222,7 +223,9 @@ export default {
         {
           type: 'bar',
           name: 'bar',
-          data: bar_data,
+            data: bar_data.map(data => {
+                return {value: data.value, itemStyle: {color: data.itemStyle.color}, label: {color: "#000000"}}
+            }),
           itemStyle: {
             color: '#77bef7'
           },

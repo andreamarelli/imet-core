@@ -74,6 +74,12 @@ export default {
           realtimeSort: true,
           minInterval: 1
         },
+          grid: {
+              left: '3%',
+              right: '4%',
+              bottom: '3%',
+              containLabel: true
+          },
         series: [{
           data: this.values,
           type: 'bar'
@@ -122,7 +128,8 @@ export default {
     },
     draw_chart() {
       if (Object.keys(this.values).length > 0) {
-        this.chart = echarts.init(this.$el);
+          console.log(Object.keys(this.values).length);
+          this.chart = echarts.init(this.$el);
         this.chart.setOption(this.bar_options);
       }
     }
