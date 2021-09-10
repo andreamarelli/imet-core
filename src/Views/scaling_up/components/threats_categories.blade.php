@@ -19,7 +19,7 @@
                                                    :exclude_elements="'{{$exclude_elements}}'">
                                     <template slot-scope="v">
                                         <bar_reverse
-                                                :title="container.props.stores.BaseStore.localization(`form/imet/v2/context.MenacesPressions.categories.title${index+1}`)"
+                                                :title="container.props.stores.BaseStore.localization(`imet-core::v2_context.MenacesPressions.categories.title${index+1}`)"
                                                 :event_id="'save_image_s'"
                                                 :show_legends="true"
                                                 :values="v.props"

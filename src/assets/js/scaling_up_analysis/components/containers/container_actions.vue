@@ -4,7 +4,7 @@
       <slot :props="data"></slot>
     </div>
     <div class="mb-2 mt-2">
-      <div class="mt-3 text-black-50 font-weight-bold generic-comments">{{stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.comments')}} :</div>
+      <div class="mt-3 text-black-50 font-weight-bold generic-comments">{{stores.BaseStore.localization('imet-core::analysis_report.comments')}} :</div>
       <p>
         <editor :save_data="get_data" :event_id="event_data"></editor>
       </p>
@@ -20,7 +20,7 @@
             <div v-if="loading" class="spinner-border text-success float-right" role="status">
               <span class="sr-only">Loading...</span>
             </div>
-            <span v-if="!loading">{{stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.add_analysis')}}</span>
+            <span v-if="!loading">{{stores.BaseStore.localization('imet-core::analysis_report.add_analysis')}}</span>
           </button>
         </div>
       </div>

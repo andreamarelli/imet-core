@@ -9,7 +9,7 @@
       <div v-else-if="timeout" class="dopa_not_available"
            v-html="stores.BaseStore.localization('entities.dopa_not_available')"></div>
       <div v-else-if="error_wrong" class="dopa_not_available"
-           v-html="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.error_wrong')"></div>
+           v-html="stores.BaseStore.localization('imet-core::analysis_report.error_wrong')"></div>
       <div v-else class="container-menu">
         <!--        <small_menu v-if="show_menu" :items="data.values.diagrams"></small_menu>-->
         <slot :props="data"></slot>

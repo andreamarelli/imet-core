@@ -42,9 +42,9 @@
                                                          v-if="container.props.stores.BaseStore.is_visible(data_elements.props.values.scatter)"
                                                          :name="'grouping'">
                                                         <div class="col-sm">
-                                                            <scatter :label_axis_x="'@lang('imet-core::form/imet/v2/common.steps_eval.context') , @lang('imet-core::form/imet/v2/common.steps_eval.planning'), @lang('imet-core::form/imet/v2/common.steps_eval.inputs')'"
-                                                                     :label_axis_y="'@lang('imet-core::form/imet/v2/common.steps_eval.process')'"
-                                                                     :label_axis_y2="'@lang('imet-core::form/imet/v2/common.steps_eval.outputs'), @lang('imet-core::form/imet/v2/common.steps_eval.outcomes')'"
+                                                            <scatter :label_axis_x="'@lang('imet-core::v2_common.steps_eval.context') , @lang('imet-core::v2_common.steps_eval.planning'), @lang('imet-core::v2_common.steps_eval.inputs')'"
+                                                                     :label_axis_y="'@lang('imet-core::v2_common.steps_eval.process')'"
+                                                                     :label_axis_y2="'@lang('imet-core::v2_common.steps_eval.outputs'), @lang('imet-core::v2_common.steps_eval.outcomes')'"
                                                                      :values='data_elements.props.values.scatter'
                                                             ></scatter>
                                                         </div>

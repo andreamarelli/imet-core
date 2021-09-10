@@ -3,7 +3,7 @@
     <div>
       <div>
         <div class="strong">{{
-            stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.country')
+            stores.BaseStore.localization('imet-core::analysis_report.general_info.country')
           }}:
         </div>
         {{ info.countries }}
@@ -11,7 +11,7 @@
       <div>
         <template>
           <div class="strong">{{
-              stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.network')
+              stores.BaseStore.localization('imet-core::analysis_report.general_info.network')
             }}:
           </div>
           {{ info.network }}
@@ -19,61 +19,61 @@
       </div>
       <div>
         <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.transbondary_name') }}:
+          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.transbondary_name') }}:
         </div>
         {{ info.landscapes }}
       </div>
       <div>
         <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.category_protected_area') }}:
+          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.category_protected_area') }}:
         </div>
         {{ info.categories }}
       </div>
       <div>
         <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.main_values') }}:
+          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.main_values') }}:
         </div>
         {{ info.values_network }}
       </div>
       <div>
         <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.total_surface_protected') }}:
+          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_protected') }}:
         </div>
         {{ info.total_surface_protected_areas }} [km2]
       </div>
       <div>
         <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.total_surface_landscape') }}:
+          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_landscape') }}:
         </div>
         {{ info.total_surface_area_of_landscape_protected_areas }} [km2]
       </div>
       <div>
-        <div class="strong">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.agency') }}:
+        <div class="strong">{{ stores.BaseStore.localization('imet-core::analysis_report.general_info.agency') }}:
         </div>
         {{ info.agencies }}
       </div>
       <div>
         <div class="strong">{{
-            stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.ecoregions')
+            stores.BaseStore.localization('imet-core::analysis_report.general_info.ecoregions')
           }}:
         </div>
         {{ info.eco_regions }}
       </div>
       <div>
-        <div class="strong">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.vision') }}:
+        <div class="strong">{{ stores.BaseStore.localization('imet-core::analysis_report.general_info.vision') }}:
         </div>
         {{ info.LocalVision }}
       </div>
       <div>
         <div class="strong">{{
-            stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.mission')
+            stores.BaseStore.localization('imet-core::analysis_report.general_info.mission')
           }}:
         </div>
         {{ info.LocalMission }}
       </div>
       <div>
         <div class="strong">{{
-            stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.general_info.objectives')
+            stores.BaseStore.localization('imet-core::analysis_report.general_info.objectives')
           }}:
         </div>
         {{ info.LocalObjective }}

@@ -4,31 +4,31 @@
     <div id="species">
       <div @click="toggle_species('species')"><h5><span class="fas fa-fw"
                                                         :class="{'fa-caret-up': !show_species,'fa-caret-down':show_species}"></span>
-        {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.key_species') }}</h5></div>
+        {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.key_species') }}</h5></div>
       <container_actions :data="species" :name="'species'"
                          :event_image="'save_entire_block_as_image'"
                          :exclude_elements="''">
         <template slot-scope="species_data">
           <div>
-            <elements :values="species_data.props.group0" :title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.animal_species')"
-                      :comment_title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.comments_animal_species')"
+            <elements :values="species_data.props.group0" :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.animal_species')"
+                      :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_animal_species')"
                       :show_element="show_species">
 
               <template>
                 <div v-if="show_species" class="mb-3">
-                  <bar :fields="Object.keys(species_statistics.group0)" :title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.occurrences_species')" :rotate="30" :zoom="true"
+                  <bar :fields="Object.keys(species_statistics.group0)" :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_species')" :rotate="30" :zoom="true"
                        :values='Object.values(species_statistics.group0)'></bar>
                 </div>
               </template>
             </elements>
 
             <elements :values="species_data.props.group1"
-                      :title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.plants_species')"
-                      :comment_title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.comments_plants_species')"
+                      :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.plants_species')"
+                      :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_plants_species')"
                       :show_element="show_species">
               <template>
                 <div v-if="show_species" class="mb-3">
-                  <bar :fields="Object.keys(species_statistics.group1)" :title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.occurrences_species')" :rotate="30" :zoom="true"
+                  <bar :fields="Object.keys(species_statistics.group1)" :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_species')" :rotate="30" :zoom="true"
                        :values='Object.values(species_statistics.group1)'></bar>
                 </div>
               </template>
@@ -42,13 +42,13 @@
     <div id="habitats">
       <div @click="toggle_species('habitats')"><h5><span class="fas fa-fw"
                                                          :class="{'fa-caret-up': !show_habitats,'fa-caret-down':show_habitats}"></span>
-        {{stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.terrestrial_marine_habitats')}}</h5></div>
+        {{stores.BaseStore.localization('imet-core::analysis_report.management_context.terrestrial_marine_habitats')}}</h5></div>
 
       <container_actions :data="habitats" :name="'habitats'"
                          :event_image="'save_entire_block_as_image'"
                          :exclude_elements="''">
         <template slot-scope="habitats_data">
-          <elements :values="habitats_data.props" :comment_title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.comments_terrestrial')"
+          <elements :values="habitats_data.props" :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_terrestrial')"
                     :show_element="show_habitats"></elements>
         </template>
       </container_actions>
@@ -56,12 +56,12 @@
     <div :id="'climate_change'">
       <div @click="toggle_species('climate')"><h5><span class="fas fa-fw"
                                                         :class="{'fa-caret-up': !show_climate,'fa-caret-down':show_climate}"></span>
-        {{stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.climate_change')}} </h5></div>
+        {{stores.BaseStore.localization('imet-core::analysis_report.management_context.climate_change')}} </h5></div>
       <container_actions :data="climate_change" :name="'climate_change'"
                          :event_image="'save_entire_block_as_image'"
                          :exclude_elements="''">
         <template slot-scope="climate_change_data">
-          <elements :values="climate_change_data.props" :comment_title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.comments_climate')"
+          <elements :values="climate_change_data.props" :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_climate')"
                     :show_element="show_climate"></elements>
         </template>
       </container_actions>
@@ -69,12 +69,12 @@
     <div id="ecosystem_services">
       <div @click="toggle_species('ecosystem')"><h5><span class="fas fa-fw"
                                                           :class="{'fa-caret-up': !show_ecosystem,'fa-caret-down':show_ecosystem}"></span>
-        {{stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.ecosystem_services')}} </h5></div>
+        {{stores.BaseStore.localization('imet-core::analysis_report.management_context.ecosystem_services')}} </h5></div>
       <container_actions :data="ecosystem_services" :name="'ecosystem_services'"
                          :event_image="'save_entire_block_as_image'"
                          :exclude_elements="''">
         <template slot-scope="ecosystem_services_data">
-          <elements :values="ecosystem_services_data.props" :comment_title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.comments_ecosystem')"
+          <elements :values="ecosystem_services_data.props" :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_ecosystem')"
                     :show_element="show_ecosystem"></elements>
         </template>
       </container_actions>
@@ -83,12 +83,12 @@
     <div id="threats">
       <div @click="toggle_species('threats')"><h5><span class="fas fa-fw"
                                                         :class="{'fa-caret-up': !show_threats,'fa-caret-down':show_threats}"></span>
-        {{stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.threats')}}  </h5></div>
+        {{stores.BaseStore.localization('imet-core::analysis_report.management_context.threats')}}  </h5></div>
       <container_actions :data="threats" :name="'threats'"
                          :event_image="'save_entire_block_as_image'"
                          :exclude_elements="''">
         <template slot-scope="threats_data">
-          <elements :values="threats_data.props" :comment_title="stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.management_context.comments_threats')"
+          <elements :values="threats_data.props" :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_threats')"
                     :show_element="show_threats"></elements>
         </template>
       </container_actions>

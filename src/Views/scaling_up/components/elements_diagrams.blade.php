@@ -18,7 +18,7 @@
                                         <template slot-scope="data_elements">
                                             <div class="align-items-center ">
                                                 {{--                            <div v-html="color[0][index]"></div>--}}
-                                                <bar :fields="Object.keys(data_elements.props)" :title="container.props.stores.BaseStore.localization('imet-core::form/imet/v2/common.steps_eval.'+index)" :rotate="90"
+                                                <bar :fields="Object.keys(data_elements.props)" :title="container.props.stores.BaseStore.localization('imet-core::v2_common.steps_eval.'+index)" :rotate="90"
                                                      :values='container.props.stores.BaseStore.add_color_to_value(data_elements.props, index, container.props.config.element_diagrams.color)'></bar>
                                             </div>
                                         </template>

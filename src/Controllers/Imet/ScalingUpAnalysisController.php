@@ -56,7 +56,7 @@ class ScalingUpAnalysisController
         $pa_ids = implode(',', array_keys($areas_names));
 
         $areas_names_concat = implode(', ', $areas_names);
-//trans('imet-core::form/imet/v1/evaluation.ClimateChangeMonitoring.fields.Program')
+//trans('imet-core::v1_evaluation.ClimateChangeMonitoring.fields.Program')
         //'grouping-action-buttons,start-zone,dropzone-areas,render-buttons'
         $templates_names = [
             ['name' => "map_view", 'title' => 'Map from Dopa Explorer', 'snapshot_id' => "map_view", 'exclude_elements' => ''],

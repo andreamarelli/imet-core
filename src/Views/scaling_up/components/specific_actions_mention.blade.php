@@ -9,25 +9,25 @@
                         <div class="align-items-center">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('imet-core::form/imet/analysis_report/report.governance_management')</h5>
+                                    <h5>@lang('imet-core::analysis_report.governance_management')</h5>
                                     <editor></editor>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('imet-core::form/imet/analysis_report/report.key_conservation_elements')</h5>
+                                    <h5>@lang('imet-core::analysis_report.key_conservation_elements')</h5>
                                     <editor></editor>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('imet-core::form/imet/analysis_report/report.climate_change_ecosystem')</h5>
+                                    <h5>@lang('imet-core::analysis_report.climate_change_ecosystem')</h5>
                                     <editor></editor>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('imet-core::form/imet/v2/common.steps.threats')</h5>
+                                    <h5>@lang('imet-core::v2_common.steps.threats')</h5>
                                     <editor></editor>
                                 </div>
                             </div>
