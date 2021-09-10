@@ -80,14 +80,18 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             });
 
             // Scaling Up Analysis
-            Route::get('{items}/scaling/up',    [ScalingUpAnalysisController::class, 'report_scaling_up'])->name('scaling_up');
-            Route::get('scaling/up/preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
-            Route::post('scaling/analysis',     [ScalingUpAnalysisController::class, 'get_ajax_responses']);
-            Route::post('scaling/basket/add',   [ScalingUpBasketController::class, 'save']);
-            Route::post('scaling/basket/get',   [ScalingUpBasketController::class, 'retrieve']);
-            Route::post('scaling/basket/all',   [ScalingUpBasketController::class, 'all']);
-            Route::delete( 'scaling/basket/delete/{id}',[ScalingUpBasketController::class, 'delete']);
-            Route::post('scaling/basket/clear', [ScalingUpBasketController::class, 'clear']);
+            Route::group(['prefix' => 'scaling_up'], function () {
+                Route::get('{items}',    [ScalingUpAnalysisController::class, 'report_scaling_up'])->name('scaling_up');
+                Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
+                Route::post('analysis',     [ScalingUpAnalysisController::class, 'get_ajax_responses']);
+                Route::group(['prefix' => 'basket'], function () {
+                    Route::post('add',   [ScalingUpBasketController::class, 'save']);
+                    Route::post('get',   [ScalingUpBasketController::class, 'retrieve']);
+                    Route::post('all',   [ScalingUpBasketController::class, 'all']);
+                    Route::delete('delete/{id}',[ScalingUpBasketController::class, 'delete']);
+                    Route::post('clear', [ScalingUpBasketController::class, 'clear']);
+                });
+            });
 
         });
 
