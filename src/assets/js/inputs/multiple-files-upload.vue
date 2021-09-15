@@ -23,7 +23,7 @@
 export default {
     name: "multipleUpload.vue",
     components: {
-        vueDropzone: window.Vue2Dropzone
+        vueDropzone: window.VueDropzone
     },
     data() {
         const Locale = window.Locale;
