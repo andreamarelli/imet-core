@@ -38,7 +38,7 @@ class ControllerV2 extends Controller
         if(static::AUTHORIZE_BY_POLICY){
             $this->authorize('create', static::$form_class);
         }
-        return view('admin.'.static::$form_view.'.create', ['is_wdpa' => false]);
+        return view(static::$form_view_prefix.'.create', ['is_wdpa' => false]);
     }
 
     /**
