@@ -3,60 +3,47 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
+use Illuminate\Support\Facades\View;
 
-function injectStatsInGroup($view, $group)
-{
-    $allSpaces = '[\s\t\n\r]*';
-    preg_match("/\<th\>\<\/th\>(".$allSpaces."\<\/tr\>".$allSpaces."\<\/thead\>".$allSpaces."\<tbody\sclass\=\"".$group."[\s\"])/m", $view, $matched);
-    $textToAdd = '<th>
-                      <input type="text" disabled="disabled" v-model="group_stats.'.$group.'" class="field-disabled input-number field-edit text-center"/>
-                  </th>';
-    return str_replace($matched[0], $textToAdd.$matched[0], $view);
-}
-
-function injectStatsInRow($view, $group)
-{
-    $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
-    $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
-    return str_replace($searchFor, $textToAdd.$searchFor, $view);
-}
-
-function injectCategoryTitle($view, $module_key, $beforeGroup, $category_index, $title)
-{
-    $searchFor = '<h5 class="highlight group_title_'.$module_key.'_'.$beforeGroup.'">';
-    $textToAdd = '
-        <div class="module-row">
-            <div style="width: 90%;">
-                <h3>'.($category_index+1).'. '.$title.'</h3>
-            </div>
-            <div class="module-row__input">
-                <input type="text" disabled="disabled" v-model="category_stats[\''.$category_index.'\']" class="field-disabled input-number field-edit text-center" style="font-style: bold; margin-top: 20px;"/>
-            </div>
-        </div>';
-    return str_replace($searchFor, $textToAdd.$searchFor, $view);
-}
+$view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
 
 
 // Inject titles (with category stats)
-foreach(\AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::$groupByCategory as $i => $category){
-    $group = $category[0];
-    $category_index = $i+1;
-    $view_groupTable = injectCategoryTitle($view_groupTable, $definitions['module_key'], $group, $i, trans('imet-core::v1_context.MenacesPressions.categories.title'.$category_index));
+foreach(MenacesPressions::$groupByCategory as $i => $category){
+    $searchFor = '<h5 class="highlight group_title_'.$definitions['module_key'].'_'.$category[0].'">';
+    $textToAdd = '
+        <div class="module-row">
+            <div style="width: 90%;">
+                <h3>'.($i+1).'. '.trans('imet-core::v1_context.MenacesPressions.categories.title'.($i+1)).'</h3>
+            </div>
+            <div class="module-row__input">
+                <input type="text" disabled="disabled" v-model="category_stats[\''.$i.'\']"
+                    class="field-disabled input-number field-edit text-center" style="font-style: bold; margin-top: 20px;"/>
+            </div>
+        </div>';
+    $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
 }
 
 // inject row and group stats
-
-
-foreach(\AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::$groupByCategory as $i => $category){
+foreach(MenacesPressions::$groupByCategory as $i => $category){
     foreach ($category as $group){
-        $view_groupTable = injectStatsInRow($view_groupTable, $group);
-        $view_groupTable = injectStatsInGroup($view_groupTable, $group);
+
+        $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
+        $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
+        $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
+
+        $allSpaces = '[\s\t\n\r]*';
+        preg_match("/\<th\>\<\/th\>(".$allSpaces."\<\/tr\>".$allSpaces."\<\/thead\>".$allSpaces."\<tbody\sclass\=\"".$group."[\s\"])/m", $view_groupTable, $matched);
+        $textToAdd = '<th>
+                          <input type="text" disabled="disabled" v-model="group_stats.'.$group.'"
+                                class="field-disabled input-number field-edit text-center"/>
+                      </th>';
+        $view_groupTable = str_replace($matched[0], $textToAdd.$matched[0], $view_groupTable);
     }
 }
 
 $vue_data['groupByCategory'] = $definitions['groupByCategory'];
-
 
 ?>
 

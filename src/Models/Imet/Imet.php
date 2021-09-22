@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Encoder;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
@@ -13,11 +14,24 @@ use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use function session;
 
+/**
+ * Class Imet
+ *
+ * @property string $Country
+ * @property string $FormID
+ * @property string $language
+ * @property string $name
+ * @property string $version
+ * @property string $wdpa_id
+ * @property string $Year
+ *
+ */
 class Imet extends Form
 {
     protected $table = 'imet.imet_form';
@@ -35,7 +49,7 @@ class Imet extends Form
      * Relation to Country
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
-    public function country(): \Illuminate\Database\Eloquent\Relations\hasOne
+    public function country(): hasOne
     {
         return $this->hasOne(Country::class, 'iso3', 'Country');
     }
@@ -205,7 +219,7 @@ class Imet extends Form
      * @param string[] $fields
      * @return array
      */
-    public static function getFieldsSplitToArrays($fields = ['Country','Year','wdpa_id', 'FormID']){
+    public static function getFieldsSplitToArrays(array $fields = ['Country','Year','wdpa_id', 'FormID']){
 
         $getRecords = static::select($fields)
             ->distinct()
@@ -308,6 +322,9 @@ class Imet extends Form
     public static function updateModuleAndForm($item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);
+        if($return['status'] == 'success'){
+            (new Controller)->backup($item);
+        }
 
         $user = Auth::user()
             ->person
@@ -373,22 +390,23 @@ class Imet extends Form
 
     /**
      * Generate a filename for exporting form
+     *
      * @param $extension
      * @return string
      */
-    public function filename($extension)
+    public function filename($extension): string
     {
         $name = Chars::clean(Chars::replaceAccents($this->name));
         $now = Carbon::now()->format('Y-m-d');
 
-        $wdpa_id = ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '-' . $this->wdpa_id;
+        $wdpa_id = ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '_' . $this->wdpa_id;
 
         return 'IMET' .
             $wdpa_id  .
             '-' . $this->Year .
             '-' . $name .
-            '-' . $now .
             '-' . $this->FormID .
+            '_' . $now .
             '.' . $extension;
     }
 

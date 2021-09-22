@@ -5,8 +5,10 @@
 
 $vue_record_index = '0';
 
-function formatNum($value){
-    return str_replace('.', ',', $value);
+if (!function_exists('formatNum')) {
+    function formatNum($value){
+        return str_replace('.', ',', $value);
+    }
 }
 
 $vue_data['AdministrativeArea_ha'] = $vue_data['AdministrativeArea_ha_full'] = formatNum($vue_data['records'][0]['AdministrativeArea']);

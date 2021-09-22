@@ -6,28 +6,30 @@
 
 $view_groupTable = $view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
 
-function injectTitleAndHistogram($title, $category_index){
-    return '
-        <div class="module-row">
-            <div style="width: 60%;">
-                <h3>'.$title.'</h3>
-            </div>
-            <div class="module-row__input">
-                <div class="row progress_bar" style="margin-top: 25px">
-                    <div class="col-lg-1 progress_bar_limits">-100%</div>
-                    <div class="col-lg-10 progress_bar_container">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-negative"
-                                 role="progressbar"
-                                 :style="{ width: Math.abs(category_stats[\''.$category_index.'\']) + \'%\', backgroundColor: \'#87c89b\'}">
-                                <span v-if="category_stats[\''.$category_index.'\']!==null">{{ category_stats[\''.$category_index.'\'] }} %</span>
+if (!function_exists('injectTitleAndHistogram')) {
+    function injectTitleAndHistogram($title, $category_index){
+        return '
+            <div class="module-row">
+                <div style="width: 60%;">
+                    <h3>'.$title.'</h3>
+                </div>
+                <div class="module-row__input">
+                    <div class="row progress_bar" style="margin-top: 25px">
+                        <div class="col-lg-1 progress_bar_limits">-100%</div>
+                        <div class="col-lg-10 progress_bar_container">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-negative"
+                                     role="progressbar"
+                                     :style="{ width: Math.abs(category_stats[\''.$category_index.'\']) + \'%\', backgroundColor: \'#87c89b\'}">
+                                    <span v-if="category_stats[\''.$category_index.'\']!==null">{{ category_stats[\''.$category_index.'\'] }} %</span>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-lg-1 progress_bar_limits">0%</div>
                     </div>
-                    <div class="col-lg-1 progress_bar_limits">0%</div>
                 </div>
-            </div>
-        </div>';
+            </div>';
+    }
 }
 
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
