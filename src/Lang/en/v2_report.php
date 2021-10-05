@@ -17,7 +17,7 @@ return [
     'management_context' => 'Management context (key elements of management)',
     'key_species' => 'Key species',
     'terrestial_marine_habitats' => 'Terrestrial and marine habitats - land-cover, land-change and land-take',
-    'climate_change' => 'Climate Change',
+    'climate_change' => 'Key values sensitive to climate Change',
     'ecosystem_services' => 'Ecosystem services',
     'threats' => 'Threats',
     'management_effectiveness' => 'Management effectiveness analysis (analysis + swot analysis)',

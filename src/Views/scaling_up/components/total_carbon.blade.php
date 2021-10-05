@@ -7,11 +7,22 @@
                             :loaded_at_once="container.props.show_view"
                             :url=url
                             :parameters="'{{$pa_ids}}'"
-                            :func="'get_dopa_pa_all_indicators'"
+                            :func="'getTotalCarbon'"
                     >
                         <template slot-scope="data">
-                            <div v-for="(value, index) in data.props.values" :id="'{{$name}}-'+index"
-                                 class="module-body">
+                            <div v-if="data.props.values.diagram" :id="'sum_diagram'">
+                                <container_actions :data="data.props.values.diagram" :name="'sum_diagram'"
+                                                   :event_image="'save_entire_block_as_image'"
+                                                   :exclude_elements="'{{$exclude_elements}}'">
+                                    <template slot-scope="diagrams">
+                                        <bar :fields="Object.keys(data.props.values.diagram.values)"
+                                             :rotate="45" :zoom="false"
+                                             :values='Object.values(data.props.values.diagram.values)'></bar>
+                                    </template>
+                                </container_actions>
+                            </div>
+                            <div v-for="(value, index) in data.props.values.data" :id="'{{$name}}-'+index"
+                                 class="module-body bg-white border-0">
                                 <container_actions :data="value" :name="'{{$name}}-'+index"
                                                    :event_image="'save_entire_block_as_image'"
                                                    :exclude_elements="'{{$exclude_elements}}'">
@@ -21,7 +32,7 @@
                                                 <div class="list-head" v-html="idx">
                                                 </div>
                                             </div>
-                                            <div class="module-body">
+                                            <div class="module-body bg-white border-0">
                                                 <dopa_indicators_table
                                                         :indicators=container.props.config.dopa_indicators.total_carbon.indicators
                                                         :api_data="Object.assign({}, ...area)"
@@ -36,7 +47,6 @@
                         </template>
                     </container>
                 </div>
-                <container_actions :name="'{{$name}}'" :event_image="'save_entire_block_as_image'"></container_actions>
             </div>
         </div>
     </template>

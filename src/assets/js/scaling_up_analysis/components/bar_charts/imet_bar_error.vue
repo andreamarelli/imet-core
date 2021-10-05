@@ -40,6 +40,16 @@ export default {
       type: [Object, Array],
       default: () => {
       }
+    },
+    axis_dimensions_x: {
+      type: Object,
+      default: () => {
+      }
+    },
+    axis_dimensions_y: {
+      type: Object,
+      default: () => {
+      }
     }
   },
 
@@ -54,7 +64,7 @@ export default {
           data: legends
         },
         ...this.grid(),
-        xAxis: {},
+        xAxis: {...this.axis_dimensions_x},
         yAxis: {
           data: indicators,
           axisLabel: {

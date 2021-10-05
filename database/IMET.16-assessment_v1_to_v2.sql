@@ -10,16 +10,16 @@ CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_condition_stat_step_2_p3(p_val
     VOLATILE PARALLEL UNSAFE
 AS $$
 BEGIN
-    CASE WHEN p_value = 0
+CASE WHEN p_value = 0
         THEN RETURN 1;
-        WHEN p_value <= 25
+WHEN p_value <= 25
             THEN RETURN 0.8*p_value;
-        WHEN p_value <= 62.5
+WHEN p_value <= 62.5
             THEN RETURN (20+(p_value-25)/(62.5-25)*40);
-        WHEN p_value <= 87.5
+WHEN p_value <= 87.5
             THEN RETURN (60+(p_value-62.5)/(87.5-62.5)*30);
-        ELSE RETURN (90+(p_value-87.5)/12.5*10);
-        END CASE;
+ELSE RETURN (90+(p_value-87.5)/12.5*10);
+END CASE;
 
 END;
 $$;
@@ -32,16 +32,16 @@ CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_condition_stat_step_2_p3(
     VOLATILE PARALLEL UNSAFE
 AS $$
 BEGIN
-    CASE WHEN p_value = 0
+CASE WHEN p_value = 0
         THEN RETURN 0;
-        WHEN p_value <= 25
+WHEN p_value <= 25
             THEN RETURN 0.8*p_value;
-        WHEN p_value <= 62.5
+WHEN p_value <= 62.5
             THEN RETURN (20+(p_value-25)/(62.5-25)*40);
-        WHEN p_value <= 87.5
+WHEN p_value <= 87.5
             THEN RETURN (60+(p_value-62.5)/(87.5-62.5)*30);
-        ELSE RETURN (90+(p_value-87.5)/12.5*10);
-        END CASE;
+ELSE RETURN (90+(p_value-87.5)/12.5*10);
+END CASE;
 
 END;
 $$;
@@ -55,16 +55,16 @@ CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_condition_stat_step_3_i3(
     VOLATILE PARALLEL UNSAFE
 AS $$
 BEGIN
-    CASE WHEN p_value = 0
+CASE WHEN p_value = 0
         THEN RETURN 0;
-        WHEN p_value <= 17.5
+WHEN p_value <= 17.5
             THEN RETURN (26/17.5)*p_value;
-        WHEN p_value <= 53
+WHEN p_value <= 53
             THEN RETURN (26+(p_value-17.5)/(53-17.5)*26);
-        WHEN p_value <= 85.5
+WHEN p_value <= 85.5
             THEN RETURN (52+(p_value-53)/(85.5-53)*34);
-        ELSE RETURN (86+(p_value-85.5)/14.5*14);
-        END CASE;
+ELSE RETURN (86+(p_value-85.5)/14.5*14);
+END CASE;
 
 END;
 $$;
@@ -78,16 +78,16 @@ CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_condition_stat_step_3_i4(
     VOLATILE PARALLEL UNSAFE
 AS $$
 BEGIN
-    CASE WHEN p_value = 0
+CASE WHEN p_value = 0
         THEN RETURN 0;
-        WHEN p_value <= 16.7
+WHEN p_value <= 16.7
             THEN RETURN (5/16.7)*p_value;
-        WHEN p_value <= 50
+WHEN p_value <= 50
             THEN RETURN (5+(p_value-16.7)/(50-16.7)*31.6666667);
-        WHEN p_value <= 83.3
+WHEN p_value <= 83.3
             THEN RETURN (36.666667+(p_value-50)/(83.3-50)*36.66666667);
-        ELSE RETURN (73.333333333+(p_value-83.3)/16.7*26.6666666666667);
-        END CASE;
+ELSE RETURN (73.333333333+(p_value-83.3)/16.7*26.6666666666667);
+END CASE;
 
 END;
 $$;
@@ -105,159 +105,16 @@ CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_stat_labels(
 
 AS $$
 declare
-    sql text;
+sql text;
 
 BEGIN
 
-    sql:= 'SELECT code::text, code_label::text,title_fr::text,title_en::text,title_sp::text from imet.imet_metadata_statistics WHERE version=''v1'';';
+sql:= 'SELECT code::text, code_label::text,title_fr::text,title_en::text,title_sp::text from imet.imet_metadata_statistics WHERE version=''v1'';';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $$;
 
-CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step1(
-    form_id integer DEFAULT NULL::integer,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_step1
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1 where formid=form_id;
-        WHEN form_id is null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1 where iso3=c_iso3;
-        WHEN form_id is not null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1 where iso3=c_iso3 and formid=form_id;
-        ELSE
-            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1;
-        END CASE;
-END;
-$$;
-
-CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step2(
-    form_id integer DEFAULT NULL::integer,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_step2
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2 where formid=form_id;
-        WHEN form_id is null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2 where iso3=c_iso3;
-        WHEN form_id is not null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2 where iso3=c_iso3 and formid=form_id;
-        ELSE
-            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2;
-        END CASE;
-END;
-$$;
-
-CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step3(
-    form_id integer DEFAULT NULL::integer,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step3
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3 where formid=form_id;
-        WHEN form_id is null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3 where iso3=c_iso3;
-        WHEN form_id is not null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3 where iso3=c_iso3 and formid=form_id;
-        ELSE
-            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3;
-        END CASE;
-END;
-$$;
-
-CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step4(
-    form_id integer DEFAULT NULL::integer,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step4
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4 where formid=form_id;
-        WHEN form_id is null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4 where iso3=c_iso3;
-        WHEN form_id is not null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4 where iso3=c_iso3 and formid=form_id;
-        ELSE
-            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4;
-        END CASE;
-END;
-$$;
-
-CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step5(
-    form_id integer DEFAULT NULL::integer,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step5
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5 where formid=form_id;
-        WHEN form_id is null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5 where iso3=c_iso3;
-        WHEN form_id is not null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5 where iso3=c_iso3 and formid=form_id;
-        ELSE
-            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5;
-        END CASE;
-END;
-$$;
-
-CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step6(
-    form_id integer DEFAULT NULL::integer,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step6
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6 where formid=form_id;
-        WHEN form_id is null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6 where iso3=c_iso3;
-        WHEN form_id is not null and c_iso3 is not null
-            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6 where iso3=c_iso3 and formid=form_id;
-        ELSE
-            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6;
-        END CASE;
-END;
-$$;
 
 CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step1
 AS
@@ -267,8 +124,8 @@ WITH table0 AS (
                     v_imet_eval_stat_step1.iso3,
                     v_imet_eval_stat_step1.name,
                     round(((COALESCE(v_imet_eval_stat_step1.c12::double precision, 0::double precision) + COALESCE(v_imet_eval_stat_step1.c13::double precision, 0::double precision) + COALESCE(v_imet_eval_stat_step1.c14::double precision, 0::double precision) + COALESCE(v_imet_eval_stat_step1.c15::double precision, 0::double precision) + COALESCE(v_imet_eval_stat_step1.c16::double precision, 0::double precision)) / NULLIF((( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                                                                                                                                                             FROM ( VALUES (v_imet_eval_stat_step1.c12), (v_imet_eval_stat_step1.c13), (v_imet_eval_stat_step1.c14), (v_imet_eval_stat_step1.c15), (v_imet_eval_stat_step1.c16)) v(col)
-                                                                                                                                                                                                                                                                                                                                                                                                                                             WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 2) AS c1,
+                                                                                                                                                                                                                                                                                                                                                                                                                                          FROM ( VALUES (v_imet_eval_stat_step1.c12), (v_imet_eval_stat_step1.c13), (v_imet_eval_stat_step1.c14), (v_imet_eval_stat_step1.c15), (v_imet_eval_stat_step1.c16)) v(col)
+                                                                                                                                                                                                                                                                                                                                                                                                                                          WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 2) AS c1,
                     v_imet_eval_stat_step1.c2,
                     v_imet_eval_stat_step1.c3,
                     v_imet_eval_stat_step1.c12 AS c11,
@@ -291,8 +148,8 @@ SELECT DISTINCT table0.formid,
                 table0.c14,
                 table0.c15,
                 round(((COALESCE(table0.c1, 0::numeric) + COALESCE(table0.c2, 0::numeric) / 2.0 + 50.0 + COALESCE(table0.c3, 0::numeric) + 100.0)::double precision / NULLIF((( SELECT count(*) AS count
-                                                                                                                                                                                FROM ( VALUES (table0.c1), (table0.c2), (table0.c3)) v(col)
-                                                                                                                                                                                WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
+                    FROM ( VALUES (table0.c1), (table0.c2), (table0.c3)) v(col)
+                    WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
 FROM table0
 ORDER BY table0.iso3, table0.name;
 
@@ -323,11 +180,60 @@ SELECT DISTINCT table0.formid,
                 round(table0.p5, 2) AS p5,
                 table0.p6,
                 round(((COALESCE(table0.p1, 0::numeric) / 2.0 + 50.0 + COALESCE(table0.p2, 0::numeric) / 2.0 + 50.0 + COALESCE(table0.p3, 0::numeric) + COALESCE(table0.p4, 0::numeric) + COALESCE(table0.p5, 0::numeric) + COALESCE(table0.p6, 0::numeric))::double precision / NULLIF((( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                           FROM ( VALUES (table0.p1), (table0.p2), (table0.p3), (table0.p4), (table0.p5), (table0.p6)) v(col)
-                                                                                                                                                                                                                                                                                           WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
+                    FROM ( VALUES (table0.p1), (table0.p2), (table0.p3), (table0.p4), (table0.p5), (table0.p6)) v(col)
+                    WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
 FROM table0
 ORDER BY table0.iso3, table0.name;
 
+
+
+CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step1(
+    form_id integer DEFAULT NULL::integer,
+    c_iso3 text DEFAULT NULL::text)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_step1
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+
+CASE WHEN form_id is not null and c_iso3 is null
+        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1 where formid=form_id;
+WHEN form_id is null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1 where iso3=c_iso3;
+WHEN form_id is not null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1 where iso3=c_iso3 and formid=form_id;
+ELSE
+            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step1;
+END CASE;
+END;
+$$;
+
+CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step2(
+    form_id integer DEFAULT NULL::integer,
+    c_iso3 text DEFAULT NULL::text)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_step2
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+
+CASE WHEN form_id is not null and c_iso3 is null
+        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2 where formid=form_id;
+WHEN form_id is null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2 where iso3=c_iso3;
+WHEN form_id is not null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2 where iso3=c_iso3 and formid=form_id;
+ELSE
+            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step2;
+END CASE;
+END;
+$$;
 
 CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step3
 AS
@@ -353,8 +259,8 @@ SELECT DISTINCT table0.formid,
                 table0.i4,
                 table0.i5,
                 round(((COALESCE(table0.i1, 0::numeric) + COALESCE(table0.i2, 0::numeric) + COALESCE(table0.i3, 0::numeric) + COALESCE(table0.i4, 0::numeric) + COALESCE(table0.i5, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                              FROM ( VALUES (table0.i1), (table0.i2), (table0.i3), (table0.i4), (table0.i5)) v(col)
-                                                                                                                                                                                                                              WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
+                    FROM ( VALUES (table0.i1), (table0.i2), (table0.i3), (table0.i4), (table0.i5)) v(col)
+                    WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
 FROM table0
 ORDER BY table0.iso3, table0.name;
 
@@ -421,8 +327,8 @@ SELECT table0.formid,
        table0.pr16_17,
        table0.pr18_19,
        round(((COALESCE(table0.pr1, 0::numeric) + COALESCE(table0.pr2, 0::numeric) + COALESCE(table0.pr3, 0::numeric) + COALESCE(table0.pr4, 0::numeric) + COALESCE(table0.pr5, 0::numeric) + COALESCE(table0.pr6, 0::numeric) + COALESCE(table0.pr7, 0::numeric) + COALESCE(table0.pr8, 0::numeric) + COALESCE(table0.pr9, 0::numeric) + COALESCE(table0.pr10, 0::numeric) + COALESCE(table0.pr11, 0::numeric) + COALESCE(table0.pr12, 0::numeric) + COALESCE(table0.pr13, 0::numeric) + COALESCE(table0.pr14, 0::numeric) + COALESCE(table0.pr15, 0::numeric) + COALESCE(table0.pr16, 0::numeric) + COALESCE(table0.pr17, 0::numeric) + COALESCE(table0.pr18, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          FROM ( VALUES (table0.pr1), (table0.pr2), (table0.pr3), (table0.pr4), (table0.pr5), (table0.pr6), (table0.pr7), (table0.pr8), (table0.pr9), (table0.pr10), (table0.pr11), (table0.pr12), (table0.pr13), (table0.pr14), (table0.pr15), (table0.pr16), (table0.pr17), (table0.pr18)) v(col)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
+           FROM ( VALUES (table0.pr1), (table0.pr2), (table0.pr3), (table0.pr4), (table0.pr5), (table0.pr6), (table0.pr7), (table0.pr8), (table0.pr9), (table0.pr10), (table0.pr11), (table0.pr12), (table0.pr13), (table0.pr14), (table0.pr15), (table0.pr16), (table0.pr17), (table0.pr18)) v(col)
+           WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
 FROM table0;
 
 CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step5
@@ -484,8 +390,8 @@ SELECT DISTINCT table0.formid,
                 table0.ei2,
                 table0.ei3,
                 round(((COALESCE(table0.ei1, 0::numeric)::double precision + COALESCE(table0.ei2::double precision / 2::double precision + 50::double precision, 0::double precision) + COALESCE(table0.ei3::double precision / 2::double precision + 50::double precision, 0::double precision)) / NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                             FROM ( VALUES (table0.ei1), (table0.ei2), (table0.ei3)) v(col)
-                                                                                                                                                                                                                                                                                                             WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
+                                                                                                                                                                                                                                                                                                           FROM ( VALUES (table0.ei1), (table0.ei2), (table0.ei3)) v(col)
+                                                                                                                                                                                                                                                                                                           WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
 FROM table0;
 
 CREATE VIEW imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary
@@ -493,53 +399,53 @@ AS
 WITH table0 AS (
     SELECT v_imet_forms."FormID" AS formid,
            v_imet_forms."Year" AS year,
-           v_imet_forms.wdpa_id,
-           v_imet_forms.iso3,
-           v_imet_forms.name
+    v_imet_forms.wdpa_id,
+    v_imet_forms.iso3,
+    v_imet_forms.name
     FROM imet_assessment.v_imet_forms
 ), table1 AS (
     SELECT v_imet_eval_stat_step1.formid,
-           v_imet_eval_stat_step1.avg_indicator
+    v_imet_eval_stat_step1.avg_indicator
     FROM imet_assessment_v1_to_v2.v_imet_eval_stat_step1
 ), table2 AS (
     SELECT v_imet_eval_stat_step2.formid,
-           v_imet_eval_stat_step2.avg_indicator
+    v_imet_eval_stat_step2.avg_indicator
     FROM imet_assessment_v1_to_v2.v_imet_eval_stat_step2
 ), table3 AS (
     SELECT v_imet_eval_stat_step3.formid,
-           v_imet_eval_stat_step3.avg_indicator
+    v_imet_eval_stat_step3.avg_indicator
     FROM imet_assessment_v1_to_v2.v_imet_eval_stat_step3
 ), table4 AS (
     SELECT v_imet_eval_stat_step4.formid,
-           v_imet_eval_stat_step4.avg_indicator
+    v_imet_eval_stat_step4.avg_indicator
     FROM imet_assessment_v1_to_v2.v_imet_eval_stat_step4
 ), table5 AS (
     SELECT v_imet_eval_stat_step5.formid,
-           v_imet_eval_stat_step5.avg_indicator
+    v_imet_eval_stat_step5.avg_indicator
     FROM imet_assessment_v1_to_v2.v_imet_eval_stat_step5
 ), table6 AS (
     SELECT v_imet_eval_stat_step6.formid,
-           v_imet_eval_stat_step6.avg_indicator
+    v_imet_eval_stat_step6.avg_indicator
     FROM imet_assessment_v1_to_v2.v_imet_eval_stat_step6
 ), tableall AS (
     SELECT a.formid,
-           a.wdpa_id,
-           a.year,
-           a.iso3,
-           a.name,
-           b.avg_indicator AS context,
-           c.avg_indicator AS plans,
-           d.avg_indicator AS inputs,
-           e.avg_indicator AS process,
-           f.avg_indicator AS outputs,
-           g.avg_indicator AS outcomes
+    a.wdpa_id,
+    a.year,
+    a.iso3,
+    a.name,
+    b.avg_indicator AS context,
+    c.avg_indicator AS plans,
+    d.avg_indicator AS inputs,
+    e.avg_indicator AS process,
+    f.avg_indicator AS outputs,
+    g.avg_indicator AS outcomes
     FROM table0 a
-             LEFT JOIN table1 b ON a.formid = b.formid
-             LEFT JOIN table2 c ON a.formid = c.formid
-             LEFT JOIN table3 d ON a.formid = d.formid
-             LEFT JOIN table4 e ON a.formid = e.formid
-             LEFT JOIN table5 f ON a.formid = f.formid
-             LEFT JOIN table6 g ON a.formid = g.formid
+    LEFT JOIN table1 b ON a.formid = b.formid
+    LEFT JOIN table2 c ON a.formid = c.formid
+    LEFT JOIN table3 d ON a.formid = d.formid
+    LEFT JOIN table4 e ON a.formid = e.formid
+    LEFT JOIN table5 f ON a.formid = f.formid
+    LEFT JOIN table6 g ON a.formid = g.formid
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -555,6 +461,105 @@ SELECT DISTINCT tableall.formid,
                 tableall.outcomes
 FROM tableall;
 
+
+CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step3(
+    form_id integer DEFAULT NULL::integer,
+    c_iso3 text DEFAULT NULL::text)
+    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step3
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+
+CASE WHEN form_id is not null and c_iso3 is null
+        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3 where formid=form_id;
+WHEN form_id is null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3 where iso3=c_iso3;
+WHEN form_id is not null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3 where iso3=c_iso3 and formid=form_id;
+ELSE
+            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step3;
+END CASE;
+END;
+$$;
+
+CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step4(
+    form_id integer DEFAULT NULL::integer,
+    c_iso3 text DEFAULT NULL::text)
+    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step4
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+
+CASE WHEN form_id is not null and c_iso3 is null
+        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4 where formid=form_id;
+WHEN form_id is null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4 where iso3=c_iso3;
+WHEN form_id is not null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4 where iso3=c_iso3 and formid=form_id;
+ELSE
+            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step4;
+END CASE;
+END;
+$$;
+
+CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step5(
+    form_id integer DEFAULT NULL::integer,
+    c_iso3 text DEFAULT NULL::text)
+    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step5
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+
+CASE WHEN form_id is not null and c_iso3 is null
+        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5 where formid=form_id;
+WHEN form_id is null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5 where iso3=c_iso3;
+WHEN form_id is not null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5 where iso3=c_iso3 and formid=form_id;
+ELSE
+            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step5;
+END CASE;
+END;
+$$;
+
+CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step6(
+    form_id integer DEFAULT NULL::integer,
+    c_iso3 text DEFAULT NULL::text)
+    RETURNS SETOF imet_assessment_v1_to_v2.v_imet_eval_stat_step6
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+
+CASE WHEN form_id is not null and c_iso3 is null
+        THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6 where formid=form_id;
+WHEN form_id is null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6 where iso3=c_iso3;
+WHEN form_id is not null and c_iso3 is not null
+            THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6 where iso3=c_iso3 and formid=form_id;
+ELSE
+            return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step6;
+END CASE;
+END;
+$$;
+
+
+
 CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step_summary(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
@@ -566,21 +571,21 @@ CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step_summary(
 
 AS $$
 declare
-    form_ids text;
+form_ids text;
 
 BEGIN
 
     form_ids := '{' || form_id || '}';
 
-    CASE WHEN form_id is not null and c_iso3 is null
+CASE WHEN form_id is not null and c_iso3 is null
         THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where formid=ANY(form_ids::int[]);
-        WHEN form_id is null and c_iso3 is not null
+WHEN form_id is null and c_iso3 is not null
             THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where iso3=c_iso3;
-        WHEN form_id is not null and c_iso3 is not null
+WHEN form_id is not null and c_iso3 is not null
             THEN return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary where iso3=c_iso3 and formid=ANY(form_ids::int[]);
-        ELSE
+ELSE
             return query select * from imet_assessment_v1_to_v2.v_imet_eval_stat_step_summary;
-        END CASE;
+END CASE;
 END;
 $$;
 

@@ -37,6 +37,16 @@ export default {
       type: [Array, Object],
       default: () => {
       }
+    },
+    axis_dimensions_x: {
+      type: Object,
+      default: () => {
+      }
+    },
+    axis_dimensions_y: {
+      type: Object,
+      default: () => {
+      }
     }
 
   },

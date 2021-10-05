@@ -23,6 +23,74 @@ export default {
         '#92D050',
         '#00B050'
     ],
+    element_diagrams: {
+        color: [{'context': '#ffff00'},
+            {'planning': '#bfbfbf'},
+            {'inputs': '#ffc000'},
+            {'process': '#0099CC'},
+            {'outputs': '#92D050'},
+            {'outcomes': '#00B050'}],
+        context: {
+            columns: [
+                {
+                    "label": window.Locale.getLabel('common.protected_area'),
+                    "field": "name"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.c11'),
+                    "field": "c11"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.c12'),
+                    "field": "c12",
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.c13'),
+                    "field": "c13"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.c14'),
+                    "field": "c14"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.c15'),
+                    "field": "c15"
+                }
+            ]
+        },
+        process: {
+            columns: [
+                {
+                    "label": window.Locale.getLabel('common.protected_area'),
+                    "field": "name"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.pr15_16'),
+                    "field": "pr15_16"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.pr10_12'),
+                    "field": "pr10_12",
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.pr13_14'),
+                    "field": "pr13_14"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.pr17_18'),
+                    "field": "pr17_18"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.pr1_6'),
+                    "field": "pr1_6"
+                },
+                {
+                    "label": window.Locale.getLabel('form/imet/analysis_report/report.assessment.pr7_9'),
+                    "field": "pr7_9"
+                }
+            ]
+        }
+    },
     dopa_indicators: {
         protected_area_coverage_and_connectivity: {
             title_table: window.Locale.getLabel('imet-core::form/imet/analysis_report/report.protected_area_coverage_and_connectivity.title'),
@@ -139,14 +207,6 @@ export default {
             ]
         }
     },
-    element_diagrams: {
-        color: [{'context': '#ffff00'},
-            {'planning': '#bfbfbf'},
-            {'inputs': '#ffc000'},
-            {'process': '#0099CC'},
-            {'outputs': '#92D050'},
-            {'outcomes': '#00B050'}]
-    },
     performance_diagram: {
         indicators: [
             window.Locale.getLabel('imet-core::form/imet/v2/common.steps_eval.context'),
@@ -195,6 +255,10 @@ export default {
             {
                 "label": window.Locale.getLabel('imet-core::form/imet/v2/common.steps_eval.outcomes'),
                 "field": "outcomes"
+            },
+            {
+                "label": window.Locale.getLabel('form/imet/v2/common.indexes.imet'),
+                "field": "imet_index"
             }
         ]
     },
@@ -308,60 +372,55 @@ export default {
     },
     terrestial_ecoregions: {
         columns: [
-            {'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.terrestial_ecoregions.name'), 'field': 'ecoregion'},
-            {'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.terrestial_ecoregions.area'), 'field': 'area_km2'},
             {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.terrestial_ecoregions.percentage_of_ecoregion_in_country'),
-                'field': 'percentage_of_ecoregion_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.name'),
+                'field': 'eco_name'
+            },
+            {
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.area'),
+                'field': 'ecoregion_tot_sqkm'
+            },
+            {
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_pa_sqkm'),
+                'field': 'ecoregion_prot_sqkm',
                 color: '#cae5a1'
             },
             {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.terrestial_ecoregions.percentage_of_ecoregion_protected_in_country'),
-                'field': 'percentage_of_ecoregion_protected_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_protected_tot_sqkm'),
+                'field': 'pa_tot_sqkm',
                 color: '#8ecfe0'
             },
             {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.terrestial_ecoregions.country_contribution_to_global_ecoregion_protection'),
-                'field': 'country_contribution_to_global_ecoregion_protection',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.protected_in_ecoregion'),
+                'field': 'pa_in_eco_sqkm',
                 color: '#91ad41'
-            },
-            {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_protection_percentage'),
-                'field': 'ecoregion_protection_percentage',
-                type: 'percentage',
-                color: ''
             }
         ]
     },
     marine_ecoregions: {
-        columns: [{'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.marine_ecoregions.name'), 'field': 'ecoregion'},
-            {'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.marine_ecoregions.area'), 'field': 'area_km2'},
+        columns: [
             {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.marine_ecoregions.percentage_of_ecoregion_in_country'),
-                'field': 'percentage_of_ecoregion_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.name'),
+                'field': 'eco_name'
+            },
+            {
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.area'),
+                'field': 'ecoregion_tot_sqkm'
+            },
+            {
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_pa_sqkm'),
+                'field': 'ecoregion_prot_sqkm',
                 color: '#cae5a1'
             },
             {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.marine_ecoregions.percentage_of_ecoregion_protected_in_country'),
-                'field': 'percentage_of_ecoregion_protected_in_country',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.ecoregion_protected_tot_sqkm'),
+                'field': 'pa_tot_sqkm',
                 color: '#8ecfe0'
             },
             {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.marine_ecoregions.country_contribution_to_global_ecoregion_protection'),
-                'field': 'country_contribution_to_global_ecoregion_protection',
-                type: 'percentage',
+                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.protected_in_ecoregion'),
+                'field': 'pa_in_eco_sqkm',
                 color: '#91ad41'
-            },
-            {
-                'label': window.Locale.getLabel('imet-core::form/imet/analysis_report/report.marine_ecoregions.ecoregion_protection_percentage'),
-                'field': 'ecoregion_protection_percentage',
-                type: 'percentage',
-                color: ''
             }]
     },
     copernicus:

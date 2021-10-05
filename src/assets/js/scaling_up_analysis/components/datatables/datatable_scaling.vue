@@ -1,8 +1,14 @@
 <template>
   <div>
+    <div class="row mb-3 mt-1" style="font-size: 12px" v-if="average.length">
+      <div class="col-sm align-self-center">
+        {{ stores.BaseStore.localization("form/imet/analysis_report/report.average_explained") }}
+      </div>
+    </div>
     <table id="global_scores">
       <tr>
-        <th v-for="(column, idx) in columns" @click="sort(column.field)">
+        <th v-for="(column, idx) in columns" @click="sort(column.field)"
+            :style="idx === 0 ? 'width:15%;' : 'width:11%;'">
           {{ column.label.charAt(0).toUpperCase() + column.label.slice(1) }} <i :class="sort_icon(column.field)"/>
         </th>
       </tr>
@@ -11,12 +17,14 @@
             :class="idx === 0 ?'': score_class(value[column.field])"></td>
       </tr>
       <tr v-if="average.length > 0">
-        <td v-for="(column, idx) in columns" v-html="average[0][column.field]"
+        <td v-for="(column, idx) in columns" v-html="itemLabel(average[0][column.field])"
             :class="idx === 0 ?'': score_class(average[0][column.field])"></td>
       </tr>
     </table>
     <div class="row" style="font-size: 12px">
-      <div class="col-sm text-right">{{stores.BaseStore.localization("form/imet/analysis_report/report.scaling_legend")}} :</div>
+      <div class="col-sm text-right">
+        {{ stores.BaseStore.localization("form/imet/analysis_report/report.scaling_legend") }} :
+      </div>
       <div class="col-sm">
         <div class="row">
           <div class="col text-center" :class="score_class(0)">0</div>
@@ -27,6 +35,7 @@
       </div>
       <div class="col-sm align-self-center"></div>
     </div>
+
   </div>
 </template>
 
@@ -79,6 +88,13 @@ export default {
     })
   },
   methods: {
+    itemLabel: function (value) {
+      if (value === 'Average') {
+        value = "* " + value;
+      }
+
+      return value;
+    },
     score_class: function (value, additional_classes = '') {
       let addClass = '';
       if (value === 0) {

@@ -11,16 +11,16 @@
                     >
                         <template slot-scope="data">
                             <div v-for="(value, index) in data.props.values" :id="'{{$name}}-'+index"
-                                 class="module-body">
+                                 class="module-body bg-white border-0">
                                 <container_actions :data="value" :name="'{{$name}}-'+index"
-                                                    :event_image="'save_entire_block_as_image'"
-                                                    :exclude_elements="'{{$exclude_elements}}'">
+                                                   :event_image="'save_entire_block_as_image'"
+                                                   :exclude_elements="'{{$exclude_elements}}'">
                                     <template slot-scope="data_elements">
                                         <div class="list-key-numbers horizontal">
                                             <div class="list-head" v-html="index">
                                             </div>
                                         </div>
-                                        <div class="module-body">
+                                        <div class="module-body bg-white border-0">
                                             <datatable_custom :columns="container.props.config.protected_area.columns"
                                                               :values="data_elements.props">
                                             </datatable_custom>
@@ -31,7 +31,6 @@
                         </template>
                     </container>
                 </div>
-                <container_actions :name="'{{$name}}'" :event_image="'save_entire_block_as_image'"></container_actions>
             </div>
         </div>
     </template>

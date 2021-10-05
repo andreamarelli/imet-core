@@ -35,6 +35,8 @@ export default {
   },
   mounted() {
     this.$root.$on(`radar_data_${this.event_key}`, (params) => {
+      params.selected['lower limit'] = false;
+      params.selected['upper limit'] = false;
       this.parse_data(params.selected);
     });
     this.parse_data();
@@ -54,6 +56,7 @@ export default {
             process: value[1][3] || value[1]['process'],
             outputs: value[1][2] || value[1]['outputs'],
             outcomes: value[1][1] || value[1]['outcomes'],
+            imet_index: value[1][6] || value[1]['imet_index'],
             color: value[1]['color']
           })
         }

@@ -86,8 +86,7 @@ export default {
       if (this.exclude_elements.length > 0) {
         const exclude_elements = this.exclude_elements.split(',');
 
-        exclude_elements.length > 0 && exclude_elements.forEach(el => {
-          console.log({el})
+        exclude_elements.length > 0 && exclude_elements.forEach(el => {console.log({el})
           const element = document.getElementById(el);
 
           element.style.display = action;

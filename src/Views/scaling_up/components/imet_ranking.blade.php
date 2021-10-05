@@ -17,11 +17,13 @@
                                                        :event_image="'save_entire_block_as_image'">
                                         <template slot-scope="data_elements">
                                             <div class="align-items-center ">
-{{--                                                                            <div v-html="data_elements.props"></div>--}}
-                                                <bar_category_stack :x_axis_data="data_elements.props.xAxis"
-                                                                    :legends="data_elements.props.legends"
-                                                                    :colors="container.props.config.color_correct_order"
-                                                     :values='data_elements.props.values'></bar_category_stack>
+                                                {{--                                                                            <div v-html="data_elements.props"></div>--}}
+                                                <bar_category_stack
+                                                        :axis_dimensions_y="{max:100}"
+                                                        :x_axis_data="data_elements.props.xAxis"
+                                                        :legends="data_elements.props.legends"
+                                                        :colors="container.props.config.color_correct_order"
+                                                        :values='data_elements.props.values'></bar_category_stack>
                                             </div>
                                         </template>
                                     </container_actions>

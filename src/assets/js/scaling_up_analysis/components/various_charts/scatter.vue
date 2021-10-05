@@ -1,5 +1,5 @@
 <template>
-  <div class="scatter" :style="'width:' + width +'; min-height: '+ height+';'"></div>
+  <div class="scatter" :style="'width:' + width +'; height: '+ height+';'"></div>
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
     },
     height: {
       type: String,
-      default: '600px'
+      default: '800px'
     },
     values: {
       type: [Array, Object],
@@ -43,6 +43,10 @@ export default {
   computed: {
     bar_options() {
       return {
+        grid: {
+          width: '80%',
+          height: '80%'
+        },
         title: {
           text: this.title,
           left: 'center'
@@ -132,10 +136,10 @@ export default {
             show: false
           },
           data: [record],
-          type: 'scatter',
+          type: 'rect',
           name: record['name'],
           symbolSize: function (data) {
-            return Math.sqrt(data[2]) * 10;
+            return Math.sqrt(data[2]) * 5;
           },
           emphasis: {
             focus: 'self'

@@ -1,14 +1,41 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'">
     <template slot-scope="container">
         <div class="align-items-center">
+            <div class="row">
+                <div class="col-sm">
+                    <container
+                            :loaded_at_once="container.props.show_view"
+                            :url=url
+                            :parameters="'{{$pa_ids}}'"
+                            :func="'get_assessments'"
+                    >
+                        <template slot-scope="data">
+                            <div class="module-body bg-white border-0">
+                                <div v-for="(value, index) in data.props.values" class="container"
+                                     :id="'{{$name}}-'+index">
+                                    <div class="row">
+                                        <div class="col-sm">
 
+                                            <datatable_scaling
+                                                    :columns="container.props.config.evaluation_of_protected_area_management_cycle.columns"
+                                                    :values="value">
+                                            </datatable_scaling>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </container>
+                </div>
+            </div>
             <container
                     :loaded_at_once="container.props.show_view"
                     :url=url
                     :parameters="'{{$pa_ids}}'"
                     :func="'get_protected_area_with_countries'">
                 <template slot-scope="data">
-                    <div class="module-body" v-if="Object.entries(data.props.values).length > 0">
+                    <div class="module-body bg-white border-0" id="groups" v-if="Object.entries(data.props.values).length > 0">
                         <grouping id="exclude" :values="data.props.values" :number_of_drop_zones="3">
                             <template>
                                 <container
@@ -18,7 +45,7 @@
                                         :func="'get_grouping_analysis'"
                                         :on_load="false">
                                     <template slot-scope="values">
-                                        <container_actions :data="values.props" :name="'{{$name}}'"
+                                        <container_actions :data="values.props" :name="'render_image'"
                                                            :event_image="'save_entire_block_as_image'"
                                                            :exclude_elements="'{{$exclude_elements}}'">
                                             <template slot-scope="data_elements">
@@ -42,10 +69,11 @@
                                                          v-if="container.props.stores.BaseStore.is_visible(data_elements.props.values.scatter)"
                                                          :name="'grouping'">
                                                         <div class="col-sm">
-                                                            <scatter :label_axis_x="'@lang('imet-core::form/imet/v2/common.steps_eval.context') , @lang('imet-core::form/imet/v2/common.steps_eval.planning'), @lang('imet-core::form/imet/v2/common.steps_eval.inputs')'"
-                                                                     :label_axis_y="'@lang('imet-core::form/imet/v2/common.steps_eval.process')'"
-                                                                     :label_axis_y2="'@lang('imet-core::form/imet/v2/common.steps_eval.outputs'), @lang('imet-core::form/imet/v2/common.steps_eval.outcomes')'"
-                                                                     :values='data_elements.props.values.scatter'
+                                                            <scatter
+                                                                    :label_axis_y="'@lang('form/imet/v2/common.steps_eval.context') , @lang('form/imet/v2/common.steps_eval.planning'), @lang('form/imet/v2/common.steps_eval.inputs')'"
+                                                                    :label_axis_x="'@lang('form/imet/v2/common.steps_eval.process')'"
+                                                                    :label_axis_y2="''"
+                                                                    :values='data_elements.props.values.scatter'
                                                             ></scatter>
                                                         </div>
                                                     </div>

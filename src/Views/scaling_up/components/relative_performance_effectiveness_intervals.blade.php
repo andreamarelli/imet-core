@@ -13,7 +13,6 @@
                             :show_menu="true"
                     >
                         <template slot-scope="data">
-
                             <div class="contailer" v-for="(radar, index) in data.props.values">
                                 <small_menu :items="data.props.values.diagrams" :ids="'upper_lower_'" :exclude="'Average,upper limit,lower limit'"></small_menu>
                                 <container_upper_lower_radars :width=480 :height=600
@@ -27,7 +26,6 @@
                         </template>
                     </container>
                 </div>
-                <container_actions :name="'{{$name}}'" :event_image="'save_entire_block_as_image'"></container_actions>
             </div>
         </div>
     </template>

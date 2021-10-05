@@ -1,5 +1,5 @@
 <template>
-  <div  class="collapse" :class="{show: show_element}">
+  <div  class="collapse mt-5" :class="{show: show_element}">
     <strong>{{ title }}</strong>
     <slot></slot>
     <div v-for="(list, index) in values" class="mt-3 ml-3" id="collapse-habitats" >

@@ -4,7 +4,7 @@
       <div class="col-24 mb-2">
         <button type="button" class="btn btn-success mb-1" @click="add_by_country">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.add_country') }}</button>
         <button type="button" class="btn btn-danger mb-1" @click="reset">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.reset') }}</button>
-        <button type="button" @click="add_group()" class="btn btn-primary mb-1"><i class="fa fa-plus"
+        <button v-if="list_of_components.length < list.length" type="button" @click="add_group()" class="btn btn-primary mb-1"><i class="fa fa-plus"
                                                                                    aria-hidden="true">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.add_group') }}</i></button>
       </div>
     </div>

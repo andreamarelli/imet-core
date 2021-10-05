@@ -5,7 +5,7 @@
                             :class="{'fa-caret-up': !show_view,'fa-caret-down':show_view}"></span> {{ $title }}
         </div>
     </div>
-    <div class="module-body collapse" :class="{show: show_view}">
+    <div class="module-body collapse bg-white border-0" :class="{show: show_view}">
         <div class="align-items-center">
             <container
                     :loaded_at_once="show_view"
@@ -20,7 +20,7 @@
                                 <div class="list-head" v-html="idx">
                                 </div>
                             </div>
-                            <div class="module-body">
+                            <div class="module-body bg-white border-0">
                                 <dopa_indicators_table
                                         :title=dopa_indicators.inland_cover.title_table
                                         :indicators=dopa_indicators.inland_cover.indicators
@@ -35,8 +35,8 @@
 
                             </div>
                         </div>
-                        <action_buttons :name="'{{$name}}-'+index"
-                                        :exclude_elements="'{{$exclude_elements}}'"></action_buttons>
+                        {{--                        <action_buttons :name="'{{$name}}-'+index"--}}
+                        {{--                                        :exclude_elements="'{{$exclude_elements}}'"></action_buttons>--}}
                     </div>
 
                 </template>

@@ -7,11 +7,11 @@
                             :loaded_at_once="container.props.show_view"
                             :url=url
                             :parameters="'{{$pa_ids}}'"
-                            :func="'get_dopa_country_ecoregions_terestial_stats'"
+                            :func="'get_dopa_pa_ecoregions_terrestial_stats'"
 
                     >
                         <template slot-scope="data" class="contailer">
-                            <div v-for="(value, index) in data.props.values" class="module-body contailer"
+                            <div v-for="(value, index) in data.props.values" class="module-body bg-white border-0 contailer"
                                  :id="'{{$name}}-'+index.replace(' ','')">
 
                                 <container_actions :data="value":name="'{{$name}}-'+index.replace(' ','')"
@@ -22,7 +22,7 @@
                                             <div class="list-head" v-html="index">
                                             </div>
                                         </div>
-                                        <div class="module-body" :id="'terrestal_'+index.replace(' ','')">
+                                        <div class="module-body bg-white border-0" :id="'terrestal_'+index.replace(' ','')">
                                             <datatable_custom
                                                     :columns="container.props.config.terrestial_ecoregions.columns"
                                                     :values="data_elements.props">
@@ -34,7 +34,6 @@
                         </template>
                     </container>
                 </div>
-                <container_actions :name="'{{$name}}'" :event_image="'save_entire_block_as_image'"></container_actions>
             </div>
         </div>
     </template>

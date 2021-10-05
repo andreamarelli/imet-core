@@ -11,16 +11,16 @@
                     >
                         <template slot-scope="data">
                             <div v-for="(value, index) in data.props.values" :id="'{{$name}}-'+index"
-                                 class="module-body">
+                                 class="module-body bg-white  border-0">
                                 <container_actions :data="value" :name="'{{$name}}-'+index"
-                                                    :event_image="'save_entire_block_as_image'"
-                                                    :exclude_elements="'{{$exclude_elements}}'">
+                                                   :event_image="'save_entire_block_as_image'"
+                                                   :exclude_elements="'{{$exclude_elements}}'">
                                     <template slot-scope="data_elements">
                                         <div class="list-key-numbers horizontal">
                                             <div class="list-head" v-html="index">
                                             </div>
                                         </div>
-                                        <div class="module-body">
+                                        <div class="module-body bg-white border-0">
                                             <treemap :values="data_elements.props">
                                             </treemap>
                                             <datatable_custom :columns="container.props.config.copernicus.columns"
@@ -33,7 +33,7 @@
                         </template>
                     </container>
                 </div>
-                <container_actions :name="'{{$name}}'" :event_image="'save_entire_block_as_image'"></container_actions>
+                {{--                <container_actions :name="'{{$name}}'" :comment_title="container.props.stores.BaseStore.localization(`form/imet/analysis_report/report.comment_entire_section`)"  :event_image="'save_entire_block_as_image'"></container_actions>--}}
             </div>
         </div>
     </template>

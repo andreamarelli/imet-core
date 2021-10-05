@@ -9,11 +9,11 @@
                         :func="'get_assessments'"
                 >
                     <template slot-scope="data">
-                        <div class="module-body">
+                        <div class="module-body bg-white border-0">
                             <div v-for="(value, index) in data.props.values" class="container" :id="'{{$name}}-'+index">
                                 <container_actions :data="value" :name="'{{$name}}-'+index"
-                                                    :event_image="'save_entire_block_as_image'"
-                                                    :exclude_elements="'{{$exclude_elements}}'">
+                                                   :event_image="'save_entire_block_as_image'"
+                                                   :exclude_elements="'{{$exclude_elements}}'">
                                     <template slot-scope="data_elements">
                                         <div class="row">
                                             <div class="col-sm">

@@ -14,15 +14,17 @@
             <div class="row align-items-center fill">
                 <div class="col-sm">
                     <div class="text-center">
-                        <br/> <preview_template scaling_up_id="{{ $scaling_up_id }}"></preview_template>
+                        <br/> <preview_template :scaling_up_id="{{$scaling_up_id}}"></preview_template>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="imet_report" class="scrollButtons">
+            <div class="standalone" @click="downloadFiles">
+                {!! \App\Library\Utils\Template::icon('download') !!} {{ ucfirst(trans('form/imet/analysis_report/report.download_files')) }}</div>
             <div class="standalone" @click="printReport">
-                {!! \AndreaMarelli\ImetCore\Helpers\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
+                {!! \App\Library\Utils\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
         </div>
     </div>
     <style>
@@ -34,6 +36,10 @@
         @media print {
             #imet_report {
                 visibility: hidden;
+            }
+            .content div {
+                page-break-after: always;
+                margin-top: 5px;
             }
         }
     </style>
@@ -47,6 +53,9 @@
             methods: {
                 printReport() {
                     window.print();
+                },
+                downloadFiles(){
+                    window.location.href = '{{route('download_scaling_up_files', ['scaling_id' => $scaling_up_id])}}';
                 }
             }
         });

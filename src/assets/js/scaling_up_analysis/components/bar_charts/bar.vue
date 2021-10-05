@@ -43,6 +43,16 @@ export default {
     zoom: {
       type: Boolean,
       default: false
+    },
+    axis_dimensions_x: {
+      type: Object,
+      default: () => {
+      }
+    },
+    axis_dimensions_y: {
+      type: Object,
+      default: () => {
+      }
     }
 
   },
@@ -67,12 +77,14 @@ export default {
           axisLabel: {
             rotate: this.rotate,
             interval: 0
-          }
+          },
+          ...this.axis_dimensions_x
         },
         yAxis: {
           type: 'value',
           realtimeSort: true,
-          minInterval: 1
+          minInterval: 1,
+          ...this.axis_dimensions_y
         },
         series: [{
           data: this.values,

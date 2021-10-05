@@ -6,7 +6,7 @@
                             :class="{'fa-caret-up': !data.show_view,'fa-caret-down':data.show_view}"></span> {{ title }}
       </div>
     </div>
-    <div class="module-body collapse" :class="{show: data.show_view}">
+    <div class="module-body bg-white collapse" :class="{show: data.show_view}">
       <slot :props="data">
       </slot>
     </div>

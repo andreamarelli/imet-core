@@ -136,6 +136,12 @@ export default {
       }
       return {
         legend: {
+          formatter: function (name) {
+            if(name === 'Average'){
+              return `* ${name}`;
+            }
+            return name;
+          },
           data: legends,
           padding: [5, 5, 10, 5]
         }
@@ -186,6 +192,7 @@ export default {
                 }
                 item.symbolSize = 0;
                 item.lineStyle.type = value?.lineStyle;
+                item.lineStyle.width = value?.width;
                 item.lineStyle.color = value?.color;
                 item.itemStyle.color = value?.color;
                 if (value.legend_selected) {

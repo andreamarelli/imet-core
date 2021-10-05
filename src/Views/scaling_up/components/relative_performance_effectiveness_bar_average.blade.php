@@ -10,7 +10,8 @@
                 >
                     <template slot-scope="data">
                         <div :id="'main-error-bar'">
-                            <div class="text-center"><strong>@lang('imet-core::form/imet/analysis_report/report.average_contribution_management')</strong>
+                            <div class="text-center">
+                                <strong>@lang('form/imet/analysis_report/report.average_contribution_management')</strong>
                             </div>
                             <div class="align-items-center">
                                 <container_actions :data="data.props" :name="'main-error-bar'"
@@ -18,6 +19,7 @@
                                                    :exclude_elements="'{{$exclude_elements}}'">
                                     <template slot-scope="v">
                                         <imet_bar_error
+                                                :axis_dimensions_x="{max:100}"
                                                 :event_id="'save_image_s'"
                                                 :show_legends="true"
                                                 :values="container.props.stores.BaseStore.add_color_to_value_rel(v.props.values, container.props.config.relative_performance_effectiveness_bar_average.color)"
@@ -42,23 +44,24 @@
                         <template slot-scope="data">
                             <div v-for="(value, idx) in data.props.values" :id="'bar-errors'+idx">
                                 <div class="text-center"><strong
-                                            v-html="container.props.stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.relative_performance_effectiveness_bar_average.titles.'+idx)"></strong>
+                                            v-html="container.props.stores.BaseStore.localization('form/imet/analysis_report/report.relative_performance_effectiveness_bar_average.titles.'+idx)"></strong>
                                 </div>
                                 <container_actions :data="value" :name="'main-error-bar'"
                                                    :event_image="'save_entire_block_as_image'"
                                                    :exclude_elements="'{{$exclude_elements}}'">
                                     <template slot-scope="v">
-                                        <imet_bar_error :show_legends="true"
-                                                        :values="v.props.data"
-                                                        :height="v.props.options.height"
-                                                        :indicators='container.props.stores.BaseStore.parse_indicators(v.props.labels)'></imet_bar_error>
+                                        <imet_bar_error
+                                                :axis_dimensions_x="{max:100}"
+                                                :show_legends="true"
+                                                :values="v.props.data"
+                                                :height="v.props.options.height"
+                                                :indicators='container.props.stores.BaseStore.parse_indicators(v.props.labels)'></imet_bar_error>
                                     </template>
                                 </container_actions>
                             </div>
                         </template>
                     </container>
                 </div>
-                <container_actions :name="'{{$name}}'" :event_image="'save_entire_block_as_image'"></container_actions>
             </div>
         </div>
     </template>
