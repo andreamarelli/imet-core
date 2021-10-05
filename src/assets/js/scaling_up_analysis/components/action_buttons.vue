@@ -1,6 +1,6 @@
 <template>
   <div class="mb-5 mt-5">
-    <div class="mt-3 text-black-50 font-weight-bold generic-comments"  >{{stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.comments')}} :</div>
+    <div class="mt-3 text-black-50 font-weight-bold generic-comments"  >{{stores.BaseStore.localization('imet-core::analysis_report.comments')}} :</div>
     <p>
       <editor></editor>
     </p>

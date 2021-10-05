@@ -11,7 +11,7 @@
                     <template slot-scope="data">
                         <div :id="'main-error-bar'">
                             <div class="text-center">
-                                <strong>@lang('form/imet/analysis_report/report.average_contribution_management')</strong>
+                                <strong>@lang('imet-core::analysis_report.average_contribution_management')</strong>
                             </div>
                             <div class="align-items-center">
                                 <container_actions :data="data.props" :name="'main-error-bar'"
@@ -44,7 +44,7 @@
                         <template slot-scope="data">
                             <div v-for="(value, idx) in data.props.values" :id="'bar-errors'+idx">
                                 <div class="text-center"><strong
-                                            v-html="container.props.stores.BaseStore.localization('form/imet/analysis_report/report.relative_performance_effectiveness_bar_average.titles.'+idx)"></strong>
+                                            v-html="container.props.stores.BaseStore.localization('imet-core::analysis_report.relative_performance_effectiveness_bar_average.titles.'+idx)"></strong>
                                 </div>
                                 <container_actions :data="value" :name="'main-error-bar'"
                                                    :event_image="'save_entire_block_as_image'"

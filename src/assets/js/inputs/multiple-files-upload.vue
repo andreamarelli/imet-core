@@ -23,7 +23,7 @@
 export default {
     name: "multipleUpload.vue",
     components: {
-        vueDropzone: window.Vue2Dropzone
+        vueDropzone: window.VueDropzone
     },
     data() {
         const Locale = window.Locale;
@@ -39,7 +39,8 @@ export default {
                 addRemoveLinks: true,
                 clickable: true,
                 maxFiles: 20,
-                maxFilesize: 100,
+                maxFilesize: 150,
+                timeout: 100000,
                 acceptedFiles: ".json,.zip",
                 autoProcessQueue: true,
                 dictDefaultMessage: Locale.getLabel('modular-forms::common.upload.dict_default_message'),

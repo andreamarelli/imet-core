@@ -14,7 +14,7 @@ export default {
 
     store_to_cookie_by_id_and_value(cookieName) {
       if (this.data.length > 0) {
-        const cookieExist = window.Cookies.getByName(cookieName);
+        const cookieExist = window.ModularForms.Mixins.Cookies.getByName(cookieName);
         if (cookieExist) {
           const cookie = cookieExist.split('=');
           const cookie_items = JSON.parse(cookie[1]);
@@ -27,9 +27,9 @@ export default {
 
             return arr.id === item.id ? [arr] : [arr, item];
           });
-          window.Cookies.create(cookie[0], JSON.stringify(total));
+          window.ModularForms.Mixins.Cookies.create(cookie[0], JSON.stringify(total));
         } else {
-          window.Cookies.create(cookieName, (this.data));
+          window.ModularForms.Mixins.Cookies.create(cookieName, (this.data));
         }
         this.$root.$emit('reset_checkboxes');
         this.action();
@@ -38,13 +38,13 @@ export default {
 
     store_to_cookie: function (cookieName) {
       if (this.data.length > 0) {
-        const cookieExist = window.Cookies.getByName(cookieName);
+        const cookieExist = window.ModularForms.Mixins.Cookies.getByName(cookieName);
         if (cookieExist) {
           const cookie = cookieExist.split('=');
           const total = [...new Set([...cookie[1].split('|').map(i => parseInt(i)), ...this.data.map(i => parseInt(i))])];
-          window.Cookies.create(cookie[0], total.join("|"));
+          window.ModularForms.Mixins.Cookies.create(cookie[0], total.join("|"));
         } else {
-          window.Cookies.create(cookieName, this.data.join("|"));
+          window.ModularForms.Mixins.Cookies.create(cookieName, this.data.join("|"));
         }
         this.$root.$emit('reset_checkboxes');
         this.action();

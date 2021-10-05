@@ -12,7 +12,7 @@
 /** @var bool  $connection */
 ?>
 
-@include('admin.imet.v2.report.report', [
+@include('imet-core::v2.report.report', [
     'action' => 'show',
     'assessment' => $assessment,
     'key_elements' => $key_elements,

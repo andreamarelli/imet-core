@@ -68,7 +68,7 @@ $url        = URL::route('index');
     <div id="sortable_list">
 
         <div id="cloud">
-            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/v2/report/{items}/scaling/up'" :source-of-data="'cookie'"></label-cloud>
+            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/v2/scaling_up/{items}'" :source-of-data="'cookie'"></label-cloud>
         </div>
         <br/>
         <br/>

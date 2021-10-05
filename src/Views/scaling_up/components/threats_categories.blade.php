@@ -20,7 +20,7 @@
                                     <template slot-scope="v">
 
                                         <bar_reverse
-                                                :title="(index+1)+'. '+ container.props.stores.BaseStore.localization(`form/imet/v2/context.MenacesPressions.categories.title${index+1}`)"
+                                                :title="(index+1)+'. '+ container.props.stores.BaseStore.localization(`imet-core::v2_context.MenacesPressions.categories.title${index+1}`)"
                                                 :event_id="'save_image_s'"
                                                 :show_legends="true"
                                                 :values="v.props.map(item => item.value)"

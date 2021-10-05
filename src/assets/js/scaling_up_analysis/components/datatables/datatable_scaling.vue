@@ -23,7 +23,7 @@
     </table>
     <div class="row" style="font-size: 12px">
       <div class="col-sm text-right">
-        {{ stores.BaseStore.localization("form/imet/analysis_report/report.scaling_legend") }} :
+        {{ stores.BaseStore.localization("imet-core::form/imet/analysis_report.scaling_legend") }} :
       </div>
       <div class="col-sm">
         <div class="row">

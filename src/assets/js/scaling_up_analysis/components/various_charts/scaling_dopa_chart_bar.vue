@@ -13,8 +13,8 @@ export default {
     name: "scaling_dopa_chart_bar",
 
     mixins: [
-        window.ImetCore.Mixins.resize,
-        window.ModularForms.Template.chart_bar
+        window.ImetCore.ScalingUp.Mixins.resize,
+        window.ModularForms.Dopa.chart_bar
     ],
 
     methods: {

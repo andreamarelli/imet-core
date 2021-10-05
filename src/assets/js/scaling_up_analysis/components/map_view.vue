@@ -27,7 +27,7 @@ export default {
   },
   data: function () {
     return {
-      url_map: `${window.Laravel.baseUrl}admin/imet/v2/report/scaling/analysis/coordinates/{param}`,
+      url_map: `${window.Laravel.baseUrl}admin/imet/v2/scaling_up/analysis/coordinates/{param}`,
       no_internet_connection: false,
       error_message: ''
     }
@@ -76,9 +76,9 @@ export default {
         });
         window.report_map.on('error', (error) => {
             if (typeof error.isSourceLoaded === 'undefined') {
-              this.no_internet_connection = true;
-              this.error_message = this.stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.error_connection');
-          }
+                this.no_internet_connection = true;
+                this.error_message = this.stores.BaseStore.localization('imet-core::form/imet/analysis_report.error_connection');
+            }
         });
         window.report_map.on('load', function () {
           window.report_map.addSource("BIOPAMA_Poly", {

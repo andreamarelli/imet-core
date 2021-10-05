@@ -40,7 +40,7 @@
                 </template>
             </container>
         </div>
-        @include('admin.imet.v2.report.scaling_up.components.action_buttons',['id' => $name])
+        @include('imet-core::v2.report.scaling_up.components.action_buttons',['id' => $name])
     </div>
 </div>
 

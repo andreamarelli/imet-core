@@ -1,7 +1,7 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'">
     <template slot-scope="container">
         <container_actions :data="{}" :name="'{{$name}}'"
-                           :comment_title="container.props.stores.BaseStore.localization(`form/imet/analysis_report/report.comment_entire_section`)"
+                           :comment_title="container.props.stores.BaseStore.localization(`imet-core::analysis_report.comment_entire_section`)"
                            :event_image="'save_entire_block_as_image'"
                            :exclude_elements="'{{$exclude_elements}}'">
             <template slot-scope="data">
@@ -10,25 +10,25 @@
                         <div class="align-items-center">
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('form/imet/analysis_report/report.governance_management')</h5>
+                                    <h5>@lang('imet-core::analysis_report.governance_management')</h5>
                                     <editor></editor>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('form/imet/analysis_report/report.key_conservation_elements')</h5>
+                                    <h5>@lang('imet-core::analysis_report.key_conservation_elements')</h5>
                                     <editor></editor>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('form/imet/analysis_report/report.climate_change_ecosystem')</h5>
+                                    <h5>@lang('imet-core::analysis_report.climate_change_ecosystem')</h5>
                                     <editor></editor>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    <h5>@lang('form/imet/v2/common.steps.threats')</h5>
+                                    <h5>@lang('imet-core::v2_common.steps.threats')</h5>
                                     <editor></editor>
                                 </div>
                             </div>

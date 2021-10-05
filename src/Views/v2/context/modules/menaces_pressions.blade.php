@@ -3,23 +3,18 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
+use Illuminate\Support\Facades\View;
 
+$view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
 
-function injectStatsInRow($view, $group)
-{
-    $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
-    $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
-    return str_replace($searchFor, $textToAdd.$searchFor, $view);
-}
-
-function injectCategoryTitle($view, $module_key, $beforeGroup, $category_index, $title)
-{
-    $searchFor = '<h5 class="highlight group_title_'.$module_key.'_'.$beforeGroup.'">';
+// Inject titles (with category stats)
+foreach(MenacesPressions::$groupByCategory as $i => $category){
+    $searchFor = '<h5 class="highlight group_title_'.$definitions['module_key'].'_'.$category[0].'">';
     $textToAdd = '
         <div class="module-row">
             <div style="width: 60%;">
-                <h3>'.($category_index+1).'. '.$title.'</h3>
+                <h3>'.($i+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($i+1)).'</h3>
             </div>
             <div class="module-row__input">
 
@@ -29,8 +24,8 @@ function injectCategoryTitle($view, $module_key, $beforeGroup, $category_index, 
                         <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-negative"
                                  role="progressbar"
-                                 :style="{ width: Math.abs(category_stats[\''.$category_index.'\']) + \'%\', backgroundColor: \'#87c89b\'}">
-                                <span v-if="category_stats[\''.$category_index.'\']!==null">{{ category_stats[\''.$category_index.'\'] }} %</span>
+                                 :style="{ width: Math.abs(category_stats[\''.$i.'\']) + \'%\', backgroundColor: \'#87c89b\'}">
+                                <span v-if="category_stats[\''.$i.'\']!==null">{{ category_stats[\''.$i.'\'] }} %</span>
                             </div>
                         </div>
                     </div>
@@ -39,21 +34,15 @@ function injectCategoryTitle($view, $module_key, $beforeGroup, $category_index, 
 
             </div>
         </div>';
-    return str_replace($searchFor, $textToAdd.$searchFor, $view);
-}
-
-
-// Inject titles (with category stats)
-foreach(\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions::$groupByCategory as $i => $category){
-    $group = $category[0];
-    $category_index = $i+1;
-    $view_groupTable = injectCategoryTitle($view_groupTable, $definitions['module_key'], $group, $i, trans('imet-core::v2_context.MenacesPressions.categories.title'.$category_index));
+    $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
 }
 
 // inject row and group stats
-foreach(\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions::$groupByCategory as $i => $category){
+foreach(MenacesPressions::$groupByCategory as $i => $category){
     foreach ($category as $group){
-        $view_groupTable = injectStatsInRow($view_groupTable, $group);
+        $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
+        $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
+        $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
     }
 }
 

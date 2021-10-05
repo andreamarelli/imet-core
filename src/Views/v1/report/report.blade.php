@@ -69,7 +69,6 @@ function score_class_threats($value, $additional_classes=''){
 
         <div class="module-container">
             <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
-
             <div class="module-body">
                 <div id="map" v-if=connection></div>
                 <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>

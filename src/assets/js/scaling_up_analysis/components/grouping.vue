@@ -2,10 +2,10 @@
   <div>
     <div class='row' id="js-grouping-action-buttons">
       <div class="col-24 mb-2">
-        <button type="button" class="btn btn-success mb-1" @click="add_by_country">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.add_country') }}</button>
-        <button type="button" class="btn btn-danger mb-1" @click="reset">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.reset') }}</button>
+        <button type="button" class="btn btn-success mb-1" @click="add_by_country">{{ stores.BaseStore.localization('imet-core::analysis_report.grouping.add_country') }}</button>
+        <button type="button" class="btn btn-danger mb-1" @click="reset">{{ stores.BaseStore.localization('imet-core::analysis_report.grouping.reset') }}</button>
         <button v-if="list_of_components.length < list.length" type="button" @click="add_group()" class="btn btn-primary mb-1"><i class="fa fa-plus"
-                                                                                   aria-hidden="true">{{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.add_group') }}</i></button>
+                                                                                   aria-hidden="true">{{ stores.BaseStore.localization('imet-core::analysis_report.grouping.add_group') }}</i></button>
       </div>
     </div>
     <div class='row start-zone'
@@ -36,10 +36,10 @@
     <div class="row" id="js-render-buttons">
       <div class="col-24 mt-5 mb-5">
         <button type="button" @click="show_diagrams" class="btn btn-success">
-          {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.render_radar') }}
+          {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_radar') }}
         </button>
         <button type="button" @click="show_diagrams({func:'get_scatter_grouping_analysis'})" class="btn btn-success">
-          {{ stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.render_scatter') }}
+          {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_scatter') }}
         </button>
       </div>
     </div>
@@ -162,7 +162,7 @@ export default {
         this.$root.$emit('incoming-data', {
 
           parameters: this.list.filter(item => item.list !== null).map(item => {
-            let group_name = `${this.stores.BaseStore.localization('imet-core::form/imet/analysis_report/report.grouping.group')} ${item.list}`;
+            let group_name = `${this.stores.BaseStore.localization('imet-core::analysis_report.grouping.group')} ${item.list}`;
             if (item.by_country) {
               group_name = item.country;
             }
@@ -213,7 +213,7 @@ export default {
     },
     add_group: function (name = null) {
       const components_length = this.list_of_components.length;
-      const group_name = name ?? `${this.stores.BaseStore.localization('imet-core::form/imet/analysis_report.grouping.group')}${(components_length + 1)}`;
+      const group_name = name ?? `${this.stores.BaseStore.localization('imet-core::form/imet/analysis_report.grouping.group')} ${(components_length + 1)}`;
       const length = !components_length ? 1 : Math.max(...this.list_of_components.map(i => i.id)) + 1;
       this.list_of_components.push({id: length, color: this.colors[length - 1], name: group_name})
       this.list_of_components.sort((a, b) => {

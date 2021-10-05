@@ -82,7 +82,6 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_protected_area($form_ids)
     {
-
         $protected_area = [];
         foreach ($form_ids as $form_id) {
             $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id);
@@ -670,7 +669,7 @@ class ScalingUpAnalysis extends Model
                 $average = round(array_sum(array_values($value)) / $pa, 2);
                 $indicators[$key]['data']['upper limit'][] = [$i, $percentile_10[$index], $percentile_90[$index]];
                 $indicators[$key]['data']['Average'][$i] = ["value" => $average, "itemStyle" => ["color" => $colors[$key]]];
-                $indicators[$key]['labels'][$index] = trans('form/imet/v2/common.assessment.' . $index)[1];
+                $indicators[$key]['labels'][$index] = trans('imet-core::v2_common.assessment.' . $index)[1];
                 $indicators[$key]['options'] = $options[$key] ?? null;
                 $i++;
             }
@@ -723,7 +722,7 @@ class ScalingUpAnalysis extends Model
             $totalValue[$assessment['name']] = round($total, 2);
             $percent['xAxis'][] = $assessment['name'];
             foreach ($indicators as $ind => $indicator) {
-                $label = trans('form/imet/v2/common.steps_eval.' . $ind);
+                $label = trans('imet-core::v2_common.steps_eval.' . $ind);
                 $percent['legends'][$ind] = $label;
                 $percent['values'][$label][] = $totalValue[$assessment['name']] ? round((((($indicator / $totalValue[$assessment['name']]) * 100) / 100) * $assessment['imet_index']), 2) : 0;
 

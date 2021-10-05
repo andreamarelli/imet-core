@@ -14,7 +14,7 @@ export default {
     }
   },
   mixins: [
-      window.ImetCore.Mixins.resize,
+      window.ImetCore.ScalingUp.Mixins.resize,
     imet_radar
 
   ],

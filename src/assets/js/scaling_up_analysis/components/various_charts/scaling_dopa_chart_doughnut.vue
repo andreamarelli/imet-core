@@ -18,8 +18,8 @@ export default {
     name: "scaling_dopa_chart_doughnut",
 
     mixins: [
-        window.ImetCore.Mixins.resize,
-        window.ModularForms.Template.chart_doughnut
+        window.ImetCore.ScalingUp.Mixins.resize,
+        window.ModularForms.Dopa.chart_doughnut
     ],
 
     methods: {
