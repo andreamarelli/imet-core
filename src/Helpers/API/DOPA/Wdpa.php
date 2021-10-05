@@ -8,19 +8,18 @@ trait Wdpa
 {
     use BaseWdpa;
 
-    /*
+   /**
    * Returns the copernicus Global Landcover for wdpa
    * @param $wdpa
    * @return array
    */
     public static function get_wdpa_copernicus($wdpa)
     {
-        $url = self::request(self::URL_PREFIX . 'd6dopa/dopa_41/get_de_wdpa_lc_copernicus', [
+         return self::request(self::URL_PREFIX . 'd6dopa/dopa_41/get_de_wdpa_lc_copernicus', [
             'format' => 'json',
             'wdpaid' => $wdpa,
             'agg' => 2
         ]);
-        return $url;
     }
 
     /**

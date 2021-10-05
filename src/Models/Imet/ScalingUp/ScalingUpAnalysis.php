@@ -1,7 +1,8 @@
 <?php
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
 
-use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
+use AndreaMarelli\ImetCore\Models\Animal;
+use AndreaMarelli\ImetCore\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ModularForms\Models\Cache;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
@@ -119,7 +120,7 @@ class ScalingUpAnalysis extends Model
             $protected_area = static::protected_areas_duplicate_fixes($form_id);
             $name = $protected_area['name'];
             $country = $protected_area['Country'];
-            $indicators = \App\Library\API\DOPA\DOPA::get_de_wdpa_all_inds($protected_area['wdpa_id']);
+            $indicators = DOPA::get_de_wdpa_all_inds($protected_area['wdpa_id']);
 
             $protected_areas[] = $protected_area['wdpa_id'];
             if (!isset($country_indicators[$country])) {
@@ -290,7 +291,7 @@ class ScalingUpAnalysis extends Model
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->map(function ($item) {
-                    return [$item['group_key'] => \App\Models\Species\Animal::getPlainNameByTaxonomy($item['Aspect'])];
+                    return [$item['group_key'] => Animal::getPlainNameByTaxonomy($item['Aspect'])];
                 })->toArray(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
@@ -1127,7 +1128,7 @@ class ScalingUpAnalysis extends Model
     public static function get_protected_area_data($form_id)
     {
         $action = 'get_protected_area_data';
-        $cache_key = \App\Models\Cache::buildKey($action, ['form_id' => $form_id]);
+        $cache_key = Cache::buildKey($action, ['form_id' => $form_id]);
 
         if (($cache_value = Cache::get($cache_key)) !== false) {
             return $cache_value;
