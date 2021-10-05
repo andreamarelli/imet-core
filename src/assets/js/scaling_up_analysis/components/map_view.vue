@@ -77,7 +77,7 @@ export default {
         window.report_map.on('error', (error) => {
             if (typeof error.isSourceLoaded === 'undefined') {
                 this.no_internet_connection = true;
-                this.error_message = this.stores.BaseStore.localization('imet-core::form/imet/analysis_report.error_connection');
+                this.error_message = this.stores.BaseStore.localization('imet-core::analysis_report.error_connection');
             }
         });
         window.report_map.on('load', function () {

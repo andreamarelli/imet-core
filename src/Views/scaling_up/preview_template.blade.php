@@ -22,7 +22,7 @@
 
         <div id="imet_report" class="scrollButtons">
             <div class="standalone" @click="downloadFiles">
-                {!! \App\Library\Utils\Template::icon('download') !!} {{ ucfirst(trans('form/imet/analysis_report/report.download_files')) }}</div>
+                {!! \App\Library\Utils\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}</div>
             <div class="standalone" @click="printReport">
                 {!! \App\Library\Utils\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
         </div>

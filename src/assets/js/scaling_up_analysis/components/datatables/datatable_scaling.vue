@@ -2,7 +2,7 @@
   <div>
     <div class="row mb-3 mt-1" style="font-size: 12px" v-if="average.length">
       <div class="col-sm align-self-center">
-        {{ stores.BaseStore.localization("form/imet/analysis_report/report.average_explained") }}
+        {{ stores.BaseStore.localization("imet-core::analysis_report.average_explained") }}
       </div>
     </div>
     <table id="global_scores">
@@ -23,7 +23,7 @@
     </table>
     <div class="row" style="font-size: 12px">
       <div class="col-sm text-right">
-        {{ stores.BaseStore.localization("imet-core::form/imet/analysis_report.scaling_legend") }} :
+        {{ stores.BaseStore.localization("imet-core::analysis_report.scaling_legend") }} :
       </div>
       <div class="col-sm">
         <div class="row">

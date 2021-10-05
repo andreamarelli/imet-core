@@ -70,7 +70,7 @@
                                                          :name="'grouping'">
                                                         <div class="col-sm">
                                                             <scatter
-                                                                    :label_axis_y="'@lang('imet-core::v2_common.steps_eval.context') , @lang('form/imet/v2/common.steps_eval.planning'), @lang('form/imet/v2/common.steps_eval.inputs')'"
+                                                                    :label_axis_y="'@lang('imet-core::v2_common.steps_eval.context') , @lang('imet-core::v2_common.steps_eval.planning'), @lang('imet-core::v2_common.steps_eval.inputs')'"
                                                                     :label_axis_x="'@lang('imet-core::v2_common.steps_eval.process')'"
                                                                     :label_axis_y2="''"
                                                                     :values='data_elements.props.values.scatter'

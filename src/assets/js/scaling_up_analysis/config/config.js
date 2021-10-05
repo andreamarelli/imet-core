@@ -257,7 +257,7 @@ export default {
                 "field": "outcomes"
             },
             {
-                "label": window.Locale.getLabel('form/imet/v2_common.indexes.imet'),
+                "label": window.Locale.getLabel('imet-core::v2_common.indexes.imet'),
                 "field": "imet_index"
             }
         ]
@@ -400,7 +400,7 @@ export default {
     marine_ecoregions: {
         columns: [
             {
-                'label': window.Locale.getLabel('form/imet/analysis_report/report.terrestial_ecoregions.name'),
+                'label': window.Locale.getLabel('imet-core::analysis_report.terrestial_ecoregions.name'),
                 'field': 'eco_name'
             },
             {

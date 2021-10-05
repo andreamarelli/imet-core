@@ -49,7 +49,6 @@
                         </template>
                     </container>
                 </div>
-                {{--                <container_actions :name="'{{$name}}'" :comment_title="container.props.stores.BaseStore.localization(`form/imet/analysis_report/report.comment_entire_section`)"  :event_image="'save_entire_block_as_image'"></container_actions>--}}
             </div>
 
         </div>

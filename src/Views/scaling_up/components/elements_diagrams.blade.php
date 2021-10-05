@@ -17,7 +17,7 @@
                                                        :event_image="'save_entire_block_as_image'">
                                         <template slot-scope="data_elements">
                                             <div class="align-items-center ">
-                                                <bar :axis_dimensions_y="{min: 0, max: 100}" :fields="Object.keys(data_elements.props)" :title="container.props.stores.BaseStore.localization('form/imet/v2/common.steps_eval.'+index)" :rotate="90"
+                                                <bar :axis_dimensions_y="{min: 0, max: 100}" :fields="Object.keys(data_elements.props)" :title="container.props.stores.BaseStore.localization('imet-core::v2_common.steps_eval.'+index)" :rotate="90"
                                                      :values='container.props.stores.BaseStore.add_color_to_value(data_elements.props, index, container.props.config.element_diagrams.color)'></bar>
 
                                                 <datatable_scaling v-if="data.props.values.sub[index].length"
