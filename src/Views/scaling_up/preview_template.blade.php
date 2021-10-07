@@ -1,5 +1,4 @@
-@extends('layouts.components._base')
-
+@extends('modular-forms::layouts._base')
 
 @section('body')
     <div class="container">
@@ -22,9 +21,9 @@
 
         <div id="imet_report" class="scrollButtons">
             <div class="standalone" @click="downloadFiles">
-                {!! \App\Library\Utils\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}</div>
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}</div>
             <div class="standalone" @click="printReport">
-                {!! \App\Library\Utils\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('common.print')) }}</div>
         </div>
     </div>
     <style>

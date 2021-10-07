@@ -12,10 +12,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\RoleController;
-use AndreaMarelli\ImetCore\Controllers\SpeciesController;
-use AndreaMarelli\ImetCore\Controllers\StaffController;
-use AndreaMarelli\ModularForms\Controllers\UploadFileController;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
@@ -81,6 +77,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
             // Scaling Up Analysis
             Route::group(['prefix' => 'scaling_up'], function () {
+                Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name('download_scaling_up_files');
                 Route::get('{items}',    [ScalingUpAnalysisController::class, 'report_scaling_up'])->name('scaling_up');
                 Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
                 Route::post('analysis',     [ScalingUpAnalysisController::class, 'get_ajax_responses']);
@@ -92,7 +89,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                     Route::post('clear', [ScalingUpBasketController::class, 'clear']);
                 });
             });
-
         });
 
         Route::group(['prefix' => 'tools'], function () {

@@ -33,7 +33,7 @@ export default {
         context: {
             columns: [
                 {
-                    "label": window.Locale.getLabel('common.protected_area'),
+                    "label": window.Locale.getLabel('imet-core::common.protected_area'),
                     "field": "name"
                 },
                 {
@@ -61,7 +61,7 @@ export default {
         process: {
             columns: [
                 {
-                    "label": window.Locale.getLabel('common.protected_area'),
+                    "label": window.Locale.getLabel('imet-core::common.protected_area'),
                     "field": "name"
                 },
                 {
@@ -205,7 +205,55 @@ export default {
                     label: window.Locale.getLabel('imet-core::analysis_report.total_carbon.sum')
                 },
             ]
-        }
+        },
+        forest_cover: {
+            title_table: 'Forest Cover',
+            title_chart: 'Forest loss and gain (%)',
+            indicators: [
+                {
+                    field: 'gfc_treecover_km2',
+                    label: 'Forest cover [km2]',
+                    color: '#5b5b5b'
+                },
+                {
+                    field: 'gfc_treecover_perc',
+                    label: 'Forest cover [%]',
+                    color: '#5b5b5b'
+                },
+                {
+                    field: 'gfc_loss_km2',
+                    label: 'Forest loss [km2]',
+                    color: '#D9534F'
+                },
+                {
+                    field: 'gfc_loss_perc',
+                    label: 'Forest loss [%]',
+                    color: '#D9534F'
+                },
+                {
+                    field: 'gfc_gain_km2',
+                    label: 'Forest gain [km2]',
+                    color: '#337AB7'
+                },
+                {
+                    field: 'gfc_gain_perc',
+                    label: 'Forest gain [%]',
+                    color: '#337AB7'
+                },
+            ],
+            bar_indicators: [
+                {
+                    field: 'gfc_loss_perc',
+                    label: 'Forest loss [%]',
+                    color: '#D9534F'
+                },
+                {
+                    field: 'gfc_gain_perc',
+                    label: 'Forest gain [%]',
+                    color: '#337AB7'
+                }
+            ]
+        },
     },
     performance_diagram: {
         indicators: [
@@ -228,7 +276,7 @@ export default {
 
         columns: [
             {
-                "label": window.Locale.getLabel('common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
                 "field": "name"
             },
             {
@@ -265,7 +313,7 @@ export default {
     evaluation_of_protected_area_management_cycle: {
         columns: [
             {
-                "label": window.Locale.getLabel('common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
                 "field": "name"
             },
             {
@@ -321,7 +369,7 @@ export default {
     group_analysis_on_demand: {
         scatter_columns: [
             {
-                "label": window.Locale.getLabel('common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
                 "field": "name"
             },
             {
@@ -340,7 +388,7 @@ export default {
         ],
         columns: [
             {
-                "label": window.Locale.getLabel('common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
                 "field": "name"
             },
             {
@@ -423,28 +471,27 @@ export default {
                 color: '#91ad41'
             }]
     },
-    copernicus:
-        {
-            columns: [
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.label'),
-                    "field": "label"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.percent'),
-                    "field": "percent"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.area'),
-                    "field": "area"
-                },
-                {
-                    "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.color'),
-                    "field": "color",
-                    type: 'color'
-                }
-            ]
-        },
+    copernicus: {
+        columns: [
+            {
+                "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.label'),
+                "field": "label"
+            },
+            {
+                "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.percent'),
+                "field": "percent"
+            },
+            {
+                "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.area'),
+                "field": "area"
+            },
+            {
+                "label": window.Locale.getLabel('imet-core::analysis_report.copernicus.color'),
+                "field": "color",
+                type: 'color'
+            }
+        ]
+    },
     protected_area: {
         columns: [
             {

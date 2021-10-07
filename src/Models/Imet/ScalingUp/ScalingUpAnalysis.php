@@ -7,7 +7,7 @@ use AndreaMarelli\ModularForms\Models\Cache;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use App\Http\Controllers\Imet\ImetEvalControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use Illuminate\Database\Eloquent\Model;
 
 class ScalingUpAnalysis extends Model
@@ -71,7 +71,7 @@ class ScalingUpAnalysis extends Model
     {
         $pdas = static::get_protected_area($form_ids);
         foreach ($pdas as $k => $pda) {
-            $pdas[$k]['Country_name'] = \App\Models\Country::getByISO($pda['Country']);
+            $pdas[$k]['Country_name'] = Country::getByISO($pda['Country']);
         }
 
         return ['status' => 'success', 'data' => $pdas];
@@ -425,7 +425,7 @@ class ScalingUpAnalysis extends Model
         $assessments = [];
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = (array)ImetEvalControllerV2::assessment($form_id, 'global', true)->getData();
+            $assessments[$k] = (array)EvalControllerV2::assessment($form_id, 'global', true)->getData();
             $assessments[$k]['name'] = static::add_the_indicator_to_the_field($assessments[$k]['wdpa_id'], $assessments[$k]['name'], $assessments[$k]['year']);
         }
 
@@ -438,7 +438,7 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_sub_indicators_by_context($form_id, $type = '')
     {
-        $data = (array)ImetEvalControllerV2::assessment($form_id, $type)->getData();
+        $data = (array)EvalControllerV2::assessment($form_id, $type)->getData();
         $indicators = [
             'context' => [
                 'c14' => [],
@@ -637,12 +637,12 @@ class ScalingUpAnalysis extends Model
         ];
         foreach ($form_ids as $form_id) {
             $all_indicators = [
-                'context' => (array)ImetEvalControllerV2::assessment($form_id, 'context')->getData(),
-                'planning' => (array)ImetEvalControllerV2::assessment($form_id, 'planning')->getData(),
-                'inputs' => (array)ImetEvalControllerV2::assessment($form_id, 'inputs')->getData(),
-                'process' => (array)ImetEvalControllerV2::assessment($form_id, 'process')->getData(),
-                'outputs' => (array)ImetEvalControllerV2::assessment($form_id, 'outputs')->getData(),
-                'outcomes' => (array)ImetEvalControllerV2::assessment($form_id, 'outcomes')->getData()
+                'context' => (array)EvalControllerV2::assessment($form_id, 'context')->getData(),
+                'planning' => (array)EvalControllerV2::assessment($form_id, 'planning')->getData(),
+                'inputs' => (array)EvalControllerV2::assessment($form_id, 'inputs')->getData(),
+                'process' => (array)EvalControllerV2::assessment($form_id, 'process')->getData(),
+                'outputs' => (array)EvalControllerV2::assessment($form_id, 'outputs')->getData(),
+                'outcomes' => (array)EvalControllerV2::assessment($form_id, 'outcomes')->getData()
             ];
 
             foreach ($indicators as $key => $values) {
@@ -806,7 +806,7 @@ class ScalingUpAnalysis extends Model
             $name = array_key_first($dopa_stats['data'][$form_id]);
             $dopa_stats['diagram']['labels'][] = $name;
             $dopa_stats['diagram']['keys'][] = $name;
-            $dopa_stats['diagram']['values'][$name] = $dopa_stats['data'][$form_id][$name][0]->carbon_tot_c_mg;
+            $dopa_stats['diagram']['values'][$name] = count($dopa_stats['data'][$form_id][$name]) > 0 ? $dopa_stats['data'][$form_id][$name][0]->carbon_tot_c_mg : 0;
         }
 
         uasort($dopa_stats['diagram']['values'], function ($a, $b) {

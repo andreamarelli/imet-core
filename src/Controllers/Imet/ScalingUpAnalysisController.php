@@ -2,10 +2,11 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use App\Library\Utils\File\Compress;
-use App\Library\Utils\File\File;
+use AndreaMarelli\ModularForms\Helpers\File\Compress;
 use Illuminate\Http\Request;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
+use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
+use AndreaMarelli\ModularForms\Helpers\File\File;
 
 class ScalingUpAnalysisController
 {
@@ -19,7 +20,6 @@ class ScalingUpAnalysisController
         $action = $request->input('func');
         $parameters = $request->input('parameter');
         return ModelScalingUpAnalysis::$action($parameters);
-
     }
 
 
@@ -43,7 +43,6 @@ class ScalingUpAnalysisController
             $areas = $item[0]['wdpas'];
             $scaling_up_id = $item[0]['id'];
         }
-
 
         $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas));
         $areas_names = [];
@@ -96,15 +95,13 @@ class ScalingUpAnalysisController
 
     /**
      * export scaling up images in zip file
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+    * @param int $scaling_id
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|string
      */
     public function download_zip_file(int $scaling_id)
     {
         $files = [];
-        $scaling_up = \App\Models\Imet\ScalingUp\Basket::where('scaling_up_id', $scaling_id)->get();
+        $scaling_up = Basket::where('scaling_up_id', $scaling_id)->get();
         foreach ($scaling_up as $record) {
             $files[] = \Storage::disk(File::PUBLIC_FOLDER)->path('') . $record->item;
         }
