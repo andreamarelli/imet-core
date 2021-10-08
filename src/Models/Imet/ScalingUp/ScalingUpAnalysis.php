@@ -1130,7 +1130,7 @@ class ScalingUpAnalysis extends Model
         $action = 'get_protected_area_data';
         $cache_key = Cache::buildKey($action, ['form_id' => $form_id]);
 
-        if (($cache_value = Cache::get($cache_key)) !== false) {
+        if (($cache_value = Cache::get($cache_key)) !== null) {
             return $cache_value;
         }
 
