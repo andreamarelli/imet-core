@@ -1,12 +1,13 @@
 <?php
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
+use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ModularForms\Helpers\File\Compress;
-use Illuminate\Http\Request;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ModularForms\Helpers\File\File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ScalingUpAnalysisController
 {
@@ -103,7 +104,7 @@ class ScalingUpAnalysisController
         $files = [];
         $scaling_up = Basket::where('scaling_up_id', $scaling_id)->get();
         foreach ($scaling_up as $record) {
-            $files[] = \Storage::disk(File::PUBLIC_FOLDER)->path('') . $record->item;
+            $files[] = Storage::disk(File::PUBLIC_FOLDER)->path('') . $record->item;
         }
 
         if (count($files) > 1) {

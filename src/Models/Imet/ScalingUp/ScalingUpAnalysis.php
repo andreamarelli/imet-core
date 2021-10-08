@@ -27,7 +27,7 @@ class ScalingUpAnalysis extends Model
      * if names are duplicate add the year
      * @param $form_id
      * @param bool $retrieve_area
-     * @return \App\Models\Imet\v2\Imet|\Illuminate\Database\Eloquent\Builder|mixed
+     * @return \AndreaMarelli\ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function protected_areas_duplicate_fixes($form_id, $retrieve_area = true)
     {
@@ -425,7 +425,7 @@ class ScalingUpAnalysis extends Model
         $assessments = [];
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = (array)EvalControllerV2::assessment($form_id, 'global', true)->getData();
+            $assessments[$k] = (array) EvalControllerV2::assessment($form_id, 'global', true)->getData();
             $assessments[$k]['name'] = static::add_the_indicator_to_the_field($assessments[$k]['wdpa_id'], $assessments[$k]['name'], $assessments[$k]['year']);
         }
 
@@ -438,7 +438,7 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_sub_indicators_by_context($form_id, $type = '')
     {
-        $data = (array)EvalControllerV2::assessment($form_id, $type)->getData();
+        $data = (array) EvalControllerV2::assessment($form_id, $type)->getData();
         $indicators = [
             'context' => [
                 'c14' => [],
@@ -637,12 +637,12 @@ class ScalingUpAnalysis extends Model
         ];
         foreach ($form_ids as $form_id) {
             $all_indicators = [
-                'context' => (array)EvalControllerV2::assessment($form_id, 'context')->getData(),
-                'planning' => (array)EvalControllerV2::assessment($form_id, 'planning')->getData(),
-                'inputs' => (array)EvalControllerV2::assessment($form_id, 'inputs')->getData(),
-                'process' => (array)EvalControllerV2::assessment($form_id, 'process')->getData(),
-                'outputs' => (array)EvalControllerV2::assessment($form_id, 'outputs')->getData(),
-                'outcomes' => (array)EvalControllerV2::assessment($form_id, 'outcomes')->getData()
+                'context' => (array) EvalControllerV2::assessment($form_id, 'context')->getData(),
+                'planning' => (array) EvalControllerV2::assessment($form_id, 'planning')->getData(),
+                'inputs' => (array) EvalControllerV2::assessment($form_id, 'inputs')->getData(),
+                'process' => (array) EvalControllerV2::assessment($form_id, 'process')->getData(),
+                'outputs' => (array) EvalControllerV2::assessment($form_id, 'outputs')->getData(),
+                'outcomes' => (array) EvalControllerV2::assessment($form_id, 'outcomes')->getData()
             ];
 
             foreach ($indicators as $key => $values) {
