@@ -1128,15 +1128,15 @@ class ScalingUpAnalysis extends Model
     public static function get_protected_area_data($form_id)
     {
         $action = 'get_protected_area_data';
-        $cache_key = Cache::buildKey($action, ['form_id' => $form_id]);
-
-        if (($cache_value = Cache::get($cache_key)) !== null) {
-            return $cache_value;
-        }
+//        $cache_key = Cache::buildKey($action, ['form_id' => $form_id]);
+//
+//        if (($cache_value = Cache::get($cache_key)) !== null) {
+//            return $cache_value;
+//        }
 
         $protected_area = Imet::where('FormID', $form_id)->get();
         if(count($protected_area)) {
-            Cache::put($cache_key, $protected_area[0], static::$ttl);
+//            Cache::put($cache_key, $protected_area[0], static::$ttl);
             return $protected_area[0];
         }
 
