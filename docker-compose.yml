@@ -14,12 +14,10 @@ services:
     # docker-compose run --rm composer ______
 
   npm:
-    build:
-      context: .
-      dockerfile: docker/npm/Dockerfile
-      args:
-        - PHP_IMAGE_NAME=${APP_NAME}_composer
-    container_name: imet_core_npm
+    image: node:14-alpine3.13
+    profiles:
+      - development
+    container_name: ${APP_NAME}_npm
     volumes:
       - ./:/var/www/
     working_dir: /var/www/
