@@ -1,5 +1,5 @@
 <template>
-    <div class='bar'></div>
+    <div class='bar' style="min-height: 200px"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -19,9 +19,11 @@ export default {
 
     methods: {
         draw_chart() {
-            let options = this.set_options();
-            this.chart = echarts.init(this.$el);
-            this.chart.setOption(options);
+            if (this.data !== null) {
+                let options = this.set_options();
+                this.chart = echarts.init(this.$el);
+                this.chart.setOption(options);
+            }
         }
     }
 }

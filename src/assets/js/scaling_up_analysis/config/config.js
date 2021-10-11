@@ -33,7 +33,7 @@ export default {
         context: {
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::common.protected_area'),
+                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -61,7 +61,7 @@ export default {
         process: {
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::common.protected_area'),
+                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -276,7 +276,7 @@ export default {
 
         columns: [
             {
-                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {
@@ -313,7 +313,7 @@ export default {
     evaluation_of_protected_area_management_cycle: {
         columns: [
             {
-                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {
@@ -369,7 +369,7 @@ export default {
     group_analysis_on_demand: {
         scatter_columns: [
             {
-                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {
@@ -388,7 +388,7 @@ export default {
         ],
         columns: [
             {
-                "label": window.Locale.getLabel('imet-core::common.protected_area.protected_area'),
+                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {

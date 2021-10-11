@@ -72,7 +72,7 @@ class ScalingUpAnalysisController
             ['name' => "imet_ranking", 'title' => 'Imet Ranking', 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => ''],
             ['name' => "relative_performance_effectiveness_intervals", 'title' => 'Confidence intervals per protected area', 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => 'smallMenu'],
 
-            ['name' => "management_effectiveness_analysis", 'title' => 'Averages of the six elements of management effectiveness for all protected area intervals', 'snapshot_id' => "management_effectiveness_analysis", 'exclude_elements' => ''],
+            ['name' => "management_effectiveness_analysis", 'title' => 'Management effectiveness analysis', 'snapshot_id' => "management_effectiveness_analysis", 'exclude_elements' => ''],
             ['name' => "specific_actions_mention", 'title' => 'Summary of key elements affecting the management elements', 'snapshot_id' => "specific_actions_mention", 'exclude_elements' => ''],
             ['name' => "total_carbon", 'title' => 'Total carbon', 'snapshot_id' => "total_carbon", 'exclude_elements' => ''],
             ['name' => 'grouping_analysis_on_demand', 'title' => 'Grouping', 'snapshot_id' => "grouping_analysis_on_demand", 'exclude_elements' => 'js-grouping-action-buttons,start-zone,js-render-buttons'],

@@ -1,13 +1,13 @@
 <template>
 
-  <div class='doughnut card-chart mt-5'></div>
+    <div class='doughnut card-chart mt-5' style="min-height: 300px"></div>
 
 </template>
 
 <style lang="scss" scoped>
-.doughnut{
-  min-height: 300px;
-  min-width: 400px;
+.doughnut {
+    min-height: 300px;
+    min-width: 400px;
 }
 </style>
 

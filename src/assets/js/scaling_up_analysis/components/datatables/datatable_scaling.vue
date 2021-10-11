@@ -9,7 +9,7 @@
       <tr>
         <th v-for="(column, idx) in columns" @click="sort(column.field)"
             :style="idx === 0 ? 'width:15%;' : 'width:11%;'">
-          {{ column.label.charAt(0).toUpperCase() + column.label.slice(1) }} <i :class="sort_icon(column.field)"/>
+        {{ column.label.charAt(0).toUpperCase() + column.label.slice(1) }} <i :class="sort_icon(column.field)"/>
         </th>
       </tr>
       <tr v-for="(value, index) in items">
@@ -83,6 +83,7 @@ export default {
     }
   },
   mounted() {
+      console.log(this.columns);
     this.list.sort((a, b) => {
       return a.name.localeCompare(b.name)
     })

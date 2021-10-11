@@ -34,7 +34,7 @@
                                                 <div class="row">
                                                     <div class="col-sm">
                                                         <scaling_dopa_chart_doughnut
-                                                                :title=container.props.config.dopa_indicators.land_degradation.title_chart
+                                                                :title="''"
                                                                 :indicators=container.props.config.dopa_indicators.land_degradation.bar_indicators
                                                                 :api_data="Object.assign({}, ...data_elements.props)"
                                                         ></scaling_dopa_chart_doughnut>

@@ -59,8 +59,6 @@ export default {
 
       const pa = await this.retrieveCoords();
       if (pa) {
-        let _this = this;
-        window.mapboxgl.accessToken = 'pk.eyJ1IjoiYmxpc2h0ZW4iLCJhIjoiMEZrNzFqRSJ9.0QBRA2HxTb8YHErUFRMPZg';
         let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
         let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly";
         let mapPaLayer = "2021_July_ACP";

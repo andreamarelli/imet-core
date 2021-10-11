@@ -1,4 +1,5 @@
 <?php
+
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
 
 use AndreaMarelli\ImetCore\Models\Animal;
@@ -32,7 +33,7 @@ class ScalingUpAnalysis extends Model
     public static function protected_areas_duplicate_fixes($form_id, $retrieve_area = true)
     {
         $area = static::get_protected_area_data($form_id);
-        if($area !== null) {
+        if ($area !== null) {
             $area->name = static::add_the_indicator_to_the_field($area->wdpa_id, $area->name, $area->Year);
 
             return $area;
@@ -92,6 +93,23 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
+     * @param $wdpa_id
+     * @return array
+     */
+    private static function get_all_indicators_without_nulls($wdpa_id) : array
+    {
+        return array_map(function ($i) {
+            foreach ($i as $key => $item) {
+                if ($i->$key === null) {
+                    $i->$key = 0;
+                }
+            }
+
+            return $i;
+        }, DOPA::get_de_wdpa_all_inds($wdpa_id));
+    }
+
+    /**
      * get all the data for map view
      * @param $form_ids
      * @return array
@@ -120,7 +138,7 @@ class ScalingUpAnalysis extends Model
             $protected_area = static::protected_areas_duplicate_fixes($form_id);
             $name = $protected_area['name'];
             $country = $protected_area['Country'];
-            $indicators = DOPA::get_de_wdpa_all_inds($protected_area['wdpa_id']);
+            $indicators = static::get_all_indicators_without_nulls($protected_area['wdpa_id']);
 
             $protected_areas[] = $protected_area['wdpa_id'];
             if (!isset($country_indicators[$country])) {
@@ -425,7 +443,7 @@ class ScalingUpAnalysis extends Model
         $assessments = [];
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = (array) EvalControllerV2::assessment($form_id, 'global', true)->getData();
+            $assessments[$k] = (array)EvalControllerV2::assessment($form_id, 'global', true)->getData();
             $assessments[$k]['name'] = static::add_the_indicator_to_the_field($assessments[$k]['wdpa_id'], $assessments[$k]['name'], $assessments[$k]['year']);
         }
 
@@ -438,7 +456,7 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_sub_indicators_by_context($form_id, $type = '')
     {
-        $data = (array) EvalControllerV2::assessment($form_id, $type)->getData();
+        $data = (array)EvalControllerV2::assessment($form_id, $type)->getData();
         $indicators = [
             'context' => [
                 'c14' => [],
@@ -637,12 +655,12 @@ class ScalingUpAnalysis extends Model
         ];
         foreach ($form_ids as $form_id) {
             $all_indicators = [
-                'context' => (array) EvalControllerV2::assessment($form_id, 'context')->getData(),
-                'planning' => (array) EvalControllerV2::assessment($form_id, 'planning')->getData(),
-                'inputs' => (array) EvalControllerV2::assessment($form_id, 'inputs')->getData(),
-                'process' => (array) EvalControllerV2::assessment($form_id, 'process')->getData(),
-                'outputs' => (array) EvalControllerV2::assessment($form_id, 'outputs')->getData(),
-                'outcomes' => (array) EvalControllerV2::assessment($form_id, 'outcomes')->getData()
+                'context' => (array)EvalControllerV2::assessment($form_id, 'context')->getData(),
+                'planning' => (array)EvalControllerV2::assessment($form_id, 'planning')->getData(),
+                'inputs' => (array)EvalControllerV2::assessment($form_id, 'inputs')->getData(),
+                'process' => (array)EvalControllerV2::assessment($form_id, 'process')->getData(),
+                'outputs' => (array)EvalControllerV2::assessment($form_id, 'outputs')->getData(),
+                'outcomes' => (array)EvalControllerV2::assessment($form_id, 'outcomes')->getData()
             ];
 
             foreach ($indicators as $key => $values) {
@@ -827,7 +845,7 @@ class ScalingUpAnalysis extends Model
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = static::protected_areas_duplicate_fixes($form_id);
-                $dopa_stats[$form_id] = [$protected_area['name'] => DOPA::get_de_wdpa_all_inds($protected_area['wdpa_id'])];
+                $dopa_stats[$form_id] = [$protected_area['name'] => static::get_all_indicators_without_nulls($protected_area['wdpa_id'])];
             }
         } else {
             return ['status' => false];
@@ -1070,7 +1088,7 @@ class ScalingUpAnalysis extends Model
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = static::protected_areas_duplicate_fixes($form_id);
-                $dopa_stats[$protected_area['name']] = DOPA::get_de_wdpa_all_inds($protected_area['wdpa_id']);
+                $dopa_stats[$protected_area['name']] = static::get_all_indicators_without_nulls($protected_area['wdpa_id']);
             }
         } else {
             return ['status' => false];
@@ -1114,7 +1132,13 @@ class ScalingUpAnalysis extends Model
         sort($array);
         $index = ($percentile / 100) * count($array);
         if (floor($index) == $index) {
-            $result = ($array[$index - 1] + $array[$index]) / 2;
+            if(isset($array[$index - 1])) {
+                $result = ($array[$index - 1] + $array[$index]) / 2;
+            }
+            else{
+                //todo maybe is wrong i have to discuss it
+                $result = $array[$index];
+            }
         } else {
             $result = $array[floor($index)];
         }
@@ -1127,16 +1151,8 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_protected_area_data($form_id)
     {
-        $action = 'get_protected_area_data';
-//        $cache_key = Cache::buildKey($action, ['form_id' => $form_id]);
-//
-//        if (($cache_value = Cache::get($cache_key)) !== null) {
-//            return $cache_value;
-//        }
-
         $protected_area = Imet::where('FormID', $form_id)->get();
-        if(count($protected_area)) {
-//            Cache::put($cache_key, $protected_area[0], static::$ttl);
+        if (count($protected_area)) {
             return $protected_area[0];
         }
 
