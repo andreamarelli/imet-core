@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-    container_name: ${APP_NAME}_artisan
+    container_name: ${APP_NAME}_composer
     volumes:
       - ./:/var/www/
     working_dir: /var/www/
@@ -17,6 +17,8 @@ services:
     build:
       context: .
       dockerfile: docker/npm/Dockerfile
+      args:
+        - PHP_IMAGE_NAME=${APP_NAME}_composer
     container_name: imet_core_npm
     volumes:
       - ./:/var/www/
