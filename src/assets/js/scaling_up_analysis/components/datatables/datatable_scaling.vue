@@ -83,7 +83,6 @@ export default {
     }
   },
   mounted() {
-      console.log(this.columns);
     this.list.sort((a, b) => {
       return a.name.localeCompare(b.name)
     })
