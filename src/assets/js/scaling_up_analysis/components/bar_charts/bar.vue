@@ -140,7 +140,6 @@ export default {
     },
     draw_chart() {
       if (Object.keys(this.values).length > 0) {
-          console.log(Object.keys(this.values).length);
           this.chart = echarts.init(this.$el);
         this.chart.setOption(this.bar_options);
       }
