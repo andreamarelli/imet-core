@@ -1137,7 +1137,7 @@ class ScalingUpAnalysis extends Model
             }
             else{
                 //todo maybe is wrong i have to discuss it
-                $result = $array[$index];
+                $result = 0;
             }
         } else {
             $result = $array[floor($index)];
