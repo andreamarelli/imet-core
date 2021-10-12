@@ -19,7 +19,7 @@
                                         <div v-for="(value, idx) in data_elements.props">
                                             <div class="module-body bg-white border-0">
                                                 <dopa_indicators_table
-                                                        :title=value[0].pa_name
+                                                        :title=idx
                                                         :indicators=container.props.config.dopa_indicators.forest_cover.indicators
                                                         :api_data="Object.assign({}, ...value)"
                                                         :precision="2"
