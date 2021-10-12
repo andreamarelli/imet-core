@@ -56,7 +56,6 @@ export default {
   computed: {
     bar_options() {
       const {values, error_data, legends, indicators} = this.getValues();
-        console.log({error_data});
       return {
         title: {
           text: ''
