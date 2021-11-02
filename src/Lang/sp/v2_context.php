@@ -245,8 +245,7 @@ return [
             'Observations' => 'Notas',
         ],
         'area_percentage'               => '% de la superficie',
-        'average_time'                  => 'Promedio del guardaparques * d * Km² de la superficie total',
-        'sum_error' => 'El área total bajo protección debe corresponder al área especificada en el módulo <b>CTX 2.2</b>'
+        'average_time'                  => 'Promedio del guardaparques * d * Km² de la superficie total'
     ],
 
     'TerritorialReferenceContext' => [
@@ -275,6 +274,7 @@ return [
             'ExpectedPermanent' => 'Personal planificado o adecuado *',
             'ActualPermanent' => 'Personal actual',
             'Observations' => 'Notas',
+            'difference' => 'Diferencia',
             'Source' => 'Fuente',
         ],
         'module_info' => 'El sistema estadístico permite sólo catorce (14) líneas para identificar las funciones del personal del área protegida'
@@ -308,7 +308,7 @@ return [
         'fields' => [
             'Currency' => 'Tipo de moneda',
             'ReferenceYear' => 'Año de referencia',
-            'ManagementFinancialPlanCosts' => 'Gastos de funcionamiento estimados en el Plan de gestión/plan financiero ($ o €/año)',
+            'ManagementFinancialPlanCosts' => 'Gastos de funcionamiento estimados en el Plan de gestión/plan financiero plurianual ($ o €/año)',
             'OperationalWorkPlanCosts' => 'Gastos de funcionamiento estimados a partir del plan operativo / plan de trabajo (presupuestados anualmente)',
             'TotalBudget' => 'Presupuesto anual total disponible',
         ],

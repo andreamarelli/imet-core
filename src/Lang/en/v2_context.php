@@ -245,8 +245,7 @@ return [
             'Observations' => 'Notes',
         ],
         'area_percentage'               => '% of the area',
-        'average_time'                  => 'Average ranger * d * km² of the total area',
-        'sum_error' => 'The total area under protection should correspond to the area specified in the module <b>CTX 2.2</b>'
+        'average_time'                  => 'Average ranger * d * km² of the total area'
     ],
 
     'TerritorialReferenceContext' => [
@@ -275,6 +274,7 @@ return [
             'ExpectedPermanent' => 'Planned or adequate staffing *',
             'ActualPermanent' => 'Current actual staffing',
             'Observations' => 'Notes',
+            'difference' => 'Difference',
             'Source' => 'Source',
         ],
         'module_info' => 'The statistical system allows only fourteen lines to identify the functions of the staff of the protected area'
@@ -308,7 +308,7 @@ return [
         'fields' => [
             'Currency' => 'Currency',
             'ReferenceYear' => 'Baseline year',
-            'ManagementFinancialPlanCosts' => 'Operating cost estimated on Financial plan ($ or €/year)',
+            'ManagementFinancialPlanCosts' => 'Operating cost estimated on multiannual Financial plan ($ or €/year)',
             'OperationalWorkPlanCosts' => 'Operating costs estimated on Working plan (budgeted annually)',
             'TotalBudget' => 'Total annual budget actually available',
         ],

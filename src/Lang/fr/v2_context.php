@@ -244,8 +244,7 @@ return [
             'Observations' => 'Observations',
         ],
         'area_percentage'               => '% de la surface',
-        'average_time'                  => 'Moyenne homme * j * Km² de la surface totale',
-        'sum_error' => 'La superficie totale sous contrôle doit correspondre à la superficie spécifiée dans le module <b>CTX 2.2</b>'
+        'average_time'                  => 'Moyenne homme * j * Km² de la surface totale'
     ],
 
     'TerritorialReferenceContext' => [

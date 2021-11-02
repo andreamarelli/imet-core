@@ -245,8 +245,7 @@ return [
             'Observations' => 'Observacoes',
         ],
         'area_percentage' => '% da area',
-        'average_time' => 'Média do fiscal * d * km² da área total',
-        'sum_error' => 'A área total sob proteccao deverá corresponder a area especificada no modúlo <b>CTX 2.2</b>'
+        'average_time' => 'Média do fiscal * d * km² da área total'
     ],
 
     'TerritorialReferenceContext' => [
@@ -275,6 +274,7 @@ return [
             'ExpectedPermanent' => 'Pessoal planeado ou adequado*',
             'ActualPermanent' => 'Efectivos actuais do pessoal',
             'Observations' => 'Observacoes',
+            'difference' => 'Diferença',
             'Source' => 'Fonte',
         ],
         'module_info' => 'O sistema estatistico permite somente catorze linhas para identificar as funcoes do pessoal da área protegida'
@@ -308,7 +308,7 @@ return [
         'fields' => [
             'Currency' => 'Moeda',
             'ReferenceYear' => 'Ano de Referencia',
-            'Management Financial Plan Costs' => 'Custo operacional estimado no plano de gestão/plano financeiro ($ ou EUR/ano)',
+            'Management Financial Plan Costs' => 'Custo operacional estimado no plano de gestão/plano financeiro plurianual ($ ou EUR/ano)',
             'OperationalWorkPlanCosts' => 'Custos de funcionamento estimados a partir do plano operacional/plano de trabalho (orçamentados anualmente)',
             'Total Budget' => 'orçamento anual total disponível',
         ],
