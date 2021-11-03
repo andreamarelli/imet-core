@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use Illuminate\Http\Request;
 
 class WorkPlan extends Modules\Component\ImetModule_Eval
 {
@@ -28,6 +29,32 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v2_evaluation.WorkPlan.ratingLegend');
 
         parent::__construct($attributes);
+    }
+
+    private static function ensureNullValues($data)
+    {
+        if($data['PlanExistence'] === false || $data['PlanExistence'] === "false"){
+            $data['PlanUptoDate'] = false;
+            $data['PlanApproved'] = false;
+            $data['PlanImplemented'] = false;
+            $data['VisionAdequacy'] = 0;
+            $data['PlanAdequacyScore'] = 0;
+        }
+        return $data;
+    }
+
+    public static function updateModule(Request $request): array
+    {
+        $records = json_decode($request->input('records_json'), true);
+        $records[0] = static::ensureNullValues($records[0]);
+        $request->merge(['records_json' => json_encode($records)]);
+        return parent::updateModule($request);
+    }
+
+    public static function importModule($form_id, $data)
+    {
+        $data = static::ensureNullValues($data);
+        parent::importModule($form_id, $data);
     }
 
 
