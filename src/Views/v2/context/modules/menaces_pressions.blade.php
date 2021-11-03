@@ -33,17 +33,16 @@ $view_groupTable = View::make('modular-forms::module.edit.type.group_table', com
             <div class="histogram-row__code text-center"><b>{{ ($i+1) }}</b></div>
             <div class="histogram-row__title text-left">@lang('imet-core::v2_context.MenacesPressions.categories.title'.($i+1))</div>
             <div class="histogram-row__value text-right" style="margin-right: 20px;">
-                <b v-html="category_stats[{{ $i }}]"></b>
+                <b v-html="category_stats[{{ $i }}] || '-'"></b>
             </div>
-            <div class="histogram-row__progress-bar">
+            <div class="histogram-row__progress-bar"  v-if="category_stats['{{ $i }}']!==null">
                 <div class="histogram-row__progress-bar__limit-left">-100%</div>
                 <div class="histogram-row__progress-bar__bar">
                     <div class="progress">
-
                         <div role="progressbar"
                              class="progress-bar progress-bar-striped  progress-bar-negative"
                              :style="'width: ' + Math.abs(category_stats[{{ $i }}]) + '%; background-color: #87c89b !important;'">
-                            <span v-if="category_stats['{{ $i }}']!==null" v-html="'-' +category_stats[{{ $i }}]"></span>
+                            <span v-html="'-' +category_stats[{{ $i }}]"></span>
                         </div>
                     </div>
                 </div>
@@ -115,10 +114,10 @@ $view_groupTable = View::make('modular-forms::module.edit.type.group_table', com
 
                     // calculate stats for each category
                     valuesByCategory.forEach(function (category){
-                        let cat_stat = _this.calculate_stats(category)*100/3.0;
-                        stats.push(cat_stat.toFixed(2));
+                        let cat_stat = _this.calculate_stats(category);
+                        cat_stat = cat_stat!==null ? (cat_stat*100/3.0).toFixed(2) : null;
+                        stats.push(cat_stat);
                     });
-
                     return stats;
                 }
 
