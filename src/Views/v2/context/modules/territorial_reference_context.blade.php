@@ -8,26 +8,114 @@ $definitions['label_width'] = 7;
 
     @if($i==0)
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.FunctionalEcosystemArea')</h3>
-    @elseif($i==3)
+    @elseif($i==4)
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.BenefitsOfEcosystemServicesArea')</h3>
-    @elseif($i==7)
+    @elseif($i==8)
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.SpillOverArea')</h3>
     @endif
 
-    @component('modular-forms::module.field_container', [
-            'name' => $field['name'],
-            'label' => $field['label'] ?? '',
-            'label_width' => $definitions['label_width']
-        ])
+    @if($i===1)
 
-        {{-- input field --}}
-        @include('modular-forms::module.edit.field.module-to-vue', [
-            'definitions' => $definitions,
-            'field' => $field,
-            'vue_record_index' => '0'
-        ])
+        <div class="module-row">
 
-    @endcomponent
+            {{-- label  --}}
+            <div class="module-row__label" style="width: {{ round(100/12*$definitions['label_width']) }}%;">
+                    <label for="FunctionalKm2">{!! ucfirst(trans('imet-core::v2_context.TerritorialReferenceContext.fields.FunctionalArea')) !!}</label>
+            </div>
+
+            {{-- input field --}}
+            <div  class="module-row__input" style="display: flex; align-items: center;">
+                @include('modular-forms::module.edit.field.module-to-vue', [
+                    'definitions' => $definitions,
+                    'field' => $definitions['fields'][1],
+                    'vue_record_index' => '0',
+                ])
+                &nbsp;[km2]
+                &nbsp;&nbsp;
+                @include('modular-forms::module.edit.field.module-to-vue', [
+                    'definitions' => $definitions,
+                    'field' => $definitions['fields'][2],
+                    'vue_record_index' => '0',
+                ])
+                &nbsp;[km]
+            </div>
+
+        </div>
+
+    @elseif($i===4)
+
+            <div class="module-row">
+
+                {{-- label  --}}
+                <div class="module-row__label" style="width: {{ round(100/12*$definitions['label_width']) }}%;">
+                    <label for="FunctionalKm2">{!! ucfirst(trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitArea')) !!}</label>
+                </div>
+
+                {{-- input field --}}
+                <div  class="module-row__input" style="display: flex; align-items: center;">
+                    @include('modular-forms::module.edit.field.module-to-vue', [
+                        'definitions' => $definitions,
+                        'field' => $definitions['fields'][4],
+                        'vue_record_index' => '0',
+                    ])
+                    &nbsp;[km2]
+                    &nbsp;&nbsp;
+                    @include('modular-forms::module.edit.field.module-to-vue', [
+                        'definitions' => $definitions,
+                        'field' => $definitions['fields'][5],
+                        'vue_record_index' => '0',
+                    ])
+                    &nbsp;[km]
+                </div>
+
+            </div>
+
+    @elseif($i===8)
+
+            <div class="module-row">
+
+                {{-- label  --}}
+                <div class="module-row__label" style="width: {{ round(100/12*$definitions['label_width']) }}%;">
+                    <label for="FunctionalKm2">{!! ucfirst(trans('imet-core::v2_context.TerritorialReferenceContext.fields.SpillOverArea')) !!}</label>
+                </div>
+
+                {{-- input field --}}
+                <div  class="module-row__input" style="display: flex; align-items: center;">
+                    @include('modular-forms::module.edit.field.module-to-vue', [
+                        'definitions' => $definitions,
+                        'field' => $definitions['fields'][8],
+                        'vue_record_index' => '0',
+                    ])
+                    &nbsp;[km2]
+                    &nbsp;&nbsp;
+                    @include('modular-forms::module.edit.field.module-to-vue', [
+                        'definitions' => $definitions,
+                        'field' => $definitions['fields'][9],
+                        'vue_record_index' => '0',
+                    ])
+                    &nbsp;[km]
+                </div>
+
+            </div>
+
+    @elseif($i!==2 && $i!==5 && $i!==9)
+
+        @component('modular-forms::module.field_container', [
+                'name' => $field['name'],
+                'label' => $field['label'] ?? '',
+                'label_width' => $definitions['label_width']
+            ])
+
+            {{-- input field --}}
+            @include('modular-forms::module.edit.field.module-to-vue', [
+                'definitions' => $definitions,
+                'field' => $field,
+                'vue_record_index' => '0'
+            ])
+
+        @endcomponent
+
+    @endif
 
 @endforeach
 

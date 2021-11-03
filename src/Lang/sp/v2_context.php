@@ -251,14 +251,14 @@ return [
     'TerritorialReferenceContext' => [
         'title' => 'Contexto territorial de referencia del área protegida',
         'fields' => [
-            'ReferenceEcosystemAreaEstimation' => 'A) Área funcional del ecosistema. Estimación del área funcional del ecosistema: área que es importante para el mantenimiento de los servicios ecosistémicos generados por el área protegida: a) en Km² y b) como ancho de la franja exterior.',
-            'ReferenceEcosystemAreaPopulation' => 'Estimación del tamaño de la población local que vive dentro del área funcional del ecosistema',
+            'FunctionalHasNoTakeArea' => '¿El área funcional del ecosistema corresponde al área de veda?',
+            'FunctionalArea' => 'Estimación del área funcional del ecosistema que es importante para el mantenimiento de la biodiversidad del área protegida: a) en Km² y b) como ancho de la franja exterior.',
+            'FunctionalPopulation' => 'Estimación del tamaño de la población local que vive dentro del área funcional del ecosistema',
             'EcologicalAspects' => 'Estimación de la presencia de los factores ambientales, por ejemplo, las áreas de distribución de las especies emblemáticas (en Km2) (Km2)',
-            'FunctionalArea' => 'B) Área de influencia socioeconómica del área protegida. Estimación de la influencia socioeconómica del área protegida: Superficie habitada alrededor del área protegida que se beneficia de los servicios del ecosistema o funciones ambientales que genera el área protegida: a) en km² y b) como ancho de la franja exterior',
-            'FunctionalAreaPopulation' => 'Estimación del tamaño de la población local que vive dentro del área de influencia socioeconómica',
-            'SocioEconomicAspects' => 'Liste y describa los factores socioeconómicos y administrativos (por ejemplo, las funciones tradicionales o modernas sobre los recursos naturales establecidas por las autoridades tradicionales y modernas) que influyen en el ordenamiento de las áreas protegidas.',
-            'SpillOverEffect' => 'C) Área de derrame. Estimar los efectos del DERRAME en el área marina protegida, es decir, el tamaño del área crucial para mantener el aprovisionamiento de servicios del ecosistema (pesca) que proporciona el área protegida: a) en km² y b) como ancho de la franja exterior.',
-            'NoTakeArea' => '¿El área funcional del ecosistema corresponde al área de veda?',
+            'BenefitArea' => 'Estimación de la superficie habitada alrededor del área protegida que se beneficia de los servicios del ecosistema o funciones ambientales que genera el área protegida: a) en km² y b) como ancho de la franja exterior',
+            'BenefitPopulation' => 'Estimación del tamaño de la población local que vive dentro del área de influencia socioeconómica',
+            'BenefitSocioEconomicAspects' => 'Liste y describa los factores socioeconómicos y administrativos (por ejemplo, las funciones tradicionales o modernas sobre los recursos naturales establecidas por las autoridades tradicionales y modernas) que influyen en el ordenamiento de las áreas protegidas.',
+            'SpillOverArea' => 'Estimar los efectos del DERRAME en el área marina protegida, es decir, el tamaño del área crucial para mantener el aprovisionamiento de servicios del ecosistema (pesca) que proporciona el área protegida: a) en km² y b) como ancho de la franja exterior.',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Área funcional del ecosistema',

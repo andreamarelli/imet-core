@@ -251,14 +251,14 @@ return [
     'TerritorialReferenceContext' => [
         'title' => 'Contexto territorial de base da área protegida',
         'fields' => [
-            'Reference Ecosystem Area Estimation' => 'A) Área funcional do ecossistema.Estimativar da área funcional do ecossistema: área importante para a manutenção dos serviços ecossistémicos prestados pela área protegida: a) em Km² e b) como largura da faixa exterior.',
-            'Reference Ecosystem Area Population' => 'Estimativa da dimensão da população local que vive dentro da área funcional do ecossistema',
-            'Ecological Aspects' => 'Estimativa da presença de factores ambientais, por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas (em km2) (Km2)',
-            'Functional Area' => 'B) Area que beneficia os servicos ecossistémicos da área protegida. Zona de influência socioeconómica da área protegida: Área não habitada em redor da área protegida que beneficia dos serviços ecossistémicos prestados pela área protegida: a) em km² e b) como largura da faixa exterior',
-            'Functional Area Population' => 'Estimativa da dimensão da população local que vive dentro da zona socioeconómica de influência',
-            'SocioEconomic Aspects' => 'Listar e descrever os factores socioeconómicos e administrativos (por exemplo, papéis tradicionais ou modernos sobre os recursos naturais estabelecidos pelas autoridades tradicionais e modernas) que influenciam a gestão da área protegida',
-            'Spill Over Effect' => 'C) Zona de derrame. Estimar os efeitos de derrame na área marinha protegida, ou seja, a dimensão da área crucial para manter o fornecimento de serviços ecossistémicos (pesca) prestados pela área protegida: a) em km² e b) como largura da faixa exterior',
-            'NoTake Area' => 'será a área funcional do ecossistema correspondente a área de proibição de colecta de recursos?',
+            'FunctionalHasNoTakeArea' => 'será a área funcional do ecossistema correspondente a área de proibição de colecta de recursos?',
+            'FunctionalArea' => 'Estimativar da área funcional do ecossistema importante para a manutenção dos serviços biodiversidade da área protegida (por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas): a) em Km² e b) como largura da faixa exterior.',
+            'FunctionalPopulation' => 'Estimativa da dimensão da população local que vive dentro da área funcional do ecossistema',
+            'EcologicalAspects' => 'Estimativa da presença de factores ambientais, por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas (em km2) (Km2)',
+            'BenefitArea' => 'Área não habitada em redor da área protegida que beneficia dos serviços ecossistémicos prestados pela área protegida: a) em km² e b) como largura da faixa exterior',
+            'BenefitPopulation' => 'Estimativa da dimensão da população local que vive dentro da zona socioeconómica de influência',
+            'BenefitSocioEconomicAspects' => 'Listar e descrever os factores socioeconómicos e administrativos (por exemplo, papéis tradicionais ou modernos sobre os recursos naturais estabelecidos pelas autoridades tradicionais e modernas) que influenciam a gestão da área protegida',
+            'SpillOverArea' => 'Estimar os efeitos de derrame na área marinha protegida, ou seja, a dimensão da área crucial para manter o fornecimento de serviços ecossistémicos (pesca) prestados pela área protegida: a) em km² e b) como largura da faixa exterior',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Área Funcional de ecossistema',
