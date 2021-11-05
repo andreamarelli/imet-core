@@ -8,7 +8,7 @@ $definitions['label_width'] = 7;
 ?>
 
 @foreach($definitions['fields'] as $i => $field)
-    
+
     @if($i===1)
 
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.FunctionalEcosystemArea')</h3>
