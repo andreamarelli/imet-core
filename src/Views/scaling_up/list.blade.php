@@ -30,31 +30,7 @@ $url        = URL::route('index');
 
 @section('content')
 
-    @if($can_encode)
-
-        <div class="functional_buttons">
-                {{-- Import json IMETs --}}
-                <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
-                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
-                    {{ ucfirst(trans('modular-forms::common.import')) }}
-                </a>
-                {{-- Export json IMETs --}}
-                <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
-                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
-                    {{ ucfirst(trans('modular-forms::common.export')) }}
-                </a>
-                {{-- Create new IMET --}}
-                @include('modular-forms::buttons.create', [
-                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                    'label' => trans('imet-core::v2_context.Create.title')
-                ])
-                <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'create_non_wdpa']) }}">
-                    {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
-                    {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
-                </a>
-        </div>
-
-    @endif
+    <h1>Scaling Up</h1>
 
     @include('imet-core::components.common_filters', [
         'request'=>$request,
@@ -67,11 +43,29 @@ $url        = URL::route('index');
     <br />
     <div id="sortable_list">
 
+        <div id="cloud">
+            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/scaling_up/{items}'" :source-of-data="'cookie'"></label-cloud>
+        </div>
+        <action-button-cookie
+            :class-name="'btn btn-success'"
+            :cookie-name="'analysis'"
+            :event="'update_cloud_tags'"
+            :label="'Save choices'">
+        </action-button-cookie>
+        <br/>
+        <br/>
+
         @include('modular-forms::tables.sort_on_client.num_records')
 
         <table class="striped">
             <thead>
             <tr>
+                <th class="text-center width30px">
+                    <input type='checkbox'
+                           class="ml-1 vue-checkboxes"
+                           @click="check_all()"
+                           v-model="are_checked_all">
+                </th>
                 <th class="text-center width60px">@lang('imet-core::common.id')</th>
                 @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('imet-core::common.year'), 'class' => 'width90px'])
                 @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('imet-core::common.protected_area.protected_area', 1)])
@@ -83,6 +77,14 @@ $url        = URL::route('index');
 
             <tbody>
             <tr v-for="item of items">
+                <td class="align-baseline text-center">
+                    <input type="checkbox"
+                           :checked="is_checked(item.FormID)"
+                           :data-name="item.name"
+                           @click="selectValueByIdAndValue(item.FormID, item.name)"
+                           class="vue-checkboxes"
+                           :value="item.FormID">
+                </td>
                 <td class="align-baseline text-center">#@{{ item.FormID }}</td>
                 <td class="align-baseline text-center"><strong>@{{ item.Year }}</strong></td>
                 <td class="align-baseline">
@@ -125,8 +127,8 @@ $url        = URL::route('index');
 
                     {{-- Show --}}
                     <span v-if="item.version==='v2'">
-                            @include('imet-core::components.button_show', ['version' => 'v2'])
-                        </span>
+                        @include('imet-core::components.button_show', ['version' => 'v2'])
+                    </span>
 
                     @if($can_encode)
 
@@ -137,50 +139,6 @@ $url        = URL::route('index');
                         <span v-else-if="item.version==='v2'">
                             @include('imet-core::components.button_edit', ['version' => 'v2'])
                         </span>
-
-                        {{-- Merge tool --}}
-                        <span v-if="item.has_duplicates">
-                                @include('modular-forms::buttons._generic', [
-                                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                                    'action' =>'merge_view',
-                                    'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
-                                    'icon' => 'clone',
-                                    'class' => 'btn-primary'
-                                ])
-                            </span>
-
-                    @endif
-
-                    {{-- Export --}}
-                    @include('modular-forms::buttons._generic', [
-                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                        'action' =>'export',
-                        'item' => 'item.FormID',
-                        'tooltip' => ucfirst(trans('modular-forms::common.export')),
-                        'icon' => 'cloud-download-alt',
-                        'class' => 'btn-primary'
-                    ])
-
-                    {{-- Print --}}
-                    <span v-if="item.version==='v2'">
-                            @include('modular-forms::buttons._generic', [
-                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                                'action' =>'print',
-                                'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('modular-forms::common.print')),
-                                'icon' => 'print',
-                                'class' => 'btn-primary'
-                            ])
-                        </span>
-
-                    @if($can_encode)
-
-                        {{-- Delete --}}
-                        @include('modular-forms::buttons.delete', [
-                            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                            'item' => 'item.FormID'
-                        ])
 
                     @endif
 
