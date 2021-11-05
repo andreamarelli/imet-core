@@ -78,7 +78,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         });
 
         // Scaling Up Analysis - do not provide to offline
-        Route::get('scaling_up', abort(404));
+        Route::get('scaling_up', function(){ abort(404); });
 
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('csv_list');
