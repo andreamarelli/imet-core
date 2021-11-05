@@ -1611,8 +1611,7 @@ return [
                 'Provisão de serviços ecossistémicos (alimentos, material rustico, etc)',
                 'Rendimento turístico',
                 'Conflito entre homem e fauna selvagem',
-                'Emprego de mão –de-obra local',
-                'Serviços de ecossistema (provisionamento)'
+                'Emprego de mão –de-obra local'
             ],
             'group1' => [
                 'Protecção das pessoas, facilidades, infraestruturas e estabilidade social',
