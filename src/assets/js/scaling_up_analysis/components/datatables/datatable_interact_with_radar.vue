@@ -39,10 +39,12 @@ export default {
       params.selected['upper limit'] = false;
       this.parse_data(params.selected);
     });
+
     this.parse_data();
   },
   methods: {
     parse_data: function (selected = null) {
+
       const values = Object.entries({...this.values});
       const data = [];
 

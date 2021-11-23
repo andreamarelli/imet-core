@@ -136,7 +136,6 @@ export default {
             );
           }
         });
-    //console.log(this.values);
   }
 }
 </script>

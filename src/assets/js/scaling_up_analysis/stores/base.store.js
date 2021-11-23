@@ -7,8 +7,12 @@ export default class BaseStore {
         this.init();
     }
 
-    init(){
+    init() {
 
+    }
+
+    get_scaling_up(){
+        return this.scaling_up_id;
     }
 
     is_country_enabled() {
@@ -41,10 +45,15 @@ export default class BaseStore {
         const items = Object.values(values.Average);
 
         items.forEach((item, idx) => {
-            values.Average[idx] = {value: item, itemStyle: {color: colors[idx]}};
+            values.Average[idx] = {
+                value: item['value'],
+                'upper limit': item['upper limit'],
+                itemStyle: {color: colors[idx]}
+            };
         });
+        const result = {'Average': Object.keys(values.Average).map((k) => values.Average[k])};
 
-        return values;
+        return result
     }
 
     parse_indicators(indicators) {
@@ -52,7 +61,7 @@ export default class BaseStore {
     }
 
     is_visible(values) {
-        if(typeof values === 'undefined'){
+        if (typeof values === 'undefined') {
             return false;
         }
         return Object.keys(values).length;

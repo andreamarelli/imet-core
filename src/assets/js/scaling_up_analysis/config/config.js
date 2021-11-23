@@ -270,6 +270,47 @@ export default {
                 ]
             },
             {
+                name: 'process_internal_management',
+                menu: {
+                    title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.title'),
+                    radar: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.radar'),
+                    ranking: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.ranking'),
+                    average_contribution: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.average_contribution'),
+                    datatable: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.datatable'),
+                },
+                columns: [
+                    {
+                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "field": "name"
+                    },
+                    {
+                        "label": `PR1: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr1')}`,
+                        "field": "pr1"
+                    },
+                    {
+                        "label": `PR2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr2')}`,
+                        "field": "pr2",
+                    },
+                    {
+                        "label": `PR3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr3')}`,
+                        "field": "pr3"
+                    },
+                    {
+                        "label": `PR4: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr4')}`,
+                        "field": "pr4"
+                    },
+                    {
+                        "label": `PR5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr5')}`,
+                        "field": "pr5",
+                    },
+                    {
+                        "label": `PR6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr6')}`,
+                        "field": "pr6"
+                    }
+                ]
+
+            },
+            {
                 name: 'process_management_protection_values',
                 title: `PR B: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr7_9')}`,
                 columns: [
@@ -676,20 +717,20 @@ export default {
     },
     relative_performance_effectiveness_bar_average: {
         indicators: [
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.planning'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
+            window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
             window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes')
+            window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
+            window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
+            window.Locale.getLabel('imet-core::v2_common.steps_eval.planning'),
+            window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
         ],
         color: [
-            '#ffff00',
-            '#bfbfbf',
-            '#ffc000',
-            '#0099CC',
-            '#92D050',
             '#00B050',
+            '#92D050',
+            '#0099CC',
+            '#ffc000',
+            '#bfbfbf',
+            '#ffff00',
             '#ffff00'
         ]
     },
