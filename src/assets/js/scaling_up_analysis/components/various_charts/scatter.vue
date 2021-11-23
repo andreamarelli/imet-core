@@ -43,6 +43,9 @@ export default {
     computed: {
         bar_options() {
             return {
+                color: [
+                    ...this.get_colors()
+                ],
                 grid: {
                     width: '80%',
                     height: '80%'
@@ -111,15 +114,19 @@ export default {
             if (this.data.length > 0) {
                 this.chart = echarts.init(this.$el);
                 this.chart.setOption(this.bar_options);
+
                 this.chart.on('legendselectchanged', (params) => {
                     this.$root.$emit(`scatter_data_${this.event_key}`, params);
                 });
             }
         },
+        get_colors(){
+            return this.data.map(i => i.itemStyle.borderColor);
+        },
         get_legends() {
             const legends = [];
             this.data.forEach(dato => {
-                legends.push({"name": dato.name, itemStyle: {"color": dato.itemStyle.borderColor}});
+                legends.push({"name": dato.name});
             })
 
             return {

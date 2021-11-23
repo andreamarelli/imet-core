@@ -3,6 +3,7 @@
 
 return [
     'conclusions' => 'Conclusions',
+    'title' => 'Scaling up analysis report for ',
     'average_contribution_management' => 'Average contribution of the management cycle elements',
     'governance_management' => 'Governance and management',
     'key_conservation_elements' => 'Key conservation elements',
@@ -32,11 +33,14 @@ return [
         'objectives' => 'Objectives'
     ],
     'grouping' => [
+        'title' => '5.1 Grouping',
         'add_country' => 'Add by country',
         'reset' => 'Reset',
         'add_group' => 'Add group',
         'render_radar' => 'Render radar',
         'render_scatter' => 'Render scatter',
+        'scatter_plot' => '5.3 Groups visualization with a scatter plot',
+        'radar' => '5.2 Groups visualization with a radar',
         'group' => 'Group'
     ],
     'management_context' => [

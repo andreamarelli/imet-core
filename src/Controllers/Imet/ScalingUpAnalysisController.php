@@ -1,8 +1,10 @@
 <?php
+
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
+use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ModularForms\Helpers\File\Compress;
 use AndreaMarelli\ModularForms\Helpers\File\File;
@@ -11,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ScalingUpAnalysisController
 {
-
     /**
      * @param Request $request
      * @return array
@@ -20,22 +21,55 @@ class ScalingUpAnalysisController
     {
         $action = $request->input('func');
         $parameters = $request->input('parameter');
+        ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
+
         return ModelScalingUpAnalysis::$action($parameters);
     }
 
+    private function save_default_names($scaling_up_id, $areas)
+    {
+        $isScalingUpInit = ScalingUpWdpa::retrieve_by_scaling_id($scaling_up_id);
+        if (count($isScalingUpInit) === 0) {
+            ModelScalingUpAnalysis::reset_areas_ids();
+            ScalingUpWdpa::save_pas($scaling_up_id, $areas);
+
+        }
+    }
+
+    private function retrieve_custom_names($scaling_up_id): array
+    {
+        $custom_names = [];
+        $items = ScalingUpWdpa::retrieve_by_scaling_id($scaling_up_id);
+        foreach ($items as $item) {
+            $custom_names[$item->FormID] = $item->name;
+        }
+        return $custom_names;
+    }
+
+    private function update_custom_names(Request $request, $items, $scaling_up_id)
+    {
+        $ids = explode(',', $items);
+        foreach ($ids as $id) {
+            if ($request->input($id)) {
+                ScalingUpWdpa::update_item($scaling_up_id, $id, $request->input($id));
+            }
+        }
+    }
 
     /**
-     * @param $items
+     * @param Request $request
+     * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function report_scaling_up($items)
+    public function report_scaling_up(Request $request, $items = null)
     {
         $scaling_up_id = null;
         $areas = '';
+
         $item = ModelScalingUpAnalysis::get_scaling_up_by_wdpas($items);
+
         if ($item->count() === 0) {
             $item = ModelScalingUpAnalysis::create(["wdpas" => $items]);
-
             if (isset($item)) {
                 $areas = $item['wdpas'];
                 $scaling_up_id = $item['id'];
@@ -45,18 +79,27 @@ class ScalingUpAnalysisController
             $scaling_up_id = $item[0]['id'];
         }
 
-        $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas));
+        $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas), true);
+
         $areas_names = [];
         foreach ($protected_areas as $k => $protected_area) {
-            if(is_object($protected_area)) {
+            if (is_object($protected_area)) {
                 $areas_names[$k] = $protected_area->name;
             }
         }
 
+        if ($request->isMethod('post')) {
+            ModelScalingUpAnalysis::reset_areas_ids();
+            $this->update_custom_names($request, $items, $scaling_up_id);
+        } else {
+            $this->save_default_names($scaling_up_id, $protected_areas);
+        }
+
+
         asort($areas_names);
         $pa_ids = implode(',', array_keys($areas_names));
 
-        $areas_names_concat = implode(', ', $areas_names);
+        $custom_names = $this->retrieve_custom_names($scaling_up_id);
 
         $templates_names = [
             ['name' => "map_view", 'title' => 'Location of selected PAs', 'snapshot_id' => "map_view", 'exclude_elements' => ''],
@@ -89,14 +132,17 @@ class ScalingUpAnalysisController
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,
             'pa_ids' => $pa_ids,
-            'protected_areas' => $areas_names_concat,
-            'scaling_up_id' => $scaling_up_id
+            'protected_areas' => implode(', ', $custom_names),
+            'scaling_up_id' => $scaling_up_id,
+            'pas' => $protected_areas,
+            'custom_names' => $custom_names,
+            'request' => $request
         ]);
     }
 
     /**
      * export scaling up images in zip file
-    * @param int $scaling_id
+     * @param int $scaling_id
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|string
      */
     public function download_zip_file(int $scaling_id)
@@ -111,7 +157,7 @@ class ScalingUpAnalysisController
             $path = Compress::zipFile($files, "Scaling_up", false);
             return File::download($path);
         } else {
-            return "";
+            return trans("imet-core::analysis_report.more_than_one_file");
         }
     }
 
@@ -119,9 +165,9 @@ class ScalingUpAnalysisController
     {
         $areas_names_concat = "";
         $records = ModelScalingUpAnalysis::where('id', $id)->get();
-
+        ModelScalingUpAnalysis::$scaling_id = $id;
         if (count($records) > 0) {
-            $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $records[0]->wdpas));
+            $protected_areas = ModelScalingUpAnalysis::get_array_of_custom_names(explode(',', $records[0]->wdpas));
             foreach ($protected_areas as $k => $protected_area) {
                 $areas_names[$k] = $protected_area->name;
             }
