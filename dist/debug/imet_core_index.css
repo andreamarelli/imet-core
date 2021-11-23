@@ -447,10 +447,17 @@
 #imet_report table#detailed_scores {
   font-size: 0.9em;
   table-layout: fixed;
-  width: 100%; }
-  #imet_report table#detailed_scores td {
-    word-break: break-word; }
-
+  width: 100%;
+}
+#imet_report table#detailed_scores td {
+  word-break: break-word;
+}
+#imet_report .score_no {
+  color: black;
+  background-color: grey !important;
+  border: 1px solid #ccc;
+  -webkit-print-color-adjust: exact;
+}
 #imet_report .score_success {
   color: white;
   background-color: #00A74B !important;

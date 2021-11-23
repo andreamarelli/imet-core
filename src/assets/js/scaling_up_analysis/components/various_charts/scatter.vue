@@ -130,7 +130,8 @@ export default {
             })
 
             return {
-                data: legends.sort((a, b) => {
+                data: legends
+                    .sort((a, b) => {
                     return a.name > b.name ? 1 : -1
                 })
             };
@@ -158,9 +159,7 @@ export default {
                         }
                     }
                 })
-
             })
-
             return {series: items};
         }
     }

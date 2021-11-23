@@ -102,31 +102,14 @@ class ScalingUpAnalysisController
         $custom_names = $this->retrieve_custom_names($scaling_up_id);
 
         $templates_names = [
-            ['name' => "map_view", 'title' => 'Location of selected PAs', 'snapshot_id' => "map_view", 'exclude_elements' => ''],
-            ['name' => "general_elements", 'title' => 'General elements of the protected areas', 'snapshot_id' => "general_elements", 'exclude_elements' => ''],
-
-            ['name' => "management_context", 'title' => 'Management context (key elements of management)', 'snapshot_id' => "management_context", 'exclude_elements' => ''],
-            ['name' => "threats_categories", 'title' => 'Threats Categories', 'snapshot_id' => "management_context", 'exclude_elements' => ''],
-
-            ['name' => "evaluation_of_protected_area_management_cycle", 'title' => 'Management effectiveness', 'snapshot_id' => "evaluation_of_protected_area_management_cycle", 'exclude_elements' => ''],
-            ['name' => "elements_diagrams", 'title' => 'Protected areas compared for the elements of management cycle', 'snapshot_id' => "elements_diagrams", 'exclude_elements' => ''],
-            ['name' => "performance_diagram", 'title' => 'Performance in 6 elements of the management effectiveness cycle', 'snapshot_id' => "performance_diagram", 'exclude_elements' => ''],
-            ['name' => "relative_performance_effectiveness_bar_average", 'title' => 'Averages of the six elements of management effectiveness for all protected area intervals', 'snapshot_id' => "relative_performance_effectiveness_bar_average", 'exclude_elements' => ''],
-            ['name' => "imet_ranking", 'title' => 'Imet Ranking', 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => ''],
-            ['name' => "relative_performance_effectiveness_intervals", 'title' => 'Confidence intervals per protected area', 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => 'smallMenu'],
-
-            ['name' => "management_effectiveness_analysis", 'title' => 'Management effectiveness analysis', 'snapshot_id' => "management_effectiveness_analysis", 'exclude_elements' => ''],
-            ['name' => "specific_actions_mention", 'title' => 'Summary of key elements affecting the management elements', 'snapshot_id' => "specific_actions_mention", 'exclude_elements' => ''],
-            ['name' => "total_carbon", 'title' => 'Total carbon', 'snapshot_id' => "total_carbon", 'exclude_elements' => ''],
-            ['name' => 'grouping_analysis_on_demand', 'title' => 'Grouping', 'snapshot_id' => "grouping_analysis_on_demand", 'exclude_elements' => 'js-grouping-action-buttons,start-zone,js-render-buttons'],
-            ['name' => "terestial_ecoregions", 'title' => 'Terestial ecoregions', 'snapshot_id' => "terestial_ecoregions", 'exclude_elements' => ''],
-            ['name' => "marine_ecoregions", 'title' => 'Marine ecoregions', 'snapshot_id' => "marine_ecoregions", 'exclude_elements' => ''],
-            ['name' => "copernicus", 'title' => 'Copernicus Global Land Cover', 'snapshot_id' => "copernicus", 'exclude_elements' => ''],
-            ['name' => "forest_cover", 'title' => 'Forest cover', 'snapshot_id' => "forest_cover", 'exclude_elements' => ''],
-
-            ['name' => "protected_area_coverage_and_connectivity", 'title' => 'Protected area coverage and connectivity', 'snapshot_id' => "protected_area_coverage_and_connectivity", 'exclude_elements' => ''],
-            ['name' => "land_degradation", 'title' => 'Land degradation', 'snapshot_id' => "land_degradation", 'exclude_elements' => ''],
-
+            ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => ''],
+            ['name' => "general_elements", 'title' => trans('imet-core::analysis_report.sections.second'), 'snapshot_id' => "general_elements", 'exclude_elements' => ''],
+            ['name' => "key_elements_of_conservation", 'title' => trans('imet-core::analysis_report.sections.third'), 'snapshot_id' => "management_context", 'exclude_elements' => ''],
+            ['name' => "overall_management_effectiveness_scores", 'title' => trans('imet-core::analysis_report.sections.fourth'), 'snapshot_id' => "evaluation_of_protected_area_management_cycle", 'exclude_elements' => ''],
+            ['name' => 'grouping_analysis_on_demand', 'title' => trans('imet-core::analysis_report.sections.fifth'), 'snapshot_id' => "grouping_analysis_on_demand", 'exclude_elements' => 'js-grouping-action-buttons,start-zone,js-render-buttons'],
+            ['name' => "analysis_per_element_of_them_management_cycle", 'title' => trans('imet-core::analysis_report.sections.sixth'), 'snapshot_id' => "elements_diagrams", 'exclude_elements' => ''],
+            ['name' => "relative_performance_effectiveness_intervals", 'title' => trans('imet-core::analysis_report.sections.seventh'), 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => 'smallMenu'],
+            ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => ''],
         ];
 
         return view('imet-core::scaling_up.report', [

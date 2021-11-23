@@ -23,6 +23,11 @@ export default class BaseStore {
         return this.is_country != this.is_country;
     }
 
+    find_config_by_name(config, name) {
+        const items = config.find(item => item.name === name);
+        return items;
+    }
+
     add_color_to_value(values, id, colors) {
         const color_items = [];
         const items = Object.values(values);
@@ -43,7 +48,6 @@ export default class BaseStore {
             return {};
         }
         const items = Object.values(values.Average);
-
         items.forEach((item, idx) => {
             values.Average[idx] = {
                 value: item['value'],
