@@ -134,10 +134,6 @@ class ScalingUpAnalysisController
             $this->save_default_names($scaling_up_id, $protected_areas);
         }
 
-
-        uasort($protected_areas, function($a, $b) {
-            return $a['name'] <=> $b['name'];
-        });
         $pa_ids = implode(',', array_keys($protected_areas));
         $custom_names = $this->retrieve_custom_names($scaling_up_id);
         $protected_areas_names = implode(', ', $custom_names);
