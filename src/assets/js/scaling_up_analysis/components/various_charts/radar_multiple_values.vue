@@ -46,6 +46,12 @@ export default {
             default: () => {
                 return [];
             }
+        },
+        always_first_in_legend:{
+            type: Array,
+            default: () => {
+                return [0,1,2];
+            }
         }
     },
     data: function () {
@@ -72,11 +78,12 @@ export default {
                 //nameGap: 0,
                 ...items.legends,
                 grid: {
-                    "left": "3%",
-                    "right": "4%",
-                    "bottom": "3%",
+                    left: "10%",
+                    right: "0%",
+                    bottom: "3%",
+                    width: "80%",
+                    height: "82%",
                     "containLabel": true,
-                    "top":"19%"
                 },
                 radar: {
                     indicator: items.indicators,
@@ -175,7 +182,11 @@ export default {
                 .forEach(([key, value]) => {
                     legends.push({name: key});
                 });
-            return this.legends(legends);
+            let on_top = [];
+            if(this.always_first_in_legend.length){
+                on_top = legends.slice(0, 3)
+            }
+            return this.legends([...on_top, ...legends.sort((a, b) => a.name.localeCompare(b.name))]);
         },
         singleData: function () {
             const render_items = [];
@@ -247,7 +258,6 @@ export default {
             return {
                 value: [],
                 name: '',
-
                 itemStyle: {
                     color: null
                 },
