@@ -6,7 +6,7 @@ use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
-class convertSQLite extends Command
+class ConvertSQLite extends Command
 {
     /**
      * The name and signature of the console command.
