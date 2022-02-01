@@ -39,6 +39,7 @@ class Controller extends __Controller
 {
     use Pame;
     use Backup;
+    use ConvertSQLite;
 
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::';

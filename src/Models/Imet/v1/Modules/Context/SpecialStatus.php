@@ -33,6 +33,20 @@ class SpecialStatus extends Modules\Component\ImetModule
 
 
         parent::__construct($attributes);
+    }
 
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'SpecialStatus',
+            'fields' => [
+                'Designation', 'RegistrationDate', 'Code', 'Area', 'DesignationCriteria', 'upload', 'DesignationGroup'
+            ]
+        ];
     }
 }
