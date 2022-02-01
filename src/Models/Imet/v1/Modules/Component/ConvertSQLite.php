@@ -90,16 +90,17 @@ trait ConvertSQLite{
             ->map(function($record) use ($sqlite_structure, $sqlite_connection){
 
                 $record = (array) $record;
+                $json = [];
+
                 // Review data from SQLITE whenever necessary
                 if(method_exists(get_called_class(), 'conversionDataReview')){
                     $record = static::conversionDataReview($record, $sqlite_connection);
                 }
 
-                $json = [];
                 // Match SQLite fields to current module fields
                 $module_fields = (new static())->getModuleFieldsNames(['FILE_BINARY']);
+                $sqlite_fields = $sqlite_structure['fields'];
                 foreach ($module_fields as $field_idx => $field){
-                    $sqlite_fields = $sqlite_structure['fields'];
                     //Find and import corresponding BYTEA field
                     if(Str::contains($field, '_BYTEA')){
                         $filename_field = Str::replace('_BYTEA', '', $field);
@@ -112,9 +113,11 @@ trait ConvertSQLite{
                         $json[$field] = $record[$sqlite_fields[$field_idx]];
                     }
                 }
+
                 // Additional fields
                 $json[static::$foreign_key] = $record['FormID'];
                 $json[static::UPDATED_AT] = $record['UpdateDate'];
+
                 return $json;
             })
             ->toArray();
