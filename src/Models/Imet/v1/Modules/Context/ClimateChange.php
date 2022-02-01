@@ -37,4 +37,19 @@ class ClimateChange extends Modules\Component\ImetModule
         parent::__construct($attributes);
 
     }
+
+    /**
+     * Set parameter required to convert OLD SQLite IMETs
+     *
+     * @return array
+     */
+    protected static function conversionParameters(): array
+    {
+        return [
+            'table' => 'ClimateChangeChangements',
+            'fields' => [
+                'Value', 'Description', 'DesiredStatus', 'Trend', 'Notes', 'Group'
+            ]
+        ];
+    }
 }
