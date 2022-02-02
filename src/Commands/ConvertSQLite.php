@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Commands;
 use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\File\File;
+use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use Illuminate\Console\Command;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Support\Facades\Config;
@@ -133,16 +134,30 @@ class ConvertSQLite extends Command
             $output .= ProtectedAreaNonWdpa::isNonWdpa($json['Imet']['wdpa_id']) ? ' (No WDPA)' : ' (WDPA: ' .$json['Imet']['wdpa_id'] . ')';
             $output .= ' - ' . $json['Imet']['Country'];
             $output .= ' - ' . $json['Imet']['Year'];
-
             $this->info($output);
+
+            // Save JSON file
+            $file_name = 'IMET-V1' .
+                (ProtectedAreaNonWdpa::isNonWdpa($json['Imet']['wdpa_id']) ? '' : '_'.$json['Imet']['wdpa_id'])  .
+                '-' . Chars::clean(Chars::replaceAccents($json['Imet']['name'])) .
+                '-' . $json['Imet']['Year'] .
+                '.' . 'json';
+            $file_path =  $this->storage->path($file_name);
+
+            $handle = fopen($file_path, 'w');
+            fwrite($handle, json_encode($json));
+            fclose($handle);
+            $this->info('JSON saved: ' . $file_path);
+
         } else {
+
             $output = 'Cannot identify Protected Area (';
             $output .= 'ProtectedAreaID: '. $imet->ProtectedAreaID;
             $output .= ', Country ' . $imet->Country;
             $output .= ', Year ' . $imet->Year;
             $output .= ')';
-
             $this->error($output);
+
         }
     }
 
