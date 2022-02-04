@@ -514,8 +514,8 @@ class ScalingUpAnalysis extends Model
         $synthetic_indicators_table = static::get_assessments($form_ids);
         $assessments['data'] = $synthetic_indicators_table['data'];
         $index_ranking = static::get_imet_ranking($form_ids, $assessments);
-        $radars = static::get_protected_areas_diagram_compare($form_ids, $assessments);
-        $averages_six_elements = static::get_averages_of_each_indicator_of_six_elements($form_ids, $assessments);
+        $radars = static::get_protected_areas_diagram_compare($form_ids, $assessments, true);
+        $averages_six_elements = static::get_averages_of_each_indicator_of_six_elements($form_ids, $assessments, true);
         static::reset_areas_ids();
         $scatter_plots = static::get_scatter_grouping_analysis(array_map(function (int $value): array {
             $pa = static::getCustomNames($value);
@@ -893,9 +893,9 @@ class ScalingUpAnalysis extends Model
      * @param array $assessments
      * @return array
      */
-    public static function get_protected_areas_diagram_compare($form_ids, array $assessments = []): array
+    public static function get_protected_areas_diagram_compare($form_ids, array $assessments = [], bool $overall = false): array
     {
-        $data = static::get_upper_lower_protected_areas_diagram_compare($form_ids, false, $assessments);
+        $data = static::get_upper_lower_protected_areas_diagram_compare($form_ids, false, $assessments, $overall);
         unset($data['diagrams']['upper limit']);
         unset($data['diagrams']['lower limit']);
 
@@ -907,9 +907,9 @@ class ScalingUpAnalysis extends Model
      * @param array $assessments
      * @return array[]
      */
-    public static function get_averages_of_each_indicator_of_six_elements($form_ids, array $assessments = []): array
+    public static function get_averages_of_each_indicator_of_six_elements($form_ids, array $assessments = [], $overall = false): array
     {
-        $data = static::get_upper_lower_protected_areas_diagram_compare($form_ids, false, $assessments);
+        $data = static::get_upper_lower_protected_areas_diagram_compare($form_ids, false, $assessments, $overall);
         $response = ['Average' => []];
 
         $average = $data['data']['diagrams']['Average'];
@@ -917,12 +917,12 @@ class ScalingUpAnalysis extends Model
         $lowerLimit = $data['data']['diagrams']['lower limit'];
         //["value" => $average_value, "upper limit" => [$percentile_10, $percentile_90],
         $response['Average'] = [
-            ['value' => $average[1], 'upper limit' => [$lowerLimit['outcomes'], $upperLimit['outcomes']], 'indicator' => trans('imet-core::v2_common.steps_eval.outcomes'), "itemStyle" => ["color" => '#00B050']],
-            ['value' => $average[2], 'upper limit' => [$lowerLimit['outputs'], $upperLimit['outputs']], 'indicator' => trans('imet-core::v2_common.steps_eval.outputs'), "itemStyle" => ["color" => '#92D050']],
-            ['value' => $average[3], 'upper limit' => [$lowerLimit['process'], $upperLimit['process']], 'indicator' => trans('imet-core::v2_common.steps_eval.process'), "itemStyle" => ["color" => '#0099CC']],
-            ['value' => $average[4], 'upper limit' => [$lowerLimit['inputs'], $upperLimit['inputs']], 'indicator' => trans('imet-core::v2_common.steps_eval.inputs'), "itemStyle" => ["color" => '#ffc000']],
-            ['value' => $average[5], 'upper limit' => [$lowerLimit['planning'], $upperLimit['planning']], 'indicator' => trans('imet-core::v2_common.steps_eval.planning'), "itemStyle" => ["color" => '#bfbfbf']],
-            ['value' => $average[0], 'upper limit' => [$lowerLimit['context'], $upperLimit['context']], 'indicator' => trans('imet-core::v2_common.steps_eval.context'), "itemStyle" => ["color" => '#ffff00']]];
+            ['value' => $average['outcomes'], 'upper limit' => [$lowerLimit['outcomes'], $upperLimit['outcomes']], 'indicator' => trans('imet-core::v2_common.steps_eval.outcomes'), "itemStyle" => ["color" => '#00B050']],
+            ['value' => $average['outputs'], 'upper limit' => [$lowerLimit['outputs'], $upperLimit['outputs']], 'indicator' => trans('imet-core::v2_common.steps_eval.outputs'), "itemStyle" => ["color" => '#92D050']],
+            ['value' => $average['process'], 'upper limit' => [$lowerLimit['process'], $upperLimit['process']], 'indicator' => trans('imet-core::v2_common.steps_eval.process'), "itemStyle" => ["color" => '#0099CC']],
+            ['value' => $average['inputs'], 'upper limit' => [$lowerLimit['inputs'], $upperLimit['inputs']], 'indicator' => trans('imet-core::v2_common.steps_eval.inputs'), "itemStyle" => ["color" => '#ffc000']],
+            ['value' => $average['planning'], 'upper limit' => [$lowerLimit['planning'], $upperLimit['planning']], 'indicator' => trans('imet-core::v2_common.steps_eval.planning'), "itemStyle" => ["color" => '#bfbfbf']],
+            ['value' => $average['context'], 'upper limit' => [$lowerLimit['context'], $upperLimit['context']], 'indicator' => trans('imet-core::v2_common.steps_eval.context'), "itemStyle" => ["color" => '#ffff00']]];
 
         return ['status' => 'success', 'data' => $response];
     }
@@ -999,7 +999,7 @@ class ScalingUpAnalysis extends Model
      * @param array $assessments
      * @return array
      */
-    public static function get_upper_lower_protected_areas_diagram_compare($form_ids, bool $width = true, array $assessments = []): array
+    public static function get_upper_lower_protected_areas_diagram_compare($form_ids, bool $width = true, array $assessments = [], $overall = true): array
     {
         $assessments = count($assessments) ? $assessments : static::get_assessments($form_ids);
 
@@ -1028,14 +1028,25 @@ class ScalingUpAnalysis extends Model
 
                 $indicator[$indi][] = $assess[$indi];
 
-                $analysis_diagrams_protected_areas[$name][] = $assess[$indi];
+                if($overall) {
+                    $analysis_diagrams_protected_areas[$name][$indi] = $assess[$indi];
+                }else{
+                    $analysis_diagrams_protected_areas[$name][] = $assess[$indi];
+                }
+
                 $analysis_diagrams_protected_areas[$name]['color'] = $assess['color'];
 
                 if ($width) {
                     $analysis_diagrams_protected_areas[$name]['width'] = 4;
                 }
             }
-            $average[] = static::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
+
+            if($overall) {
+                $average[$indi] = static::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
+            }
+            else{
+                $average[] = static::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
+            }
         }
 
         foreach ($indicator as $k => $v) {
@@ -1053,7 +1064,7 @@ class ScalingUpAnalysis extends Model
         $lowerLimit['width'] = 4;
         $lowerLimit['color'] = 'black';
         krsort($analysis_diagrams_protected_areas);
-        //dd($analysis_diagrams_protected_areas);
+
         return ['status' => 'success', 'data' => ['diagrams' => array_merge($analysis_diagrams_protected_areas, [
             'Average' => $average, 'upper limit' => $upperLimit, 'lower limit' => $lowerLimit])]];
     }
@@ -1155,7 +1166,7 @@ class ScalingUpAnalysis extends Model
 
         foreach ($indicator as $indi => $value) {
             foreach ($groups as $key => $group) {
-                $average[$group[1]][] = static::round_number(array_sum($indicator[$indi][$key]) / count($indicator[$indi][$key]));
+                $average[$group[1]][$indi] = static::round_number(array_sum($indicator[$indi][$key]) / count($indicator[$indi][$key]));
                 $average[$group[1]]['color'] = $colors[$group[0] - 1];
                 $average[$group[1]]['legend_selected'] = true;
             }

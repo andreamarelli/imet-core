@@ -43,6 +43,7 @@
                                                     <template slot-scope="data_elements">
                                                         <scaling_radar class="sm" :height=700
                                                                        :single="false"
+                                                                       :event_key="'overall'"
                                                                        :unselect_legends_on_load="true"
                                                                        :show_legends="true"
                                                                        :values='data_elements.props'
@@ -57,7 +58,9 @@
                                                                    :exclude_elements="'{{$exclude_elements}}'">
                                                     <template slot-scope="data_elements">
                                                         <datatable_interact_with_radar :default_order="'imet_index'"
+                                                                                       :event_key="'overall'"
                                                                                        class="col-sm"
+                                                                                       :values_with_indicators_keys="true"
                                                                                        :values="data_elements.props"
                                                                                        :columns="container.props.config.performance_diagram.columns"></datatable_interact_with_radar>
 
@@ -118,6 +121,7 @@
                                                                    :exclude_elements="'{{$exclude_elements}}'">
                                                     <template slot-scope="data_elements">
                                                         <datatable_scaling :default_order="'imet_index'"
+
                                                                            :default_order_dir="'desc'"
                                                                            :columns="container.props.config.evaluation_of_protected_area_management_cycle.columns"
                                                                            :values="data_elements.props">
