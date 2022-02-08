@@ -78,6 +78,7 @@
   max-height: 300px;
   overflow: auto;
   background: #fff;
+  margin-bottom: 10px;
 }
 .vue-dropzone .files {
     display: flex;
