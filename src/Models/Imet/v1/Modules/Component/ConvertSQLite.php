@@ -20,7 +20,7 @@ trait ConvertSQLite{
      * @param $sqlite_connection
      * @return string|null
      */
-    public static function identifyProtectedAreaID($id, $sqlite_connection): ?string
+    public static function identifyByProtectedAreaID($id, $sqlite_connection): ?string
     {
         $knowledge_base = $sqlite_connection->table('knowledgebase_protectedareas')
             ->select()
@@ -39,7 +39,7 @@ trait ConvertSQLite{
     public static function conversionIdentifyPa($imet, $sqlite_connection): array
     {
         // Using ProtectedAreaID
-        $wdpa = static::identifyProtectedAreaID($imet->ProtectedAreaID, $sqlite_connection);
+        $wdpa = static::identifyByProtectedAreaID($imet->ProtectedAreaID, $sqlite_connection);
         if(!empty($wdpa)
             && $pa = ProtectedArea::where('wdpa_id', $wdpa)->first()){
             return [$wdpa, $pa->name];
