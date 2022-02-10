@@ -22,32 +22,41 @@ trait ConvertSQLite{
         // Retrieve WDPAID
         [$wdpa, $pa_name] = Modules\Component\ImetModule::conversionIdentifyPa($imet, $sqlite_connection);
 
+        // no WDPA nor NAME found: cannot identify
         if (empty($wdpa) && empty($pa_name)){
             return [];
         }
 
-        $form          = new Imet();
-        $form->name    = $pa_name;
-        $form->Country = $imet->Country;
-        $form->Year    = $imet->Year;
-        $form->version = 'v1';
-        $form->wdpa_id = !empty($wdpa) ? $wdpa : ProtectedAreaNonWdpa::generate_fake_wdpa();
+        // Non-WDPA protected area
+        $wdpa = !empty($wdpa) ? $wdpa : ProtectedAreaNonWdpa::generate_fake_wdpa();
 
-        $json = ControllerV1::export($form, false, false);
+        // Build JSON structure
+        $json = [
+            "Imet" => [
+                "name" => $pa_name,
+                "Country" => $imet->Country,
+                "Year" => $imet->Year,
+                "version" => "v1",
+                "wdpa_id" => $wdpa,
+                "imet_version" => "SQLITE",
+            ],
+            "Encoders" => [],
+            "Context" => [],
+            "Evaluation" => [],
+        ];
+        if(ProtectedAreaNonWdpa::isNonWdpa($wdpa)){
+            $json["NonWdpaProtectedArea"] = [];
+            $json["NonWdpaProtectedArea"]['id'] = $wdpa;
+            $json["NonWdpaProtectedArea"]['wdpa_id'] = $wdpa;
+            $json["NonWdpaProtectedArea"]['name'] = $pa_name;
+            $json["NonWdpaProtectedArea"]['country'] = $imet->Country;
+        }
+
         foreach (Imet::allModules() as $module_class) {
-            if (array_key_exists($module_class::getShortClassName(), $json['Context'])) {
-                $json['Context'][$module_class::getShortClassName()] = $module_class::convert($imet, $sqlite_connection);
-            }
+            $json['Context'][$module_class::getShortClassName()] = $module_class::convert($imet, $sqlite_connection);
         }
         foreach (Imet_Eval::allModules() as $module_class) {
-            if (array_key_exists($module_class::getShortClassName(), $json['Evaluation'])) {
-                $json['Evaluation'][$module_class::getShortClassName()] = $module_class::convert($imet, $sqlite_connection);
-            }
-        }
-
-        if(!empty($pa_name)){
-            $json['NonWdpaProtectedArea']['name'] = $pa_name;
-            $json['NonWdpaProtectedArea']['country'] = $imet->Country;
+            $json['Evaluation'][$module_class::getShortClassName()] = $module_class::convert($imet, $sqlite_connection);
         }
 
         return $json;
