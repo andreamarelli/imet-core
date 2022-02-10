@@ -84,7 +84,7 @@ class Networks extends Modules\Component\ImetModule
         return [
             'table' => 'Networks',
             'fields' => [
-                'NetworkName','ProtectedAreas', 'NetworkType'
+                'NetworkName', 'ProtectedAreas', 'NetworkType'
             ]
         ];
     }
@@ -98,6 +98,8 @@ class Networks extends Modules\Component\ImetModule
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {
+        $record =  self::convertGroupLabelToKey($record, 'NetworkType');
+
         if(!empty($record['ProtectedAreas'])){
             $pas = json_decode($record['ProtectedAreas']);
             $pas = array_filter($pas);
@@ -107,6 +109,8 @@ class Networks extends Modules\Component\ImetModule
             $pas = array_filter($pas);
             $record['ProtectedAreas'] = implode(',', $pas);
         }
+
         return $record;
     }
+
 }

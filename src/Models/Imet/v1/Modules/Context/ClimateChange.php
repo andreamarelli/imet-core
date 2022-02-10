@@ -52,4 +52,16 @@ class ClimateChange extends Modules\Component\ImetModule
             ]
         ];
     }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'Group');
+    }
 }

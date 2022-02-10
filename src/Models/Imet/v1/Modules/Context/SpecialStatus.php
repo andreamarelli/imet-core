@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
+use Illuminate\Support\Facades\App;
 
 class SpecialStatus extends Modules\Component\ImetModule
 {
@@ -49,4 +50,17 @@ class SpecialStatus extends Modules\Component\ImetModule
             ]
         ];
     }
+
+    /**
+     * Review data from SQLITE
+     *
+     * @param $record
+     * @param $sqlite_connection
+     * @return array
+     */
+    protected static function conversionDataReview($record, $sqlite_connection): array
+    {
+        return static::convertGroupLabelToKey($record, 'DesignationGroup');
+    }
+
 }

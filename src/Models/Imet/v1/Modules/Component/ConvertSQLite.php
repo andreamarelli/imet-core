@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component;
 
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use Illuminate\Database\ConnectionInterface;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
 /**
@@ -65,8 +66,6 @@ trait ConvertSQLite{
         return [null, null];
     }
 
-
-
     /**
      * Execute conversion of OLD SQLite IMET to array
      *
@@ -122,5 +121,32 @@ trait ConvertSQLite{
             })
             ->toArray();
     }
+
+    /**
+     * Replace OLD label with keys in the group filed of GROUP_TABLE nad GROUP_ACCORDION modules
+     *
+     * @param $record
+     * @param $group_field
+     * @return mixed
+     */
+    protected static function convertGroupLabelToKey($record, $group_field )
+    {
+        // EN corresponding label
+        App::setLocale('en');
+        $label = array_search($record[$group_field], (new static())->module_groups);
+
+        // FR corresponding label
+        if(!$label){
+            App::setLocale('fr');
+            $label = array_search($record[$group_field], (new static())->module_groups);
+        }
+
+        if($label!==false){
+            $record[$group_field] = $label;
+        }
+
+        return $record;
+    }
+
 
 }
