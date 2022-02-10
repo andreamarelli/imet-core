@@ -22,31 +22,6 @@ if ($item->language != App::getLocale()) {
     App::setLocale($item->language);
 }
 
-function score_class($value, $additional_classes=''){
-    if($value===0){
-        $class = 'score_danger';
-    } elseif($value<34){
-        $class = 'score_alert';
-    } elseif($value<51){
-        $class = 'score_warning';
-    } else {
-        $class = 'score_success';
-    }
-    return 'class="'.$class.' '.$additional_classes.'"';
-}
-
-function score_class_threats($value, $additional_classes=''){
-    if($value<-51){
-        $class = 'score_danger';
-    } elseif($value<-34){
-        $class = 'score_alert';
-    } elseif($value<-1){
-        $class = 'score_warning';
-    } else {
-        $class = 'score_success';
-    }
-    return 'class="'.$class.' '.$additional_classes.'"';
-}
 ?>
 
 @extends('layouts.admin')
@@ -121,13 +96,13 @@ function score_class_threats($value, $additional_classes=''){
                         <th>@lang('imet-core::v1_common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
-                        <td {!! score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
-                        <td {!! score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
-                        <td {!! score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
-                        <td {!! score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
-                        <td {!! score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
-                        <td {!! score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
+                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>
@@ -265,7 +240,7 @@ function score_class_threats($value, $additional_classes=''){
             <div class="scrollButtons" v-cloak>
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
-                    <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
+                    <form id="imet_report_form" method="post" action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report_update'], [$item->getKey()]) }}" style="display: inline-block;">
                         @method('PATCH')
                         @csrf
                         <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
@@ -417,7 +392,7 @@ function score_class_threats($value, $additional_classes=''){
                     this.error = false;
                     window.axios({
                         method: 'post',
-                        url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'report_update'], ['item' => $item->getKey()]) }}',
+                        url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class, 'report_update'], ['item' => $item->getKey()]) }}',
                         data: {
                             _token: window.Laravel.csrfToken,
                             _method: 'PATCH',
