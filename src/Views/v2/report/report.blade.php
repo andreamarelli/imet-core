@@ -12,6 +12,8 @@
 /** @var array $area */
 /** @var bool $connection */
 /** @var bool $show_api */
+/** @var bool $show_non_wdpa */
+/** @var Array $non_wdpa */
 
 // Force Language
 use Illuminate\Support\Facades\App;

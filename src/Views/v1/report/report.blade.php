@@ -11,6 +11,9 @@
 /** @var array $vision */
 /** @var array $area */
 /** @var bool $connection */
+/** @var bool $show_api */
+/** @var bool $show_non_wdpa */
+/** @var Array $non_wdpa */
 
 // Force Language
 use Illuminate\Support\Facades\App;
@@ -67,34 +70,41 @@ function score_class_threats($value, $additional_classes=''){
 
         @include('imet-core::components.heading', ['phase' => 'report'])
 
-        <div class="module-container">
-            <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
-            <div class="module-body">
-                <div id="map" v-if=connection></div>
-                <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
-                <div style="display: flex;">
-                    @if($connection)
-                        <div id="radar">
-                            <dopa_radar data='@json($dopa_radar)'></dopa_radar>
-                            &copy;Dopa Services
+        @if($show_api)
+            <div class="module-container">
+                <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.general_elements')</div></div>
+                <div class="module-body">
+                    <div id="map" v-if=connection></div>
+                    <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
+                    <div style="display: flex;">
+                        @if($connection)
+                            <div id="radar">
+                                <dopa_radar data='@json($dopa_radar)'></dopa_radar>
+                                &copy;Dopa Services
+                            </div>
+                        @endif
+                        <div>
+                            <div><div class="strong">@lang('imet-core::v2_report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.biome'):</div>{{ $general_info['Biome']  }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
+                            <div><div class="strong">@lang('imet-core::v2_report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                         </div>
-                    @endif
-                    <div>
-                        <div><div class="strong">@lang('imet-core::v2_report.country'):</div>{{ $general_info['Country'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.name'):</div>{{ $general_info['CompleteName'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.category'):</div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.gazetting'):</div>{{ $general_info['CreationYear'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.agency'):</div>{{ $general_info['Institution'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.biome'):</div>{{ $general_info['Biome']  }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.main_values_protected'):</div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.vision'):</div>{{ $vision['LocalVision'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.mission'):</div>{{ $vision['LocalMission'] ?? '-' }}</div>
-                        <div><div class="strong">@lang('imet-core::v2_report.objectives'):</div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
+
+        @include('imet-core::v2.report.components.non_wdpa', [
+            'show_non_wdpa' => $show_non_wdpa,
+            'non_wdpa' =>  $non_wdpa
+        ])
 
         <div class="module-container">
             <div class="module-header"><div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div></div>
