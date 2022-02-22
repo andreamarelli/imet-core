@@ -173,7 +173,9 @@ class ScalingUpAnalysisController
         }
 
         if (count($files) > 1) {
-            $path = Compress::zipFile($files, "Scaling_up", false);
+            $path = Compress::zipFile($files,
+                                      "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
+                                      false);
             return File::download($path);
         } else {
             return trans("imet-core::analysis_report.more_than_one_file");
