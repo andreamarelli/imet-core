@@ -20,7 +20,7 @@ class ScalingUpBasketController extends __Controller
     {
         $item = BasketModel::find($id);
         if ($item) {
-            Storage::disk(File::PUBLIC_STORAGE)->delete(BasketModel::$BASKET_FOLDER . $item->item);
+            Storage::disk(BasketModel::BASKET_DISK)->delete($item->item);
             return BasketModel::destroy($item->id);
         }
 
