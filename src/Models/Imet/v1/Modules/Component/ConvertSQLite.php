@@ -130,7 +130,7 @@ trait ConvertSQLite{
      * @param $group_field
      * @return mixed
      */
-    protected static function convertGroupLabelToKey($record, $group_field )
+    protected static function convertGroupLabelToKey($record, $group_field)
     {
         // Clean whitespaces
         $record[$group_field] = Str::replace(' ', ' ', $record[$group_field]);

@@ -7,6 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet_Eval;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use Illuminate\Support\Str;
 
 trait ConvertSQLite{
 
@@ -38,6 +39,7 @@ trait ConvertSQLite{
                 "Year" => $imet->Year,
                 "version" => "v1",
                 "wdpa_id" => $wdpa,
+                "language" => Str::lower($imet->FormLanguage),
                 "imet_version" => "SQLITE",
             ],
             "Encoders" => [],
