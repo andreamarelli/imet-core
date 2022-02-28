@@ -84,7 +84,7 @@ trait ConvertSQLite{
         return $sqlite_connection->table('ProtectedAreas_'.$sqlite_structure['table'])
             ->select()
             ->where('FormID', $imet_data->FormID)
-            ->where($sqlite_structure['query_condition'] ?? [])
+            ->where($sqlite_structure['query_conditions'] ?? [])
             ->get()
             ->map(function($record) use ($sqlite_structure, $sqlite_connection){
 
@@ -116,6 +116,7 @@ trait ConvertSQLite{
                 // Additional fields
                 $json[static::$foreign_key] = $record['FormID'];
                 $json[static::UPDATED_AT] = $record['UpdateDate'];
+                unset($json['FormID']);
 
                 return $json;
             })
@@ -131,6 +132,11 @@ trait ConvertSQLite{
      */
     protected static function convertGroupLabelToKey($record, $group_field )
     {
+        // Clean whitespaces
+        $record[$group_field] = Str::replace(' ', ' ', $record[$group_field]);
+        $record[$group_field] = Str::replace('  ', ' ', $record[$group_field]);
+        $record[$group_field] = trim($record[$group_field]);
+
         // EN corresponding label
         App::setLocale('en');
         $label = array_search($record[$group_field], (new static())->module_groups);
@@ -143,6 +149,10 @@ trait ConvertSQLite{
 
         if($label!==false){
             $record[$group_field] = $label;
+        }
+
+        if(!$label and $record[$group_field]!==''){
+            dd('LABEL not found: "' . $record[$group_field] . '" (' . $group_field . ' - ' . static::class . ')');
         }
 
         return $record;

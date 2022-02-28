@@ -38,7 +38,7 @@ class ConvertSQLite extends Command
      */
     public function __construct()
     {
-        $this->storage = Storage::disk(File::PUBLIC_STORAGE);
+        $this->storage = Storage::disk('');
         parent::__construct();
     }
 

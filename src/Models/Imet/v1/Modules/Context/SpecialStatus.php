@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 
 class SpecialStatus extends Modules\Component\ImetModule
 {

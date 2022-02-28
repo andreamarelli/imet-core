@@ -49,7 +49,7 @@ class EcosystemServices extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_EcosystemServices',
             'fields' => [
-                'Intervention', 'EvaluationScore', 'Type', 'Comments', 'GroupIntervention'
+                'Intervention', 'EvaluationScore', 'Comments', 'GroupIntervention'
             ]
         ];
     }
