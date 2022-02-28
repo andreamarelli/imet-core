@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScali
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ModularForms\Helpers\File\Compress;
+use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -160,7 +160,8 @@ class ScalingUpAnalysisController
     }
 
     /**
-     * export scaling up images in zip file
+     * Export scaling up images in zip file
+     *
      * @param int $scaling_id
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|string
      */
@@ -169,11 +170,13 @@ class ScalingUpAnalysisController
         $files = [];
         $scaling_up = Basket::where('scaling_up_id', $scaling_id)->get();
         foreach ($scaling_up as $record) {
-            $files[] = Storage::disk(File::PUBLIC_FOLDER)->path('') . $record->item;
+            $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . $record->item;
         }
 
         if (count($files) > 1) {
-            $path = Compress::zipFile($files, "Scaling_up", false);
+            $path = Zip::compress($files,
+                                      "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
+                                      false);
             return File::download($path);
         } else {
             return trans("imet-core::analysis_report.more_than_one_file");

@@ -17,7 +17,9 @@
                     </div>
                     <div class="row">
                         <div class="col-sm">
-                            <datatable_interact_with_radar :values="data_elements.props" :columns="columns"
+                            <datatable_interact_with_radar
+                                :values_with_indicators_keys="true"
+                                :values="data_elements.props" :columns="columns"
                                                            :event_key="'up_'+index"></datatable_interact_with_radar>
                         </div>
                     </div>

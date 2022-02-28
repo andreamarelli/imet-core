@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 $can_encode = \AndreaMarelli\ImetCore\Models\User::isAdmin(Auth::user()) || Role::isEncoder(Auth::user());
-$url = URL::route('index');
+$url = URL::route('scaling_up');
 ?>
 
 @extends('layouts.admin')
