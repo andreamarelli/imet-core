@@ -34,7 +34,8 @@ return [
         'fifth' => '5. Grouping',
         'sixth' => '6. Analysis per element of the management cycle',
         'seventh' => '7. Comparison of a Protected Area within a PA network',
-        'eighth' => '8. Additional Option: Digital information per Protected Area'
+        'eighth' => '8. Additional Option: Digital information per Protected Area',
+        'list_of_names' => 'List of PAs',
     ],
     'element_diagrams' => [
         'context' => [
@@ -355,6 +356,7 @@ return [
     ],
     'guidance' => [
         'custom_names' => 'PROTECTED AREAS NAMES',
+        'list_of_pas' => 'List of Protected Areas names',
         'map' => ' Location of selected PAs',
         'general_elements' => 'General elements of the protected areas',
         'key_elements' => 'Key Elements of Conservation',
