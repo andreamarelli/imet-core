@@ -1,6 +1,6 @@
 BEGIN;
 
-ALTER TABLE users DROP COLUMN IF EXISTS profile_type;
+-- ALTER TABLE users DROP COLUMN IF EXISTS profile_type;
 ALTER TABLE users ADD COLUMN  IF NOT EXISTS first_name CHARACTER VARYING(75);
 ALTER TABLE users ADD COLUMN  IF NOT EXISTS last_name CHARACTER VARYING(75);
 ALTER TABLE users ADD COLUMN  IF NOT EXISTS organisation CHARACTER VARYING(125);
@@ -19,9 +19,9 @@ FROM (
          FROM persons ) AS p
 WHERE users.person_id = p.id;
 
-ALTER TABLE users DROP COLUMN IF EXISTS person_id;
-DROP TABLE IF EXISTS persons;
-DROP TABLE IF EXISTS user_rights;
-DROP TABLE IF EXISTS user_roles_imet;
+-- ALTER TABLE users DROP COLUMN IF EXISTS person_id;
+-- DROP TABLE IF EXISTS persons;
+-- DROP TABLE IF EXISTS user_rights;
+-- DROP TABLE IF EXISTS user_roles_imet;
 
 COMMIT;
