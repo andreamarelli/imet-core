@@ -1,14 +1,27 @@
 BEGIN;
 
--- Remove unused columns
-ALTER TABLE persons DROP COLUMN IF EXISTS category_filter;
-ALTER TABLE persons DROP COLUMN IF EXISTS address;
-ALTER TABLE persons DROP COLUMN IF EXISTS city;
-ALTER TABLE persons DROP COLUMN IF EXISTS telephone;
-ALTER TABLE persons DROP COLUMN IF EXISTS reference;
-ALTER TABLE persons DROP COLUMN IF EXISTS document;
-ALTER TABLE persons DROP COLUMN IF EXISTS role_ofac;
-ALTER TABLE persons DROP COLUMN IF EXISTS role_redd;
 ALTER TABLE users DROP COLUMN IF EXISTS profile_type;
+ALTER TABLE users ADD COLUMN  IF NOT EXISTS first_name CHARACTER VARYING(75);
+ALTER TABLE users ADD COLUMN  IF NOT EXISTS last_name CHARACTER VARYING(75);
+ALTER TABLE users ADD COLUMN  IF NOT EXISTS organisation CHARACTER VARYING(125);
+ALTER TABLE users ADD COLUMN  IF NOT EXISTS function CHARACTER VARYING(75);
+ALTER TABLE users ADD COLUMN  IF NOT EXISTS country CHAR(3);
+
+UPDATE users
+SET
+    first_name = p.first_name,
+    last_name = p.last_name,
+    organisation = p.organisation,
+    function = p.function,
+    country = p.country
+FROM (
+         SELECT id, first_name, last_name, organisation, function, country
+         FROM persons ) AS p
+WHERE users.person_id = p.id;
+
+ALTER TABLE users DROP COLUMN IF EXISTS person_id;
+DROP TABLE IF EXISTS persons;
+DROP TABLE IF EXISTS user_rights;
+DROP TABLE IF EXISTS user_roles_imet;
 
 COMMIT;
