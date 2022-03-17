@@ -1,6 +1,5 @@
 BEGIN;
 
--- ALTER TABLE users DROP COLUMN IF EXISTS profile_type;
 ALTER TABLE users ADD COLUMN  IF NOT EXISTS first_name CHARACTER VARYING(75);
 ALTER TABLE users ADD COLUMN  IF NOT EXISTS last_name CHARACTER VARYING(75);
 ALTER TABLE users ADD COLUMN  IF NOT EXISTS organisation CHARACTER VARYING(125);
@@ -19,6 +18,13 @@ FROM (
          FROM persons ) AS p
 WHERE users.person_id = p.id;
 
+-- Remove relations
+ALTER TABLE users DROP CONSTRAINT IF EXISTS person_fkey;
+ALTER TABLE user_rights DROP CONSTRAINT IF EXISTS user_fkey;
+DROP FUNCTION IF EXISTS copy_email();
+
+-- Remove all unnecessary fields & tabels
+-- ALTER TABLE users DROP COLUMN IF EXISTS profile_type;
 -- ALTER TABLE users DROP COLUMN IF EXISTS person_id;
 -- DROP TABLE IF EXISTS persons;
 -- DROP TABLE IF EXISTS user_rights;
