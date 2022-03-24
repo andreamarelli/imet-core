@@ -1220,12 +1220,13 @@ class ScalingUpAnalysis extends Model
         $colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#f8f9fa'];
         $indicator = [
             'context' => [],
-            'planning' => [],
-            'inputs' => [],
-            'process' => [],
+            'outcomes' => [],
             'outputs' => [],
-            'outcomes' => []
+            'process' => [],
+            'inputs' => [],
+            'planning' => [],
         ];
+
         foreach ($parameters as $form) {
             $form_ids[] = $form['id'];
             $groups[$form['group']] = [$form['group'], $form['name']];
@@ -1233,8 +1234,10 @@ class ScalingUpAnalysis extends Model
 
         $assessments = count($assessments) ? $assessments : static::get_assessments($form_ids);
 
+        $key = 0;
         foreach ($indicator as $indi => $value) {
             foreach ($assessments['data']['assessments'] as $assessment) {
+
                 foreach ($parameters as $form) {
                     if ($form['id'] === $assessment['formid']) {
                         $indicator[$indi][$form['group']][] = $assessment[$indi];
@@ -1247,11 +1250,12 @@ class ScalingUpAnalysis extends Model
         foreach ($indicator as $indi => $value) {
             foreach ($groups as $key => $group) {
                 $average[$group[1]][$indi] = static::round_number(array_sum($indicator[$indi][$key]) / count($indicator[$indi][$key]));
-                $average[$group[1]]['color'] = $colors[$group[0] - 1];
-                $average[$group[1]]['legend_selected'] = true;
+                if(!isset($average[$group[1]]['color'])) {
+                    $average[$group[1]]['color'] = $colors[$group[0] - 1];
+                    $average[$group[1]]['legend_selected'] = true;
+                }
             }
         }
-        krsort($average);
 
         return ['status' => 'success', 'data' => ['radar' => $average]];
     }
@@ -1269,11 +1273,12 @@ class ScalingUpAnalysis extends Model
         $colors = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc', '#f8f9fa'];
         $indicator = [
             'context' => [],
+            'outcomes' => [],
             'planning' => [],
             'inputs' => [],
             'process' => [],
             'outputs' => [],
-            'outcomes' => []
+
         ];
 
         foreach ($parameters as $form) {
