@@ -29,12 +29,12 @@
 <!--        </div>-->
 <!--        {{ info.categories }}-->
 <!--      </div>-->
-      <div>
-        <div class="strong">
-          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.main_values') }}:
-        </div>
-        {{ info.values_network }}
-      </div>
+<!--      <div>-->
+<!--        <div class="strong">-->
+<!--          {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.main_values') }}:-->
+<!--        </div>-->
+<!--        {{ info.values_network }}-->
+<!--      </div>-->
       <div>
         <div class="strong">
           {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_protected') }}:
