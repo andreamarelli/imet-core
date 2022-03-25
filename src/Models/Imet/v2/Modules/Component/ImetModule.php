@@ -16,6 +16,11 @@ class ImetModule extends Module
     public const UPDATED_AT = 'UpdateDate';
     public const UPDATED_BY = 'UpdateBy';
 
+    public const TERRESTRIAL = 'terrestrial';
+    public const TERRESTRIAL_AND_MARINE = 'terrestrial_and_marine';
+    public const MARINE = 'marine';
+    public const MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
+
     protected $primaryKey = 'id';
     public static $foreign_key = 'FormID';
 
