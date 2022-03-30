@@ -53,6 +53,7 @@ class ImetModule extends Module
         $definitions['module_subTitle'] = $model->module_subTitle;
         $definitions['module_info_EvaluationQuestion'] = $model->module_info_EvaluationQuestion;
         $definitions['module_info_Rating'] = $model->module_info_Rating;
+        $definitions['module_scope'] = static::MODULE_SCOPE;
         return $definitions;
     }
 
