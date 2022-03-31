@@ -54,7 +54,7 @@ return [
         'module_info' => 'Establecer y describir los objetivos de conservación para la gobernanza, las asociaciones y la designación del área protegida.<br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
     ],
     'Objectives2' => [
-        'module_info' => 'Establecer y describir objetivos de conservación para <b>áreas terrestres, límites, índice de configuración y dominio del área.</b> del área protegida</b><br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'XXXXXXXXX Establecer y describir objetivos de conservación para <b>límites, índice de configuración, extension of patrols and law enforcement and territorial context</b> del área protegida</b><br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
     ],
     'Objectives3' => [
         'module_info' => 'Establecer y describir los objetivos de conservación para <b>recursos humanos y financieros/apoyo de las asociaciones en la gestión</b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida'
@@ -108,6 +108,7 @@ return [
             'IUCNCategory1' => '1a categoría de la UICN',
             'IUCNCategory2' => '2ª categoría de la UICN',
             'IUCNCategory3' => '3ª categoría de la UICN',
+            'MarineDesignation' => 'XXXXXXXXX Marine designation',
             'Country' => 'País',
             'CreationYear' => 'Año de creación',
             'Institution' => 'Institución(es) supervisora(s)',
@@ -118,7 +119,12 @@ return [
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => '¿Cuál es la importancia del área protegida y sus principales valores para los que fue designada? (Proporcione una lista y luego una breve descripción.)',
         ],
-        'IUCNCategories' => 'Categoría(s) de la UICN (áreas protegidas con más clasificaciones para la zonificación interna)',
+        'module_info' => 'XXXXXXXXX <b>Introduction to typology</b>: IMET identifies three categories of protected areas: (1) Terrestrial (2)
+            Marine and Coastal (3) OECM - Other Effective Conservation Measures by Area.<br />In the Governance section (CTX 1.2)
+            you can refine the management and governance typology of these three protected area typologies. If you are analysing a
+            Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
+            A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
+            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)'
     ],
 
     'Governance' => [
@@ -222,8 +228,8 @@ return [
             'AdministrativeArea' => 'Superficie administrativa',
             'WDPAArea' => 'Superficie según WDPA',
             'GISArea' => 'Superficie real del área (SIG para el área protegida o la autoridad responsable de las áreas protegidas) correspondiente al archivo cargado',
-            'TerrestrialArea' => 'Área protegida mixta (área terrestre y marina) = Terrestre (la zona costera debe estar incluida en el área terrestre protegida)',
-            'MarineArea' => 'Área protegida mixta: Área marina',
+            'TerrestrialArea' => 'XXXXXXXXX Área protegida terrestre',
+            'MarineArea' => 'XXXXXXXXX Área protegida marina y costera',
             'PercentageNationalNetwork' => 'Superficie % de la red nacional de áreas protegidas',
             'PercentageEcoregion' => 'Superficie % de la ecorregión',
             'PercentageTransnationalNetwork' => 'Superficie % de la red transfronteriza',
@@ -234,7 +240,7 @@ return [
     ],
 
     'Sectors' => [
-        'title' => 'Dominio de los sectores del área protegida',
+        'title' => 'XXXXXXXXX Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
             'Name' => 'Sector',
             'UnderControlArea' => 'Km² bajo protección',
@@ -244,9 +250,8 @@ return [
             'Source' => 'Fuente',
             'Observations' => 'Notas',
         ],
-        'area_percentage'               => '% de la superficie',
-        'average_time'                  => 'Promedio del guardaparques * d * Km² de la superficie total',
-        'sum_error' => 'El área total bajo protección debe corresponder al área especificada en el módulo <b>CTX 2.2</b>'
+        'area_percentage'               => '% de área',
+        'average_time'                  => 'Promedio del guardaparques * d * Km² del sector',
     ],
 
     'TerritorialReferenceContext' => [
@@ -275,6 +280,7 @@ return [
             'ExpectedPermanent' => 'Personal planificado o adecuado *',
             'ActualPermanent' => 'Personal actual',
             'Observations' => 'Notas',
+            'difference' => 'Diferencia',
             'Source' => 'Fuente',
         ],
         'module_info' => 'El sistema estadístico permite sólo catorce (14) líneas para identificar las funciones del personal del área protegida'
@@ -389,10 +395,10 @@ return [
             'group12' => 'Enlaces y conexiones de la zona protegida con el mundo exterior'
         ],
         'predefined_values' => [
-            'group0' =>  ['Oficinas','Puestos de control o campamentos de guardaparques','Puntos de barrera o casetas de control','Infraestructura científicas','Garaje y taller de mantenimiento','Miscelánea (revista, radio, etc.)','Centro de atención médica'],
+            'group0' =>  ['Oficinas','Puestos de control o campamentos de guardaparques','Puntos de barrera o casetas de control','Infraestructura científicas','Garaje y taller de mantenimiento','XXXXXXXXX Room for dive bottles and other dive gear', 'XXXXXXXXX Boat sheds', 'XXXXXXXXX Car-Boat parking','Miscelánea (revista, radio, etc.)','Centro de atención médica'],
             'group1' =>  ['Para oficiales y suboficiales', 'Para el personal de los guardaparques', 'Para el personal de apoyo'],
             'group2' =>  ['Hoteles (capacidad de hospedaje)', 'Eco-albergues (capacidad de hospedaje)', 'Campamentos (capacidad de hospedaje)', 'Instalaciones de recepción para los turistas', 'Punto observación de fauna y paisaje', 'Rutas turísticas disponibles (km)'],
-            'group3' =>  ['Vehículos/autos y caminonetas', 'Motos/cuadratracks', 'Bicicletas', 'Barcos y/o lanchas', 'Piragua y/o bote a remo', 'Avión, ultraligero', 'Transporte pesado'],
+            'group3' =>  ['Vehículos/autos y caminonetas', 'Motos/cuadratracks', 'Bicicletas', 'Barcos y/o lanchas', 'XXXXXXXXX Outboard motors', 'Piragua y/o bote a remo', 'Avión, ultraligero', 'Transporte pesado'],
             'group4' =>  ['Armas', 'Cartuchos', 'Uniformes', 'Raciones (viáticos)', 'GPS, brújulas', 'Equipo de campamento y de monte'],
             'group5' =>  ['Radios VHF/HF', 'V-SAT', 'Teléfonos fijos', 'Teléfonos celular (GSM)', 'Teléfonos satelitales', 'Conexión a Internet'],
             'group6' =>  ['Computadoras de escritorio', 'Impresoras', 'Fotocopiadoras', 'Computadoras portátiles'],
@@ -558,56 +564,69 @@ return [
                 'Zonas urbanas y residenciales',
                 'Zonas comerciales',
                 'Áreas turísticas y recreativas',
-                'Áreas de enclave'],
+                'Áreas de enclave'
+            ],
             'group1' => [
                 'Cultivo itinerante',
                 'La agricultura en pequeña escala',
                 'Grandes empresas agroindustriales',
-                'Producción de frutas/huerto vegetal'],
+                'Producción de frutas/huerto vegetal'
+            ],
             'group2' => [
                 'Pequeñas plantaciones',
-                'Plantaciones agroindustriales'],
+                'Plantaciones agroindustriales'
+            ],
             'group3' => [
                 'El pastoreo nómada',
                 'La ganadería y el pastoreo en pequeñas granjas',
-                'La ganadería y el pastoreo agroindustrial'],
+                'La ganadería y el pastoreo agroindustrial'
+            ],
             'group4' => [
                 'Acuicultura de subsistencia o artesanal',
-                'Acuicultura industrial'],
+                'Acuicultura industrial'
+            ],
             'group6' => [
                 'Perforación (gas y petróleo)',
                 'Operaciones de minería o canteras',
-                'Energías renovables'],
+                'Energías renovables'
+            ],
             'group7' => [
                 'Carreteras',
                 'Redes y líneas de servicios públicos y de comunicación (electricidad, teléfono, acueducto, etc.)',
                 'Vías navegables y rutas marítimas',
                 'Corredores aéreos',
-                'Ferrocarriles'],
+                'Ferrocarriles'
+            ],
             'group8' => [
                 'Caza de animales terrestres',
-                'Recolección de animales vivos'],
+                'Recolección de animales vivos'
+            ],
             'group9' => [
                 'Recolección de plantas',
-                'Cosecha de plantas'],
+                'Cosecha de plantas'
+            ],
             'group10' => [
                 'Operaciones madereras en pequeña escala',
                 'Operaciones de leña a gran escala',
                 'Operaciones de leña en pequeña escala',
                 'Operaciones madereras a gran escala',
-                'Estacas/postes para la construcción'],
+                'Estacas/postes para la construcción'
+            ],
             'group11' => [
                 'Pesca de subsistencia o en pequeña escala',
                 'La pesca a gran escala',
                 'La recolección de recursos acuáticos de subsistencia o en pequeña escala',
                 'Recolección en gran escala de recursos acuáticos',
-                'La recolección de mariscos'],
+                'La recolección de mariscos'
+            ],
             'group12' => [
                 'Actividades recreativas',
                 'Guerras, disturbios civiles y ejercicios militares',
-                'Obras y otras actividades'],
+                'Obras y otras actividades'
+            ],
             'group13' => [
-                'Frecuencia e intensidad de los incendios'],
+                'Frecuencia e intensidad de los incendios'
+            ],
             'group14' => [
                 'Extracción de aguas superficiales (uso doméstico)',
                 'Extracción de aguas superficiales (uso comercial)',
@@ -619,46 +638,56 @@ return [
                 'Extracción de agua subterránea (uso desconocido)',
                 'Pequeñas presas',
                 'Grandes presas',
-                'Presas (tamaño desconocido)'],
+                'Presas (tamaño desconocido)'
+            ],
             'group16' => [
                 'Especies o enfermedades introducidas invasivas',
                 'Especies o enfermedades endémicas problemáticas',
                 'Especies problemáticas o enfermedades de origen desconocido',
                 'El material genético introducido',
                 'Enfermedades virales o priónicas',
-                'Enfermedad de causa desconocida'],
+                'Enfermedad de causa desconocida'
+            ],
             'group17' => [
-                'Aguas residuales y alcantarillas',],
+                'Aguas residuales y alcantarillas'
+            ],
             'group18' => [
                 'La marea negra',
-                'Fuga de la minería'],
+                'Fuga de la minería'
+            ],
             'group19' => [
                 'Carga de nutrientes',
                 'Erosión del suelo y sedimentación',
-                'Herbicidas y pesticidas'],
+                'Herbicidas y pesticidas'
+            ],
             'group20' => [
                 'Desechos municipales',
                 'Chatarra/desechos flotantes de barcos de recreo',
                 'Los escombros de la construcción',
-                'Los residuos que enredan la vida silvestre'],
+                'Los residuos que enredan la vida silvestre'
+            ],
             'group21' => [
                 'Lluvia ácida',
                 'Nube de contaminación',
-                'Ozono'],
+                'Ozono'
+            ],
             'group22' => [
                 'Contaminación lumínica',
                 'Contaminación por calor',
-                'Contaminación acústica'],
+                'Contaminación acústica'
+            ],
             'group23' => [
                 'Volcanes',
                 'Terremotos y tsunamis',
-                'Avalanchas y deslizamientos de tierra'],
+                'Avalanchas y deslizamientos de tierra'
+            ],
             'group24' => [
                 'Daños y cambios en el hábitat',
                 'Sequías',
                 'Las temperaturas extremas',
                 'Tormentas e inundaciones',
-                'Otro: Aumento de las precipitaciones y cambios estacionales'],
+                'Otro: Aumento de las precipitaciones y cambios estacionales'
+            ],
             'group25' => [
                 'Conflicto entre los seres humanos y la fauna y flora silvestres'
             ]

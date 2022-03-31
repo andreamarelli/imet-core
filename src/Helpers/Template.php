@@ -45,11 +45,11 @@ class Template{
     public static function module_scope($scope){
         if($scope==ImetModule::TERRESTRIAL_AND_MARINE){
             return '<img src="/assets/images/tree.png" data-toggle="tooltip" data-placement="top" data-original-title="' . ucfirst(trans('imet-core::v2_common.terrestrial')) . '" />
-                        <img src="/assets/images/fish.png" data-toggle="tooltip" data-placement="top" data-original-title="' . ucfirst(trans('imet-core::v2_common.marine')) . '" />';
+                        <img src="/assets/images/fish.png" data-toggle="tooltip" data-placement="top" data-original-title="' . ucfirst(trans('imet-core::v2_common.marine')) . '" /> ';
         } elseif ($scope==ImetModule::TERRESTRIAL){
-            return '<img src="/assets/images/tree.png" data-toggle="tooltip" data-placement="top" data-original-title="' . ucfirst(trans('imet-core::v2_common.terrestrial')) . '" />';
+            return '<img src="/assets/images/tree.png" data-toggle="tooltip" data-placement="top" data-original-title="' . ucfirst(trans('imet-core::v2_common.terrestrial')) . '" /> ';
         } elseif ($scope==ImetModule::MARINE){
-            return '<img src="/assets/images/fish.png" data-toggle="tooltip" data-placement="top" data-original-title="' . ucfirst(trans('imet-core::v2_common.marine')) . '" />';
+            return '<img src="/assets/images/fish.png" data-toggle="tooltip" data-placement="top" data-original-title="' . ucfirst(trans('imet-core::v2_common.marine')) . '" /> ';
         }
     }
 

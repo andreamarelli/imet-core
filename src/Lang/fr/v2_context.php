@@ -54,7 +54,7 @@ return [
         'module_info' => 'Établir et décrire les objectifs de conservation relatifs à la <b>gouvernance, les partenariats et la désignation </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs à <b> l’extension, les limites, l’indice de configuration et la protection </b> de l\'aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'XXXXXXXXX Établir et décrire les objectifs de conservation relatifs à <b>les limites, l’indice de configuration, extension of patrols and law enforcement and territorial context</b> de l\'aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives3' => [
         'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pour les ressources humaines, financières et matérielles pour la gestion </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
@@ -108,6 +108,7 @@ return [
             'IUCNCategory1' => 'Catégorie UICN principale',
             'IUCNCategory2' => 'Autre catégorie UICN',
             'IUCNCategory3' => 'Autre catégorie UICN',
+            'MarineDesignation' => 'XXXXXXXXX Marine designation',
             'Country' => 'Pays',
             'CreationYear' => 'Année de création',
             'Institution' => 'Institution de tutelle',
@@ -117,7 +118,13 @@ return [
             'ReferenceText' => 'Référence du texte de création en cours de validité',
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée ? (Fournir une liste, puis une brève description)',
-        ]
+        ],
+        'module_info' => 'XXXXXXXXX <b>Introduction to typology</b>: IMET identifies three categories of protected areas: (1) Terrestrial (2)
+            Marine and Coastal (3) OECM - Other Effective Conservation Measures by Area.<br />In the Governance section (CTX 1.2)
+            you can refine the management and governance typology of these three protected area typologies. If you are analysing a
+            Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
+            A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
+            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)'
     ],
 
     'Governance' => [
@@ -221,8 +228,8 @@ return [
             'WDPAArea' => 'Superficie WDPA',
             'GISArea' => 'Superficie SIG correspondante au fichier téléchargé (données résultants d’une analyse SIG réalisée par l’aire protégée ou par l’autorité nationale responsable des aires protégées)',
             'BoundaryLength' => 'Longueur des limites',
-            'TerrestrialArea' => 'AP mixte: Superficie terrestre (inclus la zone côtière)',
-            'MarineArea' => 'AP mixte: Superficie marine',
+            'TerrestrialArea' => 'XXXXXXXXX Superficie protégée terrestre',
+            'MarineArea' => 'XXXXXXXXX Superficie protégée marine et côtière',
             'PercentageNationalNetwork' => '% par rapport au réseau national des aires protégées',
             'PercentageEcoregion' => '% par rapport à l’écorégion ou à chacune des écorégions pour le cas des aires protégées appartenant à plusieurs réseaux',
             'PercentageTransnationalNetwork' => '% par rapport réseau transfrontalier',
@@ -233,7 +240,7 @@ return [
     ],
 
     'Sectors' => [
-        'title' => 'Niveau de contrôle de l’aire protégée (ou par secteurs de l’aire protégée)',
+        'title' => 'XXXXXXXXX Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
             'Name' => 'Aire protégée ou nom de secteur',
             'UnderControlArea' => 'Km² sous contrôle',
@@ -244,7 +251,7 @@ return [
             'Observations' => 'Observations',
         ],
         'area_percentage'               => '% de la surface',
-        'average_time'                  => 'Moyenne homme * j * Km² de la surface totale'
+        'average_time'                  => 'Moyenne homme * j * Km² de secteur'
     ],
 
     'TerritorialReferenceContext' => [
@@ -388,10 +395,10 @@ return [
             'group12' => 'Liens et connexions de l’aire protégée avec le monde extérieur',
         ],
         'predefined_values' => [
-            'group0' => ['Bureaux','Postes de patrouille','Points de barrières','Bâtiments scientifiques','Garage et atelier','Services divers (magazine, radio, etc.)','Dispensaires'],
+            'group0' => ['Bureaux','Postes de patrouille','Points de barrières','Bâtiments scientifiques','Garage et atelier','XXXXXXXXX Room for dive bottles and other dive gear', 'XXXXXXXXX Boat sheds', 'XXXXXXXXX Car-Boat parking', 'Services divers (magazine, radio, etc.)','Dispensaires'],
             'group1' => ['pour Officiers et sous-officiers', 'pour les Agents', 'pour le Personnel d\'appui', 'pour le Personnel scientifique'],
             'group2' => ['Hôtels (capacité d’accueil)', 'Eco-lodges (capacité d’accueil)', 'Campements', 'Accueils des touristes', 'Points de vue ou points d’observation (miradors)', 'Parcours touristiques aménagés'],
-            'group3' => ['Voitures','Motos/Quads','Vélos','Bateaux, Pirogues','Avion, ULM','Jet ski','Animaux (chevaux)'],
+            'group3' => ['Voitures','Motos/Quads','Vélos','Bateaux', 'XXXXXXXXX Outboard motors', 'Pirogues','Avion, ULM','Jet ski','Animaux (chevaux)'],
             'group4' => ['Radar de contrôle','Armements','Cartouches','Tenues','Rations','GPS, Boussoles', 'Matériel de camping et de brousse'],
             'group5' => ['Radios VHF-HF','V-SAT','Téléphones fixes','Téléphones GSM','Téléphones satellitaires','Connexion internet'],
             'group6' => ['Ordinateurs fixes','Ordinateurs portables','Imprimantes','Photocopieurs','Onduleur'],
@@ -410,7 +417,6 @@ return [
                 '3' => 'Tout à fait adéquat (91-100 % des besoins)',
             ]
         ],
-        'module_info' => 'Evaluation : Évaluer l\'adequation des infrastructures, des équipements et des installations'
     ],
 
     'AnimalSpecies' => [
@@ -832,4 +838,5 @@ return [
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
+
 ];

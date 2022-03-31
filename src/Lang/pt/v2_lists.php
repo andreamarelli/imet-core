@@ -41,6 +41,18 @@ return [
         'Misturado'
     ],
 
+    'MarineDesignation' => [
+        'XXXXXXXXX No-Entry zone',
+        'XXXXXXXXX No-Take zone',
+        'XXXXXXXXX Multi-purposes MPA - Buffer zones for traditional use',
+        'XXXXXXXXX Multi-purposes MPA - Buffer zones for educational and/or recreational activities',
+        'XXXXXXXXX Multi-purposes MPA - Other',
+        'XXXXXXXXX Marine reserves',
+        'XXXXXXXXX Wildlife refuges',
+        'XXXXXXXXX Fish management zone',
+        'XXXXXXXXX Other',
+    ],
+
     'EcoType' => [
         'Deserto',
         'Savanas',

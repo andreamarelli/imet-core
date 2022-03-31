@@ -54,7 +54,7 @@ return [
         'module_info' => 'Estabelecer e descrever objectivos de conservação para a governação, parcerias e a designação da área protegida <br/> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
     ],
     'Objectives2' => [
-        'module_info' => 'Estabelecer e descrever objectivos de conservação para <b>áreas terrestres, limites, índice de configuração e domínio</b> da área protegida<br/>. Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
+        'module_info' => 'XXXXXXXXX Estabelecer e descrever objectivos de conservação para <b>limites, índice de configuração, extension of patrols and law enforcement and territorial context</b> da área protegida<br/>. Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
     ],
     'Objectives3' => [
         'module_info' => 'Estabelecer e descrever objectivos de conservação para osde recursos <b>humanos e financeiros/apoio de parcerias e infra-estruturas, equipamento e instalações na gestão </b>da área protegida.<br/> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida'
@@ -108,6 +108,7 @@ return [
             'IUCNCategory1' => '1ª categoria da UICN',
             'IUCNCategory2' => '2ª categoria da UICN',
             'IUCNCategory3' => '3ª categoria da UICN',
+            'MarineDesignation' => 'XXXXXXXXX Marine designation',
             'Country' => 'País',
             'CreationYear' => 'Ano de Criacao',
             'Institution' => 'Instituição(ões) supervisora(s)',
@@ -118,7 +119,12 @@ return [
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Qual é a importância da área protegida e dos seus principais valores para os quais foi designada? (Fornecer uma lista e depois uma breve descrição).',
         ],
-        'IUCN Categories' => 'Categoria (s) da UICN  (áreas protegidas com mais classificacoes para o zoneamento interno)',
+        'module_info' => 'XXXXXXXXX <b>Introduction to typology</b>: IMET identifies three categories of protected areas: (1) Terrestrial (2)
+            Marine and Coastal (3) OECM - Other Effective Conservation Measures by Area.<br />In the Governance section (CTX 1.2)
+            you can refine the management and governance typology of these three protected area typologies. If you are analysing a
+            Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
+            A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
+            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)'
     ],
 
     'Governance' => [
@@ -222,8 +228,8 @@ return [
             'Administrative Area' => 'Superficie Administrativa',
             'WDPAArea' => 'Superficie de acordo com a WDPA',
             'GISArea' => 'Superficie Actual (GIS para o parque ou autoridade responsável para a área protegida) correspondente ao carregamento dos arquivos',
-            'Terrestrial Area' => 'area protegidas mistas (terrestres e marinhas) = Terrestres (a zona costeira deverá ser incluida na area protegida terrestre)',
-            'Marine Area' => 'área protegidas mistas: area marinha',
+            'Terrestrial Area' => 'XXXXXXXXX area protegidas terrestre',
+            'Marine Area' => 'XXXXXXXXX área protegidas marinha e costeira',
             'PercentageNationalNetwork' => '% da Superficie da rede nacional de áreas protegidas',
             'PercentageEcoregion' => '% da Superficie da ecoregião',
             'PercentageTransnationalNetwork' => ' % da superficie da rede transfronteiriça',
@@ -234,7 +240,7 @@ return [
     ],
 
     'Sectors' => [
-        'title' => 'Dominação da área dos sectores da área protegida',
+        'title' => 'XXXXXXXXX Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
             'Name' => 'Sector',
             'UnderControlArea' => 'Km² sob protecção',
@@ -245,8 +251,7 @@ return [
             'Observations' => 'Observacoes',
         ],
         'area_percentage' => '% da area',
-        'average_time' => 'Média do fiscal * d * km² da área total',
-        'sum_error' => 'A área total sob proteccao deverá corresponder a area especificada no modúlo <b>CTX 2.2</b>'
+        'average_time' => 'Média do fiscal * d * km² do setor',
     ],
 
     'TerritorialReferenceContext' => [
@@ -390,10 +395,10 @@ return [
             'group12' => 'Ligações e conexigações da área protegida com o mundo exterior'
         ],
         'predefined_values' => [
-            'group0' => ['Escritórios', 'Postos de Patrulha', 'Pontos de barreira', 'Edifícios científicos', 'Garagem e oficina', 'Diversos (revista, rádio, etc.)', 'Centro de cuidados de saúde'],
+            'group0' => ['Escritórios', 'Postos de Patrulha', 'Pontos de barreira', 'Edifícios científicos', 'Garagem e oficina', 'XXXXXXXXX Room for dive bottles and other dive gear', 'XXXXXXXXX Boat sheds', 'XXXXXXXXX Car-Boat parking', 'Diversos (revista, rádio, etc.)', 'Centro de cuidados de saúde'],
             'group1' => ['Para os oficiais e seus adjuntos', 'Para o pessoal de fiscalização', 'Para o pessoal de apoio'],
             'group2' => ['Hotéis (capacidade para hospedes)', 'Eco-lodges (capacidade para hóspedes)', 'Acampamentos (capacidade para hóspedes)', 'Instalações de acolhimento para turistas', 'Pontos de visualizacao ou pontos de observação', 'Rotas turísticas disponíveis (km)'],
-            'group3' => ['Carros', 'Motociclos/Quadros', 'Bicicletas', 'Barcos', 'Pirogues', 'Aeroplano, microlight', 'Motores pesados'],
+            'group3' => ['Carros', 'Motociclos/Quadros', 'Bicicletas', 'Barcos', 'XXXXXXXXX Outboard motors', 'Pirogues', 'Aeroplano, microlight', 'Motores pesados'],
             'group4' => ['armas', 'Cartuchos', 'Uniformes', 'Racoes (per diem)', 'GPS, bússulas', 'Equipamento de  campismo'],
             'group5' => ['Radios VHF/HF', 'V-SAT', 'Telefones fixos', 'Telefones GSM', 'Telefones Satelite', 'Conexão de Internet'],
             'group6' => ['Computadores de Secretária', 'Impressoras', 'Fotocopiadoras', 'Computadores portáteis'],
@@ -559,56 +564,69 @@ return [
                 'Áreas urbanas e residenciais',
                 'Áreas comerciais',
                 'Áreas turísticas e recreativas',
-                'Áreas de enclave'],
+                'Áreas de enclave'
+            ],
             'group1' => [
                 'Agricultura itinerante',
                 'Pequenos Agricultores',
                 'Grandes empresas agro-industriais',
-                'Produção de frutas/vegetais de jardim'],
+                'Produção de frutas/vegetais de jardim'
+            ],
             'group2' => [
                 'Pequenas plantações',
-                'Plantações agro-industriais'],
+                'Plantações agro-industriais'
+            ],
             'group3' => [
                 'Pastoreio nómada',
                 'Criação de gado e pastoreio em pequenas explorações',
-                'Pecuária agro-industrial e pastoreio'],
+                'Pecuária agro-industrial e pastoreio'
+            ],
             'group4' => [
                 'Aquacultura de subsistência ou artesanal',
-                'Aquacultura industrial'],
+                'Aquacultura industrial'
+            ],
             'group6' => [
                 'Perfuração (gás e petróleo)',
                 'Operações mineiras ou de pedreiras',
-                'Energias renováveis'],
+                'Energias renováveis'
+            ],
             'group7' => [
                 'Estradas',
                 'Redes e linhas de utilidade e comunicação (electricidade, telefone, aqueduto, etc.)',
                 'Vias navegáveis marítimas e vias navegáveis para Navios',
                 'Corredores aéreos',
-                'Caminhos-de-ferro'],
+                'Caminhos-de-ferro'
+            ],
             'group8' => [
                 'Caça de animais terrestres',
-                'Colheita de animais vivos'],
+                'Colheita de animais vivos'
+            ],
             'group9' => [
                 'Recolha de plantas',
-                'Colheita de plantas'],
+                'Colheita de plantas'
+            ],
             'group10' => [
                 'Operações de madeireiras em pequena escala',
                 'Operações de combustível lenhoso em grande escala',
                 'Operações de madeira combustível lenhoso em pequena escala',
                 'Operações de madeireira em grande escala',
-                'Sarrafos/postes para construção'],
+                'Sarrafos/postes para construção'
+            ],
             'group11' => [
                 'Pesca de subsistência ou em pequena escala',
                 'Pesca emm grande escala',
                 'Colheita em pequena escala ou de subsistência dos recursos aquáticos',
                 'Colheita em grande escala dos recursos aquáticos',
-                'Colheita de marisco'],
+                'Colheita de marisco'
+            ],
             'group12' => [
                 'Actividades recreativas',
                 'Guerras, tumultos civis e exercícios militares',
-                'Obras e outras actividades'],
+                'Obras e outras actividades'
+            ],
             'group13' => [
-                'Frequência e intensidade dos incêndios'],
+                'Frequência e intensidade dos incêndios'
+            ],
             'group14' => [
                 'Captação de águas superficiais (uso doméstico)',
                 'Captação de águas superficiais (uso comercial)',
@@ -620,46 +638,56 @@ return [
                 'Captação de água subterrânea (utilização desconhecida)',
                 'Pequenas barragens',
                 'Grandes barragens',
-                'Barragens (tamanho desconhecido)'],
+                'Barragens (tamanho desconhecido)'
+            ],
             'group16' => [
                 'Espécies invasoras ou doenças introduzidas',
                 'Espécies problemáticas ou doenças indígenas problemáticas',
                 'Espécies problemáticas ou doenças de origem desconhecida',
                 'Material genético introduzido',
                 'Doenças virais ou priónicas',
-                'Doença de causa desconhecida'],
+                'Doença de causa desconhecida'
+            ],
             'group17' => [
-                'Águas residuais e esgotos',],
+                'Águas residuais e esgotos'
+            ],
             'group18' => [
                 'Mancha de óleo',
-                'Vazamentos nas minas'],
+                'Vazamentos nas minas'
+            ],
             'group19' => [
                 'Carga nutritiva',
                 'Erosão do solo e sedimentação',
-                'Herbicidas e pesticidas'],
+                'Herbicidas e pesticidas'
+            ],
             'group20' => [
                 'Resíduos municipais',
                 'Lixo de automóveis/destroços & lixo de barcos de recreio',
                 'Lixo de construção',
-                'Resíduos que entrelaçam a vida selvagem'],
+                'Resíduos que entrelaçam a vida selvagem'
+            ],
             'group21' => [
                 'Chuva ácida',
                 'Nuvem de poluição',
-                'Ozono'],
+                'Ozono'
+            ],
             'group22' => [
                 'Poluição luminosa',
                 'Poluição pelo calor',
-                'Poluição sonora'],
+                'Poluição sonora'
+            ],
             'group23' => [
                 'Vulcões',
                 'Terramotos e tsunamis',
-                'Avalanches e desabamentos de terras'],
+                'Avalanches e desabamentos de terras'
+            ],
             'group24' => [
                 'Danos e alterações no habitat',
                 'Secas',
                 'Temperaturas extremas',
                 'Tempestades e cheias',
-                'Other: Outros: Aumento da precipitação e mudanças sazonais'],
+                'Other: Outros: Aumento da precipitação e mudanças sazonais'
+            ],
             'group25' => [
                 'Conflito Homem Fauna Selvagem'
             ]

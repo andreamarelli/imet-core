@@ -41,6 +41,18 @@ return [
         'Mixed'
     ],
 
+    'MarineDesignation' => [
+        'No-Entry zone',
+        'No-Take zone',
+        'Multi-purposes MPA - Buffer zones for traditional use',
+        'Multi-purposes MPA - Buffer zones for educational and/or recreational activities',
+        'Multi-purposes MPA - Other',
+        'Marine reserves',
+        'Wildlife refuges',
+        'Fish management zone',
+        'Other',
+    ],
+
     'EcoType' => [
         'Desert',
         'Savannas',

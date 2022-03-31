@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
+use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
@@ -32,6 +33,8 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'IUCNCategory1',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory1')],
             ['name' => 'IUCNCategory2',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory2')],
             ['name' => 'IUCNCategory3',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory3')],
+            ['name' => 'MarineDesignation',  'type' => 'dropdown-ImetV2_MarineDesignation',
+                'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.GeneralInfo.fields.MarineDesignation')],
             ['name' => 'Country',  'type' => 'dropdown-Country',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Country')],
             ['name' => 'CreationYear',  'type' => 'year',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.CreationYear')],
             ['name' => 'Institution',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Institution')],
@@ -41,6 +44,8 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'ReferenceText',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.ReferenceText')],
             ['name' => 'ReferenceTextValues',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.ReferenceTextValues')],
         ];
+
+        $this->module_info = trans('imet-core::v2_context.GeneralInfo.module_info');
 
         parent::__construct($attributes);
     }
