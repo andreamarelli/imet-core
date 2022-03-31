@@ -564,7 +564,9 @@ return [
                 'Zonas urbanas y residenciales',
                 'Zonas comerciales',
                 'Áreas turísticas y recreativas',
-                'Áreas de enclave'
+                'Áreas de enclave',
+                'XXXXXXXXX Shipping lanes, ports, marine constructions',
+                'XXXXXXXXX Inland activities'
             ],
             'group1' => [
                 'Cultivo itinerante',
@@ -583,6 +585,7 @@ return [
             ],
             'group4' => [
                 'Acuicultura de subsistencia o artesanal',
+                'XXXXXXXXX Over nutrient',
                 'Acuicultura industrial'
             ],
             'group6' => [
@@ -594,6 +597,8 @@ return [
                 'Carreteras',
                 'Redes y líneas de servicios públicos y de comunicación (electricidad, teléfono, acueducto, etc.)',
                 'Vías navegables y rutas marítimas',
+                'XXXXXXXXX Commercial boating',
+                'XXXXXXXXX Private boating',
                 'Corredores aéreos',
                 'Ferrocarriles'
             ],
@@ -617,15 +622,29 @@ return [
                 'La pesca a gran escala',
                 'La recolección de recursos acuáticos de subsistencia o en pequeña escala',
                 'Recolección en gran escala de recursos acuáticos',
-                'La recolección de mariscos'
+                'La recolección de mariscos',
+                'XXXXXXXXX Illegal taking/removal of marine fauna',
+                'XXXXXXXXX Overfishing and destructive fishing',
+                'XXXXXXXXX Endangered species exploitation',
+                'XXXXXXXXX Trawlers/purse-seiners',
             ],
             'group12' => [
                 'Actividades recreativas',
-                'Guerras, disturbios civiles y ejercicios militares',
-                'Obras y otras actividades'
+                'Obras y otras actividades',
+                'XXXXXXXXX Noise and other forms of pollution',
+                'XXXXXXXXX Outdoor sports, leisure and recreational activities',
+                'XXXXXXXXX Multiple human intrusions and disturbances',
+                'XXXXXXXXX Recreational fishing hook and line',
+                'XXXXXXXXX Recreational fishing spearfishing',
+                'XXXXXXXXX Bathing and trampling',
+                'XXXXXXXXX Scuba-diving',
+                'Guerras, disturbios civiles y ejercicios militares'
             ],
             'group13' => [
-                'Frecuencia e intensidad de los incendios'
+                'Frecuencia e intensidad de los incendios',
+                'XXXXXXXXX Human induced changes in hydraulic conditions',
+                'XXXXXXXXX Changes in abiotic conditions',
+                'XXXXXXXXX Changes in biotic conditions'
             ],
             'group14' => [
                 'Extracción de aguas superficiales (uso doméstico)',
@@ -646,19 +665,26 @@ return [
                 'Especies problemáticas o enfermedades de origen desconocido',
                 'El material genético introducido',
                 'Enfermedades virales o priónicas',
-                'Enfermedad de causa desconocida'
+                'Enfermedad de causa desconocida',
+                'XXXXXXXXX Biocenotic evolution',
+                'XXXXXXXXX Interspecific faunal relations',
+                'XXXXXXXXX Multiple ecosystem modifications'
             ],
             'group17' => [
-                'Aguas residuales y alcantarillas'
+                'Aguas residuales y alcantarillas',
+                'XXXXXXXXX Leaks',
+                'XXXXXXXXX Plastics'
             ],
             'group18' => [
                 'La marea negra',
+                'XXXXXXXXX Ship discharges',
                 'Fuga de la minería'
             ],
             'group19' => [
                 'Carga de nutrientes',
                 'Erosión del suelo y sedimentación',
-                'Herbicidas y pesticidas'
+                'Herbicidas y pesticidas',
+                'XXXXXXXXX Watershed-based pollution'
             ],
             'group20' => [
                 'Desechos municipales',
@@ -679,14 +705,16 @@ return [
             'group23' => [
                 'Volcanes',
                 'Terremotos y tsunamis',
-                'Avalanchas y deslizamientos de tierra'
+                'Avalanchas y deslizamientos de tierra',
+                'XXXXXXXXX Abiotic natural processes'
             ],
             'group24' => [
                 'Daños y cambios en el hábitat',
                 'Sequías',
                 'Las temperaturas extremas',
                 'Tormentas e inundaciones',
-                'Otro: Aumento de las precipitaciones y cambios estacionales'
+                'Aumento de las precipitaciones y cambios estacionales',
+                'XXXXXXXXX Warming, acidification, bleaching, deoxygenation'
             ],
             'group25' => [
                 'Conflicto entre los seres humanos y la fauna y flora silvestres'

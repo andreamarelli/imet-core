@@ -564,7 +564,9 @@ return [
                 'Urban and residential areas',
                 'Commercial areas',
                 'Tourist and recreational areas',
-                'Enclave areas'
+                'Enclave areas',
+                'Shipping lanes, ports, marine constructions',
+                'Inland activities'
             ],
             'group1' => [
                 'Shifting cultivation',
@@ -583,6 +585,7 @@ return [
             ],
             'group4' => [
                 'Subsistence or artisanal aquaculture',
+                'Over nutrient',
                 'Industrial aquaculture'
             ],
             'group6' => [
@@ -594,6 +597,8 @@ return [
                 'Roads',
                 'Utility and communication networks and lines (power, telephone, aqueduct, etc.)',
                 'Maritime waterways and shipping lanes',
+                'Commercial boating',
+                'Private boating',
                 'Air corridors',
                 'Railways'
             ],
@@ -617,15 +622,29 @@ return [
                 'Large-scale fishing',
                 'Subsistence or small-scale harvesting of aquatic resources',
                 'Large-scale harvesting of aquatic resources',
-                'Shellfish harvesting'
+                'Shellfish harvesting',
+                'Illegal taking/removal of marine fauna',
+                'Overfishing and destructive fishing',
+                'Endangered species exploitation',
+                'Trawlers/purse-seiners',
             ],
             'group12' => [
                 'Recreational activities',
-                'Wars, civil unrest and military exercises',
-                'Works and other activities'
+                'Works and other activities',
+                'Noise and other forms of pollution',
+                'Outdoor sports, leisure and recreational activities',
+                'Multiple human intrusions and disturbances',
+                'Recreational fishing hook and line',
+                'Recreational fishing spearfishing',
+                'Bathing and trampling',
+                'Scuba-diving',
+                'Wars, civil unrest and military exercises'
             ],
             'group13' => [
-                'Frequency and intensity of fires'
+                'Frequency and intensity of fires',
+                'Human induced changes in hydraulic conditions',
+                'Changes in abiotic conditions',
+                'Changes in biotic conditions'
             ],
             'group14' => [
                 'Surface water abstraction (domestic usage))',
@@ -646,19 +665,26 @@ return [
                 'Problematic species or diseases of unknown origin',
                 'Introduced genetic material',
                 'Viral or prion diseases',
-                'Disease of unknown cause'
+                'Disease of unknown cause',
+                'Biocenotic evolution',
+                'Interspecific faunal relations',
+                'Multiple ecosystem modifications'
             ],
             'group17' => [
-                'Waste water and sewers'
+                'Waste water and sewers',
+                'Leaks',
+                'Plastics'
             ],
             'group18' => [
                 'Oil slick',
+                'Ship discharges',
                 'Mining leak'
             ],
             'group19' => [
                 'Nutrient load',
                 'Soil erosion and sedimentation',
-                'Herbicides and pesticides'
+                'Herbicides and pesticides',
+                'Watershed-based pollution'
             ],
             'group20' => [
                 'Municipal waste',
@@ -679,14 +705,16 @@ return [
             'group23' => [
                 'Volcanoes',
                 'Earthquakes and tsunamis',
-                'Avalanches and landslides'
+                'Avalanches and landslides',
+                'Abiotic natural processes'
             ],
             'group24' => [
                 'Damage and changes to habitat',
                 'Droughts',
                 'Extreme temperatures',
                 'Storms and flooding',
-                'Other: Increased rainfall and seasonal changes'
+                'Increased rainfall and seasonal changes',
+                'Warming, acidification, bleaching, deoxygenation'
             ],
             'group25' => [
                 'Human-Wildlife Conflict'

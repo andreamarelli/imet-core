@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2;
 
+use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
