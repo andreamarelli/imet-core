@@ -544,7 +544,7 @@ return [
         'groups' => [
             'group0' => 'Espécies Animais (emblemáticas, em perigo, endémicas, …)',
             'group1' => 'Espécies de Plantas (emblemáticas, ameaçadas, endémicas…)',
-            'group2' => 'Habitats cobertura do solo utilização dentro e fora da área protegida',
+            'group2' => 'Habitats e as dimensões relacionadas da cobertura do solo utilização dentro e fora da área protegida',
             'group3' => 'Ameaças à área protegida',
             'group4' => 'Efeitos das alterações climáticas sobre os elementos chave da área protegida',
             'group5' => 'Serviços Ecossistémicos providenciados pela área protegida'
@@ -901,11 +901,10 @@ return [
         'groups' => [
             'group0' => 'Espécies animais (emblemáticas, ameaçadas, endémicas, etc.)',
             'group1' => 'Espécies de plantas (emblemáticas, ameaçadas, endémicas, etc.)',
-            'group2' => 'Habitats o mais importante da área protegida',
-            'group3' => 'Cobertura do terreno da área protegida (cobertura e ocupação e uso da terra)',
-            'group4' => 'Gestão para mitigar as ameaças à área protegida',
-            'group5' => 'Serviços de ecossistema',
-            'group6' => 'Outros',
+            'group2' => 'Habitats o mais importante e as dimensões relacionadas da área protegida',
+            'group3' => 'Gestão para mitigar as ameaças à área protegida',
+            'group4' => 'Serviços de ecossistema',
+            'group5' => 'Outros',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -918,7 +917,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Existem acções de gestão específicas para os principais valores e ameaças à área protegida?',
-            'O principal objectivo de gestão das áreas protegidas é a conservação/restauro dos valores naturais e culturais associados. Para preservar esses valores e minimizar as ameaças mais significativas os gestores devem utilizar os conselhos e orientações de gestão disponíveis, identificar e implementar as medidas necessárias utilizando as melhores práticas em benefício dos valores-chave e minimizando as ameaças mais significativas. As acções podem incluir a conservação/restauro de espécies animais e de plantas, ocupação do solo e gestão de várias ameaças (nota: para as acções de adaptação às alterações climáticas e gestão dos serviços ecossistémicos ver PR 17 e PR 18). Exemplos de acções: gestão de animais ou plantas, gestão do ambiente físico, gestão de incêndios, trabalho de revegetação, controlo de espécies invasoras, gestão de recursos culturais, minimização de ameaças, etc.'
+            'O principal objectivo de gestão das áreas protegidas é a conservação/restauro dos valores naturais e culturais associados. Para preservar esses valores e minimizar as ameaças mais significativas os gestores devem utilizar os conselhos e orientações de gestão disponíveis, identificar e implementar as medidas necessárias utilizando as melhores práticas em benefício dos valores-chave e minimizando as ameaças mais significativas. As acções podem incluir a conservação/restauro de espécies animais e de plantas, os habitats e gestão de várias ameaças (nota: para as acções de adaptação às alterações climáticas e gestão dos serviços ecossistémicos ver PR 17 e PR 18). Exemplos de acções: gestão de animais ou plantas, gestão do ambiente físico, gestão de incêndios, trabalho de revegetação, controlo de espécies invasoras, gestão de recursos culturais, minimização de ameaças, etc.'
         ],
         'module_info_Rating' => [
             'Enumerar três ou mais valores chave, ameaças e outros elementos chave e avaliar a adequação das acções de gestão relacionadas (com base na análise do contexto dos pontos de intervenção CTX 4 e 5)'

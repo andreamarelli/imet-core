@@ -544,7 +544,7 @@ return [
         'groups' => [
             'group0' => 'Especies animales (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group1' => 'Especies de plantas (emblemáticas, en peligro de extinción, endémicas, …)',
-            'group2' => 'Hábitats y cobertura de suelos - uso - ocupación del territorio dentro y fuera del área protegida',
+            'group2' => 'Hábitats y las dimensiones relacionadas de cobertura de suelos - uso - ocupación del territorio dentro y fuera del área protegida',
             'group3' => 'Amenazas al área protegida',
             'group4' => 'Efectos del cambio climático en elementos clave del área protegida',
             'group5' => 'Servicios y funciones ecosistémicas que presta el área protegida'
@@ -901,11 +901,10 @@ return [
         'groups' => [
             'group0' => 'Especies animales (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group1' => 'Especies de plantas (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
-            'group2' => 'Los hábitats más importantes del área protegida',
-            'group3' => 'Cubierta terrestre del área protegida (Cobertura del suelo - uso del suelo - tenencia del territorio)',
-            'group4' => 'Gestión para mitigar las amenazas al área protegida',
-            'group5' => 'Servicios/funciones ecosistémicas',
-            'group6' => 'Otros',
+            'group2' => 'Los hábitats más importantes y las dimensiones relacionadas del área protegida',
+            'group3' => 'Gestión para mitigar las amenazas al área protegida',
+            'group4' => 'Servicios/funciones ecosistémicas',
+            'group5' => 'Otros',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -918,7 +917,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Existen medidas de gestión específicas para los valores y amenazas clave del área protegida?',
-            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar estos valores y minimizar las amenazas más significativas, los gestores deben identificar y utilizar las directrices, medidas o mejores prácticas de gestión disponibles. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, la cobertura del suelo y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véanse los PR 17 y PR 18). Ejemplos de acciones: gestión de fauna o vegetación, gestión del entorno físico, gestión de incendios, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimización de amenazas, etc.'
+            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar estos valores y minimizar las amenazas más significativas, los gestores deben identificar y utilizar las directrices, medidas o mejores prácticas de gestión disponibles. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, el hábitat y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véanse los PR 17 y PR 18). Ejemplos de acciones: gestión de fauna o vegetación, gestión del entorno físico, gestión de incendios, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimización de amenazas, etc.'
         ],
         'module_info_Rating' => [
             'Enumere tres o más valores, amenazas y otros elementos clave y evalúe la idoneidad de las medidas de gestión conexas (sobre la base del análisis del contexto de los puntos de intervención CTX 4 y 5).'

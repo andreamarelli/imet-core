@@ -153,5 +153,11 @@ Trait Upgrade
         return $record;
     }
 
+    protected static function replaceGroup($record, $group_field, $old_group, $new_group)
+    {
+        $record[$group_field] = $record[$group_field]===$old_group ? $new_group : $record[$group_field];
+        return $record;
+    }
+
 
 }

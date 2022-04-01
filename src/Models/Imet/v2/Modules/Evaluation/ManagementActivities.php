@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use Illuminate\Support\Str;
 
 class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
@@ -47,7 +48,6 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
      */
     public static function getModuleRecords($form_id, $collection = null): array
     {
-
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 
@@ -62,22 +62,33 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
                     return $item['IncludeInStatistics'] && $item['group_key']==="group1";
                 })->pluck('Aspect')->toArray(),
                 'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'] && $item['group_key']==="group0";
-                })->pluck('Aspect')->toArray(),
-                'group3' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'] && $item['group_key']==="group1";
-                })->pluck('Aspect')->toArray(),
-                'group4' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
-                'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
+                    return $item['IncludeInStatistics'];
+                })->pluck('Aspect')->toArray(),
+                'group4' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
             ]
         ];
 
         $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
+        dump($preLoaded);
         return $module_records;
+    }
+
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        if(empty($imet_version) or $imet_version < 'v2.7.6b'){
+
+            $record = static::replaceGroup($record, 'group_key', 'group3', 'group2');
+            $record = static::replaceGroup($record, 'group_key', 'group4', 'group3');
+            $record = static::replaceGroup($record, 'group_key', 'group5', 'group4');
+            $record = static::replaceGroup($record, 'group_key', 'group6', 'group5');
+
+        }
+        return $record;
     }
 
 

@@ -544,7 +544,7 @@ return [
         'groups' => [
             'group0' => 'Animal species (flagship, endangered, endemic, …)',
             'group1' => 'Plant species (flagship, endangered, endemic, …)',
-            'group2' => 'Habitats and the land cover - use - take in and outside of the protected area',
+            'group2' => 'Habitats and related dimensions of land cover - use - take in and outside of the protected area',
             'group3' => 'Threats to the protected area',
             'group4' => 'Effects of climate change on key elements of the protected area',
             'group5' => 'Ecosystem services provided by the protected area'
@@ -901,11 +901,10 @@ return [
         'groups' => [
             'group0' => 'Animal species (flagship, endangered, endemic, …)',
             'group1' => 'Plant species (flagship, endangered, endemic, …)',
-            'group2' => 'Habitats the most important of the protected area',
-            'group3' => 'Land cover the protected area (land cover - use - take)',
-            'group4' => 'Management to mitigate threats to the protected area',
-            'group5' => 'Ecosystem services',
-            'group6' => 'Other',
+            'group2' => 'Habitats the most important and related dimensions of the protected area',
+            'group3' => 'Management to mitigate threats to the protected area',
+            'group4' => 'Ecosystem services',
+            'group5' => 'Other',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -918,7 +917,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Are there in place specific management actions for the key values and threats to the protected area?',
-            'The primary management objective of protected areas is conservation/restoration of natural and associated cultural values.To preserve these values and minimise the most significant threats, managers should identify and use the available management guidelines, measures and best practices. Actions can include conservation/restoration of animal and plant species, land cover and managing various threats (note: for the climate change adaptation and ecosystem services management actions see PR 17 and PR 18). Examples of actions: management of animals or plants, management of the physical environment, managing fire, revegetation work, controlling invasive species, management of cultural resources, minimise threats, etc.'
+            'The primary management objective of protected areas is conservation/restoration of natural and associated cultural values.To preserve these values and minimise the most significant threats, managers should identify and use the available management guidelines, measures and best practices. Actions can include conservation/restoration of animal and plant species, habitats and managing various threats (note: for the climate change adaptation and ecosystem services management actions see PR 17 and PR 18). Examples of actions: management of animals or plants, management of the physical environment, managing fire, revegetation work, controlling invasive species, management of cultural resources, minimise threats, etc.'
         ],
         'module_info_Rating' => [
             'List three or more key values, threats and other key elements and evaluate the adequacy of related management actions (based on the analysis of the context of intervention points CTX 4 and 5)'

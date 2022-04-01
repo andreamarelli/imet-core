@@ -544,7 +544,7 @@ return [
         'groups' => [
             'group0' => 'Espèces animales (phares, en voie de disparition, endémiques,....)',
             'group1' => 'Espèces de plantes (phares, en voie de disparition, endémiques,....) ',
-            'group2' => 'Habitats et couverture terrestre, utilisation et occupation du sol à l’intérieur et à l’extérieur de l’aire protégée',
+            'group2' => 'Habitats et les dimensions connexes de couverture terrestre, utilisation et occupation du sol à l’intérieur et à l’extérieur de l’aire protégée',
             'group3' => 'Menaces qui pèsent sur l’aire protégée',
             'group4' => 'Effets du changement climatique sur les éléments clés de l’aire protégée',
             'group5' => 'Services écosystémiques fournis par l’aire protégée'
@@ -901,11 +901,10 @@ return [
         'groups' => [
             'group0' => 'Espèces animales (phares, en voie de disparition, endémiques,....)',
             'group1' => 'Espèces de plantes (phares, en voie de disparition, endémiques,....)',
-            'group2' => 'Habitats les plus importants de l’aire protégée',
-            'group3' => 'Couverture terrestre, utilisation et occupation des sols',
-            'group4' => 'Gestion visant à atténuer les menaces qui pèsent sur l’aire protégée',
-            'group5' => 'Services Ecosystémiques',
-            'group6' => 'Autre'
+            'group2' => 'Habitats les plus importants et les dimensions connexes de l’aire protégée',
+            'group3' => 'Gestion visant à atténuer les menaces qui pèsent sur l’aire protégée',
+            'group4' => 'Services Ecosystémiques',
+            'group5' => 'Autre'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -918,7 +917,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Existe-t-il des mesures de gestion spécifiques pour les valeurs clés et les menaces qui pèsent sur l’aire protégée ?',
-            'Le principal objectif de gestion des aires protégées est la conservation/restauration des valeurs naturelles et culturelles associées. Pour préserver ces valeurs et minimiser les menaces les plus importantes, les gestionnaires devraient utiliser les lignes directrices, les mesures et les meilleures pratiques de gestion disponibles. Les actions peuvent inclure la conservation/restauration d’espèces animales et végétales, la couverture terrestre et la gestion de diverses menaces (note : pour les actions d’adaptation au changement climatique et de gestion des services écosystémiques, voir PR 17 et PR 18). Exemples d’actions : gestion des animaux ou des plantes, gestion de l’environnement physique, gestion du feu, travaux de végétalisation, contrôle des espèces envahissantes, gestion des ressources culturelles, réduction des menaces, etc.'
+            'Le principal objectif de gestion des aires protégées est la conservation/restauration des valeurs naturelles et culturelles associées. Pour préserver ces valeurs et minimiser les menaces les plus importantes, les gestionnaires devraient utiliser les lignes directrices, les mesures et les meilleures pratiques de gestion disponibles. Les actions peuvent inclure la conservation/restauration d’espèces animales et végétales, l\'habitat et la gestion de diverses menaces (note : pour les actions d’adaptation au changement climatique et de gestion des services écosystémiques, voir PR 17 et PR 18). Exemples d’actions : gestion des animaux ou des plantes, gestion de l’environnement physique, gestion du feu, travaux de végétalisation, contrôle des espèces envahissantes, gestion des ressources culturelles, réduction des menaces, etc.'
         ],
         'module_info_Rating' => [
             'Énumérez au moins trois valeurs, menaces et autres éléments et évaluez l’adéquation des mesures de gestion connexes (sur la base de l’analyse du contexte d’intervention, points CTX 4 et CTX 5)'
