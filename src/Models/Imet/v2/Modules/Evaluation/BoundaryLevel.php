@@ -43,7 +43,7 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
 
     public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v2.7 -> v2.8  ####
+        // ####  v2.6 -> v2.7 (marine pas)  ####
         $record = static::replacePredefinedValue($record,
          'Adequacy',
      'Boundaries marked by specific marks (e.g. buoys, signs, posts, beacons, fences, etc.)',

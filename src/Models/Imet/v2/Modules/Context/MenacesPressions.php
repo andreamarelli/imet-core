@@ -132,7 +132,7 @@ class MenacesPressions extends Modules\Component\ImetModule
 
     public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v2.7 -> v2.8  ####
+        // ####  v2.6 -> v2.7 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Value', 'Other: Increased rainfall and seasonal changes', 'Increased rainfall and seasonal changes');
         $record = static::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
         $record = static::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
