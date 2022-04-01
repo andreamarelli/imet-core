@@ -43,7 +43,7 @@ class Template{
     }
 
     public static function module_scope($scope){
-        $common_attributes = 'style="margin-right: 5px" data-toggle="tooltip" data-placement="top"';
+        $common_attributes = 'data-toggle="tooltip" data-placement="top"';
         if($scope==ImetModule::TERRESTRIAL_AND_MARINE){
             return '<img src="/assets/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::v2_common.terrestrial')) . '" />
                         <img src="/assets/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::v2_common.marine')) . '" />';

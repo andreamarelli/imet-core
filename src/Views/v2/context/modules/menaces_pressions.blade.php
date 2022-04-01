@@ -14,6 +14,9 @@ $view_groupTable = View::make('modular-forms::module.edit.type.group_table', com
 // Inject marine icon on criteria
 $view_groupTable = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $view_groupTable, "is_marine(item['Value'])");
 
+// Inject marine/terrestrial icon on titled
+$view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPressions::get_marine_groups(), MenacesPressions::get_terrestrial_groups());
+
     // Inject titles
     foreach(MenacesPressions::$groupByCategory as $i => $category){
         $view_groupTable = AndreaMarelli\ModularForms\Helpers\Module::injectGroupTitle(

@@ -176,23 +176,28 @@ class ImetModule extends Module
         return $dom->saveHTML();
     }
 
-    public static function injectIconToGroups($icon_type, $view, $groups_with_icon): string
+    public static function injectIconToGroups($view, $marine_groups, $terrestrial_groups): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
         $titles = $dom->filter('h5');
-        dump($groups_with_icon);
         foreach ($titles as $title){
             $title_dom = HtmlPageCrawler::create($title);
             $title_dom->setStyle('display', 'flex');
             $title_dom->setStyle('align-items', 'center');
-            if(in_array($title_dom->text(), $groups_with_icon)){
+            if(in_array($title_dom->text(), $marine_groups)){
                 $title_dom->setInnerHtml(
-                    '<div>' . Template::module_scope($icon_type) .'</div>'
+                    '<div>' . Template::module_scope(ImetModule::MARINE) .'&nbsp;&nbsp;</div>'
+                    . $title_dom->getInnerHtml());
+            } elseif(in_array($title_dom->text(), $terrestrial_groups)){
+                $title_dom->setInnerHtml(
+                    '<div>' . Template::module_scope(ImetModule::TERRESTRIAL) .'&nbsp;&nbsp;</div>'
+                    . $title_dom->getInnerHtml());
+            } else {
+                $title_dom->setInnerHtml(
+                    '<div>' . Template::module_scope(ImetModule::MARINE) . Template::module_scope(ImetModule::TERRESTRIAL) .'&nbsp;&nbsp;</div>'
                     . $title_dom->getInnerHtml());
             }
-
         }
-
         return $dom->saveHTML();
     }
 
