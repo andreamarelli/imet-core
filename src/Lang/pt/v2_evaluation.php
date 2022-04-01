@@ -11,6 +11,7 @@ return [
             'comments' => 'Commentários'
         ],
     ],
+
     'ImportanceClassification' => [
         'title' => 'Designações Especiais',
         'fields' => [
@@ -79,7 +80,7 @@ return [
     ],
 
     'ImportanceHabitats' => [
-        'title' => 'Valores e Importancia - Habitats terrestre e marinho - tipos de cobertura, mudança, ocupação e uso solo',
+        'title' => 'Valores e Importancia (Habitats terrestre e marinho - tipos de cobertura, mudança, ocupação e uso solo)',
         'fields' => [
             'Aspect' => 'Critério - Conceito medido - Variável',
             'EvaluationScore' => 'Integração',
@@ -106,10 +107,10 @@ return [
         ],
         'module_subTitle' => 'Valores e Importancia - Habitats Terrestre e Marinho - tipos de cobertura, mudança e ocupação e uso solo',
         'module_info_EvaluationQuestion' => [
-            'Terá a área protegida identificado e integrado claramente os habitats terrestres e marinhos mais importantes e as dimensões da cobertura terrestre, da mudança de terra e da ocupação do solo na gestão da área protegida?'
+            'Terá a área protegida identificado e integrado claramente os habitats terrestres e marinhos mais importantes e as dimensões relacionadas da cobertura terrestre, da mudança de terra e da ocupação do solo na gestão da área protegida?'
         ],
         'module_info_Rating' => [
-            'Avaliar o nível de integração na gestão da área protegida de 3 a 10 dos habitats e dimensões mais representativas e importantes dos tipos de cobertura, mudança e ocupação do solo (com base na análise do Contexto de Intervenção, pontos 4.3.1 e 4.3.2, automaticamente comunicados abaixo). (O valor/importância regional e global dos habitats e da cobertura da terra é um grau em que se encontra: - i - representas os  a níveis regional ou global o ambiente natural das principais plantas ou animais; (ii) influencia um processo ecológico ou a comunidade ecológica and - iii - affecta a política em relação gestão dirigida ao habitat/cobertura do solo)'
+            'Avaliar o nível de integração na gestão da área protegida de 3 a 10 dos habitats e dimensões relacionadas mais representativas e importantes dos tipos de cobertura, mudança e ocupação do solo (com base na análise do Contexto de Intervenção, pontos 4.3, automaticamente comunicados abaixo). (O valor/importância regional e global dos habitats é um grau em que se encontra: - i - representas os  a níveis regional ou global o ambiente natural das principais plantas ou animais; (ii) influencia um processo ecológico ou a comunidade ecológica and - iii - affecta a política em relação gestão dirigida ao habitat)'
         ],
         'validation_3to10' => 'Por favor inclua nas estatisticas não menos que 3 e não mais que 10 das espécies chave',
         'warning_on_save' =>
@@ -118,7 +119,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Estabelecer e descrever objectivos de conservação para manter os <b>habitats terrestres e marinhos e os elementos mais importantes da área protegida em termos de cobertura terrestre, mudança de terra e ocupação do solo</b>. <br/>Os objectivos (realizações e resultados) inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos, fases do processo, e para o controlo das actividades de gestão na área protegida.'
+        'module_info' => 'Estabelecer e descrever objectivos de conservação para manter os <b>habitats terrestres e marinhos e as dimensões relacionadas de cobertura terrestre, mudança de terra e ocupação do solo</b>. <br/>Os objectivos (realizações e resultados) inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos, fases do processo, e para o controlo das actividades de gestão na área protegida.'
     ],
 
     'ImportanceClimateChange' => [
@@ -188,34 +189,14 @@ return [
     ],
 
     'SupportsAndConstraints' => [
-        'title' => 'Constrangimentos externos ou factores de apoio',
+        'title' => 'Constrangimentos/conflitos externos ou factores de apoio/conformidade',
         'fields' => [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Influência/poder das partes interessadas',
-            'EvaluationScore2' => 'Nível do constrangimento ou apoio',
+            'EvaluationScore2' => 'Nível do constrangimento/conflito ou apoio/conformidade',
             'Agencia de coordenação Inter-sectorial',
             'Comments' => 'Comentários/Explicação',
         ],
-        /*'predefined_values' => [
-            'Governador',
-            'Autoridades Territoriais (prefeitura e sub-prefeitura)',
-            'Ofciais eleitos localmente e líderes comunitários (ministros para o distrito, membros do parlamento e senadores)',
-            'Comunidades Locais',
-            'Autoridades tradicionais',
-            'Sociedade Civil',
-            'Direitos Humanos',
-            'Ministério responsável pela supervisão técnica',
-            'Direcção do Parque',
-            'Agencia de coordenação Inter-sectorial',
-            'Justiça Militar',
-            'Justica Civil',
-            'Forças terrestres e forças policias paramilitares',
-            'Forças Navais',
-            'Forças Policiais',
-            'Residentes de alto nível e zona tampão',
-            'Representantes Séniores do Governo'
-        ],*/
-
         'groups' => [
             'group0' => 'Comunidade local',
             'group1' => 'Governo',
@@ -263,26 +244,26 @@ return [
                 '3' => 'Alta influência/poder'
             ],
             'EvaluationScore2' => [
-                '-3' => 'Graves restrições geradas por esta parte interessada',
-                '-2' => 'Restrições geradas por esta parte interessada',
-                '-1' => 'Algumas restrições geradas por esta parte interessada',
+                '-3' => 'Graves restrições/conflitos geradas por esta parte interessada',
+                '-2' => 'Restrições/conflitos geradas por esta parte interessada',
+                '-1' => 'Algumas restrições/conflitos geradas por esta parte interessada',
                 '0' => 'Não condiciona nem apoia o papel desta parte interessada',
-                '+1' => 'Alguns apoios desta parte interessada',
-                '+2' => 'Apoio (menor - moderado - severo)',
-                '+3' => 'Forte apoio desta parte interessada',
+                '+1' => 'Alguns apoios/conformidades desta parte interessada',
+                '+2' => 'Apoio/conformidade (menor - moderado - severo)',
+                '+3' => 'Forte apoio/conformidade desta parte interessada',
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'A gestão da área protegida está sujeita a restrições ou beneficia de factores de apoio decorrentes do ambiente político, institucional e social externo?',
-            '<i>O ambiente político, institucional e civil pode obstruir (constrangimentos externos) ou facilitar (apoios externos) as actividades de conservação da área protegida. Os constrangimentos ou apoios do ambiente político, institucional e civil externo podem ser medidos pela sua intensidade, e pela influência/potência das partes interessadas em constranger ou apoiar a área protegida.</i>'
+            'A gestão da área protegida está sujeita a restrições/conflitos ou beneficia de factores de apoio/conformidade decorrentes do ambiente político, institucional e social externo?',
+            '<i>O ambiente político, institucional e civil pode obstruir (constrangimentos/conflitos externos) ou facilitar (apoios/conformidades externos) as actividades de conservação da área protegida. Os constrangimentos/conflitos ou apoios/conformidades do ambiente político, institucional e civil externo podem ser medidos pela sua intensidade, e pela influência/potência das partes interessadas em constranger ou apoiar a área protegida.</i>'
         ],
         'module_info_Rating' => [
-            'Avaliar os constrangimentos ou factores de apoio mais importantes do ambiente político, institucional e civil externo na gestão da área protegida'
+            'Avaliar os constrangimentos/conflitos ou factores de apoio/conformidade mais importantes do ambiente político, institucional e civil externo na gestão da área protegida'
         ]
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Estabelecer e descrever objectivos de conservação para <b> constrangimentos ou factores de apoio </b> à área protegida<br /> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos, fases do processo, e para a monitorização das actividades de gestão da área protegida.'
+        'module_info' => 'Estabelecer e descrever objectivos de conservação para <b> constrangimentos/conflitos ou factores de apoio/conformidade </b> à área protegida<br /> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos, fases do processo, e para a monitorização das actividades de gestão da área protegida.'
     ],
 
     'Menaces' => [

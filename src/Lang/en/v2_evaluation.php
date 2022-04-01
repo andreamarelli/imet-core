@@ -39,7 +39,6 @@ return [
 
     'ObjectivesClassification' => [
         'module_info' => 'Establish and describe conservation objectives for <b>the current national, regional or international designation(s) </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
-
     ],
 
     'ImportanceSpecies' => [
@@ -81,7 +80,7 @@ return [
     ],
 
     'ImportanceHabitats' => [
-        'title' => 'Terrestrial and marine habitats - land-cover, land-change and land-take',
+        'title' => 'Terrestrial and marine habitats (land-cover, land-change and land-take)',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
@@ -108,10 +107,10 @@ return [
         ],
         'module_subTitle' => 'Value and Importance - Terrestrial and marine habitats - land-cover, land-change and land-take',
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the most important terrestrial and marine habitats and dimensions of land-cover, land-change and land-take in its management'
+            'Has the protected area clearly identified and integrated the most important terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3.1 and 4.3.2, automatically reported below). (The regional and global value/importance of habitats and of land-cover is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat / land cover directed management policy)'
+            'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and related dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3, automatically reported below). (The regional and global value/importance of habitats is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat directed management policy)'
         ],
         'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
@@ -120,7 +119,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establish and describe conservation objectives for maintaining of <b>maintaining terrestrial and marine habitats and the most important land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceClimateChange' => [
@@ -190,33 +189,13 @@ return [
     ],
 
     'SupportsAndConstraints' => [
-        'title' => 'External constraints or supports',
+        'title' => 'External constraints/conflicts or supports/compliances',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Influence/power of the stakeholders',
-            'EvaluationScore2'=> 'Level of the constraint or support',
+            'EvaluationScore2'=> 'Level of the constraint/conflict or support/compliance',
             'Comments' => 'Comments/Explanation',
         ],
-        /*'predefined_values' => [
-            'Governor',
-            'Territorial authorities (prefecture and sub-prefecture)',
-            'Local elected officials and community leaders (ministers for the district, members of parliament and senators)',
-            'Local communities',
-            'Traditional authorities',
-            'Civil society',
-            'Human rights',
-            'Ministry responsible for technical supervision',
-            'Parks directorate',
-            'Inter-sector coordination agencies',
-            'Military justice',
-            'Civil justice',
-            'Ground forces and paramilitary police forces',
-            'Naval forces',
-            'Police forces',
-            'High-profile residents of the buffer zone',
-            'Senior representatives of government'
-        ],*/
-
         'groups' => [
             'group0' => 'Local community',
             'group1' => 'Government',
@@ -264,26 +243,26 @@ return [
                 '3' => 'High influence/power'
             ],
             'EvaluationScore2' => [
-                '-3' => 'Severe constraints ',
-                '-2' => 'Moderate constraints',
-                '-1' => 'Minor constraints',
-                '0' => 'No constraints but also no support role',
-                '+1' => 'Minor supports',
-                '+2' => 'Moderate supports',
-                '+3' => 'Strong supports',
+                '-3' => 'Severe constraints/conflicts',
+                '-2' => 'Moderate constraints/conflicts',
+                '-1' => 'Minor constraints/conflicts',
+                '0' => 'No constraints/conflicts but also no support role',
+                '+1' => 'Minor supports/compliances',
+                '+2' => 'Moderate supports/compliances',
+                '+3' => 'Strong supports/compliances',
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'Is the protected area management subject to constraints or does it benefit from supporting factors arising from the external political, institutional and social environment?',
-            '<i>The political, institutional and civil environment can obstruct (external constraints) or facilitate (external supports) conservation activities of the protected area. The constraints or supports by the external political, institutional and civil environment can be measured by their intensity, and by the influence/power of the stakeholders in constraining or supporting the protected area.</i>'
+            'Is the protected area management subject to constraints/conflicts or does it benefit from supporting/complying factors arising from the external political, institutional and social environment?',
+            '<i>The political, institutional and civil environment can obstruct (external constraints/conflicts ) or facilitate (external supports/compliances) conservation activities of the protected area. The constraints/conflicts or supports/compliances by the external political, institutional and civil environment can be measured by their intensity, and by the influence/power of the stakeholders in constraining/conflicting or supporting/complying the protected area.</i>'
         ],
         'module_info_Rating' => [
-            'Evaluate the most important constraints or supporting factors from the external political, institutional and civil environment in the management of the protected area'
+            'Evaluate the most important constraints/conflicts or supporting/complying factors from the external political, institutional and civil environment in the management of the protected area'
         ]
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>constraints or supporting factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'Menaces' => [

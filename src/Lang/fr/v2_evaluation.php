@@ -80,7 +80,7 @@ return [
     ],
 
     'ImportanceHabitats' => [
-        'title' => 'Habitats terrestres et marins — couverture terrestre, utilisation et occupation du sol',
+        'title' => 'Habitats terrestres et marins (couverture terrestre, utilisation et occupation du sol)',
         'fields' => [
             'Aspect' => 'Critère — Concept mesuré — Variable ',
             'EvaluationScore' => 'Intégration',
@@ -107,10 +107,10 @@ return [
         ],
         'module_subTitle' => 'Valeurs et importance — Habitats terrestres et marins - couverture terrestre, utilisation et occupation du sol',
         'module_info_EvaluationQuestion' => [
-            'L’aire protégée a-t-elle clairement identifié et intégré les habitats terrestres et marins les plus importants et les éléments de couverture terrestre, utilisation et occupation du sol dans la gestion ?'
+            'L’aire protégée a-t-elle clairement identifié et intégré les habitats terrestres et marins les plus importants et les éléments connexes de couverture terrestre, utilisation et occupation du sol dans la gestion ?'
         ],
         'module_info_Rating' => [
-            'Évaluer le niveau d’intégration dans la gestion de l’aire protégée d’un minimum de 3 à un maximum de 10 des habitats et éléments les plus représentatifs et les plus importants des types de couverture terrestre, d’utilisation et d’occupation du sol (sur la base de l’analyse du contexte d’intervention, points CTX 4.3.1 et 4.3.2, automatiquement reportés ci-dessous). La valeur/importance régionale et mondiale des habitats et de la couverture terrestre est une mesure dans laquelle elle : i) représente, au niveau local, national ou mondial, l’environnement naturel de plantes ou d’animaux clés ; (ii) influence un processus ou une communauté écologique et [iii] affecte une politique de gestion axée sur l’habitat/la couverture terrestre'
+            'Évaluer le niveau d’intégration dans la gestion de l’aire protégée d’un minimum de 3 à un maximum de 10 des habitats et éléments connexes les plus représentatifs et les plus importants des types de couverture terrestre, d’utilisation et d’occupation du sol (sur la base de l’analyse du contexte d’intervention, points CTX 4.3, automatiquement reportés ci-dessous). La valeur/importance régionale et mondiale des habitats est une mesure dans laquelle elle : i) représente, au niveau local, national ou mondial, l’environnement naturel de plantes ou d’animaux clés ; (ii) influence un processus ou une communauté écologique et [iii] affecte une politique de gestion axée sur l’habitat'
         ],
         'validation_3to10' => 'Veuillez inclure dans la gestion au moins 3 et au plus 10 habitats.',
         'warning_on_save' =>
@@ -119,7 +119,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour le maintien des habitats terrestres et marins et les éléments les plus importants de la couverture terrestre, l’utilisation et l’occupation du sol et de l’occupation du sol de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion dans l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour le maintien des habitats terrestres et marins et les éléments connexes de la couverture terrestre, l’utilisation et l’occupation du sol et de l’occupation du sol de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion dans l’aire protégée'
     ],
 
     'ImportanceClimateChange' => [
@@ -189,11 +189,11 @@ return [
     ],
 
     'SupportsAndConstraints' => [
-        'title' => 'Contraintes ou soutiens externes',
+        'title' => 'Contraintes/conflits ou soutiens/conformités externes',
         'fields' => [
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Influence/pouvoir des parties prenantes',
-            'EvaluationScore2' => 'Niveau des contraintes ou soutiens',
+            'EvaluationScore2' => 'Niveau des contraintes/conflits ou soutiens/conformités',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -244,27 +244,27 @@ return [
                 'N/A' => 'n\'est pas impliquée dans le processus'
             ],
             'EvaluationScore2' => [
-                '-3' => 'Contraintes importantes',
-                '-2' => 'Contraintes modérées',
-                '-1' => 'Contraintes faibles',
-                '0' => 'Ni contraintes, ni soutiens de la partie prenante',
-                '+1' => 'Supports faibles',
-                '+2' => 'Supports modérés',
-                '+3' => 'Supports importantes',
+                '-3' => 'Contraintes/conflits importantes',
+                '-2' => 'Contraintes/conflits modérées',
+                '-1' => 'Contraintes/conflits faibles',
+                '0' => 'Ni contraintes/conflits, ni soutiens/conformités de la partie prenante',
+                '+1' => 'Supports/conformités faibles',
+                '+2' => 'Supports/conformités modérés',
+                '+3' => 'Supports/conformités importantes',
 
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'La gestion de l’aire protégée est-elle soumise à des contraintes ou bénéficie-t-elle de facteurs d’appui liés à l’environnement politique, institutionnel et social extérieur ?',
-            'L’environnement politique, institutionnel et civil peut entraver (contraintes externes) ou faciliter (soutiens externes) les activités de conservation de l’aire protégée. Les contraintes ou les soutiens par l’environnement politique, institutionnel et civil extérieur peuvent être mesurés par leur intensité et par l’influence/le pouvoir des parties prenantes qui limitent ou soutiennent l’aire protégée'
+            'La gestion de l’aire protégée est-elle soumise à des contraintes/conflits ou bénéficie-t-elle de facteurs d’appui liés à l’environnement politique, institutionnel et social extérieur ?',
+            'L’environnement politique, institutionnel et civil peut entraver (contraintes/conflits externes) ou faciliter (soutiens/conformités externes) les activités de conservation de l’aire protégée. Les contraintes/conflits ou les soutiens/conformités par l’environnement politique, institutionnel et civil extérieur peuvent être mesurés par leur intensité et par l’influence/le pouvoir des parties prenantes qui limitent ou soutiennent l’aire protégée'
         ],
         'module_info_Rating' => [
-            'Évaluer les contraintes ou les facteurs d’appui les plus importants de l’environnement politique, institutionnel et civil extérieur dans la gestion de l’aire protégée'
+            'Évaluer les contraintes/conflits ou les facteurs d’appui les plus importants de l’environnement politique, institutionnel et civil extérieur dans la gestion de l’aire protégée'
         ]
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour les contraintes ou les facteurs de soutien de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour les contraintes/conflits ou les facteurs de soutien/conformité de l’aire protégée. Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
 
     'Menaces' => [
@@ -275,7 +275,7 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'module_info_EvaluationQuestion' => [
-            'L’aire protégée a-t-elle clairement identifié et intégré les menaces qui pourraient affecter la biodiversité, le patrimoine culturel ou les services écosystémiques dans sa gestion ? '
+            'L’aire protégée a-t-elle clairement identifié et intégré les menaces qui pourraient affecter la biodiversité, le patrimoine culturel ou les services écosystémiques dans sa gestion ?'
         ],
         'module_info_Rating' => [
             'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’aire protégée sur la base de l’analyse du contexte d’intervention, calculateur de menaces, point  CTX 5.1 et automatiquement reporté ci-dessous'
@@ -402,7 +402,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Les limites de l’aire protégée sont-elles bien marquées et reconnues d’une manière adéquate ?',
+            'Les limites de l’aire protégée sont-elles bien marquées et reconnues d’une manière adéquate?',
             'La démarcation ou délimitation physique d’une aire protégée est souvent une obligation légale. La démarcation doit indiquer la limite de l’aire protégée établie par la loi. La délimitation physique des aires protégées sert l’objectif juridique, car elle permet de définir où le cadre juridique [par exemple les sanctions] relatif à l’aire protégée s’applique et doit être appliqué. Il convient toutefois de noter que, si elle est utile, la démarcation à elle seule ne constitue pas une mesure suffisante pour assurer la protection. La connaissance et l’acceptation des limites de l’aire protégée par les parties prenantes sont cependant une nécessité pour une conservation efficace.'
         ],
         'module_info_Rating' => [
@@ -512,11 +512,11 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Les objectifs fixés dans le plan de gestion pour l’aire protégée sont-ils adéquats ?',
+            'Les objectifs fixés dans le plan de gestion pour l’aire protégée sont-ils adéquats?',
             'La gestion des aires protégées se fait de plus en plus selon l’approche de la « gestion par objectifs ». La gestion par objectifs exige une approche proactive, c’est-à-dire qu’elle est conçue pour atteindre un ensemble précis d’objectifs ou des états souhaités de conservation, plutôt que réactive, c’est-à-dire qu’elle répond simplement aux problèmes qui se posent. Les objectifs et l’état souhaité, qui doivent être atteints par les mesures de conservation de l’aire protégée, doivent être clairement compris. Ils doivent être bien définis et formulés de manière à faciliter le suivi, mais ils doivent également se rapporter aux valeurs clés de l’aire protégée (p.ex. espèces ou écosystèmes importants) ou aux principales zones d’activité de gestion (p. ex. tourisme, éducation). Dans cet outil, nous faisons une distinction importante entre les résultats et les effets/impacts :<ul><li>Les effets/impacts se rapportent aux aux changements liés aux OBJECTIFS/ÉTATS SOUHAITES à long terme ou à la vision exprimés dans le plan de gestion et caractérisant une situation visée ou souhaitée, à la fin de la période considérée. Ces objectifs sont généralement des énoncés spécifiques concernant les valeurs clés de l’aire protégée (p. ex. les espèces ou les services écosystémiques importants) ou les principaux domaines d’activités de gestion (p. ex. tourisme, éducation).<li>Les résultats/extrants se rapportent à la réalisation d’ACTIVITES à court terme (ou à relativement court terme), généralement mesurés de manière quantitative, et qui contribuent avec d’autres réalisations à atteindre les objectifs/états souhaités à long terme.'
         ],
         'module_info_Rating' => [
-            'Évaluer l’adéquation de la formulation des objectifs du plan de gestion pour les éléments clés de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX1.5 ; CTX 4, 5, 6, 7 et contexte de gestion, points de C 1.1 à C 1.5)'
+            'Évaluer l’adéquation de la formulation des objectifs du plan de gestion pour les éléments clés de l’aire protégée (sur la base de l’analyse du contexte d’intervention, points CTX1.5; CTX 4, 5, 6, 7 et contexte de gestion, points de C 1.1 à C 1.5)'
         ]
     ],
 
@@ -846,7 +846,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Le budget et les ressources financières sont-ils bien gérés pour répondre aux exigences et priorités essentielles de gestion de l’aire protégée ?',
+            'Le budget et les ressources financières sont-ils bien gérés pour répondre aux exigences et priorités essentielles de gestion de l’aire protégée?',
             'La gestion budgétaire et financière d’une aire protégée doit être solide pour assurer  l’allocation adéquate des fonds, la prévision dynamique et détaillée des coûts, et la planification stratégique. La gestion budgétaire et financière ne se limitent pas à la tenue de registres comptables. C’est un élément essentiel de la planification, de l’organisation, du contrôle et du suivi des ressources financières afin d’atteindre les objectifs de conservation de l’aire protégée. Une gestion budgétaire et financière efficace n’est possible que si l’on dispose d’une bonne gestion et d’un bon plan de travail avec des politiques, des stratégies et des objectifs fixés clairs.'
         ],
         'module_info_Rating' => [
@@ -1061,8 +1061,8 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Les parties prenantes contribuent-elles à la gestion de l’aire protégée afin de mieux comprendre et appuyer la réalisation des objectifs de l’aire protégée ?',
-            'Dans de nombreuses aires protégées, une partie ou la totalité des parties prenantes concernées coopèrent de manière substantielle à la prise de décision de la gestion concernant les activités et leur mise en œuvre à l’intérieur ou à l’extérieur de l’aire protégée. Cette coopération peut prendre la forme d’accords formels ou informels. Le niveau de coopération entre les parties prenantes dans une aire protégée dépend d’une variété de facteurs, mais en particulier de la spécificité des acteurs, des pressions et d’autres influences qui découlent de ces dernières, ainsi que de la biodiversité et des services écosystémiques fournis par l’aire protégée. Cette étape de l’analyse permet d’évaluer comment une partie ou la totalité des parties prenantes concernées sont impliquées dans la gestion de l’aire protégée, relativement aux quatre aspects suivants : (P) planification  ; (PG) planification et gestion, (B/A) bénéfices/assistance aux communautés locales, (IEC) information, éducation environnementale et communication au profit de la sensibilisation et l’engagement des communautés. Le niveau optimal de coopération des parties prenantes devrait être déterminé pour chaque aire protégée individuellement, car chaque aire protégée est unique'
+            'Les parties prenantes contribuent-elles à la gestion de l’aire protégée afin de mieux comprendre et appuyer la réalisation des objectifs de l’aire protégée?',
+            'Dans de nombreuses aires protégées, une partie ou la totalité des parties prenantes concernées coopèrent de manière substantielle à la prise de décision de la gestion concernant les activités et leur mise en œuvre à l’intérieur ou à l’extérieur de l’aire protégée. Cette coopération peut prendre la forme d’accords formels ou informels. Le niveau de coopération entre les parties prenantes dans une aire protégée dépend d’une variété de facteurs, mais en particulier de la spécificité des acteurs, des pressions et d’autres influences qui découlent de ces dernières, ainsi que de la biodiversité et des services écosystémiques fournis par l’aire protégée. Cette étape de l’analyse permet d’évaluer comment une partie ou la totalité des parties prenantes concernées sont impliquées dans la gestion de l’aire protégée, relativement aux quatre aspects suivants : (P) planification; (PG) planification et gestion, (B/A) bénéfices/assistance aux communautés locales, (IEC) information, éducation environnementale et communication au profit de la sensibilisation et l’engagement des communautés. Le niveau optimal de coopération des parties prenantes devrait être déterminé pour chaque aire protégée individuellement, car chaque aire protégée est unique'
 
         ],
         'module_info_Rating' => [
