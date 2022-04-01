@@ -207,6 +207,7 @@ return [
                 'Traditional authorities',
                 'Indigenous peoples',
                 'Communities living close to or in the park',
+                'Communities not living close to or in the park',
                 'Rightholders',
                 'Landowners',
                 'Local users of natural resources',
@@ -304,6 +305,13 @@ return [
             'Laws and conventions on research about biodiversity and natural resources',
             'Laws on land rights',
             'Customary law',
+            'Voluntary agreements, including public private partnerships (which can include e.g., voluntary biodiversity offset schemes)',
+            'Taxes, charges, user fees (e.g. entrance fees to marine parks)',
+            'Certification, eco labelling (e.g. MSC Marine Stewardship Council)',
+            'Spatial and temporal fishing closures; limits on number and size of vessels (input controls); other re-strictions or prohibitions on use (e.g. CITES)',
+            'Standards (e.g. MARPOL for ships); bans on dynamite fishing or fishing gear',
+            'Catch limits or quotas (output controls)',
+            'Licenses e.g. aquaculture and offshore windfarms'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -337,7 +345,12 @@ return [
             'Border zone (areas near borders immediately outside of the protected area that have special rules on resources use)',
             'Buffer zones (areas surrounding a protected area, where special management of resources use and special development measures are undertaken in order to enhance the conservation value of the protected area)',
             'Corridors',
-            'Integrity of water catchment'
+            'Integrity of water catchment',
+            'No-Use zone',
+            'No-take zone',
+            'Buffer zones for traditional use',
+            'Buffer zones for educational and/or recreational activities',
+            'Multi-use zone'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -370,15 +383,17 @@ return [
             'Correspondence of the marked boundaries with respect to the legal standing',
             'Adequacy of marked boundaries',
             'Boundaries marked by natural elements (e.g. rivers)',
-            'Boundaries marked by specific marks (e.g. buoys, signs, posts, beacons, fences, etc.)',
+            'Clearly demarcated, unambiguous and therefore easily interpreted boundaries (e.g., signs, posts, markers, fences, buoys, etc.)',
             'Recognition of boundaries by the authorities',
             'Recognition of boundaries by communities/users',
-            'Collaboration in the demarcation of boundaries',
+            'Collaboration approach including national agencies and relevant stakeholders in the demarcation of boundaries',
             'Publication of information of the boundaries demarcation',
             'Demarcation and development of legal boundaries consistent with legal statutes and international laws if necessary',
             'Demarcation using the official source of reference data',
             'Boundaries recorded with geographic coordinates (degree, min, sec)',
             'Demarcation of PA use zones (zoning)',
+            'Demarcation of boundaries, or part of them, that are ambulatory [e.g. banks, rivers, etc.] and may need to be revised',
+            'Demarcation by natural elements using a clear statement (e.g. tidal or river flooding data – average low water, average high water, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -442,22 +457,22 @@ return [
     ],
 
     'WorkPlan' => [
-        'title' => 'Work/Action plan',
+        'title' => 'Work/Action plan (terrestrial) or Monitoring plan (MPA)',
         'fields' => [
-            'PlanExistence' => 'A) Is there a Work/Action plan? Yes/no',
-            'PlanUptoDate' => 'Is the Work/Action plan up to date (covering the current period)? Yes/no',
-            'PlanApproved' => 'Has the Work/Action plan been officially approved? Yes/no',
-            'PlanImplemented' => 'Is the Work/Action plan being implemented? Yes/no',
-            'VisionAdequacy' => 'B) Adequacy of the activities and results of the work/action plan in relation to the objectives of the management plan',
-            'PlanAdequacyScore' => 'C) Adequacy regarding the clarity and applicability of the activities and established results of the work/action plan',
+            'PlanExistence' => 'A) Is there a work/action plan or monitoring plan? Yes/no',
+            'PlanUptoDate' => 'Is the work/action plan or monitoring plan up to date (covering the current period)? Yes/no',
+            'PlanApproved' => 'Has the work/action plan or monitoring plan been officially approved? Yes/no',
+            'PlanImplemented' => 'Is the work/action plan or monitoring plan being implemented? Yes/no',
+            'VisionAdequacy' => 'B) Adequacy of the activities and results of the work/action plan or monitoring plan in relation to the objectives of the management plan',
+            'PlanAdequacyScore' => 'C) Adequacy regarding the clarity and applicability of the activities and established results of the work/action plan or monitoring plan',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
             'VisionAdequacy' => [
-                '0' => 'The activities and results of the work/action plan are fully inadequate in relation to the objectives of the management plan (0-30% of needs)',
-                '1' => 'The activities and results of the work/action plan are inadequate in relation to the objectives of the management plan (31-60% of needs)',
-                '2' => 'The activities and results of the work/action plan are adequate in relation to the objectives of the management plan (61-90% of needs)',
-                '3' => 'The activities and results of the work/action plan are fully adequate in relation to the objectives of the management plan (91-100% of needs)'
+                '0' => 'The activities and results of the work/action plan or monitoring plan are fully inadequate in relation to the objectives of the management plan (0-30% of needs)',
+                '1' => 'The activities and results of the work/action plan or monitoring plan are inadequate in relation to the objectives of the management plan (31-60% of needs)',
+                '2' => 'The activities and results of the work/action plan or monitoring plan are adequate in relation to the objectives of the management plan (61-90% of needs)',
+                '3' => 'The activities and results of the work/action plan or monitoring plan are fully adequate in relation to the objectives of the management plan (91-100% of needs)'
             ],
             'PlanAdequacyScore' => [
                 '0' => 'The clarity and applicability of activities and expected results are fully inadequate',
@@ -466,10 +481,10 @@ return [
                 '3' => 'The clarity and applicability of activities and expected results are fully adequate'
             ],
         ],
-        'module_info_Rating' => 'Evaluate: A) the status of the work/action plan, B) the adequacy of the activities and results of the work/action plan in relation to the objectives of the management plan and C) the adequacy regarding the clarity and applicability of the activities and established results of the work/action plan',
+        'module_info_Rating' => 'XXX Evaluate: A) the status of the work/action plan or monitoring plan, B) the adequacy of the activities and results of the work/action plan or monitoring plan in relation to the objectives of the management plan and C) the adequacy regarding the clarity and applicability of the activities and established results of the work/action plan or monitoring plan',
         'module_info_EvaluationQuestion' => [
-            'Is there a work/action plan, is it adequate and practical to implement for the protected area?',
-            'A work/action plan is a detailed plan outlining concrete actions or activities that need to be carried out (and by whom, where and when) in order to achieve outputs and outcomes established in the management plan of the protected area. A work/action plan allows monitoring progress in achieving outputs and outcomes of the protected area. The work/action plan usually covers a fixed period (e.g. calendar year) and creates a bond within the team, as each member is aware of his/her individual role, as well as provides necessary information to ensure the success of the protected area in its conservation efforts.'
+            'Is there a work/action plan or monitoring plan, is it adequate and practical to implement for the protected area?',
+            'A work/action plan or monitoring plan is a detailed plan outlining concrete actions or activities that need to be carried out (and by whom, where and when) in order to achieve outputs and outcomes established in the management plan of the protected area. A work/action plan or monitoring plan allows monitoring progress in achieving outputs and outcomes of the protected area. The work/action plan or monitoring plan usually covers a fixed period (e.g. calendar year) and creates a bond within the team, as each member is aware of his/her individual role, as well as provides necessary information to ensure the success of the protected area in its conservation efforts.'
         ]
     ],
 

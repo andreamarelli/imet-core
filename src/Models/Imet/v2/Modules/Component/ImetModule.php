@@ -140,7 +140,7 @@ class ImetModule extends Module
             $td->setInnerHtml(
                 '<div v-if='.$vue_if.'>
                         ' . Template::module_scope($icon_type) .
-                '</div>'
+                        '</div>&nbsp;&nbsp;'
                 . $td->getInnerHtml());
             $td->children()->last()->setStyle('flex-grow', '1');
         }
@@ -167,7 +167,7 @@ class ImetModule extends Module
                 $td->setStyle('align-items', 'center');
                 if(in_array(trim($div->getInnerHtml()), $predefined_with_icon)){
                     $td->setInnerHtml(
-                        '<div>' . Template::module_scope($icon_type) .'</div>'
+                        '<div>' . Template::module_scope($icon_type) .'</div>&nbsp;&nbsp;'
                         . $td->getInnerHtml());
                 }
                 $td->children()->last()->setStyle('flex-grow', '1');

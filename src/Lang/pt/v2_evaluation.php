@@ -194,7 +194,6 @@ return [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Influência/poder das partes interessadas',
             'EvaluationScore2' => 'Nível do constrangimento/conflito ou apoio/conformidade',
-            'Agencia de coordenação Inter-sectorial',
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
@@ -208,6 +207,7 @@ return [
                 'Autoridades Tradicionais',
                 'Povos Indigenas',
                 'Comunidades vivendo perto ou no interior do Parque',
+                'Comunidades não vivendo perto ou no interior do Parque',
                 'Titulares de direitos',
                 'Proprietários de Terras',
                 'Utilizadores locais dos recursos naturais',
@@ -305,6 +305,13 @@ return [
             'Leis e convenções sobre investigação sobre biodiversidade e recursos naturais',
             'Leis sobre direitos de terra',
             'Direito consuetudinário (ver P2)',
+            'XXXXXXXXX Voluntary agreements, including public private partnerships (which can include e.g., voluntary biodiversity offset schemes)',
+            'XXXXXXXXX Taxes, charges, user fees (e.g. entrance fees to marine parks)',
+            'XXXXXXXXX Certification, eco labelling (e.g. MSC Marine Stewardship Council)',
+            'XXXXXXXXX Spatial and temporal fishing closures; limits on number and size of vessels (input controls); other re-strictions or prohibitions on use (e.g. CITES)',
+            'XXXXXXXXX Standards (e.g. MARPOL for ships); bans on dynamite fishing or fishing gear',
+            'XXXXXXXXX Catch limits or quotas (output controls)',
+            'XXXXXXXXX Licenses e.g. aquaculture and offshore windfarms'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -338,7 +345,12 @@ return [
             'Zonas limítrofes (áreas perto dos limites imediatamente depois da área protegida que tem regras especiais no uso dos recursos)',
             'Zonas tampão (áreas em redor de uma área protegida, onde são empreendidas medidas especiais de gestão da utilização dos recursos e medidas especiais de desenvolvimento a fim de aumentar o valor de conservação da área protegida)',
             'Corridores',
-            'Integridade das bacias hidrográficas'
+            'Integridade das bacias hidrográficas',
+            'XXXXXXXXX No-Use zone',
+            'XXXXXXXXX No-take zone',
+            'XXXXXXXXX Buffer zones for traditional use',
+            'XXXXXXXXX Buffer zones for educational and/or recreational activities',
+            'XXXXXXXXX Multi-use zone'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -371,15 +383,17 @@ return [
             'Correspondência dos limites demarcados no que diz respeito à situação jurídica',
             'Adequação de limites demarcados',
             'Limites demarcados por elementos naturais (por exemplo, rios)',
-            'Limites demarcados por marcas específicas (por exemplo, sinais, postes, balizas, vedações, etc.)',
+            'Limites claramente demarcados, inequívocos e, portanto, facilmente interpretados (por exemplo, sinais, postes, marcadores, cercas, bóias, etc.)',
             'Reconhecimento dos limites pelas autoridades',
             'Reconhecimento dos limitese fronteiras pelas comunidades/utilizadores',
-            'Colaboração na demarcação dos limites',
+            'Abordagem de colaboração, incluindo agências nacionais e partes interessadas relevantes na demarcação dos limites',
             'Publicação de informações sobre a demarcação dos limites',
             'Demarcação e desenvolvimento dos limites legais coerentes com os estatutos legais e leis internacionais, se necessário',
             'Demarcação utilizando a fonte oficial de dados de referência',
             'Limites registados com coordenadas geográficas (grau, min, seg)',
             'Demarcação de zonas de utilização de AP (zoneamento)',
+            'XXXXXXXXX Demarcation of boundaries, or part of them, that are ambulatory [e.g. banks, rivers, etc.] and may need to be revised',
+            'XXXXXXXXX Demarcation by natural elements using a clear statement (e.g. tidal or river flooding data – average low water, average high water, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -443,22 +457,22 @@ return [
     ],
 
     'WorkPlan' => [
-        'title' => 'Plano de trabalho/acção',
+        'title' => 'Plano de trabalho/acção (terrestre) ou plano de monitoramento (MPA)',
         'fields' => [
-            'PlanExistence' => 'A) Existe um plano de trabalho/acção? Sim/Não',
-            'PlanUptoDate' => 'O plano de trabalho/acção está actualizado (cobrindo o período actual)? Sim/Não',
-            'PlanApproved' => 'O plano de trabalho/acção foi oficialmente aprovado? Sim/Não',
-            'PlanImplemented' => 'O plano de trabalho/acção deve ser implementado? Sim/Não',
-            'VisionAdequacy' => 'B) Adequação das actividades e resultados do plano de trabalho/acção em relação aos objectivos do plano de gestão',
-            'PlanAdequacyScore' => 'C) Adequação relativamente à clareza e aplicabilidade das actividades e resultados estabelecidos do plano de trabalho/acção',
+            'PlanExistence' => 'A) Existe um plano de trabalho/acção ou plano de monitoramento? Sim/Não',
+            'PlanUptoDate' => 'O plano de trabalho/acção ou plano de monitoramento está actualizado (cobrindo o período actual)? Sim/Não',
+            'PlanApproved' => 'O plano de trabalho/acção ou plano de monitoramento foi oficialmente aprovado? Sim/Não',
+            'PlanImplemented' => 'O plano de trabalho/acção ou plano de monitoramento deve ser implementado? Sim/Não',
+            'VisionAdequacy' => 'B) Adequação das actividades e resultados do plano de trabalho/acção ou plano de monitoramento em relação aos objectivos do plano de gestão',
+            'PlanAdequacyScore' => 'C) Adequação relativamente à clareza e aplicabilidade das actividades e resultados estabelecidos do plano de trabalho/acção ou plano de monitoramento',
             'Comments' => 'Comentários/Explicação',
         ],
         'ratingLegend' => [
             'VisionAdequacy' => [
-                '0' => 'As actividades e resultados do plano de trabalho/acção são totalmente inadequados em relação aos objectivos do plano de gestão (0-30% das necessidades)',
-                '1' => 'As actividades e resultados do plano de trabalho/acção são inadequados em relação aos objectivos do plano de gestão (31-60% das necessidades)',
-                '2' => 'As actividades e resultados do plano de trabalho/acção são adequados em relação aos objectivos do plano de gestão (61-90% das necessidades)',
-                '3' => 'As actividades e resultados do plano de trabalho/acção são totalmente adequados em relação aos objectivos do plano de gestão (91-100% das necessidades)'
+                '0' => 'As actividades e resultados do plano de trabalho/acção ou plano de monitoramento são totalmente inadequados em relação aos objectivos do plano de gestão (0-30% das necessidades)',
+                '1' => 'As actividades e resultados do plano de trabalho/acção ou plano de monitoramento são inadequados em relação aos objectivos do plano de gestão (31-60% das necessidades)',
+                '2' => 'As actividades e resultados do plano de trabalho/acção ou plano de monitoramento são adequados em relação aos objectivos do plano de gestão (61-90% das necessidades)',
+                '3' => 'As actividades e resultados do plano de trabalho/acção ou plano de monitoramento são totalmente adequados em relação aos objectivos do plano de gestão (91-100% das necessidades)'
             ],
             'PlanAdequacyScore' => [
                 '0' => 'A clareza e aplicabilidade das actividades e resultados esperados são totalmente inadequados',
@@ -467,10 +481,10 @@ return [
                 '3' => 'A clareza e aplicabilidade das actividades e os resultados esperados são totalmente adequados'
             ],
         ],
-        'module_info_Rating' => 'Evaluate: A) o estado do plano de trabalho/acção, B) a adequação das actividades e resultados do plano de trabalho/acção em relação aos objectivos do plano de gestão e C) a adequação em relação à clareza e aplicabilidade das actividades e resultados estabelecidos do plano de trabalho/acção',
+        'module_info_Rating' => 'Evaluate: A) o estado do plano de trabalho/acção ou plano de monitoramento, B) a adequação das actividades e resultados do plano de trabalho/acção ou plano de monitoramento em relação aos objectivos do plano de gestão e C) a adequação em relação à clareza e aplicabilidade das actividades e resultados estabelecidos do plano de trabalho/acção ou plano de monitoramento',
         'module_info_EvaluationQuestion' => [
-            'Existe um plano de trabalho/acção, é adequado e prático parade implementar napara a área protegida?',
-            'Um plano de trabalho/acção é um plano detalhado que delineia acções ou actividades concretas que precisam de ser realizadas (e por quem, onde e quando) a fim de alcançar produtos resultados e  resultados estabelecidos no plano de gestão da área protegida. Um plano de trabalho/acção permite monitorizar o progresso na obtenção de realizações e resultados da área protegida. O plano de trabalho/acção cobre geralmente um período fixo (por exemplo, ano civil) e cria uma ligação dentro da equipa, uma vez que cada membro está consciente do seu papel individual, bem como fornece a informação necessária para assegurar o sucesso da área protegida nos seus esforços de conservação.'
+            'Existe um plano de trabalho/acção ou plano de monitoramento, é adequado e prático parade implementar napara a área protegida?',
+            'Um plano de trabalho/acção ou plano de monitoramento é um plano detalhado que delineia acções ou actividades concretas que precisam de ser realizadas (e por quem, onde e quando) a fim de alcançar produtos resultados e  resultados estabelecidos no plano de gestão da área protegida. Um plano de trabalho/acção ou plano de monitoramento permite monitorizar o progresso na obtenção de realizações e resultados da área protegida. O plano de trabalho/acção ou plano de monitoramento cobre geralmente um período fixo (por exemplo, ano civil) e cria uma ligação dentro da equipa, uma vez que cada membro está consciente do seu papel individual, bem como fornece a informação necessária para assegurar o sucesso da área protegida nos seus esforços de conservação.'
         ]
     ],
 

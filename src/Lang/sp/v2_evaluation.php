@@ -207,6 +207,7 @@ return [
                 'Autoridades tradicionales locales',
                 'Pueblos Indígenas y/o campesinos',
                 'Comunidades que viven cerca o en el área protegida',
+                'Comunidades que no viven cerca o en el área protegida',
                 'Titulares con derechos',
                 'Propietarios',
                 'Usuarios locales de los recursos naturales',
@@ -304,6 +305,13 @@ return [
             'Leyes y convenciones sobre la investigación de la biodiversidad y los recursos naturales',
             'Leyes sobre los derechos de la tierra',
             'Derecho consuetudinario',
+            'XXXXXXXXX Voluntary agreements, including public private partnerships (which can include e.g., voluntary biodiversity offset schemes)',
+            'XXXXXXXXX Taxes, charges, user fees (e.g. entrance fees to marine parks)',
+            'XXXXXXXXX Certification, eco labelling (e.g. MSC Marine Stewardship Council)',
+            'XXXXXXXXX Spatial and temporal fishing closures; limits on number and size of vessels (input controls); other re-strictions or prohibitions on use (e.g. CITES)',
+            'XXXXXXXXX Standards (e.g. MARPOL for ships); bans on dynamite fishing or fishing gear',
+            'XXXXXXXXX Catch limits or quotas (output controls)',
+            'XXXXXXXXX Licenses e.g. aquaculture and offshore windfarms'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -337,7 +345,12 @@ return [
             'Zona fronteriza (zonas cercanas a las fronteras inmediatamente fuera del área protegida que tienen normas especiales sobre el uso de los recursos)',
             'Áreas de amortiguamiento (zonas que rodean una área protegida, en las que se lleva a cabo una gestión especial de la utilización de los recursos y se adoptan medidas especiales de desarrollo a fin de aumentar el valor de conservación del área protegida).',
             'Corredores',
-            'Integridad de las cuencas hidrográficas'
+            'Integridad de las cuencas hidrográficas',
+            'XXXXXXXXX No-Use zone',
+            'XXXXXXXXX No-take zone',
+            'XXXXXXXXX Buffer zones for traditional use',
+            'XXXXXXXXX Buffer zones for educational and/or recreational activities',
+            'XXXXXXXXX Multi-use zone'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -370,15 +383,17 @@ return [
             'Correspondencia de los límites marcados con respecto a la situación jurídica',
             'Adecuación de los límites marcados',
             'Límites marcados por elementos naturales (por ejemplo, ríos)',
-            'Límites marcados por marcas específicas (por ejemplo, señales, postes, balizas, vallas, etc.)',
+            'Límites claramente demarcados, inequívocos y, por lo tanto, fáciles de interpretar (por ejemplo, señales, postes, marcadores, cercas, boyas, etc.)',
             'Reconocimiento de los límites por parte de las autoridades',
             'Reconocimiento de los límites por parte de las comunidades/usuarios',
-            'Colaboración en la demarcación de fronteras',
+            'Enfoque de colaboración que incluye agencias nacionales y partes interesadas relevantes en la demarcación de fronteras',
             'Publicación de información de la demarcación de fronteras',
             'Demarcación y desarrollo de los límites legales en consonancia con los estatutos jurídicos y el derecho internacional, de ser necesario',
             'Demarcación utilizando la fuente oficial de datos de referencia',
             'Límites registrados con coordenadas geográficas (grado, min, seg)',
             'Demarcación de las zonas de uso de la AP (zonificación)',
+            'XXXXXXXXX Demarcation of boundaries, or part of them, that are ambulatory [e.g. banks, rivers, etc.] and may need to be revised',
+            'XXXXXXXXX Demarcation by natural elements using a clear statement (e.g. tidal or river flooding data – average low water, average high water, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -442,22 +457,22 @@ return [
     ],
 
     'WorkPlan' => [
-        'title' => 'Plan de trabajo/acción',
+        'title' => 'Plan de trabajo/acción (terrestre) o Plan de Monitoreo (MPA)',
         'fields' => [
-            'PlanExistence' => 'A) ¿Hay un plan de trabajo/acción? Sí/No',
-            'PlanUptoDate' => '¿El plan de trabajo/acción (que abarca el período actual) está actualizado? Sí/No',
-            'PlanApproved' => '¿El plan de trabajo/acción está aprobado oficialmente? Sí/No',
-            'PlanImplemented' => '¿Se aplicará el plan de trabajo/acción? Sí/No',
-            'VisionAdequacy' => 'B) Adecuación de las actividades y resultados del plan de trabajo/acción en relación con los objetivos del plan de gestión',
-            'PlanAdequacyScore' => 'C) Adecuación en cuanto a la claridad y aplicabilidad de las actividades y los resultados establecidos del plan de trabajo/acción',
+            'PlanExistence' => 'A) ¿Hay un plan de trabajo/acción o plan de monitoreo? Sí/No',
+            'PlanUptoDate' => '¿El plan de trabajo/acción o plan de monitoreo (que abarca el período actual) está actualizado? Sí/No',
+            'PlanApproved' => '¿El plan de trabajo/acción o plan de monitoreo está aprobado oficialmente? Sí/No',
+            'PlanImplemented' => '¿Se aplicará el plan de trabajo/acción o plan de monitoreo? Sí/No',
+            'VisionAdequacy' => 'B) Adecuación de las actividades y resultados del plan de trabajo/acción o plan de monitoreo en relación con los objetivos del plan de gestión',
+            'PlanAdequacyScore' => 'C) Adecuación en cuanto a la claridad y aplicabilidad de las actividades y los resultados establecidos del plan de trabajo/acción o plan de monitoreo',
             'Comments' => 'Comentarios/explicación',
         ],
         'ratingLegend' => [
             'VisionAdequacy' => [
-                '0' => 'Las actividades y resultados del plan de trabajo/acción son totalmente inadecuados en relación con los objetivos del plan de gestión (0-30% de las necesidades)',
-                '1' => 'Las actividades y resultados del plan de trabajo/acción son inadecuados en relación con los objetivos del plan de gestión (31-60% de las necesidades)',
-                '2' => 'Las actividades y los resultados del plan de trabajo/acción son adecuados en relación con los objetivos del plan de gestión (61-90% de las necesidades)',
-                '3' => 'Las actividades y los resultados del plan de trabajo/acción son plenamente adecuados en relación con los objetivos del plan de gestión (91-100% de las necesidades)'
+                '0' => 'Las actividades y resultados del plan de trabajo/acción o plan de monitoreo son totalmente inadecuados en relación con los objetivos del plan de gestión (0-30% de las necesidades)',
+                '1' => 'Las actividades y resultados del plan de trabajo/acción o plan de monitoreo son inadecuados en relación con los objetivos del plan de gestión (31-60% de las necesidades)',
+                '2' => 'Las actividades y los resultados del plan de trabajo/acción o plan de monitoreo son adecuados en relación con los objetivos del plan de gestión (61-90% de las necesidades)',
+                '3' => 'Las actividades y los resultados del plan de trabajo/acción o plan de monitoreo son plenamente adecuados en relación con los objetivos del plan de gestión (91-100% de las necesidades)'
             ],
             'PlanAdequacyScore' => [
                 '0' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son totalmente inadecuados',
@@ -466,10 +481,10 @@ return [
                 '3' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son plenamente adecuados'
             ],
         ],
-        'module_info_Rating' => '•	Evaluar: A) el estado del plan de trabajo/acción, B) la idoneidad de las actividades y resultados del plan de trabajo/acción en relación con los objetivos del plan de gestión y C) la idoneidad en cuanto a la claridad y aplicabilidad de las actividades y resultados establecidos del plan de trabajo/acción',
+        'module_info_Rating' => '•	Evaluar: A) el estado del plan de trabajo/acción o plan de monitoreo, B) la idoneidad de las actividades y resultados del plan de trabajo/acción o plan de monitoreo en relación con los objetivos del plan de gestión y C) la idoneidad en cuanto a la claridad y aplicabilidad de las actividades y resultados establecidos del plan de trabajo/acción o plan de monitoreo',
         'module_info_EvaluationQuestion' => [
-            '¿En el área protegida, existe un plan de trabajo/acción, es adecuado y práctico de implementar?',
-            'Un plan de trabajo/acción es un plan detallado en el que se esbozan las acciones o actividades concretas que deben llevarse a cabo (y por quién, dónde y cuándo) a fin de lograr los productos y resultados establecidos en el plan de gestión del área protegida. Un plan de trabajo/acción, permite monitorear el progreso en el logro de los productos y resultados del área protegida. El plan de trabajo/acción suele abarcar un período fijo (por ejemplo, un año natural) y crea un vínculo dentro del equipo, ya que cada miembro es consciente de su papel individual, además de proporcionar la información necesaria para garantizar el éxito del área protegida en sus esfuerzos de conservación.'
+            '¿En el área protegida, existe un plan de trabajo/acción o plan de monitoreo, es adecuado y práctico de implementar?',
+            'Un plan de trabajo/acción o plan de monitoreo es un plan detallado en el que se esbozan las acciones o actividades concretas que deben llevarse a cabo (y por quién, dónde y cuándo) a fin de lograr los productos y resultados establecidos en el plan de gestión del área protegida. Un plan de trabajo/acción o plan de monitoreo, permite monitorear el progreso en el logro de los productos y resultados del área protegida. El plan de trabajo/acción o plan de monitoreo suele abarcar un período fijo (por ejemplo, un año natural) y crea un vínculo dentro del equipo, ya que cada miembro es consciente de su papel individual, además de proporcionar la información necesaria para garantizar el éxito del área protegida en sus esfuerzos de conservación.'
         ]
     ],
 

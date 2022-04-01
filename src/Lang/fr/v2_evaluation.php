@@ -251,7 +251,6 @@ return [
                 '+1' => 'Supports/conformités faibles',
                 '+2' => 'Supports/conformités modérés',
                 '+3' => 'Supports/conformités importantes',
-
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -302,11 +301,17 @@ return [
             'Règlement interne pour la gestion de l’aire protégée',
             'Ratification et application des conventions internationales [CITES, CDB, Nagoya, CMS, Patrimoine mondial, RAMSAR, etc.]',
             'Lois sur les aires protégées et la conservation',
-            'Classification des corridors pour la de la migration de la faune',
             'Lois sur la gestion des ressources naturelles [complémentaires aux lois sur la conservation]',
             'Lois et conventions sur la recherche en matière de biodiversité et de ressources naturelles',
             'Lois sur les droits fonciers',
-            'Droit coutumier'
+            'Droit coutumier',
+            'XXXXXXXXX Voluntary agreements, including public private partnerships (which can include e.g., voluntary biodiversity offset schemes)',
+            'XXXXXXXXX Taxes, charges, user fees (e.g. entrance fees to marine parks)',
+            'XXXXXXXXX Certification, eco labelling (e.g. MSC Marine Stewardship Council)',
+            'XXXXXXXXX Spatial and temporal fishing closures; limits on number and size of vessels (input controls); other re-strictions or prohibitions on use (e.g. CITES)',
+            'XXXXXXXXX Standards (e.g. MARPOL for ships); bans on dynamite fishing or fishing gear',
+            'XXXXXXXXX Catch limits or quotas (output controls)',
+            'XXXXXXXXX Licenses e.g. aquaculture and offshore windfarms'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -340,7 +345,12 @@ return [
             'Zone frontalière [zones situées à proximité immédiate des frontières à l’extérieur de l’aire protégée et qui sont soumises à des règles spéciales d’utilisation des ressources]',
             'Zones tampons [zones entourant une aire protégée, où une gestion spéciale de l’utilisation des ressources et des mesures spéciales de développement sont entreprises afin d’améliorer la valeur de conservation de l’aire protégée]',
             'Corridors de migration',
-            'Intégrité du/des bassins versants pour le captage d’eau'
+            'Intégrité du/des bassins versants pour le captage d’eau',
+            'XXXXXXXXX No-Use zone',
+            'XXXXXXXXX No-take zone',
+            'XXXXXXXXX Buffer zones for traditional use',
+            'XXXXXXXXX Buffer zones for educational and/or recreational activities',
+            'XXXXXXXXX Multi-use zone'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -373,15 +383,17 @@ return [
             'Correspondance des limites marquées en ce qui concerne le statut juridique',
             'Adéquation des limites marquées',
             'Limites marquées par des éléments naturels (p. ex., rivières)',
-            'Adéquation des limites marquées par des marques spécifiques (p. ex. panneaux, poteaux, balises, clôtures, etc.)',
+            'Limites clairement délimitées, non ambiguës et donc faciles à interpréter (p. ex. panneaux, poteaux, balises, clôtures, bouées, etc.)',
             'Reconnaissance des limites par les autorités',
             'Reconnaissance des limites par les communautés/utilisateurs',
-            'Collaboration des parties prenantes à la démarcation des frontières',
+            'Approche de collaboration incluant les agences nationales et les parties prenantes concernées dans la démarcation des frontières',
             'Publication d’informations sur la démarcation des limites de l’aire protégée',
             'Définition et démarcation des frontières conformes aux statuts juridiques et au droit international, si nécessaire',
             'Délimitation de l’aire protégée à l’aide de la source officielle de données géographiques de référence',
             'Limites de l’aire protégée enregistrées avec coordonnées géographiques (degré, min, sec)',
             'Délimitation des zones d’utilisation des aires protégées (zonage)',
+            'XXXXXXXXX Demarcation of boundaries, or part of them, that are ambulatory [e.g. banks, rivers, etc.] and may need to be revised',
+            'XXXXXXXXX Demarcation by natural elements using a clear statement (e.g. tidal or river flooding data – average low water, average high water, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -445,36 +457,34 @@ return [
     ],
 
     'WorkPlan' => [
-        'title' => 'Plan de travail/d’action annuel ou pluriannuel',
+        'title' => 'Plan de travail/d’action (terrestre) ou plan de suivi (MPA)',
         'fields' => [
-            'PlanExistence' => 'A) Existe-t-il un plan de travail/d’action ?',
-            'PlanUptoDate' => 'Le plan de travail/d’action est-il à jour (couvrant la période en cours) ?',
-            'PlanApproved' => 'Le plan de travail/d’action a-t-il été approuvé ?',
-            'PlanImplemented' => 'Le plan de travail/d’action est-il mis en œuvre ?',
-            'VisionAdequacy' => 'B) Adéquation des activités et des résultats du plan de travail/d’action par rapport aux objectifs du plan de gestion',
-            'PlanAdequacyScore' => 'C) Adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action',
+            'PlanExistence' => 'A) Existe-t-il un plan de travail/d’action ou plan de suivi ?',
+            'PlanUptoDate' => 'Le plan de travail/d’action ou plan de suivi est-il à jour (couvrant la période en cours) ?',
+            'PlanApproved' => 'Le plan de travail/d’action ou plan de suivi a-t-il été approuvé ?',
+            'PlanImplemented' => 'Le plan de travail/d’action ou plan de suivi est-il mis en œuvre ?',
+            'VisionAdequacy' => 'B) Adéquation des activités et des résultats du plan de travail/d’action ou plan de suivi par rapport aux objectifs du plan de gestion',
+            'PlanAdequacyScore' => 'C) Adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action ou plan de suivi',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
             'PlanAdequacyScore' => [
-                '0' => 'Les activités et des résultats du plan de travail/d’action sont totalement inadéquats par rapport aux objectifs du plan de gestion (0-30% des besoins)',
-                '1' => 'Les activités et des résultats du plan de travail/d’action sont inadéquats par rapport aux objectifs du plan de gestion (31-60% des besoins)',
-                '2' => 'Les activités et des résultats du plan de travail/d’action sont adéquats par rapport aux objectifs du plan de gestion (61-90% des besoins)',
-                '3' => 'Les activités et des résultats du plan de travail/d’action sont totalement adéquats par rapport aux objectifs du plan de gestion (91-100% des besoins)',
+                '0' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont totalement inadéquats par rapport aux objectifs du plan de gestion (0-30% des besoins)',
+                '1' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont inadéquats par rapport aux objectifs du plan de gestion (31-60% des besoins)',
+                '2' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont adéquats par rapport aux objectifs du plan de gestion (61-90% des besoins)',
+                '3' => 'Les activités et des résultats du plan de travail/d’action ou plan de suivi sont totalement adéquats par rapport aux objectifs du plan de gestion (91-100% des besoins)',
             ],
             'VisionAdequacy' => [
-                '0' => 'Le plan de travail/d’action ne présente pas des activités et des résultats attendus pas de tout clairs et applicables (0-30% des besoins)',
-                '1' => 'Le plan de travail/d’action ne présente pas des activités et des résultats attendus insuffisamment clairs et applicables',
-                '2' => 'Le plan de travail/d’action présente des activités et des résultats attendus suffisamment clairs et applicables',
-                '3' => 'Le plan de travail/d’action présente des activités et des résultats attendus parfaitement clairs et applicables'
+                '0' => 'Le plan de travail/d’action ou plan de suivi ne présente pas des activités et des résultats attendus pas de tout clairs et applicables (0-30% des besoins)',
+                '1' => 'Le plan de travail/d’action ou plan de suivi ne présente pas des activités et des résultats attendus insuffisamment clairs et applicables',
+                '2' => 'Le plan de travail/d’action ou plan de suivi présente des activités et des résultats attendus suffisamment clairs et applicables',
+                '3' => 'Le plan de travail/d’action ou plan de suivi présente des activités et des résultats attendus parfaitement clairs et applicables'
             ]
         ],
+        'module_info_Rating' => 'Évaluer : A) l’état du plan de travail/d’action ou plan de suivi, B) l’adéquation des activités et des résultats du plan de travail/d’action ou plan de suivi par rapport aux objectifs du plan de gestion et C) l’adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action ou plan de suivi',
         'module_info_EvaluationQuestion' => [
-            'Existe-t-il un plan de travail/d’action annuel ; est-il adéquat et pratique à mettre en œuvre pour l’aire protégée ?',
+            'Existe-t-il un plan de travail/d’action ou plan de suivi annuel ; est-il adéquat et pratique à mettre en œuvre pour l’aire protégée ?',
             'Un plan de travail/plan d’action est un plan détaillé décrivant les actions ou activités concrètes qui doivent être menées (et par qui, ou/et quand) afin d’atteindre les résultats établis dans le plan de gestion de l’aire protégée. Un plan de travail ou d’action permet de suivre les progrès accomplis dans l’atteinte des résultats de l’aire protégée. Le plan de travail/plan d’action couvre généralement une période fixe (par exemple l’année civile) et crée un lien au sein de l’équipe, car chaque membre est conscient de son rôle individuel, et fournit les efforts et les informations nécessaires pour assurer le succès dans la conservation de l’aire protégée'
-        ],
-        'module_info_Rating' => [
-            'Évaluer : A) l’état du plan de travail/d’action, B) l’adéquation des activités et des résultats du plan de travail/d’action par rapport aux objectifs du plan de gestion et C) l’adéquation concernant la clarté et l’applicabilité des activités et des résultats attendus du plan de travail/d’action'
         ]
     ],
 
