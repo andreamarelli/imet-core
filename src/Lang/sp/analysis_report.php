@@ -26,6 +26,9 @@ return [
     'reset' => 'Reset',
     'more_than_one_file' => 'You cannot download only one file',
     'navigation_menu' => 'Navigation menu',
+    'name' => 'Name',
+    'category' => 'Category',
+    'short_name' => 'Short name',
     'sections' => [
         'first' => 'Location of selected Protected Areas',
         'second' => 'General elements of the protected areas',
@@ -202,29 +205,33 @@ return [
     'protected_area_coverage_and_connectivity' => [
         'title',
         'chart' => 'Country coverage by protected areas and connected protected areas (connectivity)',
-        'protected_land_area' => 'Protected Land Area',
-        'protected_marin_area' => 'Protected Marine Area',
-        'protected_connected_land' => 'Protected Connected Land'
+        'total_land_area' => 'Total Land Area [km2]',
+        'protected_land_area' => 'Protected Land Area [km2]',
+        'terrestrial_coverage' => 'Terrestrial Coverage [%]',
+        'total_marine_area' => 'Total Marine Area [km2]',
+        'protected_marine_area' => 'Protected Marine Area [km2]',
+        'marine_coverage' => 'Marine Coverage [%]',
+        'protected_connected_land' => 'Protected Connected Land [%]',
     ]
     ,
     'land_degradation' => [
         'indicators' => [
             'title' => 'Land degradation',
             'chart' => 'Land degradation',
-            'no_biomas' => 'No biomas (km2)',
-            'persistent_severe' => 'Persistent severe decline in productivity (km2)',
-            'persistent_moderate' => 'Persistent moderate decline in productivity (km2)',
-            'stable_stressed' => 'Stable, but stressed; persistent strong inter-annual productivity variations (km2)',
-            'stable_productivity' => 'Stable Productivity (km2)',
-            'persistent_increase' => 'Persistent increase in productivity (km2)'
+            'no_biomas' => 'No biomas [km2]',
+            'persistent_severe' => 'Persistent severe decline in productivity [km2]',
+            'persistent_moderate' => 'Persistent moderate decline in productivity [km2]',
+            'stable_stressed' => 'Stable, but stressed; persistent strong inter-annual productivity variations [km2]',
+            'stable_productivity' => 'Stable Productivity [km2]',
+            'persistent_increase' => 'Persistent increase in productivity [km2]'
         ],
         'bar_indicators' => [
-            'no_biomas' => 'No biomas (km2)',
-            'persistent_severe' => 'Persistent severe decline in productivity (km2)',
-            'persistent_moderate' => 'Persistent moderate decline in productivity (km2)',
-            'persistent_strong' => 'Stable, but stressed; persistent strong inter-annual productivity variations (km2)',
-            'stable_productivity' => 'Stable Productivity (km2)',
-            'persistent_increase' => 'Persistent increase in productivity (km2)'
+            'no_biomas' => 'No biomas [km2]',
+            'persistent_severe' => 'Persistent severe decline in productivity [km2]',
+            'persistent_moderate' => 'Persistent moderate decline in productivity [km2]',
+            'persistent_strong' => 'Stable, but stressed; persistent strong inter-annual productivity variations [km2]',
+            'stable_productivity' => 'Stable Productivity [km2]',
+            'persistent_increase' => 'Persistent increase in productivity [km2]'
         ],
     ],
     'total_carbon' => [
@@ -233,6 +240,7 @@ return [
         'mean' => 'Mean [Mg]',
         'max' => 'Max. [Mg]',
         'sum' => 'Sum [Mg]',
+        'std_dev' => 'Std. Dev.',
     ],
     'relative_performance_effectiveness_bar_average' => [
         'titles' => [
@@ -248,17 +256,17 @@ return [
     ],
     'terrestial_ecoregions' => [
         'name' => 'Name',
-        'area' => 'ecoregion area (km2)',
-        'ecoregion_pa_sqkm' => 'protected ecoregion (km2)',
-        'ecoregion_protected_tot_sqkm' => 'total protected area (km2)',
-        'protected_in_ecoregion' => 'protected area in ecoregion (km2)'
+        'area' => 'ecoregion area [km2]',
+        'ecoregion_pa_sqkm' => 'protected ecoregion [km2]',
+        'ecoregion_protected_tot_sqkm' => 'total protected area [km2]',
+        'protected_in_ecoregion' => 'protected area in ecoregion [km2]'
     ],
     'marine_ecoregions' => [
         'name' => 'Name',
-        'area' => 'ecoregion area (km2)',
-        'ecoregion_pa_sqkm' => 'protected ecoregion (km2)',
-        'ecoregion_protected_tot_sqkm' => 'total protected area (km2)',
-        'protected_in_ecoregion' => 'protected area in ecoregion (km2)'
+        'area' => 'ecoregion area [km2]',
+        'ecoregion_pa_sqkm' => 'protected ecoregion [km2]',
+        'ecoregion_protected_tot_sqkm' => 'total protected area [km2]',
+        'protected_in_ecoregion' => 'protected area in ecoregion [km2]'
     ],
     'copernicus' => [
         'label' => 'Land Cover Class',
@@ -268,7 +276,7 @@ return [
     ],
     'protected_area' => [
         'name' => 'Name',
-        'gis_area' => 'Area (km2)',
+        'gis_area' => 'Area [km2]',
         'nature' => 'Type'
     ],
     'map' => [
@@ -279,17 +287,17 @@ return [
         'dopa_indicators' => [
             'terrestial_area' => [
                 'title_table' => 'Terrestial Area',
-                'area_terr_perc' => 'Coverage(%)',
-                'area_prot_terr_km2' => 'Protected Land Area(km2)',
-                'area_terr_km2' => 'Total Land Area(km2)',
+                'area_terr_perc' => 'Coverage [%]',
+                'area_prot_terr_km2' => 'Protected Land Area [km2]',
+                'area_terr_km2' => 'Total Land Area [km2]',
                 'carbon_stdev_c_mg' => 'Terrestial Archi 11 treshold'
 
             ],
             'marine_indicators' => [
                 'title_table' => 'Marine Area',
-                'area_mar_perc' => 'Coverage(%)',
-                'area_prot_mar_km2' => 'Protected Marine Area(km2)',
-                'area_mar_km2' => 'Total Marine Area(km2)',
+                'area_mar_perc' => 'Coverage [%]',
+                'area_prot_mar_km2' => 'Protected Marine Area [km2]',
+                'area_mar_km2' => 'Total Marine Area [km2]',
                 'carbon_stdev_c_mg' => 'Terrestial Archi 11 treshold'
             ]
         ],
@@ -377,15 +385,15 @@ return [
     ],
     'guidance' => [
         'info' => [
-            'ranking' => 'The following histograms show the values of different dimensions of management effectiveness and indicators per protected area.',
-            'average_contribution' => 'This bar chart displays the average and the variability of synthetic indicators for the selected protected areas.',
+            'ranking' => 'The following histograms show the values of different elements of management effectiveness and indicators or criteria per protected area.',
+            'average_contribution' => 'This bar chart displays the average and the variability of indicators for the selected protected areas.',
             'radar' => 'Please select protected areas to be displayed in the radar by clicking on its name. Data table will appear automatically. It provides an overview of IMET scores for each of the protected areas chosen to appear on the radar.',
-            'scatter_plot' => 'This scatter plot utilises horizontal and vertical axes as well as the size of the square to display the values of IMET synthetic indicators. The visualisation displays only protected areas that were selected at the beginning of this section.',
-            'datatable' => 'The table provides an overview of IMET scores for each synthetic indicator for the set of selected protected areas. You can sort each column either from lowest to highest values, highest to lowest values, or alphabetically. Sorting option is available for all data tables.',
+            'scatter_plot' => 'This scatter plot utilises horizontal and vertical axes as well as the size of the square to display the values of IMET indicators. The visualisation displays only protected areas that were selected at the beginning of this section.',
+            'datatable' => 'The table provides an overview of IMET scores for each indicator for the set of selected protected areas. You can sort each column either from lowest to highest values, highest to lowest values, or alphabetically. Sorting option is available for all data tables.',
             'group_radar' => 'The analysis visualises management effectiveness in each of the groups using radar visualisation and a data table.',
             'group_scatter' => 'The visualisation displays a three-dimensional diagram using the horizontal and vertical axes as well as the size to display the values of three variables simultaneously for each group. It also displays the data table.'
         ],
-        'special_information' => ['intro' => '<b>Special information Question</b>:<br/><br/><br/><b>A. ‘Add to analysis’ button</b> <br/><br/><b>Introduction</b>: Use ‘Add to analysis’ to save the visualisation and your comments in the clipboard. <br/><br/><b>Information</b>: You can save a specific table by clicking on the ‘Add to analysis’ button. The table is saved as an image which is accessible through the small window that appears on the right side of the screen for all scaling up analyses. If you place the mouse arrow over the small window, you will be able to access a pre-view of saved image(s). The pop-up window allows you to (1) print the image(s) in PDF format by clicking on the white printer icon, (2) right-click on the image to copy the image into Word, Excel, or PowerPoint documents, (3) delete the image(s) by clicking on the red bin button. Please note that the red bin button deletes all saved images! If you want to delete a single image, use the X icon that is displayed at the top of the image.'],
+        'special_information' => ['intro' => '<b>A. ‘Add to analysis’ button</b> <br/><br/><b>Introduction</b>: Use ‘Add to analysis’ to save the visualisation and your comments in the clipboard. <br/><br/><b>Information</b>: You can save a specific table by clicking on the ‘Add to analysis’ button. The table is saved as an image which is accessible through the small window that appears on the right side of the screen for all scaling up analyses. If you place the mouse arrow over the small window, you will be able to access a pre-view of saved image(s). The pop-up window allows you to (1) print the image(s) in PDF format by clicking on the white printer icon, (2) right-click on the image to copy the image into Word, Excel, or PowerPoint documents, (3) delete the image(s) by clicking on the red bin button. Please note that the red bin button deletes all saved images! If you want to delete a single image, use the X icon that is displayed at the top of the image.'],
 
         'custom_names' => [
             'intro' => '<b>Introduction</b>: For readability and better visualisation of the values, you should rename the protected areas used in the analysis. The suggested length should be no more than 12 characters with spaces.',
@@ -398,7 +406,7 @@ return [
             'info' => '<b>Information</b>:Section 1 shows the locations of protected areas marked in red on the map. It is possible that the current scaling up does not display all selected protected areas because either they do not have a WDPA ID or they are too small to be visible. The map can be enlarged or reduced in size. Note that the ‘Add to analysis’ function will save the image at the size of your choice.'],
         'general_elements' => [
             'intro' => '<b>Introduction</b>: Section 2 displays the general information of the protected areas selected for the scaling up analysis',
-            'info' => '<b>Information</b>: In section 2, Vision, Mission and Objectives sub-sections display only protected areas for which this information is available. However, to access information relevant for a specific protected area it is necessary to open the IMET file the protected area.'],
+            'info' => '<b>Information</b>: In section 2, Vision, Mission and Objectives sub-sections display only protected areas for which this information is available. However, to access information relevant for a specific protected area it is necessary to open the IMET file of the protected area.'],
         'key_elements' => [
             'intro' => '<b>Introduction</b>: This section reports the key elements of conservation (click on the arrow symbol) present in the selected protected areas.',
             'info' => '<b>Information</b>: Section 3 presents 5 sets of key conservation elements of selected protected areas. They are displayed on histograms. Click on the small triangle located on the left of each of the key elements to drop down the histograms.  Each key element can be individually saved with the ‘Add to analysis’ button.'],

@@ -55,6 +55,7 @@
         <template slot-scope="v">
             <div v-if="v.props.average_contribution">
                 <imet_bar_error
+                    :error_color="'#fff000'"
                     :axis_dimensions_x="{max:100}"
                     :show_legends="true"
                     :values="v.props.average_contribution.data"

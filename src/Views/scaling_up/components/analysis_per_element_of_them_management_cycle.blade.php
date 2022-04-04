@@ -1,4 +1,4 @@
-<container_section :event_name="'open_view'" :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'">
+<container_section :event_name="'{{$name}}'" :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'">
     <template slot-scope="container">
         <div class="row contailer">
             <div class="col-sm">
@@ -63,12 +63,12 @@
                     </container_analysis_management_cycle>
                     <container_view
                         id="sub_elem_4"
+                        :event_name="'sub_elem_4'"
                         :guidance="'imet-core::analysis_report.guidance.process.main'"
                         :loaded_at_once="false"
                         :loaded_at_once="container.props.show_view"
                         :title="container.props.config.element_diagrams.process[0].menu.header"
-                        :url=url
-                    >
+                        :url=url>
                         <template slot-scope="data" class="col-24">
                             @include('imet-core::scaling_up.components.analysis_process_elements', ['name' => $name, 'sub_class' => 'sub-title-second'])
                         </template>

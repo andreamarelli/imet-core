@@ -10,21 +10,129 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 class ScalingUpAnalysisController
 {
+
+    private $indicators = [
+        'context' => [
+            'c1' => [],
+            'c2' => [],
+            'c3' => []
+        ],
+        'context_value_and_importance' => [
+            'c11' => [],
+            'c12' => [],
+            'c13' => [],
+            'c14' => [],
+            'c15' => []
+        ],
+        'planning' => [
+            'p1' => [],
+            'p2' => [],
+            'p3' => [],
+            'p4' => [],
+            'p5' => [],
+            'p6' => []
+        ],
+        'inputs' => [
+            'i1' => [],
+            'i2' => [],
+            'i3' => [],
+            'i4' => [],
+            'i5' => []
+        ],
+        'process' => [],
+        'process_sub_indicators' => [
+            'pr15_16' => [],
+            'pr10_12' => [],
+            'pr13_14' => [],
+            'pr17_18' => [],
+            'pr1_6' => [],
+            'pr7_9' => [],
+        ],
+        'process_internal_management' => [
+            'pr1' => [],
+            'pr2' => [],
+            'pr3' => [],
+            'pr4' => [],
+            'pr5' => [],
+            'pr6' => [],
+        ],
+        'process_pr7_pr9' => [
+            'pr7' => [],
+            'pr8' => [],
+            'pr9' => []
+        ],
+        'process_pr10_pr12' => [
+            'pr10' => [],
+            'pr11' => [],
+            'pr12' => []
+        ],
+        'process_pr13_pr14' => [
+            'pr13' => [],
+            'pr14' => []
+        ],
+        'process_pr15_pr16' => [
+            'pr15' => [],
+            'pr16' => []
+        ],
+        'process_pr17_pr18' => [
+            'pr17' => [],
+            'pr18' => []
+        ],
+        'outputs' => [
+            'op1' => [],
+            'op2' => [],
+            'op3' => []
+        ],
+        'outcomes' => [
+            'oc1' => [],
+            'oc2' => [],
+            'oc3' => []
+        ]
+    ];
+
     /**
      * @param Request $request
      * @return array
      */
     public function get_ajax_responses(Request $request)
     {
+        $locale = App::getLocale();
         $action = $request->input('func');
         $parameters = $request->input('parameter');
+        $type = $request->input('type', '');
         ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
+        $response = ModelScalingUpAnalysis::$action($parameters);
+        App::setLocale($locale);
+        return $response;
+    }
 
-        return ModelScalingUpAnalysis::$action($parameters);
+    /**
+     * @param Request $request
+     * @return array[]|\array[][]|void
+     */
+    public function get_ranking(Request $request)
+    {
+        $indicators = [];
+        $parameters = $request->input('parameter');
+        $type = $request->input('type', null);
+        $sub_type = $request->input('sub_type', null);
+        if (array_key_exists($type, $this->indicators)) {
+            $indicators = $this->indicators[$type];
+            if ($sub_type && array_key_exists($sub_type, $this->indicators)) {
+                $indicators = $this->indicators[$sub_type];
+            }
+        }
+
+        if (empty($indicators)) {
+            return abort(404);
+        }
+        ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
+        return ModelScalingUpAnalysis::ranking_indicators($parameters, $type, $indicators);
     }
 
     /**
@@ -49,7 +157,7 @@ class ScalingUpAnalysisController
         $custom_names = [];
         $items = ScalingUpWdpa::retrieve_by_scaling_id($scaling_up_id);
         foreach ($items as $item) {
-            $custom_names[$item->FormID] =  $item;
+            $custom_names[$item->FormID] = $item;
         }
         return $custom_names;
     }
@@ -73,10 +181,12 @@ class ScalingUpAnalysisController
      * @param Request $request
      * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \ReflectionException
      */
     public function report_scaling_up(Request $request, $items = null)
     {
         $scaling_up_id = null;
+        $locale = App::getLocale();
         $areas = '';
 
         //create an  array with the pa ids sorted and then return it as a string
@@ -115,7 +225,6 @@ class ScalingUpAnalysisController
             $scaling_up_id = $item[0]['id'];
         }
 
-
         $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas), true);
 
         if ($request->input("save_form")) {
@@ -132,7 +241,7 @@ class ScalingUpAnalysisController
         $pa_ids = implode(',', array_keys($protected_areas['models']));
 
         $custom_items = $this->retrieve_custom_names($scaling_up_id);
-        $custom_names = array_map(function($v) {
+        $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
         $protected_areas_names = implode(', ', $custom_names);
@@ -153,7 +262,8 @@ class ScalingUpAnalysisController
             ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => '', 'code' => '8'],
             ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
-        //dd($protected_areas);
+
+        App::setLocale($locale);
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,
             'pa_ids' => $pa_ids,
