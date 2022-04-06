@@ -54,6 +54,7 @@ return [
     'report'            => 'analysis report',
     'context_long'      => 'intervention context',
     'evaluation_long'   => 'management evaluation',
+    'cross_analysis_long'   => 'cross analysis',
     'report_long'       => 'analysis report',
 
     'import_imet'       => 'Import IMET from file',
@@ -67,5 +68,7 @@ return [
     'upgrade_failed'    => 'Error in upgrading to IMET v2',
 
     'synthetic_indicator' => 'synthetic indicator',
+
+    'cross_analysis_info' => 'Cross analysis Info',
 
 ];
