@@ -51,6 +51,7 @@ return [
 
     'context'           => 'Contexte',
     'evaluation'        => 'Évaluation',
+    'cross_analysis'        => 'cross analysis',
     'report'            => 'rapport d\'analyse',
     'context_long'      => 'contexte d\'intervention',
     'evaluation_long'   => 'Évaluation de gestion',
@@ -69,5 +70,6 @@ return [
 
     'synthetic_indicator' => 'indicateur synthese',
     'cross_analysis_info' => 'Cross analysis Info',
+    'nothing_found' => 'Aucun résultat trouvé',
 
 ];

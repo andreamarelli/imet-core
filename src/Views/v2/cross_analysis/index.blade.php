@@ -29,33 +29,38 @@ $i = 0;
         </div>
     </div>
     <div class="imet_modules">
-        @foreach($warnings as $k => $w)
-            <div class="module-container">
-                <div class="module-header">
-                    <div class="module-code text-center">
-                        {{$i + 1}}
+        @if(count($warnings) > 0)
+            @foreach($warnings as $k => $w)
+                <div class="module-container">
+                    <div class="module-header">
+                        <div class="module-code text-center">
+                            {{$i + 1}}
+                        </div>
+                    </div>
+                    <div class="module-body">
+                        <table id="short_names" class="table module-table ">
+                            <tbody>
+                            @foreach($w as $warning)
+                                <tr>
+                                    <td class="col-1">{{ $warning['code'] }}</td>
+                                    <td class="col-11">
+                                        <strong> <a
+                                                href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
+                                            >{{ $warning['question'] }}</a>
+                                        </strong>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="module-body">
-                    <table id="short_names" class="table module-table ">
-                        <tbody>
-                        @foreach($w as $warning)
-                            <tr>
-                                <td class="col-1">{{ $warning['code'] }}</td>
-                                <td class="col-11">
-                                    <strong> <a
-                                            href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
-                                            >{{ $warning['question'] }}</a>
-                                    </strong>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <?php $i++; ?>
+            @endforeach
+        @else
+            <div class="row mt-5">
+                <div class="col text-center"> {{trans('imet-core::common.nothing_found')}}</div>
             </div>
-            <?php $i++; ?>
-        @endforeach
-
+        @endif
     </div>
 @endsection

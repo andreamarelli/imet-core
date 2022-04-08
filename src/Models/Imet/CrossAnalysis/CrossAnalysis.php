@@ -74,10 +74,12 @@ class CrossAnalysis extends Model
             $array_length = count($item);
             for ($i = 0; $i < $array_length; $i++) {
                 for ($k = $i + 1; $k < $array_length; $k++) {
-                    $value = abs((double)$elements[$item[$i]]['value'] - (double)$elements[$item[$k]]['value']);
-                    if (($value) > static::$threshold) {
-                        $error_indicators[$j][$item[$i]] = $elements[$item[$i]];
-                        $error_indicators[$j][$item[$k]] = $elements[$item[$k]];
+                    if(isset($elements[$item[$i]])) {
+                        $value = abs((double)$elements[$item[$i]]['value'] - (double)$elements[$item[$k]]['value']);
+                        if (($value) > static::$threshold) {
+                            $error_indicators[$j][$item[$i]] = $elements[$item[$i]];
+                            $error_indicators[$j][$item[$k]] = $elements[$item[$k]];
+                        }
                     }
                 }
             }
