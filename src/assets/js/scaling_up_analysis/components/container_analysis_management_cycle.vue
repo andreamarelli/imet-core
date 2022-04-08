@@ -79,7 +79,8 @@ export default {
             data: {
                 values: {},
                 show_view: false,
-                loaded_once: false
+                loaded_once: false,
+                parameters: []
             }
         }
     },
@@ -87,6 +88,7 @@ export default {
         init: async function () {
             this.$on('apply_filter', async (parameters) => {
                 this.event_parameters = (parameters + ',' + this.type).split(',');
+                this.data.parameters = parameters;
                 this.func_parameter = this.func;
                 this.url_parameter = this.url;
                 await this.load_procedure();

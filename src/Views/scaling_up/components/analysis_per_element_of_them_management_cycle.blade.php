@@ -26,7 +26,7 @@
                                     :loaded_at_once="true"
                                     :url=url
                                     :title="container.props.config.element_diagrams.threats.menu.title"
-                                    :parameters="'{{$pa_ids}}'"
+                                    :parameters="data.props.parameters"
                                     :func="'get_threats_categories_per_protected_area'">
                                     <template slot-scope="data">
 
