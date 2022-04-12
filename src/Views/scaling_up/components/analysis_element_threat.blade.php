@@ -1,8 +1,8 @@
-<div>
-    <guidance :text="'imet-core::analysis_report.guidance.context.threats'"/>
-</div>
 <div class="horizontal">
     <div class="sub-title" v-html="container.props.config.element_diagrams.threats.menu.title"></div>
+</div>
+<div>
+    <guidance :text="'imet-core::analysis_report.guidance.context.threats'"/>
 </div>
 <div class="horizontal">
     <div class="sub-title sub-title-second">
@@ -55,6 +55,7 @@
         <template slot-scope="v">
             <div v-if="v.props.average_contribution">
                 <imet_bar_error
+                    :error_color="'#fff000'"
                     :axis_dimensions_x="{max:100}"
                     :show_legends="true"
                     :values="v.props.average_contribution.data"
@@ -97,7 +98,7 @@
         <span v-html="container.props.config.element_diagrams.threats.menu.datatable"></span>
         <popover>
             <template>
-                {{trans('imet-core::analysis_report.guidance.info.datatable')}}
+                {{trans('imet-core::analysis_report.guidance.threats.datatable')}}
             </template>
         </popover>
     </div>

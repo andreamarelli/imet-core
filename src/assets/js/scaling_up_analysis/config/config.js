@@ -484,7 +484,40 @@ export default {
                 },
                 {
                     field: 'area_prot_mar_perc',
-                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_marin_area'),
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_marine_area'),
+                    color: '#8ecfe0'
+                },
+                {
+                    field: 'protconn',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_connected_land'),
+                    color: '#91ad41'
+                }
+            ],
+            table_bar_indicators: [
+                {
+                    field: 'area_terr_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.total_land_area')
+                },
+                {
+                    field: 'area_prot_terr_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_land_area')
+                },
+                {
+                    field: 'area_prot_terr_perc',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.terrestrial_coverage'),
+                    color: '#cae5a1'
+                },
+                {
+                    field: 'area_mar_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.total_marine_area')
+                },
+                {
+                    field: 'area_prot_mar_km2',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.protected_marine_area')
+                },
+                {
+                    field: 'area_prot_mar_perc',
+                    label: window.Locale.getLabel('imet-core::analysis_report.protected_area_coverage_and_connectivity.marine_coverage'),
                     color: '#8ecfe0'
                 },
                 {
