@@ -1391,6 +1391,325 @@ END;
 $BODY$;
 --- VIEWS
 
+
+CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr1_pr6
+AS
+WITH table0 AS (
+    SELECT v_imet_forms."FormID" AS formid
+    FROM imet_assessment_v2.v_imet_forms
+), table1 AS (
+    SELECT get_imet_evaluation_stats_cm_pr1.formid,
+           get_imet_evaluation_stats_cm_pr1.section,
+           get_imet_evaluation_stats_cm_pr1.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr1('PR1'::text, 'eval_staff_competence'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_cm_pr1(formid, section, value_p)
+), table2 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR2'::text, 'eval_hr_management_politics'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), table3 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR3'::text, 'eval_hr_management_systems'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), table4 AS (
+    SELECT eval_governance_leadership."FormID" AS formid,
+           'PR4' AS section,
+           (eval_governance_leadership."EvaluationScoreGovernace" + eval_governance_leadership."EvaluationScoreLeadership") / 6.0 * 100.0 AS value_p
+    FROM imet.eval_governance_leadership
+), table5 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all_4('PR5'::text, 'eval_administrative_management'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), table6 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr6('PR6'::text, 'eval_equipment_maintenance'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), tableall AS (
+    SELECT a.formid,
+           round(b.value_p::numeric, 2) AS pr1,
+           round(c.value_p::numeric, 2) AS pr2,
+           round(d.value_p::numeric, 2) AS pr3,
+           round(e.value_p, 2) AS pr4,
+           round(f.value_p::numeric, 2) AS pr5,
+           round(g.value_p::numeric, 2) AS pr6
+    FROM table0 a
+             LEFT JOIN table1 b ON a.formid = b.formid
+             LEFT JOIN table2 c ON a.formid = c.formid
+             LEFT JOIN table3 d ON a.formid = d.formid
+             LEFT JOIN table4 e ON a.formid = e.formid
+             LEFT JOIN table5 f ON a.formid = f.formid
+             LEFT JOIN table6 g ON a.formid = g.formid
+    ORDER BY a.formid
+)
+SELECT DISTINCT tableall.formid,
+                tableall.pr1,
+                tableall.pr2,
+                tableall.pr3,
+                tableall.pr4,
+                tableall.pr5,
+                tableall.pr6
+FROM tableall;
+
+
+CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr7_pr9
+AS
+WITH table0 AS (
+    SELECT v_imet_forms."FormID" AS formid
+    FROM imet_assessment_v2.v_imet_forms
+), table7 AS (
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_group_all('PR7'::text, 'eval_management_activities'::text, 'EvaluationScore'::text, 'group_key'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
+), table8 AS (
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR8'::text, 'eval_law_enforcement_implementation'::text, 'Adequacy'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
+), table9 AS (
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_group_all_fix('PR9'::text, 'eval_intelligence_implementation'::text, 'Adequacy'::text, 'group_key'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
+), tableall AS (
+    SELECT a.formid,
+           round(b.value_p::numeric, 2) AS pr7,
+           round(c.value_p::numeric, 2) AS pr8,
+           round(d.value_p::numeric, 2) AS pr9
+    FROM table0 a
+             LEFT JOIN table7 b ON a.formid = b.formid
+             LEFT JOIN table8 c ON a.formid = c.formid
+             LEFT JOIN table9 d ON a.formid = d.formid
+    ORDER BY a.formid
+)
+SELECT DISTINCT tableall.formid,
+                tableall.pr7,
+                tableall.pr8,
+                tableall.pr9
+FROM tableall;
+
+
+CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr10_pr12
+AS
+WITH table0 AS (
+    SELECT v_imet_forms."FormID" AS formid
+    FROM imet_assessment_v2.v_imet_forms
+), table10 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr10('PR10'::text, 'eval_stakeholder_cooperation'::text, 'Cooperation'::text, 'group_key'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), table11 AS (
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_group_all_fix('PR11'::text, 'eval_assistance_activities'::text, 'EvaluationScore'::text, 'group_key'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
+), table12 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR12'::text, 'eval_actors_relations'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), tableall AS (
+    SELECT a.formid,
+           round(b.value_p::numeric, 2) AS pr10,
+           round(c.value_p::numeric, 2) AS pr11,
+           round(d.value_p::numeric, 2) AS pr12
+    FROM table0 a
+             LEFT JOIN table10 b ON a.formid = b.formid
+             LEFT JOIN table11 c ON a.formid = c.formid
+             LEFT JOIN table12 d ON a.formid = d.formid
+    ORDER BY a.formid
+)
+SELECT DISTINCT tableall.formid,
+                tableall.pr10,
+                tableall.pr11,
+                tableall.pr12
+FROM tableall;
+
+
+CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr13_pr14
+AS
+WITH table0 AS (
+    SELECT v_imet_forms."FormID" AS formid
+    FROM imet_assessment_v2.v_imet_forms
+), table13 AS (
+    SELECT get_imet_evaluation_stats_cm_pr13.formid,
+           get_imet_evaluation_stats_cm_pr13.section,
+           get_imet_evaluation_stats_cm_pr13.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR13'::text, 'eval_visitors_management'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_cm_pr13(formid, section, value_p)
+), table14 AS (
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR14'::text, 'eval_visitors_impact'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
+), tableall AS (
+    SELECT a.formid,
+           round(b.value_p::numeric, 2) AS pr13,
+           round(c.value_p::numeric, 2) AS pr14
+    FROM table0 a
+             LEFT JOIN table13 b ON a.formid = b.formid
+             LEFT JOIN table14 c ON a.formid = c.formid
+    ORDER BY a.formid
+)
+SELECT DISTINCT tableall.formid,
+                tableall.pr13,
+                tableall.pr14
+FROM tableall;
+
+
+CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr15_pr16
+AS
+WITH table0 AS (
+    SELECT v_imet_forms."FormID" AS formid
+    FROM imet_assessment_v2.v_imet_forms
+), table15 AS (
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR15'::text, 'eval_natural_resources_monitoring'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
+), table16 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR16'::text, 'eval_research_and_monitoring'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), tableall AS (
+    SELECT a.formid,
+           round(b.value_p::numeric, 2) AS pr15,
+           round(c.value_p::numeric, 2) AS pr16
+    FROM table0 a
+             LEFT JOIN table15 b ON a.formid = b.formid
+             LEFT JOIN table16 c ON a.formid = c.formid
+    ORDER BY a.formid
+)
+SELECT DISTINCT tableall.formid,
+                tableall.pr15,
+                tableall.pr16
+FROM tableall;
+
+
+CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr17_pr18
+AS
+WITH table0 AS (
+    SELECT v_imet_forms."FormID" AS formid
+    FROM imet_assessment_v2.v_imet_forms
+), table17 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR17'::text, 'eval_climate_change_monitoring'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), table18 AS (
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr18('PR18'::text, 'eval_ecosystem_services'::text, 'EvaluationScore'::text, 'group_key'::text, 'spam'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
+), tableall AS (
+    SELECT a.formid,
+           round(b.value_p::numeric, 2) AS pr17,
+           round(c.value_p::numeric, 2) AS pr18
+    FROM table0 a
+             LEFT JOIN table17 b ON a.formid = b.formid
+             LEFT JOIN table18 c ON a.formid = c.formid
+    ORDER BY a.formid
+)
+SELECT DISTINCT tableall.formid,
+                tableall.pr17,
+                tableall.pr18
+FROM tableall;
+
+
+CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr1_pr6(
+    form_id integer DEFAULT NULL::integer)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr1_pr6
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr1_pr6  where formid=form_id;
+END;
+$$;
+
+
+CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr7_pr9(
+    form_id integer DEFAULT NULL::integer)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr7_pr9
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr7_pr9  where formid=form_id;
+END;
+$$;
+
+
+CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr10_pr12(
+    form_id integer DEFAULT NULL::integer)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr10_pr12
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr10_pr12  where formid=form_id;
+END;
+$$;
+
+
+CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr13_pr14(
+    form_id integer DEFAULT NULL::integer)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr13_pr14
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr13_pr14 where formid=form_id;
+END;
+$$;
+
+
+CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr15_pr16(
+    form_id integer DEFAULT NULL::integer)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr15_pr16
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr15_pr16 where formid=form_id;
+END;
+$$;
+
+
+CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr17_pr18(
+    form_id integer DEFAULT NULL::integer)
+    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr17_pr18
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE PARALLEL UNSAFE
+    ROWS 1000
+
+AS $$
+BEGIN
+    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr17_pr18 where formid=form_id;
+END;
+$$;
+
+
 CREATE OR REPLACE VIEW imet_assessment_v2.v_imet_forms AS
 SELECT DISTINCT "FormID",
                 "Year",
@@ -1877,322 +2196,6 @@ FROM tableall;
 
 
 
-CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr1_pr6
-AS
-WITH table0 AS (
-    SELECT v_imet_forms."FormID" AS formid
-    FROM imet_assessment_v2.v_imet_forms
-), table1 AS (
-    SELECT get_imet_evaluation_stats_cm_pr1.formid,
-           get_imet_evaluation_stats_cm_pr1.section,
-           get_imet_evaluation_stats_cm_pr1.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr1('PR1'::text, 'eval_staff_competence'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_cm_pr1(formid, section, value_p)
-), table2 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR2'::text, 'eval_hr_management_politics'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), table3 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR3'::text, 'eval_hr_management_systems'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), table4 AS (
-    SELECT eval_governance_leadership."FormID" AS formid,
-           'PR4' AS section,
-           (eval_governance_leadership."EvaluationScoreGovernace" + eval_governance_leadership."EvaluationScoreLeadership") / 6.0 * 100.0 AS value_p
-    FROM imet.eval_governance_leadership
-), table5 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all_4('PR5'::text, 'eval_administrative_management'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), table6 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr6('PR6'::text, 'eval_equipment_maintenance'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), tableall AS (
-    SELECT a.formid,
-           round(b.value_p::numeric, 2) AS pr1,
-           round(c.value_p::numeric, 2) AS pr2,
-           round(d.value_p::numeric, 2) AS pr3,
-           round(e.value_p, 2) AS pr4,
-           round(f.value_p::numeric, 2) AS pr5,
-           round(g.value_p::numeric, 2) AS pr6
-    FROM table0 a
-             LEFT JOIN table1 b ON a.formid = b.formid
-             LEFT JOIN table2 c ON a.formid = c.formid
-             LEFT JOIN table3 d ON a.formid = d.formid
-             LEFT JOIN table4 e ON a.formid = e.formid
-             LEFT JOIN table5 f ON a.formid = f.formid
-             LEFT JOIN table6 g ON a.formid = g.formid
-    ORDER BY a.formid
-)
-SELECT DISTINCT tableall.formid,
-                tableall.pr1,
-                tableall.pr2,
-                tableall.pr3,
-                tableall.pr4,
-                tableall.pr5,
-                tableall.pr6
-FROM tableall;
-
-
-CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr7_pr9
-AS
-WITH table0 AS (
-    SELECT v_imet_forms."FormID" AS formid
-    FROM imet_assessment_v2.v_imet_forms
-), table7 AS (
-    SELECT get_imet_evaluation_stats_group_all.formid,
-           get_imet_evaluation_stats_group_all.section,
-           get_imet_evaluation_stats_group_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_group_all('PR7'::text, 'eval_management_activities'::text, 'EvaluationScore'::text, 'group_key'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
-), table8 AS (
-    SELECT get_imet_evaluation_stats_group_all.formid,
-           get_imet_evaluation_stats_group_all.section,
-           get_imet_evaluation_stats_group_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR8'::text, 'eval_law_enforcement_implementation'::text, 'Adequacy'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
-), table9 AS (
-    SELECT get_imet_evaluation_stats_group_all.formid,
-           get_imet_evaluation_stats_group_all.section,
-           get_imet_evaluation_stats_group_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_group_all_fix('PR9'::text, 'eval_intelligence_implementation'::text, 'Adequacy'::text, 'group_key'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
-), tableall AS (
-    SELECT a.formid,
-           round(b.value_p::numeric, 2) AS pr7,
-           round(c.value_p::numeric, 2) AS pr8,
-           round(d.value_p::numeric, 2) AS pr9
-    FROM table0 a
-             LEFT JOIN table7 b ON a.formid = b.formid
-             LEFT JOIN table8 c ON a.formid = c.formid
-             LEFT JOIN table9 d ON a.formid = d.formid
-    ORDER BY a.formid
-)
-SELECT DISTINCT tableall.formid,
-                tableall.pr7,
-                tableall.pr8,
-                tableall.pr9
-FROM tableall;
-
-
-CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr10_pr12
-AS
-WITH table0 AS (
-    SELECT v_imet_forms."FormID" AS formid
-    FROM imet_assessment_v2.v_imet_forms
-), table10 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr10('PR10'::text, 'eval_stakeholder_cooperation'::text, 'Cooperation'::text, 'group_key'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), table11 AS (
-    SELECT get_imet_evaluation_stats_group_all.formid,
-           get_imet_evaluation_stats_group_all.section,
-           get_imet_evaluation_stats_group_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_group_all_fix('PR11'::text, 'eval_assistance_activities'::text, 'EvaluationScore'::text, 'group_key'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
-), table12 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR12'::text, 'eval_actors_relations'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), tableall AS (
-    SELECT a.formid,
-           round(b.value_p::numeric, 2) AS pr10,
-           round(c.value_p::numeric, 2) AS pr11,
-           round(d.value_p::numeric, 2) AS pr12
-    FROM table0 a
-             LEFT JOIN table10 b ON a.formid = b.formid
-             LEFT JOIN table11 c ON a.formid = c.formid
-             LEFT JOIN table12 d ON a.formid = d.formid
-    ORDER BY a.formid
-)
-SELECT DISTINCT tableall.formid,
-                tableall.pr10,
-                tableall.pr11,
-                tableall.pr12
-FROM tableall;
-
-
-CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr13_pr14
-AS
-WITH table0 AS (
-    SELECT v_imet_forms."FormID" AS formid
-    FROM imet_assessment_v2.v_imet_forms
-), table13 AS (
-    SELECT get_imet_evaluation_stats_cm_pr13.formid,
-           get_imet_evaluation_stats_cm_pr13.section,
-           get_imet_evaluation_stats_cm_pr13.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR13'::text, 'eval_visitors_management'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_cm_pr13(formid, section, value_p)
-), table14 AS (
-    SELECT get_imet_evaluation_stats_group_all.formid,
-           get_imet_evaluation_stats_group_all.section,
-           get_imet_evaluation_stats_group_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR14'::text, 'eval_visitors_impact'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
-), tableall AS (
-    SELECT a.formid,
-           round(b.value_p::numeric, 2) AS pr13,
-           round(c.value_p::numeric, 2) AS pr14
-    FROM table0 a
-             LEFT JOIN table13 b ON a.formid = b.formid
-             LEFT JOIN table14 c ON a.formid = c.formid
-    ORDER BY a.formid
-)
-SELECT DISTINCT tableall.formid,
-                tableall.pr13,
-                tableall.pr14
-FROM tableall;
-
-
-CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr15_pr16
-AS
-WITH table0 AS (
-    SELECT v_imet_forms."FormID" AS formid
-    FROM imet_assessment_v2.v_imet_forms
-), table15 AS (
-    SELECT get_imet_evaluation_stats_group_all.formid,
-           get_imet_evaluation_stats_group_all.section,
-           get_imet_evaluation_stats_group_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR15'::text, 'eval_natural_resources_monitoring'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_group_all(formid, section, value_p)
-), table16 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR16'::text, 'eval_research_and_monitoring'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), tableall AS (
-    SELECT a.formid,
-           round(b.value_p::numeric, 2) AS pr15,
-           round(c.value_p::numeric, 2) AS pr16
-    FROM table0 a
-             LEFT JOIN table15 b ON a.formid = b.formid
-             LEFT JOIN table16 c ON a.formid = c.formid
-    ORDER BY a.formid
-)
-SELECT DISTINCT tableall.formid,
-                tableall.pr15,
-                tableall.pr16
-FROM tableall;
-
-
-CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr17_pr18
-AS
-WITH table0 AS (
-    SELECT v_imet_forms."FormID" AS formid
-    FROM imet_assessment_v2.v_imet_forms
-), table17 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_table_all('PR17'::text, 'eval_climate_change_monitoring'::text, 'EvaluationScore'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), table18 AS (
-    SELECT get_imet_evaluation_stats_table_all.formid,
-           get_imet_evaluation_stats_table_all.section,
-           get_imet_evaluation_stats_table_all.value_p
-    FROM imet_assessment_v2.get_imet_evaluation_stats_cm_pr18('PR18'::text, 'eval_ecosystem_services'::text, 'EvaluationScore'::text, 'group_key'::text, 'spam'::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
-), tableall AS (
-    SELECT a.formid,
-           round(b.value_p::numeric, 2) AS pr17,
-           round(c.value_p::numeric, 2) AS pr18
-    FROM table0 a
-             LEFT JOIN table17 b ON a.formid = b.formid
-             LEFT JOIN table18 c ON a.formid = c.formid
-    ORDER BY a.formid
-)
-SELECT DISTINCT tableall.formid,
-                tableall.pr17,
-                tableall.pr18
-FROM tableall;
-
-
-CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr1_pr6(
-    form_id integer DEFAULT NULL::integer)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr1_pr6
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr1_pr6  where formid=form_id;
-END;
-$$;
-
-
-CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr7_pr9(
-    form_id integer DEFAULT NULL::integer)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr7_pr9
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr7_pr9  where formid=form_id;
-END;
-$$;
-
-
-CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr10_pr12(
-    form_id integer DEFAULT NULL::integer)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr10_pr12
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr10_pr12  where formid=form_id;
-END;
-$$;
-
-
-CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr13_pr14(
-    form_id integer DEFAULT NULL::integer)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr13_pr14
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr13_pr14 where formid=form_id;
-END;
-$$;
-
-
-CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr15_pr16(
-    form_id integer DEFAULT NULL::integer)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr15_pr16
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr15_pr16 where formid=form_id;
-END;
-$$;
-
-
-CREATE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_process_pr17_pr18(
-    form_id integer DEFAULT NULL::integer)
-    RETURNS SETOF imet_assessment_v2.v_imet_eval_stat_process_pr17_pr18
-    LANGUAGE 'plpgsql'
-    COST 100
-    VOLATILE PARALLEL UNSAFE
-    ROWS 1000
-
-AS $$
-BEGIN
-    return query select * from imet_assessment_v2.v_imet_eval_stat_process_pr17_pr18 where formid=form_id;
-END;
-$$;
 
 
 
