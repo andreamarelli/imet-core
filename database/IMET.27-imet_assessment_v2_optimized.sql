@@ -1389,8 +1389,17 @@ BEGIN
     RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
+
 --- VIEWS
 
+CREATE OR REPLACE VIEW imet_assessment_v2.v_imet_forms AS
+SELECT DISTINCT "FormID",
+                "Year",
+                wdpa_id,
+                "Country" AS iso3,
+                name
+FROM imet.imet_form
+ORDER BY "FormID", "Year";
 
 CREATE VIEW imet_assessment_v2.v_imet_eval_stat_process_pr1_pr6
 AS
@@ -1709,15 +1718,6 @@ BEGIN
 END;
 $$;
 
-
-CREATE OR REPLACE VIEW imet_assessment_v2.v_imet_forms AS
-SELECT DISTINCT "FormID",
-                "Year",
-                wdpa_id,
-                "Country" AS iso3,
-                name
-FROM imet.imet_form
-ORDER BY "FormID", "Year";
 
 CREATE OR REPLACE VIEW imet_assessment_v2.v_imet_eval_stat_step1 AS
 WITH table0 AS (
