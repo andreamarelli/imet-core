@@ -930,19 +930,39 @@ return [
             'Adequacy' => 'Evaluation: Adéquation de l’organisation et des activités des patrouilles de surveillance',
             'Comments' => 'Commentaires/Explication',
         ],
+        'groups' => [
+            'group0' => 'XXXXXXXXX Ranger patrol management',
+            'group1' => 'XXXXXXXXX Sea ranger patrol management',
+        ],
         'predefined_values' => [
-            'Gestion stratégique proactive',
-            'Procédures d’opération normalisées [PON]',
-            'Procédures d’exploitation d’emergence',
-            'Procédures d’intervention rapide',
-            'Tactiques adaptables et diverses (p. ex. types de patrouilles complémentaires, comme les points d’observation, les patrouilles assistées par véhicule, les embuscades, etc.)',
-            'Processus décisionnel efficace pour les procédures d’exploitation normalisées et d’urgence',
-            'Gestion des unités d’élite (surveillants les plus performants)',
-            'Salle de contrôle des opérations',
-            'Poste de surveillance / Barrières de contrôle — dans le parc',
-            'Poste de surveillance / Barrières de contrôle — en dehors du parc',
-            'Patrouilles de plusieurs jours',
-            'Utilisation de l’information SMART-RBM pour mener des briefings de patrouille et de débriefing'
+            'group0' => [
+                'Gestion stratégique proactive',
+                'XXXXXXXXX Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
+                'Procédures d’opération normalisées [PON]',
+                'Procédures d’exploitation d’emergence',
+                'Procédures d’intervention rapide',
+                'XXXXXXXXX Non collaborative (technology: digital data, aerial monitoring, etc. Vs technology poor performance, qualified rangers)',
+                'Tactiques adaptables et diverses (p. ex. types de patrouilles complémentaires, comme les points d’observation, les patrouilles assistées par véhicule, les embuscades, etc.)',
+                'XXXXXXXXX Enforcement strategies that combine technology with sea patrols (eg. satellite monitoring and vehicle/boats-assisted patrols)',
+                'Processus décisionnel efficace pour les procédures d’exploitation normalisées et d’urgence',
+                'Gestion des unités d’élite (surveillants les plus performants)',
+                'Salle de contrôle des opérations',
+                'Poste de surveillance / Barrières de contrôle — dans le parc',
+                'Poste de surveillance / Barrières de contrôle — en dehors du parc',
+                'Patrouilles de plusieurs jours',
+                'Utilisation de l’information SMART-RBM pour mener des briefings de patrouille et de débriefing'
+            ],
+            'group1' => [
+                'XXXXXXXXX Enforcement strategies that combine technology with sea patrols (satellite monitoring and hydrophones, electronic sensors, etc.)',
+                'XXXXXXXXX Use of visual and basic electronic sensors for sea patrols (radar, optical/infrared)',
+                'XXXXXXXXX Protection achieved through a combination of enforcement and collaboration with communities',
+                'XXXXXXXXX Use of collaborative surveillance (real time and large area coverage, low investments vs time interval and recurring coasts, regulations and incentives, transceivers deactivated)',
+                'XXXXXXXXX Use of non-collaborative (technology: radar, optical/infrared, radio monitoring vs technology poor performance, qualified personnel)',
+                'XXXXXXXXX Integration between collaborative and non-collaborative surveillance systems in the protected area.',
+                'XXXXXXXXX Enforcement patrols held during the night and other random hours',
+                'XXXXXXXXX Regular participation in specialized training (International Maritime Organization –IMO- basic training, reading and using nautical charts, search and rescue, basic outboard motor maintenance course, etc.)',
+                'XXXXXXXXX Continuous update and distribution of a simple fact sheet outlining zoning, regulations, restrictions, and fines or sanctions',
+            ]
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -970,12 +990,14 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'A) Gestion du renseignement et des enquêtes',
-            'group1' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice',
+            'group0' => 'A) Gestion du renseignement et des enquêtes - Terrestre',
+            'group1' => 'A) Gestion du renseignement et des enquêtes - Maritime et côtie',
+            'group2' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice - Terrestre',
+            'group3' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice - Maritime et côtie',
         ],
         'predefined_values' => [
             'group0' => [
-                'Unités de renseignement et d’enquête orientant les actions des patrouilles de surveillants',
+                'Unités de renseignement et d’enquête orientant et soutenant les actions des patrouilles de surveillants',
                 'Organisation du système des informateurs',
                 'Support informatique au renseignement',
                 'Système d’organisation et d’analyse de données de renseignement',
@@ -983,13 +1005,33 @@ return [
                 'Collaboration interinstitutions avec les ONG [p. ex., le réseau EAGLE, l’Afrique centrale et occidentale]'
             ],
             'group1' => [
+                'XXXXXXXXX Intelligence and investigation units orienting and supporting sea patrol operations',
+                'XXXXXXXXX Detection and punishment of the illegal activities (such as fisheries and harvesting)',
+                'XXXXXXXXX Knowledge of boarding legal requirements',
+                'XXXXXXXXX Boarding protocols: inspections, required documents, what to check and look for, documenting the inspection',
+                'XXXXXXXXX Interrogating and confronting suspicious crews on illegal activities',
+                'XXXXXXXXX Standardized boarding report used consistently and correctly',
+                'XXXXXXXXX Level of personal security during boarding',
+                'XXXXXXXXX Use of a risk assessment model (GAR -GREEN-AMBER-RED or equivalent/other)',
+                'XXXXXXXXX Use of database for recording and tracking information on violations',
+                'XXXXXXXXX Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
+            ],
+            'group2' => [
                 'Gestion des scènes de crime',
                 'Collecte et gestion des preuves',
                 'Arrestations ou préparation de rapport de cas',
                 'Poursuite des suspects',
                 'Surveillance des cas et des délinquants',
                 'Jugements obtenus au tribunal'
-            ]
+            ],
+            'group3' => [
+                'XXXXXXXXX Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
+                'XXXXXXXXX Ability to seize and detain vessels after transgression',
+                'XXXXXXXXX Ability to restrict sailing within the MPA borders by issuing authorization permits',
+                'XXXXXXXXX Seizure of fishing gear',
+                'XXXXXXXXX Ability to enforce temporary suspension of permits for ships, crew members, or ship-owners',
+                'XXXXXXXXX Ability to revoke of operating licenses for ships, ship-owners, agents, maritime personnel, or fishers',
+            ],
         ],
         'ratingLegend' => [
             'Adequacy' => [

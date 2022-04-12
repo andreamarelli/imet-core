@@ -22,13 +22,17 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
         $this->module_groups = [
             'group0' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group0'),
             'group1' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group1'),
+            'group2' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group2'),
+            'group3' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group3'),
         ];
 
         $this->predefined_values = [
             'field' => 'Element',
             'values' => [
                 'group0' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group0'),
-                'group1' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group1')
+                'group1' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group1'),
+                'group2' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group2'),
+                'group3' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group3'),
             ]
         ];
 
@@ -37,6 +41,45 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v2_evaluation.IntelligenceImplementation.ratingLegend');
 
         parent::__construct($attributes);
+    }
 
+    public static function get_terrestrial_groups(): array
+    {
+        $groups = (new static())->module_groups;
+        return [
+            $groups['group0'],
+            $groups['group2'],
+        ];
+    }
+
+    public static function get_marine_groups(): array
+    {
+        $groups = (new static())->module_groups;
+        return [
+            $groups['group1'],
+            $groups['group3'],
+        ];
+    }
+
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.6 -> v2.7 (marine pas)  ####
+        if(empty($imet_version) or $imet_version < 'v2.7.6b'){
+            $record = static::replaceGroup($record, 'group_key', 'group1', 'group2');
+        }
+        $record = static::replacePredefinedValue($record, 'Element',
+                                                 'Intelligence and investigations units orienting ranger patrols actions ',
+                                                 'Intelligence and investigations units orienting and supporting ranger patrols actions');
+        $record = static::replacePredefinedValue($record, 'Element',
+                                                         'Unités de renseignement et d’enquête orientant les actions des patrouilles de surveillants',
+                                                 'Unités de renseignement et d’enquête orientant et soutenant les actions des patrouilles de surveillants');
+        $record = static::replacePredefinedValue($record, 'Element',
+                                                 'Unidades de inteligência e investigação que orientam as acções de patrulhamento dos fiscais',
+                                                 'Unidades de inteligência e investigação que orientam e apoiam as acções de patrulhamento dos fiscais');
+        $record = static::replacePredefinedValue($record, 'Element',
+                                                 'Las unidades de seguimiento de indicios y cruce de información orientan las acciones de las patrullajes de los guardaparques',
+                                                 'Las unidades de seguimiento de indicios y cruce de información orientan y apoyan las acciones de las patrullajes de los guardaparques');
+
+        return $record;
     }
 }

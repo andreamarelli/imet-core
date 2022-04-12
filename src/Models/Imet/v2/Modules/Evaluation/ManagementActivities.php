@@ -28,8 +28,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
             'group2' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group2'),
             'group3' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group3'),
             'group4' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group4'),
-            'group5' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group5'),
-            'group6' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group6'),
+            'group5' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group5')
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ManagementActivities.module_info_EvaluationQuestion');

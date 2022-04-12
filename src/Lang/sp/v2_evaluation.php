@@ -930,22 +930,39 @@ return [
             'Adequacy'=> 'Adecuación de la gestión de patrullajes de guardaparques',
             'Comments' => 'Comentarios/explicación',
         ],
+        'groups' => [
+            'group0' => 'XXXXXXXXX Ranger patrol management',
+            'group1' => 'XXXXXXXXX Sea ranger patrol management',
+        ],
         'predefined_values' => [
-            'Gestión estratégica proactive',
-			'Vigilancia en colaboración (protección lograda mediante una combinación de medidas de control y colaboración con las comunidades)',
-            'Procedimientos Operativos Estándar',
-            'Procedimientos operativos de emergencia',
-            'Procedimientos de intervención rápida',
-			'No colaborativo (tecnología: radar, óptico-infrarrojo, vigilancia por radio vs. tecnología de bajo rendimiento, guardaparques calificados)',
-            'Tácticas adaptables y diversas (por ejemplo, tipos de patrullajes complementarias, como puntos de observación, patrullajes asistidos por vehículos y emboscadas, etc.)',
-            'Estrategias de aplicación que combinan la tecnología con los patrullajes marítimos (por ejemplo, vigilancia por satélite y patrullajes asistidos por vehículos/embarcaciones)',
-			'Proceso eficiente de toma de decisiones para los procedimientos operativos estándar y de emergencia',
-            'Gestión de las unidades de élite (los guardaparques/exploradores de mayor rendimiento)',
-            'Salas de control de operaciones',
-            'Puestos de avanzada/cuadrillas – dentro del área protegida',
-            'Patrullajes de varios días – fuera del área protegida',
-            'Patrullajes de varios días',
-            'Uso de la información del SMART-RBM para llevar a cabo la sesión informativa y el informe de patrullajes conjuntos (policiales, militares).',
+            'group0' => [
+                'Gestión estratégica proactive',
+                'Vigilancia en colaboración (protección lograda mediante una combinación de medidas de control y colaboración con las comunidades)',
+                'Procedimientos Operativos Estándar',
+                'Procedimientos operativos de emergencia',
+                'Procedimientos de intervención rápida',
+                'No colaborativo (tecnología: datos digitales, vigilancia por aéreo, etc. vs. tecnología de bajo rendimiento, guardaparques calificados)',
+                'Tácticas adaptables y diversas (por ejemplo, tipos de patrullajes complementarias, como puntos de observación, patrullajes asistidos por vehículos y emboscadas, etc.)',
+                'Estrategias de aplicación que combinan la tecnología con los patrullajes marítimos (por ejemplo, vigilancia por satélite y patrullajes asistidos por vehículos/embarcaciones)',
+                'Proceso eficiente de toma de decisiones para los procedimientos operativos estándar y de emergencia',
+                'Gestión de las unidades de élite (los guardaparques/exploradores de mayor rendimiento)',
+                'Salas de control de operaciones',
+                'Puestos de avanzada/cuadrillas – dentro del área protegida',
+                'Patrullajes de varios días – fuera del área protegida',
+                'Patrullajes de varios días',
+                'Uso de la información del SMART-RBM para llevar a cabo la sesión informativa y el informe de patrullajes conjuntos (policiales, militares).',
+            ],
+            'group1' => [
+                'XXXXXXXXX Enforcement strategies that combine technology with sea patrols (satellite monitoring and hydrophones, electronic sensors, etc.)',
+                'XXXXXXXXX Use of visual and basic electronic sensors for sea patrols (radar, optical/infrared)',
+                'XXXXXXXXX Protection achieved through a combination of enforcement and collaboration with communities',
+                'XXXXXXXXX Use of collaborative surveillance (real time and large area coverage, low investments vs time interval and recurring coasts, regulations and incentives, transceivers deactivated)',
+                'XXXXXXXXX Use of non-collaborative (technology: radar, optical/infrared, radio monitoring vs technology poor performance, qualified personnel)',
+                'XXXXXXXXX Integration between collaborative and non-collaborative surveillance systems in the protected area.',
+                'XXXXXXXXX Enforcement patrols held during the night and other random hours',
+                'XXXXXXXXX Regular participation in specialized training (International Maritime Organization –IMO- basic training, reading and using nautical charts, search and rescue, basic outboard motor maintenance course, etc.)',
+                'XXXXXXXXX Continuous update and distribution of a simple fact sheet outlining zoning, regulations, restrictions, and fines or sanctions',
+            ]
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -974,12 +991,14 @@ return [
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
-            'group0' => 'A) Gestión del seguimiento de indicios y el cruce de información',
-            'group1' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales',
+            'group0' => 'A) Gestión del seguimiento de indicios y el cruce de información - Terrestre',
+            'group1' => 'A) Gestión del seguimiento de indicios y el cruce de información - Marítimo y costero',
+            'group2' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Terrestre',
+            'group3' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Marítimo y costero',
         ],
         'predefined_values' => [
             'group0' => [
-                'Las unidades de seguimiento de indicios y cruce de información orientan las acciones de las patrullajes de los guardaparques',
+                'Las unidades de seguimiento de indicios y cruce de información orientan y apoyan las acciones de las patrullajes de los guardaparques',
                 'Organización del un sistema de informantes / contactos',
                 'Apoyo informático a la seguimiento de indicios',
                 'Sistema de organización y análisis de datos de seguimiento de indicios',
@@ -987,13 +1006,33 @@ return [
                 'Colaboración interinstitucional con las ONG (por ejemplo, AIDA - Red de Justicia Ambiental, entre otros)'
             ],
             'group1' => [
+                'XXXXXXXXX Intelligence and investigation units orienting and supporting sea patrol operations',
+                'XXXXXXXXX Detection and punishment of the illegal activities (such as fisheries and harvesting)',
+                'XXXXXXXXX Knowledge of boarding legal requirements',
+                'XXXXXXXXX Boarding protocols: inspections, required documents, what to check and look for, documenting the inspection',
+                'XXXXXXXXX Interrogating and confronting suspicious crews on illegal activities',
+                'XXXXXXXXX Standardized boarding report used consistently and correctly',
+                'XXXXXXXXX Level of personal security during boarding',
+                'XXXXXXXXX Use of a risk assessment model (GAR -GREEN-AMBER-RED or equivalent/other)',
+                'XXXXXXXXX Use of database for recording and tracking information on violations',
+                'XXXXXXXXX Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
+            ],
+            'group2' => [
                 'Observación de los delitos',
                 'Notificación y decomisos',
                 'Preparación del informe de patrullaje especial',
                 'Denuncia hacia las entidades correspondiente',
                 'Aplicación de la ley (querella)/ multa a los infractores',
                 'Seguimiento a infractores/conclusión del caso'
-            ]
+            ],
+            'group3' => [
+                'XXXXXXXXX Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
+                'XXXXXXXXX Ability to seize and detain vessels after transgression',
+                'XXXXXXXXX Ability to restrict sailing within the MPA borders by issuing authorization permits',
+                'XXXXXXXXX Seizure of fishing gear',
+                'XXXXXXXXX Ability to enforce temporary suspension of permits for ships, crew members, or ship-owners',
+                'XXXXXXXXX Ability to revoke of operating licenses for ships, ship-owners, agents, maritime personnel, or fishers',
+            ],
         ],
         'ratingLegend' => [
             'Adequacy' => [

@@ -15,7 +15,7 @@ $page = View::make('modular-forms::module.show.type.group_table', compact(['defi
 // Inject marine icon on criteria
 $page = ImetModule::injectIconToPredefinedCriteria(ImetModule::MARINE, $page, MenacesPressions::get_marine_predefined());
 
-// Inject marine/terrestrial icon on titled
+// Inject marine/terrestrial icon on title
 $page = ImetModule::injectIconToGroups($page, MenacesPressions::get_marine_groups(), MenacesPressions::get_terrestrial_groups());
 
 

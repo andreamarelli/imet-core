@@ -930,22 +930,39 @@ return [
             'Adequacy'=> 'Adequacy of ranger patrols management',
             'Comments' => 'Comments/Explanation',
         ],
+        'groups' => [
+            'group0' => 'Ranger patrol management',
+            'group1' => 'Sea ranger patrol management',
+        ],
         'predefined_values' => [
-            'Proactive strategic management',
-            'Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
-            'Standard operating procedures (SOPs)',
-            'Emergency operating procedures',
-            'Rapid intervention procedures',
-            'Non collaborative (technology: radar, optical-infrared, radio monitoring Vs technology poor performance, qualified rangers)',
-            'Adaptable and diverse tactics (e.g. complementary patrol types, such as observation points, vehicle/boats-assisted patrols, and ambushes, etc.)',
-            'Enforcement strategies that combine technology with sea patrols (eg. satellite monitoring and vehicle/boats-assisted patrols)',
-            'Efficient decision-making process for standard and emergency operating procedures',
-            'Elite units (highest performing rangers/scouts) management',
-            'Operations control room',
-            'Outposts/pickets - inside park',
-            'Outposts/pickets - outside park',
-            'Multi-day patrols',
-            'Use of SMART-MIST-RBM information to conduct law enforcement patrols briefing and debriefing',
+            'group0' => [
+                'Proactive strategic management',
+                'Collaborative surveillance (protection achieved through a combination of enforcement and collaboration with communities)',
+                'Standard operating procedures (SOPs)',
+                'Emergency operating procedures',
+                'Rapid intervention procedures',
+                'Non collaborative (technology: digital data, aerial monitoring, etc. Vs technology poor performance, qualified rangers)',
+                'Adaptable and diverse tactics (e.g. complementary patrol types, such as observation points, vehicle/boats-assisted patrols, and ambushes, etc.)',
+                'Enforcement strategies that combine technology with sea patrols (eg. satellite monitoring and vehicle/boats-assisted patrols)',
+                'Efficient decision-making process for standard and emergency operating procedures',
+                'Elite units (highest performing rangers/scouts) management',
+                'Operations control room',
+                'Outposts/pickets - inside park',
+                'Outposts/pickets - outside park',
+                'Multi-day patrols',
+                'Use of SMART-MIST-RBM information to conduct law enforcement patrols briefing and debriefing',
+            ],
+            'group1' => [
+                'Enforcement strategies that combine technology with sea patrols (satellite monitoring and hydrophones, electronic sensors, etc.)',
+                'Use of visual and basic electronic sensors for sea patrols (radar, optical/infrared)',
+                'Protection achieved through a combination of enforcement and collaboration with communities',
+                'Use of collaborative surveillance (real time and large area coverage, low investments vs time interval and recurring coasts, regulations and incentives, transceivers deactivated)',
+                'Use of non-collaborative (technology: radar, optical/infrared, radio monitoring vs technology poor performance, qualified personnel)',
+                'Integration between collaborative and non-collaborative surveillance systems in the protected area.',
+                'Enforcement patrols held during the night and other random hours',
+                'Regular participation in specialized training (International Maritime Organization –IMO- basic training, reading and using nautical charts, search and rescue, basic outboard motor maintenance course, etc.)',
+                'Continuous update and distribution of a simple fact sheet outlining zoning, regulations, restrictions, and fines or sanctions',
+            ]
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -974,12 +991,14 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'A) Intelligence and investigation management',
-            'group1' => 'B) Evidence handling, case development and legal action',
+            'group0' => 'A) Intelligence and investigation management - Terrestrial',
+            'group1' => 'A) Intelligence and investigation management - Marine and coastal',
+            'group2' => 'B) Evidence handling, case development and legal action - Terrestrial',
+            'group3' => 'B) Evidence handling, case development and legal action - Marine and coastal',
         ],
         'predefined_values' => [
             'group0' => [
-                'Intelligence and investigations units orienting ranger patrols actions ',
+                'Intelligence and investigations units orienting and supporting ranger patrols actions',
                 'Organisation of informants system ',
                 'Informatics support for intelligence',
                 'System for intelligence data organisation and analysis',
@@ -987,12 +1006,32 @@ return [
                 'Inter-agency collaboration with NGOs (e.g. EAGLE Network, Central/West Africa)'
             ],
             'group1' => [
+                'Intelligence and investigation units orienting and supporting sea patrol operations',
+                'Detection and punishment of the illegal activities (such as fisheries and harvesting)',
+                'Knowledge of boarding legal requirements',
+                'Boarding protocols: inspections, required documents, what to check and look for, documenting the inspection',
+                'Interrogating and confronting suspicious crews on illegal activities',
+                'Standardized boarding report used consistently and correctly',
+                'Level of personal security during boarding',
+                'Use of a risk assessment model (GAR -GREEN-AMBER-RED or equivalent/other)',
+                'Use of database for recording and tracking information on violations',
+                'Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
+            ],
+            'group2' => [
                 'Crime scene management',
                 'Evidence collection and management',
                 'Arrest or case report preparation',
                 'Prosecution of suspects',
                 'Monitoring cases and offender',
                 'Judgements obtained in court'
+            ],
+            'group3' => [
+                'Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
+                'Ability to seize and detain vessels after transgression',
+                'Ability to restrict sailing within the MPA borders by issuing authorization permits',
+                'Seizure of fishing gear',
+                'Ability to enforce temporary suspension of permits for ships, crew members, or ship-owners',
+                'Ability to revoke of operating licenses for ships, ship-owners, agents, maritime personnel, or fishers',
             ]
         ],
         'ratingLegend' => [

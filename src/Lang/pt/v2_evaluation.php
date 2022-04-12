@@ -930,22 +930,39 @@ return [
             'Adequacy' => 'Adequação da gestão das patrulhas dos fiscais',
             'Comments' => 'Comentários/Explicação',
         ],
+        'groups' => [
+            'group0' => 'XXXXXXXXX Ranger patrol management',
+            'group1' => 'XXXXXXXXX Sea ranger patrol management',
+        ],
         'predefined_values' => [
-            'Gestão estratégica proactiva',
-            'Vigilância colaborativa (protecção conseguida através de uma combinação de aplicação e colaboração com as comunidades)',
-            'Procedimentos operacionais padrão (POPs)',
-            'Procedimentos operacionais de emergência',
-            'Procedimentos de intervenção rápida',
-            'Não colaborativo (tecnologia: radar, infravermelho óptico, tecnologia de monitorização de rádio Vs mau desempenho, rangers fiscais qualificados)',
-            'Tácticas adaptáveis e diversas (por exemplo, tipos de patrulha complementares, tais como pontos de observação, patrulhas assistidas por veículos, emboscadas, etc.)',
-            'Estratégias de aplicação que combinem tecnologia com patrulhas marítimas (por exemplo, monitorização por satélite e patrulhas de veículos/barcos assistidos)',
-            'Processo eficiente de tomada de decisão para procedimentos operacionais padrão e de emergência',
-            'Gestão de unidades de elite (fiscais/guardas de maior desempenho)',
-            'Salas de controlo de operações',
-            'Postos avançados/pickets - dentro do parque',
-            'Postos avançados/pickets - fora do parque',
-            'Patrulhas de vários dias',
-            'Utilização de informações SMART-RBM para realizar relatórios e informacoes breves sobre o patrulhamento',
+            'group0' => [
+                'Gestão estratégica proactiva',
+                'Vigilância colaborativa (protecção conseguida através de uma combinação de aplicação e colaboração com as comunidades)',
+                'Procedimentos operacionais padrão (POPs)',
+                'Procedimentos operacionais de emergência',
+                'Procedimentos de intervenção rápida',
+                'Não colaborativo (tecnologia: dados digitais, monitoramento aéreo, etc Vs mau desempenho, rangers fiscais qualificados)',
+                'Tácticas adaptáveis e diversas (por exemplo, tipos de patrulha complementares, tais como pontos de observação, patrulhas assistidas por veículos, emboscadas, etc.)',
+                'Estratégias de aplicação que combinem tecnologia com patrulhas marítimas (por exemplo, monitorização por satélite e patrulhas de veículos/barcos assistidos)',
+                'Processo eficiente de tomada de decisão para procedimentos operacionais padrão e de emergência',
+                'Gestão de unidades de elite (fiscais/guardas de maior desempenho)',
+                'Salas de controlo de operações',
+                'Postos avançados/pickets - dentro do parque',
+                'Postos avançados/pickets - fora do parque',
+                'Patrulhas de vários dias',
+                'Utilização de informações SMART-RBM para realizar relatórios e informacoes breves sobre o patrulhamento'
+            ],
+            'group1' => [
+                'XXXXXXXXX Enforcement strategies that combine technology with sea patrols (satellite monitoring and hydrophones, electronic sensors, etc.)',
+                'XXXXXXXXX Use of visual and basic electronic sensors for sea patrols (radar, optical/infrared)',
+                'XXXXXXXXX Protection achieved through a combination of enforcement and collaboration with communities',
+                'XXXXXXXXX Use of collaborative surveillance (real time and large area coverage, low investments vs time interval and recurring coasts, regulations and incentives, transceivers deactivated)',
+                'XXXXXXXXX Use of non-collaborative (technology: radar, optical/infrared, radio monitoring vs technology poor performance, qualified personnel)',
+                'XXXXXXXXX Integration between collaborative and non-collaborative surveillance systems in the protected area.',
+                'XXXXXXXXX Enforcement patrols held during the night and other random hours',
+                'XXXXXXXXX Regular participation in specialized training (International Maritime Organization –IMO- basic training, reading and using nautical charts, search and rescue, basic outboard motor maintenance course, etc.)',
+                'XXXXXXXXX Continuous update and distribution of a simple fact sheet outlining zoning, regulations, restrictions, and fines or sanctions',
+            ]
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -974,12 +991,14 @@ return [
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
-            'group0' => 'A) Inteligência e gestão da investigação',
-            'group1' => 'B) Tratamento de provas, desenvolvimento de casos e acção judicial',
+            'group0' => 'A) Inteligência e gestão da investigação - Terrestre',
+            'group1' => 'A) Inteligência e gestão da investigação - Marítima e costeira',
+            'group2' => 'B) Tratamento de provas, desenvolvimento de casos e acção judicial - Terrestre',
+            'group3' => 'B) Tratamento de provas, desenvolvimento de casos e acção judicial - Marítima e costeira',
         ],
         'predefined_values' => [
             'group0' => [
-                'Unidades de inteligência e investigação que orientam as acções de patrulhamento dos fiscais',
+                'Unidades de inteligência e investigação que orientam e apoiam as acções de patrulhamento dos fiscais',
                 'Organização do sistema de informadores',
                 'Apoio informático para a inteligência',
                 'Sistema de organização e análise de dados de inteligência',
@@ -987,13 +1006,33 @@ return [
                 'Colaboração inter-agências com ONG (por exemplo, EAGLE Network, África Central/Oeste)'
             ],
             'group1' => [
+                'XXXXXXXXX Intelligence and investigation units orienting and supporting sea patrol operations',
+                'XXXXXXXXX Detection and punishment of the illegal activities (such as fisheries and harvesting)',
+                'XXXXXXXXX Knowledge of boarding legal requirements',
+                'XXXXXXXXX Boarding protocols: inspections, required documents, what to check and look for, documenting the inspection',
+                'XXXXXXXXX Interrogating and confronting suspicious crews on illegal activities',
+                'XXXXXXXXX Standardized boarding report used consistently and correctly',
+                'XXXXXXXXX Level of personal security during boarding',
+                'XXXXXXXXX Use of a risk assessment model (GAR -GREEN-AMBER-RED or equivalent/other)',
+                'XXXXXXXXX Use of database for recording and tracking information on violations',
+                'XXXXXXXXX Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
+            ],
+            'group2' => [
                 'Gestão da cena do crime',
                 'Recolha e gestão de provas',
                 'Prisão ou preparação do relatório do caso',
                 'Acusação de suspeitos',
                 'Controlo de casos e delinquentes',
                 'Acórdãos obtidos em tribunal'
-            ]
+            ],
+            'group3' => [
+                'XXXXXXXXX Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
+                'XXXXXXXXX Ability to seize and detain vessels after transgression',
+                'XXXXXXXXX Ability to restrict sailing within the MPA borders by issuing authorization permits',
+                'XXXXXXXXX Seizure of fishing gear',
+                'XXXXXXXXX Ability to enforce temporary suspension of permits for ships, crew members, or ship-owners',
+                'XXXXXXXXX Ability to revoke of operating licenses for ships, ship-owners, agents, maritime personnel, or fishers',
+            ],
         ],
         'ratingLegend' => [
             'Adequacy' => [
