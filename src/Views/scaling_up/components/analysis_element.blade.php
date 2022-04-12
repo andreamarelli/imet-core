@@ -6,9 +6,7 @@
             <div class="align-items-center "
                  v-for="(tableValue, tableIndex) in container.props.config.element_diagrams[section]">
                 <div v-if="tableValue['menu']['radar'] !== ''">
-                    <div>
-                        <guidance :text="'imet-core::analysis_report.guidance.context.'+tableValue['key']"/>
-                    </div>
+
                     <?php if (!$dontShowTitle) { ?>
                     <div v-if="tableValue['menu']['title']" :id="'menu-title-'+section+'-'+tableValue['name']"
                          class="horizontal">
@@ -18,6 +16,9 @@
 
                     <?php
                     } ?>
+                        <div>
+                            <guidance :text="'imet-core::analysis_report.guidance.context.'+tableValue['key']"/>
+                        </div>
                 </div>
                 <div class=" horizontal mt-1">
                     <div class="sub-title {{ $sub_class ?? '' }}" :id="'menu-ranking-'+section+'-'+tableValue['name']">
@@ -78,7 +79,7 @@
                             <span v-html="tableValue['menu']['radar']"></span>
                             <popover>
                                 <template>
-                                    {{trans('imet-core::analysis_report.guidance.context.radar')}}
+                                    {{trans('imet-core::analysis_report.guidance.info.radar')}}
                                 </template>
                             </popover>
                         </div>

@@ -51,9 +51,11 @@ return [
 
     'context'           => 'Contexte',
     'evaluation'        => 'Évaluation',
+    'cross_analysis'        => 'cross analysis',
     'report'            => 'rapport d\'analyse',
     'context_long'      => 'contexte d\'intervention',
     'evaluation_long'   => 'Évaluation de gestion',
+    'cross_analysis_long'   => 'cross analysis',
     'report_long'       => 'rapport d\'analyse',
 
     'import_imet'       => 'Importer un IMET à partir d\'un fichier',
@@ -67,6 +69,7 @@ return [
     'upgrade_failed'    => 'Erreur lors de la conversion en IMET v2',
 
     'synthetic_indicator' => 'indicateur synthese',
-
+    'cross_analysis_info' => 'Cross analysis Info',
+    'nothing_found' => 'Aucun résultat trouvé',
 
 ];
