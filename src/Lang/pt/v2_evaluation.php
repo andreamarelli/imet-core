@@ -1134,11 +1134,11 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Apoio a actividades locais (por exemplo, gestão de serviços ecossistémicos, mitigação das alterações climáticas, etc.)',
+                'Apoio a actividades locais (por exemplo, gestão de serviços ecossistémicos - gestão de aprovisionamento, adaptação às alterações climáticas, etc.)',
                 'Apoio às empresas locais (por exemplo, transformação de produtos agrícolas, de pesca, florestais, etc.)',
                 'Apoio a percursos de financiamento local',
                 'Apoio à produção alimentar e à agricultura de pequena escala',
-                'Compra de produtos agrícolas para turismo e pessoal',
+                'Compra de produtos agrícolas ou frutos do mar para turismo e pessoal',
                 'Apoio às empresas de turismo',
                 'Apoio aos produtos tradicionais e artesanato para turistas',
                 'Apoio a resolução-compensação do conflito homem-fauna selvagem',
@@ -1151,10 +1151,14 @@ return [
                 'Fornecimento de energia, ligação eléctrica',
                 'Fornecimento de água',
                 'Apoio à construção, manutenção e melhoramento de estradas externas',
+                'XXXXXXXXX Support for human-wildlife conflict resolution–compensation',
+                'XXXXXXXXX Support small scale fisheries',
+                'XXXXXXXXX Support for the construction of boat sheds',
+                'XXXXXXXXX Support for the construction of boat parking'
             ],
             'group1' => [
                 'Reforço da segurança na zona',
-                'Minimização dos conflitos e reforço da gestão e utilização sustentável dos serviços ecossistémicos',
+                'Minimização dos conflitos e reforço da gestão e utilização sustentável dos serviços ecossistémicos (abastecimento e cultura)',
                 'Fornecimento Infraestruturas para a educação (i.e. edifícios)',
                 'Prestação de serviços educativos (ensino)',
                 'Fornecimento de infra-estruturas para a Saúde (isto é, edifícios, água limpa)',
@@ -1345,7 +1349,7 @@ return [
         ],
         'predefined_values' => [
             'Investigação e papel de monitorização ecológica a longo prazo na gestão da área protegida',
-            'Utilização das capacidades institucionais e dos recursos técnicos para iniciar e coordenar actividades de investigação',
+            'Fundos/instalações e capacidades institucionais e/ou externas para promover e coordenar actividades de investigação',
             'Acessibilidade e segurança dos dados da investigação',
             'Apoio à gestão a partir de dados de investigação e monitorização ecológica a longo prazo',
             'Investigação e monitorização ecológica a longo prazo das espécies (emblemática, em perigo, endémica, etc.)',
@@ -1384,7 +1388,7 @@ return [
         ],
         'predefined_values' => [
             'Gestão da adaptação de espécies (por exemplo, espécies translocadas, etc.)',
-            'Gestão da adaptação dos habitats e cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)',
+            'Gestão da adaptação dos habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)',
             'Gestão da adaptação dos serviços ecossistémicos',
             'Redução dos factores de stress que amplificam os impactos climáticos (por exemplo, aumentar a conectividade, controlar as espécies invasoras, etc.)',
             'Manter ou restaurar o processo e função do ecossistema para promover a resiliência (por exemplo, restaurar a vegetação degradada, etc.)',

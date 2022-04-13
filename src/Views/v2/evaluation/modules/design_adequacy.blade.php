@@ -27,7 +27,6 @@ $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $v
 
             methods: {
                 is_marine(value){
-                    console.log(value)
                     return this.marine_predefined.includes(value);
                 }
             }

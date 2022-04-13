@@ -1134,11 +1134,11 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Support for local activities (e.g. ecosystem services management, climate change mitigation, etc.)',
+                'Support for local activities (e.g. ecosystem services - provisioning management, climate change adaptation, etc.)',
                 'Support for local business (e.g. processing of agricultural, fishing, forest products, etc.)',
                 'Support for local funding pathways',
                 'Support for food production and small farming',
-                'Purchase of agriculture products for tourism and staff',
+                'Purchase of agriculture products or seafood for tourism and staff',
                 'Support for tourism businesses',
                 'Support for traditional products and crafts for tourists',
                 'Support for human-wildlife conflict resolutions - compensation',
@@ -1151,10 +1151,14 @@ return [
                 'Provide power supply, electrical connection',
                 'Provide water supply - connection',
                 'Support for the construction, maintenance and improvement of external roads',
+                'Support for human-wildlife conflict resolution–compensation',
+                'Support small scale fisheries',
+                'Support for the construction of boat sheds',
+                'Support for the construction of boat parking'
             ],
             'group1' => [
                 'Strengthening of security in the area',
-                'Minimisation of conflicts and strengthening of the sustainable management and use of ecosystem services',
+                'Minimisation of conflicts and strengthening of the sustainable management and use of ecosystem services (provisioning and cultural)',
                 'Provision of education infrastructure (i.e. buildings)',
                 'Provision of educational services (teaching)',
                 'Provision of health infrastructure (i.e. buildings, clean water)',
@@ -1288,7 +1292,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Does the protected area manage and mitigate visitor impacts appropriately?',
-            'Promoting recreation and tourism so that visitors can learn about and appreciate a protected area, without damaging the values for which it was established, can be challenging. Visitors can negatively impact both resources and the experience of other visitors, or may also unknowingly offend cultural standards. Adequate monitoring, management and mitigation of visitor impacts are fundamental to sustainable tourism management strategies, but are often overlooked once the plan is underway. Without proper knowledge of the effects of tourist activities on the site’s natural environment and the surrounding communities it is impossible to establish whether the management of the ecotourism of the protected area is successful'
+            'Promoting recreation and tourism so that visitors can learn about and appreciate a protected area, without damaging the values for which it was established, can be challenging. Visitors can negatively impact both resources and the experience of other visitors or may also unknowingly offend cultural standards. Adequate monitoring, management and mitigation of visitor impacts are fundamental to sustainable tourism management strategies, but are often overlooked once the plan is underway. Without proper knowledge of the effects of tourist activities on the site’s natural environment and the surrounding communities it is impossible to establish whether the management of the ecotourism of the protected area is successful'
         ],
         'module_info_Rating' => 'Evaluate the management of visitors’ impact on the protected area (environmental tourism)'
     ],
@@ -1345,7 +1349,7 @@ return [
         ],
         'predefined_values' => [
             'Research and long-term ecological monitoring role in the management of the protected area',
-            'Use of institutional capabilities and technical resources to initiate and coordinate research activities',
+            'Institutional and /or external funds/facilities and capabilities to promote and coordinate research activities.',
             'Accessibility and security of the data from research',
             'Management support from research and long-term ecological monitoring data',
             'Research and long-term ecological monitoring of species (flagship, endangered, endemic, etc.)',
@@ -1384,7 +1388,7 @@ return [
         ],
         'predefined_values' => [
             'Managing adaptation of species (e.g. translocate species, etc.)',
-            'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
+            'Managing adaptation of habitats and the related dimensions of land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
             'Managing adaptation of ecosystem services',
             'Reducing stressors that amplify climate impacts (e.g. increase connectivity, control invasive species, etc.)',
             'Sustaining or restoring ecosystem process and function to promote resilience (e.g. restore degraded vegetation, etc.)',

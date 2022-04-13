@@ -31,5 +31,23 @@ class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.6 -> v2.7 (marine pas)  ####
+        $record = static::replacePredefinedValue($record, 'Program',
+         'Use of institutional capabilities and technical resources to initiate and coordinate research activities',
+        'Institutional and/or external funds/facilities and capabilities to promote and coordinate research activities');
+        $record = static::replacePredefinedValue($record, 'Program',
+         'Utilisation des capacités institutionnelles et des ressources techniques pour lancer et coordonner les activités de recherche',
+        'Fonds/installations et capacités institutionnels et/ou externes pour promouvoir et coordonner les activités de recherche');
+        $record = static::replacePredefinedValue($record, 'Program',
+         'Utilização das capacidades institucionais e dos recursos técnicos para iniciar e coordenar actividades de investigação',
+        'Fundos/instalações e capacidades institucionais e/ou externas para promover e coordenar actividades de investigação');
+        $record = static::replacePredefinedValue($record, 'Program',
+         'Utilización de la capacidad institucional y los recursos técnicos para iniciar y coordinar actividades de investigación',
+        'Fondos/instalaciones y capacidades institucionales y/o externas para promover y coordinar actividades de investigación');
+
+        return $record;
+    }
 
 }

@@ -1134,10 +1134,11 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Soutien aux activités locales (gestion des services écosystémiques, atténuation du changement climatique, etc.)',
+                'Soutien aux activités locales (gestion des services écosystémiques - gestion de l\'approvisionnement, adaptation au changement climatique, etc.)',
                 'Soutien aux entreprises locales (p. ex. transformation des produits de l’agriculture, de la pêche, de la forêt, etc.)',
                 'Soutien aux voies de financement locales',
                 'Soutien à la production alimentaire et aux petites exploitations agricoles',
+                'XXXXXXXXX Purchase of agriculture products for tourism and staff',
                 'Soutien aux activités touristiques privées',
                 'Soutien aux produits traditionnels et à l’artisanat pour les touristes',
                 'Soutient à la résolution des conflits homme-faune – compensation',
@@ -1149,11 +1150,15 @@ return [
                 'Emploi de surveillants de la région',
                 'Fourniture d’énergie électrique, connexion électrique',
                 'Approvisionnement en eau',
-                'Appui à la construction, à l’entretien et à l’amélioration des routes extérieures'
+                'Appui à la construction, à l’entretien et à l’amélioration des routes extérieures',
+                'XXXXXXXXX Support for human-wildlife conflict resolution–compensation',
+                'XXXXXXXXX Support small scale fisheries',
+                'XXXXXXXXX Support for the construction of boat sheds',
+                'XXXXXXXXX Support for the construction of boat parking'
             ],
             'group1' => [
                 'Renforcement de la sécurité dans la région en favorisant de meilleures conditions de vie et de production',
-                'Minimisation des conflits et renforcement de la gestion et de l’utilisation durables des services écosystémiques',
+                'Minimisation des conflits et renforcement de la gestion et de l’utilisation durables des services écosystémiques (approvisionnement et culture)',
                 'Fourniture d’infrastructures éducatives (bâtiments)',
                 'Prestation de services éducatifs (enseignement)',
                 'Fourniture d’infrastructures de santé (bâtiments, eau potable)',
@@ -1344,7 +1349,7 @@ return [
         ],
         'predefined_values' => [
             'Rôle de la recherche et de la surveillance écologique à long terme dans la gestion de l’aire protégée',
-            'Utilisation des capacités institutionnelles et des ressources techniques pour lancer et coordonner les activités de recherche',
+            'Fonds/installations et capacités institutionnels et/ou externes pour promouvoir et coordonner les activités de recherche',
             'Accessibilité et sécurité des données issues de la recherche',
             'Soutien de la gestion grâce à la recherche et aux données de surveillance écologique à long terme',
             'Recherche et surveillance écologique à long terme des espèces (espèces phares, menacées, endémiques, etc.)',
@@ -1384,7 +1389,7 @@ return [
         ],
         'predefined_values' => [
             'Gestion de l’adaptation pour les espèces (p. ex. espèces transférées, etc.)',
-            'Gestion de l’adaptation pour les habitats et le territoire (couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)',
+            'Gestion de l’adaptation pour les habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)',
             'Gestion de l’adaptation pour les services écosystémiques',
             'Réduire les facteurs de stress qui amplifient les impacts climatiques (p. ex. augmenter la connectivité, contrôler les espèces envahissantes, etc.)',
             'Soutient ou restauration du processus et de la fonction de l’écosystème pour favoriser la résilience (p. ex. restaurer la végétation dégradée, etc.)',

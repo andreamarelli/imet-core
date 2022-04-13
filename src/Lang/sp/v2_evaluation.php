@@ -1134,7 +1134,7 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Apoyo a las actividades locales (por ejemplo, gestión de los servicios/funciones ecosistémicas, mitigación del cambio climático, etc.)',
+                'Apoyo a las actividades locales (por ejemplo, gestión de los servicios/funciones ecosistémicas - gestión de aprovisionamiento, adaptación al cambio climático, etc.)',
                 'Apoyo a las empresas locales (por ejemplo, procesamiento de productos agrícolas, pesqueros, forestales, etc.)',
                 'Apoyo a las vías de financiación locales',
                 'Apoyo a la producción de alimentos y a la pequeña agricultura',
@@ -1151,10 +1151,14 @@ return [
                 'Provisión de suministro de energía, conexión eléctrica',
                 'Suministro de agua',
                 'Apoyo a la construcción, mantenimiento y mejora de las carreteras exteriores',
+                'XXXXXXXXX Support for human-wildlife conflict resolution–compensation',
+                'XXXXXXXXX Support small scale fisheries',
+                'XXXXXXXXX Support for the construction of boat sheds',
+                'XXXXXXXXX Support for the construction of boat parking'
                 ],
             'group1' => [
                 'Fortalecimiento de la seguridad en la área',
-                'Reducción al mínimo de los conflictos y fortalecimiento de la gestión y el uso sostenible de los servicios/funciones ecosistémicas',
+                'Reducción al mínimo de los conflictos y fortalecimiento de la gestión y el uso sostenible de los servicios/funciones ecosistémicas (avituallamiento y cultura)',
                 'Provisión de acceso a la educación e infraestructura (por ejemplo, edificios)',
                 'Prestación de servicios educativos (enseñanza)',
                 'Provisión de infraestructura (por ejemplo, edificios, agua limpia)',
@@ -1346,7 +1350,7 @@ return [
         ],
         'predefined_values' => [
             'La investigación y la función del monitoreo ecológico/ambiental a largo plazo en la gestión del área protegida',
-            'Utilización de la capacidad institucional y los recursos técnicos para iniciar y coordinar actividades de investigación',
+            'Fondos/instalaciones y capacidades institucionales y/o externas para promover y coordinar actividades de investigación',
             'Accesibilidad y seguridad de los datos de la investigación',
             'Apoyo a la gestión a partir de la investigación y los datos de monitoreo ecológico/ambiental a largo plazo',
             'Investigación y monitoreo ecológico/ambiental a largo plazo de especies (emblemáticas o bandera, en peligro, endémicas, etc.)',
@@ -1385,7 +1389,7 @@ return [
         ],
         'predefined_values' => [
             'Gestionar la adaptación de las especies (por ejemplo, reubicar especies, etc.)',
-            'Gestión de la adaptación de los hábitats y la tenencia del territorio  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
+            'Gestión de la adaptación de los hábitats y las dimensiones relacionadas de cobertura de suelos  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
             'Gestión de la adaptación de los servicios/funciones ecosistémicas',
             'Reducir los factores de estrés que amplifican los impactos climáticos (por ejemplo, aumentar la conectividad, controlar las especies invasoras, etc.)',
             'Sostener o restaurar el proceso y la función del ecosistema para promover la resistencia (por ejemplo, restaurar la vegetación degradada, etc.)',
