@@ -1314,7 +1314,6 @@ return [
             'Monitoreo de los ecosistemas y los hábitats',
             'Monitoreo de la cobertura del suelo  - uso del suelo - tenencia del territorio',
             'Monitoreo de los ecosistemas de agua dulce (lagos, ríos y los pequeños estanques y arroyos)',
-            'Monitoreo de los ecosistemas y hábitats marinos',
             'Monitoreo del nivel de vida material de las poblaciones en el área protegida y su zona de amortiguación',
             'Monitoreo de los niveles de vida inmateriales de las poblaciones en el área protegida y su zona de amortiguación',
             'Monitoreo de las amenazas directas e indirectas al área protegida',
@@ -1551,6 +1550,64 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluar la dominación del área basándose en el porcentaje de la superficie del área protegida en el que la gestión está presente o puede estar presente a través de: (A) estudios de patrullaje; (B) intervenciones rápidas; (C) utilización de medios especiales'
+        ]
+    ],
+
+    'AreaDominationMPA' => [
+        'title' => 'XXXXXXXX Enforcement in MPA',
+        'fields' => [
+            'Activity' => 'XXXXXXXX Range of activities subject to analysis',
+            'Patrol' => 'Area covered by patrols',
+            'RapidIntervention' => 'Rapid intervention capacity',
+            'DetectionRemoteSensing' => 'XXXXXXXX Detection via remote-sensing tools (ie vessel monitoring systems VMS)',
+            'SpecialMeansRapidIntervention' => 'XXXXXXXX Special means supporting rapid intervention',
+        ],
+        'groups' => [
+            'group0' => 'XXXXXXXX Sanctuary',
+            'group1' => 'XXXXXXXX No-take areas / Marine reserve',
+            'group2' => 'XXXXXXXX Buffer zones for traditional use',
+            'group3' => 'XXXXXXXX Buffer zones for educational and/or recreational activities',
+            'group4' => 'XXXXXXXX Dockside enforcement for vessels that come to port'
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'XXXXXXXX All activities/uses prohibited'
+            ],
+            'group1' => [
+                'XXXXXXXX Prohibited activities (e.g. fishing or extraction of any kind, anchoring, boating, dumping, etc.)',
+                'XXXXXXXX Allowed activities (e.g. research and monitoring, etc.)'
+            ],
+            'group2' => [
+                'XXXXXXXX Prohibited activities (e.g. illegal fishing and specified legal fishing methods, anchoring, dumping)',
+                'XXXXXXXX Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research, etc.) '
+            ],
+            'group3' => [
+                'XXXXXXXX Allowed activities (e.g. limited and specified traditional fishing and boating, swimming and diving, anchoring on mooring buoys, research and education, etc.)'
+            ],
+            'group4' => [
+                'XXXXXXXX Activities used to gather information that may that shed light on patterns of illicit behaviours. Dockside strategies should be tailored to promote the most appropriate enforcement for large MPAs or to address enforcement problems in smaller, near-shore MPAs.'
+            ],
+        ],
+        'ratingLegend' => [
+            'Patrol' => [
+                '0' => 'Area covered by patrols survey is minimal (from 0 to 25% of the surface area)',
+                '1' => 'Area covered by patrols survey is limited (from 26 to 50% of the surface area)',
+                '2' => 'Area  covered by patrols survey is fair (from 51 to 75% of the surface area)',
+                '3' => 'Area covered by patrols survey is very good (more than 76% of the surface area)',
+            ],
+            'RapidIntervention' => [
+                '0' => 'Rapid intervention capacity in the protected area is minimal (from 0 to 25% of the surface area)',
+                '1' => 'Rapid intervention capacity in the protected area is limited (from 26 to 50% of the surface area)',
+                '2' => 'Rapid intervention capacity in the protected area is fair (from 51 to 75% of the surface area)',
+                '3' => 'Rapid intervention capacity in the protected area is very good (more than 76% of the surface area)',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'XXXXXXXX What is the current extent of enforcement in MPA?',
+            'XXXXXXXX Enforcement in MPA refers to the ability of park management to create presence in a given area, for example through regular patrols surveys, rapid interventions or airborne surveillance or detection via remote-sensing tools. Where required, this presence needs to be imposed frequently and effectively to address threats such as poaching or illegal activities. The aim of high enforcement in MPA is to prevent or minimise illegal activities affecting the biodiversity, cultural or historical values, and to enforce the protection of the protected area and its boundaries'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the area domination based on the percentage of the protected area’s surface area where the management is present or can be present through (A) patrols surveys; (B) rapid interventions; (C) using special means'
         ]
     ],
 
