@@ -28,7 +28,7 @@ return [
                 '3' => 'Forte intégration',
             ]
         ],
-        'module_subTitle' => 'Valeur et importance: Désignations spéciales',
+        'module_subTitle' => 'Valeur et importance: Désignations',
         'module_info_EvaluationQuestion' => [
             'L’aire protégée tient-elle compte des valeurs et de l’importance des désignations nationales, régionales ou internationales dans sa gestion ?'
         ],

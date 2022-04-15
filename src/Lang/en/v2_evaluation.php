@@ -13,7 +13,7 @@ return [
     ],
 
     'ImportanceClassification' => [
-        'title' => 'Special Designations',
+        'title' => 'Designations',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
@@ -28,7 +28,7 @@ return [
                 '3' => 'high integration',
             ]
         ],
-        'module_subTitle' => 'Value and Importance - Special Designations',
+        'module_subTitle' => 'Value and Importance - Designations',
         'module_info_EvaluationQuestion' => [
             'Has the protected area included the values and importance of national, regional or international designations in its management?'
         ],

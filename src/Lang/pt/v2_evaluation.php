@@ -13,7 +13,7 @@ return [
     ],
 
     'ImportanceClassification' => [
-        'title' => 'Designações Especiais',
+        'title' => 'Designações',
         'fields' => [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Integracao',
@@ -28,7 +28,7 @@ return [
                 '3' => 'alta integração',
             ]
         ],
-        'module_subTitle' => 'Valor e Importancia - Designação especial',
+        'module_subTitle' => 'Valor e Importancia - Designação',
         'module_info_EvaluationQuestion' => [
             'Terá a área protegida incluido os valores e a importância das designações nacionais, regionais ou internacionais na gestão da área protegida?'
         ],
