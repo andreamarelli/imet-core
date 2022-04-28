@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 use function session;
@@ -326,16 +327,15 @@ class Imet extends Form
             (new Controller)->backup($item);
         }
 
-        $user = Auth::user()
-            ->only(['first_name', 'last_name', 'organisation', 'function']);
+        $user_info = Auth::user()->getInfo();
 
-        if(Encoder::where('first_name', $user['first_name'])
-                ->where('last_name', $user['last_name'])
+        if(Encoder::where('first_name', $user_info['first_name'])
+                ->where('last_name', $user_info['last_name'])
                 ->where('FormID', $item)
                 ->whereDate(static::UPDATED_AT, Carbon::today())
                 ->count()===0){
             $encoder =  new Encoder();
-            $encoder->fill($user);
+            $encoder->fill($user_info);
             $encoder['FormID'] = $item;
             $encoder->save();
         }
