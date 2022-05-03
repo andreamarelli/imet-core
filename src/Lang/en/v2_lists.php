@@ -108,10 +108,13 @@ return [
     ],
 
     'GovernanceType' => [
-        'Governance by the government',
-        'Shared governance',
-        'Private governance',
-        'Governance by local communities and indigenous populations	'
+        'Community-based conservation (CBC)',
+        'CBM (Community-based management (CBM)',
+        'CBA (Conservation Based Area)',
+        'Locally Managed Marine Areas - LMMA',
+        'Indigenous Community Conserved Areas - ICCAs',
+        'Protected and Conserved Areas (PCAs)',
+        'Other'
     ],
 
     'Designation' => [

@@ -108,10 +108,13 @@ return [
     ],
 
     'GovernanceType' => [
-        'Governação pelo governo',
-        'Governação comparticipada',
-        'Governação privada',
-        'Governação pelas comunidades locais e populações indígenas	'
+        'XXXXXXXXX Community-based conservation (CBC)',
+        'XXXXXXXXX CBM (Community-based management (CBM)',
+        'XXXXXXXXX CBA (Conservation Based Area)',
+        'XXXXXXXXX Locally Managed Marine Areas - LMMA',
+        'XXXXXXXXX Indigenous Community Conserved Areas - ICCAs',
+        'XXXXXXXXX Protected and Conserved Areas (PCAs)',
+        'XXXXXXXXX Other'
     ],
 
     'Designation' => [
