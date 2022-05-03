@@ -991,9 +991,9 @@ return [
         ],
         'groups' => [
             'group0' => 'A) Gestion du renseignement et des enquêtes - Terrestre',
-            'group1' => 'A) Gestion du renseignement et des enquêtes - Maritime et côtie',
+            'group1' => 'A) Gestion du renseignement et des enquêtes - Maritime et côtier',
             'group2' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice - Terrestre',
-            'group3' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice - Maritime et côtie',
+            'group3' => 'B) Traitement des éléments de preuve, développement de cas et actions en justice - Maritime et côtier',
         ],
         'predefined_values' => [
             'group0' => [

@@ -36,9 +36,12 @@ return [
     ],
 
     'PaType' => [
-        'Terrestre',
-        'Maritime',
-        'Mixte'
+        'terrestrial'           => 'terrestre',
+        'marine_and_coastal'    => 'maritime et côtier',
+        'oecm_terrestrial'      => 'OECMs (Other effective area-based conservation measures) - Terrestrial',
+        'oecm_marine'           => 'OECMs (Other effective area-based conservation measures) - Marine',
+        'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
+        'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
     ],
 
     'MarineDesignation' => [

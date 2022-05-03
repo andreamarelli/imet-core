@@ -124,7 +124,28 @@ return [
             you can refine the management and governance typology of these three protected area typologies. If you are analysing a
             Protected and Conserved Areas (PCAs), you can specify the territorial context in CTX 2.4.Protected area (general definition):
             A protected area is a clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means,
-            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)'
+            to achieve the long term conservation of nature with associated ecosystem services and cultural values. (IUCN Definition 2008)',
+        'type_info' => [
+            'terrestrial' => 'A terrestrial protected area (TPA) is a portion of land protected by special restrictions 
+            and laws for the conservation of the natural environment. They include large tracts of land 
+            set aside for the protection of wildlife and its habitat; areas of great natural beauty or unique interest; 
+            areas containing rare forms of plant and animal life; areas representing unusual geologic formation; places 
+            of historic and prehistoric interest; areas containing ecosystems of special importance for scientific 
+            investigation and study; and areas which safeguard the needs of the biosphere. (GEMET- DODERO / WPR) 
+            (we check for a CBD description)',
+            'marine_and_coastal' => 'A marine and coastal protected area (MPA or MCPA) is "an area within or adjacent 
+            to the marine environment, together with its overlying waters and associated flora, fauna, and historical and 
+            cultural features, which has been reserved by legislation or other effective means, including custom, with the 
+            effect that its marine and/or coastal biodiversity enjoys a higher level of protection than its surroundings" 
+            (Convention on Biological Diversity – CBD)',
+            'oecm' => 'A geographically defined area other than a Protected Area, which is governed and managed in ways 
+            that achieve positive and sustained long-term outcomes for the insitu conservation of biodiversity, with 
+            associated ecosystem functions and services and where applicable, cultural, spiritual, socio–economic, and 
+            other locally relevant values” (CBD, 2018)',
+            'icca' => 'A natural and/or modified ecosystems, containing significant biodiversity values, ecological benefits 
+            and cultural values, voluntarily conserved by indigenous peoples and local communities, through customary laws 
+            or other effective means (CBD -Recognising and Supporting ICCAs)'
+        ]
     ],
 
     'Governance' => [
