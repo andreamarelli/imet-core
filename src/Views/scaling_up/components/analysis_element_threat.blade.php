@@ -22,11 +22,12 @@
             <div v-if="v.props.ranking">
                 <bar_category_stack
                     :show_y_axis="false"
-                    :show_option_label="true"
+                    :label_position="'bottom'"
+                    :show_option_label="container.props.config.element_diagrams.threats.ranking_labels"
                     :grid='{"grid": {
                                             "left": "3%",
                                             "right": "4%",
-                                            "bottom": "3%",
+                                            "bottom": "5%",
                                             "containLabel": true,
                                             "top":"19%"
                                             }}'

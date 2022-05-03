@@ -125,6 +125,27 @@
         -webkit-print-color-adjust: exact;
     }
 
+    .score_danger_warning {
+        color: white;
+        background-color: indianred !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_danger_alert {
+        color: white;
+        background-color: red !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .score_danger_failed {
+        color: white;
+        background-color: orangered !important;
+        border: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+    }
+
     .swot {
         width: 99%;
         display: grid;

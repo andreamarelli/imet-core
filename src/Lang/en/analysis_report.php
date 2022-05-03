@@ -16,12 +16,16 @@ return [
     'error_wrong' => 'An error occurred',
     'error_connection' => 'Something went wrong, please check your internet connection.',
     'average_explained' => '* Average calculated based on the set of protected areas participating in the scaling-up exercise',
+    'ranking_rescaled_indicators' => 'Ranking of indicators rescaled to 0-100',
     'download_files' => 'Download',
     'print' => 'print',
     'protected_area' => 'protected area',
     'custom_names' => 'Protected areas names',
     'apply' => 'Apply',
     'no_value' => 'No value',
+    'to' => 'to',
+    'less_or_equal_to_zero' => 'Less or equal to 0',
+    'size_of_square' => 'The size of the square is proportional to the sum of outputs and outcomes',
     'select_all' => 'Select all',
     'reset' => 'Reset',
     'more_than_one_file' => 'You cannot download only one file',
@@ -52,7 +56,7 @@ return [
                 'datatable' => '6.1.1.4 Data table of Management Context indicators'
             ],
             'context_value_and_importance' => [
-                'title' => '6.1.2 Value and Importance sub-indicators',
+                'title' => '6.1.2 Value and Importance sub-indicators (all indicators rescaled to 0-100)',
                 'radar' => '6.1.2.3 Radar visualization of Value and Importance sub-indicators',
                 'ranking' => '6.1.2.1 Ranking of Value and Importance sub-indicators',
                 'average_contribution' => '6.1.2.2 Average contribution and variability of Value and Importance sub-indicators',
@@ -314,6 +318,10 @@ return [
         'average_contribution' => 'Average contribution and variability of IMET synthetic indicators',
         'synthetic_indicators' => 'Data table of IMET synthetic indicators'
     ],
+    'scale' => [
+        'negative_positive' => ' - scale (min: -100, max: 100)',
+        'zero_negative' => ' - scale (min: -100, max: 0)'
+    ],
     'assessment' => [
         'ctx101' => 'Responsibility for filling the form: Management team and partners and external support for analysis and management evaluation',
         'ctx102' => 'Responsibility for completing the form: Management team and partners and external support for analysis and management evaluation',
@@ -359,7 +367,7 @@ return [
         'op3' => 'Area domination',
         'oc1' => 'Achievement of long-term conservation objectives of the management',
         'oc2' => 'Conditions and trends of the key conservation elements of the protected area',
-        'oc3' => 'Effects and outcomes for stakeholders on quality of life ',
+        'oc3' => 'Effects and outcomes for stakeholders on quality of life',
         'pr1_6' => 'Internal management systems and processes',
         'pr7_9' => 'Management / Protection of the values',
         'pr10_12' => 'Stakeholder relations',

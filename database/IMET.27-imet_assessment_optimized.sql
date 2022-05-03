@@ -719,42 +719,42 @@ sql := ' WITH table0 AS (
          SELECT get_imet_evaluation_stats_cm_c2.formid,
             get_imet_evaluation_stats_cm_c2.section,
             get_imet_evaluation_stats_cm_c2.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_c2(''C2''::text, ''eval_supports_and_constaints''::text '||parameters||') get_imet_evaluation_stats_cm_c2(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_c2(''C2''::text, ''eval_supports_and_constaints''::text '||parameters||')
         ), table_c3 AS (
          SELECT get_imet_evaluation_stats_cm_c3.formid,
             get_imet_evaluation_stats_cm_c3.section,
             get_imet_evaluation_stats_cm_c3.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_c3(''C3''::text, ''context_menaces_pressions''::text '||parameters||') get_imet_evaluation_stats_cm_c3(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_c3(''C3''::text, ''context_menaces_pressions''::text '||parameters||')
         ), table1 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''C1.1''::text, ''eval_importance_c11''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''C1.1''::text, ''eval_importance_c11''::text, ''EvaluationScore''::text '||parameters||')
         ), table2 AS (
          SELECT get_imet_evaluation_stats_cm_c12.formid,
             get_imet_evaluation_stats_cm_c12.section,
             get_imet_evaluation_stats_cm_c12.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_c12(''C1.2''::text, ''eval_importance_c12''::text '||parameters||') get_imet_evaluation_stats_cm_c12(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_c12(''C1.2''::text, ''eval_importance_c12''::text '||parameters||')
         ), table3 AS (
          SELECT get_imet_evaluation_stats_cm_c13.formid,
             get_imet_evaluation_stats_cm_c13.section,
             get_imet_evaluation_stats_cm_c13.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_c13(''C1.3''::text, ''eval_importance_c13''::text '||parameters||') get_imet_evaluation_stats_cm_c13(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_c13(''C1.3''::text, ''eval_importance_c13''::text '||parameters||')
         ), table4 AS (
          SELECT get_imet_evaluation_stats_cm_c14.formid,
             get_imet_evaluation_stats_cm_c14.section,
             get_imet_evaluation_stats_cm_c14.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_c14(''C1.4''::text, ''eval_importance_c14''::text '||parameters||') get_imet_evaluation_stats_cm_c14(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_c14(''C1.4''::text, ''eval_importance_c14''::text '||parameters||')
         ), table5 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''C1.5''::text, ''eval_importance_c15''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''C1.5''::text, ''eval_importance_c15''::text, ''EvaluationScore''::text '||parameters||')
         ), table6 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''C1.6''::text, ''eval_importance_c16''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''C1.6''::text, ''eval_importance_c16''::text, ''EvaluationScore''::text '||parameters||')
         ), tableall AS (
          SELECT a.formid,
             a.wdpa_id,
@@ -841,32 +841,32 @@ sql := ' WITH table0 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P1''::text, ''eval_regulations_adequacy''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P1''::text, ''eval_regulations_adequacy''::text, ''EvaluationScore''::text '||parameters||')
         ), table2 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P2''::text, ''eval_design_adequacy''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P2''::text, ''eval_design_adequacy''::text, ''EvaluationScore''::text '||parameters||')
         ), table3 AS (
          SELECT get_imet_evaluation_stats_rank_all.formid,
             get_imet_evaluation_stats_rank_all.section,
             get_imet_evaluation_stats_rank_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_boundary_level''::text, ''EvaluationScore''::text, ''EVAL P3''::text '||parameters||') get_imet_evaluation_stats_rank_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_boundary_level''::text, ''EvaluationScore''::text, ''EVAL P3''::text '||parameters||')
         ), table4 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P4''::text, ''eval_management_plan''::text, ''PlanExistenceScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P4''::text, ''eval_management_plan''::text, ''PlanExistenceScore''::text '||parameters||')
         ), table5 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P5''::text, ''eval_work_plan''::text, ''PlanExistenceScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P5''::text, ''eval_work_plan''::text, ''PlanExistenceScore''::text '||parameters||')
         ), table6 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P6''::text, ''eval_objectives''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''P6''::text, ''eval_objectives''::text, ''EvaluationScore''::text '||parameters||')
         ), tableall AS (
          SELECT a.formid,
             a.wdpa_id,
@@ -942,27 +942,27 @@ sql := ' WITH table0 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''EVAL I1''::text, ''eval_information_availability''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''EVAL I1''::text, ''eval_information_availability''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table2 AS (
          SELECT get_imet_evaluation_stats_cm_i2.formid,
             get_imet_evaluation_stats_cm_i2.section,
             get_imet_evaluation_stats_cm_i2.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_i2(''EVAL I2''::text, ''eval_staff''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_cm_i2(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_i2(''EVAL I2''::text, ''eval_staff''::text, ''EvaluationScore''::text '||parameters||')
         ), table3 AS (
          SELECT get_imet_evaluation_stats_rank_all.formid,
             get_imet_evaluation_stats_rank_all.section,
             get_imet_evaluation_stats_rank_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_budget_adequacy''::text, ''EvaluationScore''::text, ''EVAL I3''::text '||parameters||') get_imet_evaluation_stats_rank_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_budget_adequacy''::text, ''EvaluationScore''::text, ''EVAL I3''::text '||parameters||')
         ), table4 AS (
          SELECT get_imet_evaluation_stats_rank_all.formid,
             get_imet_evaluation_stats_rank_all.section,
             get_imet_evaluation_stats_rank_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_budget_securization''::text, ''EvaluationScore''::text, ''EVAL I4''::text '||parameters||') get_imet_evaluation_stats_rank_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_budget_securization''::text, ''EvaluationScore''::text, ''EVAL I4''::text '||parameters||')
         ), table5 AS (
          SELECT get_imet_evaluation_stats_cm_i5.formid,
             get_imet_evaluation_stats_cm_i5.section,
             get_imet_evaluation_stats_cm_i5.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_i5(''EVAL I5''::text, ''eval_management_equipment_adequacy''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_cm_i5(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_i5(''EVAL I5''::text, ''eval_management_equipment_adequacy''::text, ''EvaluationScore''::text '||parameters||')
         ), tableall AS (
          SELECT a.formid,
             a.wdpa_id,
@@ -1036,97 +1036,97 @@ sql := ' WITH table0 AS (
          SELECT get_imet_evaluation_stats_cm_pr1.formid,
             get_imet_evaluation_stats_cm_pr1.section,
             get_imet_evaluation_stats_cm_pr1.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_pr1(''PR1''::text, ''eval_staff_competence''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_cm_pr1(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_pr1(''PR1''::text, ''eval_staff_competence''::text, ''EvaluationScore''::text '||parameters||')
         ), table2 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR2''::text, ''eval_hr_management_politics''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR2''::text, ''eval_hr_management_politics''::text, ''EvaluationScore''::text '||parameters||')
         ), table3 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR3''::text, ''eval_hr_management_systems''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR3''::text, ''eval_hr_management_systems''::text, ''EvaluationScore''::text '||parameters||')
         ), table4 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR4''::text, ''eval_governance_leadership''::text, ''EvaluationScoreGovernace''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR4''::text, ''eval_governance_leadership''::text, ''EvaluationScoreGovernace''::text '||parameters||')
         ), table5 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR5''::text, ''eval_administrative_management''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR5''::text, ''eval_administrative_management''::text, ''EvaluationScore''::text '||parameters||')
         ), table6 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR6''::text, ''eval_equipment_maintenance''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR6''::text, ''eval_equipment_maintenance''::text, ''EvaluationScore''::text '||parameters||')
         ), table7 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR7''::text, ''eval_management_activities''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR7''::text, ''eval_management_activities''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table8 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR8''::text, ''eval_protection_activities''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR8''::text, ''eval_protection_activities''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table9 AS (
          SELECT get_imet_evaluation_stats_rank_all.formid,
             get_imet_evaluation_stats_rank_all.section,
             get_imet_evaluation_stats_rank_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_control''::text, ''EvaluationScore''::text, ''EVAL PR9''::text '||parameters||') get_imet_evaluation_stats_rank_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_rank_all(''eval_control''::text, ''EvaluationScore''::text, ''EVAL PR9''::text '||parameters||')
         ), table10 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR10''::text, ''eval_law_enforcement''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR10''::text, ''eval_law_enforcement''::text, ''EvaluationScore''::text '||parameters||')
         ), table11 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR11''::text, ''eval_implications''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR11''::text, ''eval_implications''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table12 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR12''::text, ''eval_assistance_activities''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR12''::text, ''eval_assistance_activities''::text, ''EvaluationScore''::text '||parameters||')
         ), table13 AS (
          SELECT get_imet_evaluation_stats_cm_pr13.formid,
             get_imet_evaluation_stats_cm_pr13.section,
             get_imet_evaluation_stats_cm_pr13.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_cm_pr13(''PR13''::text, ''eval_actors_relations''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_cm_pr13(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_cm_pr13(''PR13''::text, ''eval_actors_relations''::text, ''EvaluationScore''::text '||parameters||')
         ), table14 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR14''::text, ''eval_visitors_management''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR14''::text, ''eval_visitors_management''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table15 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR15''::text, ''eval_visitors_impact''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR15''::text, ''eval_visitors_impact''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table16 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR16''::text, ''eval_natural_resources_monitoring''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR16''::text, ''eval_natural_resources_monitoring''::text, ''EvaluationScore''::text '||parameters||')
         ), table17 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR17''::text, ''eval_research_and_monitoring''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR17''::text, ''eval_research_and_monitoring''::text, ''EvaluationScore''::text '||parameters||')
         ), table18 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR18''::text, ''eval_climate_change_monitoring''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''PR18''::text, ''eval_climate_change_monitoring''::text, ''EvaluationScore''::text '||parameters||')
         ), table19 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR19''::text, ''eval_ecosystem_services''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''PR19''::text, ''eval_ecosystem_services''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), tableall AS (
          SELECT a.formid,
             a.wdpa_id,
@@ -1259,12 +1259,12 @@ sql := ' WITH table0 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''R1''::text, ''eval_work_program_implementation''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''R1''::text, ''eval_work_program_implementation''::text, ''EvaluationScore''::text '||parameters||')
         ), table2 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''R2''::text, ''eval_achieved_results''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''R2''::text, ''eval_achieved_results''::text, ''EvaluationScore''::text '||parameters||')
         ), tableall AS (
          SELECT a.formid,
             a.wdpa_id,
@@ -1331,32 +1331,32 @@ sql := ' WITH table0 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I1''::text, ''eval_achived_objectives''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I1''::text, ''eval_achived_objectives''::text, ''EvaluationScore''::text '||parameters||')
         ), table2 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''E/I2''::text, ''eval_designated_values_conservation''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''E/I2''::text, ''eval_designated_values_conservation''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table3 AS (
          SELECT get_imet_evaluation_stats_group_all.formid,
             get_imet_evaluation_stats_group_all.section,
             get_imet_evaluation_stats_group_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_group_all(''E/I3''::text, ''eval_designated_values_conservation_tendency''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||') get_imet_evaluation_stats_group_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_group_all(''E/I3''::text, ''eval_designated_values_conservation_tendency''::text, ''EvaluationScore''::text, ''group_key''::text '||parameters||')
         ), table4 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I4''::text, ''eval_local_communities_impact''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I4''::text, ''eval_local_communities_impact''::text, ''EvaluationScore''::text '||parameters||')
         ), table5 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I5''::text, ''eval_climate_change_impact''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I5''::text, ''eval_climate_change_impact''::text, ''EvaluationScore''::text '||parameters||')
         ), table6 AS (
          SELECT get_imet_evaluation_stats_table_all.formid,
             get_imet_evaluation_stats_table_all.section,
             get_imet_evaluation_stats_table_all.value_p
-           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I6''::text, ''eval_ecosystem_services_impact''::text, ''EvaluationScore''::text '||parameters||') get_imet_evaluation_stats_table_all(formid, section, value_p)
+           FROM imet_assessment.get_imet_evaluation_stats_table_all(''E/I6''::text, ''eval_ecosystem_services_impact''::text, ''EvaluationScore''::text '||parameters||')
         ), tableall AS (
          SELECT a.formid,
             a.wdpa_id,
@@ -1405,55 +1405,79 @@ SELECT DISTINCT "FormID",
 FROM imet.imet_form
 ORDER BY "FormID", "Year";
 
-CREATE VIEW imet_assessment.v_imet_eval_stat_step1 AS
+CREATE OR REPLACE VIEW imet_assessment.v_imet_eval_stat_step1 AS
 WITH table0 AS (
-    SELECT imet_assessment.v_imet_forms."FormID" AS formid,
-           imet_assessment.v_imet_forms."Year",
-           imet_assessment.v_imet_forms.wdpa_id,
-           imet_assessment.v_imet_forms.iso3,
-           imet_assessment.v_imet_forms.name
+    SELECT v_imet_forms."FormID" AS formid,
+           v_imet_forms."Year",
+           v_imet_forms.wdpa_id,
+           v_imet_forms.iso3,
+           v_imet_forms.name
     FROM imet_assessment.v_imet_forms
 ), table_c2 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_c2('C2'::text, 'eval_supports_and_constaints'::text)
+    SELECT get_imet_evaluation_stats_cm_c2.formid,
+           get_imet_evaluation_stats_cm_c2.section,
+           get_imet_evaluation_stats_cm_c2.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_c2('C2'::text, 'eval_supports_and_constaints'::text, NULL::text)
 ), table_c3 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_c3('C3'::text, 'context_menaces_pressions'::text)
+    SELECT get_imet_evaluation_stats_cm_c3.formid,
+           get_imet_evaluation_stats_cm_c3.section,
+           get_imet_evaluation_stats_cm_c3.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_c3('C3'::text, 'context_menaces_pressions'::text, NULL::text)
 ), table1 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('C1.1'::text, 'eval_importance_c11'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('C1.1'::text, 'eval_importance_c11'::text, 'EvaluationScore'::text, NULL::text)
 ), table2 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_c12('C1.2'::text, 'eval_importance_c12'::text)
+    SELECT get_imet_evaluation_stats_cm_c12.formid,
+           get_imet_evaluation_stats_cm_c12.section,
+           get_imet_evaluation_stats_cm_c12.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_c12('C1.2'::text, 'eval_importance_c12'::text, NULL::text)
 ), table3 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_c13('C1.3'::text, 'eval_importance_c13'::text)
+    SELECT get_imet_evaluation_stats_cm_c13.formid,
+           get_imet_evaluation_stats_cm_c13.section,
+           get_imet_evaluation_stats_cm_c13.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_c13('C1.3'::text, 'eval_importance_c13'::text, NULL::text)
 ), table4 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_c14('C1.4'::text, 'eval_importance_c14'::text)
+    SELECT get_imet_evaluation_stats_cm_c14.formid,
+           get_imet_evaluation_stats_cm_c14.section,
+           get_imet_evaluation_stats_cm_c14.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_c14('C1.4'::text, 'eval_importance_c14'::text, NULL::text)
 ), table5 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('C1.5'::text, 'eval_importance_c15'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('C1.5'::text, 'eval_importance_c15'::text, 'EvaluationScore'::text, NULL::text)
 ), table6 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('C1.6'::text, 'eval_importance_c16'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('C1.6'::text, 'eval_importance_c16'::text, 'EvaluationScore'::text, NULL::text) get_imet_evaluation_stats_table_all(formid, section, value_p)
 ), tableall AS (
     SELECT a.formid,
            a.wdpa_id,
            a.iso3,
            a.name,
-           round((((((((COALESCE(b.value_p, (0)::double precision) + COALESCE(c.value_p, (0)::double precision)) + COALESCE(d.value_p, (0)::double precision)) + COALESCE(e.value_p, (0)::double precision)) + COALESCE(f.value_p, (0)::double precision)) + COALESCE(g.value_p, (0)::double precision)) / NULLIF((( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                                     FROM ( VALUES (b.value_p), (c.value_p), (d.value_p), (e.value_p), (f.value_p), (g.value_p)) v(col)
-                                                                                                                                                                                                                                                                                                                     WHERE (v.col IS NOT NULL)))::double precision, (0)::double precision)))::numeric, 2) AS c1,
-           round((c2.value_p)::numeric, 2) AS c2,
-           round((c3.value_p)::numeric, 2) AS c3,
-           round((b.value_p)::numeric, 2) AS c11,
-           round((c.value_p)::numeric, 2) AS c12,
-           round((d.value_p)::numeric, 2) AS c13,
-           round((e.value_p)::numeric, 2) AS c14,
-           round((f.value_p)::numeric, 2) AS c15,
-           round((g.value_p)::numeric, 2) AS c16
-    FROM ((((((((table0 a
-        LEFT JOIN table_c2 c2 ON ((a.formid = c2.formid)))
-        LEFT JOIN table_c3 c3 ON ((a.formid = c3.formid)))
-        LEFT JOIN table1 b ON ((a.formid = b.formid)))
-        LEFT JOIN table2 c ON ((a.formid = c.formid)))
-        LEFT JOIN table3 d ON ((a.formid = d.formid)))
-        LEFT JOIN table4 e ON ((a.formid = e.formid)))
-        LEFT JOIN table5 f ON ((a.formid = f.formid)))
-             LEFT JOIN table6 g ON ((a.formid = g.formid)))
+           round(((COALESCE(b.value_p, 0::double precision) + COALESCE(c.value_p, 0::double precision) + COALESCE(d.value_p, 0::double precision) + COALESCE(e.value_p, 0::double precision) + COALESCE(f.value_p, 0::double precision) + COALESCE(g.value_p, 0::double precision)) / NULLIF((( SELECT count(*) AS count
+                                                                                                                                                                                                                                                                                                FROM ( VALUES (b.value_p), (c.value_p), (d.value_p), (e.value_p), (f.value_p), (g.value_p)) v(col)
+                                                                                                                                                                                                                                                                                                WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 2) AS c1,
+           round(c2.value_p::numeric, 2) AS c2,
+           round(c3.value_p::numeric, 2) AS c3,
+           round(b.value_p::numeric, 2) AS c11,
+           round(c.value_p::numeric, 2) AS c12,
+           round(d.value_p::numeric, 2) AS c13,
+           round(e.value_p::numeric, 2) AS c14,
+           round(f.value_p::numeric, 2) AS c15,
+           round(g.value_p::numeric, 2) AS c16
+    FROM table0 a
+             LEFT JOIN table_c2 c2 ON a.formid = c2.formid
+             LEFT JOIN table_c3 c3 ON a.formid = c3.formid
+             LEFT JOIN table1 b ON a.formid = b.formid
+             LEFT JOIN table2 c ON a.formid = c.formid
+             LEFT JOIN table3 d ON a.formid = d.formid
+             LEFT JOIN table4 e ON a.formid = e.formid
+             LEFT JOIN table5 f ON a.formid = f.formid
+             LEFT JOIN table6 g ON a.formid = g.formid
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -1469,50 +1493,69 @@ SELECT DISTINCT tableall.formid,
                 tableall.c14,
                 tableall.c15,
                 tableall.c16,
-                round((((((((COALESCE(tableall.c1, (0)::numeric) + (COALESCE(tableall.c2, (0)::numeric) / 2.0)) + 50.0) + COALESCE(tableall.c3, (0)::numeric)) + 100.0))::double precision / NULLIF((( SELECT count(*) AS count
-                                                                                                                                                                                                       FROM ( VALUES (tableall.c1), (tableall.c2), (tableall.c3)) v(col)
-                                                                                                                                                                                                       WHERE (v.col IS NOT NULL)))::double precision, (0)::double precision)))::numeric, 1) AS avg_indicator
+                round(((COALESCE(tableall.c1, 0::numeric) + COALESCE(tableall.c2, 0::numeric) / 2.0 + 50.0 + COALESCE(tableall.c3, 0::numeric) + 100.0)::double precision / NULLIF((( SELECT count(*) AS count
+                                                                                                                                                                                      FROM ( VALUES (tableall.c1), (tableall.c2), (tableall.c3)) v(col)
+                                                                                                                                                                                      WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
 FROM tableall
 ORDER BY tableall.iso3, tableall.name;
 
-CREATE VIEW imet_assessment.v_imet_eval_stat_step2 AS
+CREATE OR REPLACE VIEW imet_assessment.v_imet_eval_stat_step2
+AS
 WITH table0 AS (
-    SELECT imet_assessment.v_imet_forms."FormID" AS formid,
-           imet_assessment.v_imet_forms."Year",
-           imet_assessment.v_imet_forms.wdpa_id,
-           imet_assessment.v_imet_forms.iso3,
-           imet_assessment.v_imet_forms.name
+    SELECT v_imet_forms."FormID" AS formid,
+           v_imet_forms."Year",
+           v_imet_forms.wdpa_id,
+           v_imet_forms.iso3,
+           v_imet_forms.name
     FROM imet_assessment.v_imet_forms
 ), table1 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('P1'::text, 'eval_regulations_adequacy'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('P1'::text, 'eval_regulations_adequacy'::text, 'EvaluationScore'::text, NULL::text)
 ), table2 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('P2'::text, 'eval_design_adequacy'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('P2'::text, 'eval_design_adequacy'::text, 'EvaluationScore'::text, NULL::text)
 ), table3 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_boundary_level'::text, 'EvaluationScore'::text, 'EVAL P3'::text)
+    SELECT get_imet_evaluation_stats_rank_all.formid,
+           get_imet_evaluation_stats_rank_all.section,
+           get_imet_evaluation_stats_rank_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_boundary_level'::text, 'EvaluationScore'::text, 'EVAL P3'::text, NULL::text)
 ), table4 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('P4'::text, 'eval_management_plan'::text, 'PlanExistenceScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('P4'::text, 'eval_management_plan'::text, 'PlanExistenceScore'::text, NULL::text)
 ), table5 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('P5'::text, 'eval_work_plan'::text, 'PlanExistenceScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('P5'::text, 'eval_work_plan'::text, 'PlanExistenceScore'::text, NULL::text)
 ), table6 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('P6'::text, 'eval_objectives'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('P6'::text, 'eval_objectives'::text, 'EvaluationScore'::text, NULL::text)
 ), tableall AS (
     SELECT a.formid,
            a.wdpa_id,
            a.iso3,
            a.name,
-           round((b.value_p)::numeric, 2) AS p1,
-           round((c.value_p)::numeric, 2) AS p2,
-           round((d.value_p)::numeric, 2) AS p3,
-           round((e.value_p)::numeric, 2) AS p4,
-           round((f.value_p)::numeric, 2) AS p5,
-           round((g.value_p)::numeric, 2) AS p6
-    FROM ((((((table0 a
-        LEFT JOIN table1 b ON ((a.formid = b.formid)))
-        LEFT JOIN table2 c ON ((a.formid = c.formid)))
-        LEFT JOIN table3 d ON ((a.formid = d.formid)))
-        LEFT JOIN table4 e ON ((a.formid = e.formid)))
-        LEFT JOIN table5 f ON ((a.formid = f.formid)))
-             LEFT JOIN table6 g ON ((a.formid = g.formid)))
+           round(b.value_p::numeric, 2) AS p1,
+           round(c.value_p::numeric, 2) AS p2,
+           round(d.value_p::numeric, 2) AS p3,
+           round(e.value_p::numeric, 2) AS p4,
+           round(f.value_p::numeric, 2) AS p5,
+           round(g.value_p::numeric, 2) AS p6
+    FROM table0 a
+             LEFT JOIN table1 b ON a.formid = b.formid
+             LEFT JOIN table2 c ON a.formid = c.formid
+             LEFT JOIN table3 d ON a.formid = d.formid
+             LEFT JOIN table4 e ON a.formid = e.formid
+             LEFT JOIN table5 f ON a.formid = f.formid
+             LEFT JOIN table6 g ON a.formid = g.formid
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -1525,46 +1568,62 @@ SELECT DISTINCT tableall.formid,
                 tableall.p4,
                 tableall.p5,
                 tableall.p6,
-                round((((((((((((COALESCE(tableall.p1, (0)::numeric) / 2.0) + 50.0) + (COALESCE(tableall.p2, (0)::numeric) / 2.0)) + 50.0) + COALESCE(tableall.p3, (0)::numeric)) + COALESCE(tableall.p4, (0)::numeric)) + COALESCE(tableall.p5, (0)::numeric)) + COALESCE(tableall.p6, (0)::numeric)))::double precision / NULLIF((( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                                                      FROM ( VALUES (tableall.p1), (tableall.p2), (tableall.p3), (tableall.p4), (tableall.p5), (tableall.p6)) v(col)
-                                                                                                                                                                                                                                                                                                                                      WHERE (v.col IS NOT NULL)))::double precision, (0)::double precision)))::numeric, 1) AS avg_indicator
+                round(((COALESCE(tableall.p1, 0::numeric) / 2.0 + 50.0 + COALESCE(tableall.p2, 0::numeric) / 2.0 + 50.0 + COALESCE(tableall.p3, 0::numeric) + COALESCE(tableall.p4, 0::numeric) + COALESCE(tableall.p5, 0::numeric) + COALESCE(tableall.p6, 0::numeric))::double precision / NULLIF((( SELECT count(*) AS count
+                                                                                                                                                                                                                                                                                                       FROM ( VALUES (tableall.p1), (tableall.p2), (tableall.p3), (tableall.p4), (tableall.p5), (tableall.p6)) v(col)
+                                                                                                                                                                                                                                                                                                       WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
 FROM tableall
 ORDER BY tableall.iso3, tableall.name;
 
-CREATE VIEW imet_assessment.v_imet_eval_stat_step3 AS
+CREATE OR REPLACE VIEW imet_assessment.v_imet_eval_stat_step3
+AS
 WITH table0 AS (
-    SELECT imet_assessment.v_imet_forms."FormID" AS formid,
-           imet_assessment.v_imet_forms."Year",
-           imet_assessment.v_imet_forms.wdpa_id,
-           imet_assessment.v_imet_forms.iso3,
-           imet_assessment.v_imet_forms.name
+    SELECT v_imet_forms."FormID" AS formid,
+           v_imet_forms."Year",
+           v_imet_forms.wdpa_id,
+           v_imet_forms.iso3,
+           v_imet_forms.name
     FROM imet_assessment.v_imet_forms
 ), table1 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('EVAL I1'::text, 'eval_information_availability'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('EVAL I1'::text, 'eval_information_availability'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table2 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_i2('EVAL I2'::text, 'eval_staff'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_cm_i2.formid,
+           get_imet_evaluation_stats_cm_i2.section,
+           get_imet_evaluation_stats_cm_i2.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_i2('EVAL I2'::text, 'eval_staff'::text, 'EvaluationScore'::text, NULL::text)
 ), table3 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_budget_adequacy'::text, 'EvaluationScore'::text, 'EVAL I3'::text)
+    SELECT get_imet_evaluation_stats_rank_all.formid,
+           get_imet_evaluation_stats_rank_all.section,
+           get_imet_evaluation_stats_rank_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_budget_adequacy'::text, 'EvaluationScore'::text, 'EVAL I3'::text, NULL::text)
 ), table4 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_budget_securization'::text, 'EvaluationScore'::text, 'EVAL I4'::text)
+    SELECT get_imet_evaluation_stats_rank_all.formid,
+           get_imet_evaluation_stats_rank_all.section,
+           get_imet_evaluation_stats_rank_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_budget_securization'::text, 'EvaluationScore'::text, 'EVAL I4'::text, NULL::text)
 ), table5 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_i5('EVAL I5'::text, 'eval_management_equipment_adequacy'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_cm_i5.formid,
+           get_imet_evaluation_stats_cm_i5.section,
+           get_imet_evaluation_stats_cm_i5.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_i5('EVAL I5'::text, 'eval_management_equipment_adequacy'::text, 'EvaluationScore'::text, NULL::text)
 ), tableall AS (
     SELECT a.formid,
            a.wdpa_id,
            a.iso3,
            a.name,
-           round((b.value_p)::numeric, 2) AS i1,
-           round((c.value_p)::numeric, 2) AS i2,
-           round((d.value_p)::numeric, 2) AS i3,
-           round((e.value_p)::numeric, 2) AS i4,
-           round((f.value_p)::numeric, 2) AS i5
-    FROM (((((table0 a
-        LEFT JOIN table1 b ON ((a.formid = b.formid)))
-        LEFT JOIN table2 c ON ((a.formid = c.formid)))
-        LEFT JOIN table3 d ON ((a.formid = d.formid)))
-        LEFT JOIN table4 e ON ((a.formid = e.formid)))
-             LEFT JOIN table5 f ON ((a.formid = f.formid)))
+           round(b.value_p::numeric, 2) AS i1,
+           round(c.value_p::numeric, 2) AS i2,
+           round(d.value_p::numeric, 2) AS i3,
+           round(e.value_p::numeric, 2) AS i4,
+           round(f.value_p::numeric, 2) AS i5
+    FROM table0 a
+             LEFT JOIN table1 b ON a.formid = b.formid
+             LEFT JOIN table2 c ON a.formid = c.formid
+             LEFT JOIN table3 d ON a.formid = d.formid
+             LEFT JOIN table4 e ON a.formid = e.formid
+             LEFT JOIN table5 f ON a.formid = f.formid
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -1576,102 +1635,160 @@ SELECT DISTINCT tableall.formid,
                 tableall.i3,
                 tableall.i4,
                 tableall.i5,
-                round((((((((COALESCE(tableall.i1, (0)::numeric) + COALESCE(tableall.i2, (0)::numeric)) + COALESCE(tableall.i3, (0)::numeric)) + COALESCE(tableall.i4, (0)::numeric)) + COALESCE(tableall.i5, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                            FROM ( VALUES (tableall.i1), (tableall.i2), (tableall.i3), (tableall.i4), (tableall.i5)) v(col)
-                                                                                                                                                                                                                                                            WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS avg_indicator
+                round(((COALESCE(tableall.i1, 0::numeric) + COALESCE(tableall.i2, 0::numeric) + COALESCE(tableall.i3, 0::numeric) + COALESCE(tableall.i4, 0::numeric) + COALESCE(tableall.i5, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                                                                                        FROM ( VALUES (tableall.i1), (tableall.i2), (tableall.i3), (tableall.i4), (tableall.i5)) v(col)
+                                                                                                                                                                                                                                        WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
 FROM tableall
 ORDER BY tableall.iso3, tableall.name;
 
-CREATE VIEW imet_assessment.v_imet_eval_stat_step4 AS
+CREATE OR REPLACE VIEW imet_assessment.v_imet_eval_stat_step4
+AS
 WITH table0 AS (
-    SELECT imet_assessment.v_imet_forms."FormID" AS formid,
-           imet_assessment.v_imet_forms."Year",
-           imet_assessment.v_imet_forms.wdpa_id,
-           imet_assessment.v_imet_forms.iso3,
-           imet_assessment.v_imet_forms.name
+    SELECT v_imet_forms."FormID" AS formid,
+           v_imet_forms."Year",
+           v_imet_forms.wdpa_id,
+           v_imet_forms.iso3,
+           v_imet_forms.name
     FROM imet_assessment.v_imet_forms
 ), table1 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_pr1('PR1'::text, 'eval_staff_competence'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_cm_pr1.formid,
+           get_imet_evaluation_stats_cm_pr1.section,
+           get_imet_evaluation_stats_cm_pr1.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_pr1('PR1'::text, 'eval_staff_competence'::text, 'EvaluationScore'::text, NULL::text)
 ), table2 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR2'::text, 'eval_hr_management_politics'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR2'::text, 'eval_hr_management_politics'::text, 'EvaluationScore'::text, NULL::text)
 ), table3 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR3'::text, 'eval_hr_management_systems'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR3'::text, 'eval_hr_management_systems'::text, 'EvaluationScore'::text, NULL::text)
 ), table4 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR4'::text, 'eval_governance_leadership'::text, 'EvaluationScoreGovernace'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR4'::text, 'eval_governance_leadership'::text, 'EvaluationScoreGovernace'::text, NULL::text)
 ), table5 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR5'::text, 'eval_administrative_management'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR5'::text, 'eval_administrative_management'::text, 'EvaluationScore'::text, NULL::text)
 ), table6 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR6'::text, 'eval_equipment_maintenance'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR6'::text, 'eval_equipment_maintenance'::text, 'EvaluationScore'::text, NULL::text)
 ), table7 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('PR7'::text, 'eval_management_activities'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('PR7'::text, 'eval_management_activities'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table8 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('PR8'::text, 'eval_protection_activities'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('PR8'::text, 'eval_protection_activities'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table9 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_control'::text, 'EvaluationScore'::text, 'EVAL PR9'::text)
+    SELECT get_imet_evaluation_stats_rank_all.formid,
+           get_imet_evaluation_stats_rank_all.section,
+           get_imet_evaluation_stats_rank_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_rank_all('eval_control'::text, 'EvaluationScore'::text, 'EVAL PR9'::text, NULL::text)
 ), table10 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR10'::text, 'eval_law_enforcement'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR10'::text, 'eval_law_enforcement'::text, 'EvaluationScore'::text, NULL::text)
 ), table11 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('PR11'::text, 'eval_implications'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('PR11'::text, 'eval_implications'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table12 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR12'::text, 'eval_assistance_activities'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR12'::text, 'eval_assistance_activities'::text, 'EvaluationScore'::text, NULL::text)
 ), table13 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_cm_pr13('PR13'::text, 'eval_actors_relations'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_cm_pr13.formid,
+           get_imet_evaluation_stats_cm_pr13.section,
+           get_imet_evaluation_stats_cm_pr13.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_cm_pr13('PR13'::text, 'eval_actors_relations'::text, 'EvaluationScore'::text, NULL::text)
 ), table14 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('PR14'::text, 'eval_visitors_management'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('PR14'::text, 'eval_visitors_management'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table15 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('PR15'::text, 'eval_visitors_impact'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('PR15'::text, 'eval_visitors_impact'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table16 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR16'::text, 'eval_natural_resources_monitoring'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR16'::text, 'eval_natural_resources_monitoring'::text, 'EvaluationScore'::text, NULL::text)
 ), table17 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR17'::text, 'eval_research_and_monitoring'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR17'::text, 'eval_research_and_monitoring'::text, 'EvaluationScore'::text, NULL::text)
 ), table18 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('PR18'::text, 'eval_climate_change_monitoring'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('PR18'::text, 'eval_climate_change_monitoring'::text, 'EvaluationScore'::text, NULL::text)
 ), table19 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('PR19'::text, 'eval_ecosystem_services'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('PR19'::text, 'eval_ecosystem_services'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), tableall AS (
     SELECT a.formid,
            a.wdpa_id,
            a.iso3,
            a.name,
-           round((b.value_p)::numeric, 2) AS pr1,
-           round((c.value_p)::numeric, 2) AS pr2,
-           round((d.value_p)::numeric, 2) AS pr3,
-           round((e.value_p)::numeric, 2) AS pr4,
-           round((f.value_p)::numeric, 2) AS pr5,
-           round((g.value_p)::numeric, 2) AS pr6,
-           round((h.value_p)::numeric, 2) AS pr7,
-           round((i.value_p)::numeric, 2) AS pr8,
-           round((j.value_p)::numeric, 2) AS pr9,
-           round((k.value_p)::numeric, 2) AS pr10,
-           round((l.value_p)::numeric, 2) AS pr11,
-           round((m.value_p)::numeric, 2) AS pr12,
-           round((n.value_p)::numeric, 2) AS pr13,
-           round((o.value_p)::numeric, 2) AS pr14,
-           round((p.value_p)::numeric, 2) AS pr15,
-           round((q.value_p)::numeric, 2) AS pr16,
-           round((r.value_p)::numeric, 2) AS pr17,
-           round((s.value_p)::numeric, 2) AS pr18,
-           round((t.value_p)::numeric, 2) AS pr19
-    FROM (((((((((((((((((((table0 a
-        LEFT JOIN table1 b ON ((a.formid = b.formid)))
-        LEFT JOIN table2 c ON ((a.formid = c.formid)))
-        LEFT JOIN table3 d ON ((a.formid = d.formid)))
-        LEFT JOIN table4 e ON ((a.formid = e.formid)))
-        LEFT JOIN table5 f ON ((a.formid = f.formid)))
-        LEFT JOIN table6 g ON ((a.formid = g.formid)))
-        LEFT JOIN table7 h ON ((a.formid = h.formid)))
-        LEFT JOIN table8 i ON ((a.formid = i.formid)))
-        LEFT JOIN table9 j ON ((a.formid = j.formid)))
-        LEFT JOIN table10 k ON ((a.formid = k.formid)))
-        LEFT JOIN table11 l ON ((a.formid = l.formid)))
-        LEFT JOIN table12 m ON ((a.formid = m.formid)))
-        LEFT JOIN table13 n ON ((a.formid = n.formid)))
-        LEFT JOIN table14 o ON ((a.formid = o.formid)))
-        LEFT JOIN table15 p ON ((a.formid = p.formid)))
-        LEFT JOIN table16 q ON ((a.formid = q.formid)))
-        LEFT JOIN table17 r ON ((a.formid = r.formid)))
-        LEFT JOIN table18 s ON ((a.formid = s.formid)))
-             LEFT JOIN table19 t ON ((a.formid = t.formid)))
+           round(b.value_p::numeric, 2) AS pr1,
+           round(c.value_p::numeric, 2) AS pr2,
+           round(d.value_p::numeric, 2) AS pr3,
+           round(e.value_p::numeric, 2) AS pr4,
+           round(f.value_p::numeric, 2) AS pr5,
+           round(g.value_p::numeric, 2) AS pr6,
+           round(h.value_p::numeric, 2) AS pr7,
+           round(i.value_p::numeric, 2) AS pr8,
+           round(j.value_p::numeric, 2) AS pr9,
+           round(k.value_p::numeric, 2) AS pr10,
+           round(l.value_p::numeric, 2) AS pr11,
+           round(m.value_p::numeric, 2) AS pr12,
+           round(n.value_p::numeric, 2) AS pr13,
+           round(o.value_p::numeric, 2) AS pr14,
+           round(p.value_p::numeric, 2) AS pr15,
+           round(q.value_p::numeric, 2) AS pr16,
+           round(r.value_p::numeric, 2) AS pr17,
+           round(s.value_p::numeric, 2) AS pr18,
+           round(t.value_p::numeric, 2) AS pr19
+    FROM table0 a
+             LEFT JOIN table1 b ON a.formid = b.formid
+             LEFT JOIN table2 c ON a.formid = c.formid
+             LEFT JOIN table3 d ON a.formid = d.formid
+             LEFT JOIN table4 e ON a.formid = e.formid
+             LEFT JOIN table5 f ON a.formid = f.formid
+             LEFT JOIN table6 g ON a.formid = g.formid
+             LEFT JOIN table7 h ON a.formid = h.formid
+             LEFT JOIN table8 i ON a.formid = i.formid
+             LEFT JOIN table9 j ON a.formid = j.formid
+             LEFT JOIN table10 k ON a.formid = k.formid
+             LEFT JOIN table11 l ON a.formid = l.formid
+             LEFT JOIN table12 m ON a.formid = m.formid
+             LEFT JOIN table13 n ON a.formid = n.formid
+             LEFT JOIN table14 o ON a.formid = o.formid
+             LEFT JOIN table15 p ON a.formid = p.formid
+             LEFT JOIN table16 q ON a.formid = q.formid
+             LEFT JOIN table17 r ON a.formid = r.formid
+             LEFT JOIN table18 s ON a.formid = s.formid
+             LEFT JOIN table19 t ON a.formid = t.formid
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -1697,51 +1814,57 @@ SELECT DISTINCT tableall.formid,
                 tableall.pr17,
                 tableall.pr18,
                 tableall.pr19,
-                round(((((((((COALESCE(tableall.pr1, (0)::numeric) + COALESCE(tableall.pr2, (0)::numeric)) + COALESCE(tableall.pr3, (0)::numeric)) + COALESCE(tableall.pr4, (0)::numeric)) + COALESCE(tableall.pr5, (0)::numeric)) + COALESCE(tableall.pr6, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                          FROM ( VALUES (tableall.pr1), (tableall.pr2), (tableall.pr3), (tableall.pr4), (tableall.pr5), (tableall.pr6)) v(col)
-                                                                                                                                                                                                                                                                                                          WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 2) AS pr1_6,
-                round(((((((COALESCE(tableall.pr7, (0)::numeric) + COALESCE(tableall.pr8, (0)::numeric)) + COALESCE(tableall.pr9, (0)::numeric)) + COALESCE(tableall.pr10, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                         FROM ( VALUES (tableall.pr7), (tableall.pr8), (tableall.pr9), (tableall.pr10)) v(col)
-                                                                                                                                                                                                                         WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS pr7_10,
-                round((((((COALESCE(tableall.pr11, (0)::numeric) + COALESCE(tableall.pr12, (0)::numeric)) + COALESCE(tableall.pr13, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                  FROM ( VALUES (tableall.pr11), (tableall.pr12), (tableall.pr13)) v(col)
-                                                                                                                                                                                  WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS pr11_13,
-                round(((((COALESCE(tableall.pr14, (0)::numeric) + COALESCE(tableall.pr15, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                        FROM ( VALUES (tableall.pr14), (tableall.pr15)) v(col)
-                                                                                                                                        WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS pr14_15,
-                round(((((COALESCE(tableall.pr16, (0)::numeric) + COALESCE(tableall.pr17, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                        FROM ( VALUES (tableall.pr16), (tableall.pr17)) v(col)
-                                                                                                                                        WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS pr16_17,
-                round(((((COALESCE(tableall.pr18, (0)::numeric) + COALESCE(tableall.pr19, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                        FROM ( VALUES (tableall.pr18), (tableall.pr19)) v(col)
-                                                                                                                                        WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS pr18_19,
-                round((((((((((((((((((((((COALESCE(tableall.pr1, (0)::numeric) + COALESCE(tableall.pr2, (0)::numeric)) + COALESCE(tableall.pr3, (0)::numeric)) + COALESCE(tableall.pr4, (0)::numeric)) + COALESCE(tableall.pr5, (0)::numeric)) + COALESCE(tableall.pr6, (0)::numeric)) + COALESCE(tableall.pr7, (0)::numeric)) + COALESCE(tableall.pr8, (0)::numeric)) + COALESCE(tableall.pr9, (0)::numeric)) + COALESCE(tableall.pr10, (0)::numeric)) + COALESCE(tableall.pr11, (0)::numeric)) + COALESCE(tableall.pr12, (0)::numeric)) + COALESCE(tableall.pr13, (0)::numeric)) + COALESCE(tableall.pr14, (0)::numeric)) + COALESCE(tableall.pr15, (0)::numeric)) + COALESCE(tableall.pr16, (0)::numeric)) + COALESCE(tableall.pr17, (0)::numeric)) + COALESCE(tableall.pr18, (0)::numeric)) + COALESCE(tableall.pr19, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         FROM ( VALUES (tableall.pr1), (tableall.pr2), (tableall.pr3), (tableall.pr4), (tableall.pr5), (tableall.pr6), (tableall.pr7), (tableall.pr8), (tableall.pr9), (tableall.pr10), (tableall.pr11), (tableall.pr12), (tableall.pr13), (tableall.pr14), (tableall.pr15), (tableall.pr16), (tableall.pr17), (tableall.pr18), (tableall.pr19)) v(col)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS avg_indicator
+                round(((COALESCE(tableall.pr1, 0::numeric) + COALESCE(tableall.pr2, 0::numeric) + COALESCE(tableall.pr3, 0::numeric) + COALESCE(tableall.pr4, 0::numeric) + COALESCE(tableall.pr5, 0::numeric) + COALESCE(tableall.pr6, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                                                                                                                                  FROM ( VALUES (tableall.pr1), (tableall.pr2), (tableall.pr3), (tableall.pr4), (tableall.pr5), (tableall.pr6)) v(col)
+                                                                                                                                                                                                                                                                                  WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 2) AS pr1_6,
+                round(((COALESCE(tableall.pr7, 0::numeric) + COALESCE(tableall.pr8, 0::numeric) + COALESCE(tableall.pr9, 0::numeric) + COALESCE(tableall.pr10, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                                                         FROM ( VALUES (tableall.pr7), (tableall.pr8), (tableall.pr9), (tableall.pr10)) v(col)
+                                                                                                                                                                                                         WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS pr7_10,
+                round(((COALESCE(tableall.pr11, 0::numeric) + COALESCE(tableall.pr12, 0::numeric) + COALESCE(tableall.pr13, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                      FROM ( VALUES (tableall.pr11), (tableall.pr12), (tableall.pr13)) v(col)
+                                                                                                                                                                      WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS pr11_13,
+                round(((COALESCE(tableall.pr14, 0::numeric) + COALESCE(tableall.pr15, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                FROM ( VALUES (tableall.pr14), (tableall.pr15)) v(col)
+                                                                                                                                WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS pr14_15,
+                round(((COALESCE(tableall.pr16, 0::numeric) + COALESCE(tableall.pr17, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                FROM ( VALUES (tableall.pr16), (tableall.pr17)) v(col)
+                                                                                                                                WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS pr16_17,
+                round(((COALESCE(tableall.pr18, 0::numeric) + COALESCE(tableall.pr19, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                FROM ( VALUES (tableall.pr18), (tableall.pr19)) v(col)
+                                                                                                                                WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS pr18_19,
+                round(((COALESCE(tableall.pr1, 0::numeric) + COALESCE(tableall.pr2, 0::numeric) + COALESCE(tableall.pr3, 0::numeric) + COALESCE(tableall.pr4, 0::numeric) + COALESCE(tableall.pr5, 0::numeric) + COALESCE(tableall.pr6, 0::numeric) + COALESCE(tableall.pr7, 0::numeric) + COALESCE(tableall.pr8, 0::numeric) + COALESCE(tableall.pr9, 0::numeric) + COALESCE(tableall.pr10, 0::numeric) + COALESCE(tableall.pr11, 0::numeric) + COALESCE(tableall.pr12, 0::numeric) + COALESCE(tableall.pr13, 0::numeric) + COALESCE(tableall.pr14, 0::numeric) + COALESCE(tableall.pr15, 0::numeric) + COALESCE(tableall.pr16, 0::numeric) + COALESCE(tableall.pr17, 0::numeric) + COALESCE(tableall.pr18, 0::numeric) + COALESCE(tableall.pr19, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             FROM ( VALUES (tableall.pr1), (tableall.pr2), (tableall.pr3), (tableall.pr4), (tableall.pr5), (tableall.pr6), (tableall.pr7), (tableall.pr8), (tableall.pr9), (tableall.pr10), (tableall.pr11), (tableall.pr12), (tableall.pr13), (tableall.pr14), (tableall.pr15), (tableall.pr16), (tableall.pr17), (tableall.pr18), (tableall.pr19)) v(col)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
 FROM tableall;
 
-CREATE VIEW imet_assessment.v_imet_eval_stat_step5 AS
+CREATE OR REPLACE VIEW imet_assessment.v_imet_eval_stat_step5 AS
 WITH table0 AS (
-    SELECT imet_assessment.v_imet_forms."FormID" AS formid,
-           imet_assessment.v_imet_forms."Year",
-           imet_assessment.v_imet_forms.wdpa_id,
-           imet_assessment.v_imet_forms.iso3,
-           imet_assessment.v_imet_forms.name
+    SELECT v_imet_forms."FormID" AS formid,
+           v_imet_forms."Year",
+           v_imet_forms.wdpa_id,
+           v_imet_forms.iso3,
+           v_imet_forms.name
     FROM imet_assessment.v_imet_forms
 ), table1 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('R1'::text, 'eval_work_program_implementation'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('R1'::text, 'eval_work_program_implementation'::text, 'EvaluationScore'::text, NULL::text)
 ), table2 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('R2'::text, 'eval_achieved_results'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('R2'::text, 'eval_achieved_results'::text, 'EvaluationScore'::text, NULL::text)
 ), tableall AS (
     SELECT a.formid,
            a.wdpa_id,
            a.iso3,
            a.name,
-           round((b.value_p)::numeric, 2) AS r1,
-           round((c.value_p)::numeric, 2) AS r2
-    FROM ((table0 a
-        LEFT JOIN table1 b ON ((a.formid = b.formid)))
-             LEFT JOIN table2 c ON ((a.formid = c.formid)))
+           round(b.value_p::numeric, 2) AS r1,
+           round(c.value_p::numeric, 2) AS r2
+    FROM table0 a
+             LEFT JOIN table1 b ON a.formid = b.formid
+             LEFT JOIN table2 c ON a.formid = c.formid
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -1750,49 +1873,67 @@ SELECT DISTINCT tableall.formid,
                 tableall.name,
                 tableall.r1,
                 tableall.r2,
-                round(((((COALESCE(tableall.r1, (0)::numeric) + COALESCE(tableall.r2, (0)::numeric)))::double precision / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                    FROM ( VALUES (tableall.r1), (tableall.r2)) v(col)
-                                                                                                                                    WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 2) AS avg_indicator
+                round(((COALESCE(tableall.r1, 0::numeric) + COALESCE(tableall.r2, 0::numeric))::double precision / NULLIF(( SELECT count(*) AS count
+                                                                                                                            FROM ( VALUES (tableall.r1), (tableall.r2)) v(col)
+                                                                                                                            WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 2) AS avg_indicator
 FROM tableall;
 
-CREATE VIEW imet_assessment.v_imet_eval_stat_step6 AS
+CREATE OR REPLACE VIEW imet_assessment.v_imet_eval_stat_step6 AS
 WITH table0 AS (
-    SELECT imet_assessment.v_imet_forms."FormID" AS formid,
-           imet_assessment.v_imet_forms."Year",
-           imet_assessment.v_imet_forms.wdpa_id,
-           imet_assessment.v_imet_forms.iso3,
-           imet_assessment.v_imet_forms.name
+    SELECT v_imet_forms."FormID" AS formid,
+           v_imet_forms."Year",
+           v_imet_forms.wdpa_id,
+           v_imet_forms.iso3,
+           v_imet_forms.name
     FROM imet_assessment.v_imet_forms
 ), table1 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I1'::text, 'eval_achived_objectives'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I1'::text, 'eval_achived_objectives'::text, 'EvaluationScore'::text, NULL::text)
 ), table2 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('E/I2'::text, 'eval_designated_values_conservation'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('E/I2'::text, 'eval_designated_values_conservation'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table3 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_group_all('E/I3'::text, 'eval_designated_values_conservation_tendency'::text, 'EvaluationScore'::text, 'group_key'::text)
+    SELECT get_imet_evaluation_stats_group_all.formid,
+           get_imet_evaluation_stats_group_all.section,
+           get_imet_evaluation_stats_group_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_group_all('E/I3'::text, 'eval_designated_values_conservation_tendency'::text, 'EvaluationScore'::text, 'group_key'::text, NULL::text)
 ), table4 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I4'::text, 'eval_local_communities_impact'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I4'::text, 'eval_local_communities_impact'::text, 'EvaluationScore'::text, NULL::text)
 ), table5 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I5'::text, 'eval_climate_change_impact'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I5'::text, 'eval_climate_change_impact'::text, 'EvaluationScore'::text, NULL::text)
 ), table6 AS (
-    SELECT * FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I6'::text, 'eval_ecosystem_services_impact'::text, 'EvaluationScore'::text)
+    SELECT get_imet_evaluation_stats_table_all.formid,
+           get_imet_evaluation_stats_table_all.section,
+           get_imet_evaluation_stats_table_all.value_p
+    FROM imet_assessment.get_imet_evaluation_stats_table_all('E/I6'::text, 'eval_ecosystem_services_impact'::text, 'EvaluationScore'::text, NULL::text)
 ), tableall AS (
     SELECT a.formid,
            a.wdpa_id,
            a.iso3,
            a.name,
-           round((b.value_p)::numeric, 2) AS ei1,
-           round((c.value_p)::numeric, 2) AS ei2,
-           round((d.value_p)::numeric, 2) AS ei3,
-           round((e.value_p)::numeric, 2) AS ei4,
-           round((f.value_p)::numeric, 2) AS ei5,
-           round((g.value_p)::numeric, 2) AS ei6
-    FROM ((((((table0 a
-        LEFT JOIN table1 b ON ((a.formid = b.formid)))
-        LEFT JOIN table2 c ON ((a.formid = c.formid)))
-        LEFT JOIN table3 d ON ((a.formid = d.formid)))
-        LEFT JOIN table4 e ON ((a.formid = e.formid)))
-        LEFT JOIN table5 f ON ((a.formid = f.formid)))
-             LEFT JOIN table6 g ON ((a.formid = g.formid)))
+           round(b.value_p::numeric, 2) AS ei1,
+           round(c.value_p::numeric, 2) AS ei2,
+           round(d.value_p::numeric, 2) AS ei3,
+           round(e.value_p::numeric, 2) AS ei4,
+           round(f.value_p::numeric, 2) AS ei5,
+           round(g.value_p::numeric, 2) AS ei6
+    FROM table0 a
+             LEFT JOIN table1 b ON a.formid = b.formid
+             LEFT JOIN table2 c ON a.formid = c.formid
+             LEFT JOIN table3 d ON a.formid = d.formid
+             LEFT JOIN table4 e ON a.formid = e.formid
+             LEFT JOIN table5 f ON a.formid = f.formid
+             LEFT JOIN table6 g ON a.formid = g.formid
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -1805,9 +1946,9 @@ SELECT DISTINCT tableall.formid,
                 tableall.ei4,
                 tableall.ei5,
                 tableall.ei6,
-                round(((((((((COALESCE(tableall.ei1, (0)::numeric))::double precision + COALESCE((((tableall.ei2)::double precision / (2)::double precision) + (50)::double precision), (0)::double precision)) + COALESCE((((tableall.ei3)::double precision / (2)::double precision) + (50)::double precision), (0)::double precision)) + COALESCE((((tableall.ei4)::double precision / (2)::double precision) + (50)::double precision), (0)::double precision)) + COALESCE((((tableall.ei5)::double precision / (2)::double precision) + (50)::double precision), (0)::double precision)) + COALESCE((((tableall.ei6)::double precision / (2)::double precision) + (50)::double precision), (0)::double precision)) / (NULLIF(( SELECT count(*) AS count
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    FROM ( VALUES (tableall.ei1), (tableall.ei2), (tableall.ei3), (tableall.ei4), (tableall.ei5), (tableall.ei6)) v(col)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    WHERE (v.col IS NOT NULL)), 0))::double precision))::numeric, 1) AS avg_indicator
+                round(((COALESCE(tableall.ei1, 0::numeric)::double precision + COALESCE(tableall.ei2::double precision / 2::double precision + 50::double precision, 0::double precision) + COALESCE(tableall.ei3::double precision / 2::double precision + 50::double precision, 0::double precision) + COALESCE(tableall.ei4::double precision / 2::double precision + 50::double precision, 0::double precision) + COALESCE(tableall.ei5::double precision / 2::double precision + 50::double precision, 0::double precision) + COALESCE(tableall.ei6::double precision / 2::double precision + 50::double precision, 0::double precision)) / NULLIF(( SELECT count(*) AS count
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          FROM ( VALUES (tableall.ei1), (tableall.ei2), (tableall.ei3), (tableall.ei4), (tableall.ei5), (tableall.ei6)) v(col)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
 FROM tableall;
 
 CREATE VIEW imet_assessment.v_imet_eval_stat_step_summary AS
@@ -1877,119 +2018,10 @@ SELECT DISTINCT tableall.formid,
 FROM tableall;
 
 
-CREATE FUNCTION imet_assessment.get_imet_evaluation_stats_step1(form_id integer DEFAULT NULL::integer, c_iso3 text DEFAULT NULL::text) RETURNS SETOF imet_assessment.v_imet_eval_stat_step1
-    LANGUAGE plpgsql
-AS $$
 
-BEGIN
 
-    CASE WHEN form_id is not null and c_iso3 is null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step1 where formid=form_id;
-         WHEN form_id is null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step1 where iso3=c_iso3;
-         WHEN form_id is not null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step1 where iso3=c_iso3 and formid=form_id;
-         ELSE
-             return query select * from imet_assessment.v_imet_eval_stat_step1;
-        END CASE;
-END;
 
-$$;
 
-CREATE FUNCTION imet_assessment.get_imet_evaluation_stats_step2(form_id integer DEFAULT NULL::integer, c_iso3 text DEFAULT NULL::text) RETURNS SETOF imet_assessment.v_imet_eval_stat_step2
-    LANGUAGE plpgsql
-AS $$
-
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step2 where formid=form_id;
-         WHEN form_id is null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step2 where iso3=c_iso3;
-         WHEN form_id is not null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step2 where iso3=c_iso3 and formid=form_id;
-         ELSE
-             return query select * from imet_assessment.v_imet_eval_stat_step2;
-        END CASE;
-END;
-
-$$;
-
-CREATE FUNCTION imet_assessment.get_imet_evaluation_stats_step3(form_id integer DEFAULT NULL::integer, c_iso3 text DEFAULT NULL::text) RETURNS SETOF imet_assessment.v_imet_eval_stat_step3
-    LANGUAGE plpgsql
-AS $$
-
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step3 where formid=form_id;
-         WHEN form_id is null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step3 where iso3=c_iso3;
-         WHEN form_id is not null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step3 where iso3=c_iso3 and formid=form_id;
-         ELSE
-             return query select * from imet_assessment.v_imet_eval_stat_step3;
-        END CASE;
-END;
-
-$$;
-
-CREATE FUNCTION imet_assessment.get_imet_evaluation_stats_step4(form_id integer DEFAULT NULL::integer, c_iso3 text DEFAULT NULL::text) RETURNS SETOF imet_assessment.v_imet_eval_stat_step4
-    LANGUAGE plpgsql
-AS $$
-
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step4 where formid=form_id;
-         WHEN form_id is null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step4 where iso3=c_iso3;
-         WHEN form_id is not null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step4 where iso3=c_iso3 and formid=form_id;
-         ELSE
-             return query select * from imet_assessment.v_imet_eval_stat_step4;
-        END CASE;
-END;
-
-$$;
-
-CREATE FUNCTION imet_assessment.get_imet_evaluation_stats_step5(form_id integer DEFAULT NULL::integer, c_iso3 text DEFAULT NULL::text) RETURNS SETOF imet_assessment.v_imet_eval_stat_step5
-    LANGUAGE plpgsql
-AS $$
-
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step5 where formid=form_id;
-         WHEN form_id is null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step5 where iso3=c_iso3;
-         WHEN form_id is not null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step5 where iso3=c_iso3 and formid=form_id;
-         ELSE
-             return query select * from imet_assessment.v_imet_eval_stat_step5;
-        END CASE;
-END;
-
-$$;
-
-CREATE FUNCTION imet_assessment.get_imet_evaluation_stats_step6(form_id integer DEFAULT NULL::integer, c_iso3 text DEFAULT NULL::text) RETURNS SETOF imet_assessment.v_imet_eval_stat_step6
-    LANGUAGE plpgsql
-AS $$
-
-BEGIN
-
-    CASE WHEN form_id is not null and c_iso3 is null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step6 where formid=form_id;
-         WHEN form_id is null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step6 where iso3=c_iso3;
-         WHEN form_id is not null and c_iso3 is not null
-             THEN return query select * from imet_assessment.v_imet_eval_stat_step6 where iso3=c_iso3 and formid=form_id;
-         ELSE
-             return query select * from imet_assessment.v_imet_eval_stat_step6;
-        END CASE;
-END;
-
-$$;
 
 CREATE FUNCTION imet_assessment.get_imet_evaluation_stats_step_summary(form_id text DEFAULT NULL::text, c_iso3 text DEFAULT NULL::text) RETURNS SETOF imet_assessment.v_imet_eval_stat_step_summary
     LANGUAGE plpgsql
