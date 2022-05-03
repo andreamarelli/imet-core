@@ -1646,7 +1646,7 @@ return [
         'groups' => [
             'group0' => 'Condições e tendências de conservação para as espécies animais chave',
             'group1' => 'Condições e tendências de conservação para espécies-chave de plantas',
-            'group2' => 'Condições e tendências de conservação dos habitats, cobertura de terra cover - uso',
+            'group2' => 'Condições e tendências de conservação dos habitats e as dimensões relacionadas de cobertura de terra cover - uso',
             'group3' => 'Situação e tendências das ameaças para a área protegida',
             'group4' => 'Adaptação às alterações climáticas',
             'group5' => 'Condições e tendências de conservação dos serviços ecossistémicos da área protegida'
@@ -1680,11 +1680,12 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Quais são as condições e tendências para os elementos-chave da conservação da área protegida?',
-            'Os principais objectivos de gestão da área protegida são a conservação/restauro dos valores naturais e os benefícios que os seres humanos obtêm do ambiente natural e do bom funcionamento dos ecossistemas (serviços ecossistémicos). Os gestores devem assegurar a conservação/restauro de valores-chave (espécies animais e vegetais, ocupação do solo, etc.) e a preservação do abastecimento, regulação, cultura e apoio dos serviços ecossistémicos, assegurando os valores e benefícios das áreas protegidas para todos'
+            'Os principais objectivos de gestão da área protegida são a conservação/restauro dos valores naturais e os benefícios que os seres humanos obtêm do ambiente natural e do bom funcionamento dos ecossistemas (serviços ecossistémicos). Os gestores devem assegurar a conservação/restauro de valores-chave (espécies animais e vegetais, habitats, etc.) e a preservação do abastecimento, regulação, cultura e apoio dos serviços ecossistémicos, assegurando os valores e benefícios das áreas protegidas para todos'
         ],
         'module_info_Rating' => [
             'Avaliar: A) as condições e B) as tendências dos elementos-chave de conservação da área protegida (com base nos Contextos 1 e 3, Elementos do processo PR7 - Gerindo os valores e elementos-chave da área']
     ],
+
     'LifeQualityImpact' => [
         'title' => 'Efeitos sobre a qualidade de vida das partes interessadas',
         'fields' => [
@@ -1699,8 +1700,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Criação ou fortalecimento das actividades de produção local (produção de alimentos, agricultura em pequena escala, artesanato, etc)',
-                'Contribuição para o desenvolvimento local (fornecimento de electricidade e /ou água, pequenos negócios, estradas entre aldeias, etc.)',
+                'XXXXXXXXX Local activities strengthened (food production, small-scale farming, small-scale fishing, handicraft, services for the protected area, etc.)',
+                'XXXXXXXXX Support to local business (power supply, water supply, commerce, roads between villages, boat sheds, boat parking, etc.)',
                 'Provisão de serviços ecossistémicos (alimentos, material rustico, etc)',
                 'Rendimento turístico',
                 'Conflito entre homem e fauna selvagem',

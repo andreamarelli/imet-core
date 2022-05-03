@@ -1634,7 +1634,7 @@ return [
         ]
     ],
 
-    'KeyConservationTrend'=> [
+    'KeyConservationTrend' => [
         'title' => 'Condiciones y tendencias de los elementos clave de la conservación del área protegida',
         'fields' => [
             'Element' => 'Elemento clave de conservación',
@@ -1646,7 +1646,7 @@ return [
         'groups' => [
             'group0' => 'Condiciones y tendencias de conservación de especies clave de animales',
             'group1' => 'Condiciones y tendencias de conservación de especies clave de plantas',
-            'group2' => 'Condiciones de conservación y tendencias de los hábitats, la tenencia del territorio - uso del suelo - cobertura del suelo',
+            'group2' => 'Condiciones de conservación y tendencias de los hábitats y las dimensiones relacionadas del territorio - uso del suelo - cobertura del suelo',
             'group3' => 'Situaciones y tendencias de las amenazas al área protegida',
             'group4' => 'Adaptación al cambio climático',
             'group5' => 'Condiciones y tendencias de conservación de los servicios y funciones ecosistémicas del área protegida'
@@ -1680,7 +1680,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Cuáles son las condiciones y tendencias de los elementos clave de conservación del área protegida?',
-            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, cubierta terrestre, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos'
+            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, hábitats, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos'
         ],
         'module_info_Rating' => [
             'Evaluar: A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, los elementos del proceso PR7 - Gestión de los valores y elementos clave del área protegida con acciones específicas, PR 17 adaptación al cambio climático y PR18 - Gestión de las funciones/servicios de los ecosistemas)'
@@ -1701,8 +1701,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Creación o fortalecimiento de actividades productivas locales (producción de alimentos, pequeña agricultura, artesanía, etc.)',
-                'Contribución al desarrollo local (suministro de energía y/o agua, pequeñas empresas, carreteras entre pueblos, etc.)',
+                'XXXXXXXXX Local activities strengthened (food production, small-scale farming, small-scale fishing, handicraft, services for the protected area, etc.)',
+                'XXXXXXXXX Support to local business (power supply, water supply, commerce, roads between villages, boat sheds, boat parking, etc.)',
                 'Servicios de aprovisionamiento de los ecosistemas: (alimentos, materias primas, etc.)',
                 'Ingresos por turismo',
                 'Conflictos entre el hombre y la fauna silvestre',

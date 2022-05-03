@@ -8,7 +8,7 @@ class AreaDomination extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_area_domination';
 
-    public const MODULE_SCOPE = self::TERRESTRIAL;
+    public const MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 
     public function __construct(array $attributes = []) {
 

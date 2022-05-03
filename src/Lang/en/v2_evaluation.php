@@ -1634,7 +1634,7 @@ return [
         ]
     ],
 
-    'KeyConservationTrend'=> [
+    'KeyConservationTrend' => [
         'title' => 'Conditions and trends for the key conservation elements of the protected area',
         'fields' => [
             'Element' => 'Key conservation element',
@@ -1646,7 +1646,7 @@ return [
         'groups' => [
             'group0' => 'Conservation conditions and trends for key animal species',
             'group1' => 'Conservation conditions and trends for key plant species',
-            'group2' => 'Conservation conditions and trends for habitats, land cover-use–take',
+            'group2' => 'Conservation conditions and trends for habitats and related dimensions of land cover-use–take',
             'group3' => 'Situation and trends for threats to the protected area',
             'group4' => 'Adaptation to climate change',
             'group5' => 'Conservation conditions and trends for ecosystem services of the protected area '
@@ -1680,7 +1680,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'What are the conditions and trends for the key conservation elements of the protected area?',
-            'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, land cover, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all'
+            'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, habitats, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all'
         ],
         'module_info_Rating' => [
             'Evaluate: A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services)'
@@ -1701,8 +1701,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Creation or strenghening of local production activities (food production, small farming, handicraft,etc.)',
-                'contribution to local development (power and/or water supply, small business, roads between villages, etc.)',
+                'Local activities strengthened (food production, small-scale farming, small-scale fishing, handicraft, services for the protected area, etc.)',
+                'Support to local business (power supply, water supply, commerce, roads between villages, boat sheds, boat parking, etc.)',
                 'Tourism incomes',
                 'Human-wildlife conflict',
                 'Employments of locals',

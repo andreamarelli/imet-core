@@ -1633,7 +1633,7 @@ return [
         ]
     ],
 
-    'KeyConservationTrend'=> [
+    'KeyConservationTrend' => [
         'title' => 'Conditions et tendances des éléments clés de la conservation de l’aire protégée',
         'fields' => [
             'Element' => 'Critère — Concept mesuré — Variable',
@@ -1645,7 +1645,7 @@ return [
         'groups' => [
             'group0' => 'Conditions et tendances de conservation des espèces animales clés ',
             'group1' => 'Conditions et tendances de conservation des espèces de plantes clés ',
-            'group2' => 'Conditions et tendances de conservation des terres (couverture terrestre, utilisation et occupation des sols)',
+            'group2' => 'Conditions et tendances de conservation des habitats et des éléments connexes de la couverture terrestre, l’utilisation et l’occupation du sol',
             'group3' => 'Situation et tendances des menaces qui pèsent sur l’aire protégée',
             'group4' => 'Adaptation au changement climatique',
             'group5' => 'Conditions et tendances de conservation des services écosystémiques'
@@ -1679,7 +1679,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Quelles sont les conditions et les tendances pour les éléments clés de la conservation de l’aire protégée ?',
-            'Les principaux objectifs de gestion de l’aire protégée sont la conservation/restauration des valeurs naturelles et les avantages que les humains tirent de l’environnement naturel et du maintien du fonctionnement des écosystèmes (services écosystémiques). Les gestionnaires devraient assurer la conservation/restauration des valeurs clés (espèces animales et végétales, couverture terrestre, etc.) et le maintien des services écosystémiques d’approvisionnement, de régulation, de culture et de soutien, en garantissant les valeurs et avantages des aires protégées pour tous'
+            'Les principaux objectifs de gestion de l’aire protégée sont la conservation/restauration des valeurs naturelles et les avantages que les humains tirent de l’environnement naturel et du maintien du fonctionnement des écosystèmes (services écosystémiques). Les gestionnaires devraient assurer la conservation/restauration des valeurs clés (espèces animales et végétales, habitats, etc.) et le maintien des services écosystémiques d’approvisionnement, de régulation, de culture et de soutien, en garantissant les valeurs et avantages des aires protégées pour tous'
         ],
         'module_info_Rating' => [
             'Évaluer : A) les conditions et B) les tendances des éléments clés de conservation de l’aire protégée (sur la base des éléments du Contexte : C 1, divers éléments clés et C3, menaces, Processus : PR7 — Gestion des valeurs et des éléments clés de l’aire protégée, PR 17 Adaptation au changement climatique et PR18 — Gestion des services écosystémiques',
@@ -1700,8 +1700,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Création ou renforcement des activités locales de production (production alimentaire, petite agriculture, artisanat, etc.)',
-                'Contribution au développement communautaire (approvisionnement en électricité et/ou en eau, commerce, routes entre les villages, etc.)',
+                'XXXXXXXXX Local activities strengthened (food production, small-scale farming, small-scale fishing, handicraft, services for the protected area, etc.)',
+                'XXXXXXXXX Support to local business (power supply, water supply, commerce, roads between villages, boat sheds, boat parking, etc.)',
                 'Services écosystémiques d’approvisionnement (nourriture,matériaux, etc) ',
                 'Revenus touristiques',
                 'Conflit homme-faune',
