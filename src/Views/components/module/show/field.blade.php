@@ -12,7 +12,7 @@ $only_label = $only_label ?? false;
 
 
 {{-- ###### IMET ###### --}}
-@if(\Illuminate\Support\Str::contains($type, 'imet-core::'))
+@if(\Illuminate\Support\Str::startsWith($type, 'imet-core::'))
 
     @include('imet-core::components.show-types', [
        'type' => $type,
