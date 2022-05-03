@@ -44,6 +44,17 @@ return [
         'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
     ],
 
+    'IUCNDesignation' => [
+        'IA' => 'IA Strict Nature Reserve',
+        'IB' => 'IB Wilderness Area',
+        'II' => 'II National Park',
+        'III' => 'III Natural Monument or Feature',
+        'IV' => 'IV HABITAT/Species Management Area',
+        'V' => 'V Protected Seascape',
+        'VI' => 'VI Protected Area with Sustainable Use of Natural Resources',
+        'not_reported' => 'Not reported'
+    ],
+
     'MarineDesignation' => [
         'No-Entry zone',
         'No-Take zone',
