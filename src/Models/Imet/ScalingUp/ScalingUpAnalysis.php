@@ -10,7 +10,6 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 
 class ScalingUpAnalysis extends Model
 {
@@ -85,7 +84,7 @@ class ScalingUpAnalysis extends Model
         $protected_area = [];
         $categories = [];
         foreach ($form_ids as $form_id) {
-            $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id,  $show_original_names);
+            $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id, $show_original_names);
             $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
             if ($general_info['records'][0]) {
                 $categories[$form_id] = static::get_category_of_protected_area($general_info['records'][0]);
@@ -145,8 +144,6 @@ class ScalingUpAnalysis extends Model
                 }
 
                 $dopa_stats['all_data'][$name] = $indicators[0];
-            } else {
-                // return array( $protected_area, $indicators);
             }
         }
 
@@ -346,7 +343,6 @@ class ScalingUpAnalysis extends Model
         $data = [];
 
         //average contribution
-        $average_contribution = [];
         $valuesIndicators = [];
 
         $total_categories = [];
@@ -413,6 +409,7 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_overall_management_effectiveness_scores(array $form_ids): array
     {
+
         $time_start = microtime(true);
         $assessments = [];
         $synthetic_indicators_table = static::get_assessments($form_ids);
@@ -544,7 +541,6 @@ class ScalingUpAnalysis extends Model
                     'pr18' => []
                 ]
             ],
-
             'outputs' => [
                 'main' => [
                     'op1' => [],
@@ -590,32 +586,35 @@ class ScalingUpAnalysis extends Model
 
         $filtered = static::filtered_indicators_and_round_values($form_ids, $type, $indicators);
         $sort_keys = [];
-
-        //dd($filtered);
         //loop the each imet record sorted and get pa name
         //and merge it with the table
         foreach ($filtered as $id => $values) {
             $pa = static::getCustomNames($id);
             $protected_area = $pa->name;
-            $i = 0;
             unset($values['avg']);
             $corrected_values = [];
 
+            $indicators_divide_length = 0;
             foreach ($values as $v => $value) {
+                if (isset($value)) {
+                    $indicators_divide_length++;
+                }
+            }
+
+            foreach ($values as $v => $value) {
+
                 if ($type === "process") {
                     $name = static::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
                 } else {
                     $name = static::indicator_label($v, 'imet-core::analysis_report.assessment.');
                 }
 
-                $correction_value = static::values_correction($v, (float)$value);
+                $correction_value = static::ranking_values_correction(static::values_correction($v, $value), $indicators_divide_length, $type, $v);
                 $ranking['legends'][$v] = $name;
                 $ranking_values[$name][] = $corrected_values[] = $correction_value;
-                //$sort_keys[$i] = !array_key_exists($i, $sort_keys) ? $correction_value : $sort_keys[$i] + $correction_value;
 
             }
             $sort_keys[] = array_sum($corrected_values);
-            $i++;
             $ranking['xAxis'][] = $protected_area;
         }
         arsort($sort_keys);
@@ -624,22 +623,15 @@ class ScalingUpAnalysis extends Model
         foreach ($ranking_values as $name => $ranking_value) {
             $new_ranking['xAxis'] = [];
             foreach ($sort_keys as $k => $val) {
-                $new_ranking['values'][$name][] = $ranking_value[$k];
+                if (isset($ranking_value[$k])) {
+                    $new_ranking['values'][$name][] = $ranking_value[$k];
+                }
                 $new_ranking['xAxis'][] = $ranking['xAxis'][$k];
             }
         }
 
         $new_ranking['legends'] = $ranking['legends'];
         return $new_ranking;
-    }
-
-    public static function radar_indicators()
-    {
-        //ranking index vars
-        $ranking_values = [];
-        $ranking = ['values' => [], 'legends' => [], 'xAxis' => []];
-
-
     }
 
     /**
@@ -672,20 +664,25 @@ class ScalingUpAnalysis extends Model
         $valuesIndicators = [];
 
         // radar
-        $analysis_diagrams_protected_areas = ['values' => [], 'indicators' => []];
+        $radar_protected_areas = ['values' => []];
         $indicators = [];
-
-        // generic use
-        $radar_negative_indicators = ["c2", "c3", "oc2", "oc3"];
+        $upperLimit = [];
+        $lowerLimit = [];
+        $radar_negative_indicators = ["c2", "oc2", "oc3"];
+        $radar_zero_negative_indicators = ["c3"];
         $radar_indicators_for_negative = [];
+        $radar_indicators_zero_negative = [];
+        $radar_average = [];
 
         $filtered = static::filtered_indicators_and_round_values($form_ids, $custom_type, $table_indicators);
 
         $idx = 0;
         $ranking = static::ranking_indicators($form_ids, $custom_type, $table_indicators);
+
         //loop the each imet record sorted and get pa name
         //and merge it with the table
         foreach ($filtered as $id => $values) {
+
             $pa = static::getCustomNames($id);
             $protected_area = $pa->name;
             $color = $pa->color;
@@ -707,13 +704,16 @@ class ScalingUpAnalysis extends Model
                     if (in_array($v, $radar_negative_indicators)) {
                         $radar_indicators_for_negative[] = $i;
                         $correction_value = static::values_correction($v, (float)$value);
+                    } else if (in_array($v, $radar_zero_negative_indicators)) {
+                        $radar_indicators_zero_negative[] = $i;
+                        $correction_value = static::values_correction($v, (float)$value);
                     }
 
-                    $tables[$type][$idx][$v] = $value;
-
-                    $data[$type][$v][] = $valuesIndicators[$v][] = $correction_value;
-                    $analysis_diagrams_protected_areas['values'][$protected_area][] = $value;
-                    $analysis_diagrams_protected_areas['values'][$protected_area]['color'] = $color;
+                    $tables[$type][$idx][$v] = $valuesIndicators[$v][] = $value;
+                    $radar_average[$v] = array_key_exists($v, $radar_average) ? $radar_average[$v] + $value : $value;
+                    $data[$type][$v][] = $correction_value;
+                    $radar_protected_areas['values'][$protected_area][] = $value;
+                    $radar_protected_areas['values'][$protected_area]['color'] = $color;
                     $i++;
                 }
             }
@@ -722,6 +722,7 @@ class ScalingUpAnalysis extends Model
 
         $averages = static::average_contribution_calculations($data[$type], $colors[$type], $options, 'imet-core::analysis_report.assessment.', $custom_type);
 
+        // radar upper and lower limit
         foreach ($valuesIndicators as $k => $v) {
             $upperLimit[$k] = max($v);
             $lowerLimit[$k] = min($v);
@@ -729,20 +730,28 @@ class ScalingUpAnalysis extends Model
 
         $upperLimit['lineStyle'] = 'dashed';
         $upperLimit['color'] = 'green';
+
         $lowerLimit['lineStyle'] = 'dashed';
         $lowerLimit['color'] = 'yellow';
-        // end average indicator
 
         $analysis_diagrams_protected_areas['indicators'] = $indicators;
+        //dd($radar_average, count($form_ids));
+        foreach ($radar_average as $k => $item) {
+
+            $radar_protected_areas['values']['Average'][] = static::round_number($item / count($form_ids));
+        }
+        $radar_protected_areas['values']['Average']['color'] = 'red';
+        $radar_protected_areas['values']['Average']['legend_selected'] = true;
 
         return ['table' => $tables[$type], 'ranking' => $ranking,
             'average_contribution' => $averages['average_contribution'],
             'radar' => [
                 'radar_indicators_for_negative' => $radar_indicators_for_negative,
-                'values' => array_merge($analysis_diagrams_protected_areas['values'], [
-                    'Average' => array_merge($averages['average'], ['color' => 'red', 'legend_selected' => true]),
+                'radar_indicators_zero_negative' => $radar_indicators_zero_negative,
+                'values' => array_merge($radar_protected_areas['values'], [
                     'upper limit' => $upperLimit,
-                    'lower limit' => $lowerLimit]), 'indicators' => $analysis_diagrams_protected_areas['indicators']
+                    'lower limit' => $lowerLimit]),
+                'indicators' => $analysis_diagrams_protected_areas['indicators']
             ],
         ];
     }
@@ -794,8 +803,7 @@ class ScalingUpAnalysis extends Model
      * @param array $assessment
      * @return array|array[]|\array[][]
      */
-    private
-    static function get_overall_ranking($form_ids, array $assessment = []): array
+    private static function get_overall_ranking($form_ids, array $assessment = []): array
     {
         $indicators = [
             'context' => 0,
@@ -822,7 +830,6 @@ class ScalingUpAnalysis extends Model
                 $indicators[$ind] = $value;
             }
 
-            //$totalValue[$name] = $total;
             $percent['xAxis'][] = $name;
             $collect_values_for_sorting = [];
             foreach ($indicators as $ind => $indicator) {
@@ -941,8 +948,7 @@ class ScalingUpAnalysis extends Model
      * @param $form_ids
      * @return array
      */
-    public
-    static function getTotalCarbon($form_ids): array
+    public static function getTotalCarbon($form_ids): array
     {
         $dopa_stats['diagram'] = ['values' => [],
             'keys' => []];
@@ -971,10 +977,10 @@ class ScalingUpAnalysis extends Model
 
     /**
      * @param $form_ids
+     * @param bool $sorting
      * @return array
      */
-    public
-    static function get_dopa_pa_all_indicators($form_ids, $sorting = true): array
+    public static function get_dopa_pa_all_indicators($form_ids, bool $sorting = true): array
     {
         $dopa_stats = [];
         $api_available = DOPA::apiAvailable();
@@ -1004,8 +1010,7 @@ class ScalingUpAnalysis extends Model
      * @param array $assessments
      * @return array
      */
-    public
-    static function get_grouping_analysis($parameters, array $assessments = []): array
+    public static function get_grouping_analysis($parameters, array $assessments = []): array
     {
         $groups = [];
         $form_ids = [];
@@ -1103,12 +1108,10 @@ class ScalingUpAnalysis extends Model
                     $group_color = $i;
                     $average[$group[1]]['color'] = $group[2];
                 } else {
-//                    $average[$group[1]][$indi] = $result;
                     $group_color = $group[0] - 1;
                     $average[$group[1]]['color'] = $colors[$group_color] ?? $colors[9];
                 }
 
-                // $average[$group[1]]['color'] = $colors[$group_color] ?? $colors[9];
                 $average[$group[1]]['legend_selected'] = true;
                 $i++;
             }
@@ -1139,15 +1142,14 @@ class ScalingUpAnalysis extends Model
      * @param $form_ids
      * @return array
      */
-    public
-    static function get_dopa_pa_ecoregions_terrestial_stats($form_ids): array
+    public static function get_dopa_pa_ecoregions_terrestial_stats($form_ids): array
     {
         $dopa_pa_ecoregions_stats = [];
         $api_available = DOPA::apiAvailable();
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = static::getCustomNames($form_id);
-                $areas = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);//DOPA::get_country_ecoregions_stats($protected_area['Country']);//DOPA::get_wdpa_all_inds($protected_area['wdpa_id']);//
+                $areas = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);
                 $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($areas, function ($value) {
                     return !$value->marine;
                 });
@@ -1166,8 +1168,7 @@ class ScalingUpAnalysis extends Model
      * @param $form_ids
      * @return array
      */
-    public
-    static function get_dopa_pa_ecoregions_marine_stats($form_ids): array
+    public static function get_dopa_pa_ecoregions_marine_stats($form_ids): array
     {
         $dopa_pa_ecoregions_stats = [];
         $api_available = DOPA::apiAvailable();
@@ -1192,8 +1193,7 @@ class ScalingUpAnalysis extends Model
      * @param $form_ids
      * @return array
      */
-    public
-    static function get_dopa_copernicus_land_cover_stats($form_ids): array
+    public static function get_dopa_copernicus_land_cover_stats($form_ids): array
     {
         $dopa_stats = [];
         $api_available = DOPA::apiAvailable();
@@ -1215,8 +1215,7 @@ class ScalingUpAnalysis extends Model
      * @param $form_ids
      * @return array
      */
-    public
-    static function get_dopa_wdpa_indicators($form_ids): array
+    public static function get_dopa_wdpa_indicators($form_ids): array
     {
         $dopa_stats = [];
         $api_available = DOPA::apiAvailable();
@@ -1239,8 +1238,7 @@ class ScalingUpAnalysis extends Model
      * @return array
      * @throws Exception
      */
-    public
-    static function get_dopa_country_indicators($form_ids): array
+    public static function get_dopa_country_indicators($form_ids): array
     {
         $dopa_stats = [];
         $api_available = DOPA::apiAvailable();
@@ -1265,8 +1263,7 @@ class ScalingUpAnalysis extends Model
      * @param $percentile
      * @return float|int|mixed
      */
-    private
-    static function get_percentile($array, $percentile)
+    private static function get_percentile($array, $percentile)
     {
         sort($array);
         $result = 0;
@@ -1289,10 +1286,8 @@ class ScalingUpAnalysis extends Model
      * @param bool $show_original_names
      * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public
-    static function get_protected_area_data($form_id, $show_original_names = false)
+    public static function get_protected_area_data($form_id, $show_original_names = false)
     {
-
         if ($show_original_names) {
             $protected_area = Imet::where('FormID', $form_id)->get();
             if (count($protected_area)) {
@@ -1304,7 +1299,6 @@ class ScalingUpAnalysis extends Model
                 return $protected_area;
             }
         }
-
 
         return null;
     }
@@ -1390,6 +1384,7 @@ class ScalingUpAnalysis extends Model
         $filtered = [];
         foreach ($form_ids as $key => $form_id) {
             $results[$form_id] = static::get_sub_indicators_by_context($form_id, $type);
+
             if (count($indicators)) {
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
@@ -1409,13 +1404,40 @@ class ScalingUpAnalysis extends Model
     /**
      * @param string $indicator
      * @param $value
+     * @return float
+     */
+    private static function ranking_values_correction($value, $length_to_divide, $type = null, $v = null): float
+    {
+        if ($value === 0) {
+            return 0;
+        }
+
+        $process_indicators = [
+            'pr15_16' => 2,
+            'pr10_12' => 3,
+            'pr13_14' => 2,
+            'pr17_18' => 2,
+            'pr1_6' => 6,
+            'pr7_9' => 3
+        ];
+
+        if ($v && isset($process_indicators[$v])) {
+            return static::round_number(($value * $process_indicators[$v]) / 18);
+        }
+
+        return static::round_number($value / $length_to_divide);
+    }
+
+    /**
+     * @param string $indicator
+     * @param $value
      * @return float|int
      */
     private static function values_correction(string $indicator, $value)
     {
         if ($indicator === "c3") {
-            return static::round_number((100 + $value) / 3);
-        } else if (in_array($indicator, ["c2", "oc2"])) {
+            return static::round_number((100 + $value)); //todo remove it and check context
+        } else if (in_array($indicator, ["c2", "oc2", "oc3"])) {
             return static::round_number(50 + ((float)$value / 2));
         }
         return static::round_number($value);
@@ -1548,7 +1570,7 @@ class ScalingUpAnalysis extends Model
             $average_value = count($values) ? static::round_number(array_sum($values) / count($values)) : 0;//check
             $average[] = $average_value;
             $average_contribution['data']['Average'][$i] = ["value" => $average_value, "upper limit" => [$percentile_10, $percentile_90],
-                "label" => trans('imet-core::v2_common.assessment.' . $v),"color"=>"#000000", "itemStyle" => ["color" => $colors],
+                "label" => trans('imet-core::v2_common.assessment.' . $v), "color" => "#000000", "itemStyle" => ["color" => $colors],
             ];
             if (is_numeric($index)) {
                 $average_contribution['data']['Average'][$i]["indicator"] = trans($label . ($v), []);

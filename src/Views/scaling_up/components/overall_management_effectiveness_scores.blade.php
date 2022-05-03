@@ -103,6 +103,7 @@
                                                                                        :values="data_elements.props"
                                                                                        :columns="container.props.config.performance_diagram.columns"></datatable_interact_with_radar>
 
+
                                                     </template>
                                                 </container_actions>
                                             </div>
@@ -129,6 +130,11 @@
                                                             :label_axis_y2="''"
                                                             :values='data_elements.props'
                                                         ></scatter>
+                                                        <div class="row mb-3 mt-2" style="font-size: 12px;">
+                                                            <div class="col-sm align-self-center">
+                                                                * {{ trans("imet-core::analysis_report.size_of_square") }}
+                                                            </div>
+                                                        </div>
                                                     </template>
                                                 </container_actions>
                                             </div>
