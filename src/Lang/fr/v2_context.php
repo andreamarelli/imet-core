@@ -263,16 +263,17 @@ return [
     'Sectors' => [
         'title' => 'XXXXXXXXX Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
-            'Name' => 'Aire protégée ou nom de secteur',
-            'UnderControlArea' => 'Km² sous contrôle',
+            'Name' => 'Secteur',
+            'TerrestrialOrMarine' => 'XXXXXXXXX Terrestrial or marine?',
+            'UnderControlArea' => 'Km² de surface couverte par la patrouille',
             'UnderControlPatrolKm' => 'Km de patrouille',
-            'UnderControlPatrolManDay' => 'Homme * jours de patrouille',
+            'UnderControlPatrolManDay' => 'Jours de patrouille',
             'SectorMap' => 'Carte de zonage',
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
         'area_percentage'               => '% de la surface',
-        'average_time'                  => 'Moyenne homme * j * Km² de secteur'
+        'average_time'                  => 'Patrouille moyenne * j * Km² de secteur'
     ],
 
     'TerritorialReferenceContext' => [

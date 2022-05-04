@@ -264,15 +264,16 @@ return [
         'title' => 'Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
             'Name' => 'Sector',
-            'UnderControlArea' => 'Km² under protection',
+            'TerrestrialOrMarine' => 'Terrestrial or marine?',
+            'UnderControlArea' => 'Km² of area covered by patrol',
             'UnderControlPatrolKm' => 'Km of patrols',
-            'UnderControlPatrolManDay' => 'Ranger * day of patrol',
+            'UnderControlPatrolManDay' => 'Day of patrol',
             'SectorMap' => 'Zoning maps',
             'Source' => 'Source',
             'Observations' => 'Notes',
         ],
         'area_percentage'               => '% of the area',
-        'average_time'                  => 'Average ranger * d * km² of the sector'
+        'average_time'                  => 'Average patrol * d * km² of the sector'
     ],
 
     'TerritorialReferenceContext' => [

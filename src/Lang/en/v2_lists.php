@@ -117,6 +117,11 @@ return [
         'Other'
     ],
 
+    'TerrestrialOrMarine' => [
+        'terrestrial' => 'Terrestrial',
+        'marine' => 'Marine',
+    ],
+
     'Designation' => [
         'ASEAN Heritage Parks (ASEAN)',
         'Alliance for Zero Extinction Sites (AZE)',
