@@ -523,9 +523,9 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Ecossistema, habitats, ocupação do solo - utilização do solo - seleccionados como indicadores para a área protegida e que terão de ser monitorizados ao longo do tempo',
+        'title' => 'Habitats seleccionados como indicadores para a área protegida e que terão de ser monitorizados ao longo do tempo',
         'fields' => [
-            'EcosystemType' => 'Tipo de ecossistema ou habitat',
+            'EcosystemType' => 'Tipo de habitat',
             'Value' => 'Descricao do estado ou valor',
             'Area' => 'Superficie da area (ha)',
             'DesiredConservationStatus' => 'Estado de conservação favorável',
@@ -534,7 +534,7 @@ return [
             'Sectors' => 'sectores',
             'Comments' => 'Commentários/Fonte'
         ],
-        'module_info' => 'Nota: Estado de conservação favorável:<br />A partir de Natura 2000, o estado de conservação de um habitat natural será considerado "favorável" quando:<ul><li>a sua área de distribuição alcance natural e as áreas que cobre dentro dessa área alcance são estáveis ou estão a aumentar e</li><li>a estrutura e funções específicas que são necessárias para a sua manutenção a longo prazo existem e são susceptíveis de continuar a existir num futuro previsível</li></ul>Classificação: Seleccionar e avaliar os parâmetros mais importantes dos ecossistemas e habitats terrestres e de água doce e habitats da área protegida.<br /> <b>Note</b>:A avaliação do habitat ainda está a emergir como disciplina, uma vez que é altamente complexa. A classificação prevê a seguinte divisão de território: Bioma, Ecorregião, Ecossistema, Habitat. As características/valores do habitat podem ser avaliados como:<ul> <li>i) sob ameaça de extinção (dentro da sua área de distribuição,</li> <li>ii) ter área distribuição um alcance natural reduzida,</li> <li>iii) em declíneo,</li> <li>iv) um exemplo notável de características específicas, etc.</li> </ul> A avaliação de habitats também pode ser realizada na perspectiva de:<ul> <li>i) reproduccao,</li> <li>ii) nutricao,</li> <li>iii) protecção de espécies, etc.</li> </ul> <br /> <b>Fiabilidade da informacao</b> <ul> <li>1: Baixa<li>2: Media<li>3: Alta</li> </ul>',
+        'module_info' => 'Nota: Estado de conservação favorável:<br />A partir de Natura 2000, o estado de conservação de um habitat natural será considerado "favorável" quando:<ul><li>a sua área de distribuição alcance natural e as áreas que cobre dentro dessa área alcance são estáveis ou estão a aumentar e</li><li>a estrutura e funções específicas que são necessárias para a sua manutenção a longo prazo existem e são susceptíveis de continuar a existir num futuro previsível</li></ul>Classificação: Seleccionar e avaliar os parâmetros mais importantes dos ecossistemas e habitats terrestres e marinhos da área protegida.<br /> <b>Note</b>:A avaliação do habitat ainda está a emergir como disciplina, uma vez que é altamente complexa. A classificação prevê a seguinte divisão de território: Bioma, Ecorregião, Ecossistema, Habitat. As características/valores do habitat podem ser avaliados como:<ul> <li>i) sob ameaça de extinção (dentro da sua área de distribuição,</li> <li>ii) ter área distribuição um alcance natural reduzida,</li> <li>iii) em declíneo,</li> <li>iv) um exemplo notável de características específicas, etc.</li> </ul> A avaliação de habitats também pode ser realizada na perspectiva de:<ul> <li>i) reproduccao,</li> <li>ii) nutricao,</li> <li>iii) protecção de espécies, etc.</li> </ul> <br /> <b>Fiabilidade da informacao</b> <ul> <li>1: Baixa<li>2: Media<li>3: Alta</li> </ul>',
         'warning_on_save' =>
             'Qualquer <br/> modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'

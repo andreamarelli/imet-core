@@ -11,6 +11,27 @@ ALTER TABLE imet.context_territorial_reference_context ADD COLUMN IF NOT EXISTS 
 ALTER TABLE imet.context_territorial_reference_context ADD COLUMN IF NOT EXISTS "SpillOverEvalDistance0_500" numeric;
 ALTER TABLE imet.context_territorial_reference_context ADD COLUMN IF NOT EXISTS "SpillOverEvalDistance500_1000" numeric;
 ALTER TABLE imet.context_territorial_reference_context ADD COLUMN IF NOT EXISTS "SpillOverEvalDistance200_3000" numeric;
+
+INSERT INTO imet.context_habitats("FormID", "UpdateBy", "UpdateDate", "EcosystemType", "Value", "Area", "Comments")
+SELECT "FormID", "UpdateBy", "UpdateDate",
+       "HabitatType" as "EcosystemType",
+       "Presence" as "Value",
+       "Area",
+       "Source" || '. ' || "Description" as "Comments"
+FROM imet.context_habitats_marine
+WHERE "FormID" in (SELECT "FormID" from imet.imet_form WHERE version = 'v2');
+DELETE FROM imet.context_habitats_marine WHERE "FormID" in (SELECT "FormID" from imet.imet_form WHERE version = 'v2');
+
+INSERT INTO imet.context_habitats("FormID", "UpdateBy", "UpdateDate", "EcosystemType", "Area", "DesiredConservationStatus", "Comments")
+SELECT "FormID", "UpdateBy", "UpdateDate",
+       "CoverType" as "EcosystemType",
+       "HistoricalArea" as "Area",
+       "ConservationStatusArea" as "DesiredConservationStatus",
+       "Notes" as "Comments"
+FROM imet.context_land_cover
+WHERE "FormID" in (SELECT "FormID" from imet.imet_form WHERE version = 'v2');
+DELETE FROM imet.context_land_cover WHERE "FormID" in (SELECT "FormID" from imet.imet_form WHERE version = 'v2');
+
 UPDATE imet.eval_management_activities SET group_key = 'group2' WHERE group_key = 'group3';
 UPDATE imet.eval_management_activities SET group_key = 'group3' WHERE group_key = 'group4';
 UPDATE imet.eval_management_activities SET group_key = 'group4' WHERE group_key = 'group5';
@@ -19,7 +40,7 @@ UPDATE imet.eval_management_activities SET group_key = 'group5' WHERE group_key 
 ALTER TABLE imet.eval_law_enforcement_implementation ADD COLUMN IF NOT EXISTS "group_key" varchar(50);
 UPDATE imet.eval_law_enforcement_implementation SET group_key = 'group0';
 
-CREATE TABLE  IF NOT EXISTS imet.eval_area_domination_mpa
+CREATE TABLE IF NOT EXISTS imet.eval_area_domination_mpa
 (
     id serial primary key,
     "FormID" integer

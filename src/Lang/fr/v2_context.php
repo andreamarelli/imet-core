@@ -523,9 +523,9 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'L’écosystème et les habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
+        'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
-            'EcosystemType' => 'Type d\'écosystème ou d\'habitat',
+            'EcosystemType' => 'Type d\'habitat',
             'Value' => 'Description de l’état ou de la valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',
@@ -534,7 +534,7 @@ return [
             'Sectors' => 'Secteurs',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' =>'État de conservation favorable : Selon Natura 2000, l’état de conservation d’un habitat naturel est considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et d\'eau douce de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline très complexe. La classification prévoit la division de territoire suivante : Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme : <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour : <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
+        'module_info' =>'État de conservation favorable : Selon Natura 2000, l’état de conservation d’un habitat naturel est considéré comme « favorable » lorsque:<ul><li>son aire de répartition naturelle et les zones qu’il couvre à l’intérieur de cette aire sont stables ou en augmentation, et</li><li>la structure et les fonctions spécifiques qui sont nécessaires à son maintien à long terme existent et sont susceptibles de continuer à exister dans un avenir prévisible</li></ul>Sur la base de plusieurs paramètres relatifs aux habitats (externe = irremplaçabilité et internes = spécificités de l\'aire protégée), le gestionnaire détermine les spécificités des habitats terrestres et marine de l\'aire protégée qui devront faire l\'objet d\'un suivi dans le temps.<br /> <b>Note</b>: l\'évaluation des écosystemes et habitats est une discipline très complexe. La classification prévoit la division de territoire suivante : Biome, Ecorégion, Ecosystème, Habitat. Les caractéristiques de l\'habitat / valeurs peuvent être évaluées comme : <ul> <li>i) sous la menace d\'extinction (au sein de leur aire de répartition naturelle),</li> <li>ii) ayant une aire de répartition naturelle réduite,</li> <li>iii) en déclin,</li> <li>iv) un exemple exceptionnel de caractéristiques spécifiques, etc.</li> </ul> Les Caractéristiques / Valeurs des écosystèmes et habitats peuvent être estimées comme spécifique pour : <ul> <li>i) la reproduction,</li> <li>ii) la nutrition,</li> <li>iii) la protection des espèces, etc.</li> </ul>',
         'warning_on_save' =>
             'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'

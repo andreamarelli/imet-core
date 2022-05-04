@@ -523,9 +523,9 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Ecosistema, hábitats, utilización de la cubierta terrestre seleccionados como indicadores del área protegida y que deberán ser monitoreados a lo largo del tiempo.',
+        'title' => 'Hábitats seleccionados como indicadores del área protegida y que deberán ser monitoreados a lo largo del tiempo.',
         'fields' => [
-            'EcosystemType' => 'Tipo de ecosistema o hábitat',
+            'EcosystemType' => 'Tipo de hábitat',
             'Value' => 'Descripción del estado o valor',
             'Area' => 'Superficie (ha)',
             'DesiredConservationStatus' => 'Estado de conservación favorable',
@@ -534,7 +534,7 @@ return [
             'Sectors' => 'Sectores',
             'Comments' => 'Comentarios/Fuente'
         ],
-        'module_info' => 'Nota: Estado de conservación favorable:<br /> Según Natura 2000, el estado de conservación de un hábitat natural se considerará "favorable" cuando:<ul><li><li>su rango natural y las áreas que cubre dentro de ese rango son estables o están en aumento, y</li><li>la estructura y las funciones específicas necesarias para su mantenimiento a largo plazo existen y es probable que sigan existiendo en el futuro previsible</li></ul>Clasificación: Seleccionar y evaluar los parámetros más importantes relacionados con el ecosistema y el hábitat de los ecosistemas y hábitats terrestres y de agua dulce del área protegida.<br /> <b>Nota</b>: La evaluación de hábitats sigue emergiendo como una disciplina, ya que es altamente compleja. La clasificación prevé la siguiente división del territorio: Bioma, Ecorregión, Ecosistema, Hábitat. Las características/valores de los hábitats pueden evaluarse como: <ul> <li>i) bajo amenaza de extinción (dentro de su área de distribución natural),</li> <li>ii) tener un alcance natural reducido,</li> <li>iii) en declive,</li> <li>iv) un ejemplo destacado de características específicas, etc.</li> </ul> La evaluación de los hábitats también puede realizarse desde la perspectiva de: <ul> <li>i) reproducción,</li> <li>ii) nutrición,</li> <li>iii) protección de las especies, etc.</li> </ul> <br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
+        'module_info' => 'Nota: Estado de conservación favorable:<br /> Según Natura 2000, el estado de conservación de un hábitat natural se considerará "favorable" cuando:<ul><li><li>su rango natural y las áreas que cubre dentro de ese rango son estables o están en aumento, y</li><li>la estructura y las funciones específicas necesarias para su mantenimiento a largo plazo existen y es probable que sigan existiendo en el futuro previsible</li></ul>Clasificación: Seleccionar y evaluar los parámetros más importantes relacionados con el ecosistema y el hábitat de los ecosistemas y hábitats terrestres y marinos del área protegida.<br /> <b>Nota</b>: La evaluación de hábitats sigue emergiendo como una disciplina, ya que es altamente compleja. La clasificación prevé la siguiente división del territorio: Bioma, Ecorregión, Ecosistema, Hábitat. Las características/valores de los hábitats pueden evaluarse como: <ul> <li>i) bajo amenaza de extinción (dentro de su área de distribución natural),</li> <li>ii) tener un alcance natural reducido,</li> <li>iii) en declive,</li> <li>iv) un ejemplo destacado de características específicas, etc.</li> </ul> La evaluación de los hábitats también puede realizarse desde la perspectiva de: <ul> <li>i) reproducción,</li> <li>ii) nutrición,</li> <li>iii) protección de las especies, etc.</li> </ul> <br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
         'warning_on_save' =>
             'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
