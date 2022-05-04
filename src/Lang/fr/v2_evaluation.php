@@ -88,10 +88,6 @@ return [
             'IncludeInStatistics' => 'À prioriser dans la gestion',
             'Comments' => 'Commentaires/Explication',
         ],
-        'groups' => [
-            'group0' => 'Identifier les habitats les plus importants de l’aire protégée',
-            'group1' => 'Identifier les éléments les plus importants de la couverture terrestre, l’utilisation et l’occupation du sol à l’intérieur et à l’extérieur de l’aire protégée',
-        ],
         'ratingLegend' => [
             'EvaluationScore' => [
                 '0' => 'Pas d’intégration',

@@ -15,7 +15,7 @@ class Habitats extends Modules\Component\ImetModule
         $this->module_code = 'CTX 4.3';
         $this->module_title = trans('imet-core::v2_context.Habitats.title');
         $this->module_fields = [
-            ['name' => 'EcosystemType',             'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.EcosystemType')],
+            ['name' => 'EcosystemType',             'type' => 'suggestion-ImetV2_Habitats',   'label' => trans('imet-core::v2_context.Habitats.fields.EcosystemType')],
             ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.Value')],
             ['name' => 'Area',                      'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.Area')],
             ['name' => 'DesiredConservationStatus', 'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.DesiredConservationStatus')],

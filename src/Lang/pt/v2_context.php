@@ -540,45 +540,6 @@ return [
             módulos de avaliação (se já codificados): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
-    'HabitatsMarine' => [
-        'title' => 'Presença, extensão e distribuição dos principais habitats marinhos',
-        'fields' => [
-            'HabitatType' => 'Habitats and stratus',
-            'Presence' => 'Presença',
-            'Area' => 'Extencao do habitat (estimado, em ha)',
-            'Fragmentation' => 'Fragmentação do habitat',
-            'Source' => 'Fonte',
-            'Description' => 'Descrição',
-        ],
-        'predefined_values' => [
-            'Mangais',
-            'Algas marinhas',
-            'Recifes de Coral',
-            'Pântanos de maré, pântanos costeiros',
-            'Ecossistema de águas marinhas costeiras',
-            'Estrato pelágico',
-            'Estrato de Abyssal',
-            'Estrato bentónico',
-            'Mar aberto'
-        ],
-        'module_info' => '<i><span style="cor: Azul;">Indicateur</span></i>: Habitat marinho com caracteristicas importantes e significativas da área protegida, Cobertura da Terra e ocupacao<br /> <i><span style="cor:Azul;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Presenca, extencao e distribuicao de habitats marinhos chave</span></b>'
-    ],
-
-    'LandCover' => [
-        'title' => 'Manutenção da cobertura do solo - utilização do solo (ou terreno físico - floresta, água, estradas, etc.) [para valores agregados ver ponto CTX 2.2]',
-        'fields' => [
-            'CoverType' => 'cobertura do solo - categorias de utilização do solo',
-            'HistoricalArea' => 'superficie (ha)',
-            'ConservationStatusArea' => 'Estado de conservação favorável (ha)',
-            'Notes' => 'Fonte / Observação',
-            'HistoricalAreaData' => 'Dado de referencia',
-        ],
-        'module_info' => 'Rating: Avaliacao dos elementos mais importantes  cobertura do solo - utilização do solo para a gestao da area protegida<br /> cobertura do solo - categorias de utilização do solo(exemple: floresta, savana, água, /plantacoes, moradias, Estradas, etc.)',
-        'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
-            módulos de avaliação (se já codificados): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
-    ],
-
     'MenacesPressions' => [
         'title' => 'Pressoes sobre e ameaças',
         'fields' => [

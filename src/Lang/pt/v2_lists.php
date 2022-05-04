@@ -122,7 +122,7 @@ return [
         'marine' => 'Marítima',
     ],
 
-    'Designation' => [
+    'SpecialDesignation' => [
         'Parques patrimoniais de ASEAN (ASEAN)',
         'Sítios de Aliança de Zero Extinção (AZE)',
         'Convençãocao de Barcelona',
@@ -141,23 +141,41 @@ return [
         'Sítios de Património Mundial'
     ],
 
-    'LandCoverUseTake' => [
-        'Floresta',
-        'Savana arbustiva',
-        'Savana Herbácea',
-        'Pastagens',
-        'Água',
-        'Culturas/Plantações',
-        'Moradias',
-        'Estradas'
-    ],
-
     'SpeciesReliability' => [
         'Alta', 'Média', 'Pobre'
     ],
 
-    'MarineHabitatsPresence' => [
-        'Presente', 'Ausente', 'Dominante'
+    'Habitats' => [
+        # Forest
+        'Forest temperate',
+        'Forest boreal',
+        'Subtropical/tropical moist lowland',
+        'Subtropical/tropical moist montane',
+        'Subtropical/tropical dry',
+        'Subtropical/tropical swamp',
+        # Savanna
+        'Savanna-moist',
+        'Savanna-dry',
+        # Shrubland
+        'Shrubland-Subtropical/tropical dry',
+        'Shrubland-Subtropical/tropical moist',
+        'Shrubland-Subtropical/tropical high altitude',
+        'Shrubland temperate',
+        'Shrubland boreal',
+        # Grassland
+        'Grassland Temperate',
+        'Grassland subtropical/tropical high altitude',
+        'Grassland subtropical/tropical dry',
+        # Wetlands
+        'Wetlands (inland)-Permanent freshwater lakes',
+        'Wetlands (inland)',
+        'Wetlands (inland)-Tundra wetlands',
+        # Rocky Areas, Desert
+        'Desert – Temperate',
+        'Desert – Cold',
+        'Desert - Hot',
+        # Artificial
+        'Plantations'
     ],
 
     'EcosystemServicesImportance' => [

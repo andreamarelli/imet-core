@@ -88,10 +88,6 @@ return [
             'IncludeInStatistics' => 'To prioritise in management',
             'Comments' => 'Comments/Explanation',
         ],
-        'groups' => [
-            'group0' => 'Identify the most important habitats of the protected area',
-            'group1' => 'Identify the most important elements of land cover, land-change and land-take inside and outside the protected area',
-        ],
         'ratingLegend' => [
             'EvaluationScore' => [
                 '0' => 'no integration',

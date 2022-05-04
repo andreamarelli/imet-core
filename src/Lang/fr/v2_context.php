@@ -540,45 +540,6 @@ return [
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
-    'HabitatsMarine' => [
-        'title' => 'Présence, étendue et distribution des habitats et stratus marins clés',
-        'fields' => [
-            'HabitatType' => 'Habitats et stratus',
-            'Presence' => 'Présence',
-            'Area' => 'Etendue de l\'habitat (estimation ha)',
-            'Fragmentation' => 'Fragmentation de l\'habitat',
-            'Source' => 'Source',
-            'Description' => 'Descriptif',
-        ],
-        'predefined_values' => [
-            'Mangroves',
-            'Algues',
-            'Barrière corallienne',
-            'Marais maritimes, marais littoraux',
-            'Ecosystème d\'eaux marines côtières',
-            'Stratus pélagique',
-            'Stratus abyssal',
-            'Stratus benthique',
-            'Mer ouverte'
-        ],
-        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Habitats marins à caractéristiques importantes et significatives de l’aire protégée, Couverture et Utilisation des sols (Land cover et Land use)<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Présence, étendue et distribution des habitats et stratus marins clés</span></b>'
-    ],
-
-    'LandCover' => [
-        'title' => 'Gestion de la couverture, de l’utilisation et de l’occupation des terres [pour les valeurs globales, voir le point 2.2] choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi au fil du temps',
-        'fields' => [
-            'CoverType' => 'Catégories',
-            'HistoricalArea' => 'Surface (ha)',
-            'ConservationStatusArea' => 'Etat de conservation souhaité (ha)',
-            'Notes' => 'Source / Observations',
-            'HistoricalAreaData' => 'Date de ligne da base',
-        ],
-        'module_info' => 'Maintien de la couverture terrestre (land cover), utilisation des sols (land use) et occupation des sols (land take) [valeurs totales voir point CTX 2.2]</span></b><br /> <b>Catégories de couverture du sol ou land cover</b> (exemple : Forêt,  Savane arbustive, Savane herbacée, Prairies, Eau, Cultures / Plantations, Habitations, Routes, etc.)',
-        'warning_on_save' =>
-            'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
-            d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
-    ],
-
     'MenacesPressions' => [
         'title' => 'Pressions et menaces',
         'fields' => [

@@ -88,10 +88,6 @@ return [
             'IncludeInStatistics' => 'Dar prioridade na gestão',
             'Comments' => 'Comentários/Explicação',
         ],
-        'groups' => [
-            'group0' => 'Identificar os habitats mais importantes da área protegida',
-            'group1' => 'Identificar os elementos mais importantes de cobertura da terra (cobertura da terra, mudança de terra e ocupação do solo) dentro e fora da área protegida.',
-        ],
         'ratingLegend' => [
             'EvaluationScore' => [
                 '0' => 'sem integração',

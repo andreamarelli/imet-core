@@ -540,45 +540,6 @@ return [
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
-    'HabitatsMarine' => [
-        'title' => 'Presencia, extensión y distribución de los principales hábitats marinos',
-        'fields' => [
-            'HabitatType' => 'Hábitats y estratos',
-            'Presence' => 'Presencia',
-            'Area' => 'Extensión del hábitat (estimada, en ha)',
-            'Fragmentation' => 'Fragmentación del hábitat',
-            'Source' => 'Fuente',
-            'Description' => 'Descripción',
-        ],
-        'predefined_values' => [
-            'Manglares',
-            'Algas marinas',
-            'Arrecife de coral',
-            'Pantanos de marea, pantanos costeros',
-            'Ecosistema de aguas marinas costeras',
-            'Estrato pelágico',
-            'Estrato abisal',
-            'Estrato béntico',
-            'Mar abierto'
-        ],
-        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Hábitats marinos con características importantes y significativas del área protegida, Cobertura terrestre-aprovechamiento<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Presencia, extensión y distribución de los principales hábitats marinos</span></b>'
-    ],
-
-    'LandCover' => [
-        'title' => 'Mantenimiento de la cubierta terrestre - utilización (o física del terreno - bosque, agua, carreteras, etc.) [for aggregate values see point CTX 2.2]',
-        'fields' => [
-            'CoverType' => 'Categorías cobertura – uso – tenencia del territorio',
-            'HistoricalArea' => 'Superficie (ha)',
-            'ConservationStatusArea' => 'Estado de conservación favorable (ha)',
-            'Notes' => 'Fuente/Nota',
-            'HistoricalAreaData' => 'Fecha de referencia',
-        ],
-        'module_info' => 'Clasificación: Evaluar los elementos más importantes de la utilización del uso del suelo para la gestión del área protegida<br />Categorías cobertura – uso – tenencia del territorio (ejemplo: bosques, sabanas, agua, cultivos/plantas, viviendas, carreteras, etc.)',
-        'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
-            los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
-    ],
-
     'MenacesPressions' => [
         'title' => 'Presiones y amenazas',
         'fields' => [

@@ -551,45 +551,6 @@ return [
             evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
-    'HabitatsMarine' => [
-        'title' => 'Presence, extent and distribution of key marine habitats',
-        'fields' => [
-            'HabitatType' => 'Habitats and stratus',
-            'Presence' => 'Presence',
-            'Area' => 'Extent of habitat (estimated, in ha)',
-            'Fragmentation' => 'Fragmentation of the habitat',
-            'Source' => 'Source',
-            'Description' => 'Description',
-        ],
-        'predefined_values' => [
-            'Mangroves',
-            'Seaweed',
-            'Coral reef',
-            'Tidal swamps, coastal swamps',
-            'Ecosystem of coastal marine waters',
-            'Pelagic stratus',
-            'Abyssal stratus',
-            'Benthic stratus',
-            'Open sea'
-        ],
-        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Marin habitats with important and significant features of the protected area, Land cover-use-take<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Presence, extent and distribution of key marine habitats</span></b>'
-    ],
-
-    'LandCover' => [
-        'title' => 'Maintenance of land cover-use-take [for aggregate values see point CTX 2.2]',
-        'fields' => [
-            'CoverType' => 'Land cover-use-take categories',
-            'HistoricalArea' => 'Surface (ha)',
-            'ConservationStatusArea' => 'Favourable conservation status (ha)',
-            'Notes' => 'Source / Note',
-            'HistoricalAreaData' => 'Baseline date',
-        ],
-        'module_info' => 'Rating: Evaluate the most important elements of land cover-use-take for the management of the protected area<br />Land cover-use-take categories (example: forest, savannah, water, crops/plantations, dwellings, roads, etc.)',
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
-    ],
-
     'MenacesPressions' => [
         'title' => 'Pressures on and threats',
         'fields' => [
