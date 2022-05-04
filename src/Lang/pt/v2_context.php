@@ -264,19 +264,20 @@ return [
         'title' => 'XXXXXXXXX Patrolling and Enforcement: Terrestrial area or sectors and/or Marine and coastal area or sectors',
         'fields' => [
             'Name' => 'Sector',
-            'UnderControlArea' => 'Km² sob protecção',
+            'TerrestrialOrMarine' => 'XXXXXXXXX Terrestrial or marine?',
+            'UnderControlArea' => 'Km² de área coberta por patrulha',
             'UnderControlPatrolKm' => 'Km de patrulhas',
-            'UnderControlPatrolManDay' => 'Fiscal * dia de patrulha',
+            'UnderControlPatrolManDay' => 'Dia de patrulha',
             'SectorMap' => 'Mapas de zoneamento',
             'Source' => 'Fonte',
             'Observations' => 'Observacoes',
         ],
         'area_percentage' => '% da area',
-        'average_time' => 'Média do fiscal * d * km² do setor',
+        'average_time' => 'Patrulhamento médio * d * km² do setor',
     ],
 
     'TerritorialReferenceContext' => [
-        'title' => 'Contexto territorial de base da área protegida',
+        'title' => 'Contexto territorial de base (XXXXXXXXX Landscape) da Área Protegida',
         'fields' => [
             'FunctionalHasNoTakeArea' => 'será a área funcional do ecossistema correspondente a área de proibição de colecta de recursos?',
             'FunctionalArea' => 'Estimativar da área funcional do ecossistema importante para a manutenção dos serviços biodiversidade da área protegida (por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas): a) em Km² e b) como largura da faixa exterior.',
@@ -286,6 +287,42 @@ return [
             'BenefitPopulation' => 'Estimativa da dimensão da população local que vive dentro da zona socioeconómica de influência',
             'BenefitSocioEconomicAspects' => 'Listar e descrever os factores socioeconómicos e administrativos (por exemplo, papéis tradicionais ou modernos sobre os recursos naturais estabelecidos pelas autoridades tradicionais e modernas) que influenciam a gestão da área protegida',
             'SpillOverArea' => 'Estimar os efeitos de derrame na área marinha protegida, ou seja, a dimensão da área crucial para manter o fornecimento de serviços ecossistémicos (pesca) prestados pela área protegida: a) em km² e b) como largura da faixa exterior',
+            'SpillOverEvalPredatory0_500' => '',
+            'SpillOverEvalPredatory500_1000' => '',
+            'SpillOverEvalPredatory200_3000' => '',
+            'SpillOverEvalComposition0_500' => '',
+            'SpillOverEvalComposition500_1000' => '',
+            'SpillOverEvalComposition200_3000' => '',
+            'SpillOverEvalDistance0_500' => '',
+            'SpillOverEvalDistance500_1000' => '',
+            'SpillOverEvalDistance200_3000' => '',
+        ],
+        'info' => [
+            'spillover_eval' =>
+                'XXXXXXXXX The net movement of individuals from marine reserves (also known as no-take marine protected areas) to 
+                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation, 
+                although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
+                <li>Strong spill-over positive effect when the fishery is mismanaged</li>
+                <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
+                <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
+                <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
+                <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
+                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul></li></ul>',
+            'spill_over_variation' => 'XXXXXXXXX SPILL-OVER variation inside vs outside MPA',
+            'variation' => 'XXXXXXXXX Variation inside vs outside MPA',
+            '0_500' => 'XXXXXXXXX 0 to 500m',
+            '500_1000' => '5XXXXXXXXX 00 to 1000m',
+            '2000_3000' => 'XXXXXXXXX 2000 to 3000m',
+            'predatory' => 'XXXXXXXXX Predatory fish',
+            'composition' => 'XXXXXXXXX Fish community composition',
+            'distance' => 'XXXXXXXXX Spill-over effect distance',
+        ],
+        'ratingLegend' => [
+            'SpillOverEvalPredatory0_500' => [
+                '-2' => 'XXXXXXXXX Strong negative difference',
+                '-1' => 'XXXXXXXXX Least negative difference',
+                '0' => 'XXXXXXXXX No difference',
+            ]
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Área Funcional de ecossistema',
