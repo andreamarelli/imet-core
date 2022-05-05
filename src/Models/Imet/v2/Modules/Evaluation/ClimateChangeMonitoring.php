@@ -55,7 +55,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 
     public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v2.6 -> v2.7 (marine pas)  ####
+        // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Program',
          'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
         'Managing adaptation of habitats and the related dimensions of land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)');

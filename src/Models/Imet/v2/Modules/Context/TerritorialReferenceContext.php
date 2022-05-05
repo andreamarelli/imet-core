@@ -44,15 +44,14 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     public static function upgradeModule($record, $imet_version = null)
     {
+        // ####  v2.2 -> v2.3 ####
         $record = static::addField($record, 'FunctionalHasNoTakeArea');
         $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
         $record = static::addField($record, 'FunctionalKm');
         $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
-
         $record = static::renameField($record, 'FunctionalArea', 'BenefitKm2');
         $record = static::addField($record, 'BenefitKm');
         $record = static::addField($record, 'BenefitPopulation');
-
         $record = static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
         $record = static::addField($record, 'SpillOverKm2');
         $record = static::addField($record, 'SpillOverKm');

@@ -70,7 +70,7 @@ class GeneralInfo extends Modules\Component\ImetModule
 
     public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v2.6 -> v2.7 (marine pas)  ####
+        // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Type', 'Terrestrial', 'terrestrial');
         $record = static::replacePredefinedValue($record, 'Type', 'Marine', 'marine_and_coastal');
         $record = static::replacePredefinedValue($record, 'Type', 'Mixed', 'marine_and_coastal');

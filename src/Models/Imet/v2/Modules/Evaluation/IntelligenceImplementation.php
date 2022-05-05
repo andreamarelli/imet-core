@@ -63,7 +63,7 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
 
     public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v2.6 -> v2.7 (marine pas)  ####
+        // ####  v2.7 -> v2.8 (marine pas)  ####
         if(empty($imet_version) or $imet_version < 'v2.7.6b'){
             $record = static::replaceGroup($record, 'group_key', 'group1', 'group2');
         }

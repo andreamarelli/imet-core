@@ -33,7 +33,7 @@ class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
 
     public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v2.6 -> v2.7 (marine pas)  ####
+        // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Program',
          'Use of institutional capabilities and technical resources to initiate and coordinate research activities',
         'Institutional and/or external funds/facilities and capabilities to promote and coordinate research activities');

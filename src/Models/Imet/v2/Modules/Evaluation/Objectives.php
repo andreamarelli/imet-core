@@ -33,7 +33,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     public static function upgradeModule($record, $imet_version = null)
     {
-        // ####  v2.6 -> v2.7 (marine pas)  ####
+        // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Objective',
                                                  'Ecosystem services – Provisioning (sustainable use)',
                                                  'Ecosystem services – Provisioning (food, seafood, materiel, water quality, etc. sustainable use)');
