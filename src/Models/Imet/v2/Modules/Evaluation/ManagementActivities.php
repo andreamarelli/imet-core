@@ -26,7 +26,6 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
             'group0' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group0'),
             'group1' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group1'),
             'group2' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group2'),
-            'group3' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group3'),
             'group4' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group4'),
             'group5' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group5')
         ];
@@ -63,30 +62,26 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
                 'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
-                'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
+                'group4' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
-                'group4' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
             ]
         ];
 
         $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        dump($preLoaded);
         return $module_records;
     }
 
     public static function upgradeModule($record, $imet_version = null)
     {
+        // ####  v2.6 -> v2.7 (marine pas)  ####
         if(empty($imet_version) or $imet_version < 'v2.7.6b'){
-
             $record = static::replaceGroup($record, 'group_key', 'group3', 'group2');
-            $record = static::replaceGroup($record, 'group_key', 'group4', 'group3');
-            $record = static::replaceGroup($record, 'group_key', 'group5', 'group4');
-            $record = static::replaceGroup($record, 'group_key', 'group6', 'group5');
-
         }
+
         return $record;
     }
 
