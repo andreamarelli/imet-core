@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
@@ -112,30 +113,6 @@ class ScalingUpAnalysisController
     }
 
     /**
-     * @param Request $request
-     * @return array[]|\array[][]|void
-     */
-    public function get_ranking(Request $request)
-    {
-        $indicators = [];
-        $parameters = $request->input('parameter');
-        $type = $request->input('type', null);
-        $sub_type = $request->input('sub_type', null);
-        if (array_key_exists($type, $this->indicators)) {
-            $indicators = $this->indicators[$type];
-            if ($sub_type && array_key_exists($sub_type, $this->indicators)) {
-                $indicators = $this->indicators[$sub_type];
-            }
-        }
-
-        if (empty($indicators)) {
-            return abort(404);
-        }
-        ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
-        return ModelScalingUpAnalysis::ranking_indicators($parameters, $type, $indicators);
-    }
-
-    /**
      * @param $scaling_up_id
      * @param $areas
      */
@@ -143,7 +120,7 @@ class ScalingUpAnalysisController
     {
         $isScalingUpInit = ScalingUpWdpa::retrieve_by_scaling_id($scaling_up_id);
         if (count($isScalingUpInit) === 0) {
-            ModelScalingUpAnalysis::reset_areas_ids();
+            Common::reset_areas_ids();
             ScalingUpWdpa::save_pas($scaling_up_id, $areas);
         }
     }
@@ -228,7 +205,7 @@ class ScalingUpAnalysisController
         $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas), true);
 
         if ($request->input("save_form")) {
-            ModelScalingUpAnalysis::reset_areas_ids();
+            Common::reset_areas_ids();
             $this->update_custom_names($request, $items, $scaling_up_id);
         }
 

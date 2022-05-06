@@ -149,7 +149,6 @@ export default {
                 return [];
             }
             return this.indicators.map((value, key) => {
-                console.log({value});
                 const item = {
                     text: value.replace(' ', '\n'), max: 100
                 }
@@ -161,7 +160,6 @@ export default {
                 }
 
                 if (this.radar_indicators_for_zero_negative.includes(key)) {
-                    console.log({key})
                     item.max = 0;
                     item.min = -100;
                     item.text += ` \n ${window.Locale.getLabel('imet-core::analysis_report.scale.zero_negative')}`;

@@ -14,7 +14,7 @@
                             <template slot-scope="data">
                                 <div class="module-body bg-white border-0">
                                     <div v-for="(value, index) in data.props.values" class="container" :id="'{{$name}}-'+index">
-                                        <div v-if="index=='values'" class="mt-3">
+                                        <div v-if="index=='ranking'" class="mt-3">
                                             <div class="list-key-numbers horizontal mt-5">
                                                 <div class="list-head">4.1 @lang('imet-core::analysis_report.overall.imet_indicator_ranking')
                                                     <popover>

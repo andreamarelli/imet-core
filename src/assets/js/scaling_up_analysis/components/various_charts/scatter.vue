@@ -117,7 +117,6 @@ export default {
             if (this.data.length > 0) {
                 this.chart = echarts.init(this.$el);
                 this.chart.setOption(this.bar_options);
-                console.log({o: this.bar_options})
                 this.chart.on('legendselectchanged', (params) => {
                     this.$root.$emit(`scatter_data_${this.event_key}`, params);
                 });
