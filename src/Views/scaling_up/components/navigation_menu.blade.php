@@ -3,6 +3,8 @@
         <span class="m-1">{{trans('imet-core::analysis_report.navigation_menu')}}</span>
         <select class="form-control" @change="goTo($event)">
             <option
+                value="names"> </option>
+            <option
                 value="names">{{ trans('imet-core::analysis_report.custom_names') }}</option>
             @foreach($templates as $key => $template)
                 <option value="{{ $template['name'] }}">{{$template['code']}}
