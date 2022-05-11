@@ -988,9 +988,9 @@ return [
         ],
         'groups' => [
             'group0' => 'A) Inteligência e gestão da investigação - Terrestre',
-            'group1' => 'A) Inteligência e gestão da investigação - Marítima e costeira',
-            'group2' => 'B) Tratamento de provas, desenvolvimento de casos e acção judicial - Terrestre',
-            'group3' => 'B) Tratamento de provas, desenvolvimento de casos e acção judicial - Marítima e costeira',
+            'group0b' => 'A) Inteligência e gestão da investigação - Marítima e costeira',
+            'group1' => 'B) Tratamento de provas, desenvolvimento de casos e acção judicial - Terrestre',
+            'group1b' => 'B) Tratamento de provas, desenvolvimento de casos e acção judicial - Marítima e costeira',
         ],
         'predefined_values' => [
             'group0' => [
@@ -1001,7 +1001,7 @@ return [
                 'Colaboração inter-agências (por exemplo, procuradores dentro do serviço de vida selvagem ou unidade especializada na repressão de crimes contra a vida selvagem)',
                 'Colaboração inter-agências com ONG (por exemplo, EAGLE Network, África Central/Oeste)'
             ],
-            'group1' => [
+            'group0b' => [
                 'XXXXXXXXX Intelligence and investigation units orienting and supporting sea patrol operations',
                 'XXXXXXXXX Detection and punishment of the illegal activities (such as fisheries and harvesting)',
                 'XXXXXXXXX Knowledge of boarding legal requirements',
@@ -1013,7 +1013,7 @@ return [
                 'XXXXXXXXX Use of database for recording and tracking information on violations',
                 'XXXXXXXXX Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
             ],
-            'group2' => [
+            'group1' => [
                 'Gestão da cena do crime',
                 'Recolha e gestão de provas',
                 'Prisão ou preparação do relatório do caso',
@@ -1021,7 +1021,7 @@ return [
                 'Controlo de casos e delinquentes',
                 'Acórdãos obtidos em tribunal'
             ],
-            'group3' => [
+            'group1b' => [
                 'XXXXXXXXX Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
                 'XXXXXXXXX Ability to seize and detain vessels after transgression',
                 'XXXXXXXXX Ability to restrict sailing within the MPA borders by issuing authorization permits',

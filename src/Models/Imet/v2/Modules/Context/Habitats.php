@@ -54,7 +54,7 @@ class Habitats extends Modules\Component\ImetModule
     }
 
     /**
-     *  Update 2.6 -> v2.7 (marine pas): merge CTX 4.3.2 into 4.3 ####
+     *  Update 2.7 -> v2.8 (marine pas): merge CTX 4.3.2 into 4.3 ####
      *
      * @param array $data
      * @return array
@@ -62,13 +62,17 @@ class Habitats extends Modules\Component\ImetModule
     public static function mergeFromCTX432(array $data): array
     {
         if(array_key_exists('HabitatsMarine', $data) && !empty($data['HabitatsMarine'])){
+
             foreach ($data['HabitatsMarine'] as $i=>$record){
 
                 // #### Updates inherited from CTX4.3.2 ####
-                $record['Presence'] = static::dropIfValueNotInPredefinedList($record['Presence'], 'MarineHabitatsPresence');
+                $record['Presence'] = in_array($record['Presence'], [
+                    'Present', 'Absent', 'Dominant', // EN
+                    'Présent', 'Absent', 'Dominant', // FR
+                    'Presente', 'Ausente', 'Dominante' // PT
+                ]) ? $record['Presence'] : null;
 
                 $data[static::getShortClassName()][] = [
-                    static::$foreign_key => $record[static::$foreign_key],
                     static::UPDATED_AT => $record[static::UPDATED_AT],
                     static::UPDATED_BY => $record[static::UPDATED_BY],
                     'EcosystemType' => $record['HabitatType'],
@@ -83,7 +87,7 @@ class Habitats extends Modules\Component\ImetModule
     }
 
     /**
-     * Update 2.6 -> v2.7 (marine pas): merge CTX 4.4 into 4.3 ####
+     * Update 2.7 -> v2.8 (marine pas): merge CTX 4.4 into 4.3 ####
      *
      * @param array $data
      * @return array
@@ -93,7 +97,6 @@ class Habitats extends Modules\Component\ImetModule
         if(array_key_exists('LandCover', $data) && !empty($data['LandCover'])){
             foreach ($data['LandCover'] as $i=>$record){
                 $data[static::getShortClassName()][] = [
-                    static::$foreign_key => $record[static::$foreign_key],
                     static::UPDATED_AT => $record[static::UPDATED_AT],
                     static::UPDATED_BY => $record[static::UPDATED_BY],
                     'EcosystemType' => $record['CoverType'],
