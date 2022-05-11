@@ -21,18 +21,18 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
 
         $this->module_groups = [
             'group0' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group0'),
+            'group0b' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group0b'),
             'group1' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group1'),
-            'group2' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group2'),
-            'group3' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group3'),
+            'group1b' => trans('imet-core::v2_evaluation.IntelligenceImplementation.groups.group1b'),
         ];
 
         $this->predefined_values = [
             'field' => 'Element',
             'values' => [
                 'group0' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group0'),
+                'group0b' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group0b'),
                 'group1' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group1'),
-                'group2' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group2'),
-                'group3' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group3'),
+                'group1b' => trans('imet-core::v2_evaluation.IntelligenceImplementation.predefined_values.group1b'),
             ]
         ];
 
@@ -48,7 +48,7 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
         $groups = (new static())->module_groups;
         return [
             $groups['group0'],
-            $groups['group2'],
+            $groups['group1'],
         ];
     }
 
@@ -56,17 +56,14 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
     {
         $groups = (new static())->module_groups;
         return [
-            $groups['group1'],
-            $groups['group3'],
+            $groups['group0b'],
+            $groups['group1b'],
         ];
     }
 
     public static function upgradeModule($record, $imet_version = null)
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        if(empty($imet_version) or $imet_version < 'v2.7.6b'){
-            $record = static::replaceGroup($record, 'group_key', 'group1', 'group2');
-        }
         $record = static::replacePredefinedValue($record, 'Element',
                                                  'Intelligence and investigations units orienting ranger patrols actions ',
                                                  'Intelligence and investigations units orienting and supporting ranger patrols actions');

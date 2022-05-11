@@ -140,7 +140,7 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             $data = FinancialResourcesPartners::copyCurrencyFromCTX213($data);
         }
 
-        // ####  v2.6 -> v2.7 (marine pas):  merge CTX 4.3.1, 4.3.2, 4.4 into 4.3 ####
+        // ####  v2.7 -> v2.8 (marine pas):  merge CTX 4.3.1, 4.3.2, 4.4 into 4.3 ####
         $data = Habitats::mergeFromCTX432($data);
         $data = Habitats::mergeFromCTX44($data);
 

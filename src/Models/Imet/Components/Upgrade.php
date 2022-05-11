@@ -116,7 +116,7 @@ Trait Upgrade
      */
     protected static function dropIfPredefinedValueObsolete($record, $field, $old_value)
     {
-        return $record[$field]===$old_value ? null : $record;
+        return $record!==null && $record[$field]===$old_value ? null : $record;
     }
 
     /**
@@ -125,6 +125,7 @@ Trait Upgrade
      * @param $value
      * @param $list_key
      * @return mixed
+     * @throws \Exception
      */
     protected static function dropIfValueNotInPredefinedList($value, $list_key)
     {

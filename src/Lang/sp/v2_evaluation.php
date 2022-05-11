@@ -988,9 +988,9 @@ return [
         ],
         'groups' => [
             'group0' => 'A) Gestión del seguimiento de indicios y el cruce de información - Terrestre',
-            'group1' => 'A) Gestión del seguimiento de indicios y el cruce de información - Marítimo y costero',
-            'group2' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Terrestre',
-            'group3' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Marítimo y costero',
+            'group0b' => 'A) Gestión del seguimiento de indicios y el cruce de información - Marítimo y costero',
+            'group1' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Terrestre',
+            'group1b' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Marítimo y costero',
         ],
         'predefined_values' => [
             'group0' => [
@@ -1001,7 +1001,7 @@ return [
                 'Colaboración interinstitucional (por ejemplo, los fiscales del servicio de vida silvestre o la unidad especializada en la persecución de delitos contra la vida silvestre, policia ambinetal, tribunal agroambiental)',
                 'Colaboración interinstitucional con las ONG (por ejemplo, AIDA - Red de Justicia Ambiental, entre otros)'
             ],
-            'group1' => [
+            'group0b' => [
                 'XXXXXXXXX Intelligence and investigation units orienting and supporting sea patrol operations',
                 'XXXXXXXXX Detection and punishment of the illegal activities (such as fisheries and harvesting)',
                 'XXXXXXXXX Knowledge of boarding legal requirements',
@@ -1013,7 +1013,7 @@ return [
                 'XXXXXXXXX Use of database for recording and tracking information on violations',
                 'XXXXXXXXX Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
             ],
-            'group2' => [
+            'group1' => [
                 'Observación de los delitos',
                 'Notificación y decomisos',
                 'Preparación del informe de patrullaje especial',
@@ -1021,7 +1021,7 @@ return [
                 'Aplicación de la ley (querella)/ multa a los infractores',
                 'Seguimiento a infractores/conclusión del caso'
             ],
-            'group3' => [
+            'group1b' => [
                 'XXXXXXXXX Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
                 'XXXXXXXXX Ability to seize and detain vessels after transgression',
                 'XXXXXXXXX Ability to restrict sailing within the MPA borders by issuing authorization permits',

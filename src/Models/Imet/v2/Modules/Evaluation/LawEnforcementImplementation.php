@@ -59,6 +59,8 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
         if(empty($imet_version) or $imet_version < 'v2.7.6b'){
+            // add new "group_key" filed and set to "group0"
+            $record = static::addField($record, 'group_key');
             $record = static::replaceGroup($record, 'group_key', null, 'group0');
         }
 

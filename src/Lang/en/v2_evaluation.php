@@ -987,9 +987,9 @@ return [
         ],
         'groups' => [
             'group0' => 'A) Intelligence and investigation management - Terrestrial',
-            'group1' => 'A) Intelligence and investigation management - Marine and coastal',
-            'group2' => 'B) Evidence handling, case development and legal action - Terrestrial',
-            'group3' => 'B) Evidence handling, case development and legal action - Marine and coastal',
+            'group0b' => 'A) Intelligence and investigation management - Marine and coastal',
+            'group1' => 'B) Evidence handling, case development and legal action - Terrestrial',
+            'group1b' => 'B) Evidence handling, case development and legal action - Marine and coastal',
         ],
         'predefined_values' => [
             'group0' => [
@@ -1000,7 +1000,7 @@ return [
                 'Inter-agency collaboration (e.g. prosecutors within the wildlife service or specialised wildlife crime prosecution unit)',
                 'Inter-agency collaboration with NGOs (e.g. EAGLE Network, Central/West Africa)'
             ],
-            'group1' => [
+            'group0b' => [
                 'Intelligence and investigation units orienting and supporting sea patrol operations',
                 'Detection and punishment of the illegal activities (such as fisheries and harvesting)',
                 'Knowledge of boarding legal requirements',
@@ -1012,7 +1012,7 @@ return [
                 'Use of database for recording and tracking information on violations',
                 'Collaboration with NGOs specialised in marine laws, enforcement, etc. (e.g. Environmental Law Institute (ELI) Ocean Program)'
             ],
-            'group2' => [
+            'group1' => [
                 'Crime scene management',
                 'Evidence collection and management',
                 'Arrest or case report preparation',
@@ -1020,7 +1020,7 @@ return [
                 'Monitoring cases and offender',
                 'Judgements obtained in court'
             ],
-            'group3' => [
+            'group1b' => [
                 'Training workshops for judges, attorneys, and lawyers on marine and fisheries-related rules and regulations',
                 'Ability to seize and detain vessels after transgression',
                 'Ability to restrict sailing within the MPA borders by issuing authorization permits',
