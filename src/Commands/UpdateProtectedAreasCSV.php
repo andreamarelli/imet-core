@@ -14,7 +14,7 @@ class UpdateProtectedAreasCSV extends Command
      *
      * @var string
      */
-    protected $signature = 'imet:update_pas_csv {filename}';
+    protected $signature = 'imet:update_pas_csv {filename} {countries?}';
 
     /**
      * The console command description.
@@ -99,10 +99,12 @@ class UpdateProtectedAreasCSV extends Command
         $csv_filename = $this->argument('filename');
         $csv_filepath = Storage::disk(File::PUBLIC_STORAGE)->path($csv_filename);
 
-        // Retrieve countries from protected areas table
-        $countries_in_db = [];
-        if(!$this->all_countries_worldwide){
-            $countries_in_db = ProtectedArea::getCountries()
+        // Retrieve countries
+        $countries = $this->argument('countries');
+        $countries = $countries ? explode(',',$countries) : [];
+        if(empty($countries) and !$this->all_countries_worldwide){
+            # From protected areas table
+            $countries = ProtectedArea::getCountries()
                 ->pluck('iso3')
                 ->toArray();
         }
@@ -127,7 +129,7 @@ class UpdateProtectedAreasCSV extends Command
             } else {
 
                 // Compare CSV protected areas to DB
-                if($this->all_countries_worldwide || in_array($row_data[static::CSV_COLS['ISO3']], $countries_in_db)){
+                if($this->all_countries_worldwide || in_array($row_data[static::CSV_COLS['ISO3']], $countries)){
 
                     // Skip if multi-country PA had been already parsed
                     if(in_array($row_data[static::CSV_COLS['WDPAID']], $this->multiple_countries_pas)){
@@ -165,7 +167,7 @@ class UpdateProtectedAreasCSV extends Command
 
         // Job completed
         $this->info('------------------------------------------------------------');
-        $this->info('Total countries retrieved from DB: ' . count($countries_in_db));
+        $this->info('Total countries analyzed: ' . count($countries));
         $this->info('Total protected areas retrieved from CSV (worldwide): ' . $this->count_csv_ww);
         $this->info('Total protected areas retrieved from CSV (existing countries): ' . $this->count_csv);
         $this->info('Total protected areas retrieved from DB: ' . count($pas_db));
