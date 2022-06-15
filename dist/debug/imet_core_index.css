@@ -576,6 +576,10 @@ fieldset[disabled] .vue-swatches {
   padding: 8px 30px;
 }
 
+nav.steps a.step.cross-analysis-warnings {
+  color: red !important;
+}
+
 #imet_report #map {
   height: 400px;
   width: 100%;
