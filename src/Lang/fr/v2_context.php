@@ -128,7 +128,7 @@ return [
             pour réaliser la conservation à long terme de la nature avec les services écosystémiques et les valeurs culturelles 
             associées. (Définition de l’UICN 2008)',
         'type_info' => [
-            'terrestre' => 'Une aire protégée terrestre (APT) est une portion de terre protégée par des restrictions et 
+            'terrestrial' => 'Une aire protégée terrestre (APT) est une portion de terre protégée par des restrictions et 
                 des lois spéciales pour la conservation de l’environnement naturel. Il peut s’agir de grandes étendues 
                 de terre réservées à la protection de la faune et de son habitat; de zones d’une grande beauté naturelle 
                 ou d’un intérêt unique; d’aires contenant des formes rares de vie végétale et animale; de zones représentant 
