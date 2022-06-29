@@ -32,7 +32,7 @@
                                                         <bar_category_stack
                                                             :axis_dimensions_y="{max:100}"
                                                             :x_axis_data="data_elements.props.xAxis"
-                                                            :legends="data_elements.props.legends"
+                                                            :legends="data_elements.props.legend"
                                                             :colors="container.props.config.color_correct_order"
                                                             :values='data_elements.props.values'></bar_category_stack>
                                                     </template>

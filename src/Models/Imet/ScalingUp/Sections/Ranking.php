@@ -2,24 +2,22 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 
 class Ranking
 {
-
     /**
      * @param array $form_ids
      * @param string $type
      * @param array $indicators
+     * @param int $scaling_id
      * @return array[]|\array[][]
      */
-    public static function ranking_indicators(array $form_ids, string $type, array $indicators, int $scaling_id): array
+    public static function ranking_indicators(array $form_ids, string $type, array $indicators, int $scaling_id = 0): array
     {
         $ranking_values = [];
-        $ranking = ['values' => [], 'legends' => [], 'xAxis' => []];
+        $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => []];
 
         // only for process sub-indicators average
         if (isset($indicators['pr15_16'])) {
@@ -34,8 +32,10 @@ class Ranking
         //loop the each imet record sorted and get pa name
         //and merge it with the table
         foreach ($filtered as $id => $values) {
-            $pa = ScalingUpWdpa::getCustomNames($id, $scaling_id);
+            $pa = Common::get_pa_name($id, $scaling_id);
+
             $protected_area = $pa->name;
+            $wdpa_id = $pa->wdpa_id;
             unset($values['avg']);
             unset($values['indicators_number']);
             $corrected_values = [];
@@ -48,7 +48,6 @@ class Ranking
             }
 
             foreach ($values as $v => $value) {
-
                 if ($type === "process") {
                     $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
                 } else {
@@ -63,33 +62,32 @@ class Ranking
                     $correction_value = Common::ranking_values_correction(Common::values_correction($v, $value), $indicators_divide_length, $indicators_process_number, $v);
                 } else {
                     $correction_value = Common::values_correction($v, $value);
-                   // echo $correction_value;
                 }
 
                 $ranking['legends'][$v] = $name;
-                $ranking_values[$name][] =  $correction_value;
-                if((string)$correction_value !== "-"){
+                $ranking_values[$name][] = $correction_value;
+                if ((string)$correction_value !== "-") {
                     $corrected_values[] = $correction_value;
                 }
-               // echo "\n\n";
             }
 
             $sort_keys[] = array_sum($corrected_values);
             $ranking['xAxis'][] = $protected_area;
+            $ranking['wdpa_ids'][] = $wdpa_id;
         }
         arsort($sort_keys);
 
-        $new_ranking = ['values' => [], 'legends' => [], 'xAxis' => []];
+        $new_ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => []];
         foreach ($ranking_values as $name => $ranking_value) {
             $new_ranking['xAxis'] = [];
+            $new_ranking['wdpa_ids'] = [];
             foreach ($sort_keys as $k => $val) {
-                //if (isset($ranking_value[$k])) {
-                    $new_ranking['values'][$name][] = $ranking_value[$k];
-               // }
+                $new_ranking['values'][$name][] = $ranking_value[$k];
                 $new_ranking['xAxis'][] = $ranking['xAxis'][$k];
+                $new_ranking['wdpa_ids'][] = $ranking['wdpa_ids'][$k];
             }
         }
-//dd($new_ranking);
+
         $new_ranking['legends'] = $ranking['legends'];
         return $new_ranking;
     }
@@ -132,30 +130,35 @@ class Ranking
 
     /**
      * @param array $form_ids
+     * @param int|null $scaling_id
      * @return array[]|\array[][]
      */
-    public static function ranking_threats_indicators(array $form_ids, int $scaling_id = null): array
+    public static function ranking_threats_indicators(array $form_ids, int $scaling_id = 0): array
     {
-        $ranking = ['values' => [], 'legends' => [], 'xAxis' => []];
+        $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => []];
+        $wdpa_ids = [];
         $sort_keys = [];
         $ranking_raw_values = [];
         $protected_areas_names = [];
 
         foreach ($form_ids as $j => $form_id) {
-            $pa = ScalingUpWdpa::getCustomNames($form_id, $scaling_id);
+            $pa = Common::get_pa_name($form_id, $scaling_id);
+
             $protected_areas_names[$form_id] = $pa->name;
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
 
+            $wdpa_id = $pa->wdpa_id;
             $collect_values = [];
             foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
-                if($protected_area === ""){
+                if ($protected_area === "") {
                     $value = "-";
-                }else {
+                } else {
                     $value = Common::round_number((-1 * (double)$protected_area));
                 }
                 $ranking_raw_values[$form_id][] = $collect_values[] = $value;
             }
             $sort_keys[$form_id] = array_sum($collect_values);
+            $wdpa_ids[$form_id] = $wdpa_id;
         }
 
         //sorting array
@@ -167,12 +170,14 @@ class Ranking
         }
 
         foreach ($new_ranking as $id => $values) {
+
             foreach ($values as $v => $value) {
-                $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($v + 1), []);//, $keep_locale);
+                $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($v + 1), []);
                 $ranking['values'][$name][] = $value;
                 $ranking['legends'][$v] = $name;
             }
             $ranking['xAxis'][] = $protected_areas_names[$id];
+            $ranking['wdpa_ids'][] = $wdpa_ids[$id];
         }
 
         return $ranking;
@@ -196,14 +201,14 @@ class Ranking
 
         $total_values = [];
         $sorted_values = [];
-        $percent = ['values' => [], 'legends' => [], 'xAxis' => []];
+        $percent = ['values' => [], 'legend' => [], 'xAxis' => []];
 
-        $assessments = count($assessment) ? $assessment : static::get_assessments($form_ids);
+        $assessments = count($assessment) ? $assessment : Common::get_assessments($form_ids);
 
         foreach ($assessments['data']['assessments'] as $key => $assessment) {
             $name = $assessment['name'];
             $total_values[$name] = 0;
-
+            $form_ids[$name] = $assessment['wdpa_id'];
             foreach ($indicators as $ind => $indicator) {
                 $value = Common::round_number($assessment[$ind]);
                 $total_values[$name] += $value;
@@ -214,7 +219,7 @@ class Ranking
             $collect_values_for_sorting = [];
             foreach ($indicators as $ind => $indicator) {
                 $label = trans('imet-core::v2_common.steps_eval.' . $ind);
-                $percent['legends'][$ind] = $label;
+                $percent['legend'][$ind] = $label;
 
                 $percent['values'][$label][] = $collect_values_for_sorting[] = $total_values[$name] ? Common::round_number((((($indicator / $total_values[$name]) * 100) / 100) * $assessment['imet_index'])) : 0;
             }
@@ -223,7 +228,7 @@ class Ranking
 
         //sort ranking descending
         arsort($sorted_values);
-        $new_ranking = ['values' => [], 'legends' => [], 'xAxis' => []];
+        $new_ranking = ['values' => [], 'legend' => [], 'xAxis' => []];
         foreach ($percent['values'] as $name => $value) {
             $new_ranking['xAxis'] = [];
             foreach ($sorted_values as $k => $val) {
@@ -232,9 +237,9 @@ class Ranking
                 $new_ranking['xAxis'][] = $percent['xAxis'][$k];
             }
         }
-        $new_ranking['legends'][] = $percent['legends'];
+        $new_ranking['legend'][] = $percent['legend'];
 
-        return ['status' => 'success', 'data' => ['values' => $new_ranking]];
+        return ['status' => 'success', 'data' => ['values' => $new_ranking, 'form_ids' => $form_ids]];
     }
 
 }

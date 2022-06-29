@@ -12,6 +12,14 @@ class Common
     private static $protected_areas_ids = [];
 
     /**
+     * @return string
+     */
+    public static function random_color(): string
+    {
+        return "#" . substr(md5(rand()), 0, 6);
+    }
+
+    /**
      * @param $val
      * @param int $round
      * @return float
@@ -125,7 +133,7 @@ class Common
     public static function values_correction(string $indicator, $value)
     {
         if ($indicator === "c3") {
-            return static::round_number((100 + $value), 3); //todo remove it and check context
+            return static::round_number((100 + $value), 3);
         } else if (in_array($indicator, ["c2", "oc2", "oc3"])) {
             return static::round_number(50 + ((float)$value / 2), 3);
         }
@@ -176,7 +184,6 @@ class Common
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
 
-
             array_walk($filtered[$form_id], function (&$item, $key) {
 
                 if ((string)$item !== "") {
@@ -189,7 +196,6 @@ class Common
             $number_of_indicators = count(array_filter($filtered[$form_id], function ($item) {
                 return (string)$item != "-";
             }));
-
 
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed
@@ -276,7 +282,7 @@ class Common
      * @param array $form_ids
      * @return array|array[]
      */
-    public static function get_assessments(array $form_ids, int $scaling_id): array
+    public static function get_assessments(array $form_ids, int $scaling_id = 0): array
     {
         $indicators = [
             'context',
@@ -291,9 +297,12 @@ class Common
         foreach ($form_ids as $k => $form_id) {
 
             $assessments[$k] = (array)EvalControllerV2::assessment($form_id, 'global', true)->getData();
-            $name = ScalingUpWdpa::getCustomNames($form_id, $scaling_id);
+            $name = static::get_pa_name($form_id, $scaling_id);
+
             $assessments[$k]['name'] = $name->name;
             $assessments[$k]['color'] = $name->color;
+            $assessments[$k]['wdpa_id'] = $name->wdpa_id;
+
             $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
             foreach ($indicators as $key => $indicator) {
                 $assessments[$k][$indicator] = static::round_number($assessments[$k][$indicator]);
@@ -305,6 +314,14 @@ class Common
         });
 
         return ['status' => 'success', 'data' => ['assessments' => $assessments]];
+    }
+
+    public static function get_pa_name(int $id,int $scaling_id = 0 ){
+        if ($scaling_id > 0) {
+            return ScalingUpWdpa::getCustomNames($id, $scaling_id);
+        }
+
+        return static::protected_areas_duplicate_fixes($id, true);
     }
 
 }
