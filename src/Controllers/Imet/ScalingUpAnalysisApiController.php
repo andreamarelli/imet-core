@@ -303,7 +303,7 @@ class ScalingUpAnalysisApiController
         if ($query_wdpa_ids) {
             $wdpa_ids = explode(',', $query_wdpa_ids);
         } else {
-            throw new ErrorException(trans('imet-core::api.wdpa_ids_missing'));
+            throw new ErrorException(trans('imet-core::api.scaling_up.error_messages.wdpa_ids_missing'));
         }
 
         if ($query_years) {

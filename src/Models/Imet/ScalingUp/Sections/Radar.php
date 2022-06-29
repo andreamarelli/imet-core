@@ -111,11 +111,11 @@ class Radar
     {
         $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators,$type ,$scaling_id);
 
-        $response['values']['upper_limit']['lineStyle'] = 'dashed';
-        $response['values']['upper_limit']['color'] = 'green';
+        $response['values']['upper limit']['lineStyle'] = 'dashed';
+        $response['values']['upper limit']['color'] = 'green';
 
-        $response['values']['lower_limit']['lineStyle'] = 'dashed';
-        $response['values']['lower_limit']['color'] = 'yellow';
+        $response['values']['lower limit']['lineStyle'] = 'dashed';
+        $response['values']['lower limit']['color'] = 'yellow';
 
         $response['values']['Average']['color'] = 'red';
         $response['values']['Average']['legend_selected'] = true;

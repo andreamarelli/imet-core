@@ -14,7 +14,7 @@
                             stores.BaseStore.localization('imet-core::analysis_report.general_info.network')
                         }}:
                     </div>
-                    {{ info.network }}
+                    {{ info.network}}
                 </template>
             </div>
             <div>
@@ -91,6 +91,15 @@ export default {
         this.init(this.values);
     },
     methods: {
+        network_of:function(){
+            const net = [];
+            for(const item in this.info.network){
+                net.push(this.info.network[item]);
+            }
+
+            return net.join(', ');
+        },
+
         init: function (response) {
 
             Object.entries(this.info).forEach(object => {
