@@ -81,8 +81,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('csv');
             Route::post('export_batch', [Controller::class, 'export_batch'])->name('export_json_batch');
         });
-
-
     });
 
     /*
@@ -96,26 +94,26 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::group(['prefix' => 'imet'], function () {
             Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
             Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
-            Route::group(['prefix' => 'scaling_up'], function () {
-                Route::get('general_info', [ScalingUpAnalysisApiController::class, 'get_general_info']);
+            Route::group(['prefix' => 'scaling-up'], function () {
+                Route::get('general-info', [ScalingUpAnalysisApiController::class, 'get_general_info']);
                 Route::group(['prefix' => 'overall'], function () {
                     Route::get('ranking', [ScalingUpAnalysisApiController::class, 'get_overall_ranking']);
                     Route::get('averages', [ScalingUpAnalysisApiController::class, 'get_overall_average_of_six_elements']);
-                    Route::get('data_upper_lower_average', [ScalingUpAnalysisApiController::class, 'get_visualization_synthetics_indicators']);
-                    Route::get('scatter', [ScalingUpAnalysisApiController::class, 'get_scatter_visualization_synthetic_indicators']);
+                    Route::get('data-upper-lower-average', [ScalingUpAnalysisApiController::class, 'get_visualization_synthetics_indicators']);
+                    Route::get('synthetic-indicators', [ScalingUpAnalysisApiController::class, 'get_scatter_visualization_synthetic_indicators']);
                 });
                 Route::group(['prefix' => 'elements'], function () {
                     Route::get('key-conservation', [ScalingUpAnalysisApiController::class, 'get_key_elements_conservation']);
                 });
                 Route::group(['prefix' => 'groups'], function () {
-                    Route::get('by_groups', [ScalingUpAnalysisApiController::class, 'get_analysis_group']);
-                    Route::get('by_group_and_indicators_group', [ScalingUpAnalysisApiController::class, 'get_analysis_group_and_indicators_group']);
+                    Route::get('by-groups', [ScalingUpAnalysisApiController::class, 'get_analysis_group']);
+                    Route::get('by-pa-group-and-synthetic-indicators-group', [ScalingUpAnalysisApiController::class, 'get_analysis_group_and_indicators_group']);
                 });
                 Route::group(['prefix' => 'analysis'], function () {
-                    Route::get('ranking/{type}', [ScalingUpAnalysisApiController::class, 'get_analysis_ranking']);
-                    Route::get('average/{type}', [ScalingUpAnalysisApiController::class, 'get_analysis_average']);
-                    Route::get('data_upper_lower_average/{type}', [ScalingUpAnalysisApiController::class, 'get_analysis_radar']);
-                    Route::get('data/{type}', [ScalingUpAnalysisApiController::class, 'get_analysis_table']);
+                    Route::get('ranking/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_ranking']);
+                    Route::get('average/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_average']);
+                    Route::get('data-upper-lower-average/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_radar']);
+                    Route::get('data/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_table']);
                 });
             });
         });

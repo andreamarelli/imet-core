@@ -100,85 +100,88 @@ class ScalingUpAnalysisApiController
         list($wdpa_ids, $years) = $this->get_querystring_values($request);
         $items = $this->wdpa_id_to_form_id($wdpa_ids, $years);
         list($form_ids, $records) = $this->retrieve_form_ids($items);
+        App::setLocale($language);
         $response = Api::get_key_elements_conservation($form_ids);
-        App::setLocale($language);
+
         return $this->add_fields_to_response($response, $records);
     }
 
     /**
      * @param Request $request
-     * @param $type
+     * @param string $type
      * @return array
      * @throws ErrorException
      */
-    public function get_analysis_ranking(Request $request, $type): array
+    public function get_analysis_ranking(Request $request, string $slug): array
     {
         $language = $request->get('lang', 'en');
         list($wdpa_ids, $years) = $this->get_querystring_values($request);
         $items = $this->wdpa_id_to_form_id($wdpa_ids, $years);
         list($form_ids, $records) = $this->retrieve_form_ids($items);
-        $func = $type . "_ranking";
-        App::setLocale($language);
-        $response = Api::$func($form_ids);
+        $slug = str_replace('-', '_', $slug);
+        $func = $slug . "_ranking";
+        $response = $this->execute_function_url($form_ids, $func, $language);
         return $this->add_fields_to_response($response, $records);
     }
 
     /**
      * @param Request $request
-     * @param $type
+     * @param string $slug
      * @return array
      * @throws ErrorException
      */
-    public function get_analysis_average(Request $request, $type): array
+    public function get_analysis_average(Request $request, string $slug): array
     {
         $language = $request->get('lang', 'en');
         list($wdpa_ids, $years) = $this->get_querystring_values($request);
         $items = $this->wdpa_id_to_form_id($wdpa_ids, $years);
+
         list($form_ids, $records) = $this->retrieve_form_ids($items);
-        $func = $type . "_average";
-        App::setLocale($language);
-        return Api::$func($form_ids);
+        $slug = str_replace('-', '_', $slug);
+        $func = $slug . "_average";
+        return $this->execute_function_url($form_ids, $func, $language);
     }
 
     /**
      * @param Request $request
-     * @param $type
+     * @param string $slug
      * @return array
      * @throws ErrorException
      */
-    public function get_analysis_radar(Request $request, $type): array
+    public function get_analysis_radar(Request $request, string $slug): array
     {
         $language = $request->get('lang', 'en');
         list($wdpa_ids, $years) = $this->get_querystring_values($request);
         $items = $this->wdpa_id_to_form_id($wdpa_ids, $years);
         list($form_ids, $records) = $this->retrieve_form_ids($items);
-        $func = $type . "_radar";
-        App::setLocale($language);
-        $response = Api::$func($form_ids);
+        $slug = str_replace('-', '_', $slug);
+        $func = $slug . "_radar";
+        $response = $this->execute_function_url($form_ids, $func, $language);
         return $this->add_fields_to_response($response, $records);
     }
 
     /**
      * @param Request $request
-     * @param $type
+     * @param string $slug
      * @return array
      * @throws ErrorException
      */
-    public function get_analysis_table(Request $request, $type): array
+    public function get_analysis_table(Request $request, string $slug): array
     {
         $language = $request->get('lang', 'en');
         list($wdpa_ids, $years) = $this->get_querystring_values($request);
         $items = $this->wdpa_id_to_form_id($wdpa_ids, $years);
         list($form_ids, $records) = $this->retrieve_form_ids($items);
-        $func = $type . "_table";
-        App::setLocale($language);
-        $response = Api::$func($form_ids);
+        $slug = str_replace('-', '_', $slug);
+        $func = $slug . "_table";
+        $response = $this->execute_function_url($form_ids, $func, $language);
         return $this->add_fields_to_response($response, $records);
     }
 
     /**
      * @param Request $request
      * @return array
+     * @throws ErrorException
      */
     public function get_analysis_group(Request $request): array
     {
@@ -191,6 +194,7 @@ class ScalingUpAnalysisApiController
     /**
      * @param Request $request
      * @return array
+     * @throws ErrorException
      */
     public function get_analysis_group_and_indicators_group(Request $request): array
     {
@@ -201,8 +205,28 @@ class ScalingUpAnalysisApiController
     }
 
     /**
+     * @param array $form_ids
+     * @param string $func
+     * @param string $language
+     * @return array
+     */
+    private function execute_function_url(array $form_ids, string $func, string $language): array
+    {
+        $response = [];
+        App::setLocale($language);
+        if (method_exists(Api::class, $func)) {
+            $response = Api::$func($form_ids);
+        } else {
+            abort(404, "Page not found");
+        }
+
+        return $response;
+    }
+
+    /**
      * @param Request $request
      * @return array
+     * @throws ErrorException
      */
     private function group_items(Request $request): array
     {
@@ -231,7 +255,6 @@ class ScalingUpAnalysisApiController
                 }
                 $group++;
             }
-
         }
 
         return $items;
@@ -261,7 +284,7 @@ class ScalingUpAnalysisApiController
     private function wdpa_id_to_form_id(array $ids, array $years): Collection
     {
         $keys_not_match = [];
-        if (count($years) === 0) {
+        if (count($years) === 0){
             return Imet::select('FormID', 'Year', 'wdpa_id', 'Country')->whereIn('wdpa_id', $ids)->get();
         } else if (count($years) === 1) {
             return Imet::select('FormID', 'Year', 'wdpa_id', 'Country')->whereIn('wdpa_id', $ids)->where('Year', $years[0])->get();
@@ -273,7 +296,7 @@ class ScalingUpAnalysisApiController
                     if ($record) {
                         $collection->add($record);
                     } else {
-                        $keys_not_match[] = str_replace('{1}',$years[$key] ,str_replace('{0}',$id ,trans('imet-core::api.scaling_up.error_messages.ids_and_years')));
+                        $keys_not_match[] = str_replace('{1}', $years[$key], str_replace('{0}', $id, trans('imet-core::api.scaling_up.error_messages.ids_and_years')));
                     }
                 }
                 if (!count($keys_not_match)) {
@@ -297,9 +320,9 @@ class ScalingUpAnalysisApiController
     private function get_querystring_values(Request $request): array
     {
         $years = [];
-
         $query_wdpa_ids = $request->get('wdpa_ids', null);
         $query_years = $request->get('years', null);
+
         if ($query_wdpa_ids) {
             $wdpa_ids = explode(',', $query_wdpa_ids);
         } else {
