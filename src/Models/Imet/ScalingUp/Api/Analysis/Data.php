@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api\Analysis;
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\DataTable as ScalingUpDataTable;
+use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar;
 
 trait Data
 {
@@ -31,6 +32,26 @@ trait Data
         }
 
         return [$api];
+    }
+
+    /**
+     * @param array $items
+     * @return array
+     */
+    public static function threats_table(array $items): array
+    {
+        $api = [];
+        $data = Radar::get_threats_radar_indicators($items);
+
+        foreach($data['total_categories'][0] as $key => $value) {
+            $api[] = [
+                'id' => $value['id'],
+                'name' => $value['name'],
+                'values' => $data['radar']['values'][$value['name']]
+            ];
+        }
+
+        return ['records' => $api, 'labels' => $data['radar']['indicators']];
     }
 
     /**

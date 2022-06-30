@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api\Analysis;
 
+use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar as ScalingUpRadar;
 
 trait DataUpperLowerAverage
@@ -59,6 +60,7 @@ trait DataUpperLowerAverage
 
         return [$api];
     }
+
 
     /**
      * @param array $items

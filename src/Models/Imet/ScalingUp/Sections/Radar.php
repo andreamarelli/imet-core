@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 class Radar
 {
 
-    public static function get_radar_analysis_indicators_data(array $form_ids, array $table_indicators, string $type = "", int $scaling_id = 0) :array
+    public static function get_radar_analysis_indicators_data(array $form_ids, array $table_indicators, string $type = "", int $scaling_id = 0): array
     {
         $valuesIndicators = [];
 
@@ -109,7 +109,7 @@ class Radar
      */
     public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", int $scaling_id = 0)
     {
-        $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators,$type ,$scaling_id);
+        $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
 
         $response['values']['upper limit']['lineStyle'] = 'dashed';
         $response['values']['upper limit']['color'] = 'green';
@@ -226,10 +226,12 @@ class Radar
     {
         $radar = ['values' => [], 'indicators' => []];
         $indicators = [];
+        $total_categories = [];
 
         foreach ($form_ids as $j => $form_id) {
             $pa = Common::get_pa_name($form_id, $scaling_id);
             $protected_areas_names[$form_id] = $pa->name;
+
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
             if (count($indicators) === 0) {
                 foreach ($protected_areas[$j]['category_stats'] as $c => $value) {
@@ -244,7 +246,11 @@ class Radar
                 } else {
                     $value = Common::round_number((-1 * (double)$protected_area));
                 }
-                $total_categories[$k][] = ["name" => $protected_areas_names[$form_id], "value" => $value, 'color' => $pa->color];
+                $record = ["id" =>$pa->wdpa_id,  "name" => $protected_areas_names[$form_id], "value" => $value, 'color' => $pa->color];
+                if ($pa->color) {
+                    $record['color'] = $pa->color;
+                }
+                $total_categories[$k][] = $record;
             }
         }
 
@@ -254,11 +260,14 @@ class Radar
             });
             $total_categories[$k] = $cat;
             foreach ($cat as $c => $v) {
-                if (isset($radar['values'][$v['name']])) {
+                $name = $v['name'];
+                if (isset($radar['values'][$name])) {
                     array_unshift($radar['values'][$v['name']], $v['value']);
                 } else {
-                    $radar['values'][$v['name']][] = $v['value'];
-                    $radar['values'][$v['name']]['color'] = $v['color'];
+                    $radar['values'][$name][] = $v['value'];
+                    if ($v['color'] !== null) {
+                        $radar['values'][$name]['color'] = $v['color'];
+                    }
                 }
             }
         }

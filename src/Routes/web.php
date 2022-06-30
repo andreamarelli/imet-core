@@ -99,7 +99,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::group(['prefix' => 'overall'], function () {
                     Route::get('ranking', [ScalingUpAnalysisApiController::class, 'get_overall_ranking']);
                     Route::get('averages', [ScalingUpAnalysisApiController::class, 'get_overall_average_of_six_elements']);
-                    Route::get('data-upper-lower-average', [ScalingUpAnalysisApiController::class, 'get_visualization_synthetics_indicators']);
+                    Route::get('data-synthetic-indicators ', [ScalingUpAnalysisApiController::class, 'get_visualization_synthetics_indicators']);
                     Route::get('synthetic-indicators', [ScalingUpAnalysisApiController::class, 'get_scatter_visualization_synthetic_indicators']);
                 });
                 Route::group(['prefix' => 'elements'], function () {
