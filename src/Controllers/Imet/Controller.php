@@ -61,7 +61,7 @@ class Controller extends __Controller
     /**
      * Override index route
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -98,10 +98,10 @@ class Controller extends __Controller
     /**
      * Get IMET list for index view
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return mixed
      */
-    protected function get_list(Request $request)
+    public function get_list(Request $request)
     {
         $list_v1 = v1\Imet
             ::filterList($request)
@@ -386,7 +386,7 @@ class Controller extends __Controller
     /**
      * Import a full IMET from json file
      *
-     * @param \Illuminate\Http\Request|null $request
+     * @param Request|null $request
      * @param $json
      * @param boolean $returnJson
      * @return array|\Illuminate\Http\JsonResponse|string[]
@@ -467,7 +467,7 @@ class Controller extends __Controller
     /**
      * Execute th merge of the given module
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
@@ -485,7 +485,7 @@ class Controller extends __Controller
             return $item;
         }, $records);
 
-        $request = new \Illuminate\Http\Request();
+        $request = new Request();
         $request->merge(['records_json' => json_encode($records)]);
         $request->merge(['form_id' => $destination_form_id]);
 

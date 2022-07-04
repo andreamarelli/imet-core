@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisApiController;
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 use AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use Illuminate\Support\Facades\Route;
@@ -94,26 +94,28 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::group(['prefix' => 'imet'], function () {
             Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
             Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
+            Route::get('statistics/radar', [ApiController::class, 'get_imet_statistics_radar']);
+            Route::get('protected-areas-list', [ApiController::class, 'get_pa_list']);
             Route::group(['prefix' => 'scaling-up'], function () {
-                Route::get('general-info', [ScalingUpAnalysisApiController::class, 'get_general_info']);
+                Route::get('general-info', [ApiController::class, 'get_general_info']);
                 Route::group(['prefix' => 'overall'], function () {
-                    Route::get('ranking', [ScalingUpAnalysisApiController::class, 'get_overall_ranking']);
-                    Route::get('averages', [ScalingUpAnalysisApiController::class, 'get_overall_average_of_six_elements']);
-                    Route::get('data-synthetic-indicators ', [ScalingUpAnalysisApiController::class, 'get_visualization_synthetics_indicators']);
-                    Route::get('synthetic-indicators', [ScalingUpAnalysisApiController::class, 'get_scatter_visualization_synthetic_indicators']);
+                    Route::get('ranking', [ApiController::class, 'get_overall_ranking']);
+                    Route::get('averages', [ApiController::class, 'get_overall_average_of_six_elements']);
+                    Route::get('data-synthetic-indicators ', [ApiController::class, 'get_visualization_synthetics_indicators']);
+                    Route::get('synthetic-indicators', [ApiController::class, 'get_scatter_visualization_synthetic_indicators']);
                 });
                 Route::group(['prefix' => 'elements'], function () {
-                    Route::get('key-conservation', [ScalingUpAnalysisApiController::class, 'get_key_elements_conservation']);
+                    Route::get('key-conservation', [ApiController::class, 'get_key_elements_conservation']);
                 });
                 Route::group(['prefix' => 'groups'], function () {
-                    Route::get('by-groups', [ScalingUpAnalysisApiController::class, 'get_analysis_group']);
-                    Route::get('by-pa-group-and-synthetic-indicators-group', [ScalingUpAnalysisApiController::class, 'get_analysis_group_and_indicators_group']);
+                    Route::get('by-groups', [ApiController::class, 'get_analysis_group']);
+                    Route::get('by-pa-group-and-synthetic-indicators-group', [ApiController::class, 'get_analysis_group_and_indicators_group']);
                 });
                 Route::group(['prefix' => 'analysis'], function () {
-                    Route::get('ranking/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_ranking']);
-                    Route::get('average/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_average']);
-                    Route::get('data-upper-lower-average/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_radar']);
-                    Route::get('data/{slug}', [ScalingUpAnalysisApiController::class, 'get_analysis_table']);
+                    Route::get('ranking/{slug}', [ApiController::class, 'get_analysis_ranking']);
+                    Route::get('average/{slug}', [ApiController::class, 'get_analysis_average']);
+                    Route::get('data-upper-lower-average/{slug}', [ApiController::class, 'get_analysis_radar']);
+                    Route::get('data/{slug}', [ApiController::class, 'get_analysis_table']);
                 });
             });
         });

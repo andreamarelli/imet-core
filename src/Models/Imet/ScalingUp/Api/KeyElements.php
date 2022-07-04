@@ -66,7 +66,7 @@ trait KeyElements
                 }
             }
 
-            $api[] = ['id' => $protected_area['wdpa_id'], 'name' => $protected_area['name'], 'values' => $retrieve_key_elements];
+            $api[] = ['wdpa_id' => $protected_area['wdpa_id'], 'name' => $protected_area['name'], 'values' => $retrieve_key_elements];
         }
 
         return ['records' => $api, 'labels' => $labels];
