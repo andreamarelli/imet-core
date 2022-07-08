@@ -175,23 +175,6 @@ class ScalingUpAnalysis extends Model
                 })->pluck('Aspect')->toArray()
             ];
 
-            foreach ($retrieve_key_elements as $key => $value) {
-                if ($key === 'species') {
-                    foreach ($value as $group_key => $group_value) {
-                        foreach ($group_value as $species_key => $species_value) {
-                            if (!in_array($species_value, $key_elements[$key][$group_key])) {
-                                $key_elements[$key][$group_key][] = $species_value;
-                            }
-                        }
-                    }
-                } else {
-                    foreach ($value as $key_element) {
-                        if (!in_array($key_element, $key_elements[$key])) {
-                            $key_elements[$key][] = $key_element;
-                        }
-                    }
-                }
-            }
             if (count($retrieve_key_elements['species'])) {
                 foreach ($retrieve_key_elements['species'] as $key => $array_species) {
                     foreach ($array_species as $group => $species) {
@@ -201,12 +184,10 @@ class ScalingUpAnalysis extends Model
                         } else {
                             $species_count[$group][$species] = 1;
                         }
-
                         $key_elements['species'][$group][$species][0][] = $name;
                     }
                 }
             }
-
             foreach ($array_elements as $keys => $element) {
                 if (count($retrieve_key_elements[$keys])) {
                     foreach ($retrieve_key_elements[$keys] as $key => $item) {
@@ -222,9 +203,10 @@ class ScalingUpAnalysis extends Model
         }
 
         foreach ($array_elements as $keys => $element) {
+
             foreach ($array_elements_count[$keys . '_count'] as $k => $value) {
                 $key_elements[$keys] = array_filter($key_elements[$keys], function ($v) {
-                    return count($v[0]) > 0;
+                    return count($v[0]) > 1;
                 });
 
                 uasort($key_elements[$keys], function ($a, $b) {
@@ -232,7 +214,7 @@ class ScalingUpAnalysis extends Model
                 });
 
                 $array_elements_count[$keys . '_count'] = array_filter($array_elements_count[$keys . '_count'], function ($v) {
-                    return ($v) > 0;
+                    return ($v)  > 1;
                 });
 
                 uasort($array_elements_count[$keys . '_count'], function ($a, $b) {
