@@ -427,6 +427,10 @@ fieldset[disabled] .vue-swatches {
 .imet_modules .field-disabled {
   color: #404040; }
 
+.imet_modules .module-header .module-type {
+  /* for marine/terrestrial icons */
+  padding: 6px 15px; }
+
 .imet_name {
   display: flex;
   flex-direction: column; }

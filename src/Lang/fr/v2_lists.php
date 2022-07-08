@@ -36,9 +36,35 @@ return [
     ],
 
     'PaType' => [
-        'Terrestre',
-        'Maritime',
-        'Mixte'
+        'terrestrial'           => 'terrestre',
+        'marine_and_coastal'    => 'maritime et côtier',
+        'oecm_terrestrial'      => 'OECMs (Other effective area-based conservation measures) - Terrestrial',
+        'oecm_marine'           => 'OECMs (Other effective area-based conservation measures) - Marine',
+        'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
+        'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
+    ],
+
+    'IUCNDesignation' => [
+        'IA'    => 'IA Réserve naturelle intégrale',
+        'IB'    => 'IB Zone de nature sauvage',
+        'II'    => 'II Parc national',
+        'III'   => 'III Natural Monument or Feature',
+        'IV'    => 'IV Aire de gestion des habitats/espèces',
+        'V'     => 'V Paysage terrestre/marin protégé',
+        'VI'    => 'VI Zone de gestion de ressources protégées',
+        'not_reported' => 'Not reported'
+    ],
+
+    'MarineDesignation' => [
+        'Zone d’interdiction d’accès (No-Entry zone)',
+        'Zone de non-prélèvement (No-Take zone)',
+        'AMP à buts multiples — Zones tampons pour l’utilisation traditionnelle',
+        'AMP à buts multiples — Zones tampons pour les activités éducatives et/ou récréatives',
+        'AMP à buts multiples — Autre ',
+        'Réserves marines ',
+        'Refuges pour la faune sauvage',
+        'Zone de gestion de pêche',
+        'Autre',
     ],
 
     'EcoType' => [
@@ -82,13 +108,21 @@ return [
     ],
 
     'GovernanceType' => [
-        'Gouvernance par le gouvernement',
-        'Gouvernance partagée',
-        'Gouvernance privée',
-        'Gouvernance par les communautés locales et les populations autochtones'
+        'Conservation à base communautaire (CBC - Community-based conservation)',
+        'Gestion à base communautaire (CBM - Community-based managemen)',
+        'Aire basée sur la conservation (CBA - Conservation Based Area)',
+        'Aires marines gérées localement (LMMA - Locally Managed Marine Areas)',
+        'Aires conservées par les communautés autochtones (ICCAs - ndigenous Community Conserved Areas)',
+        'Aires protégées et conservées (PCAs - Protected and Conserved Areas)',
+        'Autre'
     ],
 
-    'Designation' => [
+    'TerrestrialOrMarine' => [
+        'terrestrial' => 'Terrestre',
+        'marine' => 'Maritime',
+    ],
+
+    'SpecialDesignation' => [
         'ASEAN Heritage Parks (ASEAN)',
         'Alliance for Zero Extinction Sites (AZE)',
         'Barcelona Convention',
@@ -107,23 +141,41 @@ return [
         'World Heritage Sites'
     ],
 
-    'LandCoverUseTake' => [
-        'Forêt',
-        'Savane arbustive',
-        'Savane herbacée',
-        'Prairies',
-        'Eau',
-        'Cultures / Plantations',
-        'Habitations',
-        'Routes'
-    ],
-
     'SpeciesReliability' => [
         'Haute', 'Moyenne', 'Faible'
     ],
 
-    'MarineHabitatsPresence' => [
-        'Présent', 'Absent', 'Dominant'
+    'Habitats' => [
+        # Forest
+        'Forest temperate',
+        'Forest boreal',
+        'Subtropical/tropical moist lowland',
+        'Subtropical/tropical moist montane',
+        'Subtropical/tropical dry',
+        'Subtropical/tropical swamp',
+        # Savanna
+        'Savanna-moist',
+        'Savanna-dry',
+        # Shrubland
+        'Shrubland-Subtropical/tropical dry',
+        'Shrubland-Subtropical/tropical moist',
+        'Shrubland-Subtropical/tropical high altitude',
+        'Shrubland temperate',
+        'Shrubland boreal',
+        # Grassland
+        'Grassland Temperate',
+        'Grassland subtropical/tropical high altitude',
+        'Grassland subtropical/tropical dry',
+        # Wetlands
+        'Wetlands (inland)-Permanent freshwater lakes',
+        'Wetlands (inland)',
+        'Wetlands (inland)-Tundra wetlands',
+        # Rocky Areas, Desert
+        'Desert – Temperate',
+        'Desert – Cold',
+        'Desert - Hot',
+        # Artificial
+        'Plantations'
     ],
 
     'EcosystemServicesImportance' => [
