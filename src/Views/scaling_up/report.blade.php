@@ -16,6 +16,7 @@
     <div id="imet_report">
         <app :scaling_up_id="{{$scaling_up_id}}">
             <template>
+                @include('imet-core::scaling_up.components.scaling_up_template')
                 <div class="container">
                     <div class="row h-150 mb-5">
                         <div class="col-sm text-center">
@@ -24,12 +25,10 @@
                     </div>
                 </div>
                 @include('imet-core::scaling_up.components.navigation_menu', ['templates'=> $templates])
-
                 <div id="names"></div>
                 <div>
                     <guidance :text="'imet-core::analysis_report.guidance.special_information'"/>
                 </div>
-                @include('imet-core::scaling_up.components.scaling_up_template')
                 @include('imet-core::scaling_up.components.wdpa_names')
                 @foreach($templates as $key => $template)
                     @include('imet-core::scaling_up.components.'.$template['name'],
@@ -56,6 +55,9 @@
             methods: {
                 goTo: function (event) {
                     let element = event.target.value;
+                    if(element === '#'){
+                        return;
+                    }
                     if (['process', 'process_pr1_pr6', 'process_pr7_pr9', 'process_pr10_pr12', 'process_pr13_pr14', 'process_pr15_pr16', 'process_pr17_pr18'].includes(element)) {
                         let event_element = 'analysis_per_element_of_them_management_cycle';
                         this.$root.$emit(event_element);

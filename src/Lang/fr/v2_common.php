@@ -18,6 +18,7 @@ return [
         'climate'               => 'Changements climatiques et conservation',
         'ecosystem_services'    => 'Services écosystémiques et dépendance des collectivités',
         'objectives'            => 'Objectifs et Gestion',
+        'cross_analysis'  => 'Cross Analysis',
     ],
 
     'steps_eval' => [

@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
@@ -102,6 +103,7 @@ class ScalingUpAnalysisController
     public function get_ajax_responses(Request $request)
     {
         $locale = App::getLocale();
+        //dd($locale);
         $action = $request->input('func');
         $parameters = $request->input('parameter');
         $type = $request->input('type', '');
@@ -112,30 +114,6 @@ class ScalingUpAnalysisController
     }
 
     /**
-     * @param Request $request
-     * @return array[]|\array[][]|void
-     */
-    public function get_ranking(Request $request)
-    {
-        $indicators = [];
-        $parameters = $request->input('parameter');
-        $type = $request->input('type', null);
-        $sub_type = $request->input('sub_type', null);
-        if (array_key_exists($type, $this->indicators)) {
-            $indicators = $this->indicators[$type];
-            if ($sub_type && array_key_exists($sub_type, $this->indicators)) {
-                $indicators = $this->indicators[$sub_type];
-            }
-        }
-
-        if (empty($indicators)) {
-            return abort(404);
-        }
-        ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
-        return ModelScalingUpAnalysis::ranking_indicators($parameters, $type, $indicators);
-    }
-
-    /**
      * @param $scaling_up_id
      * @param $areas
      */
@@ -143,7 +121,7 @@ class ScalingUpAnalysisController
     {
         $isScalingUpInit = ScalingUpWdpa::retrieve_by_scaling_id($scaling_up_id);
         if (count($isScalingUpInit) === 0) {
-            ModelScalingUpAnalysis::reset_areas_ids();
+            Common::reset_areas_ids();
             ScalingUpWdpa::save_pas($scaling_up_id, $areas);
         }
     }
@@ -172,7 +150,7 @@ class ScalingUpAnalysisController
         $ids = explode(',', $items);
         foreach ($ids as $id) {
             if ($request->input($id)) {
-                ScalingUpWdpa::update_item($scaling_up_id, $id, $request->input($id));
+                ScalingUpWdpa::update_item($scaling_up_id, $id, $request->input($id), $request->input('color-'.$id ));
             }
         }
     }
@@ -228,7 +206,7 @@ class ScalingUpAnalysisController
         $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas), true);
 
         if ($request->input("save_form")) {
-            ModelScalingUpAnalysis::reset_areas_ids();
+            Common::reset_areas_ids();
             $this->update_custom_names($request, $items, $scaling_up_id);
         }
 
@@ -244,12 +222,17 @@ class ScalingUpAnalysisController
         $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
+       // dd($custom_items);
+        $custom_colors = array_map(function ($v) {
+            return $v->color;
+        }, $custom_items);
+
         $protected_areas_names = implode(', ', $custom_names);
 
         uasort($protected_areas['models'], function ($a, $b) {
             return $a['name'] > $b['name'];
         });
-
+        App::setLocale($locale);
         $templates_names = [
             ['name' => "protected_areas", 'title' => trans('imet-core::analysis_report.sections.list_of_names'), 'snapshot_id' => "protected_areas", 'exclude_elements' => '', 'code' => '0'],
             ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => '', 'code' => '1'],
@@ -263,7 +246,8 @@ class ScalingUpAnalysisController
             ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
 
-        App::setLocale($locale);
+
+
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,
             'pa_ids' => $pa_ids,
@@ -271,6 +255,7 @@ class ScalingUpAnalysisController
             'scaling_up_id' => $scaling_up_id,
             'protected_areas' => $protected_areas,
             'custom_names' => $custom_names,
+            'custom_colors' => $custom_colors,
             'request' => $request,
             'custom_items' => $custom_items
         ]);

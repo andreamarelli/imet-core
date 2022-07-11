@@ -10,7 +10,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
-use AndreaMarelli\ImetCore\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
@@ -68,9 +67,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::get('{item}/print',          [EvalControllerV2::class, 'print']);
                 Route::patch('{item}',           [EvalControllerV2::class, 'update']);
             });
-            Route::group(['prefix' => 'cross-analysis'], function () {
-                Route::get('{item}',   [CrossAnalysisController::class, 'cross_analysis']);
-            });
             Route::group(['prefix' => 'report'], function () {
                 Route::get('{item}/edit', [ReportControllerV2::class, 'report']);
                 Route::get('{item}/show', [ReportControllerV2::class, 'report_show']);
@@ -79,7 +75,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         });
 
-
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('csv_list');
             Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('csv');
@@ -87,13 +82,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         });
 
 
-    });
-
-    // Roles
-    Route::group(['prefix' => 'admin/role/imet'], function () {
-        Route::match(['get', 'post'], 'imet', [RoleController::class, 'index']);
-        Route::post('imet/grant', [RoleController::class, 'grant']);
-        Route::post('imet/revoke', [RoleController::class, 'revoke']);
     });
 
     /*
