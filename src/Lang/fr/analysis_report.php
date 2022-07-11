@@ -21,7 +21,6 @@ return [
     'source' => 'Source',
     'download_files' => 'téléchargements de fichiers',
     'print' => 'imprimer',
-    'protected_area' => 'zone protégée',
     'custom_names' => 'Noms des zones protégées',
     'apply' => 'Postulez',
     'no_value' => 'Aucune valeur',
@@ -526,5 +525,3 @@ return [
         ]
     ]
 ];
-
-

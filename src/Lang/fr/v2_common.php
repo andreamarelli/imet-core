@@ -36,7 +36,6 @@ return [
         'management_effectiveness'  => 'Efficacité de gestion',
     ],
 
-
     'indexes' => [
         'imet'        => 'IMET index',
         'context'     => 'Contexte index',
