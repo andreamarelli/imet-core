@@ -23,6 +23,7 @@ return [
     ],
 
     'dopa_not_available' => 'Servicios DOPA no disponibles',
+
     'languages' => [
         'fr'        => 'francés',
         'en'        => 'inglés',

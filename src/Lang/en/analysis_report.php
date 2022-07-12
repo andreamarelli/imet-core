@@ -21,7 +21,6 @@ return [
     'source'=> 'Source',
     'download_files' => 'Download',
     'print' => 'print',
-    'protected_area' => 'protected area',
     'custom_names' => 'Names of protected areas',
     'apply' => 'Apply',
     'no_value' => 'No value',

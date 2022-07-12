@@ -21,7 +21,6 @@ return [
     'source' => 'Fonte',
     'download_files' => 'ficheiros',
     'print' => 'imprimir',
-    'protected_area' => 'área protegida',
     'custom_names' => 'Nomes de áreas protegidas',
     'apply' => 'Aplicar',
     'no_value' => 'Sem valor',
