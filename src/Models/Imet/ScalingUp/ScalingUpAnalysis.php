@@ -465,8 +465,7 @@ class ScalingUpAnalysis extends Model
                 'main' => [
                     'op1' => [],
                     'op2' => [],
-                    'op3' => [],
-                    'op4' => []
+                    'op3' => []
                 ]
             ],
             'outcomes' => [

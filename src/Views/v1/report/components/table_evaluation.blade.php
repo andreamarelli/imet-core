@@ -166,7 +166,6 @@
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::v2_common.assessment.op1')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op2'], 'assessment_label' => trans('imet-core::v2_common.assessment.op2')[1]])
            @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op3'], 'assessment_label' => trans('imet-core::v2_common.assessment.op3')[1]])
-           @include('imet-core::v1.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op4'], 'assessment_label' => trans('imet-core::v2_common.assessment.op4')[1]])
            @include('imet-core::v1.report.components.row_evaluation', [
                'assessment_value' => $assessment['outputs']['avg_indicator'],
                'assessment_label' => trans('imet-core::v1_common.indexes.outputs'),
