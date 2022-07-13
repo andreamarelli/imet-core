@@ -210,7 +210,7 @@ return [
         ],
         'op2' => [
             'O/P2',
-            'Annual outputs – targets – achievement'
+            'Annual outputs – targets – achievement'
         ],
         'op3' => [
             'O/P3',
