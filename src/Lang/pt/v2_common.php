@@ -216,6 +216,10 @@ return [
             'O/P3',
             'Dominação da área'
         ],
+        'op4' => [
+            'O/P4',
+            'Aplicação da lei em MPA'
+        ],
         'oc1' => [
             'O/C1',
             'Realização dos objectivos de conservação a longo prazo do plano de  gestão'

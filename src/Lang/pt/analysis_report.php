@@ -365,6 +365,7 @@ return [
         'op1' => 'Implementação do plano de trabalho/acção',
         'op2' => 'Anual outputs - targets - achievement',
         'op3' => 'Domínio da área',
+        'op4' => 'Aplicação da lei em MPA',
         'oc1' => 'Realização dos objectivos de conservação a longo prazo da gestão',
         'oc2' => 'Condições e tendências dos elementos-chave de conservação da área protegida',
         'oc3' => 'Efeitos e resultados para as partes interessadas na qualidade de vida',

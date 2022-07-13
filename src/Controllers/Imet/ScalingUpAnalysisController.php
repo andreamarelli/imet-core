@@ -87,7 +87,8 @@ class ScalingUpAnalysisController
         'outputs' => [
             'op1' => [],
             'op2' => [],
-            'op3' => []
+            'op3' => [],
+            'op4' => [],
         ],
         'outcomes' => [
             'oc1' => [],

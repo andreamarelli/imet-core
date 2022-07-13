@@ -366,6 +366,7 @@ return [
         'op1' => 'Mise en œuvre du plan de travail/action',
         'op2' => 'Résultats annuels — objectifs — réalisations',
         'op3' => 'Domination de la zone',
+        'op4' => 'Application de la loi dans l’AMP',
         'oc1' => 'Réalisation des objectifs de conservation à long terme de la gestion',
         'oc2' => 'Conditions et tendances des principaux éléments de conservation de l’aire protégée',
         'oc3' => 'Effets et résultats pour les parties prenantes sur la qualité de vie',

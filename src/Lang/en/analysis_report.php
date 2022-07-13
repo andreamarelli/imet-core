@@ -366,6 +366,7 @@ return [
         'op1' => 'IImplementation of the work/action plan',
         'op2' => 'Annual outputs – targets – achievement',
         'op3' => 'Area domination',
+        'op4' => 'Enforcement in MPA',
         'oc1' => 'Achievement of long-term conservation objectives of the management',
         'oc2' => 'Conditions and trends of the key conservation elements of the protected area',
         'oc3' => 'Effects and outcomes for stakeholders on quality of life',

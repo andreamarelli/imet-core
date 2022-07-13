@@ -216,6 +216,10 @@ return [
             'O/P3',
             'Area domination'
         ],
+        'op4' => [
+            'O/P4',
+            'Enforcement in MPA'
+        ],
         'oc1' => [
             'O/C1',
             'Achievement of long-term conservation objectives of the management'

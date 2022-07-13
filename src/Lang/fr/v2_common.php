@@ -216,6 +216,10 @@ return [
             'O/P3',
             'Domination de l’aire protégée',
         ],
+        'op4' => [
+            'O/P4',
+            'Application de la loi dans l’AMP',
+        ],
         'oc1' => [
             'O/C1',
             'Atteinte des objectifs de conservation',

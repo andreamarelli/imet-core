@@ -175,7 +175,7 @@ $assessment_step = json_decode(\AndreaMarelli\ImetCore\Controllers\Imet\EvalCont
                         _this.step_color = '#00B0F0';
                         break;
                     case 'outputs':
-                        _this.step_indexes = ['op1', 'op2', 'op3'];
+                        _this.step_indexes = ['op1', 'op2', 'op3', 'op4'];
                         _this.step_color = '#92D050';
                         break;
                     case 'outcomes':
