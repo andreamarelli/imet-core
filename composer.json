@@ -33,7 +33,12 @@
         "laravel": {
             "providers": [
                 "AndreaMarelli\\ImetCore\\ServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "ImetCountry": "AndreaMarelli\\ImetCore\\Models\\Country",
+                "ImetProtectedArea": "AndreaMarelli\\ImetCore\\Models\\ProtectedArea",
+                "ImetProtectedAreaNonWdpa": "AndreaMarelli\\ImetCore\\Models\\ProtectedAreaNonWdpa"
+            }
         }
     }
 }
