@@ -2,12 +2,10 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use Imet;      // Alias
 use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\Assessment;
-use AndreaMarelli\ImetCore\Controllers\Imet\Pame;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Encoder;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
@@ -16,20 +14,16 @@ use AndreaMarelli\ImetCore\Models\Report;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
-use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Helpers\Module;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use function imet_offline_version;
@@ -75,73 +69,20 @@ class Controller extends __Controller
 
         // set filter status
         $filter_selected = !empty(array_filter($request->except('_token')));
-        $countries = ProtectedArea::getCountries()
-            ->keyBy('iso3')
-            ->sort()
-            ->toArray();
-        $years = Imet::getAvailableYears();
 
-        $list = static::get_list($request);
+        // retrieve IMET list
+        $list = Imet::get_list($request);
+        $years = array_values($list->pluck('Year')->sort()->unique()->toArray());
+        $countries = $list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'list', [
             'controller' => static::class,
             'list' => $list,
             'request' => $request,
             'filter_selected' => $filter_selected,
-            'countries' => array_map(function ($item) {
-                return $item['name'];
-            }, $countries),
-            'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
+            'countries' => $countries,
+            'years' => $years
         ]);
-    }
-
-    /**
-     * Get IMET list for index view
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return mixed
-     */
-    protected function get_list(Request $request)
-    {
-        $list_v1 = v1\Imet
-            ::filterList($request)
-            ->with('country', 'encoder', 'responsible_interviees', 'responsible_interviers', 'assessment')
-            ->get()
-            ->map(function ($item){
-                $item['assessment_radar'] = $item['assessment']->radar();
-                return $item;
-            });
-
-        $list_v2 = v2\Imet
-            ::filterList($request)
-            ->with('country', 'encoder', 'responsible_interviees', 'responsible_interviers', 'assessment')
-            ->get()
-            ->map(function ($item){
-                $item['assessment_radar'] = $item['assessment']->radar();
-                return $item;
-            });
-
-        $list = $list_v1->merge($list_v2);
-
-        $list->map(function ($item){
-            $item->encoders_responsibles = [
-                'encoders' => $item->encoder->unique(),
-                'internal' => $item->responsible_interviers->unique(),
-                'external' => $item->responsible_interviees->unique(),
-            ];
-            if(ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
-                $item->wdpa_id = null;
-            }
-            return $item;
-        });
-
-        $hasDuplicates = Imet::foundDuplicates();
-        $list->map(function ($item) use ($hasDuplicates) {
-            $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
-            return $item;
-        });
-
-        return $list;
     }
 
     public function scaling_up(Request $request)
@@ -151,23 +92,19 @@ class Controller extends __Controller
 
         // set filter status
         $filter_selected = !empty(array_filter($request->except('_token')));
-        $countries = ProtectedArea::getCountries()
-            ->keyBy('iso3')
-            ->sort()
-            ->toArray();
-        $years = Imet::getAvailableYears();
 
-        $list = static::get_list($request);
+        // retrieve IMET list
+        $list = Imet::get_list($request);
+        $years = array_values($list->pluck('Year')->sort()->unique()->toArray());
+        $countries = $list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'scaling_up.list', [
             'controller' => static::class,
             'list' => $list,
             'request' => $request,
             'filter_selected' => $filter_selected,
-            'countries' => array_map(function ($item) {
-                return $item['name'];
-            }, $countries),
-            'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
+            'countries' => $countries,
+            'years' => $years
         ]);
     }
 
@@ -182,35 +119,16 @@ class Controller extends __Controller
         $this->authorize('viewAny', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
 
-        $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
-        $years = Imet::getAvailableYears();
-
-        $list_v1 = v1\Imet
-            ::filterList($request)
-            ->get();
-
-        $list_v2 = v2\Imet
-            ::filterList($request)
-            ->get();
-
-        $list = $list_v1->merge($list_v2);
-
-        $list->map(
-                function (Imet $item) use ($countries) {
-                    $item->iso2 = $countries[$item->Country]['iso2'] ?? null;
-                    $item->country_name = $countries[$item->Country]['name'] ?? null;
-                    return $item;
-                }
-            )
-            ->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
+        // retrieve IMET list
+        $list = Imet::get_list_reduced($request)->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
+        $years = array_values($list->pluck('Year')->sort()->unique()->toArray());
+        $countries = $list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'export', [
             'list' => $list,
             'request' => $request,
-            'countries' => array_map(function ($item) {
-                return $item['name'];
-            }, $countries),
-            'years' => !empty($years) ? range(min($years), max($years)) : array(Carbon::today()->year),
+            'countries' => $countries,
+            'years' => $years
         ]);
     }
 
@@ -219,9 +137,9 @@ class Controller extends __Controller
      *
      * @param string $ids
      * @param string $module_key
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|null
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|string|null
      */
-    public function exportModuleToCsv(string $ids, string $module_key)
+    public function exportModuleToCsv(string $ids, string $module_key): ?BinaryFileResponse
     {
         $model = ModuleKey::KeyToClassName($module_key);
 

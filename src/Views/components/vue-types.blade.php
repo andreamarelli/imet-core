@@ -22,7 +22,7 @@ $other_attributes = $other ?? '';
 @if($type === 'imet-core::selector-wdpa')
     <selector-wdpa
         {!! $vue_attributes !!}
-        :data-countries='@json(\AndreaMarelli\ImetCore\Models\ProtectedArea::getCountries()
+        :data-countries='@json(\ImetProtectedArea::getCountries()
                 ->sortBy('name_'.\AndreaMarelli\ModularForms\Helpers\Locale::lower())
                 ->pluck('name_'.\AndreaMarelli\ModularForms\Helpers\Locale::lower(), 'iso3')
                 ->toArray(), JSON_HEX_APOS)'
