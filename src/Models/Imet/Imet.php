@@ -77,7 +77,6 @@ class Imet extends Form
         return strtolower($value);
     }
 
-
     /**
      * Get IMET list for index controller
      *
@@ -88,7 +87,7 @@ class Imet extends Form
     {
         $list_v1 = v1\Imet
             ::filterList($request)
-            ->with('country', 'encoder', 'responsible_interviees', 'responsible_interviers', 'assessment')
+            ->with('country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment')
             ->get()
             ->map(function ($item) {
                 $item['assessment_radar'] = $item['assessment']->radar();
@@ -97,7 +96,7 @@ class Imet extends Form
 
         $list_v2 = v2\Imet
             ::filterList($request)
-            ->with('country', 'encoder', 'responsible_interviees', 'responsible_interviers', 'assessment')
+            ->with('country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment')
             ->get()
             ->map(function ($item) {
                 $item['assessment_radar'] = $item['assessment']->radar();
@@ -109,8 +108,8 @@ class Imet extends Form
         $list->map(function ($item) {
             $item->encoders_responsibles = [
                 'encoders' => $item->encoder->unique(),
-                'internal' => $item->responsible_interviers->unique(),
-                'external' => $item->responsible_interviees->unique(),
+                'internal' => $item->responsible_interviewers->unique(),
+                'external' => $item->responsible_interviewees->unique(),
             ];
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;
@@ -193,8 +192,6 @@ class Imet extends Form
      */
     public function scopeFilterList(Builder $query, Request $request): Builder
     {
-        $query->whereHasPermission();
-
         // filters
         $this->commonFilters($query, $request);
         if($request->filled('search')){
@@ -208,17 +205,6 @@ class Imet extends Form
             ->orderBy(static::$sortBy, static::$sortDirection)
             ->orderBy('name', 'desc');
 
-        return $query;
-    }
-
-    /**
-     * Filter by permission: to be overridden
-     *
-     * @param $query
-     * @return mixed
-     */
-    public function scopeWhereHasPermission($query)
-    {
         return $query;
     }
 
