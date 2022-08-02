@@ -77,6 +77,31 @@ class Imet extends Form
         return strtolower($value);
     }
 
+    protected static function retrieve_list(Request $request, $relations = [], $custom_where = null)
+    {
+        $list_v1 = v1\Imet
+            ::filterList($request)
+            ->with($relations)
+            ->where(function ($query) use ($custom_where){
+                if($custom_where !== null){
+                    $custom_where($query);
+                }
+            })
+            ->get();
+
+        $list_v2 = v2\Imet
+            ::filterList($request)
+            ->with($relations)
+            ->where(function ($query) use ($custom_where){
+                if($custom_where !== null){
+                    $custom_where($query);
+                }
+            })
+            ->get();
+
+        return $list_v1->merge($list_v2);
+    }
+
     /**
      * Get IMET list for index controller
      *
@@ -85,32 +110,17 @@ class Imet extends Form
      */
     public static function get_list(Request $request)
     {
-        $list_v1 = v1\Imet
-            ::filterList($request)
-            ->with('country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment')
-            ->get()
-            ->map(function ($item) {
-                $item['assessment_radar'] = $item['assessment']->radar();
-                return $item;
-            });
-
-        $list_v2 = v2\Imet
-            ::filterList($request)
-            ->with('country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment')
-            ->get()
-            ->map(function ($item) {
-                $item['assessment_radar'] = $item['assessment']->radar();
-                return $item;
-            });
-
-        $list = $list_v1->merge($list_v2);
-
+        $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment']);
         $list->map(function ($item) {
+            // Add encoders
             $item->encoders_responsibles = [
                 'encoders' => $item->encoder->unique(),
                 'internal' => $item->responsible_interviewers->unique(),
                 'external' => $item->responsible_interviewees->unique(),
             ];
+            // Add radar
+            $item['assessment_radar'] = $item->assessment->radar();
+            // Non WDPA
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;
             }
@@ -128,18 +138,7 @@ class Imet extends Form
 
     public static function get_list_reduced(Request $request)
     {
-        $list_v1 = v1\Imet
-            ::filterList($request)
-            ->with('country')
-            ->get();
-
-        $list_v2 = v2\Imet
-            ::filterList($request)
-            ->with('country')
-            ->get();
-
-        $list = $list_v1->merge($list_v2);
-
+        $list = static::retrieve_list($request, ['country']);
         $list->map(
             function (Imet $item) {
                 $item->iso2 = $item->country->iso2;
