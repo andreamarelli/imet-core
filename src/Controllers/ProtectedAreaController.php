@@ -21,7 +21,7 @@ class ProtectedAreaController extends Controller
     {
         $list = collect();
         if ($request->filled('search_key') || $request->filled('country')) {
-            $list = \ImetProtectedArea::searchByKeyOrCountry(
+            $list = \ProtectedAreaAlias::searchByKeyOrCountry(
                 $request->input('search_key'),
                 $request->input('country'));
         }

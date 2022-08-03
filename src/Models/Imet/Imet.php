@@ -77,7 +77,15 @@ class Imet extends Form
         return strtolower($value);
     }
 
-    protected static function retrieve_list(Request $request, $relations = [], $custom_where = null)
+    /**
+     * Retrieve IMET assessments' list
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param array $relations
+     * @param \Closure|null $custom_where
+     * @return mixed
+     */
+    protected static function retrieve_list(Request $request, array $relations = [], \Closure $custom_where = null)
     {
         $list_v1 = v1\Imet
             ::filterList($request)

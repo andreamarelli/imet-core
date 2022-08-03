@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use Imet;      // Alias
+use ImetAlias;      // Alias
 use AndreaMarelli\ImetCore\Controllers\__Controller;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Encoder;
@@ -40,7 +40,7 @@ class Controller extends __Controller
     use Backup;
     use ConvertSQLite;
 
-    protected static $form_class = Imet::class;
+    protected static $form_class = ImetAlias::class;
     protected static $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
@@ -65,19 +65,20 @@ class Controller extends __Controller
         HTTP::sanitize($request, self::sanitization_rules);
 
         // Check and add missing Pa data to form DB record
-        Imet::checkMissingPaData();
+        ImetAlias::checkMissingPaData();
 
         // set filter status
         $filter_selected = !empty(array_filter($request->except('_token')));
 
         // retrieve IMET list
-        $list = Imet::get_list($request);
-        $years = array_values($list->pluck('Year')->sort()->unique()->toArray());
-        $countries = $list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
+        $filtered_list = ImetAlias::get_list($request);
+        $full_list = ImetAlias::get_list(new Request());
+        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
+        $countries = \ProtectedAreaAlias::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'list', [
             'controller' => static::class,
-            'list' => $list,
+            'list' => $filtered_list,
             'request' => $request,
             'filter_selected' => $filter_selected,
             'countries' => $countries,
@@ -94,13 +95,14 @@ class Controller extends __Controller
         $filter_selected = !empty(array_filter($request->except('_token')));
 
         // retrieve IMET list
-        $list = Imet::get_list($request);
-        $years = array_values($list->pluck('Year')->sort()->unique()->toArray());
-        $countries = $list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
+        $filtered_list = ImetAlias::get_list($request);
+        $full_list = ImetAlias::get_list(new Request());
+        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
+        $countries = \ProtectedAreaAlias::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'scaling_up.list', [
             'controller' => static::class,
-            'list' => $list,
+            'list' => $filtered_list,
             'request' => $request,
             'filter_selected' => $filter_selected,
             'countries' => $countries,
@@ -120,12 +122,13 @@ class Controller extends __Controller
         HTTP::sanitize($request, self::sanitization_rules);
 
         // retrieve IMET list
-        $list = Imet::get_list_reduced($request)->makeHidden([Imet::UPDATED_AT, Imet::UPDATED_BY]);
-        $years = array_values($list->pluck('Year')->sort()->unique()->toArray());
-        $countries = $list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
+        $filtered_list = ImetAlias::get_list($request);
+        $full_list = ImetAlias::get_list(new Request());
+        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
+        $countries = \ProtectedAreaAlias::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'export', [
-            'list' => $list,
+            'list' => $filtered_list,
             'request' => $request,
             'countries' => $countries,
             'years' => $years
@@ -176,7 +179,7 @@ class Controller extends __Controller
         $temp_array = [];
 
         //retrieve all form records and manipulate array result
-        $results = Imet::select('FormID')->distinct()->commonSearchWithWdpa($request);
+        $results = ImetAlias::select('FormID')->distinct()->commonSearchWithWdpa($request);
 
         //add this to check if a filter is applied in order to return the ids or return 0 (all records)
         if ($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
@@ -186,7 +189,7 @@ class Controller extends __Controller
         }
 
         //retrieve all data for filters countries, years, wdpa
-        $filters = Imet::getFieldsSplitToArrays();
+        $filters = ImetAlias::getFieldsSplitToArrays();
 
         //retrieve wdpa labels and ids in an array for selections
         $wdpas = ProtectedArea::getRecordsArrayByFieldIds($filters['wdpa_id'], ['wdpa_id', 'name'], 'wdpa_id');
@@ -234,7 +237,7 @@ class Controller extends __Controller
     public function export_batch(Request $request): BinaryFileResponse
     {
         $imetIds = explode(",", $request->input('selection'));
-        $imets = Imet::whereIn('FormID', $imetIds)->get();
+        $imets = ImetAlias::whereIn('FormID', $imetIds)->get();
 
         $files = [];
         foreach ($imets as $imet) {
@@ -251,12 +254,12 @@ class Controller extends __Controller
     /**
      * Export the full IMET form in json
      *
-     * @param Imet $item
+     * @param ImetAlias $item
      * @param bool $to_file
      * @param bool $download
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|array
      */
-    public function export(Imet $item, bool $to_file = true, bool $download = true)
+    public function export(ImetAlias $item, bool $to_file = true, bool $download = true)
     {
         $imet_id = $item->getKey();
         $imet_form = $item
@@ -374,7 +377,7 @@ class Controller extends __Controller
      */
     public function merge_view($item)
     {
-        $form = Imet::find($item);
+        $form = ImetAlias::find($item);
 
         return view(static::$form_view_prefix . 'merge.list', [
             'primary_form' => $form,
