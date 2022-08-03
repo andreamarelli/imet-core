@@ -35,7 +35,7 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'IUCNCategory3',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory3')],
             ['name' => 'MarineDesignation',  'type' => 'suggestion_multiple-ImetV2_MarineDesignation',
                 'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.GeneralInfo.fields.MarineDesignation')],
-            ['name' => 'Country',  'type' => 'dropdown-Country',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Country')],
+            ['name' => 'Country',  'type' => 'dropdown-ImetV2_Country',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Country')],
             ['name' => 'CreationYear',  'type' => 'year',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.CreationYear')],
             ['name' => 'Institution',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Institution')],
             ['name' => 'Biome',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Biome')],
