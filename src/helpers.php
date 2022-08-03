@@ -31,7 +31,7 @@ function imet_offline_version()
  * @param string $type
  * @return array
  */
-function selection_lists(string $type): array
+function imet_selection_lists(string $type): array
 {
     $list  = [];
 
