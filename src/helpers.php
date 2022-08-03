@@ -41,7 +41,7 @@ function imet_selection_lists(string $type): array
         if ($matches[2] == "ProtectedArea") {
             $list = \ProtectedAreaAlias::selectionList();
         } elseif ($matches[2] == "Country") {
-            $list = \CountryAlias::imetV1List();
+            $list = \CountryAlias::selectionList();
         } elseif ($matches[2] == "Currency") {
             $list = \AndreaMarelli\ImetCore\Models\Currency::imetV1List();
         } else {
