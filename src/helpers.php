@@ -38,7 +38,7 @@ function imet_selection_lists(string $type): array
     if (Str::startsWith($type, 'ImetV1')
         || Str::startsWith($type, 'ImetV2')
         || Str::startsWith($type, 'Imet_')) {
-        preg_match("/Imet(V\d)\_([\w]+)/", $type, $matches);
+        preg_match("/Imet([\w\d]{0,2})\_([\w]+)/", $type, $matches);
 
         if ($matches[2] == "ProtectedArea") {
             $list = \ProtectedAreaAlias::selectionList();
@@ -46,7 +46,7 @@ function imet_selection_lists(string $type): array
             $list = \CountryAlias::selectionList();
         } elseif ($matches[2] == "Currency") {
             $list = \AndreaMarelli\ImetCore\Models\Currency::imetV1List();
-        } else {
+        } elseif ($matches[1] != "") {
             $list = trans('imet-core::'.strtolower($matches[1]).'_lists.' . $matches[2]);
         }
 
