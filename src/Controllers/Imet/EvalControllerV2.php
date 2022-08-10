@@ -23,7 +23,7 @@ class EvalControllerV2 extends EvalController
      */
     public function show($item, $step = null)
     {
-        $this->authorize('view', (static::$form_class)::find($item));
+        $this->authorize('view', \ImetAlias::find($item));
 
         $form = new static::$form_class();
         $form = $form->find($item);

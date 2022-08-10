@@ -51,7 +51,7 @@ class EvalController extends __Controller
      */
     public function edit($item, $step = null)
     {
-        $this->authorize('update', (static::$form_class)::find($item));
+        $this->authorize('update', \ImetAlias::find($item));
 
         $form = new static::$form_class();
         $form = $form->find($item);

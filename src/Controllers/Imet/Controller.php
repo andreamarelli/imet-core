@@ -60,7 +60,7 @@ class Controller extends __Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('viewAny', static::$form_class);
+        $this->authorize('viewAny', \ImetAlias::class);
         HTTP::sanitize($request, self::sanitization_rules);
 
         // Check and add missing Pa data to form DB record
@@ -87,7 +87,7 @@ class Controller extends __Controller
 
     public function scaling_up(Request $request)
     {
-        $this->authorize('viewAny', static::$form_class);
+        $this->authorize('viewAny', \ImetAlias::class);
         HTTP::sanitize($request, self::sanitization_rules);
 
         // set filter status
@@ -117,7 +117,7 @@ class Controller extends __Controller
      */
     public function export_view(Request $request)
     {
-        $this->authorize('viewAny', static::$form_class);
+        $this->authorize('viewAny', \ImetAlias::class);
         HTTP::sanitize($request, self::sanitization_rules);
 
         // retrieve IMET list
