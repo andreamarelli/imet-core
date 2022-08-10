@@ -31,7 +31,7 @@ class ControllerV2 extends Controller
      */
     public function create_non_wdpa()
     {
-        $this->authorize('create', \ImetAlias::class);
+        $this->authorize('create', static::$form_class);
         return view(static::$form_view_prefix.'.create', ['is_wdpa' => false]);
     }
 
@@ -46,7 +46,7 @@ class ControllerV2 extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', \ImetAlias::class);
+        $this->authorize('create', Imet::class);
 
         $records = json_decode($request->input('records_json'), true);
 
@@ -174,7 +174,7 @@ class ControllerV2 extends Controller
      */
     public function pdf($item): BinaryFileResponse
     {
-        $this->authorize('view', \ImetAlias::find($item));
+        $this->authorize('view', (static::$form_class)::find($item));
 
         $form = new static::$form_class();
         $form = $form->find($item);

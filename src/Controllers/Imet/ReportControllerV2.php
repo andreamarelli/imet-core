@@ -26,7 +26,7 @@ class ReportControllerV2 extends Controller {
      */
     public function report($item)
     {
-        $imet = \ImetAlias::find($item);
+        $imet = Imet::find($item);
 
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
         $this->authorize('update', $imet);
@@ -44,7 +44,7 @@ class ReportControllerV2 extends Controller {
      */
     public function report_show($item)
     {
-        $imet = \ImetAlias::find($item);
+        $imet = Imet::find($item);
 
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
         $this->authorize('view', $imet);
@@ -63,7 +63,7 @@ class ReportControllerV2 extends Controller {
     public function report_update($item, Request $request): array
     {
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
-        $this->authorize('update', \ImetAlias::find($item));
+        $this->authorize('update', (static::$form_class)::find($item));
 
         \AndreaMarelli\ImetCore\Models\Imet\v2\Report::updateByForm($item, $request->input('report'));
         return [ 'status' => 'success' ];
