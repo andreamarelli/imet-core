@@ -24,8 +24,6 @@ class ControllerV2 extends Controller
     protected static $form_view_prefix = 'imet-core::v2.context';
     protected static $form_default_step = 'general_info';
 
-    public const AUTHORIZE_BY_POLICY = true;
-
     /**
      * Manage "create" route
      *
@@ -33,9 +31,7 @@ class ControllerV2 extends Controller
      */
     public function create_non_wdpa()
     {
-        if(static::AUTHORIZE_BY_POLICY){
-            $this->authorize('create', static::$form_class);
-        }
+        $this->authorize('create', static::$form_class);
         return view(static::$form_view_prefix.'.create', ['is_wdpa' => false]);
     }
 
@@ -50,9 +46,7 @@ class ControllerV2 extends Controller
      */
     public function store(Request $request)
     {
-        if(static::AUTHORIZE_BY_POLICY){
-            $this->authorize('create', Imet::class);
-        }
+        $this->authorize('create', Imet::class);
 
         $records = json_decode($request->input('records_json'), true);
 

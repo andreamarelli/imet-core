@@ -44,7 +44,6 @@ class Controller extends __Controller
     protected static $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
-    public const AUTHORIZE_BY_POLICY = true;
 
     public const sanitization_rules = [
         'search' => 'custom_text|nullable',

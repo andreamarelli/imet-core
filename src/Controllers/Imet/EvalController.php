@@ -13,8 +13,6 @@ class EvalController extends __Controller
 {
     use Assessment;
 
-    public const AUTHORIZE_BY_POLICY = true;
-
     /**
      * return if any discrepancies are found for cross analysis
      * and also the classes to be used for indication in the menu
