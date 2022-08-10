@@ -35,7 +35,9 @@ function imet_selection_lists(string $type): array
 {
     $list  = [];
 
-    if (Str::startsWith($type, 'ImetV1') || Str::startsWith($type, 'ImetV2')) {
+    if (Str::startsWith($type, 'ImetV1')
+        || Str::startsWith($type, 'ImetV2')
+        || Str::startsWith($type, 'Imet_')) {
         preg_match("/Imet(V\d)\_([\w]+)/", $type, $matches);
 
         if ($matches[2] == "ProtectedArea") {
