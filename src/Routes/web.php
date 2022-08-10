@@ -8,7 +8,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
-use AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use Illuminate\Support\Facades\Route;
 

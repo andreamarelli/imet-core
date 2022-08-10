@@ -20,7 +20,7 @@ use function view;
 class ControllerV2 extends Controller
 {
 
-    protected static $form_class = Imet::class;
+    protected static $form_class = \ImetV2Alias::class;
     protected static $form_view_prefix = 'imet-core::v2.context';
     protected static $form_default_step = 'general_info';
 
