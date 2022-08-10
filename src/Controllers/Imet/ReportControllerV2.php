@@ -3,7 +3,6 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
@@ -26,9 +25,8 @@ class ReportControllerV2 extends Controller {
      */
     public function report($item)
     {
-        $imet = Imet::find($item);
+        $imet = (static::$form_class)::find($item);
 
-        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
         $this->authorize('update', $imet);
 
         return view(static::$form_view_prefix . '.edit', $this->__retrieve_report_data($imet));
@@ -44,7 +42,7 @@ class ReportControllerV2 extends Controller {
      */
     public function report_show($item)
     {
-        $imet = Imet::find($item);
+        $imet = (static::$form_class)::find($item);
 
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
         $this->authorize('view', $imet);

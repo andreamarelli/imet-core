@@ -2,8 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval;
-
 use function view;
 
 

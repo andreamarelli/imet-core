@@ -27,7 +27,7 @@ class ReportControllerV1 extends Controller {
      */
     public function report($item)
     {
-        $imet = Imet::find($item);
+        $imet = (static::$form_class)::find($item);
 
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1 */
         $this->authorize('update', $imet);
@@ -45,7 +45,7 @@ class ReportControllerV1 extends Controller {
      */
     public function report_show($item)
     {
-        $imet = Imet::find($item);
+        $imet = (static::$form_class)::find($item);
 
         /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1 */
         $this->authorize('view', $imet);

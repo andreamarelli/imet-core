@@ -46,7 +46,7 @@ class ControllerV2 extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Imet::class);
+        $this->authorize('create', static::$form_class);
 
         $records = json_decode($request->input('records_json'), true);
 
@@ -121,7 +121,7 @@ class ControllerV2 extends Controller
             return collect([]);
         }
         $wdpa_id = ProtectedArea::getByWdpa($request->input('wdpa_id'))->wdpa_id;
-        return Imet::select(['FormID','Year','wdpa_id'])
+        return (static::$form_class)::select(['FormID','Year','wdpa_id'])
             ->where('wdpa_id', $wdpa_id)
             ->where('version', 'v2')
             ->where('Year', '<', $year)
@@ -135,7 +135,7 @@ class ControllerV2 extends Controller
         $records = json_decode($request->input('records_json'), true);
 
         $records[0]['language'] = null;
-        $json = static::export(Imet::find($prev_year_selection), false);
+        $json = static::export((static::$form_class)::find($prev_year_selection), false);
         $json['Imet']['Year'] = $records[0]['Year'];
         $json['Imet']['UpdateDate'] = Carbon::now()->format('Y-m-d H:i:s');
 
@@ -143,7 +143,7 @@ class ControllerV2 extends Controller
 
         try {
             // Create new form and return ID
-            $formID = Imet::importForm($json['Imet']);
+            $formID = (static::$form_class)::importForm($json['Imet']);
             // Populate Imet & Imet_Eval modules
             Imet::importModules($json['Context'], $formID);
             Imet_Eval::importModules($json['Evaluation'], $formID);
@@ -153,7 +153,7 @@ class ControllerV2 extends Controller
             Session::flash('message', trans('modular-forms::common.saved_successfully'));
             return [
                 'status' => 'success',
-                'entity_label' => Imet::find($formID)->{Imet::LABEL},
+                'entity_label' => (static::$form_class)::find($formID)->{(static::$form_class)::LABEL},
                 'edit_url' => action([static::class, 'edit'], ['item' => $formID])
 
             ];
