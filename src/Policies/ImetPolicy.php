@@ -15,10 +15,10 @@ class ImetPolicy
      * Determine whether the user can INDEX
      * Every role can access the index route but the list will be filtered accordingly
      *
-     * @param User $user
+     * @param \App\Models\User|\ImetUser $user
      * @return bool
      */
-    public function viewAny(User $user): bool
+    public function viewAny($user): bool
     {
         return true;
     }
@@ -26,13 +26,12 @@ class ImetPolicy
     /**
      * Determine whether the user can UPDATE
      *
-     * @param User $user
-     * @param $form
+     * @param \App\Models\User|\ImetUser $user
+     * @param \AndreaMarelli\ImetCore\Models\Imet\v1\Imet|\AndreaMarelli\ImetCore\Models\Imet\v2\Imet|\AndreaMarelli\ImetCore\Models\Imet\Imet $form
      * @return bool
      */
-    public function edit(User $user, $form = null): bool
+    public function edit($user, $form = null): bool
     {
-//        dd(Role::hasAnyRole($user));
         if(is_null($form)){
             return Role::hasAnyRole($user);
         }
@@ -41,11 +40,11 @@ class ImetPolicy
     /**
      * Determine whether the user can UPDATE
      *
-     * @param User $user
+     * @param \App\Models\User|\ImetUser $user
      * @param $form
      * @return bool
      */
-    public function update(User $user, $form = null): bool
+    public function update($user, $form = null): bool
     {
         return $this->edit($user, $form);
     }
@@ -53,11 +52,11 @@ class ImetPolicy
     /**
      * Determine whether the user can UPDATE
      *
-     * @param User $user
+     * @param \App\Models\User|\ImetUser $user
      * @param $form
      * @return bool
      */
-    public function view(User $user, $form = null): bool
+    public function view($user, $form = null): bool
     {
         return true;
     }

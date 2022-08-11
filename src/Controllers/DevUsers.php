@@ -50,8 +50,8 @@ trait DevUsers{
                 'last_name' => 'Authority',
                 'role' => Role::ROLE_AUTHORITY
             ]);
-            $user->roles()->create(['country' => 'CMR']);
-            $user->roles()->create(['wdpa' => '61707']);
+            $user->imet_roles()->create(['country' => 'CMR']);
+            $user->imet_roles()->create(['wdpa' => '61707']);
 
             // Encoder
             $user = User::create([
@@ -60,10 +60,10 @@ trait DevUsers{
                 'last_name' => 'Encoder',
                 'role' => Role::ROLE_ENCODER
             ]);
-            $user->roles()->create(['country' => 'BDI']);
-            $user->roles()->create(['wdpa' => '20166']);
-            $user->roles()->create(['wdpa' => '30674']);
-            $user->roles()->create(['wdpa' => '555547988']);
+            $user->imet_roles()->create(['country' => 'BDI']);
+            $user->imet_roles()->create(['wdpa' => '20166']);
+            $user->imet_roles()->create(['wdpa' => '30674']);
+            $user->imet_roles()->create(['wdpa' => '555547988']);
 
             // Observatory
             $user = User::create([
@@ -72,7 +72,7 @@ trait DevUsers{
                 'last_name' => 'Observatory',
                 'role' => Role::ROLE_OBSERVATORY
             ]);
-            $user->roles()->create(['country' => 'BDI']);
+            $user->imet_roles()->create(['country' => 'BDI']);
 
             DB::commit();
 
