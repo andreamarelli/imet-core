@@ -12,6 +12,22 @@ class ImetPolicy
     use HandlesAuthorization;
 
     /**
+     * Perform pre-authorization checks
+     *
+     * @param  \App\Models\User|\ImetUser $user
+     * @param  string  $ability
+     * @return void|bool
+     */
+    public function before($user, $ability)
+    {
+        // authorize any route to ADMINISTRATOR
+        if (Role::isAdmin($user)) {
+            return true;
+        }
+    }
+
+
+    /**
      * Determine whether the user can INDEX
      * Every role can access the index route but the list will be filtered accordingly
      *

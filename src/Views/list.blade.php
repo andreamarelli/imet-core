@@ -27,7 +27,7 @@ $url        = URL::route('index');
 
 @section('content')
 
-    @can('encode-imets')
+    @can('edit', \ImetAlias::class)
 
         <div class="functional_buttons">
             {{-- Import json IMETs --}}
@@ -125,7 +125,7 @@ $url        = URL::route('index');
                             @include('imet-core::components.button_show', ['version' => 'v2'])
                         </span>
 
-                    @can('encode-imets')
+                    @can('edit', \ImetAlias::class)
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">
@@ -171,7 +171,7 @@ $url        = URL::route('index');
                             ])
                         </span>
 
-                    @can('encode-imets')
+                    @can('edit', \ImetAlias::class)
 
                         {{-- Delete --}}
                         @include('modular-forms::buttons.delete', [

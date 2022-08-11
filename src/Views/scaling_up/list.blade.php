@@ -130,7 +130,7 @@ $url = URL::route('scaling_up');
                         @include('imet-core::components.button_show', ['version' => 'v2'])
                     </span>
 
-                    @can('encode-imets')
+                    @can('edit', \ImetAlias::class)
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">
