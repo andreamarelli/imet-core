@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
 
@@ -40,18 +41,37 @@ class ProtectedArea extends BaseProtectedArea
     }
 
     /**
-     * Get protected areas' countries
+     * Get protected areas' countries ISO
      *
-     * @return \AndreaMarelli\ImetCore\Models\Country[]|\Illuminate\Database\Eloquent\Collection
+     * @param \Closure|null $custom_where
+     * @return array
      */
-    public static function getCountries()
+    public static function getCountriesISO(\Closure $custom_where = null): array
     {
-        $countries = (new ProtectedArea)->selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
+        return (new ProtectedArea)->selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
             ->distinct()
+            ->where(function ($query)  use ($custom_where){
+                if($custom_where !== null){
+                    $custom_where($query);
+                }
+            })
             ->get()
             ->pluck('iso3')
             ->sort()
             ->toArray();
+    }
+
+    /**
+     * Get protected areas' countries
+     *
+     * @param bool $only_allowed
+     * @return \AndreaMarelli\ImetCore\Models\Country[]
+     */
+    public static function getCountries(bool $only_allowed = true): array
+    {
+        $countries = $only_allowed
+            ? Role::allowedCountries()
+            : static::getCountriesISO();
 
         return Country::select(['iso3', 'iso2', 'name_'.Locale::lower()])
             ->whereIn('iso3', array_values($countries))

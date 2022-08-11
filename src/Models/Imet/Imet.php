@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
@@ -82,17 +83,18 @@ class Imet extends Form
      *
      * @param \Illuminate\Http\Request $request
      * @param array $relations
-     * @param \Closure|null $custom_where
      * @return mixed
      */
-    protected static function retrieve_list(Request $request, array $relations = [], \Closure $custom_where = null)
+    protected static function retrieve_list(Request $request, array $relations = [])
     {
+        $allowed_wdpas = Role::allowedWdpas();
+
         $list_v1 = v1\Imet
             ::filterList($request)
             ->with($relations)
-            ->where(function ($query) use ($custom_where){
-                if($custom_where !== null){
-                    $custom_where($query);
+            ->where(function ($query) use ($allowed_wdpas){
+                if($allowed_wdpas !== null){
+                    $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
             ->get();
@@ -100,9 +102,9 @@ class Imet extends Form
         $list_v2 = v2\Imet
             ::filterList($request)
             ->with($relations)
-            ->where(function ($query) use ($custom_where){
-                if($custom_where !== null){
-                    $custom_where($query);
+            ->where(function ($query) use ($allowed_wdpas){
+                if($allowed_wdpas !== null){
+                    $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
             ->get();

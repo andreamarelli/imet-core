@@ -35,6 +35,7 @@
                 "AndreaMarelli\\ImetCore\\ServiceProvider"
             ],
             "aliases": {
+                "ImetUser": "AndreaMarelli\\ImetCore\\Models\\User",
                 "ImetAlias": "AndreaMarelli\\ImetCore\\Models\\Imet\\Imet",
                 "ImetV1Alias": "AndreaMarelli\\ImetCore\\Models\\Imet\\v1\\Imet",
                 "ImetV2Alias": "AndreaMarelli\\ImetCore\\Models\\Imet\\v2\\Imet",
