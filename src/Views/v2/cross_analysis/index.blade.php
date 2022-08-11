@@ -1,9 +1,10 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
+
 /** @var array $warnings */
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
 use Illuminate\Support\Facades\App;
 
 // Force Language
@@ -39,7 +40,7 @@ $i = 0;
                                 <td class="col-1">{{ $warning['code'] }}</td>
                                 <td class="col-11">
                                     <strong> <a
-                                            href="{{ action([EvalControllerV2::class, 'edit'], [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
+                                                href="{{ action([EvalController::class, 'edit'], [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
                                         >{!! $warning['question'] !!}</a>
                                     </strong>
                                 </td>
@@ -49,7 +50,8 @@ $i = 0;
                     </table>
                 </div>
             </div>
-            <?php $i++; ?>
+                <?php
+                $i++; ?>
         @endforeach
     @else
         <div class="row mt-5">

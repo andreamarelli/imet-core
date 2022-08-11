@@ -1,8 +1,9 @@
 <?php
 /** @var int $form_id */
+
 /** @var string $version */
 
-$labels = \AndreaMarelli\ImetCore\Controllers\Imet\Assessment::assessment_steps_labels();
+$labels = \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::assessment_steps_labels();
 
 ?>
 

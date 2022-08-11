@@ -1,15 +1,17 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Controllers\Imet\Controller $controller */
+
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
 /** @var array $countries */
 /** @var array $years */
+
 /** @var boolean $filter_selected */
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use Illuminate\Support\Facades\URL;
 
-$url        = URL::route('index');
+$url = URL::route('index');
 ?>
 
 @extends('layouts.admin')
@@ -21,9 +23,9 @@ $url        = URL::route('index');
 @endsection
 
 @if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
+    @section('admin_page_title')
+        @lang('imet-core::common.imet')
+    @endsection
 @endif
 
 @section('content')
@@ -32,21 +34,24 @@ $url        = URL::route('index');
 
         <div class="functional_buttons">
             {{-- Import json IMETs --}}
-            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
+            <a class="btn-nav rounded"
+               href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
             </a>
             {{-- Export json IMETs --}}
-            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
+            <a class="btn-nav rounded"
+               href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.export')) }}
             </a>
             {{-- Create new IMET --}}
             @include('modular-forms::buttons.create', [
-                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
+                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
                 'label' => trans('imet-core::v2_context.Create.title')
             ])
-            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'create_non_wdpa']) }}">
+            <a class="btn-nav rounded"
+               href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class, 'create_non_wdpa']) }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
                 {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
             </a>
@@ -62,7 +67,7 @@ $url        = URL::route('index');
         'years' => $years
     ])
 
-    <br />
+    <br/>
     <div id="sortable_list">
 
         @include('modular-forms::tables.sort_on_client.num_records')
@@ -91,13 +96,14 @@ $url        = URL::route('index');
                             <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
                             {{-- wdpa_id --}}
                             <span v-if="item.wdpa_id!==null">
-                                (<a target="_blank" :href="'{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
+                                (<a target="_blank"
+                                    :href="'{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
                             </span>
-                            <br />
+                            <br/>
                             {{-- country --}}
                             <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
                         </div>
-                        <br />
+                        <br/>
                         {{-- language --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
@@ -113,11 +119,11 @@ $url        = URL::route('index');
                 </td>
                 <td class="align-baseline">
                     <imet_encoders_responsibles
-                        :items=item.encoders_responsibles
+                            :items=item.encoders_responsibles
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
-                    <imet_radar :width=150 :height=150 :values=item.assessment_radar ></imet_radar>
+                    <imet_radar :width=150 :height=150 :values=item.assessment_radar></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
@@ -163,7 +169,7 @@ $url        = URL::route('index');
                     {{-- Print --}}
                     <span v-if="item.version==='v2'">
                             @include('modular-forms::buttons._generic', [
-                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
+                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
                                 'action' =>'print',
                                 'item' => 'item.FormID',
                                 'tooltip' => ucfirst(trans('modular-forms::common.print')),

@@ -2,7 +2,7 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
 
 // Force Language
-if($item->language != \Illuminate\Support\Facades\App::getLocale()){
+if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -26,7 +26,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'show'], ['item' => $item->getKey()]),
+        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class, 'show'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v2_common.steps.',
         'steps' => array_keys($item::modules())

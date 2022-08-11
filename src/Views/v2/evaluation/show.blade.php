@@ -26,7 +26,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'show'], ['item' => $item->getKey()]),
+        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class, 'show'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v2_common.steps_eval.',
         'classes' => $classes,
@@ -50,7 +50,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
         <div class="imet_modules">
             @foreach($item::modules()[$step] as $module)
                 @include('modular-forms::module.show.container', [
-                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
+                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
                     'module_class' => $module,
                     'form_id' => $item->getKey()])
             @endforeach

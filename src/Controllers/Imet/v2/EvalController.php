@@ -1,13 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\EvalController as BaseEvalController;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval;
 
 use function view;
 
 
-class EvalControllerV2 extends EvalController
+class EvalController extends BaseEvalController
 {
 
     protected static $form_class = Imet_Eval::class;

@@ -1,14 +1,14 @@
 <?php
 /** @var String $version */
 
-if($version==='v1'){
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class;
-    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class;
-    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class;
+if ($version === 'v1') {
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
+    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class;
+    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ReportController::class;
 } else {
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class;
-    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class;
-    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class;
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class;
+    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class;
+    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class;
 }
 ?>
 
@@ -16,7 +16,8 @@ if($version==='v1'){
 
     <button class="btn-nav small"
             role="button"
-            data-toggle="popover" data-trigger="focus" data-placement="top" :data-popover-content="'popover_show_'+item.FormID" >
+            data-toggle="popover" data-trigger="focus" data-placement="top"
+            :data-popover-content="'popover_show_'+item.FormID">
         {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
     </button>
 
@@ -68,17 +69,19 @@ if($version==='v1'){
 
 @push('scripts')
     <style>
-        .popover-header{
+        .popover-header {
             font-size: 0.9em;
             font-style: italic;
             font-weight: bold;
             text-align: center;
         }
-        .popover-body{
+
+        .popover-body {
             display: flex;
             flex-direction: column;
         }
-        .popover-body a{
+
+        .popover-body a {
             margin: 3px;
         }
     </style>
@@ -89,16 +92,16 @@ if($version==='v1'){
             <script>
 
                 // ###########################  Bootstrap popover  ###########################
-                window.onload = function(){
+                window.onload = function () {
 
                     $('[data-toggle="popover"]').popover({
-                        html : true,
-                        content: function() {
+                        html: true,
+                        content: function () {
                             return document
                                 .getElementById(this.getAttribute('data-popover-content'))
                                 .querySelector(".popover-body").innerHTML;
                         },
-                        title: function() {
+                        title: function () {
                             return document
                                 .getElementById(this.getAttribute('data-popover-content'))
                                 .querySelector(".popover-heading").innerHTML;

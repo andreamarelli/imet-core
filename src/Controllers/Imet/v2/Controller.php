@@ -1,7 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller as BaseController;
 use AndreaMarelli\ImetCore\Models\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval;
@@ -17,7 +18,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use function view;
 
 
-class ControllerV2 extends Controller
+class Controller extends BaseController
 {
 
     protected static $form_class = Imet::class;

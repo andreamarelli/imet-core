@@ -1,11 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller as BaseController;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 
 
-class ControllerV1 extends Controller
+class Controller extends BaseController
 {
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::v1.context';

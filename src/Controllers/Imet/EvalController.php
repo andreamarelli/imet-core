@@ -4,7 +4,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
 
 use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\Assessment;
+use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
 
 use AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis\CrossAnalysis;
 use function view;

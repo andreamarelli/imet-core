@@ -1,18 +1,14 @@
 <?php
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1;
-use AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1;
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
-use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1;
-use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\v1;
+use AndreaMarelli\ImetCore\Controllers\Imet\v2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['setLocale', 'web']], function () {
 
+Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function () {
 
@@ -33,43 +29,43 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'context'], function () {
-                Route::get('{item}/edit/{step?}', [ControllerV1::class, 'edit']);
-                Route::patch('{item}',           [ControllerV1::class, 'update']);
+                Route::get('{item}/edit/{step?}', [v1\Controller::class, 'edit']);
+                Route::patch('{item}',           [v1\Controller::class, 'update']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/edit/{step?}', [EvalControllerV1::class, 'edit']);
-                Route::patch('{item}',           [EvalControllerV1::class, 'update']);
+                Route::get('{item}/edit/{step?}', [v1\EvalController::class, 'edit']);
+                Route::patch('{item}',           [v1\EvalController::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [ReportControllerV1::class, 'report']);
-                Route::get('{item}/show', [ReportControllerV1::class, 'report_show']);
-                Route::patch('{item}', [ReportControllerV1::class, 'report_update']);
+                Route::get('{item}/edit', [v1\ReportController::class, 'report']);
+                Route::get('{item}/show', [v1\ReportController::class, 'report_show']);
+                Route::patch('{item}', [v1\ReportController::class, 'report_update']);
             });
         });
 
         // #### IMET Version 2 ####
         Route::group(['prefix' => 'v2'], function () {
-            Route::get('{item}/print',       [ControllerV2::class, 'print']);
+            Route::get('{item}/print',       [v2\Controller::class, 'print']);
 
             Route::group(['prefix' => 'context'], function () {
-                Route::get('{item}/edit/{step?}',[ControllerV2::class, 'edit']);
-                Route::get('{item}/show/{step?}',[ControllerV2::class, 'show']);
-                Route::patch('{item}',           [ControllerV2::class, 'update']);
-                Route::get('create',            [ControllerV2::class, 'create']);
-                Route::get('create_non_wdpa', [ControllerV2::class, 'create_non_wdpa']);
-                Route::post('store',            [ControllerV2::class, 'store']);
-                Route::post('prev_years',            [ControllerV2::class, 'retrieve_prev_years']);
+                Route::get('{item}/edit/{step?}',[v2\Controller::class, 'edit']);
+                Route::get('{item}/show/{step?}',[v2\Controller::class, 'show']);
+                Route::patch('{item}',           [v2\Controller::class, 'update']);
+                Route::get('create',            [v2\Controller::class, 'create']);
+                Route::get('create_non_wdpa', [v2\Controller::class, 'create_non_wdpa']);
+                Route::post('store',            [v2\Controller::class, 'store']);
+                Route::post('prev_years',            [v2\Controller::class, 'retrieve_prev_years']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/edit/{step?}',   [EvalControllerV2::class, 'edit']);
-                Route::get('{item}/show/{step?}',   [EvalControllerV2::class, 'show']);
-                Route::get('{item}/print',          [EvalControllerV2::class, 'print']);
-                Route::patch('{item}',           [EvalControllerV2::class, 'update']);
+                Route::get('{item}/edit/{step?}',   [v2\EvalController::class, 'edit']);
+                Route::get('{item}/show/{step?}',   [v2\EvalController::class, 'show']);
+                Route::get('{item}/print',          [v2\EvalController::class, 'print']);
+                Route::patch('{item}',           [v2\EvalController::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [ReportControllerV2::class, 'report']);
-                Route::get('{item}/show', [ReportControllerV2::class, 'report_show']);
-                Route::patch('{item}', [ReportControllerV2::class, 'report_update']);
+                Route::get('{item}/edit', [v2\ReportController::class, 'report']);
+                Route::get('{item}/show', [v2\ReportController::class, 'report_show']);
+                Route::patch('{item}', [v2\ReportController::class, 'report_update']);
             });
 
         });

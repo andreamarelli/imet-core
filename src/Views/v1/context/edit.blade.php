@@ -2,7 +2,7 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $item */
 
 // Force Language
-if($item->language != \Illuminate\Support\Facades\App::getLocale()){
+if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -19,18 +19,18 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('content')
 
-{{--    <h2>@lang_u('imet-core::common.context_long')</h2>--}}
-{{--    <div class="entity-heading">--}}
-{{--        <div class="id">#{{ $item->getKey() }}</div>--}}
-{{--        <div class="name">{{ $item->Name }}</div>--}}
-{{--        <div class="location">{!! \AndreaMarelli\ImetCore\Helpers\Template::flag_and_name($item->Country) !!}</div>--}}
-{{--    </div>--}}
+    {{--    <h2>@lang_u('imet-core::common.context_long')</h2>--}}
+    {{--    <div class="entity-heading">--}}
+    {{--        <div class="id">#{{ $item->getKey() }}</div>--}}
+    {{--        <div class="name">{{ $item->Name }}</div>--}}
+    {{--        <div class="location">{!! \AndreaMarelli\ImetCore\Helpers\Template::flag_and_name($item->Country) !!}</div>--}}
+    {{--    </div>--}}
 
     @include('imet-core::components.heading', ['phase' => 'context'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'edit'], ['item'=>$item->getKey()]),
+        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class, 'edit'], ['item'=>$item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v1_common.steps.',
         'steps' => array_keys($item::modules())
@@ -39,7 +39,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     {{--  Modules (by step) --}}
     @foreach($item::modules()[$step] as $module)
         @include('modular-forms::module.edit.container', [
-            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class,
+            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class,
             'module_class' => $module,
             'form_id' => $item->getKey()])
     @endforeach
