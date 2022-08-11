@@ -2,13 +2,15 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval;
+
 use function view;
 
 
 class EvalControllerV2 extends EvalController
 {
 
-    protected static $form_class = \ImetEvalV2Alias::class;
+    protected static $form_class = Imet_Eval::class;
     protected static $form_view_prefix = 'imet-core::v2.evaluation';
 
     /**

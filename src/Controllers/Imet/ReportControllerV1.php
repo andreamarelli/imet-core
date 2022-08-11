@@ -14,7 +14,7 @@ use function view;
 
 class ReportControllerV1 extends Controller {
 
-    protected static $form_class = \ImetV1Alias::class;
+    protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::v1.report';
 
 

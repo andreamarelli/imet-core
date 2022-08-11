@@ -2,11 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\User;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
 use \AndreaMarelli\ModularForms\Models\User\User as BaseUser;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Auth;
-use \ProtectedAreaAlias;
+
 
 /**
  * Class User

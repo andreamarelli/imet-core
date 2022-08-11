@@ -41,9 +41,9 @@ function imet_selection_lists(string $type): array
         preg_match("/Imet([\w\d]{0,2})\_([\w]+)/", $type, $matches);
 
         if ($matches[2] == "ProtectedArea") {
-            $list = \ProtectedAreaAlias::selectionList();
+            $list = \AndreaMarelli\ImetCore\Models\ProtectedArea::selectionList();
         } elseif ($matches[2] == "Country") {
-            $list = \CountryAlias::selectionList();
+            $list = \AndreaMarelli\ImetCore\Models\Country::selectionList();
         } elseif ($matches[2] == "Currency") {
             $list = \AndreaMarelli\ImetCore\Models\Currency::imetV1List();
         } elseif ($matches[1] != "") {

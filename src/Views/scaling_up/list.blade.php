@@ -130,7 +130,7 @@ $url = URL::route('scaling_up');
                         @include('imet-core::components.button_show', ['version' => 'v2'])
                     </span>
 
-                    @can('edit', \ImetAlias::class)
+                    @can('edit', \AndreaMarelli\ImetCore\Models\Imet\Imet::class)
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">

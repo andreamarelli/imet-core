@@ -6,6 +6,7 @@
 /** @var array $years */
 /** @var boolean $filter_selected */
 
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use Illuminate\Support\Facades\URL;
 
 $url        = URL::route('index');
@@ -27,7 +28,7 @@ $url        = URL::route('index');
 
 @section('content')
 
-    @can('edit', \ImetAlias::class)
+    @can('edit', Imet::class)
 
         <div class="functional_buttons">
             {{-- Import json IMETs --}}
@@ -125,7 +126,7 @@ $url        = URL::route('index');
                             @include('imet-core::components.button_show', ['version' => 'v2'])
                         </span>
 
-                    @can('edit', \ImetAlias::class)
+                    @can('edit', Imet::class)
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">
@@ -171,7 +172,7 @@ $url        = URL::route('index');
                             ])
                         </span>
 
-                    @can('edit', \ImetAlias::class)
+                    @can('edit', Imet::class)
 
                         {{-- Delete --}}
                         @include('modular-forms::buttons.delete', [

@@ -2,9 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Models\User;
 
+use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Models\BaseModel;
 use Illuminate\Support\Facades\Auth;
-use ProtectedAreaAlias;
 
 
 /**
@@ -98,7 +98,7 @@ class Role extends BaseModel
             $allowed_role_countries     = array_filter($roles->pluck('country')->toArray());
             $allowed_role_wdpas         = array_filter($roles->pluck('wdpa')->toArray());
 
-            $allowed_countries_from_wdpas = ProtectedAreaAlias::getCountriesISO(function ($query) use ($allowed_role_wdpas) {
+            $allowed_countries_from_wdpas = ProtectedArea::getCountriesISO(function ($query) use ($allowed_role_wdpas) {
                 $query->whereIn('wdpa_id', array_values($allowed_role_wdpas));
             });
 
@@ -127,7 +127,7 @@ class Role extends BaseModel
             $allowed_role_countries     = array_filter($roles->pluck('country')->toArray());
             $allowed_role_wdpas         = array_filter($roles->pluck('wdpa')->toArray());
 
-            $allowed_wdpas_from_countries = (new ProtectedAreaAlias())
+            $allowed_wdpas_from_countries = (new ProtectedArea())
                 ->where(function ($query) use($allowed_role_countries) {
                     foreach ($allowed_role_countries as $c){
                         $query->orWhere('country', 'LIKE', '%' . $c . '%');
