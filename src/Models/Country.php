@@ -34,7 +34,11 @@ class Country extends BaseCountry
     {
         $allowed_countries = Role::allowedCountries();
         $collection = static::select(['iso3', 'name_'.Locale::lower()])
-            ->whereIn('iso3', $allowed_countries)
+            ->where(function ($query) use ($allowed_countries){
+                if($allowed_countries!==null){
+                    $query->whereIn('iso3', array_values($allowed_countries));
+                }
+            })
             ->get();
 
         return parent::selectionList('FIELDS', $collection);

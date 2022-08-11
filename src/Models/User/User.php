@@ -33,7 +33,7 @@ class User extends BaseUser
         'organisation',
         'function',
         'country',
-        'role'
+        'imet_role'
     ];
 
     /**

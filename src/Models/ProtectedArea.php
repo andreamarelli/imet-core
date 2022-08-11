@@ -5,8 +5,8 @@ namespace AndreaMarelli\ImetCore\Models;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
+use Illuminate\Database\Eloquent\Collection;
 
-use Illuminate\Support\Collection;
 
 /**
  * Class ProtectedArea
@@ -65,16 +65,20 @@ class ProtectedArea extends BaseProtectedArea
      * Get protected areas' countries
      *
      * @param bool $only_allowed
-     * @return \AndreaMarelli\ImetCore\Models\Country[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public static function getCountries(bool $only_allowed = true): array
+    public static function getCountries(bool $only_allowed = true): Collection
     {
         $countries = $only_allowed
             ? Role::allowedCountries()
             : static::getCountriesISO();
 
         return Country::select(['iso3', 'iso2', 'name_'.Locale::lower()])
-            ->whereIn('iso3', array_values($countries))
+            ->where(function ($query) use ($countries){
+                if($countries!==null){
+                    $query->whereIn('iso3', array_values($countries));
+                }
+            })
             ->get();
     }
 
@@ -83,7 +87,7 @@ class ProtectedArea extends BaseProtectedArea
      *
      * @param string|null $search_key
      * @param string|null $country
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function searchByKeyOrCountry(?string $search_key = null, string $country = null): Collection
     {

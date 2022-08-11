@@ -40,7 +40,7 @@ trait DevUsers{
                 'id' => 99999,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Administrator',
-                'role' => Role::ROLE_ADMINISTRATOR
+                'imet_role' => Role::ROLE_ADMINISTRATOR
             ]);
 
             // Authority
@@ -48,7 +48,7 @@ trait DevUsers{
                 'id' => 99998,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Authority',
-                'role' => Role::ROLE_AUTHORITY
+                'imet_role' => Role::ROLE_AUTHORITY
             ]);
             $user->imet_roles()->create(['country' => 'CMR']);
             $user->imet_roles()->create(['wdpa' => '61707']);
@@ -58,7 +58,7 @@ trait DevUsers{
                 'id' => 99997,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Encoder',
-                'role' => Role::ROLE_ENCODER
+                'imet_role' => Role::ROLE_ENCODER
             ]);
             $user->imet_roles()->create(['country' => 'BDI']);
             $user->imet_roles()->create(['wdpa' => '20166']);
@@ -70,7 +70,7 @@ trait DevUsers{
                 'id' => 99996,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Observatory',
-                'role' => Role::ROLE_OBSERVATORY
+                'imet_role' => Role::ROLE_OBSERVATORY
             ]);
             $user->imet_roles()->create(['country' => 'BDI']);
 
@@ -95,7 +95,7 @@ trait DevUsers{
         // Create test users
         if(App::environment('imetglobal_dev')){
 
-            $role = $request->input('role');
+            $role = $request->input('imet_role');
             Auth::logout();
 
             if($role == Role::ROLE_ADMINISTRATOR){
@@ -107,7 +107,7 @@ trait DevUsers{
             } else if($role == Role::ROLE_OBSERVATORY){
                 Auth::loginUsingId(99996);
             } else {
-                abort(404);
+                abort(505);
             }
 
             return redirect()->route('dashboard');
