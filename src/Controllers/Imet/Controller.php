@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\Report;
+use AndreaMarelli\ImetCore\Models\Imet\Report;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace AndreaMarelli\ImetCore\Models\Imet;
 
 use Illuminate\Database\Eloquent\Model;
 
