@@ -43,13 +43,31 @@ class ImetPolicy
      * Determine whether the user can UPDATE
      *
      * @param \App\Models\User|\ImetUser $user
-     * @param \AndreaMarelli\ImetCore\Models\Imet\v1\Imet|\AndreaMarelli\ImetCore\Models\Imet\v2\Imet|\AndreaMarelli\ImetCore\Models\Imet\Imet $form
+     * @param $form
+     * @return bool
+     */
+    public function view($user, $form = null): bool
+    {
+        if(is_null($form)){
+            return Role::hasAnyRole($user);
+        } else {
+            return Role::isWdpaAllowed($form->wdpa_id, $user);
+        }
+    }
+
+    /**
+     * Determine whether the user can UPDATE
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @param $form
      * @return bool
      */
     public function edit($user, $form = null): bool
     {
         if(is_null($form)){
             return Role::hasAnyRole($user);
+        } else {
+            return Role::isWdpaAllowed($form->wdpa_id, $user);
         }
     }
 
@@ -65,16 +83,5 @@ class ImetPolicy
         return $this->edit($user, $form);
     }
 
-    /**
-     * Determine whether the user can UPDATE
-     *
-     * @param \App\Models\User|\ImetUser $user
-     * @param $form
-     * @return bool
-     */
-    public function view($user, $form = null): bool
-    {
-        return true;
-    }
 
 }

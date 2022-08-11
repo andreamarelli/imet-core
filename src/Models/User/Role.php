@@ -73,23 +73,23 @@ class Role extends BaseModel
      */
     public static function hasAnyRole($user = null): bool
     {
+        $user = $user ?? Auth::user();
         return static::isRole(static::ROLE_ADMINISTRATOR, $user)
             || static::isRole(static::ROLE_AUTHORITY, $user)
             || static::isRole(static::ROLE_OBSERVATORY, $user)
-            || static::isRole(static::ROLE_AUTHORITY, $user);
+            || static::isRole(static::ROLE_ENCODER, $user);
     }
-
-
 
     /**
      * Retrieve the allowed countries
      * Returns NULL in case there are no limitations
      *
+     * @param null $user
      * @return array|null
      */
-    public static function allowedCountries(): ?array
+    public static function allowedCountries($user = null): ?array
     {
-        $user = Auth::user();
+        $user = $user ?? Auth::user();
 
         if(!static::isAdmin($user)){
 
@@ -114,11 +114,12 @@ class Role extends BaseModel
     /**
      * Retrieve the allowed wdpas
      *
+     * @param null $user
      * @return array|null
      */
-    public static function allowedWdpas(): ?array
+    public static function allowedWdpas($user = null): ?array
     {
-        $user = Auth::user();
+        $user = $user ?? Auth::user();
 
         if(!static::isAdmin($user)){
             $roles = static::getByUser($user->getAuthIdentifier());
@@ -146,6 +147,20 @@ class Role extends BaseModel
 
         // Unfiltered (only IMET administrators)
         return null;
+    }
+
+    /**
+     * Check whether the wdpa is in the allowed list for the given user
+     *
+     * @param $wdpa
+     * @param $user
+     * @return bool
+     */
+    public static function isWdpaAllowed($wdpa, $user = null): bool
+    {
+        $user = $user ?? Auth::user();
+        $allowed_wdpas = static::allowedWdpas($user);
+        return in_array($wdpa, $allowed_wdpas);
     }
 
 
