@@ -35,7 +35,7 @@
                 "AndreaMarelli\\ImetCore\\ServiceProvider"
             ],
             "aliases": {
-                "ImetUser": "AndreaMarelli\\ImetCore\\Models\\User",
+                "ImetUser": "AndreaMarelli\\ImetCore\\Models\\User"
             }
         }
     }
