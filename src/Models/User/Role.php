@@ -2,9 +2,13 @@
 
 namespace AndreaMarelli\ImetCore\Models\User;
 
+use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
+use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\BaseModel;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 /**
@@ -66,7 +70,7 @@ class Role extends BaseModel
     }
 
     /**
-     * Check whether the user has any role in IMET
+     * Check whether the user has any valid role in IMET
      *
      * @param $user
      * @return bool
@@ -81,68 +85,73 @@ class Role extends BaseModel
     }
 
     /**
+     * Retrieve the allowed wdpas
+     *
+     * @param null $user
+     * @param bool $only_wdpa
+     * @return \AndreaMarelli\ImetCore\Models\ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
+     */
+    public static function allowedWdpas($user = null, bool $only_wdpa = true)
+    {
+        $user = $user ?? Auth::user();
+
+        if(!Role::isAdmin($user)){
+
+            // Retrieve allowed WDPAs and ISO from Role
+            $roles                  = Role::getByUser($user->getAuthIdentifier());
+            $allowed_role_countries = array_filter($roles->pluck('country')->toArray());
+            $allowed_role_wdpas     = array_filter($roles->pluck('wdpa')->toArray());
+
+            // Retrieve ProtectedArea using allowed filters
+            $protected_areas = (new ProtectedArea())
+                // filter by role WDPA
+                ->whereIn('wdpa_id', $allowed_role_wdpas)
+                // filter by role ISO
+                ->orWhere(function ($query) use ($allowed_role_countries) {
+                    foreach ($allowed_role_countries as $c) {
+                        $query->orWhere('country', 'LIKE', '%' . $c . '%'); // use LIKE for over-national WDPAs
+                    }
+                })
+                ->get()
+                ->sortBy('name');
+
+            return $only_wdpa
+                ? $protected_areas->pluck('wdpa_id')->unique()->toArray()
+                : $protected_areas;
+        }
+
+        // Unfiltered (only IMET administrators)
+        return null;
+    }
+
+
+    /**
      * Retrieve the allowed countries
      * Returns NULL in case there are no limitations
      *
      * @param null $user
-     * @return array|null
+     * @param bool $only_iso
+     * @return \AndreaMarelli\ImetCore\Models\Country[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
-    public static function allowedCountries($user = null): ?array
+    public static function allowedCountries($user = null, bool $only_iso = true)
     {
         $user = $user ?? Auth::user();
 
-        if(!static::isAdmin($user)){
-
-            $roles = static::getByUser($user->getAuthIdentifier());
-
-            $allowed_role_countries     = array_filter($roles->pluck('country')->toArray());
-            $allowed_role_wdpas         = array_filter($roles->pluck('wdpa')->toArray());
-
-            $allowed_countries_from_wdpas = ProtectedArea::getCountriesISO(function ($query) use ($allowed_role_wdpas) {
-                $query->whereIn('wdpa_id', array_values($allowed_role_wdpas));
-            });
-
-            return array_merge(
-                $allowed_role_countries,
-                $allowed_countries_from_wdpas
-            );
-        }
-
-        return null;
-    }
-
-    /**
-     * Retrieve the allowed wdpas
-     *
-     * @param null $user
-     * @return array|null
-     */
-    public static function allowedWdpas($user = null): ?array
-    {
-        $user = $user ?? Auth::user();
-
-        if(!static::isAdmin($user)){
-            $roles = static::getByUser($user->getAuthIdentifier());
-
-            $allowed_role_countries     = array_filter($roles->pluck('country')->toArray());
-            $allowed_role_wdpas         = array_filter($roles->pluck('wdpa')->toArray());
-
-            $allowed_wdpas_from_countries = (new ProtectedArea())
-                ->where(function ($query) use($allowed_role_countries) {
-                    foreach ($allowed_role_countries as $c){
-                        $query->orWhere('country', 'LIKE', '%' . $c . '%');
-                    }
-                })
-                ->get()
-                ->sortBy('name')
-                ->pluck('wdpa_id')
+        if(!static::isAdmin($user)) {
+            // Retrieved allowed ISOs from allowed WDPAs
+            $allowed_isos = Role::allowedWdpas($user, false)
+                ->pluck('country')
                 ->unique()
                 ->toArray();
 
-            return array_merge(
-                $allowed_role_wdpas,
-                $allowed_wdpas_from_countries
-            );
+            // Parse for over-national WDPAs
+            $parsed_isos = ProtectedArea::parseISOs($allowed_isos);
+
+            return $only_iso
+                ? $parsed_isos
+                : Country::select(['iso3', 'iso2', 'name_' . Locale::lower()])
+                    ->whereIn('iso3', $parsed_isos)
+                    ->get();
         }
 
         // Unfiltered (only IMET administrators)
@@ -159,8 +168,14 @@ class Role extends BaseModel
     public static function isWdpaAllowed($wdpa, $user = null): bool
     {
         $user = $user ?? Auth::user();
-        $allowed_wdpas = static::allowedWdpas($user);
-        return in_array($wdpa, $allowed_wdpas);
+
+        if(!static::isAdmin($user)) {
+            $allowed_wdpas = static::allowedWdpas($user);
+            return in_array($wdpa, $allowed_wdpas);
+        }
+
+        // always allowed (only IMET administrators)
+        return true;
     }
 
 

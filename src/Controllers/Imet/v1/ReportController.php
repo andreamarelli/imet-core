@@ -23,7 +23,7 @@ class ReportController extends BaseReportController
      * @return array
      * @throws \ReflectionException
      */
-    private function __retrieve_report_data($item): array
+    protected function __retrieve_report_data($item): array
     {
         $form_id = $item->getKey();
 

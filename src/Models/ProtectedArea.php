@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 
 
 /**
@@ -38,6 +39,30 @@ class ProtectedArea extends BaseProtectedArea
     {
         return static::where('global_id', '=', $global_id)
             ->first();
+    }
+
+    /**
+     * Parse for over-national WDPAs
+     *
+     * @param array $countries
+     * @return array
+     */
+    public static function parseISOs(array $countries)
+    {
+        $parsed_isos = [];
+        foreach ($countries as $iso) {
+            if (Str::contains($iso, ';')) {
+                foreach (explode(';', $iso) as $i) {
+                    $parsed_isos[] = $i;
+                }
+            } else {
+                $parsed_isos[] = $iso;
+            }
+        }
+        $parsed_isos = array_unique($parsed_isos);
+        $parsed_isos = array_values($parsed_isos);
+
+        return $parsed_isos;
     }
 
     /**
@@ -91,25 +116,41 @@ class ProtectedArea extends BaseProtectedArea
      */
     public static function searchByKeyOrCountry(?string $search_key = null, string $country = null): Collection
     {
-        $pas = static::like($search_key)
-            ->where(function ($query) use($country) {
-                if($country!==null && $country!=='' && $country!=='null') {
-                    $query->where('country', $country);
-                }
-            })
+        // Retrieve allowed WDPAs
+        $allowed_wdpas = Role::allowedWdpas();
+
+        // Retrieve Protected Areas (according to filters AND allowed)
+        $protected_areas = static::
+        where(function($query) use($search_key, $country){
+            $query = $query->like($search_key);
+            if($country != null){
+                $query->orWhere('country', 'LIKE', '%' . $country . '%');  // use LIKE for over-national WDPAs
+            }
+        })
+            ->whereIn('wdpa_id', $allowed_wdpas)
             ->orderBy('name')
             ->get();
 
+        // Retrieve ISOs from the Protected Areas collection
+        $protected_areas_countries = static::parseISOs(
+            $protected_areas->pluck('country')->unique()->toArray()
+        );
+
+        // Retrieve country names
         $countries = Country::select(['iso3', 'name_'.Locale::lower()])
-            ->whereIn('iso3', array_values($pas->pluck('country')->unique()->toArray()))
+            ->whereIn('iso3', $protected_areas_countries)
             ->pluck('name_'.Locale::lower(), 'iso3')
             ->sort()
             ->toArray();
 
-        return $pas->map(function($item) use($countries){
-            $item['country_name'] = $countries[$item->country];
+        return $protected_areas->map(function($item) use($countries){
+            foreach (static::parseISOs([$item->country]) as $iso){
+                $item['country_name'] .= $countries[$iso] . ', ';
+            }
+            $item['country_name'] = rtrim($item['country_name'], ', ');
             return $item;
         });
     }
+
 
 }

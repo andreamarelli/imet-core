@@ -83,5 +83,9 @@ class ImetPolicy
         return $this->edit($user, $form);
     }
 
+    public function create($user): bool
+    {
+        return $this->edit($user);
+    }
 
 }
