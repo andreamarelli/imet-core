@@ -4,6 +4,7 @@ use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Controllers\Imet\v1;
 use AndreaMarelli\ImetCore\Controllers\Imet\v2;
+use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -76,17 +77,32 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::post('export_batch',        [Controller::class, 'export_batch'])->name('export_json_batch');
         });
 
+        /*
+        |--------------------------------------------------------------------------
+        | API Routes - for internal use ONLY
+        |--------------------------------------------------------------------------
+        */
+        Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
+
+            Route::post('species', [\AndreaMarelli\ImetCore\Controllers\SpeciesController::class, 'search'])->name('imet-core::search_species');
+            Route::post('protected_areas', [ProtectedAreaController::class, 'search'])->name('imet-core::search_pas');
+            Route::post('protected_areas_labels', [ProtectedAreaController::class, 'search'])->name('imet-core::labels_pas');
+
+        });
 
     });
 
+
     /*
     |--------------------------------------------------------------------------
-    | Development
+    | Development Routes
     |--------------------------------------------------------------------------
     */
     if(App::environment('imetglobal_dev')) {
+
         Route::get('create_dev_users', [DevUsersController::class, 'create_dev_users'])->name('create_dev_users');
         Route::post('change_user', [DevUsersController::class, 'change_user'])->name('change_user');
+
     }
 
 });
