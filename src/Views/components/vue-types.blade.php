@@ -22,7 +22,7 @@ $other_attributes = $other ?? '';
 @if($type === 'imet-core::selector-wdpa')
     <selector-wdpa
         {!! $vue_attributes !!}
-        :search-url="{{ route('search_pas') }}"
+        search-url="{{ route('search_pas') }}"
         :data-countries='@json(\AndreaMarelli\ImetCore\Models\ProtectedArea::getCountries()
                 ->sortBy('name_'.\AndreaMarelli\ModularForms\Helpers\Locale::lower())
                 ->pluck('name_'.\AndreaMarelli\ModularForms\Helpers\Locale::lower(), 'iso3')
@@ -31,20 +31,20 @@ $other_attributes = $other ?? '';
 
 @elseif($type === 'imet-core::selector-wdpa_multiple')
     <selector-wdpa_multiple
-        :search-url="{{ route('search_pas') }}"
+        search-url="{{ route('search_pas') }}"
         {!! $vue_attributes !!}
     ></selector-wdpa_multiple>
 
 @elseif($type==='imet-core::selector-species_animal')
     <selector-species_animal
             {!! $vue_attributes !!}
-            :search-url="{{ route('search_species') }}"
+            search-url="{{ route('search_species') }}"
     ></selector-species_animal>
 
 @elseif($type==='imet-core::selector-species_animal_withFreeText')
     <selector-species_animal
             {!! $vue_attributes !!}
-            :search-url="{{ route('search_species') }}"
+            search-url="{{ route('search_species') }}"
             :enable-free-text=true
     ></selector-species_animal>
 
