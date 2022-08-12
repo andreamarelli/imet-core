@@ -108,6 +108,10 @@
                 type: String,
                 default: ''
             },
+            labelsUrl: {
+                type: String,
+                default: ''
+            },
             disable_modal: {
                 type: Boolean,
                 default: false
@@ -155,7 +159,7 @@
                         method: 'POST',
                         url: window.Laravel.baseUrl + 'api/protected_areas/pairs',
                         data: {
-                            _token: window.Laravel.csrfToken,
+                            _token: this.labelsUrl,
                             ids: value
                         },
                     })

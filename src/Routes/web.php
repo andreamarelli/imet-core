@@ -1,10 +1,10 @@
 <?php
 
+use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v1;
 use AndreaMarelli\ImetCore\Controllers\Imet\v2;
-use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 
@@ -81,20 +81,13 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     /*
     |--------------------------------------------------------------------------
-    | API Routes
+    | Development
     |--------------------------------------------------------------------------
     */
-
-    Route::group(['prefix' => 'api'], function () {
-
-        Route::match(['get', 'post'], 'protected_areas/pairs',         [ProtectedAreaController::class, 'get_pairs']);
-
-        Route::group(['prefix' => 'imet'], function () {
-            Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
-            Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
-        });
-
-    });
+    if(App::environment('imetglobal_dev')) {
+        Route::get('create_dev_users', [DevUsersController::class, 'create_dev_users'])->name('create_dev_users');
+        Route::post('change_user', [DevUsersController::class, 'change_user'])->name('change_user');
+    }
 
 });
 
