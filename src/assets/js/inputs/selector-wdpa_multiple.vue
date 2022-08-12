@@ -23,7 +23,7 @@
 
             <modal_api_search
                 :parent-id=id
-                search-url='ajax/search/protected_areas'
+                :search-url=searchUrl
                 :key-min-length=3
             >
                 <template v-slot:modal_search_results_filters>
@@ -104,6 +104,10 @@
         ],
 
         props: {
+            searchUrl: {
+                type: String,
+                default: ''
+            },
             disable_modal: {
                 type: Boolean,
                 default: false
