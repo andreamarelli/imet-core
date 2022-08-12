@@ -14,11 +14,11 @@ class ImetPolicy
     /**
      * Perform pre-authorization checks
      *
-     * @param  \App\Models\User|\ImetUser $user
-     * @param  string  $ability
+     * @param \App\Models\User|\ImetUser $user
+     * @param string $ability
      * @return void|bool
      */
-    public function before($user, $ability)
+    public function before($user, string $ability)
     {
         // authorize any route to ADMINISTRATOR
         if (Role::isAdmin($user)) {
@@ -80,12 +80,33 @@ class ImetPolicy
      */
     public function update($user, $form = null): bool
     {
+        // if user can EDIT can also UPDATE
         return $this->edit($user, $form);
     }
 
+    /**
+     * Determine whether the user can CREATE
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @return bool
+     */
     public function create($user): bool
     {
+        // if user can EDIT can also CREATE
         return $this->edit($user);
+    }
+
+    /**
+     * Determine whether the user can DESTROY
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @param $form
+     * @return bool
+     */
+    public function destroy($user, $form = null): bool
+    {
+        // if user can EDIT can also DESTROY
+        return $this->edit($user, $form);
     }
 
 }

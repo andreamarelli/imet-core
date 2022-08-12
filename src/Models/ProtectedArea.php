@@ -127,7 +127,11 @@ class ProtectedArea extends BaseProtectedArea
                 $query->orWhere('country', 'LIKE', '%' . $country . '%');  // use LIKE for over-national WDPAs
             }
         })
-            ->whereIn('wdpa_id', $allowed_wdpas)
+            ->where(function($query) use($allowed_wdpas){
+                if($allowed_wdpas !== null){
+                    $query->whereIn('wdpa_id', $allowed_wdpas);
+                }
+            })
             ->orderBy('name')
             ->get();
 

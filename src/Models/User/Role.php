@@ -143,19 +143,23 @@ class Role extends BaseModel
                 ->pluck('country')
                 ->unique()
                 ->toArray();
-
-            // Parse for over-national WDPAs
-            $parsed_isos = ProtectedArea::parseISOs($allowed_isos);
-
-            return $only_iso
-                ? $parsed_isos
-                : Country::select(['iso3', 'iso2', 'name_' . Locale::lower()])
-                    ->whereIn('iso3', $parsed_isos)
-                    ->get();
+        } else {
+            // Unfiltered: retrieve all ISOs from ProtectedArea
+            $allowed_isos = ProtectedArea::all()
+                ->pluck('country')
+                ->unique()
+                ->sort()
+                ->toArray();
         }
 
-        // Unfiltered (only IMET administrators)
-        return null;
+        // Parse for over-national WDPAs
+        $parsed_isos = ProtectedArea::parseISOs($allowed_isos);
+
+        return $only_iso
+            ? $parsed_isos
+            : Country::select(['iso3', 'iso2', 'name_' . Locale::lower()])
+                ->whereIn('iso3', $parsed_isos)
+                ->get();
     }
 
     /**
