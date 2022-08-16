@@ -16,8 +16,9 @@ class EvalController extends __Controller
     /**
      * return if any discrepancies are found for cross analysis
      * and also the classes to be used for indication in the menu
+     *
      * @param $form
-     * @return void
+     * @return array
      */
     protected function get_cross_analysis($form)
     {

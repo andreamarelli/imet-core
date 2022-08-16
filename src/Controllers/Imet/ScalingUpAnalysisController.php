@@ -100,7 +100,7 @@ class ScalingUpAnalysisController
      * @param Request $request
      * @return array
      */
-    public function get_ajax_responses(Request $request)
+    public function get_ajax_responses(Request $request): array
     {
         $locale = App::getLocale();
         //dd($locale);

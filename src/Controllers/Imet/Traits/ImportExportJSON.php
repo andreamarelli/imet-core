@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
@@ -18,17 +17,68 @@ use AndreaMarelli\ModularForms\Helpers\Module;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use function imet_offline_version;
-use function redirect;
+use function report;
+use function response;
+use function trans;
 
 
-trait ImportExport
+trait ImportExportJSON
 {
+    /**
+     * Upload file
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
+    public function upload(Request $request): JsonResponse
+    {
+        $file = $request->file('file');
+        $ext = $file->extension();
+        $files = [];
+        try {
+            //upload file
+            $uploaded = Upload::uploadFile($file);
+            $import = new static();
+            //and then check if is zip or json
+            if (in_array($ext, ['zip'])) {
+                $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path( $uploaded['temp_filename']);
+                $extractFiles = Zip::extract($uploaded_path);
+                $num_extracted = 0;
+                foreach ($extractFiles as $item) {
+                    if(Str::endsWith($item, '.json') && $num_extracted < 10){
+                        $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
+                        $files[] = $import->import(new Request(), $json, false);
+                        Storage::disk(File::TEMP_STORAGE)->delete($item);
+                        $num_extracted++;
+                    }
+                }
+            } else {
+                $json = json_decode(Upload::getUploadFileContent($uploaded), true);
+                $files[] = $import->import(new Request(), $json, false);
+                Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
+            }
+
+            if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
+                return response()->json(["message" => trans('modular-forms::common.upload.no_files_found')], 500);
+            }
+        } catch (Exception $e) {
+            report($e);
+            return response()->json(["message" => $e->getMessage()], 500);
+        }
+
+        return response()->json($files);
+    }
+
     /**
      * return a list of Imet's for export in json/zip
      * @param Request $request
@@ -289,49 +339,5 @@ trait ImportExport
         return response()->json($response);
     }
 
-    /**
-     * Open the merge tool view
-     * @param $item
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function merge_view($item)
-    {
-        $form = Imet::find($item);
-
-        return view(static::$form_view_prefix . 'merge.list', [
-            'primary_form' => $form,
-            'duplicated_forms' => $form->getDuplicates()
-        ]);
-    }
-
-    /**
-     * Execute th merge of the given module
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function merge(Request $request)
-    {
-        /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class */
-        $module_class = $request->input('module');
-        $source_form_id = $request->input('source_form');
-        $destination_form_id = $request->input('destination_form');
-
-        $records = $module_class::exportModule($source_form_id);
-        $records = array_map(function ($item) use ($module_class, $destination_form_id) {
-            $item[(new $module_class())->getKeyName()] = null;
-            $item[$module_class::$foreign_key] = $destination_form_id;
-            return $item;
-        }, $records);
-
-        $request = new \Illuminate\Http\Request();
-        $request->merge(['records_json' => json_encode($records)]);
-        $request->merge(['form_id' => $destination_form_id]);
-
-        $module_class::updateModule($request);
-
-        return redirect()->action([Controller::class, 'merge_view'], ['item' => $destination_form_id]);
-    }
 
 }
