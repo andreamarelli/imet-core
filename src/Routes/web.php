@@ -2,6 +2,8 @@
 
 use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
+use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v1;
 use AndreaMarelli\ImetCore\Controllers\Imet\v2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
@@ -67,6 +69,26 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::get('{item}/edit', [v2\ReportController::class, 'report']);
                 Route::get('{item}/show', [v2\ReportController::class, 'report_show']);
                 Route::patch('{item}', [v2\ReportController::class, 'report_update']);
+            });
+
+        });
+
+        // #### Scaling Up Analysis ####
+        Route::group(['prefix' => 'scaling_up'], function () {
+
+            Route::match(['get', 'post'],'/',      [Controller::class, 'scaling_up'])->name('scaling_up');;
+            Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name('download_scaling_up_files');
+            Route::post('analysis',     [ScalingUpAnalysisController::class, 'get_ajax_responses']);
+            Route::any('/{items}',    [ScalingUpAnalysisController::class, 'report_scaling_up'])->name('report_scaling_up');
+            Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
+
+
+            Route::group(['prefix' => 'basket'], function () {
+                Route::post('add',   [ScalingUpBasketController::class, 'save']);
+                Route::post('get',   [ScalingUpBasketController::class, 'retrieve']);
+                Route::post('all',   [ScalingUpBasketController::class, 'all']);
+                Route::delete('delete/{id}',[ScalingUpBasketController::class, 'delete']);
+                Route::post('clear', [ScalingUpBasketController::class, 'clear']);
             });
 
         });
