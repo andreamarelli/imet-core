@@ -207,6 +207,7 @@ class ScalingUpAnalysisController extends __Controller
      * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \ReflectionException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function report(Request $request, $items = null)
     {
@@ -218,6 +219,10 @@ class ScalingUpAnalysisController extends __Controller
         $items_array = explode(',', $items);
         sort($items_array);
 
+        // check authorizations
+        foreach($items_array as $item){
+            $this->authorize('edit', (static::$form_class)::find($item));
+        }
 
         //check if the parameters are an array of numbers and pa exist in the db
         $filtered_array = array_filter($items_array, function ($value) {
