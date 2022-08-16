@@ -77,8 +77,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::group(['prefix' => 'scaling_up'], function () {
 
             Route::match(['get', 'post'],'/', [ScalingUpAnalysisController::class, 'index'])->name('scaling_up_index');
-            Route::match(['get', 'post'],'/report/{items}', [ScalingUpAnalysisController::class, 'report'])->name('scaling_up_report');
             Route::post('analysis',     [ScalingUpAnalysisController::class, 'analysis'])->name('scaling_up_analysis');
+            Route::match(['get', 'post'],'/{items}', [ScalingUpAnalysisController::class, 'report'])->name('scaling_up_report');
             Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name('download_scaling_up_files');
             Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
 
