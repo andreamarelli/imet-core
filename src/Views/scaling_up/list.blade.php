@@ -9,7 +9,7 @@
 
 use Illuminate\Support\Facades\URL;
 
-$url = URL::route('scaling_up');
+$url = URL::route('scaling_up_index');
 ?>
 
 @extends('layouts.admin')

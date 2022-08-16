@@ -69,35 +69,4 @@ class Controller extends __Controller
         ]);
     }
 
-    /**
-     * Index route for scaling up
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function scaling_up(Request $request)
-    {
-        $this->authorize('viewAny', static::$form_class);
-        HTTP::sanitize($request, self::sanitization_rules);
-
-        // set filter status
-        $filter_selected = !empty(array_filter($request->except('_token')));
-
-        // retrieve IMET list
-        $filtered_list = Imet::get_list($request);
-        $full_list = Imet::get_list(new Request());
-        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
-        $countries = ProtectedArea::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
-
-        return view(static::$form_view_prefix . 'scaling_up.list', [
-            'controller' => static::class,
-            'list' => $filtered_list,
-            'request' => $request,
-            'filter_selected' => $filter_selected,
-            'countries' => $countries,
-            'years' => $years
-        ]);
-    }
-
 }

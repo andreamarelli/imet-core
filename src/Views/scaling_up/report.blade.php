@@ -50,7 +50,7 @@
         new Vue({
             el: '#imet_report',
             data: {
-                url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController::class, 'get_ajax_responses']) }}'
+                url: '{{ route('scaling_up_analysis') }}'
             },
             methods: {
                 goTo: function (event) {
