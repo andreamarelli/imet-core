@@ -20,7 +20,7 @@ abstract class ReportController extends Controller
     {
         $imet = (static::$form_class)::find($item);
 
-        $this->authorize('update', $imet);
+        $this->authorize('edit', $imet);
 
         return view(static::$form_view_prefix . '.edit', $this->__retrieve_report_data($imet));
     }
@@ -52,7 +52,7 @@ abstract class ReportController extends Controller
      */
     public function report_update($item, Request $request): array
     {
-        $this->authorize('update', (static::$form_class)::find($item));
+        $this->authorize('edit', (static::$form_class)::find($item));
 
         \AndreaMarelli\ImetCore\Models\Imet\v1\Report::updateByForm($item, $request->input('report'));
         return [ 'status' => 'success' ];

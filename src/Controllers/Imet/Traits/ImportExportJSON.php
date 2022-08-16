@@ -227,9 +227,12 @@ trait ImportExportJSON
      * @param bool $to_file
      * @param bool $download
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|array
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function export(Imet $item, bool $to_file = true, bool $download = true)
     {
+        $this->authorize('view', $item);
+
         $imet_id = $item->getKey();
         $imet_form = $item
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
@@ -267,9 +270,13 @@ trait ImportExportJSON
 
     /**
      * View for importing an IMET from json file
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function import_view()
     {
+        $this->authorize('viewAny', static::$form_class);
+
         return view(static::$form_view_prefix . 'import');
     }
 
@@ -295,6 +302,8 @@ trait ImportExportJSON
 
             $imet_version = $json['Imet']['imet_version'] ?? null;
             $version = $json['Imet']['version'];
+
+            $this->authorize('view', (new Imet($json['Imet']))->fill($json['Imet']));
 
             DB::beginTransaction();
 

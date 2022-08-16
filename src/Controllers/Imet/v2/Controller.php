@@ -12,6 +12,7 @@ use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -33,6 +34,7 @@ class Controller extends BaseController
     public function create_non_wdpa()
     {
         $this->authorize('create', static::$form_class);
+
         return view(static::$form_view_prefix.'.create', ['is_wdpa' => false]);
     }
 
@@ -43,7 +45,7 @@ class Controller extends BaseController
      *
      * @param \Illuminate\Http\Request $request
      * @return array|\Illuminate\View\View|mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Illuminate\Auth\Access\AuthorizationException|\Throwable
      */
     public function store(Request $request)
     {
@@ -51,7 +53,7 @@ class Controller extends BaseController
 
         $records = json_decode($request->input('records_json'), true);
 
-        // #### Create an prefilled IMET (data from a previous year) ####
+        // #### Create a prefilled IMET (data from a previous year) ####
         if(array_key_exists('prev_year_selection', $records[0])){
             $prev_year_selection = $records[0]['prev_year_selection'] ?? null;
             unset($records[0]['prev_year_selection']);
@@ -75,7 +77,6 @@ class Controller extends BaseController
      * @param Request $request
      * @return array
      * @throws \Exception
-     * @throws \Throwable
      */
     private function store_non_wdpa(Request $request): array
     {
@@ -113,9 +114,12 @@ class Controller extends BaseController
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Support\Collection
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function retrieve_prev_years(Request $request): \Illuminate\Support\Collection
+    public function retrieve_prev_years(Request $request): Collection
     {
+        $this->authorize('edit', static::$form_class);
+
         $year = $request->input('year');
 
         if($year === null){
@@ -131,7 +135,15 @@ class Controller extends BaseController
             ->pluck('Year', 'FormID');
     }
 
-    public function store_prefilled(Request $request, $prev_year_selection)
+    /**
+     * Store a prefilled IMET (data retrieved from a previous year)
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param $prev_year_selection
+     * @return array
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     */
+    private function store_prefilled(Request $request, $prev_year_selection): array
     {
         $records = json_decode($request->input('records_json'), true);
 
@@ -175,14 +187,14 @@ class Controller extends BaseController
      */
     public function pdf($item): BinaryFileResponse
     {
-        $this->authorize('view', (static::$form_class)::find($item));
+        $imet = (static::$form_class)::find($item);
 
-        $form = new static::$form_class();
-        $form = $form->find($item);
+        $this->authorize('view', $imet);
+
         $view = view(static::$form_view_prefix . 'print', [
-            'item' => $form
+            'item' => $imet
         ]);
-        return File::exportToPDF($form->filename('pdf'), $view);
+        return File::exportToPDF($imet->filename('pdf'), $view);
     }
 
 }

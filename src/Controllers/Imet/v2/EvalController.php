@@ -10,7 +10,6 @@ use function view;
 
 class EvalController extends BaseEvalController
 {
-
     protected static $form_class = Imet_Eval::class;
     protected static $form_view_prefix = 'imet-core::v2.evaluation';
 
@@ -24,18 +23,16 @@ class EvalController extends BaseEvalController
      */
     public function show($item, $step = null)
     {
-        $this->authorize('view', (static::$form_class)::find($item));
+        $imet = (static::$form_class)::find($item);
 
-        $form = new static::$form_class();
-        $form = $form->find($item);
+        $this->authorize('view', $imet);
+
         $step = $step == null ? 'context' : $step;
-
-        $steps = $this->steps($form);
-
-        list($warnings, $classes) = $this->get_cross_analysis($form);
+        $steps = $this->steps($imet);
+        list($warnings, $classes) = $this->get_cross_analysis($imet);
 
         return view(static::$form_view_prefix . '.show', [
-            'item' => $form,
+            'item' => $imet,
             'steps' => $steps,
             'step' => $step,
             'warnings' => $warnings,

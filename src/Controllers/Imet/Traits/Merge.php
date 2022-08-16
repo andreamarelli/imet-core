@@ -14,12 +14,15 @@ trait Merge
 {
     /**
      * Open the merge tool view
+     *
      * @param $item
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function merge_view($item)
     {
         $form = Imet::find($item);
+        $this->authorize('edit', $form);
 
         return view(static::$form_view_prefix . 'merge.list', [
             'primary_form' => $form,
@@ -28,7 +31,7 @@ trait Merge
     }
 
     /**
-     * Execute th merge of the given module
+     * Execute the merge of the given module
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
