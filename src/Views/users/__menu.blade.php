@@ -2,7 +2,6 @@
 
 use \AndreaMarelli\ImetCore\Models\User\Role;
 
-$role_prefix_url = '/admin/role';
 $links = [
     [
         'url' => route('users', ['role_type' => Role::ROLE_ADMINISTRATOR]),
@@ -27,7 +26,7 @@ $links = [
 <nav class="steps">
     @foreach($links as $i => $link)
         <a class="step
-            @if(url()->current()===$link['url'] || ($i===0 && url()->current()===url('/').$role_prefix_url))
+            @if(url()->current()===$link['url'] || ($i===0 && url()->current()=== route('users', ['role_type' => null])))
                 selected
             @endif
             "

@@ -10,7 +10,7 @@ use \ImetUser as User;
 class UsersController extends __Controller
 {
     protected static $form_class = Role::class;
-    protected static $form_view_prefix = 'imet-core::';
+    protected static $form_view_prefix = 'imet-core::users/';
 
     public function index(Request $request, $role_type = null)
     {
@@ -21,7 +21,7 @@ class UsersController extends __Controller
             ->with('imet_roles')
             ->get();
 
-        return view(static::$form_view_prefix . 'users', [
+        return view(static::$form_view_prefix . $role_type, [
             'controller' => static::class,
             'role' => $role_type,
             'users_and_roles' => $users
