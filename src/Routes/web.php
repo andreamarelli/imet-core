@@ -7,6 +7,8 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v1;
 use AndreaMarelli\ImetCore\Controllers\Imet\v2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
+use AndreaMarelli\ImetCore\Controllers\SpeciesController;
+use AndreaMarelli\ImetCore\Controllers\UsersController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
@@ -106,13 +108,21 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         */
         Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
 
-            Route::post('species', [\AndreaMarelli\ImetCore\Controllers\SpeciesController::class, 'search'])->name('imet-core::search_species');
+            Route::post('species', [SpeciesController::class, 'search'])->name('imet-core::search_species');
             Route::post('protected_areas', [ProtectedAreaController::class, 'search'])->name('imet-core::search_pas');
             Route::post('protected_areas_labels', [ProtectedAreaController::class, 'search'])->name('imet-core::labels_pas');
 
         });
 
     });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Management Routes
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('users', [UsersController::class, 'index'])->name('users');
 
 
     /*
