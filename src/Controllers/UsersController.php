@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Controllers;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Http\Request;
+use \ImetUser as User;
 
 
 class UsersController extends __Controller
@@ -11,15 +12,19 @@ class UsersController extends __Controller
     protected static $form_class = Role::class;
     protected static $form_view_prefix = 'imet-core::';
 
-    public function index(Request $request)
+    public function index(Request $request, $role_type = null)
     {
         $this->authorize('manage', static::$form_class);
 
-        $roles = Role::all();
+        $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
+        $users = User::where('imet_role', $role_type)
+            ->with('imet_roles')
+            ->get();
 
         return view(static::$form_view_prefix . 'users', [
             'controller' => static::class,
-            'roles' => $roles
+            'role' => $role_type,
+            'users_and_roles' => $users
         ]);
     }
 

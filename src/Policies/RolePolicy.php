@@ -35,6 +35,7 @@ class RolePolicy
      */
     public function manage($user): bool
     {
+        // TODO: ROLE_OBSERVATORY ?
         return false;
     }
 

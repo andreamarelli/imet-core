@@ -1,6 +1,7 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Controllers\UsersController $controller */
-/** @var \Illuminate\Database\Eloquent\Collection $role */
+/** @var string $role */
+/** @var \Illuminate\Database\Eloquent\Collection $users_and_roles */
 
 ?>
 
@@ -13,14 +14,10 @@
 @endsection
 
 
-@if(!is_imet_environment())
-    @section('admin_page_title')
-        @lang('imet-core::common.imet')
-    @endsection
-@endif
-
 @section('content')
 
-    Hello
+    @include('imet-core::users.__menu')
+
+    {{ dump($users_and_roles) }}
 
 @endsection

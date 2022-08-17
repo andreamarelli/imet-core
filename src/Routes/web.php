@@ -122,7 +122,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('users', [UsersController::class, 'index'])->name('users');
+    Route::get('users/{role_type?}', [UsersController::class, 'index'])->name('users');
 
 
     /*
