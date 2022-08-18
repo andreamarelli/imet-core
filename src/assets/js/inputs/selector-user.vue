@@ -114,9 +114,9 @@ export default {
         resultTableHeader(){
             return [
                 '',
-                Locale.getLabel('imet-core::attributes.name'),
-                Locale.getLabel('imet-core::attributes.country'),
-                Locale.getLabel('imet-core::attributes.organisation')
+                Locale.getLabel('imet-core::users.attributes.name'),
+                Locale.getLabel('imet-core::users.attributes.country'),
+                Locale.getLabel('imet-core::users.attributes.organisation')
             ]
         },
 
