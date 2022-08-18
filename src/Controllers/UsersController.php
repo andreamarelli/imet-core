@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Controllers;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use \ImetUser as User;
 
@@ -28,4 +29,14 @@ class UsersController extends __Controller
         ]);
     }
 
+    public function search(Request $request): JsonResponse
+    {
+        $list = $request->filled('search_key')
+            ? User::searchByKey($request->input('search_key'))
+            : collect();
+
+        return response()->json([
+            'records' => $list->toArray()
+        ]);
+    }
 }

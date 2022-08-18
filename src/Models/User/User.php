@@ -63,4 +63,19 @@ class User extends BaseUser
         return "{$this->first_name} {$this->last_name}";
     }
 
+    /**
+     * Search by key
+     *
+     * @param $search_key
+     * @return mixed
+     */
+    public static function searchByKey($search_key)
+    {
+        return static::where('first_name', '~~*', '%' . $search_key . '%')
+            ->orWhere('last_name', '~~*', '%' . $search_key . '%')
+            ->orderBy('last_name')
+            ->orderBy('first_name')
+            ->get();
+    }
+
 }

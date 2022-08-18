@@ -111,6 +111,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::post('species', [SpeciesController::class, 'search'])->name('imet-core::search_species');
             Route::post('protected_areas', [ProtectedAreaController::class, 'search'])->name('imet-core::search_pas');
             Route::post('protected_areas_labels', [ProtectedAreaController::class, 'search'])->name('imet-core::labels_pas');
+            Route::post('users', [UsersController::class, 'search'])->name('imet-core::search_users');
 
         });
 
