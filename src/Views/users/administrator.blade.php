@@ -35,7 +35,6 @@
                             :id="'administrators_'+index"
                             data-class="field-edit"
                     ></selector-user>
-                    @{{ administrators[index] }}
                 </div>
             </div>
 
