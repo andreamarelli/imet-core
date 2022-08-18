@@ -39,4 +39,12 @@ class UsersController extends __Controller
             'records' => $list->toArray()
         ]);
     }
+
+    public function update_roles(Request $request)
+    {
+        $this->authorize('manage', static::$form_class);
+
+        dd($request->all());
+    }
+
 }

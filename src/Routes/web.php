@@ -123,7 +123,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::get('users/{role_type?}', [UsersController::class, 'index'])->name('users');
+    Route::get('users/{role_type?}', [UsersController::class, 'index'])->name('imet-core::users');
+    Route::patch('users', [UsersController::class, 'update_roles'])->name('imet-core::users_update');
 
 
     /*

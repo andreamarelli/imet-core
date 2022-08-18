@@ -4,19 +4,19 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
 
 $links = [
     [
-        'url' => route('users', ['role_type' => Role::ROLE_ADMINISTRATOR]),
+        'url' => route('imet-core::users', ['role_type' => Role::ROLE_ADMINISTRATOR]),
         'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_ADMINISTRATOR, 2))
     ],
     [
-        'url' => route('users', ['role_type' => Role::ROLE_AUTHORITY]),
+        'url' => route('imet-core::users', ['role_type' => Role::ROLE_AUTHORITY]),
         'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_AUTHORITY, 2))
     ],
     [
-        'url' => route('users', ['role_type' => Role::ROLE_OBSERVATORY]),
+        'url' => route('imet-core::users', ['role_type' => Role::ROLE_OBSERVATORY]),
         'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_OBSERVATORY, 2))
     ],
     [
-        'url' => route('users', ['role_type' => Role::ROLE_ENCODER]),
+        'url' => route('imet-core::users', ['role_type' => Role::ROLE_ENCODER]),
         'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_ENCODER, 2))
     ],
 ];
@@ -26,7 +26,7 @@ $links = [
 <nav class="steps">
     @foreach($links as $i => $link)
         <a class="step
-            @if(url()->current()===$link['url'] || ($i===0 && url()->current()=== route('users', ['role_type' => null])))
+            @if(url()->current()===$link['url'] || ($i===0 && url()->current()=== route('imet-core::users', ['role_type' => null])))
                 selected
             @endif
             "
