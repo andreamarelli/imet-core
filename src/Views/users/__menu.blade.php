@@ -5,19 +5,19 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
 $links = [
     [
         'url' => route('users', ['role_type' => Role::ROLE_ADMINISTRATOR]),
-        'label' => ucfirst(Role::ROLE_ADMINISTRATOR)
+        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_ADMINISTRATOR, 2))
     ],
     [
         'url' => route('users', ['role_type' => Role::ROLE_AUTHORITY]),
-        'label' => ucfirst(Role::ROLE_AUTHORITY)
+        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_AUTHORITY, 2))
     ],
     [
         'url' => route('users', ['role_type' => Role::ROLE_OBSERVATORY]),
-        'label' => ucfirst(Role::ROLE_OBSERVATORY)
+        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_OBSERVATORY, 2))
     ],
     [
         'url' => route('users', ['role_type' => Role::ROLE_ENCODER]),
-        'label' => ucfirst(Role::ROLE_ENCODER)
+        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_ENCODER, 2))
     ],
 ];
 

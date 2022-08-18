@@ -27,10 +27,10 @@
             >
                 <template v-slot:resultItem="{ item }">
                     <td class="result_left">
-                        <b>{{ item.first_name }} {{ item.last_name}}</b>
+                        <b>{{ item.name }}</b>
                     </td>
                     <td>
-                        {{ item.email }}
+                        {{ item.country }}
                     </td>
                     <td>
                         {{ item.organisation }}
@@ -98,7 +98,7 @@ export default {
     computed:{
         anchorLabel(){
             return this.value!==null && Object.keys(this.value).length
-                ? '<b>' + this.value.first_name + ' ' + this.value.last_name + '</b>'
+                ? '<b>' + this.value.name + '</b>'
                 + (this.value.organisation!==null && this.value.organisation!=='' ? ' - ' + this.value.organisation : '')
                 : '';
         }
@@ -114,9 +114,9 @@ export default {
         resultTableHeader(){
             return [
                 '',
-                Locale.getLabel('entities.common.name'),
-                Locale.getLabel('entities.common.email'),
-                Locale.getLabel('entities.staff.institution')
+                Locale.getLabel('imet-core::attributes.name'),
+                Locale.getLabel('imet-core::attributes.country'),
+                Locale.getLabel('imet-core::attributes.organisation')
             ]
         },
 

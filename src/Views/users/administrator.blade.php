@@ -21,7 +21,7 @@
     <div id="users" class="module-container">
         <div class="module-header">
             <div class="module-title col-lg-12">
-                @lang_u('layout.admin.users.administrators')
+                {{  ucfirst(trans_choice('imet-core::users.role.'. $role, 2)) }}
             </div>
         </div>
 

@@ -34,6 +34,8 @@ class User extends BaseUser
         'imet_role'
     ];
 
+    protected $appends = ['name'];
+
     /**
      * Relation to Role
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -42,7 +44,17 @@ class User extends BaseUser
     {
         return $this->hasMany(Role::class);
     }
-    
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getNameAttribute(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
     /**
      * Override: Retrieve the name of the user
      *
@@ -50,17 +62,21 @@ class User extends BaseUser
      */
     public function getName(): string
     {
-        return $this->full_name ;
+        return $this->name ;
     }
 
     /**
-     * Get the user's full name.
-     *
-     * @return string
+     * Retrieve user's personal info (requires to be overridden)
+     * @return array
      */
-    public function getFullNameAttribute(): string
+    public function getInfo(): array
     {
-        return "{$this->first_name} {$this->last_name}";
+        return $this->only([
+            'first_name',
+            'last_name',
+            'organisation',
+            'country'
+        ]);
     }
 
     /**

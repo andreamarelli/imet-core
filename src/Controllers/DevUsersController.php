@@ -40,6 +40,8 @@ class DevUsersController extends __Controller {
                 'id' => 99999,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Administrator',
+                'country' => 'ITA',
+                'organisation' => 'IMET dev team',
                 'imet_role' => Role::ROLE_ADMINISTRATOR
             ]);
 
@@ -48,6 +50,8 @@ class DevUsersController extends __Controller {
                 'id' => 99998,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Authority',
+                'country' => 'GRL',
+                'organisation' => 'IMET authorities',
                 'imet_role' => Role::ROLE_AUTHORITY
             ]);
             $user->imet_roles()->create(['country' => 'CMR']);
@@ -58,6 +62,8 @@ class DevUsersController extends __Controller {
                 'id' => 99997,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Encoder',
+                'country' => 'ATA',
+                'organisation' => 'IMET encoders',
                 'imet_role' => Role::ROLE_ENCODER
             ]);
             $user->imet_roles()->create(['country' => 'BDI']);
