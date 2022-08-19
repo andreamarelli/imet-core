@@ -19,8 +19,28 @@ class UsersController extends __Controller
 
         $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
         $users = User::where('imet_role', $role_type)
-            ->with('imet_roles')
-            ->get();
+            ->with(['imet_roles.country_obj', 'imet_roles.wdpa_obj'])
+            ->get()
+            ->map(function ($item){
+                $role_isos = [];
+                $role_wdpas = [];
+                foreach($item['imet_roles'] as $r){
+                    if($r['country']!==null){
+                        $role_isos[] = $r['country'];
+                    }
+                    if($r['wdpa']!==null){
+                        $role_wdpas[] = $r['wdpa'];
+                    }
+                }
+                unset($item['imet_roles']);
+                return [
+                    'user' => $item,
+                    'role_isos' => implode(',', $role_isos),
+                    'role_wdpas' => implode(',', $role_wdpas)
+                ];
+            });
+
+
 
         return view(static::$form_view_prefix . $role_type, [
             'controller' => static::class,
@@ -36,8 +56,8 @@ class UsersController extends __Controller
             : collect();
 
         return response()->json([
-            'records' => $list->toArray()
-        ]);
+                                    'records' => $list->toArray()
+                                ]);
     }
 
     public function update_roles(Request $request)

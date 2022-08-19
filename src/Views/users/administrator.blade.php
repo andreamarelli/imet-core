@@ -42,7 +42,7 @@
                         <td>
                             <selector-user
                                     search-url="{{ route('imet-core::search_users') }}"
-                                    v-model="records[index]"
+                                    v-model="records[index]['user']"
                                     :id="'records_'+index"
                                     data-class="field-edit"
                             ></selector-user>
@@ -79,7 +79,10 @@
             ],
 
             data: {
-                records: @json($users_and_roles)
+                records: @json($users_and_roles),
+                empty_record: {
+                    'user': null
+                }
             },
 
             created: function () {
@@ -99,8 +102,8 @@
 
             methods: {
                 ensureLastEmpty() {
-                    if (this.records[this.records.length - 1] !== null) {
-                        this.records.push(null);
+                    if (this.records[this.records.length - 1] !== this.empty_record) {
+                        this.records.push(this.empty_record);
                     }
                 },
 
