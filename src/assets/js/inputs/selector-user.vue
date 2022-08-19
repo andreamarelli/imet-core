@@ -33,7 +33,7 @@
                         {{ item.email }}
                     </td>
                     <td>
-                        <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
+                        <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>{{ item.country.name }}</i>
                     </td>
                     <td>
                         {{ item.organisation }}
@@ -75,6 +75,7 @@
 export default {
 
     components: {
+        'flag': window.ModularForms.Template.flag,
         'modal-selector': window.ModularForms.Input.modalSelector,
         'modal_api_search': window.ModularForms.Input.modalApiSearch
     },
