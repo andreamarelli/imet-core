@@ -282,7 +282,7 @@ if ($item->language != App::getLocale()) {
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
                     <form id="imet_report_form" method="post"
-                          action="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class, 'report_update'], [$item->getKey()]) }}"
+                          action="{{ route('imet-core::v2_report_update', [$item->getKey()]) }}"
                           style="display: inline-block;">
                         @method('PATCH')
                         @csrf
@@ -440,7 +440,7 @@ if ($item->language != App::getLocale()) {
                     this.error = false;
                     window.axios({
                         method: 'post',
-                        url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class, 'report_update'], ['item' => $item->getKey()]) }}',
+                        url: '{{ route('imet-core::v2_report_update', ['item' => $item->getKey()]) }}',
                         data: {
                             _token: window.Laravel.csrfToken,
                             _method: 'PATCH',

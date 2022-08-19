@@ -70,7 +70,7 @@ if($primary_form->version==='v1'){
                              data-toggle="tooltip"
                              data-placement="top"
                              data-original-title="@lang_u('imet-core::common.set_as_destination_form')">
-                            <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'merge_view'], [$duplicated_form_id]) }}"
+                            <a href="{{ route('imet-core::merge_view', [$duplicated_form_id]) }}"
                                class="btn-nav small yellow"
                             >{!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!} @lang_u('imet-core::common.destination_form')
                             </a>

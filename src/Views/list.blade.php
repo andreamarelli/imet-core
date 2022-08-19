@@ -35,13 +35,13 @@ $url = URL::route('imet-core::index');
         <div class="functional_buttons">
             {{-- Import json IMETs --}}
             <a class="btn-nav rounded"
-               href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
+               href="{{ route('imet-core::import') }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
             </a>
             {{-- Export json IMETs --}}
             <a class="btn-nav rounded"
-               href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
+               href="{{ route('imet-core::export_view') }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.export')) }}
             </a>
@@ -51,7 +51,7 @@ $url = URL::route('imet-core::index');
                 'label' => trans('imet-core::v2_context.Create.title')
             ])
             <a class="btn-nav rounded"
-               href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class, 'create_non_wdpa']) }}">
+               href="{{ route('imet-core::create_non_wdpa') }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
                 {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
             </a>

@@ -23,7 +23,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class, 'edit'], ['item'=>$item->getKey()]),
+        'url' => route('imet-core::v1_eval_edit', ['item'=>$item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v1_common.steps_eval.',
         'steps' => array_keys($item::modules())

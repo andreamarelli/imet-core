@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -57,6 +56,6 @@ trait Merge
 
         $module_class::updateModule($request);
 
-        return redirect()->action([Controller::class, 'merge_view'], ['item' => $destination_form_id]);
+        return redirect()->route('imet-core::merge_view', ['item' => $destination_form_id]);
     }
 }

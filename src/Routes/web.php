@@ -34,17 +34,17 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'context'], function () {
-                Route::get('{item}/edit/{step?}', [v1\Controller::class, 'edit']);
+                Route::get('{item}/edit/{step?}', [v1\Controller::class, 'edit'])->name('imet-core::v1_context_edit');
                 Route::patch('{item}',           [v1\Controller::class, 'update']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/edit/{step?}', [v1\EvalController::class, 'edit']);
+                Route::get('{item}/edit/{step?}', [v1\EvalController::class, 'edit'])->name('imet-core::v1_eval_edit');
                 Route::patch('{item}',           [v1\EvalController::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [v1\ReportController::class, 'report']);
+                Route::get('{item}/edit', [v1\ReportController::class, 'report'])->name('imet-core::v1_report_edit');
                 Route::get('{item}/show', [v1\ReportController::class, 'report_show']);
-                Route::patch('{item}', [v1\ReportController::class, 'report_update']);
+                Route::patch('{item}', [v1\ReportController::class, 'report_update'])->name('imet-core::v1_report_update');
             });
         });
 
@@ -53,24 +53,24 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
 
             Route::group(['prefix' => 'context'], function () {
-                Route::get('{item}/edit/{step?}',[v2\Controller::class, 'edit']);
-                Route::get('{item}/show/{step?}',[v2\Controller::class, 'show']);
+                Route::get('{item}/edit/{step?}',[v2\Controller::class, 'edit'])->name('imet-core::v2_context_edit');
+                Route::get('{item}/show/{step?}',[v2\Controller::class, 'show'])->name('imet-core::v2_context_show');
                 Route::patch('{item}',           [v2\Controller::class, 'update']);
                 Route::get('create',            [v2\Controller::class, 'create']);
-                Route::get('create_non_wdpa', [v2\Controller::class, 'create_non_wdpa']);
+                Route::get('create_non_wdpa', [v2\Controller::class, 'create_non_wdpa'])->name('imet-core::create_non_wdpa');
                 Route::post('store',            [v2\Controller::class, 'store']);
-                Route::post('prev_years',            [v2\Controller::class, 'retrieve_prev_years']);
+                Route::post('prev_years',            [v2\Controller::class, 'retrieve_prev_years'])->name('imet-core::retrieve_prev_years');
             });
             Route::group(['prefix' => 'evaluation'], function () {
-                Route::get('{item}/edit/{step?}',   [v2\EvalController::class, 'edit']);
-                Route::get('{item}/show/{step?}',   [v2\EvalController::class, 'show']);
+                Route::get('{item}/edit/{step?}',   [v2\EvalController::class, 'edit'])->name('imet-core::v2_eval_edit');
+                Route::get('{item}/show/{step?}',   [v2\EvalController::class, 'show'])->name('imet-core::v2_eval_show');
                 Route::get('{item}/print',          [v2\EvalController::class, 'print']);
                 Route::patch('{item}',           [v2\EvalController::class, 'update']);
             });
             Route::group(['prefix' => 'report'], function () {
-                Route::get('{item}/edit', [v2\ReportController::class, 'report']);
+                Route::get('{item}/edit', [v2\ReportController::class, 'report'])->name('imet-core::v2_report_edit');
                 Route::get('{item}/show', [v2\ReportController::class, 'report_show']);
-                Route::patch('{item}', [v2\ReportController::class, 'report_update']);
+                Route::patch('{item}', [v2\ReportController::class, 'report_update'])->name('imet-core::v2_report_update');
             });
 
         });

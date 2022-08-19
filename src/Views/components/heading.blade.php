@@ -30,29 +30,29 @@
 
     @if($item->version=='v1')
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v1_context_edit', [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
         >@lang_u('imet-core::common.context_long')</a>
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v1_eval_edit', [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
         >@lang_u('imet-core::common.evaluation_long')</a>
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v1\ReportController::class, 'report'], [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v1_report_update', [$item->getKey()]) }}"
            class="step @if('report'==$phase) selected @endif"
         >@lang_u('imet-core::common.report_long')</a>
 
     @else
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v2_context_edit', [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
         >@lang_u('imet-core::common.context_long')</a>
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v2_eval_edit', [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
         >@lang_u('imet-core::common.evaluation_long')</a>
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class, 'report'], [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v2_report_edit', [$item->getKey()]) }}"
            class="step @if('report'==$phase) selected @endif"
         >@lang_u('imet-core::common.report_long')</a>
 

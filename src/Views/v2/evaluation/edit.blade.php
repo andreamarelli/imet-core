@@ -22,7 +22,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     @include('imet-core::components.heading', ['phase' => 'evaluation'])
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class, 'edit'], ['item'=>$item->getKey()]),
+        'url' => route('imet-core::v2_eval_edit', ['item'=>$item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v2_common.steps_eval.',
         'classes' => $classes,

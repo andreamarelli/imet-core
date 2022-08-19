@@ -192,7 +192,7 @@ $vue_record_index = 0;
 
                     return window.axios({
                         method: 'post',
-                        url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class, 'retrieve_prev_years']) }}',
+                        url: '{{ route('imet-core::retrieve_prev_years') }}',
                         data: {
                             _token: window.Laravel.csrfToken,
                             year: _this.records[0]['Year'],
