@@ -73,7 +73,7 @@ export default {
     });
     this.$root.$on('scaling_up', () => {
       this.ids = this.selections.map(selection => selection[this.fieldId]).join(',');
-       this.url.replace('{items}', this.ids);
+       this.url.replace('<items>', this.ids);
        window.location.href = this.url;
     });
   },
@@ -87,7 +87,7 @@ export default {
     scaling_up: function() {
       this.ids = this.selections.map(selection => selection[this.fieldId]).sort((a, b) => parseInt(a) - parseInt(b)).join(',');this.ids = this.selections.map(selection => selection[this.fieldId]).join(',');
 
-      window.location.href = this.url.replace('{items}', this.ids);
+      window.location.href = this.url.replace('<items>', this.ids);
     },
     get_values: function () {
       return this.get_raw_values();
