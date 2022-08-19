@@ -121,16 +121,6 @@ export default {
         },
 
         confirmSelection(){
-
-            if(this.selectedValue!==null){
-                this.selectedValue = {
-                    name: this.selectedValue.name,
-                    organisation: this.selectedValue.organisation,
-                    role: this.role,
-                    user_id: this.selectedValue.id
-                };
-            }
-
             this.emitValue(this.selectedValue);
             this.modalComponent.closeModal();
         },
