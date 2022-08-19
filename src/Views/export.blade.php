@@ -11,7 +11,7 @@ $filter_selected = false;
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 

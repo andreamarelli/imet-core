@@ -8,7 +8,7 @@ $is_wdpa = $is_wdpa ?? true;
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-         action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+         route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 

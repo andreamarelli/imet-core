@@ -23,13 +23,13 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::match(['get', 'post'],'v2',      [Controller::class, 'index']);     // temporary alias
         Route::delete('{item}', [Controller::class, 'destroy']);
         Route::get('{item}/export', [Controller::class, 'export']);
-        Route::match(['get','post'],'export_view',        [Controller::class, 'export_view'])->name('imet-core::export_view');
 
-        Route::post('ajax/upload', [Controller::class, 'upload']);
-        Route::get('import',        [Controller::class, 'import_view']);
-        Route::post('import',      [Controller::class, 'import']);
-        Route::get('{item}/merge',  [Controller::class, 'merge_view']);
-        Route::post('merge',      [Controller::class, 'merge']);
+        Route::post('ajax/upload', [Controller::class, 'upload'])->name('imet-core::upload_json');
+        Route::match(['get','post'],'export_view',        [Controller::class, 'export_view'])->name('imet-core::export_view');
+        Route::get('import',        [Controller::class, 'import_view'])->name('imet-core::import_view');
+        Route::post('import',      [Controller::class, 'import'])->name('imet-core::import');
+        Route::get('{item}/merge',  [Controller::class, 'merge_view'])->name('imet-core::merge_view');
+        Route::post('merge',      [Controller::class, 'merge'])->name('merge');
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
