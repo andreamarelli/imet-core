@@ -44,7 +44,7 @@ $url = URL::route('imet-core::scaling_up_index');
         <div id="cloud">
             <label-cloud
                 :cookie-name="'analysis'"
-                url="{{ route('scaling_up_report', ['items' => "<items>"]) }}"
+                url="{{ route('imet-core::scaling_up_report', ['items' => "<items>"]) }}"
                 :source-of-data="'cookie'"></label-cloud>
         </div>
         <action-button-cookie
