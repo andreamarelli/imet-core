@@ -54,7 +54,7 @@
                     window.print();
                 },
                 downloadFiles(){
-                    window.location.href = '{{route('download_scaling_up_files', ['scaling_id' => $scaling_up_id])}}';
+                    window.location.href = '{{route('imet-core::scaling_up_download', ['scaling_id' => $scaling_up_id])}}';
                 }
             }
         });

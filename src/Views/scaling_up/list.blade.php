@@ -9,7 +9,7 @@
 
 use Illuminate\Support\Facades\URL;
 
-$url = URL::route('scaling_up_index');
+$url = URL::route('imet-core::scaling_up_index');
 ?>
 
 @extends('layouts.admin')

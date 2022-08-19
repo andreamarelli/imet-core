@@ -17,7 +17,7 @@
 @section('content')
     <div class="module-container" id="table_list">
         <div class="module-body">
-            <form  method="{{ $method }}" action="{{ \Illuminate\Support\Facades\URL::route('csv_list') }}">
+            <form  method="{{ $method }}" action="{{ \Illuminate\Support\Facades\URL::route('imet-core::csv_list') }}">
                 {{ csrf_field() }}
                 <div >
                     <table class="table module-table">

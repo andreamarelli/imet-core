@@ -11,7 +11,7 @@
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use Illuminate\Support\Facades\URL;
 
-$url = URL::route('index');
+$url = URL::route('imet-core::index');
 ?>
 
 @extends('layouts.admin')

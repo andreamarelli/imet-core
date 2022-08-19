@@ -50,7 +50,7 @@
         new Vue({
             el: '#imet_report',
             data: {
-                url: '{{ route('scaling_up_analysis') }}'
+                url: '{{ route('imet-core::scaling_up_analysis') }}'
             },
             methods: {
                 goTo: function (event) {

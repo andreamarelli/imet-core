@@ -18,12 +18,12 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function () {
 
         // ####  common routes (v1 & v2) ####
-        Route::match(['get', 'post'],'/',      [Controller::class, 'index'])->name('index');
+        Route::match(['get', 'post'],'/',      [Controller::class, 'index'])->name('imet-core::index');
         Route::match(['get', 'post'],'v1',      [Controller::class, 'index']);     // temporary alias
         Route::match(['get', 'post'],'v2',      [Controller::class, 'index']);     // temporary alias
         Route::delete('{item}', [Controller::class, 'destroy']);
         Route::get('{item}/export', [Controller::class, 'export']);
-        Route::match(['get','post'],'export_view',        [Controller::class, 'export_view'])->name('export_view');
+        Route::match(['get','post'],'export_view',        [Controller::class, 'export_view'])->name('imet-core::export_view');
 
         Route::post('ajax/upload', [Controller::class, 'upload']);
         Route::get('import',        [Controller::class, 'import_view']);
@@ -78,11 +78,11 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         // #### Scaling Up Analysis ####
         Route::group(['prefix' => 'scaling_up'], function () {
 
-            Route::match(['get', 'post'],'/', [ScalingUpAnalysisController::class, 'index'])->name('scaling_up_index');
-            Route::post('analysis',     [ScalingUpAnalysisController::class, 'analysis'])->name('scaling_up_analysis');
-            Route::match(['get', 'post'],'/{items}', [ScalingUpAnalysisController::class, 'report'])->name('scaling_up_report');
-            Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name('download_scaling_up_files');
-            Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('scaling_up_preview');
+            Route::match(['get', 'post'],'/', [ScalingUpAnalysisController::class, 'index'])->name('imet-core::scaling_up_index');
+            Route::post('analysis',     [ScalingUpAnalysisController::class, 'analysis'])->name('imet-core::scaling_up_analysis');
+            Route::match(['get', 'post'],'/{items}', [ScalingUpAnalysisController::class, 'report'])->name('imet-core::scaling_up_report');
+            Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name('imet-core::scaling_up_download');
+            Route::get('preview/{id}',[ScalingUpAnalysisController::class, 'preview_template'])->name('imet-core::scaling_up_preview');
 
 
             Route::group(['prefix' => 'basket'], function () {
@@ -96,9 +96,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         });
 
         Route::group(['prefix' => 'tools'], function () {
-            Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('csv_list');
-            Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('csv');
-            Route::post('export_batch',        [Controller::class, 'export_batch'])->name('export_json_batch');
+            Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
+            Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
+            Route::post('export_batch',        [Controller::class, 'export_batch'])->name('imet-core::export_json_batch');
         });
 
         /*
@@ -134,8 +134,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     */
     if(App::environment('imetglobal_dev')) {
 
-        Route::get('create_dev_users', [DevUsersController::class, 'create_dev_users'])->name('create_dev_users');
-        Route::post('change_user', [DevUsersController::class, 'change_user'])->name('change_user');
+        Route::get('create_dev_users', [DevUsersController::class, 'create_dev_users'])->name('imet-core::create_dev_users');
+        Route::post('change_user', [DevUsersController::class, 'change_user'])->name('imet-core::change_user');
 
     }
 
