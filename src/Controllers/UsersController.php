@@ -19,7 +19,7 @@ class UsersController extends __Controller
 
         $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
         $users = User::where('imet_role', $role_type)
-            ->with(['imet_roles', 'country'])
+            ->with('imet_roles')
             ->get();
 
         return view(static::$form_view_prefix . $role_type, [

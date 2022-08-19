@@ -33,7 +33,9 @@
                         {{ item.email }}
                     </td>
                     <td>
-                        <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>{{ item.country.name }}</i>
+                        <span v-if="item.country !== null">
+                            <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>{{ item.country.name }}</i>
+                        </span>
                     </td>
                     <td>
                         {{ item.organisation }}

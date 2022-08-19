@@ -104,6 +104,7 @@ class User extends BaseUser
             ->orWhere('last_name', '~~*', '%' . $search_key . '%')
             ->orderBy('last_name')
             ->orderBy('first_name')
+            ->with('country')
             ->get();
     }
 
