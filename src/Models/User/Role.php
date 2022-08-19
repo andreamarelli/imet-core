@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\BaseModel;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -31,6 +32,24 @@ class Role extends BaseModel
         'country',
         'wdpa'
     ];
+
+    /**
+     * Relation to ProtectedArea
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function wdpa_obj(): HasOne
+    {
+        return $this->hasOne(ProtectedArea::class, 'wdpa_id', 'wdpa');
+    }
+
+    /**
+     * Relation to Country
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function country_obj(): HasOne
+    {
+        return $this->hasOne(Country::class, 'iso3', 'country');
+    }
 
     /**
      * Retrieve roles by user id
