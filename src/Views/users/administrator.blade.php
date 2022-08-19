@@ -31,21 +31,31 @@
             <form method="post" action="{{ route('imet-core::users_update') }}">
                 @method('PATCH')
                 @csrf
-                <div class="row module-row" v-for="(item, index) in records">
-                    <div class="col-lg-12">
 
-                        <input type="hidden" name="role_type" value="{{ $role }}" />
+                <input type="hidden" name="role_type" value="{{ $role }}" />
+
+
+                <table class="table module-table">
+                    <tr class="module-table-item" v-for="(item, index) in records">
 
                         <!-- user selector -->
-                        <selector-user
-                                search-url="{{ route('imet-core::search_users') }}"
-                                v-model="records[index]"
-                                :id="'records_'+index"
-                                data-class="field-edit"
-                        ></selector-user>
+                        <td>
+                            <selector-user
+                                    search-url="{{ route('imet-core::search_users') }}"
+                                    v-model="records[index]"
+                                    :id="'records_'+index"
+                                    data-class="field-edit"
+                            ></selector-user>
+                        </td>
 
-                    </div>
-                </div>
+                        <td>
+                            <span v-if="index < (records.length-1)">
+                                @include('modular-forms::buttons.delete_item')
+                            </span>
+                        </td>
+
+                    </tr>
+                </table>
             </form>
         </div>
 
@@ -107,7 +117,6 @@
                         body: form_data
                     })
                         .then(function(response) {
-                            console.log(response.json());
                             return response.json();
                         })
                         .then(function(data) {
@@ -117,6 +126,13 @@
                             console.error('Error:', error);
                         });
                 },
+
+                deleteItem(event){
+                    let clicked_button = event.target;
+                    let row = clicked_button.closest('tr.module-table-item');
+                    let row_index = row.rowIndex;
+                    this.records.splice(row_index, 1);
+                }
 
             }
 

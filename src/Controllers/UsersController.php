@@ -50,12 +50,20 @@ class UsersController extends __Controller
 
 
         if($role_type == Role::ROLE_ADMINISTRATOR){
+            $defined_users = [];
             foreach ($records as $record){
                 if($record){
                     // Remove any eventual role and set user's imet_role
                     Role::where('user_id', $record['id'])->delete();
-                    User::find($record['id'])->update(['imet_role' => Role::ROLE_ADMINISTRATOR]);
+                    User::find($record['id'])->update(['imet_role' => $role_type]);
+                    $defined_users[] = $record['id'];
                 }
+            }
+            // Set imet_role to null for any user with the given role which is not in the provided list
+            if(!empty($defined_users)){
+                User::where('imet_role', $role_type)
+                    ->whereNotIn('id', $defined_users)
+                    ->update(['imet_role' => null]);
             }
         }
 
