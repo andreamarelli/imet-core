@@ -157,9 +157,9 @@
 
                     window.axios({
                         method: 'POST',
-                        url: window.Laravel.baseUrl + 'api/protected_areas/pairs',
+                        url: this.labelsUrl,
                         data: {
-                            _token: this.labelsUrl,
+                            _token: window.Laravel.csrfToken,
                             ids: value
                         },
                     })
