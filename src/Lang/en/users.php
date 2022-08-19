@@ -10,6 +10,7 @@ return [
 
     'attributes' => [
         'name' => 'name',
+        'email' => 'email',
         'country' => 'country',
         'organisation' => 'organisation',
     ]

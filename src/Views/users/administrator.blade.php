@@ -34,6 +34,8 @@
                 <div class="row module-row" v-for="(item, index) in records">
                     <div class="col-lg-12">
 
+                        <input type="hidden" name="role_type" value="{{ $role }}" />
+
                         <!-- user selector -->
                         <selector-user
                                 search-url="{{ route('imet-core::search_users') }}"
@@ -105,12 +107,15 @@
                         body: form_data
                     })
                         .then(function(response) {
+                            console.log(response.json());
                             return response.json();
-                        }).then(function(data) {
-                        console.log(data);
-                    }).catch(function() {
-                        console.log("Error");
-                    });
+                        })
+                        .then(function(data) {
+                            console.log('Success:', data);
+                        })
+                        .catch(function(error) {
+                            console.error('Error:', error);
+                        });
                 },
 
             }

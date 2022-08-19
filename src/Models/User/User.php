@@ -2,8 +2,11 @@
 
 namespace AndreaMarelli\ImetCore\Models\User;
 
+use AndreaMarelli\ImetCore\Models\Country;
 use \AndreaMarelli\ModularForms\Models\User\User as BaseUser;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 /**
@@ -43,6 +46,16 @@ class User extends BaseUser
     public function imet_roles(): HasMany
     {
         return $this->hasMany(Role::class);
+    }
+
+    /**
+     * Relation to Country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function country(): HasOne
+    {
+        return $this->hasOne(Country::class, 'iso3', 'country');
     }
 
     /**

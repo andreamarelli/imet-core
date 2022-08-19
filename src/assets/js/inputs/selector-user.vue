@@ -30,7 +30,10 @@
                         <b>{{ item.name }}</b>
                     </td>
                     <td>
-                        {{ item.country }}
+                        {{ item.email }}
+                    </td>
+                    <td>
+                        <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
                     </td>
                     <td>
                         {{ item.organisation }}
@@ -115,6 +118,7 @@ export default {
             return [
                 '',
                 Locale.getLabel('imet-core::users.attributes.name'),
+                Locale.getLabel('imet-core::users.attributes.email'),
                 Locale.getLabel('imet-core::users.attributes.country'),
                 Locale.getLabel('imet-core::users.attributes.organisation')
             ]
