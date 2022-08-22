@@ -28,7 +28,7 @@ class Role extends BaseModel
     const ROLE_OBSERVATORY = 'observatory';
 
     protected $fillable = [
-        'role',
+        'user_id',
         'country',
         'wdpa'
     ];
