@@ -516,7 +516,7 @@ return [
         'module_info' => 'Estado de conservación favorable: Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
         'validation_min3' => 'Por favor, codifique al menos 3 especies clave',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -538,7 +538,7 @@ return [
         ],
         'module_info' => 'Estado de conservación favorable:<br />Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul><li>los datos sobre la dinámica de la población de la especie en cuestión, indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de plantas que se supone que existen (ver las listas disponibles y la información del parque), un número limitado de plantas clave del área protegida<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro de extinción (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especies con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.<br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -556,7 +556,7 @@ return [
         ],
         'module_info' => 'Nota: Estado de conservación favorable:<br /> Según Natura 2000, el estado de conservación de un hábitat natural se considerará "favorable" cuando:<ul><li><li>su rango natural y las áreas que cubre dentro de ese rango son estables o están en aumento, y</li><li>la estructura y las funciones específicas necesarias para su mantenimiento a largo plazo existen y es probable que sigan existiendo en el futuro previsible</li></ul>Clasificación: Seleccionar y evaluar los parámetros más importantes relacionados con el ecosistema y el hábitat de los ecosistemas y hábitats terrestres y marinos del área protegida.<br /> <b>Nota</b>: La evaluación de hábitats sigue emergiendo como una disciplina, ya que es altamente compleja. La clasificación prevé la siguiente división del territorio: Bioma, Ecorregión, Ecosistema, Hábitat. Las características/valores de los hábitats pueden evaluarse como: <ul> <li>i) bajo amenaza de extinción (dentro de su área de distribución natural),</li> <li>ii) tener un alcance natural reducido,</li> <li>iii) en declive,</li> <li>iv) un ejemplo destacado de características específicas, etc.</li> </ul> La evaluación de los hábitats también puede realizarse desde la perspectiva de: <ul> <li>i) reproducción,</li> <li>ii) nutrición,</li> <li>iii) protección de las especies, etc.</li> </ul> <br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -808,7 +808,7 @@ return [
         ],
         'module_info' => 'La calculadora de amenazas sirve para calcular el impacto de las puntuaciones de las amenazas en un área protegida específica. Usando su mejor juicio profesional, evalúe el impacto de la amenaza explotando cinco categorías de puntuación: (1) Impacto/Severidad; (2) Escala/Extensión; (3) Duración/Irreversibilidad; (4) Tendencia; (5) Probabilidad de la amenaza en el futuro',
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -838,7 +838,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -902,7 +902,7 @@ return [
             ]
         ],
         'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 

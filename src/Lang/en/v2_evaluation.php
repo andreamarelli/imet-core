@@ -71,7 +71,7 @@ return [
         ],
         'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -110,7 +110,7 @@ return [
         ],
         'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -143,7 +143,7 @@ return [
             'Evaluate the level of integration in the management of the protected area of the climate change most vulnerable key elements (based on the analysis of the Context of Intervention, points CTX6.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
     ],
 
@@ -176,7 +176,7 @@ return [
             'Evaluate the level of integration of the most important ecosystem services in the management of the protected area (based on the analysis of the Context of Intervention point CTX7.1, automatically reported below)'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
     ],
 
@@ -276,7 +276,7 @@ return [
             'Evaluate the level of integration of most important threats in the management of the protected area based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below.'
         ],
         'warning_on_save' =>
-            'WARNING!! <br /> Any modification may cause data loss in the following
+            'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 

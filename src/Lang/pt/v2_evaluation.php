@@ -71,7 +71,7 @@ return [
         ],
         'validation_3to10' => 'Por favor incluir nas estatiticas não menos que 3 e não mais de 10 das espécies chave',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -110,7 +110,7 @@ return [
         ],
         'validation_3to10' => 'Por favor inclua nas estatisticas não menos que 3 e não mais que 10 das espécies chave',
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
@@ -143,7 +143,7 @@ return [
             'Avaliar o nível de integração na gestão da área protegida dos elementos-chave mais importantes (espécies, habitats, etc.) mais vulneráveis às alterações climáticas (com base na análise do Contexto de Intervenção, pontos CTX6.1, automaticamente comunicados abaixo)'
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
     ],
 
@@ -176,7 +176,7 @@ return [
             'Avaliar o nível de integração na gestão da área protegida dos serviços ecossistémicos mais importantes (com base na análise do Contexto do Ponto de Intervenção CTX7.1, automaticamente reportado abaixo).'
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
     ],
 
@@ -276,7 +276,7 @@ return [
             'Avaliar o nível de integração na gestão da área protegida das ameaças mais importantes com base na análise da calculadora de ameaças no contexto do ponto de intervenção CTX 5.1 e reportado automaticamente abaixo.'
         ],
         'warning_on_save' =>
-            'Qualquer <br/> modificação pode causar perda de dados no seguinte
+            'Advertência !! <br/> Qualquer modificação causará perda completa de dados no seguinte
             módulos de avaliação (se já codificados):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
