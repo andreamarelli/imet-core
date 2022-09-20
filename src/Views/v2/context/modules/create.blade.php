@@ -64,9 +64,9 @@ $vue_record_index = 0;
     {{--  selector  --}}
     <div  class="module-row__input" v-if="available_years!==null">
         <toggle
-            :data-values=JSON.stringify(available_years)
-            id="prev_year_selector"
-            v-model=prev_year_selection
+                :data-values=JSON.stringify(available_years)
+                id="prev_year_selector"
+                v-model=prev_year_selection
         ></toggle>
     </div>
 
@@ -121,11 +121,6 @@ $vue_record_index = 0;
                 records: {
                     handler: async function () {
                         await this.recordChangedCallback();
-                        if (this.status !== 'init') {
-                            let _this = this;
-                            _this.status = (_this.status !== 'changed') ? 'changed' : _this.status;
-                            _this.__sync_common_fields();
-                        }
                     },
                     deep: true
                 }
@@ -175,6 +170,8 @@ $vue_record_index = 0;
                     } else {
                         this.status = 'init';
                     }
+                    this.status = (this.status !== 'init' && this.status !== 'changed') ? 'changed' : this.status;
+
                     // store selections
                     this.current_pa = this.records[0]['wdpa_id'];
                     this.current_year = this.records[0]['Year'];
