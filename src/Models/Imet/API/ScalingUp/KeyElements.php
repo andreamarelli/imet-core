@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api;
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
 
 
 use AndreaMarelli\ImetCore\Models\Animal;
@@ -69,6 +69,6 @@ trait KeyElements
             $api[] = ['wdpa_id' => $protected_area['wdpa_id'], 'name' => $protected_area['name'], 'values' => $retrieve_key_elements];
         }
 
-        return ['records' => $api, 'labels' => $labels];
+        return ['data' => $api, 'labels' => $labels];
     }
 }

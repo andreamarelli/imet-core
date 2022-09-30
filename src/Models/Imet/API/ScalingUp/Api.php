@@ -1,7 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api;
-
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
 
 class Api
 {
@@ -10,4 +9,5 @@ class Api
     use Analysis;
     use Group;
     use GeneralInfo;
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api;
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
 
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
@@ -10,6 +10,7 @@ trait GeneralInfo
 {
     /**
      * @param array $parameters
+     * @param string $language
      * @return array
      * @throws \ReflectionException
      */
@@ -27,7 +28,7 @@ trait GeneralInfo
 
         $api = ScalingUpAnalysis::general_info($parameters);
 
-        return ['records' => $api['data']['general_info'], 'labels' => $labels];
+        return ['data' => $api['data']['general_info'], 'labels' => $labels];
     }
 
 

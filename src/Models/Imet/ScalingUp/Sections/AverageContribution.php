@@ -51,9 +51,12 @@ class AverageContribution
         $average_contribution['options'] = count($options) ? $options : null;
         $average_contribution['indicators'] = $indicators_average_contribution;
 
-        usort($average_contribution['data']['Average'], function ($a, $b) {
-            return -($a['value'] <=> $b['value']);
-        });
+        if (array_key_exists('data', $average_contribution)) {
+            usort($average_contribution['data']['Average'], function ($a, $b) {
+                return -($a['value'] <=> $b['value']);
+            });
+        }
+
         return ['average_contribution' => $average_contribution];
     }
 

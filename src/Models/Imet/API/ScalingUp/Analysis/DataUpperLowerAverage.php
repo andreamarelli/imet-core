@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api\Analysis;
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar as ScalingUpRadar;
@@ -36,6 +36,7 @@ trait DataUpperLowerAverage
         }
 
         $average_values = [];
+
         foreach ($radar['values']['Average'] as $k => $v) {
             $average_values[$keys[$k]] = $v;
         }
@@ -56,6 +57,7 @@ trait DataUpperLowerAverage
             'name' => 'Average',
             'values' => $average_values
         ];
+        //}
 
         return [$api];
     }
@@ -70,7 +72,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('management_context');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators);
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -82,7 +84,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('value_and_importance_sub_indicators');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators);
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -94,7 +96,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('planning');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'planning');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -106,7 +108,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('inputs');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'inputs');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -118,7 +120,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('outputs');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'outputs');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -130,7 +132,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('outcomes');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'outcomes');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -142,7 +144,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('process');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -152,9 +154,9 @@ trait DataUpperLowerAverage
     public static function process_internal_management_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_internal_management_indicators');
-        list($api, $labels) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
+        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -166,7 +168,7 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('process_management_protection_indicators');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -178,6 +180,6 @@ trait DataUpperLowerAverage
         $indicators = Common::get_labels_by_indicator('process_stakeholders_relationships_indicators');
         list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 }

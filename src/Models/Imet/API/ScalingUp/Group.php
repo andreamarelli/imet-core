@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api;
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
 
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Group as SectionGroup;
@@ -22,7 +22,7 @@ trait Group
             }
         }
 
-        return ['records' => $api, 'labels' => $labels];
+        return ['data' => $api, 'labels' => $labels];
     }
 
     /**
@@ -46,6 +46,6 @@ trait Group
                 'outcomes_outputs' => $item ['value'][2]]];
         }
 
-        return ['records' => $api, 'labels' => $labels];
+        return ['data' => $api, 'labels' => $labels];
     }
 }

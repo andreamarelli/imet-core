@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api;
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
 
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
@@ -23,7 +23,7 @@ trait Overall
         $ranking = Ranking::get_overall_ranking($items, $assessments);
 
         foreach ($ranking['data']['values']['xAxis'] as $key => $xAxi) {
-            $api[] = ['id' => $ranking['data']['form_ids'][$xAxi], 'name' => $xAxi, 'values' => []];
+            $api[] = ['wdpa_id' => $ranking['data']['form_ids'][$xAxi], 'name' => $xAxi, 'values' => []];
         }
 
         foreach ($ranking['data']['values']['values'] as $key => $value) {
@@ -33,7 +33,7 @@ trait Overall
             }
         }
 
-        return ['records' => $api, 'labels' => $ranking['data']['values']['legend']];
+        return ['data' => $api, 'labels' => $ranking['data']['values']['legend']];
     }
 
     /**
@@ -56,7 +56,7 @@ trait Overall
             ];
         }
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -86,7 +86,7 @@ trait Overall
             ];
         }
 
-        return ['records' => $api, 'labels' => $labels];
+        return ['data' => $api, 'labels' => $labels];
     }
 
     /**
@@ -117,11 +117,11 @@ trait Overall
             unset($value['wdpa_id']);
             $api[] = [
                 'name' => $key,
-                'id' => $wdpa_id,
+                'wdpa_id' => $wdpa_id,
                 'value' => $value
             ];
         }
 
-        return ['records' => $api, 'labels' => $labels];
+        return ['data' => $api, 'labels' => $labels];
     }
 }

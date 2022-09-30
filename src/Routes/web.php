@@ -11,6 +11,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2;
 use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 use AndreaMarelli\ImetCore\Controllers\Imet\CrossAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiIndexController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
@@ -76,6 +77,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         });
 
+
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('csv_list');
             Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('csv');
@@ -91,33 +93,47 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     Route::group(['prefix' => 'api'], function () {
         Route::match(['get', 'post'], 'protected_areas/pairs', [ProtectedAreaController::class, 'get_pairs']);
-        Route::group(['prefix' => 'imet'], function () {
+        Route::group(['prefix' => 'imet', 'middleware' => 'throttle:100,1'], function () {
             Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
             Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
-            Route::get('statistics/radar', [ApiController::class, 'get_imet_statistics_radar']);
-            Route::get('protected-areas-list', [ApiController::class, 'get_pa_list']);
-            Route::group(['prefix' => 'scaling-up'], function () {
-                Route::get('general-info', [ApiController::class, 'get_general_info']);
-                Route::group(['prefix' => 'overall'], function () {
-                    Route::get('ranking', [ApiController::class, 'get_overall_ranking']);
-                    Route::get('averages', [ApiController::class, 'get_overall_average_of_six_elements']);
-                    Route::get('data-synthetic-indicators ', [ApiController::class, 'get_visualization_synthetics_indicators']);
-                    Route::get('synthetic-indicators', [ApiController::class, 'get_scatter_visualization_synthetic_indicators']);
+            Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list']);
+
+            Route::get('total-number-of-assessments', [ApiController::class, 'get_total_number_of_assessments'])->name('statistics.total_number_of_assessments');
+            Route::get('pas-rating', [ApiController::class, 'get_pas_rating'])->name('statistics.pas_rating');
+            Route::get('assessments-performed-by-year', [ApiController::class, 'get_assessments_performed_by_year'])->name('statistics.assessments_performed_by_year');
+            Route::get('assessments-performed-by-country', [ApiController::class, 'get_assessments_performed_by_country'])->name('statistics.assessments_performed_by_country');
+            Route::get('{lang}/global-statistics/{slug}/{year?}', [ApiController::class, 'get_global_statistics'])->name('statistics.global');
+
+            Route::group(['middleware' => 'apiValidation'], function () {
+                Route::group(['middleware' =>['throttle:15,1']], function () {
+                    Route::get('{lang}/assessment/report/{wdpa_id}/{year?}', [ApiController::class, 'get_assessment_report']);
                 });
-                Route::group(['prefix' => 'elements'], function () {
-                    Route::get('key-conservation', [ApiController::class, 'get_key_elements_conservation']);
-                });
-                Route::group(['prefix' => 'groups'], function () {
-                    Route::get('by-groups', [ApiController::class, 'get_analysis_group']);
-                    Route::get('by-pa-group-and-synthetic-indicators-group', [ApiController::class, 'get_analysis_group_and_indicators_group']);
-                });
-                Route::group(['prefix' => 'analysis'], function () {
-                    Route::get('ranking/{slug}', [ApiController::class, 'get_analysis_ranking']);
-                    Route::get('average/{slug}', [ApiController::class, 'get_analysis_average']);
-                    Route::get('data-upper-lower-average/{slug}', [ApiController::class, 'get_analysis_radar']);
-                    Route::get('data/{slug}', [ApiController::class, 'get_analysis_table']);
+                Route::get('{lang}/statistics/radar/{wdpa_id}/{year?}', [ApiController::class, 'get_imet_statistics_radar']);
+                Route::get('{lang}/details/{key}/{wdpa_id}/{year?}', [ApiController::class, 'get_imet'])->name('api_imet_details');
+                Route::group(['prefix' => '{lang}/scaling-up'], function () {
+                    Route::get('general-info/{wdpa_id}/{year?}', [ApiController::class, 'get_general_info']);
+                    Route::group(['prefix' => 'groups'], function () {
+                        Route::get('by-groups', [ApiController::class, 'get_analysis_group']);
+                        Route::get('by-pa-group-and-synthetic-indicators-group', [ApiController::class, 'get_analysis_group_and_indicators_group']);
+                    });
+                    Route::group(['prefix' => 'overall'], function () {
+                        Route::get('ranking/{wdpa_id}/{year?}', [ApiController::class, 'get_overall_ranking']);
+                        Route::get('averages/{wdpa_id}/{year?}', [ApiController::class, 'get_overall_average_of_six_elements']);
+                        Route::get('data-synthetic-indicators/{wdpa_id}/{year?}', [ApiController::class, 'get_visualization_synthetics_indicators']);
+                        Route::get('synthetic-indicators/{wdpa_id}/{year?}', [ApiController::class, 'get_scatter_visualization_synthetic_indicators']);
+                    });
+                    Route::group(['prefix' => 'elements'], function () {
+                        Route::get('key-conservation/{wdpa_id}/{year?}', [ApiController::class, 'get_key_elements_conservation']);
+                    });
+                    Route::group(['prefix' => 'analysis'], function () {
+                        Route::get('ranking/{slug}/{wdpa_id}/{year?}', [ApiController::class, 'get_analysis_ranking']);
+                        Route::get('average/{slug}/{wdpa_id}/{year?}', [ApiController::class, 'get_analysis_average']);
+                        Route::get('data-upper-lower-average/{slug}/{wdpa_id}/{year?}', [ApiController::class, 'get_analysis_radar']);
+                        Route::get('data/{slug}/{wdpa_id}/{year?}', [ApiController::class, 'get_analysis_table']);
+                    });
                 });
             });
+
         });
     });
 });

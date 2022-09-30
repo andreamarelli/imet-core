@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api\Analysis;
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
 
@@ -41,18 +41,20 @@ trait Average
         $api = [];
         $average = AverageContribution::average_contribution_calculations_threat($items, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', "");
 
-        foreach ($average['average_contribution']['data']['Average'] as $key => $average) {
-            $api[] = [
-                'indicator' => $average['indicator'],
-                'values' => [
-                    'value' => $average['value'],
-                    'percentile_10' => $average['upper limit'][0],
-                    'percentile_90' => $average['upper limit'][1]
-                ]
-            ];
+        if (array_key_exists('data', $average['average_contribution'])) {
+            foreach ($average['average_contribution']['data']['Average'] as $key => $average) {
+                $api[] = [
+                    'indicator' => $average['indicator'],
+                    'values' => [
+                        'value' => $average['value'],
+                        'percentile_10' => $average['upper limit'][0],
+                        'percentile_90' => $average['upper limit'][1]
+                    ]
+                ];
+            }
         }
 
-        return [$api];
+        return ['data' => $api] ;
     }
 
     /**
@@ -69,7 +71,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators);
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -88,8 +90,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators);
 
-
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -109,7 +110,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'planning');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -128,7 +129,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'inputs');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -145,7 +146,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'outputs');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -162,7 +163,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'outcomes');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -182,7 +183,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -202,7 +203,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -219,7 +220,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -236,7 +237,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -252,7 +253,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -268,7 +269,7 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 
     /**
@@ -284,6 +285,6 @@ trait Average
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
 
-        return ['records' => $api];
+        return ['data' => $api];
     }
 }

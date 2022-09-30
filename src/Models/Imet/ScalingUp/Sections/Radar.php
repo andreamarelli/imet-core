@@ -180,19 +180,28 @@ class Radar
                     $analysis_diagrams_protected_areas[$name]['width'] = 4;
                 }
             }
-
-            if ($overall) {
-                $average[$indi] = Common::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
-            } else {
-                $average[] = Common::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
+            // dd($totalProtectedAreas);
+            if ($totalProtectedAreas > 0) {
+                if ($overall) {
+                    $average[$indi] = Common::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
+                } else {
+                    $average[] = Common::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
+                }
             }
         }
 
+//        if(count($analysis_diagrams_protected_areas) === 0){
+//            return [];
+//        }
+
         //get min and max level for each category
         foreach ($indicator as $k => $v) {
-            $upperLimit[$k] = max($v);
-            $lowerLimit[$k] = min($v);
+            if (count($v) > 0) {
+                $upperLimit[$k] = max($v) ?? 0;
+                $lowerLimit[$k] = min($v) ?? 0;
+            }
         }
+
         $upperLimit['lineStyle'] = 'dashed';
         $upperLimit['width'] = 4;
         $upperLimit['color'] = 'green';
@@ -246,7 +255,7 @@ class Radar
                 } else {
                     $value = Common::round_number((-1 * (double)$protected_area));
                 }
-                $record = ["id" =>$pa->wdpa_id,  "name" => $protected_areas_names[$form_id], "value" => $value, 'color' => $pa->color];
+                $record = ["id" => $pa->wdpa_id, "name" => $protected_areas_names[$form_id], "value" => $value, 'color' => $pa->color];
                 if ($pa->color) {
                     $record['color'] = $pa->color;
                 }

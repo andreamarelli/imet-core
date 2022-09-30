@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Api\Analysis;
+namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Ranking as ScalingUpRanking;
@@ -35,7 +35,7 @@ trait Ranking
         for ($i = 1; $i < 13; $i++) {
             $labels[] = trans('imet-core::v2_context.MenacesPressions.categories.title' . $i);
         }
-        return ['records' => $api, 'labels' => $labels];
+        return ['data' => $api, 'labels' => $labels];
     }
 
     /**
@@ -47,7 +47,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('management_context');
         list($api) = static::retrieve_data_ranking($items, $indicators);
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -59,7 +59,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('value_and_importance_sub_indicators');
         list($api) = static::retrieve_data_ranking($items, $indicators);
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -71,7 +71,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('planning');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'planning');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -83,7 +83,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('inputs');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'inputs');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -95,7 +95,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('outputs');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'outputs');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -107,7 +107,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('outcomes');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'outcomes');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -119,7 +119,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('process');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -131,7 +131,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('process_internal_management_indicators');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -143,7 +143,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('process_management_protection_indicators');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -155,7 +155,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('process_stakeholders_relationships_indicators');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -167,7 +167,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('process_tourism_management_indicators');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -179,7 +179,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('process_monitoring_and_research_indicators');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -191,7 +191,7 @@ trait Ranking
         $indicators = Common::get_labels_by_indicator('process_effects_of_climate_change_indicators');
         list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
 
-        return ['records' => $api, 'labels' => $indicators];
+        return ['data' => $api, 'labels' => $indicators];
     }
 
     /**
@@ -202,7 +202,7 @@ trait Ranking
     {
         $api = [];
         foreach ($data['xAxis'] as $key => $xAxi) {
-            $api[] = ['wdpa_id' => $data['wdpa_ids'][$key], 'name' => $xAxi, 'values' => []];
+            $api[] = ['name' => $xAxi, 'wdpa_id' => $data['wdpa_ids'][$key], 'values' => []];
         }
 
         foreach ($data['values'] as $key => $value) {

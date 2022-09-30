@@ -111,24 +111,24 @@ class ScalingUpAnalysis extends Model
                     $generalElements['countries'][] = $country_name;
                 }
 
-                if($general_info['CompleteName']) {
+                if ($general_info['CompleteName']) {
                     $generalElements['network'][] = $general_info['CompleteName'];
                 }
 
-                if($general_info['Ecoregions']) {
+                if ($general_info['Ecoregions']) {
                     $generalElements['eco_regions'][] = $general_info['Ecoregions'];
                 }
             }
 
             if ($vision_data['records'][0]) {
                 $vision = $vision_data['records'][0];
-                if($vision['LocalMission']) {
+                if ($vision['LocalMission']) {
                     $generalElements['local_mission'][] = $general_info_data['records'][0]['CompleteName'];
                 }
-                if($vision['LocalObjective']) {
+                if ($vision['LocalObjective']) {
                     $generalElements['local_objective'][] = $general_info_data['records'][0]['CompleteName'];
                 }
-                if($vision['LocalVision']) {
+                if ($vision['LocalVision']) {
                     $generalElements['local_vision'][] = $general_info_data['records'][0]['CompleteName'];
                 }
             }
@@ -306,13 +306,17 @@ class ScalingUpAnalysis extends Model
         $time_end = microtime(true);
         $execution_time = ($time_end - $time_start);
 
-        return ['status' => 'success', 'execition_time' => $execution_time, 'data' => [
-            'ranking' => $index_ranking['data']['values'],
-            'averages_six_elements' => $averages_six_elements['data'],
-            'radar' => $radars['data']['diagrams'],
-            'scatter' => $scatter_plots['data']['scatter'],
-            'assessments' => $assessments['data']['assessments']
-        ]];
+        return [
+            'status' => 'success',
+            'execution_time' => $execution_time,
+            'data' => [
+                'ranking' => $index_ranking['data']['values'],
+                'averages_six_elements' => $averages_six_elements['data'],
+                'radar' => $radars['data']['diagrams'],
+                'scatter' => $scatter_plots['data']['scatter'],
+                'assessments' => $assessments['data']['assessments']
+            ]
+        ];
     }
 
     /**
@@ -474,7 +478,6 @@ class ScalingUpAnalysis extends Model
             'process_sub_indicators' => '#0099CC'
         ];
 
-
         //radar data
         $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $custom_type, $colors[$type], $options, "", static::$scaling_id);
 
@@ -515,6 +518,7 @@ class ScalingUpAnalysis extends Model
      * @param array $form_ids
      * @param array $assessments
      * @param bool $overall
+     * @param int $scaling_id
      * @return array[]
      */
     public
@@ -695,7 +699,7 @@ class ScalingUpAnalysis extends Model
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $area = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);//;
+                $area = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id']);
                 $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($area, function ($value) {
                     return $value->marine;
                 });
@@ -717,6 +721,7 @@ class ScalingUpAnalysis extends Model
     {
         $dopa_stats = [];
         $api_available = DOPA::apiAvailable();
+
         if ($api_available) {
             foreach ($form_ids as $key => $form_id) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
