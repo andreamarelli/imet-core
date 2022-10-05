@@ -36,7 +36,7 @@
                             </td>
                             <td  class="align-baseline text-center">
                                 <br/>
-                                <button type="submit" class="btn-nav rounded mt-2">@lang_u('modular-forms::common.apply_filters')</button>
+                                <button type="submit" class="btn-nav rounded mt-2">@uclang('modular-forms::common.apply_filters')</button>
                             </td>
                         </tr>
                     </table>

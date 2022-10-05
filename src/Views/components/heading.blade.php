@@ -32,29 +32,29 @@
 
         <a href="{{ route('imet-core::v1_context_edit', [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
-        >@lang_u('imet-core::common.context_long')</a>
+        >@uclang('imet-core::common.context_long')</a>
 
         <a href="{{ route('imet-core::v1_eval_edit', [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
-        >@lang_u('imet-core::common.evaluation_long')</a>
+        >@uclang('imet-core::common.evaluation_long')</a>
 
         <a href="{{ route('imet-core::v1_report_update', [$item->getKey()]) }}"
            class="step @if('report'==$phase) selected @endif"
-        >@lang_u('imet-core::common.report_long')</a>
+        >@uclang('imet-core::common.report_long')</a>
 
     @else
 
         <a href="{{ route('imet-core::v2_context_edit', [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
-        >@lang_u('imet-core::common.context_long')</a>
+        >@uclang('imet-core::common.context_long')</a>
 
         <a href="{{ route('imet-core::v2_eval_edit', [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
-        >@lang_u('imet-core::common.evaluation_long')</a>
+        >@uclang('imet-core::common.evaluation_long')</a>
 
         <a href="{{ route('imet-core::v2_report_edit', [$item->getKey()]) }}"
            class="step @if('report'==$phase) selected @endif"
-        >@lang_u('imet-core::common.report_long')</a>
+        >@uclang('imet-core::common.report_long')</a>
 
     @endif
 

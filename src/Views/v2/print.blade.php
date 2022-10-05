@@ -24,7 +24,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
     <div id="print_body" class="print_body">
 
-        <a href="{{ route('imet-core::index') }}" class="btn-nav rounded" style="margin-bottom: 20px;">@lang_u('modular-forms::common.go_back')</a>
+        <a href="{{ route('imet-core::index') }}" class="btn-nav rounded" style="margin-bottom: 20px;">@uclang('modular-forms::common.go_back')</a>
 
         <h2>
             @lang('imet-core::common.imet')
@@ -44,7 +44,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
         ])
 
         {{--  Modules (context) --}}
-        <h1>@lang_u('imet-core::common.context_long')</h1>
+        <h1>@uclang('imet-core::common.context_long')</h1>
         <div class="imet_modules">
             @foreach($item::modules() as $step=>$modules_step)
                 @foreach($modules_step as $i=>$module)
@@ -56,7 +56,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
         </div>
 
         {{--  Modules (evaluation) --}}
-        <h1>@lang_u('imet-core::common.evaluation_long')</h1>
+        <h1>@uclang('imet-core::common.evaluation_long')</h1>
         <div class="imet_modules">
             @foreach(\AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval::modules() as $step=>$modules_step)
                 @foreach($modules_step as $i=>$module)

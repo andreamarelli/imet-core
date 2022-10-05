@@ -23,7 +23,7 @@ if ($version === 'v1') {
 
     <div :id="'popover_show_'+item.FormID" style="display: none">
         <div class="popover-heading">
-            @lang_u('imet-core::common.show')
+            @uclang('imet-core::common.show')
         </div>
         <div class="popover-body">
 

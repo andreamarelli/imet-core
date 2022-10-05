@@ -7,11 +7,11 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
 
 ?>
 <div style="display: inline-block;"
-     data-toggle="tooltip" data-placement="top" data-original-title="@lang_u('modular-forms::common.apply')">
+     data-toggle="tooltip" data-placement="top" data-original-title="@uclang('modular-forms::common.apply')">
     <button type="button"
             class="btn-nav small yellow"
             data-toggle="modal" data-target="#{{ $modal_id }}">
-        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!} @lang_u('modular-forms::common.apply')
+        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!} @uclang('modular-forms::common.apply')
     </button>
 </div>
 
@@ -49,7 +49,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                 <button type="button"
                         data-dismiss="modal"
                         class="btn-nav small red btn-sm">
-                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('times-circle', 'white') !!} @lang_u('modular-forms::common.cancel')
+                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('times-circle', 'white') !!} @uclang('modular-forms::common.cancel')
                 </button>
                 <form action="{{ route('imet-core::merge') }}" method="POST" style="display: inline;">
                     {{ csrf_field() }}
@@ -58,7 +58,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                     <input type="hidden" name="destination_form" value="{{ $destination->FormID }}">
                     <button type="button"
                             class="btn-nav small" onclick="this.form.submit();">
-                        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle', 'white') !!} @lang_u('modular-forms::common.confirm')
+                        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle', 'white') !!} @uclang('modular-forms::common.confirm')
                     </button>
                 </form>
             </div>
