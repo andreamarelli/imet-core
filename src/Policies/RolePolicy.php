@@ -28,7 +28,6 @@ class RolePolicy
 
     /**
      * Determine whether the user can manage Roles
-     * Every role can access the index route but the list will be filtered accordingly
      *
      * @param \App\Models\User|\ImetUser $user
      * @return bool

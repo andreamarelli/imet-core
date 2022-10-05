@@ -65,7 +65,7 @@ class ImetPolicy
     public function edit($user, $form = null): bool
     {
         if(is_null($form)){
-            return Role::hasAnyRole($user);
+            return Role::isRole(Role::ROLE_ENCODER);
         } else {
             return Role::isWdpaAllowed($form->wdpa_id, $user);
         }

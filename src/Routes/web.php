@@ -43,7 +43,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             });
             Route::group(['prefix' => 'report'], function () {
                 Route::get('{item}/edit', [v1\ReportController::class, 'report'])->name('imet-core::v1_report_edit');
-                Route::get('{item}/show', [v1\ReportController::class, 'report_show']);
+                Route::get('{item}/show', [v1\ReportController::class, 'report_show'])->name('imet-core::v1_report_show');
                 Route::patch('{item}', [v1\ReportController::class, 'report_update'])->name('imet-core::v1_report_update');
             });
         });
@@ -69,7 +69,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             });
             Route::group(['prefix' => 'report'], function () {
                 Route::get('{item}/edit', [v2\ReportController::class, 'report'])->name('imet-core::v2_report_edit');
-                Route::get('{item}/show', [v2\ReportController::class, 'report_show']);
+                Route::get('{item}/show', [v2\ReportController::class, 'report_show'])->name('imet-core::v2_report_show');
                 Route::patch('{item}', [v2\ReportController::class, 'report_update'])->name('imet-core::v2_report_update');
             });
 
