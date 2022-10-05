@@ -424,6 +424,7 @@ class Imet extends Form
         }
 
         $user_info = Auth::user()->getInfo();
+        unset($user_info['country']);
 
         if(Encoder::where('first_name', $user_info['first_name'])
                 ->where('last_name', $user_info['last_name'])

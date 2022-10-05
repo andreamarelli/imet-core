@@ -198,7 +198,9 @@ $assessment_step = json_decode(
                 let _this = this;
 
                 window.axios({
-                    url: window.Laravel.baseUrl + 'api/imet/assessment/' + _this.form_id + '/' + _this.current_step,
+                    url: '{{ route('imet_core::api::assessment', ['item' => '__id__', 'step' => '__step__']) }}'
+                        .replace('__id__', _this.form_id)
+                        .replace('__step__', _this.current_step),
                     method: "get",
                 })
                     .then(function (response) {

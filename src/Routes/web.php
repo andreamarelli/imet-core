@@ -86,11 +86,11 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
 
             Route::group(['prefix' => 'basket'], function () {
-                Route::post('add',   [ScalingUpBasketController::class, 'save']);
-                Route::post('get',   [ScalingUpBasketController::class, 'retrieve']);
-                Route::post('all',   [ScalingUpBasketController::class, 'all']);
-                Route::delete('delete/{id}',[ScalingUpBasketController::class, 'delete']);
-                Route::post('clear', [ScalingUpBasketController::class, 'clear']);
+                Route::post('add',   [ScalingUpBasketController::class, 'save'])->name('imet-core::scaling_up_basket_add');
+                Route::post('get',   [ScalingUpBasketController::class, 'retrieve'])->name('imet-core::scaling_up_basket_get');
+                Route::post('all',   [ScalingUpBasketController::class, 'all'])->name('imet-core::scaling_up_basket_all');
+                Route::delete('delete/{id}',[ScalingUpBasketController::class, 'delete'])->name('imet-core::scaling_up_basket_delete');
+                Route::post('clear', [ScalingUpBasketController::class, 'clear'])->name('imet-core::scaling_up_basket_clear');
             });
 
         });

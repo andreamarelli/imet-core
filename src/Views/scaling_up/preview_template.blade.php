@@ -44,8 +44,7 @@
     </style>
     <script>
         {!! 'window.Laravel = '.json_encode([
-                'csrfToken' => csrf_token(),
-                'baseUrl' => url('/').'/'
+                'csrfToken' => csrf_token()
             ]).';' !!}
             new Vue({
             el: '#preview-elements',
