@@ -23,15 +23,15 @@ class DBStorage {
     }
 
     async save( value) {
-        return await this.ajax_request(window.routes.scaling_up_basket_add, {value})
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_add, {value})
     }
 
     async retrieve(id){
-        return await this.ajax_request(window.routes.scaling_up_basket_get, {id});
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_get, {id});
     }
 
     async all(id) {
-        return await this.ajax_request(window.routes.scaling_up_basket_all, {id})
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_all, {id})
     }
 
     delete_item_child(key, id){
@@ -42,11 +42,11 @@ class DBStorage {
     }
 
     async delete(id){
-        return await this.ajax_request(window.routes.scaling_up_basket_delete.replace('__id__', id), null,'DELETE');
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_delete.replace('__id__', id), null,'DELETE');
     }
 
     async clear(id){
-        return await this.ajax_request(window.routes.scaling_up_basket_clear, {id});
+        return await this.ajax_request(window.imet_routes.scaling_up_basket_clear, {id});
     }
 
 }

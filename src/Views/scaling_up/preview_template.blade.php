@@ -26,7 +26,9 @@
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('imet-core::analysis_report.print')) }}</div>
         </div>
     </div>
+
     <style>
+
         .fill {
             min-height: 100%;
             height: 100%;
@@ -41,12 +43,17 @@
                 margin-top: 5px;
             }
         }
+
     </style>
+
     <script>
-        {!! 'window.Laravel = '.json_encode([
-                'csrfToken' => csrf_token()
-            ]).';' !!}
-            new Vue({
+
+        window.Laravel = @json([
+            'csrfToken' => csrf_token(),
+            'baseUrl' => url('/').'/'
+        ]);
+
+        new Vue({
             el: '#preview-elements',
             methods: {
                 printReport() {
@@ -57,6 +64,7 @@
                 }
             }
         });
+
     </script>
 @endsection
 
