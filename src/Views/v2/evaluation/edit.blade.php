@@ -51,6 +51,8 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
                         'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class,
                         'module_class' => $module,
                         'form_id' => $item->getKey()])
+                @else
+                    @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
                 @endif
             @endforeach
         </div>
