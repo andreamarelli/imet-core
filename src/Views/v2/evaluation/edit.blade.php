@@ -1,6 +1,8 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
 
+use AndreaMarelli\ImetCore\Models\User\Role;
+
 // Force Language
 if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     \Illuminate\Support\Facades\App::setLocale($item->language);
@@ -44,10 +46,12 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
         {{--  Modules (by step)--}}
         <div class="imet_modules">
             @foreach($item::modules()[$step] as $module)
-                @include('modular-forms::module.edit.container', [
-                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class,
-                    'module_class' => $module,
-                    'form_id' => $item->getKey()])
+                @if(Role::hasRequiredAccessLevel($module))
+                    @include('modular-forms::module.edit.container', [
+                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class,
+                        'module_class' => $module,
+                        'form_id' => $item->getKey()])
+                @endif
             @endforeach
         </div>
 

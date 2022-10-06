@@ -28,6 +28,10 @@ class Role extends BaseModel
     const ROLE_OBSERVATORY = 'observatory';
     const ROLE_VIEWER = 'viewer';
 
+    const ACCESS_LEVEL_FULL = 3;
+    const ACCESS_LEVEL_HIGH = 2;
+    const ACCESS_LEVEL_LOW = 1;
+
     protected $fillable = [
         'user_id',
         'country',
@@ -212,6 +216,47 @@ class Role extends BaseModel
 
         // always allowed (only IMET administrators)
         return true;
+    }
+
+    /**
+     * Retrieve the user access level to IMET (according to role)
+     *
+     * @return int
+     */
+    public static function accessLevel(): int
+    {
+        $user_role = Auth::user()->imet_role;
+
+        switch ($user_role){
+
+            case static::ROLE_VIEWER:
+                $user_access_level = static::ACCESS_LEVEL_LOW;
+                break;
+
+            case static::ROLE_AUTHORITY:
+                $user_access_level = static::ACCESS_LEVEL_HIGH;
+                break;
+
+            case static::ROLE_ADMINISTRATOR:
+            case static::ROLE_ENCODER:
+            default:
+                $user_access_level = static::ACCESS_LEVEL_FULL;
+                break;
+
+        }
+
+        return $user_access_level;
+    }
+
+    /**
+     * Check if user has the requested access level to the given IMET module
+     *
+     * @param $module
+     * @return bool
+     */
+    public static function hasRequiredAccessLevel($module): bool
+    {
+        return Role::accessLevel() >= $module::REQUIRED_ACCESS_LEVEL;
     }
 
 

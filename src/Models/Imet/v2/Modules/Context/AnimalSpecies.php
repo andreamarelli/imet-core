@@ -4,11 +4,14 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Http\Request;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_species_animal_presence';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected $validation_min3 = '';
 
