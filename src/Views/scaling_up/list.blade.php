@@ -123,7 +123,12 @@ $url = URL::route('imet-core::scaling_up_index');
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
-                    <imet_radar :width=150 :height=150 :values=item.assessment_radar></imet_radar>
+                    <imet_radar
+                            style="margin: 0 auto;"
+                            :width=150 :height=150
+                            :values=item.assessment_radar
+                            v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                    ></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
