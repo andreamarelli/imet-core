@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Policies;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 use \ImetUser as User;
 
 
@@ -40,7 +41,7 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can UPDATE
+     * Determine whether the user can VIEW
      *
      * @param \App\Models\User|\ImetUser $user
      * @param $form
@@ -56,7 +57,33 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can UPDATE
+     * Determine whether the user can EXPORT
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @param $form
+     * @return bool
+     */
+    public function export($user, $form = null): bool
+    {
+        $user = $user ?? Auth::user();
+        return Role::isNotRole(Role::ROLE_VIEWER, $user);
+    }
+
+    /**
+     * Determine whether the user can export ALL the assessments
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @param $form
+     * @return bool
+     */
+    public function exportAll($user, $form = null): bool
+    {
+        // only ADMIN can export in batch
+        return false;
+    }
+
+    /**
+     * Determine whether the user can EDIT
      *
      * @param \App\Models\User|\ImetUser $user
      * @param $form

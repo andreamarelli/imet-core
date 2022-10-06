@@ -87,7 +87,7 @@ trait ImportExportJSON
      */
     public function export_view(Request $request)
     {
-        $this->authorize('viewAny', static::$form_class);
+        $this->authorize('exportAll', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
 
         // retrieve IMET list

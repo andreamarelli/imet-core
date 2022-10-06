@@ -77,6 +77,19 @@ class Role extends BaseModel
     }
 
     /**
+     * Check whether the user has NOT the given role
+     *
+     * @param $role
+     * @param $user
+     * @return bool
+     */
+    public static function isNotRole($role, $user = null): bool
+    {
+        $user = $user ?? Auth::user();
+        return $role !== $user->imet_role;
+    }
+
+    /**
      * Check whether the user is an administrator
      *
      * @param $user

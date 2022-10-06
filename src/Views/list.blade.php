@@ -30,20 +30,14 @@ $url = URL::route('imet-core::index');
 
 @section('content')
 
-    @can('edit', Imet::class)
+    <div class="functional_buttons">
 
-        <div class="functional_buttons">
+        @can('edit', Imet::class)
             {{-- Import json IMETs --}}
             <a class="btn-nav rounded"
                href="{{ route('imet-core::import') }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
-            </a>
-            {{-- Export json IMETs --}}
-            <a class="btn-nav rounded"
-               href="{{ route('imet-core::export_view') }}">
-                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
-                {{ ucfirst(trans('modular-forms::common.export')) }}
             </a>
             {{-- Create new IMET --}}
             @include('modular-forms::buttons.create', [
@@ -55,9 +49,22 @@ $url = URL::route('imet-core::index');
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
                 {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
             </a>
+
+        @endcan
+
+        @can('exportAll', Imet::class)
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            {{-- Export json IMETs --}}
+            <a class="btn-nav rounded"
+               href="{{ route('imet-core::export_view') }}">
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
+                {{ ucfirst(trans('modular-forms::common.export')) }}
+            </a>
+        @endcan
+
         </div>
 
-    @endcan
 
     @include('imet-core::components.common_filters', [
         'request'=>$request,
@@ -157,14 +164,16 @@ $url = URL::route('imet-core::index');
                     @endcan
 
                     {{-- Export --}}
-                    @include('modular-forms::buttons._generic', [
-                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                        'action' =>'export',
-                        'item' => 'item.FormID',
-                        'tooltip' => ucfirst(trans('modular-forms::common.export')),
-                        'icon' => 'cloud-download-alt',
-                        'class' => 'btn-primary'
-                    ])
+                    @can('export', Imet::class)
+                        @include('modular-forms::buttons._generic', [
+                            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
+                            'action' =>'export',
+                            'item' => 'item.FormID',
+                            'tooltip' => ucfirst(trans('modular-forms::common.export')),
+                            'icon' => 'cloud-download-alt',
+                            'class' => 'btn-primary'
+                        ])
+                    @endcan
 
                     {{-- Print --}}
                     <span v-if="item.version==='v2'">
