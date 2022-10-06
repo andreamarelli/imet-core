@@ -6,6 +6,7 @@ return [
         'authority' => 'authority|authorities',
         'observatory' => 'observatory|observatories',
         'encoder' => 'encoder|encoders',
+        'viewer' => 'viewer|viewers',
     ],
 
     'attributes' => [

@@ -18,6 +18,10 @@ $links = [
     [
         'url' => route('imet-core::users', ['role_type' => Role::ROLE_ENCODER]),
         'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_ENCODER, 2))
+    ],,
+    [
+        'url' => route('imet-core::users', ['role_type' => Role::ROLE_VIEWER]),
+        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_VIEWER, 2))
     ],
 ];
 

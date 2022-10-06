@@ -32,6 +32,7 @@ class DevUsersController extends __Controller {
             User::destroy(99998);
             User::destroy(99997);
             User::destroy(99996);
+            User::destroy(99995);
 
             // ######  Create new DEV users (one for each ROLE type)  ######
 
@@ -80,6 +81,17 @@ class DevUsersController extends __Controller {
             ]);
             $user->imet_roles()->create(['country' => 'BDI']);
 
+            // Viewer
+            $user = User::create([
+                 'id' => 99995,
+                 'first_name' =>  'TestUser',
+                 'last_name' => 'Viewer',
+                 'country' => 'CMR',
+                 'organisation' => 'IMET viewers',
+                 'imet_role' => Role::ROLE_VIEWER
+             ]);
+            $user->imet_roles()->create(['country' => 'CMR']);
+
             DB::commit();
 
             // ######  Login as Administrator  ######
@@ -112,6 +124,8 @@ class DevUsersController extends __Controller {
                 Auth::loginUsingId(99997);
             } else if($role == Role::ROLE_OBSERVATORY){
                 Auth::loginUsingId(99996);
+            } else if($role == Role::ROLE_VIEWER){
+                Auth::loginUsingId(99995);
             } else {
                 abort(505);
             }

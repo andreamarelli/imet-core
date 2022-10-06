@@ -26,6 +26,7 @@ class Role extends BaseModel
     const ROLE_AUTHORITY = 'authority';
     const ROLE_ENCODER = 'encoder';
     const ROLE_OBSERVATORY = 'observatory';
+    const ROLE_VIEWER = 'viewer';
 
     protected $fillable = [
         'user_id',
@@ -98,7 +99,8 @@ class Role extends BaseModel
         return static::isRole(static::ROLE_ADMINISTRATOR, $user)
             || static::isRole(static::ROLE_AUTHORITY, $user)
             || static::isRole(static::ROLE_OBSERVATORY, $user)
-            || static::isRole(static::ROLE_ENCODER, $user);
+            || static::isRole(static::ROLE_ENCODER, $user)
+            || static::isRole(static::ROLE_VIEWER, $user);
     }
 
     /**
