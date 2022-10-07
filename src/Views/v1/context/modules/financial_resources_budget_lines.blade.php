@@ -133,8 +133,10 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
                     );
                     this.records.forEach(function (item, index) {
                         let cost =  parseFloat(_this.costs[index]);
-                        if(cost>0){
+                        if(cost>0 && totalBudget > 0){
                             result[index] = (cost/totalBudget*100).toFixed(1) + ' %';
+                        }else{
+                            result[index] = "";
                         }
                     });
                     return result;
