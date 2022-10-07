@@ -26,7 +26,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 {{--        <div class="location">{!! \AndreaMarelli\ImetCore\Helpers\Template::flag_and_name($item->Country) !!}</div>--}}
 {{--    </div>--}}
 
-    @include('imet-core::components.heading', ['phase' => 'context'])
+    @include('imet-core::components.heading', ['phase' => 'context', 'type' => 'edit'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [

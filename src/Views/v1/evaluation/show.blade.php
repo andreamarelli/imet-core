@@ -2,7 +2,7 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $item */
 
 // Force Language
-if($item->language != \Illuminate\Support\Facades\App::getLocale()){
+if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -16,18 +16,21 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     ]])
 @endsection
 
+@section('admin_page_title')
+    @lang('imet-core::common.imet')
+@endsection
 
 @section('content')
 
-
-    @include('imet-core::components.heading', ['phase' => 'evaluation', 'type' => 'edit'])
+    @include('imet-core::components.heading', ['phase' => 'evaluation', 'type' => 'show'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class, 'edit'], ['item'=>$item->getKey()]),
+        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class, 'show'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v1_common.steps_eval.',
-        'steps' => array_keys($item::modules())
+        'classes' => $classes ?? '',
+        'steps' => $steps
     ])
 
     {{-- management effectiveness --}}
@@ -39,14 +42,10 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     {{--  Modules (by step) --}}
     <div class="imet_modules">
         @foreach($item::modules()[$step] as $module)
-            @include('modular-forms::module.edit.container', [
-                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class,
+            @include('modular-forms::module.show.container', [
+                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class,
                 'module_class' => $module,
                 'form_id' => $item->getKey()])
         @endforeach
     </div>
-
-    {{--  Scroll buttons  --}}
-    @include('modular-forms::buttons.scroll', ['item' => $item, 'step' => $step])
-
 @endsection

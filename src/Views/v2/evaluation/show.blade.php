@@ -22,7 +22,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
 @section('content')
 
-    @include('imet-core::components.heading', ['phase' => 'evaluation'])
+    @include('imet-core::components.heading', ['phase' => 'evaluation', 'type' => 'show'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [

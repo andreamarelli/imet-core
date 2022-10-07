@@ -45,4 +45,20 @@ class ManagementStaff extends Modules\Component\ImetModule
             ]
         ];
     }
+
+    /**
+     * @param $records
+     * @return array
+     */
+    public static function diffs($records): array
+    {
+        $diffs = [];
+        foreach ($records as $index => $item) {
+            $diffs[$index] = null;
+            if ($item['ExpectedPermanent'] !== null && $item['ActualPermanent']) {
+                $diffs[$index] += (int)($item['ActualPermanent']) - (int)($item['ExpectedPermanent']);
+            }
+        }
+        return $diffs;
+    }
 }

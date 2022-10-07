@@ -1,5 +1,6 @@
 <?php
 /** @var string $phase */
+/** @var string $type */
 
 ?>
 <div class="id" style="margin-bottom: 4px;">
@@ -28,11 +29,11 @@
 
     @if($item->version=='v1')
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, $type], [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
         >@lang_u('imet-core::common.context_long')</a>
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class, $type], [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
         >@lang_u('imet-core::common.evaluation_long')</a>
 
@@ -42,11 +43,11 @@
 
     @else
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, $type], [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
         >@lang_u('imet-core::common.context_long')</a>
 
-        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], [$item->getKey()]) }}"
+        <a href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, $type], [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
         >@lang_u('imet-core::common.evaluation_long')</a>
 

@@ -19,7 +19,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
 @section('content')
 
-    @include('imet-core::components.heading', ['phase' => 'evaluation'])
+    @include('imet-core::components.heading', ['phase' => 'evaluation', 'type' => 'edit'])
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
         'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], ['item'=>$item->getKey()]),
