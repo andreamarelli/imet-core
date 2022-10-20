@@ -4,7 +4,7 @@
 /** @var Mixed $records */
 
 $record = $records[0];
-$total_budget = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::get_records_total_budget();
+$total_budget = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::get_records_total_budget();
 $group_key = $group_key ?? '';
 
 $table_id = $definitions['module_type'] === 'GROUP_TABLE'
@@ -32,7 +32,7 @@ foreach ($records as $index => $record) {
         $percentage_results[$index] = "";
     }
 }
-\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::set_financial_available_resources_totals($result);
+\AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::set_financial_available_resources_totals($result);
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">

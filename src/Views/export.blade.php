@@ -3,7 +3,7 @@
 /** @var \Illuminate\Http\Request $request */
 /** @var array $countries */
 /** @var array $years */
-$url = \Illuminate\Support\Facades\URL::route('export_view');
+$url = \Illuminate\Support\Facades\URL::route('imet-core::export_view');
 $filter_selected = false;
 ?>
 
@@ -11,7 +11,7 @@ $filter_selected = false;
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -29,7 +29,7 @@ $filter_selected = false;
         <div class="row">
             <div class="col">
                 <form target="_blank" ref="filterForm" method="POST"
-                      action="{{ \Illuminate\Support\Facades\URL::route('export_json_batch') }}">
+                      action="{{ \Illuminate\Support\Facades\URL::route('imet-core::export_json_batch') }}">
                     <button type="submit" class="btn act-btn-active float-left" :disabled="exportDisabled">Export
                     </button>
                     {{ csrf_field() }}

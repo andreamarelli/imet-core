@@ -25,7 +25,7 @@ class CreateNonWdpa extends Modules\Component\ImetModule
             ['name' => 'Year',          'type' => 'yearMaxCurrent',                             'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.Year')],
             ['name' => 'language',      'type' => 'toggle-ImetV2_languages',                    'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.language')],
             ['name' => 'pa_def',        'type' => 'dropdown-ImetV2_NonWdpaPaDef',               'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.pa_def')],
-            ['name' => 'country',       'type' => 'dropdown-Country',                           'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.country')],
+            ['name' => 'country',       'type' => 'dropdown-ImetV2_Country',                           'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.country')],
             ['name' => 'name',          'type' => 'text-area',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.name')],
             ['name' => 'origin_name',   'type' => 'text-area',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.origin_name')],
             ['name' => 'designation',   'type' => 'text-area',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.designation')],

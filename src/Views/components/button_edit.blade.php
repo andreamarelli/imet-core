@@ -2,13 +2,13 @@
 /** @var String $version */
 
 if ($version === 'v1') {
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class;
-    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV1::class;
-    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV1::class;
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
+    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class;
+    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ReportController::class;
 } else {
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class;
-    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class;
-    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\ReportControllerV2::class;
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class;
+    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class;
+    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class;
 }
 ?>
 
@@ -23,7 +23,7 @@ if ($version === 'v1') {
 
     <div :id="'popover_edit_'+item.FormID" style="display: none">
         <div class="popover-heading">
-            @lang_u('imet-core::common.encode')
+            @uclang('imet-core::common.encode')
         </div>
         <div class="popover-body">
 

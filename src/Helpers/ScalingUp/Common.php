@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2;
+use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 
@@ -208,7 +208,7 @@ class Common
      */
     public static function get_sub_indicators_by_context(int $form_id, string $type = ''): array
     {
-        return (array)EvalControllerV2::assessment($form_id, $type)->getData();
+        return (array)EvalController::assessment($form_id, $type)->getData();
     }
 
     /**
@@ -290,7 +290,7 @@ class Common
         $assessments = [];
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = (array)EvalControllerV2::assessment($form_id, 'global', true)->getData();
+            $assessments[$k] = (array)EvalController::assessment($form_id, 'global', true)->getData();
             $name = ScalingUpWdpa::getCustomNames($form_id, $scaling_id);
             $assessments[$k]['name'] = $name->name;
             $assessments[$k]['color'] = $name->color;

@@ -11,7 +11,7 @@
 
             <modal_api_search
                 :parent-id=id
-                search-url='ajax/search/protected_areas'
+                :search-url=searchUrl
                 :key-min-length=3
                 :parent-search-params-valid=searchParamValid
             >
@@ -68,6 +68,10 @@
         ],
 
         props: {
+            searchUrl: {
+                type: String,
+                default: ''
+            },
             dataCountries: {
                 type: Object,
                 default: () => {}

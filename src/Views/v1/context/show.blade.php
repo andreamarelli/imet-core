@@ -22,11 +22,11 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('content')
 
-    @include('imet-core::components.heading', ['phase' => 'context', 'type' => 'show'])
+    @include('imet-core::components.heading', ['phase' => 'context'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::class, 'show'], ['item' => $item->getKey()]),
+        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class, 'show'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v2_common.steps.',
         'steps' => array_keys($item::modules())

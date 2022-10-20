@@ -16,7 +16,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
     : $records;
 
 $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
-$totals = \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV1::get_financial_available_resources_totals();
+$totals = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::get_financial_available_resources_totals();
 $totalBudget = array_reduce($totals, function ($carry, $item) {
     $carry += $item;
     return $carry;

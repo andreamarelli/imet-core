@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Parent_;
 
@@ -12,6 +13,8 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     protected $table = 'imet.eval_importance_c13';
     protected $fixed_rows = true;
     protected $validation_3to10 = '';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = []) {
 
