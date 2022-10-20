@@ -1,40 +1,16 @@
 <?php
+/** @var string $selected */
 
 use \AndreaMarelli\ImetCore\Models\User\Role;
-
-$links = [
-    [
-        'url' => route('imet-core::users', ['role_type' => Role::ROLE_ADMINISTRATOR]),
-        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_ADMINISTRATOR, 2))
-    ],
-    [
-        'url' => route('imet-core::users', ['role_type' => Role::ROLE_AUTHORITY]),
-        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_AUTHORITY, 2))
-    ],
-    [
-        'url' => route('imet-core::users', ['role_type' => Role::ROLE_OBSERVATORY]),
-        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_OBSERVATORY, 2))
-    ],
-    [
-        'url' => route('imet-core::users', ['role_type' => Role::ROLE_ENCODER]),
-        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_ENCODER, 2))
-    ],
-    [
-        'url' => route('imet-core::users', ['role_type' => Role::ROLE_VIEWER]),
-        'label' => ucfirst(trans_choice('imet-core::users.role.' . Role::ROLE_VIEWER, 2))
-    ],
-];
 
 ?>
 
 <nav class="steps">
-    @foreach($links as $i => $link)
-        <a class="step
-            @if(url()->current()===$link['url'] || ($i===0 && url()->current()=== route('imet-core::users', ['role_type' => null])))
-                selected
-            @endif
-            "
-           href="{{ $link['url'] }}">{{ $link['label'] }}</a>
+    @foreach(Role::all_roles() as $role)
+        <a class="step @if($role===$selected) selected @endif "
+           href="{{ route('imet-core::users', ['role_type' => $role]) }}">
+            {{ ucfirst(trans_choice('imet-core::users.role.' . $role, 2)) }}
+        </a>
     @endforeach
 </nav>
 

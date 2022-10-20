@@ -57,32 +57,6 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can EXPORT
-     *
-     * @param \App\Models\User|\ImetUser $user
-     * @param $form
-     * @return bool
-     */
-    public function export($user, $form = null): bool
-    {
-        $user = $user ?? Auth::user();
-        return Role::isNotRole(Role::ROLE_VIEWER, $user);
-    }
-
-    /**
-     * Determine whether the user can export ALL the assessments
-     *
-     * @param \App\Models\User|\ImetUser $user
-     * @param $form
-     * @return bool
-     */
-    public function exportAll($user, $form = null): bool
-    {
-        // only ADMIN can export in batch
-        return false;
-    }
-
-    /**
      * Determine whether the user can EDIT
      *
      * @param \App\Models\User|\ImetUser $user
@@ -136,4 +110,46 @@ class ImetPolicy
         return $this->edit($user, $form);
     }
 
+    /**
+     * Determine whether the user can view the EXPORT button
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @param $form
+     * @return bool
+     */
+    public function export_button($user, $form = null): bool
+    {
+        // if user can EDIT can also EXPORT
+        return $this->edit($user, $form);
+    }
+
+    /**
+     * Determine whether the user can EXPORT
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @param $form
+     * @return bool
+     */
+    public function export($user, $form = null): bool
+    {
+        $user = $user ?? Auth::user();
+        return Role::isWdpaAllowed($form->wdpa_id, $user) && (
+            Role::isRole(Role::ROLE_ENCODER, $user) ||
+            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
+            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user)
+            );
+    }
+
+    /**
+     * Determine whether the user can export ALL the assessments
+     *
+     * @param \App\Models\User|\ImetUser $user
+     * @param $form
+     * @return bool
+     */
+    public function exportAll($user, $form = null): bool
+    {
+        // only ADMIN can export in batch
+        return false;
+    }
 }

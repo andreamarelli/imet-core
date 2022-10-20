@@ -18,7 +18,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
 
 @section('content')
 
-    @include('imet-core::users.__menu')
+    @include('imet-core::users.__menu', ['selected' => $role])
 
     <div id="users" class="module-container">
 

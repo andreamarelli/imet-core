@@ -33,6 +33,8 @@ class DevUsersController extends __Controller {
             User::destroy(99997);
             User::destroy(99996);
             User::destroy(99995);
+            User::destroy(99994);
+            User::destroy(99993);
 
             // ######  Create new DEV users (one for each ROLE type)  ######
 
@@ -46,21 +48,63 @@ class DevUsersController extends __Controller {
                 'imet_role' => Role::ROLE_ADMINISTRATOR
             ]);
 
-            // Authority
+            // National Authority
             $user = User::create([
                 'id' => 99998,
                 'first_name' =>  'TestUser',
-                'last_name' => 'Authority',
+                'last_name' => 'National Authority',
                 'country' => 'GRL',
-                'organisation' => 'IMET authorities',
-                'imet_role' => Role::ROLE_AUTHORITY
+                'organisation' => 'IMET national authorities',
+                'imet_role' => Role::ROLE_NATIONAL_AUTHORITY
             ]);
             $user->imet_roles()->create(['country' => 'CMR']);
             $user->imet_roles()->create(['wdpa' => '61707']);
 
-            // Encoder
+            // Regional Authority
             $user = User::create([
                 'id' => 99997,
+                'first_name' =>  'TestUser',
+                'last_name' => 'Regional Authority',
+                'country' => 'GRL',
+                'organisation' => 'IMET national authorities',
+                'imet_role' => Role::ROLE_REGIONAL_AUTHORITY
+            ]);
+            $user->imet_roles()->create(['country' => 'CMR']);
+            $user->imet_roles()->create(['country' => 'GAB']);
+            $user->imet_roles()->create(['country' => 'COD']);
+            $user->imet_roles()->create(['country' => 'COG']);
+
+            // Observatory
+            $user = User::create([
+                 'id' => 99996,
+                 'first_name' =>  'TestUser',
+                 'last_name' => 'Observatory',
+                 'imet_role' => Role::ROLE_REGIONAL_OBSERVATORY
+             ]);
+            $user->imet_roles()->create(['country' => 'BDI']);
+
+            // International institution
+            $user = User::create([
+                 'id' => 99995,
+                 'first_name' =>  'TestUser',
+                 'last_name' => 'International institution',
+                 'imet_role' => Role::ROLE_INTERNATIONAL_INSTITUTIION
+             ]);
+            $user->imet_roles()->create(['country' => 'BDI']);
+            $user->imet_roles()->create(['country' => 'GAB']);
+
+            // Donor
+            $user = User::create([
+                 'id' => 99994,
+                 'first_name' =>  'TestUser',
+                 'last_name' => 'Donor',
+                 'imet_role' => Role::ROLE_DONOR
+             ]);
+            $user->imet_roles()->create(['country' => 'GAB']);
+
+            // Encoder
+            $user = User::create([
+                'id' => 99993,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Encoder',
                 'country' => 'ATA',
@@ -71,26 +115,6 @@ class DevUsersController extends __Controller {
             $user->imet_roles()->create(['wdpa' => '20166']);
             $user->imet_roles()->create(['wdpa' => '30674']);
             $user->imet_roles()->create(['wdpa' => '555547988']);
-
-            // Observatory
-            $user = User::create([
-                'id' => 99996,
-                'first_name' =>  'TestUser',
-                'last_name' => 'Observatory',
-                'imet_role' => Role::ROLE_OBSERVATORY
-            ]);
-            $user->imet_roles()->create(['country' => 'BDI']);
-
-            // Viewer
-            $user = User::create([
-                 'id' => 99995,
-                 'first_name' =>  'TestUser',
-                 'last_name' => 'Viewer',
-                 'country' => 'CMR',
-                 'organisation' => 'IMET viewers',
-                 'imet_role' => Role::ROLE_VIEWER
-             ]);
-            $user->imet_roles()->create(['country' => 'CMR']);
 
             DB::commit();
 
@@ -118,14 +142,18 @@ class DevUsersController extends __Controller {
 
             if($role == Role::ROLE_ADMINISTRATOR){
                 Auth::loginUsingId(99999);
-            } else if($role == Role::ROLE_AUTHORITY){
+            } else if($role == Role::ROLE_NATIONAL_AUTHORITY){
                 Auth::loginUsingId(99998);
-            } else if($role == Role::ROLE_ENCODER){
+            } else if($role == Role::ROLE_REGIONAL_AUTHORITY){
                 Auth::loginUsingId(99997);
-            } else if($role == Role::ROLE_OBSERVATORY){
+            } else if($role == Role::ROLE_REGIONAL_OBSERVATORY){
                 Auth::loginUsingId(99996);
-            } else if($role == Role::ROLE_VIEWER){
+            } else if($role == Role::ROLE_INTERNATIONAL_INSTITUTIION){
                 Auth::loginUsingId(99995);
+            } else if($role == Role::ROLE_DONOR){
+                Auth::loginUsingId(99994);
+            } else if($role == Role::ROLE_ENCODER){
+                Auth::loginUsingId(99993);
             } else {
                 abort(505);
             }

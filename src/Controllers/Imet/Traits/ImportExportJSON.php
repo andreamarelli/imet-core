@@ -231,7 +231,7 @@ trait ImportExportJSON
      */
     public function export(Imet $item, bool $to_file = true, bool $download = true)
     {
-        $this->authorize('view', $item);
+        $this->authorize('export', $item);
 
         $imet_id = $item->getKey();
         $imet_form = $item

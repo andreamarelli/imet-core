@@ -3,10 +3,12 @@ return [
 
     'role' => [
         'administrator' => 'administrator|administrators',
-        'authority' => 'authority|authorities',
-        'observatory' => 'observatory|observatories',
-        'encoder' => 'encoder|encoders',
-        'viewer' => 'viewer|viewers',
+        'national_authority' => 'national authority|national authorities',
+        'regional_authority' => 'regional authority|regional authorities',
+        'regional_observatory' => 'regional observatory|regional observatories',
+        'international_institution' => 'international institution|international institutions',
+        'donor' => 'donor|donors',
+        'encoder' => 'encoder|encoders'
     ],
 
     'attributes' => [

@@ -156,20 +156,20 @@ $url = URL::route('imet-core::index');
 
                         {{-- Merge tool --}}
                         <span v-if="item.has_duplicates">
-                                @include('modular-forms::buttons._generic', [
-                                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                                    'action' =>'merge_view',
-                                    'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
-                                    'icon' => 'clone',
-                                    'class' => 'btn-primary'
-                                ])
-                            </span>
+                            @include('modular-forms::buttons._generic', [
+                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
+                                'action' =>'merge_view',
+                                'item' => 'item.FormID',
+                                'tooltip' => ucfirst(trans('modular-forms::common.merge')),
+                                'icon' => 'clone',
+                                'class' => 'btn-primary'
+                            ])
+                        </span>
 
                     @endcan
 
                     {{-- Export --}}
-                    @can('export', Imet::class)
+                    @can('export_button', Imet::class)
                         @include('modular-forms::buttons._generic', [
                             'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
                             'action' =>'export',

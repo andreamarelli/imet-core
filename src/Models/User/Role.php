@@ -23,10 +23,12 @@ class Role extends BaseModel
     protected $table = 'user_roles';
 
     const ROLE_ADMINISTRATOR = 'administrator';
-    const ROLE_AUTHORITY = 'authority';
+    const ROLE_NATIONAL_AUTHORITY = 'national_authority';
+    const ROLE_REGIONAL_AUTHORITY = 'regional_authority';
+    const ROLE_REGIONAL_OBSERVATORY = 'regional_observatory';
+    const ROLE_INTERNATIONAL_INSTITUTIION = 'international_institution';
+    const ROLE_DONOR = 'donor';
     const ROLE_ENCODER = 'encoder';
-    const ROLE_OBSERVATORY = 'observatory';
-    const ROLE_VIEWER = 'viewer';
 
     const ACCESS_LEVEL_FULL = 3;
     const ACCESS_LEVEL_HIGH = 2;
@@ -54,6 +56,24 @@ class Role extends BaseModel
     public function country_obj(): HasOne
     {
         return $this->hasOne(Country::class, 'iso3', 'country');
+    }
+
+    /**
+     * Return all the role types
+     *
+     * @return string[]
+     */
+    public static function all_roles(): array
+    {
+        return [
+            Role::ROLE_ADMINISTRATOR,
+            Role::ROLE_NATIONAL_AUTHORITY,
+            Role::ROLE_REGIONAL_AUTHORITY,
+            Role::ROLE_REGIONAL_OBSERVATORY,
+            Role::ROLE_INTERNATIONAL_INSTITUTIION,
+            Role::ROLE_DONOR,
+            Role::ROLE_ENCODER
+        ];
     }
 
     /**
@@ -113,11 +133,13 @@ class Role extends BaseModel
     public static function hasAnyRole($user = null): bool
     {
         $user = $user ?? Auth::user();
-        return static::isRole(static::ROLE_ADMINISTRATOR, $user)
-            || static::isRole(static::ROLE_AUTHORITY, $user)
-            || static::isRole(static::ROLE_OBSERVATORY, $user)
-            || static::isRole(static::ROLE_ENCODER, $user)
-            || static::isRole(static::ROLE_VIEWER, $user);
+        return static::isAdmin($user)
+            || static::isRole(static::ROLE_NATIONAL_AUTHORITY, $user)
+            || static::isRole(static::ROLE_REGIONAL_AUTHORITY, $user)
+            || static::isRole(static::ROLE_REGIONAL_OBSERVATORY, $user)
+            || static::isRole(static::ROLE_INTERNATIONAL_INSTITUTIION, $user)
+            || static::isRole(static::ROLE_DONOR, $user)
+            || static::isRole(static::ROLE_ENCODER, $user);
     }
 
     /**
@@ -229,20 +251,22 @@ class Role extends BaseModel
 
         switch ($user_role){
 
-            case static::ROLE_VIEWER:
-                $user_access_level = static::ACCESS_LEVEL_LOW;
-                break;
-
-            case static::ROLE_AUTHORITY:
-                $user_access_level = static::ACCESS_LEVEL_HIGH;
-                break;
-
             case static::ROLE_ADMINISTRATOR:
             case static::ROLE_ENCODER:
-            default:
+            case static::ROLE_NATIONAL_AUTHORITY:
+            case static::ROLE_REGIONAL_OBSERVATORY:
                 $user_access_level = static::ACCESS_LEVEL_FULL;
                 break;
 
+            case static::ROLE_REGIONAL_AUTHORITY:
+            case static::ROLE_INTERNATIONAL_INSTITUTIION:
+            case static::ROLE_DONOR:
+                $user_access_level = static::ACCESS_LEVEL_HIGH;
+                break;
+
+            default:
+                $user_access_level = static::ACCESS_LEVEL_LOW;
+                break;
         }
 
         return $user_access_level;

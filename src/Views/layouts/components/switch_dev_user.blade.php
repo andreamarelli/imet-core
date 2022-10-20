@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
         <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('random', '', '', 'fa-lg') !!} Change USER</a>
         <ul class="language_selector">
 
-            @foreach([Role::ROLE_ADMINISTRATOR, Role::ROLE_AUTHORITY, Role::ROLE_OBSERVATORY, Role::ROLE_ENCODER, Role::ROLE_VIEWER] as $role)
+            @foreach(Role::all_roles() as $role)
                 <li>
                     <a href="#" onclick="event.preventDefault(); document.getElementById('switch_to_{{ $role }}_user-form').submit();">
                         {{ $role }}

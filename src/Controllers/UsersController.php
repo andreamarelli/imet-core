@@ -15,6 +15,14 @@ class UsersController extends __Controller
     protected static $form_view_prefix = 'imet-core::users/';
 
 
+    /**
+     * Manage "list" route
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param $role_type
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function index(Request $request, $role_type = null)
     {
         $this->authorize('manage', static::$form_class);
@@ -50,6 +58,12 @@ class UsersController extends __Controller
         ]);
     }
 
+    /**
+     * Manage "search" route
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function search(Request $request): JsonResponse
     {
         $list = $request->filled('search_key')
@@ -61,7 +75,14 @@ class UsersController extends __Controller
                                 ]);
     }
 
-    public function update_roles(Request $request)
+    /**
+     * Manage "update_roles" route
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return string[]
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update_roles(Request $request): array
     {
         $this->authorize('manage', static::$form_class);
 
