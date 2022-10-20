@@ -123,11 +123,6 @@ $vue_record_index = 0;
                 records: {
                     handler: async function () {
                         await this.recordChangedCallback();
-                        if (this.status !== 'init') {
-                            let _this = this;
-                            _this.status = (_this.status !== 'changed') ? 'changed' : _this.status;
-                            _this.__sync_common_fields();
-                        }
                     },
                     deep: true
                 }
@@ -176,6 +171,8 @@ $vue_record_index = 0;
                     } else {
                         this.status = 'init';
                     }
+                    this.status = (this.status !== 'init' && this.status !== 'changed') ? 'changed' : this.status;
+
                     // store selections
                     this.current_pa = this.records[0]['wdpa_id'];
                     this.current_year = this.records[0]['Year'];
