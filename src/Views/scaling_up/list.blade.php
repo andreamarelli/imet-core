@@ -9,14 +9,14 @@
 
 use Illuminate\Support\Facades\URL;
 
-$url = URL::route('scaling_up');
+$url = URL::route('imet-core::scaling_up_index');
 ?>
 
 @extends('layouts.admin')
 
 @section('admin_breadcrumbs')
     @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
+        route('imet-core::index') => trans('imet-core::common.imet_short')
     ]])
 @endsection
 
@@ -42,8 +42,10 @@ $url = URL::route('scaling_up');
     <div id="sortable_list">
 
         <div id="cloud">
-            <label-cloud :cookie-name="'analysis'" :url="'{{url('admin/imet')}}/scaling_up/{items}'"
-                         :source-of-data="'cookie'"></label-cloud>
+            <label-cloud
+                :cookie-name="'analysis'"
+                url="{{ route('imet-core::scaling_up_report', ['items' => "__items__"]) }}"
+                :source-of-data="'cookie'"></label-cloud>
         </div>
         <action-button-cookie
             :class-name="'btn btn-success'"
@@ -121,7 +123,12 @@ $url = URL::route('scaling_up');
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
-                    <imet_radar :width=150 :height=150 :values=item.assessment_radar></imet_radar>
+                    <imet_radar
+                            style="margin: 0 auto;"
+                            :width=150 :height=150
+                            :values=item.assessment_radar
+                            v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                    ></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
@@ -130,7 +137,7 @@ $url = URL::route('scaling_up');
                         @include('imet-core::components.button_show', ['version' => 'v2'])
                     </span>
 
-                    @can('encode-imets')
+                    @can('edit', \AndreaMarelli\ImetCore\Models\Imet\Imet::class)
 
                         {{-- Edit --}}
                         <span v-if="item.version==='v1'">

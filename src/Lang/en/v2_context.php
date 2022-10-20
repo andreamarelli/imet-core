@@ -76,7 +76,7 @@ return [
         'title' => 'Responsibility for filling the form: Management team and partners',
         'fields' => [
             'Name'          => 'name',
-            'Institution'   => 'organization',
+            'Institution'   => 'organisation',
             'Function'      => 'job role',
             'Contacts'      => 'contact details',
             'EncodingDate'  => 'Date of compilation',
@@ -88,7 +88,7 @@ return [
         'title' => 'Responsibility for filling the form: External support for analysis and management evaluation',
         'fields' => [
             'Name' => 'Name',
-            'Institution'   => 'organization',
+            'Institution'   => 'organisation',
             'Function'      => 'job role',
             'Contacts' => 'contact details',
             'EncodingDate' => 'Date of compilation',

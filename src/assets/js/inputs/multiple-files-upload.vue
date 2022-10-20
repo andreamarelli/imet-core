@@ -25,13 +25,19 @@ export default {
     components: {
         vueDropzone: window.VueDropzone
     },
+    props:{
+        uploadUrl: {
+            type: String,
+            default: null
+        }
+    },
     data() {
         const Locale = window.Locale;
         return {
             Locale: Locale,
             modalIsOpen: false,
             options: {
-                url: window.Laravel.baseUrl + 'admin/imet/ajax/upload',
+                url: this.uploadUrl,
                 previewTemplate: this.template(),
                 params: {
                     _token: window.Laravel.csrfToken
@@ -57,6 +63,9 @@ export default {
             formatTypes: ["application/json", "application/zip"],
             files_added: 0
         };
+    },
+    beforeCreate: function (){
+      this.options.url = this.uploadUrl;
     },
     mounted: function () {
         window.confirm = function () {

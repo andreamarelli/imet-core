@@ -74,7 +74,7 @@ return [
     'GovernanceType' => [
         'governance by government',
         'governance by various rightsholders and stakeholders together',
-        'governance by private individuals and organizations',
+        'governance by private individuals and organisations',
         'governance by indigenous peoples and/or local communities'
     ],
 

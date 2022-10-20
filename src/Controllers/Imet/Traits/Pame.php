@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
