@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CrossAnalysis extends Model
 {
-    private static $threshold = 20.0;
+    private static $threshold = 34.0;
 
-    private static $indicators = [
+    private static array $indicators = [
         'context' => ['c12', 'c2', 'c14', 'c15'],
         'process' => ['pr2', 'pr4', 'pr5', 'pr6', 'pr7', 'pr8', 'pr11', 'pr17', 'pr18'],
         'inputs' => ['i2', 'i5'],
@@ -18,7 +18,7 @@ class CrossAnalysis extends Model
         'outputs' => ['op3']
     ];
 
-    private static $compares = [
+    private static array $compares = [
         ['c12', 'pr7'],
         ['c2', 'p1'],
         ['i2', 'pr2'],
