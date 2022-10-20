@@ -5,6 +5,9 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\v1;
+use AndreaMarelli\ImetCore\Models\Imet\v2;
+use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\Report;
 use Illuminate\Http\Request;
@@ -147,10 +150,26 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
     public static function get_protected_areas_list(Request $request, string $language = 'en'): object
     {
         $api = [];
-        $controller = new Controller();
-        $items = $controller->get_list($request);
-        foreach ($items as $item) {
+        $list_v1 = v1\Imet
+            ::filterList($request)
+            ->with('country')
+            ->get();
 
+        $list_v2 = v2\Imet
+            ::filterList($request)
+            ->with('country')
+            ->get();
+
+        $list = $list_v1->merge($list_v2);
+
+        $list->map(function ($item){
+            if(ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
+                $item->wdpa_id = null;
+            }
+            return $item;
+        });
+
+        foreach ($list as $item) {
             $country_name = "name_" . $language;
             $api[] = [
                 'wdpa_id' => $item['wdpa_id'],

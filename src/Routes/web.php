@@ -96,7 +96,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::group(['prefix' => 'imet', 'middleware' => 'throttle:100,1'], function () {
             Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
             Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment']);
-            Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list']);
+            Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list'])->name('get_protected_areas_list');
 
             Route::get('total-number-of-assessments', [ApiController::class, 'get_total_number_of_assessments'])->name('statistics.total_number_of_assessments');
             Route::get('pas-rating', [ApiController::class, 'get_pas_rating'])->name('statistics.pas_rating');
