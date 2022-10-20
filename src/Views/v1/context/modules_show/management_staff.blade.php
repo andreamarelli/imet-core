@@ -31,7 +31,7 @@ $diffs = AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::
                     @if($field['name']==="ActualPermanent")
                 </th>
                 <th class="text-center">
-                    @lang_u('imet-core::v1_context.ManagementStaff.fields.difference')
+                    @uclang('imet-core::v1_context.ManagementStaff.fields.difference')
                     @endif
                 </th>
             @endif

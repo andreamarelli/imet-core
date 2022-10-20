@@ -13,7 +13,7 @@ $table_id = 'table_' . $definitions['module_key'];
     <thead>
     <tr>
         <th class="text-center">{{ ucfirst($definitions['fields'][0]['label'] ?? '') }}</th>
-        <th class="text-center">@lang_u('imet-core::v1_evaluation.Staff.status')</th>
+        <th class="text-center">@uclang('imet-core::v1_evaluation.Staff.status')</th>
         <th class="text-center">{{ ucfirst($definitions['fields'][1]['label'] ?? '') }}</th>
         <th class="text-center">{{ ucfirst($definitions['fields'][2]['label'] ?? '') }}</th>
     </tr>

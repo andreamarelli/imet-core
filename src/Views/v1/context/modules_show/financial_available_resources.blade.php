@@ -48,10 +48,10 @@ foreach ($records as $index => $record) {
             @endif
         @endforeach
         <th class="text-center">
-            @lang_u('imet-core::v1_context.FinancialAvailableResources.fields.total')
+            @uclang('imet-core::v1_context.FinancialAvailableResources.fields.total')
         </th>
         <th class="text-center">
-            @lang_u('imet-core::v1_context.FinancialAvailableResources.fields.percentage')
+            @uclang('imet-core::v1_context.FinancialAvailableResources.fields.percentage')
         </th>
     </tr>
     </thead>
