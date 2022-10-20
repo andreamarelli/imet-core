@@ -96,13 +96,13 @@ class Staff extends Modules\Component\ImetModule_Eval
 
         $result = null;
         $ratio = $actual/$expected;
-        if($ratio<=0.20  || $ratio>=1.8){
+        if($ratio<=0.20  || $ratio>1.8){
             $result = 0;
-        } elseif($ratio<=0.4 || $ratio>=1.6){
+        } elseif($ratio<=0.4 || $ratio>1.6){
             $result = 1;
-        } elseif($ratio<=0.6 || $ratio>=1.4){
+        } elseif($ratio<=0.6 || $ratio>1.4){
             $result = 2;
-        } elseif($ratio<=0.8 || $ratio>=1.2){
+        } elseif($ratio<=0.8 || $ratio>1.2){
             $result = 3;
         } elseif($ratio<=1.2){
             $result = 4;

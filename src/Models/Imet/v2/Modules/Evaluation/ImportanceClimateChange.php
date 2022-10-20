@@ -20,7 +20,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceClimateChange.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.EvaluationScore')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.Comments')],
         ];
