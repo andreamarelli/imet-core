@@ -33,4 +33,12 @@ class Assessment extends Model
         ];
     }
 
+    /**
+     * @return double
+     */
+    public function imet_index(): float
+    {
+        return round(($this->context + $this->plans + $this->inputs + $this->process + $this->outputs + $this->outcomes) / 6, 2);
+    }
+
 }

@@ -10,6 +10,8 @@ use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ImetCore\Controllers\UsersController;
 use Illuminate\Support\Facades\App;
+
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -52,6 +54,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         // #### IMET Version 2 ####
         Route::group(['prefix' => 'v2'], function () {
+
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
 
             Route::group(['prefix' => 'context'], function () {
@@ -97,6 +100,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         });
 
+
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
             Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
@@ -124,7 +128,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     | Management Routes
     |--------------------------------------------------------------------------
     */
-
     Route::get('users/{role_type?}', [UsersController::class, 'index'])->name('imet-core::users');
     Route::patch('users', [UsersController::class, 'update_roles'])->name('imet-core::users_update');
 
