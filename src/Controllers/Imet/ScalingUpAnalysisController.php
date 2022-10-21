@@ -2,20 +2,34 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Controllers\__Controller;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
+use AndreaMarelli\ModularForms\Helpers\HTTP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
-class ScalingUpAnalysisController
+
+class ScalingUpAnalysisController extends __Controller
 {
+    protected static $form_class = Imet::class;
+    protected static $form_view_prefix = 'imet-core::';
+
+    protected const PAGINATE = false;
+
+    public const sanitization_rules = [
+        'search' => 'custom_text|nullable',
+        'year' => 'digits:4|integer|nullable',
+        'country' => 'min:3|max:3|alpha|nullable',
+    ];
 
     private $indicators = [
         'context' => [
@@ -97,10 +111,43 @@ class ScalingUpAnalysisController
     ];
 
     /**
+     * Index route for scaling up
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function index(Request $request)
+    {
+        $this->authorize('viewAny', static::$form_class);
+        HTTP::sanitize($request, self::sanitization_rules);
+
+        // set filter status
+        $filter_selected = !empty(array_filter($request->except('_token')));
+
+        // retrieve IMET list
+        $filtered_list = Imet::get_list($request);
+        $full_list = Imet::get_list(new Request());
+        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
+        $countries = ProtectedArea::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
+
+        return view(static::$form_view_prefix . 'scaling_up.list', [
+            'controller' => static::class,
+            'list' => $filtered_list,
+            'request' => $request,
+            'filter_selected' => $filter_selected,
+            'countries' => $countries,
+            'years' => $years
+        ]);
+    }
+
+
+
+    /**
      * @param Request $request
      * @return array
      */
-    public function get_ajax_responses(Request $request)
+    public function analysis(Request $request): array
     {
         $locale = App::getLocale();
         //dd($locale);
@@ -160,8 +207,9 @@ class ScalingUpAnalysisController
      * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \ReflectionException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function report_scaling_up(Request $request, $items = null)
+    public function report(Request $request, $items = null)
     {
         $scaling_up_id = null;
         $locale = App::getLocale();
@@ -171,6 +219,10 @@ class ScalingUpAnalysisController
         $items_array = explode(',', $items);
         sort($items_array);
 
+        // check authorizations
+        foreach($items_array as $item){
+            $this->authorize('edit', (static::$form_class)::find($item));
+        }
 
         //check if the parameters are an array of numbers and pa exist in the db
         $filtered_array = array_filter($items_array, function ($value) {

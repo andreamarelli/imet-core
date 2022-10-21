@@ -1,74 +1,20 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
 
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
+use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
-use Illuminate\Http\Request;
-
-use function view;
 
 
-class ReportControllerV2 extends Controller {
-
+class ReportController extends BaseReportController
+{
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::v2.report';
-
-    public const AUTHORIZE_BY_POLICY = true;
-    /**
-     * Manage "report" edit route
-     *
-     * @param $item
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException|\ReflectionException
-     */
-    public function report($item)
-    {
-        $imet = Imet::find($item);
-
-        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
-        $this->authorize('update', $imet);
-
-        return view(static::$form_view_prefix . '.edit', $this->__retrieve_report_data($imet));
-    }
-
-    /**
-     * Manage "report" edit route
-     *
-     * @param $item
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \ReflectionException
-     */
-    public function report_show($item)
-    {
-        $imet = Imet::find($item);
-
-        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
-        $this->authorize('view', $imet);
-
-        return view(static::$form_view_prefix . '.show', $this->__retrieve_report_data($imet));
-    }
-
-    /**
-     * Manage "report" update route
-     *
-     * @param $item
-     * @param \Illuminate\Http\Request $request
-     * @return string[]
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function report_update($item, Request $request): array
-    {
-        /** @var $this \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2 */
-        $this->authorize('update', (static::$form_class)::find($item));
-
-        \AndreaMarelli\ImetCore\Models\Imet\v2\Report::updateByForm($item, $request->input('report'));
-        return [ 'status' => 'success' ];
-    }
 
     /**
      * Retrieve data to populate report view

@@ -9,14 +9,15 @@ use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\hasOne;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 use function session;
@@ -60,7 +61,7 @@ class Imet extends Form
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function encoder()
+    public function encoder(): HasMany
     {
         return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
             ->select(['FormID','first_name', 'last_name'])
@@ -72,13 +73,96 @@ class Imet extends Form
      * @param $value
      * @return string
      */
-    public function getLanguageAttribute($value)
+    public function getLanguageAttribute($value): string
     {
         return strtolower($value);
     }
 
     /**
-     * common search filters with wdpa
+     * Retrieve IMET assessments' list
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param array $relations
+     * @return mixed
+     */
+    protected static function retrieve_list(Request $request, array $relations = [])
+    {
+        $allowed_wdpas = Role::allowedWdpas();
+
+        $list_v1 = v1\Imet
+            ::filterList($request)
+            ->with($relations)
+            ->where(function ($query) use ($allowed_wdpas){
+                if($allowed_wdpas !== null){
+                    $query->whereIn('wdpa_id', $allowed_wdpas);
+                }
+            })
+            ->get();
+
+        $list_v2 = v2\Imet
+            ::filterList($request)
+            ->with($relations)
+            ->where(function ($query) use ($allowed_wdpas){
+                if($allowed_wdpas !== null){
+                    $query->whereIn('wdpa_id', $allowed_wdpas);
+                }
+            })
+            ->get();
+
+        return $list_v1->merge($list_v2);
+    }
+
+    /**
+     * Get IMET list for index controller
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return mixed
+     */
+    public static function get_list(Request $request)
+    {
+        $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment']);
+        $list->map(function ($item) {
+            // Add encoders
+            $item->encoders_responsibles = [
+                'encoders' => $item->encoder->unique(),
+                'internal' => $item->responsible_interviewers->unique(),
+                'external' => $item->responsible_interviewees->unique(),
+            ];
+            // Add radar
+            $item['assessment_radar'] = $item->assessment->radar();
+            // Non WDPA
+            if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
+                $item->wdpa_id = null;
+            }
+            return $item;
+        });
+
+        $hasDuplicates = Imet::foundDuplicates();
+        $list->map(function ($item) use ($hasDuplicates) {
+            $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+            return $item;
+        });
+
+        return $list;
+    }
+
+    public static function get_list_reduced(Request $request)
+    {
+        $list = static::retrieve_list($request, ['country']);
+        $list->map(
+            function (Imet $item) {
+                $item->iso2 = $item->country->iso2;
+                $item->country_name = $item->country->name;
+                return $item;
+            }
+        );
+        return $list;
+    }
+
+
+    /**
+     * Common search filters with wdpa
+     *
      * @param Builder $query
      * @param Request $request
      * @return Builder[]|\Illuminate\Database\Eloquent\Collection
@@ -93,7 +177,8 @@ class Imet extends Form
     }
 
     /**
-     * common method to use it in various searches queries
+     * Common method to use it in various searches queries
+     *
      * @param Builder $query
      * @param Request $request
      */
@@ -116,8 +201,6 @@ class Imet extends Form
      */
     public function scopeFilterList(Builder $query, Request $request): Builder
     {
-        $query->whereHasPermission();
-
         // filters
         $this->commonFilters($query, $request);
         if($request->filled('search')){
@@ -134,16 +217,10 @@ class Imet extends Form
         return $query;
     }
 
-    public function scopeWhereHasPermission($query){
-
-        if(!\is_imet_environment()){
-            // TODO
-        }
-        return $query;
-    }
-
     /**
      * Check and add missing Pa data (country, wdpa_id, pa_name) to form
+     *
+     * @return void
      */
     public static function checkMissingPaData()
     {
@@ -164,6 +241,7 @@ class Imet extends Form
 
     /**
      * Retrieve form language
+     *
      * @param $form_id
      * @return mixed
      */
@@ -178,6 +256,13 @@ class Imet extends Form
         return $language;
     }
 
+    /**
+     * Retrieve the IMET responsible
+     *
+     * @param $form_id
+     * @param $version
+     * @return array
+     */
     public static function getResponsibles($form_id, $version): array
     {
         $internal = $version === 'v1'
@@ -194,6 +279,12 @@ class Imet extends Form
         ];
     }
 
+    /**
+     * Retrieve the IMET version
+     *
+     * @param $form_id
+     * @return \Illuminate\Support\HigherOrderCollectionProxy|mixed|string|null
+     */
     public static function getVersion($form_id)
     {
         $form = static::find($form_id);
@@ -204,9 +295,10 @@ class Imet extends Form
      * Retrieve the last IMET of the given PA
      *
      * @param $wdpa_id
-     * @return mixed|null
+     * @return array|null
      */
-    public static function getLast($wdpa_id){
+    public static function getLast($wdpa_id): ?array
+    {
         $form = static::select(['FormID as id', 'version'])
             ->where('wdpa_id', $wdpa_id)
             ->orderBy('Year', 'DESC')
@@ -220,7 +312,8 @@ class Imet extends Form
      * @param string[] $fields
      * @return array
      */
-    public static function getFieldsSplitToArrays(array $fields = ['Country','Year','wdpa_id', 'FormID']){
+    public static function getFieldsSplitToArrays(array $fields = ['Country','Year','wdpa_id', 'FormID']): array
+    {
 
         $getRecords = static::select($fields)
             ->distinct()
@@ -254,6 +347,7 @@ class Imet extends Form
     }
 
     /**
+     * @deprecated
      * Retrieve years for existing IMETs
      *
      * @return array
@@ -316,9 +410,11 @@ class Imet extends Form
 
     /**
      * Extent parent method: save user as encoder
+     *
      * @param $item
      * @param \Illuminate\Http\Request $request
      * @return mixed
+     * @throws \Exception
      */
     public static function updateModuleAndForm($item, Request $request): array
     {
@@ -328,6 +424,7 @@ class Imet extends Form
         }
 
         $user_info = Auth::user()->getInfo();
+        unset($user_info['country']);
 
         if(Encoder::where('first_name', $user_info['first_name'])
                 ->where('last_name', $user_info['last_name'])
@@ -348,6 +445,7 @@ class Imet extends Form
      *
      * @param $records
      * @param $formID
+     * @param null $imet_version
      * @return array
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
@@ -412,9 +510,9 @@ class Imet extends Form
     /**
      * Get the list of duplicates IMETs (same PA and year)
      *
-     * @return bool|array
+     * @return array
      */
-    public function getDuplicates()
+    public function getDuplicates(): array
     {
         $query = static::select('FormID')
             ->where($this->getKeyName(), '!=', $this->getKey())
@@ -429,7 +527,7 @@ class Imet extends Form
      *
      * @return array
      */
-    public static function foundDuplicates()
+    public static function foundDuplicates(): array
     {
         $haveDuplicates = [];
         static::selectRaw('json_agg("FormID")')
@@ -445,7 +543,8 @@ class Imet extends Form
     }
 
     /**
-     * return array keys of modules
+     * Return array keys of modules
+     *
      * @return array
      */
     public static function getModulesKeys() : array

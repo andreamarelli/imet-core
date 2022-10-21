@@ -3,12 +3,15 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Http\Request;
 
 class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_importance_c15';
     protected $fixed_rows = true;
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = []) {
 
@@ -17,7 +20,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceClimateChange.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.EvaluationScore')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceClimateChange.fields.Comments')],
         ];

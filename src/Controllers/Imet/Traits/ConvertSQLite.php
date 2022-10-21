@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
@@ -43,7 +43,7 @@ trait ConvertSQLite{
                 "Country" => $imet->Country,
                 "Year" => $imet->Year,
                 "version" => "v1",
-                "wdpa_id" => $wdpa,
+                "wdpa_id" => trim($wdpa),
                 "language" => Str::lower($imet->FormLanguage),
                 "imet_version" => "SQLITE",
             ],
@@ -54,7 +54,7 @@ trait ConvertSQLite{
         if(ProtectedAreaNonWdpa::isNonWdpa($wdpa)){
             $json["NonWdpaProtectedArea"] = [];
             $json["NonWdpaProtectedArea"]['id'] = $wdpa;
-            $json["NonWdpaProtectedArea"]['wdpa_id'] = $wdpa;
+            $json["NonWdpaProtectedArea"]['wdpa_id'] = trim($wdpa);
             $json["NonWdpaProtectedArea"]['name'] = $pa_name;
             $json["NonWdpaProtectedArea"]['country'] = $imet->Country;
         }
