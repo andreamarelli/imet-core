@@ -1,5 +1,9 @@
 window.ImetCore = {};
 
+// Vue Mixins
+window.mixins = {
+    'status': require('./js/mixins/save_or_reset.mixin')
+};
 
 // Templates
 Vue.component('dopa_chart_bar',                 window.ModularForms.Dopa.chart_bar);
