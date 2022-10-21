@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use function view;
 
 
-abstract class ReportController extends Controller
+class ReportController extends Controller
 {
     /**
      * Manage "report" edit route
