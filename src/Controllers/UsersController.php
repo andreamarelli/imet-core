@@ -116,6 +116,9 @@ class UsersController extends __Controller
                     $wdpas = explode(',', $record['role_wdpas']) ?? [];
                     $isos = json_decode($record['role_isos']) ?? [];
 
+                    $wdpas = array_unique(array_filter($wdpas));
+                    $isos = array_unique(array_filter($isos));
+
                     // Create/update provided roles
                     if(!empty($wdpas)){
                         foreach ($wdpas as $wdpa){
