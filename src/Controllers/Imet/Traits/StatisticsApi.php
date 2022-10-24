@@ -1,10 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
+use AndreaMarelli\ImetCore\Models\Imet\API\Statistics\GlobalStatistics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use AndreaMarelli\ImetCore\Models\Imet\API\Statistics\GlobalStatistics;
+use function abort;
 
 trait StatisticsApi
 {
