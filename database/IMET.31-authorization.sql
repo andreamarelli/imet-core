@@ -22,7 +22,4 @@ CREATE TABLE IF NOT EXISTS user_roles(
     CONSTRAINT "last_update_fk" FOREIGN KEY (user_id) REFERENCES users (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- TODO: ERROR !!! requires assessment schemas (files 27, 28, 29) to be executed again
-ALTER TABLE imet.imet_form ALTER COLUMN "Country" TYPE VARCHAR(25);
-
 COMMIT;
