@@ -133,7 +133,10 @@ $url = URL::route('imet-core::scaling_up_index');
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
                     {{-- Show --}}
-                    <span v-if="item.version==='v2'">
+                    <span v-if="item.version==='v1'">
+                        @include('imet-core::components.button_show', ['version' => 'v1'])
+                    </span>
+                    <span v-else-if="item.version==='v2'">
                         @include('imet-core::components.button_show', ['version' => 'v2'])
                     </span>
 

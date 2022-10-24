@@ -35,6 +35,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
+
+            Route::get('{item}/print',       [v1\Controller::class, 'print']);
+
             Route::group(['prefix' => 'context'], function () {
                 Route::get('{item}/show/{step?}', [v1\Controller::class, 'show'])->name('imet-core::v1_context_show');
                 Route::get('{item}/edit/{step?}', [v1\Controller::class, 'edit'])->name('imet-core::v1_context_edit');

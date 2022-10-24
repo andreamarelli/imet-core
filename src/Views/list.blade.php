@@ -140,9 +140,12 @@ $url = URL::route('imet-core::index');
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
                     {{-- Show --}}
-                    <span v-if="item.version==='v2'">
-                            @include('imet-core::components.button_show', ['version' => 'v2'])
-                        </span>
+                    <span v-if="item.version==='v1'">
+                        @include('imet-core::components.button_show', ['version' => 'v1'])
+                    </span>
+                    <span v-else-if="item.version==='v2'">
+                        @include('imet-core::components.button_show', ['version' => 'v2'])
+                    </span>
 
                     @can('edit', Imet::class)
 
@@ -181,16 +184,27 @@ $url = URL::route('imet-core::index');
                     @endcan
 
                     {{-- Print --}}
-                    <span v-if="item.version==='v2'">
-                            @include('modular-forms::buttons._generic', [
-                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
-                                'action' =>'print',
-                                'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('modular-forms::common.print')),
-                                'icon' => 'print',
-                                'class' => 'btn-primary'
-                            ])
-                        </span>
+
+                    <span v-if="item.version==='v1'">
+                        @include('modular-forms::buttons._generic', [
+                            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class,
+                            'action' =>'print',
+                            'item' => 'item.FormID',
+                            'tooltip' => ucfirst(trans('modular-forms::common.print')),
+                            'icon' => 'print',
+                            'class' => 'btn-primary'
+                        ])
+                    </span>
+                    <span v-else-if="item.version==='v2'">
+                        @include('modular-forms::buttons._generic', [
+                            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
+                            'action' =>'print',
+                            'item' => 'item.FormID',
+                            'tooltip' => ucfirst(trans('modular-forms::common.print')),
+                            'icon' => 'print',
+                            'class' => 'btn-primary'
+                        ])
+                    </span>
 
                     @can('edit', Imet::class)
 
