@@ -119,8 +119,10 @@ class ImetPolicy
      */
     public function export_button($user, $form = null): bool
     {
-        // if user can EDIT can also EXPORT
-        return $this->edit($user, $form);
+        $user = $user ?? Auth::user();
+        return Role::isRole(Role::ROLE_ENCODER, $user) ||
+            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
+            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
     }
 
     /**
