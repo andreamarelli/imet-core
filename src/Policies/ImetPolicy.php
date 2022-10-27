@@ -68,7 +68,8 @@ class ImetPolicy
         if(is_null($form)){
             return Role::isRole(Role::ROLE_ENCODER);
         } else {
-            return Role::isWdpaAllowed($form->wdpa_id, $user);
+            return Role::isRole(Role::ROLE_ENCODER)
+                && Role::isWdpaAllowed($form->wdpa_id, $user);
         }
     }
 
