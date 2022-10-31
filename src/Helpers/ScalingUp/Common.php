@@ -133,7 +133,9 @@ class Common
     public static function values_correction(string $indicator, $value)
     {
         if ($indicator === "c3") {
-            return static::round_number((100 + $value), 3);
+            if($value > 0) {
+                return static::round_number((100 + $value), 3);
+            }
         } else if (in_array($indicator, ["c2", "oc2", "oc3"])) {
             return static::round_number(50 + ((float)$value / 2), 3);
         }
