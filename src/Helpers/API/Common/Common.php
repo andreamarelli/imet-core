@@ -303,13 +303,13 @@ class Common
         $query = $request->collect()->all();
         $items = [];
         $group = 1;
+        $records = [];
 
         foreach ($query as $k => $item) {
             if (strpos($k, "group_") !== false) {
-                $query_group_ids = $request->get($k, null);
                 $years = [];
                 $keys = explode('_', $k);
-                $years_keys = $request->get('years_' . $keys[1], null);
+                $years_keys = $request->get('years_' . $keys[1]);
                 if ($years_keys) {
                     $years = explode(',', $years_keys);
                 }
@@ -328,7 +328,7 @@ class Common
             }
         }
 
-        return $items;
+        return [$items, $records];
     }
 
     /**

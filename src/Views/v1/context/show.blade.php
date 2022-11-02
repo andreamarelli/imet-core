@@ -35,10 +35,13 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     {{--  Modules (by step) --}}
     <div class="imet_modules">
         @foreach($item::modules()[$step] as $module)
-
-            @include('modular-forms::module.show.container', [
-                'module_class' => $module,
-                'form_id' => $item->getKey()])
+            @if(Role::hasRequiredAccessLevel($module))
+                @include('modular-forms::module.show.container', [
+                 'module_class' => $module,
+                 'form_id' => $item->getKey()])
+            @else
+                @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
+            @endif
         @endforeach
     </div>
 

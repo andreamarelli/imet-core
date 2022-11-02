@@ -5,8 +5,6 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v1;
-use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\Report;
@@ -16,10 +14,12 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
+use Intervention\Image\Exception\NotFoundException;
 
 
 class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
 {
+    public const AUTHORIZE_BY_POLICY = true;
     use ScalingUpApi;
     use Assessment;
     use StatisticsApi;
@@ -38,6 +38,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
         $api = ['data' => [], 'labels' => []];
 
         $records = $request->attributes->get('records');
+        $this->authorize('api_assessment', $records[0]);
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
@@ -71,24 +72,22 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
      * @return object
      * @throws ErrorException
      */
-    public function get_imet(Request $request, string $lang, string $key, int $wdpa_id, int $year = null): object
+    public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, int $year = null): object
     {
         $api = ['data' => [], 'labels' => []];
 
         $records = $request->attributes->get('records');
-        if (count($records) === 0) {
-            return static::sendAPIResponse([]);
-        }
-        $model = ModuleKey::KeyToClassName($key);
-
+        $model = ModuleKey::KeyToClassName($slug);
+        $this->authorize('api_details', $records[0], $model);
         if (count($records) > 1) {
             throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
         }
 
         $form_id = $records[0]['FormID'] ?? null;
         if ($form_id === null) {
-            return static::sendAPIResponse([]);
+            throw new NotFoundException(trans('imet-core::api.error_messages.no_records_found'));
         }
+
         $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
         $accepted_fields = [];
         if (count($items) > 0) {
@@ -102,10 +101,8 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
                 }
                 $accepted_fields[] = $filtered_fields;
             }
-
-
-            $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $accepted_fields];
         }
+        $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'],  'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $accepted_fields];
         return static::sendAPIResponse($api);
     }
 
@@ -153,17 +150,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
     public static function get_protected_areas_list(Request $request, string $language = 'en'): object
     {
         $api = [];
-        $list_v1 = v1\Imet
-            ::filterList($request)
-            ->with('country')
-            ->get();
-
-        $list_v2 = v2\Imet
-            ::filterList($request)
-            ->with('country')
-            ->get();
-
-        $list = $list_v1->merge($list_v2);
+        $list = Imet::retrieve_list($request, ['country']);
 
         $list->map(function ($item){
             if(ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
@@ -187,4 +174,8 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
 
         return static::sendAPIResponse(['data' => $api]);
     }
+
+
+
+
 }
