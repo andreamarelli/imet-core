@@ -4,17 +4,18 @@ DROP SCHEMA IF EXISTS imet_assessment_v1_to_v2 CASCADE;
 DROP SCHEMA IF EXISTS imet_assessment_v2 CASCADE;
 DROP SCHEMA IF EXISTS imet_assessment CASCADE;
 
-ALTER TABLE imet.imet_form ALTER COLUMN "Country" TYPE VARCHAR(25);
+ALTER TABLE imet.imet_form ALTER COLUMN "Country" TYPE TEXT;
 
+-- ###############################################
+-- ###############################################
+-- ###############################################
 
-
--- Create assessment schemas again
 CREATE SCHEMA IF NOT EXISTS imet_assessment;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c2(
-    item_class text,
-    tablename text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -23,20 +24,20 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c2(
 
 AS $BODY$
 declare
-    wherec text;
-    schemaname text;
-    sql text;
+wherec text;
+  schemaname text;
+sql text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherec:= ' "FormID" = ANY(''{'||form_id||'}''::int[])  and ';
-    else
-        wherec:= '';
-    end if;
+  if form_id is not null then
+    wherec:= ' "FormID" = ANY(''{'||form_id||'}''::int[])  and ';
+else
+    wherec:= '';
+end if;
 
-    sql := 'select "FormID",'''||item_class||'''::text as section ,
+sql := 'select "FormID",'''||item_class||'''::text as section ,
 
 		(SUM("EvaluationScore"*"EvaluationScore2")
 		/
@@ -51,14 +52,14 @@ BEGIN
 		group by "FormID"
 		order by "FormID"';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c3(
-    item_class text,
-    tablename text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -68,21 +69,21 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c3(
 AS $BODY$
 declare
 
-    wherea text;
-    schemaname text;
-    sql text;
+wherea text;
+  schemaname text;
+sql text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null
-    then
-        wherea:= ' where "FormID" = ANY(''{'||form_id||'}''::int[])  ';
-    else
-        wherea:= '';
-    end if;
+  if form_id is not null
+  then
+    wherea:= ' where "FormID" = ANY(''{'||form_id||'}''::int[])  ';
+else
+    wherea:= '';
+end if;
 
-    sql := '
+sql := '
 
      with table0 as (select
 "FormID" as formid,
@@ -128,14 +129,14 @@ from
 tableavgnpower
 group by formid;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c12(
-    item_class text,
-    tablename text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -144,34 +145,34 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c12(
 
 AS $BODY$
 declare
-    wherec text;
-    schemaname text;
-    sql text;
+wherec text;
+  schemaname text;
+sql text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherec:= ' "FormID" = ANY(''{'||form_id||'}''::int[])  and ';
-    else
-        wherec:= '';
-    end if;
+  if form_id is not null then
+    wherec:= ' "FormID" = ANY(''{'||form_id||'}''::int[])  and ';
+else
+    wherec:= '';
+end if;
 
-    sql := 'select "FormID",'''||item_class||'''::text as section ,
+sql := 'select "FormID",'''||item_class||'''::text as section ,
              (SUM( (1+2*"SignificativeClassification"::int)*"EvaluationScore") / SUM(1+2*"SignificativeClassification"::int))*100/3::float as value_p
              from "'||schemaname||'"."'||tablename||'"
 	     where '||wherec||' "EvaluationScore" is not null and "EvaluationScore">=0 and "SignificativeClassification" is not null
 	     group by "FormID"
 	     order by "FormID"';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c13(
-    item_class text,
-    tablename text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -180,20 +181,20 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c13(
 
 AS $BODY$
 declare
-    wherec text;
-    schemaname text;
-    sql text;
+wherec text;
+  schemaname text;
+sql text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherec:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
-    else
-        wherec:= '';
-    end if;
+  if form_id is not null then
+    wherec:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
+else
+    wherec:= '';
+end if;
 
-    sql := '
+sql := '
         with table1 as (
            select "FormID","EvaluationScore",
              case when "SignificativeSpecies" is null then 0::int
@@ -209,14 +210,14 @@ BEGIN
 	     group by "FormID"
 	     order by "FormID"';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c14(
-    item_class text,
-    tablename text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -225,20 +226,20 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_c14(
 
 AS $BODY$
 declare
-    wherec text;
-    schemaname text;
-    sql text;
+wherec text;
+  schemaname text;
+sql text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherec:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
-    else
-        wherec:= '';
-    end if;
+  if form_id is not null then
+    wherec:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
+else
+    wherec:= '';
+end if;
 
-    sql := '
+sql := '
      with table1 as (
            select "FormID","EvaluationScore",
              case when "EvaluationScore2" is null then 1::int
@@ -255,15 +256,15 @@ BEGIN
 	     group by "FormID"
 	     order by "FormID"';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_i2(
-    item_class text,
-    tablename text,
-    field_value text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	field_value text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -272,25 +273,25 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_i2(
 
 AS $BODY$
 declare
-    schemaname text;
-    sql text;
-    wherea text;
+schemaname text;
+sql text;
+  wherea text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherea:= ' where b."FormID" = ANY(''{'||form_id||'}''::int[]) ';
-    else
-        wherea:= '';
-    end if;
+  if form_id is not null then
+		wherea:= ' where b."FormID" = ANY(''{'||form_id||'}''::int[]) ';
+else
+		wherea:= '';
+end if;
 
-    --temporary sql to put fixed value..TODO
-    sql := 'select "FormID",'''||item_class||'''::text as section , 88.1::double precision as value_p
+  --temporary sql to put fixed value..TODO
+sql := 'select "FormID",'''||item_class||'''::text as section , 88.1::double precision as value_p
      from "'||schemaname||'"."'||tablename||'"
      group by "FormID" order by "FormID";';
 
-    sql := '
+sql := '
      with table0 as (select
     a."FormID" as formid,
     a."Theme" as theme,
@@ -334,15 +335,15 @@ from table1 a
   group by formid order by formid
      ';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_i5(
-    item_class text,
-    tablename text,
-    field_value text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	field_value text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -351,25 +352,25 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_i5(
 
 AS $BODY$
 declare
-    schemaname text;
-    sql text;
-    wherea text;
+schemaname text;
+sql text;
+  wherea text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherea:= ' where a."FormID" = ANY(''{'||form_id||'}''::int[]) ';
-    else
-        wherea:= '';
-    end if;
+  if form_id is not null then
+		wherea:= ' where a."FormID" = ANY(''{'||form_id||'}''::int[]) ';
+else
+		wherea:= '';
+end if;
 
-    --temporary sql to put fixed value..TODO
-    sql := 'select "FormID",'''||item_class||'''::text as section , 24.4::double precision as value_p
+  --temporary sql to put fixed value..TODO
+sql := 'select "FormID",'''||item_class||'''::text as section , 24.4::double precision as value_p
      from "'||schemaname||'"."'||tablename||'"
      group by "FormID" order by "FormID";';
 
-    sql := '
+sql := '
      with table0 as(
     select
     "FormID" as formid,
@@ -409,15 +410,15 @@ select c.formid,'''||item_class||'''::text as section ,
 from table2 c group by c.formid
      ';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_pr1(
-    item_class text,
-    tablename text,
-    field_value text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	field_value text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -426,25 +427,25 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_pr1(
 
 AS $BODY$
 declare
-    schemaname text;
-    sql text;
-    wherea text;
+   schemaname text;
+   sql text;
+   wherea text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
     if form_id is not null then
-        wherea:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
+		wherea:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
     else
-        wherea:= '';
+		wherea:= '';
     end if;
 
-    --temporary sql to put fixed value..TODO
-    sql := 'select "FormID",'''||item_class||'''::text as section , 54.8::double precision as value_p
+  --temporary sql to put fixed value..TODO
+sql := 'select "FormID",'''||item_class||'''::text as section , 54.8::double precision as value_p
      from "'||schemaname||'"."'||tablename||'"
      group by "FormID" order by "FormID";';
 
-    sql := '
+sql := '
  with table0 as(
     select
     "FormID" as formid,
@@ -470,15 +471,15 @@ from table0
 group by "FormID" order by "FormID";
      ';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_pr13(
-    item_class text,
-    tablename text,
-    field_value text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	field_value text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -487,25 +488,25 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_cm_pr13(
 
 AS $BODY$
 declare
-    schemaname text;
-    sql text;
-    wherea text;
+schemaname text;
+sql text;
+  wherea text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherea:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
-    else
-        wherea:= '';
-    end if;
+  if form_id is not null then
+		wherea:= ' where "FormID" = ANY(''{'||form_id||'}''::int[]) ';
+else
+		wherea:= '';
+end if;
 
-    --temporary sql to put fixed value..TODO
-    sql := 'select "FormID",'''||item_class||'''::text as section , 43.3::double precision as value_p
+  --temporary sql to put fixed value..TODO
+sql := 'select "FormID",'''||item_class||'''::text as section , 43.3::double precision as value_p
      from "'||schemaname||'"."'||tablename||'"
      group by "FormID" order by "FormID";';
 
-    sql:= '
+sql:= '
      with table0 as(select
 
 "FormID" as formid,
@@ -529,16 +530,16 @@ from table0
 group by formid
      ';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_group_all(
-    item_class text,
-    tablename text,
-    field_value text,
-    field_group_element text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	field_value text,
+	field_group_element text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -547,38 +548,38 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_group_all(
 
 AS $BODY$
 declare
-    schemaname text;
-    sql text;
-    wherea text;
+schemaname text;
+sql text;
+  wherea text;
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherea:= ' "FormID" = ANY(''{'||form_id||'}''::int[]) and ';
-    else
-        wherea:= '';
-    end if;
+  if form_id is not null then
+		wherea:= ' "FormID" = ANY(''{'||form_id||'}''::int[]) and ';
+else
+		wherea:= '';
+end if;
 
-    sql := 'select formid,'''||item_class||'''::text as section ,AVG(avg_t.avg_g)/3*100::float as value_p
+sql := 'select formid,'''||item_class||'''::text as section ,AVG(avg_t.avg_g)/3*100::float as value_p
      from
      (select "FormID" as formid,"'
-               ||field_group_element||'"
+         ||field_group_element||'"
      ,AVG("'||field_value||'")as avg_g
      from "'||schemaname||'"."'||tablename||'"
      where '||wherea||' "EvaluationScore" != -99
      group by "'||field_group_element||'" , "FormID") as avg_t GROUP BY formid order by formid;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_rank_all(
-    tablename text,
-    field_value text,
-    item_class text,
-    form_id text DEFAULT NULL::text)
+	tablename text,
+	field_value text,
+	item_class text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -587,38 +588,38 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_rank_all(
 
 AS $BODY$
 declare
-    schemaname text;
-    sql text;
-    wherea text;
+schemaname text;
+sql text;
+  wherea text;
 
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherea:= ' a."FormID" = ANY(''{'||form_id||'}''::int[]) and ';
-    else
-        wherea:= '';
-    end if;
+  if form_id is not null then
+		wherea:= ' a."FormID" = ANY(''{'||form_id||'}''::int[]) and ';
+else
+		wherea:= '';
+end if;
 
-    sql:= 'select a."FormID",'''||item_class||'''::text as section,b."value_p" from '||schemaname||'."'||
-          tablename||
-          '" a JOIN "imet_assessment"."imet_rank_pval" b on a."'||
-          field_value||
-          '" = b."key" where '||wherea||' b.item_classification='''||
-          item_class||'''
+sql:= 'select a."FormID",'''||item_class||'''::text as section,b."value_p" from '||schemaname||'."'||
+        tablename||
+        '" a JOIN "imet_assessment"."imet_rank_pval" b on a."'||
+        field_value||
+        '" = b."key" where '||wherea||' b.item_classification='''||
+        item_class||'''
       group by a."FormID",b."value_p"
        order by a."FormID";';
-    raise notice 'sql %', sql;
-    RETURN QUERY EXECUTE sql;
+raise notice 'sql %', sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_table_all(
-    item_class text,
-    tablename text,
-    field_value text,
-    form_id text DEFAULT NULL::text)
+	item_class text,
+	tablename text,
+	field_value text,
+	form_id text DEFAULT NULL::text)
     RETURNS TABLE(formid integer, section text, value_p double precision)
     LANGUAGE 'plpgsql'
     COST 100
@@ -627,32 +628,32 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_table_all(
 
 AS $BODY$
 declare
-    schemaname text;
-    sql text;
-    wherea text DEFAULT '';
+schemaname text;
+sql text;
+  wherea text DEFAULT '';
 
 BEGIN
-    schemaname:= 'imet';
+  schemaname:= 'imet';
 
-    if form_id is not null then
-        wherea:= '  "FormID" = ANY(''{'||form_id||'}''::int[])  and ';
-    end if;
+  if form_id is not null then
+		wherea:= '  "FormID" = ANY(''{'||form_id||'}''::int[])  and ';
+end if;
 
-    sql := 'select formid,'''||item_class||'''::text as section ,AVG(avg_t.avg_g)/3*100::float as value_p
+sql := 'select formid,'''||item_class||'''::text as section ,AVG(avg_t.avg_g)/3*100::float as value_p
      from
      (select "FormID" as formid,'
-        ' AVG("'||field_value||'")as avg_g
+                                         ' AVG("'||field_value||'")as avg_g
      from "'||schemaname||'"."'||tablename||'" where '||wherea||' "'||field_value||'"!=(-99::numeric)
      group by "FormID") as avg_t GROUP BY formid order by formid;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_forms(
-    form_id text DEFAULT NULL::text,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, "Year" integer, wdpa_id integer, iso3 character, name text)
+	form_id text DEFAULT NULL::text,
+	c_iso3 text DEFAULT NULL::text)
+    RETURNS TABLE(formid integer, "Year" integer, wdpa_id integer, iso3 text, name text)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -660,20 +661,20 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_forms(
 
 AS $BODY$
 declare
-    sql text;
-    wherea text DEFAULT '';
+sql text;
+  wherea text DEFAULT '';
 
 BEGIN
 
-    if form_id is not null then
-        wherea:= ' where imet_form."FormID" = ANY(''{'||form_id||'}''::int[]) ';
+	if form_id is not null then
+		wherea:= ' where imet_form."FormID" = ANY(''{'||form_id||'}''::int[]) ';
     end if;
 
-    if c_iso3 is not null then
-        if form_id is not null then
-            wherea:= wherea || ' and imet_form."Country" = '''||c_iso3||''' ';
+	if c_iso3 is not null then
+		if form_id is not null then
+			wherea:= wherea || ' and imet_form."Country" = '''||c_iso3||''' ';
         else
-            wherea:= ' where imet_form."Country" =  '''||c_iso3||''' ';
+			wherea:= ' where imet_form."Country" =  '''||c_iso3||''' ';
         end if;
     end if;
 
@@ -691,9 +692,9 @@ END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_step1(
-    form_id text DEFAULT NULL::text,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, c1 numeric, c2 numeric, c3 numeric, c11 numeric, c12 numeric, c13 numeric, c14 numeric, c15 numeric, c16 numeric, avg_indicator numeric)
+	form_id text DEFAULT NULL::text,
+	c_iso3 text DEFAULT NULL::text)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, c1 numeric, c2 numeric, c3 numeric, c11 numeric, c12 numeric, c13 numeric, c14 numeric, c15 numeric, c16 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -701,22 +702,22 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_s
 
 AS $BODY$
 declare
-    sql text;
-    parameters text DEFAULT ',NULL';
-    form_parameters text DEFAULT 'NULL';
+sql text;
+  parameters text DEFAULT ',NULL';
+  form_parameters text DEFAULT 'NULL';
 BEGIN
 
-    if form_id is not null then
-        parameters := ','''||form_id||''' ';
-        form_parameters := ''''||form_id||'''';
-    end if;
+	if form_id is not null then
+		parameters := ','''||form_id||''' ';
+		form_parameters := ''''||form_id||'''';
+end if;
 
-    if c_iso3 is not null then
-        form_parameters := form_parameters || ', '''||c_iso3||'''';
-    end if;
+	if c_iso3 is not null then
+		form_parameters := form_parameters || ', '''||c_iso3||'''';
+end if;
 
 
-    sql := ' WITH table0 AS (
+sql := ' WITH table0 AS (
 			 SELECT get_imet_forms.formid,
 				get_imet_forms."Year",
 				get_imet_forms.wdpa_id,
@@ -807,15 +808,15 @@ BEGIN
           WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
    FROM tableall;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_step2(
-    form_id text DEFAULT NULL::text,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, p1 numeric, p2 numeric, p3 numeric, p4 numeric, p5 numeric, p6 numeric, avg_indicator numeric)
+	form_id text DEFAULT NULL::text,
+	c_iso3 text DEFAULT NULL::text)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, p1 numeric, p2 numeric, p3 numeric, p4 numeric, p5 numeric, p6 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -823,22 +824,22 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_s
 
 AS $BODY$
 declare
-    sql text;
-    parameters text DEFAULT ',NULL';
-    form_parameters text DEFAULT 'NULL';
+sql text;
+ parameters text DEFAULT ',NULL';
+  form_parameters text DEFAULT 'NULL';
 BEGIN
 
-    if form_id is not null then
-        parameters := ','''||form_id||''' ';
-        form_parameters := ''''||form_id||'''';
-    end if;
+	if form_id is not null then
+		parameters := ','''||form_id||''' ';
+		form_parameters := ''''||form_id||'''';
+end if;
 
-    if c_iso3 is not null then
-        form_parameters := form_parameters || ', '''||c_iso3||'''';
-    end if;
+	if c_iso3 is not null then
+		form_parameters := form_parameters || ', '''||c_iso3||'''';
+end if;
 
 
-    sql := ' WITH table0 AS (
+sql := ' WITH table0 AS (
 			 SELECT get_imet_forms.formid,
 				get_imet_forms."Year",
 				get_imet_forms.wdpa_id,
@@ -910,14 +911,14 @@ BEGIN
    FROM tableall
   ORDER BY tableall.iso3, tableall.name;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_step3(
-    form_id text DEFAULT NULL::text,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, i1 numeric, i2 numeric, i3 numeric, i4 numeric, i5 numeric, avg_indicator numeric)
+	form_id text DEFAULT NULL::text,
+	c_iso3 text DEFAULT NULL::text)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, i1 numeric, i2 numeric, i3 numeric, i4 numeric, i5 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -925,21 +926,21 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_s
 
 AS $BODY$
 declare
-    sql text;
-    parameters text DEFAULT ',NULL';
-    form_parameters text DEFAULT 'NULL';
+sql text;
+  parameters text DEFAULT ',NULL';
+  form_parameters text DEFAULT 'NULL';
 BEGIN
 
-    if form_id is not null then
-        parameters := ','''||form_id||''' ';
-        form_parameters := ''''||form_id||'''';
+	if form_id is not null then
+		parameters := ','''||form_id||''' ';
+		form_parameters := ''''||form_id||'''';
     end if;
 
-    if c_iso3 is not null then
-        form_parameters := form_parameters || ', '''||c_iso3||'''';
+	if c_iso3 is not null then
+		form_parameters := form_parameters || ', '''||c_iso3||'''';
     end if;
 
-    sql := ' WITH table0 AS (
+sql := ' WITH table0 AS (
 			 SELECT get_imet_forms.formid,
 				get_imet_forms."Year",
 				get_imet_forms.wdpa_id,
@@ -1003,14 +1004,14 @@ BEGIN
    FROM tableall
   ORDER BY tableall.iso3, tableall.name;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_step4(
-    form_id text DEFAULT NULL::text,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, pr1 numeric, pr2 numeric, pr3 numeric, pr4 numeric, pr5 numeric, pr6 numeric, pr7 numeric, pr8 numeric, pr9 numeric, pr10 numeric, pr11 numeric, pr12 numeric, pr13 numeric, pr14 numeric, pr15 numeric, pr16 numeric, pr17 numeric, pr18 numeric, pr19 numeric, pr1_6 numeric, pr7_10 numeric, pr11_13 numeric, pr14_15 numeric, pr16_17 numeric, pr18_19 numeric, avg_indicator numeric)
+	form_id text DEFAULT NULL::text,
+	c_iso3 text DEFAULT NULL::text)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, pr1 numeric, pr2 numeric, pr3 numeric, pr4 numeric, pr5 numeric, pr6 numeric, pr7 numeric, pr8 numeric, pr9 numeric, pr10 numeric, pr11 numeric, pr12 numeric, pr13 numeric, pr14 numeric, pr15 numeric, pr16 numeric, pr17 numeric, pr18 numeric, pr19 numeric, pr1_6 numeric, pr7_10 numeric, pr11_13 numeric, pr14_15 numeric, pr16_17 numeric, pr18_19 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -1018,22 +1019,22 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_s
 
 AS $BODY$
 declare
-    sql text;
-    parameters text DEFAULT ',NULL';
-    form_parameters text DEFAULT 'NULL';
+sql text;
+  parameters text DEFAULT ',NULL';
+  form_parameters text DEFAULT 'NULL';
 BEGIN
 
-    if form_id is not null then
-        parameters := ','''||form_id||''' ';
-        form_parameters := ''''||form_id||'''';
-    end if;
+	if form_id is not null then
+		parameters := ','''||form_id||''' ';
+		form_parameters := ''''||form_id||'''';
+end if;
 
-    if c_iso3 is not null then
-        form_parameters := form_parameters || ', '''||c_iso3||'''';
-    end if;
+	if c_iso3 is not null then
+		form_parameters := form_parameters || ', '''||c_iso3||'''';
+end if;
 
 
-    sql := ' WITH table0 AS (
+sql := ' WITH table0 AS (
 			 SELECT get_imet_forms.formid,
 				get_imet_forms."Year",
 				get_imet_forms.wdpa_id,
@@ -1226,14 +1227,14 @@ BEGIN
           WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
    FROM tableall;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_step5(
-    form_id text DEFAULT NULL::text,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, r1 numeric, r2 numeric, avg_indicator numeric)
+	form_id text DEFAULT NULL::text,
+	c_iso3 text DEFAULT NULL::text)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, r1 numeric, r2 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -1241,22 +1242,22 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_s
 
 AS $BODY$
 declare
-    sql text;
-    parameters text DEFAULT ',NULL';
-    form_parameters text DEFAULT 'NULL';
+sql text;
+  parameters text DEFAULT ',NULL';
+  form_parameters text DEFAULT 'NULL';
 BEGIN
 
-    if form_id is not null then
-        parameters := ','''||form_id||''' ';
-        form_parameters := ''''||form_id||'''';
-    end if;
+	if form_id is not null then
+		parameters := ','''||form_id||''' ';
+		form_parameters := ''''||form_id||'''';
+end if;
 
-    if c_iso3 is not null then
-        form_parameters := form_parameters || ', '''||c_iso3||'''';
-    end if;
+	if c_iso3 is not null then
+		form_parameters := form_parameters || ', '''||c_iso3||'''';
+end if;
 
 
-    sql := ' WITH table0 AS (
+sql := ' WITH table0 AS (
 			 SELECT get_imet_forms.formid,
 				get_imet_forms."Year",
 				get_imet_forms.wdpa_id,
@@ -1296,14 +1297,14 @@ BEGIN
           WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 2) AS avg_indicator
    FROM tableall;' ;
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
 CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_step6(
-    form_id text DEFAULT NULL::text,
-    c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, ei1 numeric, ei2 numeric, ei3 numeric, ei4 numeric, ei5 numeric, ei6 numeric, avg_indicator numeric)
+	form_id text DEFAULT NULL::text,
+	c_iso3 text DEFAULT NULL::text)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, ei1 numeric, ei2 numeric, ei3 numeric, ei4 numeric, ei5 numeric, ei6 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -1311,24 +1312,24 @@ CREATE OR REPLACE FUNCTION imet_assessment.get_imet_evaluation_stats_by_formid_s
 
 AS $BODY$
 declare
-    sql text;
-    parameters text DEFAULT ', NULL';
-    form_parameters text DEFAULT 'NULL';
+sql text;
+  parameters text DEFAULT ', NULL';
+  form_parameters text DEFAULT 'NULL';
 
 BEGIN
 
-    if form_id is not null then
-        parameters := ', '''||form_id||''' ';
-        form_parameters := ''''||form_id||'''';
-    end if;
+	if form_id is not null then
+		parameters := ', '''||form_id||''' ';
+		form_parameters := ''''||form_id||'''';
+end if;
 
-    if c_iso3 is not null then
-        form_parameters := form_parameters || ', '''||c_iso3||''' ';
-    else
-        form_parameters := form_parameters || ', NULL';
-    end if;
+	if c_iso3 is not null then
+		form_parameters := form_parameters || ', '''||c_iso3||''' ';
+else
+		form_parameters := form_parameters || ', NULL';
+end if;
 
-    sql := ' WITH table0 AS (
+sql := ' WITH table0 AS (
          SELECT get_imet_forms.formid,
 				get_imet_forms."Year",
 				get_imet_forms.wdpa_id,
@@ -1399,7 +1400,7 @@ BEGIN
           WHERE v.col IS NOT NULL), 0)::double precision)::numeric, 1) AS avg_indicator
    FROM tableall;';
 
-    RETURN QUERY EXECUTE sql;
+RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
 
@@ -2009,7 +2010,7 @@ WITH table0 AS (
         LEFT JOIN table3 d ON ((a.formid = d.formid)))
         LEFT JOIN table4 e ON ((a.formid = e.formid)))
         LEFT JOIN table5 f ON ((a.formid = f.formid)))
-        LEFT JOIN table6 g ON ((a.formid = g.formid)))
+             LEFT JOIN table6 g ON ((a.formid = g.formid)))
     ORDER BY a.formid
 )
 SELECT DISTINCT tableall.formid,
@@ -2289,11 +2290,12 @@ INSERT INTO imet_assessment.imet_rank_pval VALUES (17, 3, 87.5, 'EVAL PR9');
 INSERT INTO imet_assessment.imet_rank_pval VALUES (19, 4, 100, 'EVAL PR9');
 
 
-CREATE SCHEMA imet_assessment_v2;
 
---- TABLES
+-- ###############################################
+-- ###############################################
+-- ###############################################
 
-SET default_with_oids = true;
+CREATE SCHEMA IF NOT EXISTS imet_assessment_v2;
 
 CREATE TABLE imet_assessment_v2.imet_rank_pval (
                                                    id integer NOT NULL PRIMARY KEY,
@@ -4134,8 +4136,10 @@ WITH table0 AS (
                         )::numeric
                + coalesce(eval_management_plan."VisionAdequacy", 0)
                + coalesce( eval_management_plan."PlanAdequacyScore", 0)
-               ) / (10.0 - (coalesce(1 - (eval_management_plan."VisionAdequacy"/eval_management_plan."VisionAdequacy"), 3))
-               - (coalesce(1 - (eval_management_plan."PlanAdequacyScore"/eval_management_plan."PlanAdequacyScore"), 3))) AS value_p
+               ) / (10.0 - nullif(
+                       (coalesce(1 - (eval_management_plan."VisionAdequacy"/nullif(eval_management_plan."VisionAdequacy", 0)), 3)) +
+                       (coalesce(1 - (eval_management_plan."PlanAdequacyScore"/nullif(eval_management_plan."PlanAdequacyScore", 0)), 3)
+                   ) ,0)) AS value_p
     FROM imet.eval_management_plan
 ), table5 AS (
     SELECT eval_work_plan."FormID" AS formid,
@@ -4147,8 +4151,10 @@ WITH table0 AS (
                         )::numeric
                + coalesce(eval_work_plan."VisionAdequacy", 0)
                + coalesce( eval_work_plan."PlanAdequacyScore", 0)
-               ) / (10.0 - (coalesce(1 - (eval_work_plan."VisionAdequacy"/eval_work_plan."VisionAdequacy"), 3))
-               - (coalesce(1 - (eval_work_plan."PlanAdequacyScore"/eval_work_plan."PlanAdequacyScore"), 3))) AS value_p
+               ) / (10.0 - nullif(
+                       (coalesce(1 - (eval_work_plan."VisionAdequacy"/nullif(eval_work_plan."VisionAdequacy", 0)), 3)) +
+                       (coalesce(1 - (eval_work_plan."PlanAdequacyScore"/nullif(eval_work_plan."PlanAdequacyScore", 0)), 3))
+               , 0)) AS value_p
     FROM imet.eval_work_plan
 ), table6 AS (
     SELECT get_imet_evaluation_stats_table_all.formid,
@@ -4190,7 +4196,6 @@ SELECT DISTINCT tableall.formid,
                                                                                                                                                                                                                                                                              WHERE v.col IS NOT NULL))::double precision, 0::double precision))::numeric, 1) AS avg_indicator
 FROM tableall
 ORDER BY tableall.iso3, tableall.name;
-
 
 CREATE OR REPLACE VIEW imet_assessment_v2.v_imet_eval_stat_step3
 AS
@@ -4706,7 +4711,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_forms(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, "Year" integer, wdpa_id integer, iso3 character, name text)
+    RETURNS TABLE(formid integer, "Year" integer, wdpa_id integer, iso3 text, name text)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5145,7 +5150,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_step_by_formid_summary(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, year integer, iso3 character, name text, context numeric, planning numeric, inputs numeric, process numeric, outputs numeric, outcomes numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, year integer, iso3 text, name text, context numeric, planning numeric, inputs numeric, process numeric, outputs numeric, outcomes numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5242,7 +5247,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_by_formid_step1(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, c1 numeric, c2 numeric, c3 numeric, c11 numeric, c12 numeric, c13 numeric, c14 numeric, c15 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, c1 numeric, c2 numeric, c3 numeric, c11 numeric, c12 numeric, c13 numeric, c14 numeric, c15 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5362,7 +5367,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_by_formid_step2(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, p1 numeric, p2 numeric, p3 numeric, p4 numeric, p5 numeric, p6 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, p1 numeric, p2 numeric, p3 numeric, p4 numeric, p5 numeric, p6 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5418,8 +5423,10 @@ BEGIN
                 )::numeric
                     + coalesce(eval_management_plan."VisionAdequacy", 0)
                     + coalesce( eval_management_plan."PlanAdequacyScore", 0)
-            ) / (10.0 - (coalesce(1 - (eval_management_plan."VisionAdequacy"/eval_management_plan."VisionAdequacy"), 3))
-                     - (coalesce(1 - (eval_management_plan."PlanAdequacyScore"/eval_management_plan."PlanAdequacyScore"), 3))) AS value_p
+                ) / (10.0 - nullif(
+                       (coalesce(1 - (eval_management_plan."VisionAdequacy"/nullif(eval_management_plan."VisionAdequacy", 0)), 3)) +
+                       (coalesce(1 - (eval_management_plan."PlanAdequacyScore"/nullif(eval_management_plan."PlanAdequacyScore", 0)), 3)
+                   ) ,0)) AS value_p
            FROM imet.eval_management_plan
 		    '||wherea||'
         ), table5 AS (
@@ -5432,8 +5439,10 @@ BEGIN
                 )::numeric
                     + coalesce(eval_work_plan."VisionAdequacy", 0)
                     + coalesce( eval_work_plan."PlanAdequacyScore", 0)
-            ) / (10.0 - (coalesce(1 - (eval_work_plan."VisionAdequacy"/eval_work_plan."VisionAdequacy"), 3))
-                     - (coalesce(1 - (eval_work_plan."PlanAdequacyScore"/eval_work_plan."PlanAdequacyScore"), 3))) AS value_p
+            ) / (10.0 - nullif(
+                       (coalesce(1 - (eval_work_plan."VisionAdequacy"/nullif(eval_work_plan."VisionAdequacy", 0)), 3)) +
+                       (coalesce(1 - (eval_work_plan."PlanAdequacyScore"/nullif(eval_work_plan."PlanAdequacyScore", 0)), 3))
+               , 0)) AS value_p
            FROM imet.eval_work_plan
 		    '||wherea||'
         ), table6 AS (
@@ -5483,7 +5492,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_by_formid_step3(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, i1 numeric, i2 numeric, i3 numeric, i4 numeric, i5 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, i1 numeric, i2 numeric, i3 numeric, i4 numeric, i5 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5579,7 +5588,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_by_formid_step4(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, pr1 numeric, pr2 numeric, pr3 numeric, pr4 numeric, pr5 numeric, pr6 numeric, pr7 numeric, pr8 numeric, pr9 numeric, pr10 numeric, pr11 numeric, pr12 numeric, pr13 numeric, pr14 numeric, pr15 numeric, pr16 numeric, pr17 numeric, pr18 numeric, pr1_6 numeric, pr7_9 numeric, pr10_12 numeric, pr13_14 numeric, pr15_16 numeric, pr17_18 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, pr1 numeric, pr2 numeric, pr3 numeric, pr4 numeric, pr5 numeric, pr6 numeric, pr7 numeric, pr8 numeric, pr9 numeric, pr10 numeric, pr11 numeric, pr12 numeric, pr13 numeric, pr14 numeric, pr15 numeric, pr16 numeric, pr17 numeric, pr18 numeric, pr1_6 numeric, pr7_9 numeric, pr10_12 numeric, pr13_14 numeric, pr15_16 numeric, pr17_18 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5693,7 +5702,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_by_formid_step5(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, op1 numeric, op2 numeric, op3 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, op1 numeric, op2 numeric, op3 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5771,7 +5780,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v2.get_imet_evaluation_stats_by_formid_step6(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, oc1 numeric, oc2 numeric, oc3 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, oc1 numeric, oc2 numeric, oc3 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -5844,8 +5853,13 @@ BEGIN
 END;
 $BODY$;
 
-CREATE SCHEMA IF NOT EXISTS imet_assessment_v1_to_v2;
 
+
+-- ###############################################
+-- ###############################################
+-- ###############################################
+
+CREATE SCHEMA IF NOT EXISTS imet_assessment_v1_to_v2;
 
 CREATE FUNCTION imet_assessment_v1_to_v2.get_imet_condition_stat_step_2_p3(p_value double precision) RETURNS double precision
     LANGUAGE 'plpgsql'
@@ -6677,7 +6691,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_by_formid_step1(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, c1 numeric, c2 numeric, c3 numeric, c11 numeric, c12 numeric, c13 numeric, c14 numeric, c15 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, c1 numeric, c2 numeric, c3 numeric, c11 numeric, c12 numeric, c13 numeric, c14 numeric, c15 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -6741,7 +6755,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_by_formid_step2(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, p1 numeric, p2 numeric, p3 numeric, p4 numeric, p5 numeric, p6 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, p1 numeric, p2 numeric, p3 numeric, p4 numeric, p5 numeric, p6 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -6798,7 +6812,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_by_formid_step3(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, i1 numeric, i2 numeric, i3 numeric, i4 numeric, i5 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, i1 numeric, i2 numeric, i3 numeric, i4 numeric, i5 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -6853,7 +6867,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_by_formid_step4(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, pr1 numeric, pr2 numeric, pr3 numeric, pr4 numeric, pr5 numeric, pr6 numeric, pr7 numeric, pr8 numeric, pr9 numeric, pr10 numeric, pr11 numeric, pr12 numeric, pr13 numeric, pr14 numeric, pr15 numeric, pr16 numeric, pr17 numeric, pr18 numeric, pr1_6 numeric, pr7_10 numeric, pr11_13 numeric, pr14_15 numeric, pr16_17 numeric, pr18_19 integer, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, pr1 numeric, pr2 numeric, pr3 numeric, pr4 numeric, pr5 numeric, pr6 numeric, pr7 numeric, pr8 numeric, pr9 numeric, pr10 numeric, pr11 numeric, pr12 numeric, pr13 numeric, pr14 numeric, pr15 numeric, pr16 numeric, pr17 numeric, pr18 numeric, pr1_6 numeric, pr7_10 numeric, pr11_13 numeric, pr14_15 numeric, pr16_17 numeric, pr18_19 integer, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -6944,7 +6958,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_by_formid_step5(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, op1 numeric, op2 numeric, op3 double precision, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, op1 numeric, op2 numeric, op3 double precision, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -7007,7 +7021,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_by_formid_step6(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, iso3 character, name text, oc1 numeric, oc2 numeric, oc3 numeric, avg_indicator numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, iso3 text, name text, oc1 numeric, oc2 numeric, oc3 numeric, avg_indicator numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -7059,7 +7073,7 @@ $BODY$;
 CREATE OR REPLACE FUNCTION imet_assessment_v1_to_v2.get_imet_evaluation_stats_step_by_formid_summary(
     form_id text DEFAULT NULL::text,
     c_iso3 text DEFAULT NULL::text)
-    RETURNS TABLE(formid integer, wdpa_id integer, year integer, iso3 character, name text, context numeric, planning numeric, inputs numeric, process numeric, outputs numeric, outcomes numeric)
+    RETURNS TABLE(formid integer, wdpa_id integer, year integer, iso3 text, name text, context numeric, planning numeric, inputs numeric, process numeric, outputs numeric, outcomes numeric)
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE PARALLEL UNSAFE
@@ -7150,5 +7164,7 @@ BEGIN
     RETURN QUERY EXECUTE sql;
 END;
 $BODY$;
+
+
 
 COMMIT;
