@@ -1849,7 +1849,7 @@ WITH table0 AS (
                ) / (10.0 - nullif(
                        (coalesce(1 - (eval_management_plan."VisionAdequacy"/nullif(eval_management_plan."VisionAdequacy", 0)), 3)) +
                        (coalesce(1 - (eval_management_plan."PlanAdequacyScore"/nullif(eval_management_plan."PlanAdequacyScore", 0)), 3)
-                           ) ,0)) AS value_p
+                   ) ,0)) AS value_p
     FROM imet.eval_management_plan
 ), table5 AS (
     SELECT eval_work_plan."FormID" AS formid,
@@ -3133,8 +3133,10 @@ BEGIN
                 )::numeric
                     + coalesce(eval_management_plan."VisionAdequacy", 0)
                     + coalesce( eval_management_plan."PlanAdequacyScore", 0)
-            ) / (10.0 - (coalesce(1 - (eval_management_plan."VisionAdequacy"/eval_management_plan."VisionAdequacy"), 3))
-                     - (coalesce(1 - (eval_management_plan."PlanAdequacyScore"/eval_management_plan."PlanAdequacyScore"), 3))) AS value_p
+                ) / (10.0 - nullif(
+                       (coalesce(1 - (eval_management_plan."VisionAdequacy"/nullif(eval_management_plan."VisionAdequacy", 0)), 3)) +
+                       (coalesce(1 - (eval_management_plan."PlanAdequacyScore"/nullif(eval_management_plan."PlanAdequacyScore", 0)), 3)
+                   ) ,0)) AS value_p
            FROM imet.eval_management_plan
 		    '||wherea||'
         ), table5 AS (
@@ -3147,8 +3149,10 @@ BEGIN
                 )::numeric
                     + coalesce(eval_work_plan."VisionAdequacy", 0)
                     + coalesce( eval_work_plan."PlanAdequacyScore", 0)
-            ) / (10.0 - (coalesce(1 - (eval_work_plan."VisionAdequacy"/eval_work_plan."VisionAdequacy"), 3))
-                     - (coalesce(1 - (eval_work_plan."PlanAdequacyScore"/eval_work_plan."PlanAdequacyScore"), 3))) AS value_p
+            ) / (10.0 - nullif(
+                       (coalesce(1 - (eval_work_plan."VisionAdequacy"/nullif(eval_work_plan."VisionAdequacy", 0)), 3)) +
+                       (coalesce(1 - (eval_work_plan."PlanAdequacyScore"/nullif(eval_work_plan."PlanAdequacyScore", 0)), 3))
+               , 0)) AS value_p
            FROM imet.eval_work_plan
 		    '||wherea||'
         ), table6 AS (
