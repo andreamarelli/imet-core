@@ -27,7 +27,7 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('assessments-performed-by-country', [ApiController::class, 'get_assessments_performed_by_country'])->name('imet_core::api::statistics.assessments_performed_by_country');
         Route::get('{lang}/global-statistics/{slug}/{year?}', [ApiController::class, 'get_global_statistics'])->name('imet_core::api::statistics.global');
 
-        Route::group(['middleware' => 'apiValidation'], function () {
+        Route::group(['middleware' => ['apiValidation', 'auth']], function () {
             Route::group(['middleware' => ['throttle:15,1']], function () {
                 Route::get('{lang}/assessment/report/{wdpa_id}/{year?}', [ApiController::class, 'get_assessment_report']);
             });
