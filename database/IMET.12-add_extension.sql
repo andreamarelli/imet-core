@@ -1,5 +1,5 @@
 BEGIN;
 
-CREATE EXTENSION unaccent;
+--CREATE EXTENSION unaccent;
 
 COMMIT;
