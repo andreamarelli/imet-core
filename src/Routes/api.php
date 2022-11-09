@@ -19,7 +19,7 @@ Route::group(['prefix' => 'api'], function () {
         Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
         Route::get('assessment/{item}/{step?}', [EvalController::class, 'assessment'])->name('imet_core::api::assessment');
 
-        Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list'])->name('imet_core::api::get_protected_areas_list');
+        Route::get('{lang}/protected-areas-list', [ApiController::class, 'get_protected_areas_list'])->middleware('auth')->name('imet_core::api::get_protected_areas_list');
 
         Route::get('total-number-of-assessments', [ApiController::class, 'get_total_number_of_assessments'])->name('imet_core::api::statistics.total_number_of_assessments');
         Route::get('pas-rating', [ApiController::class, 'get_pas_rating'])->name('imet_core::api::statistics.pas_rating');

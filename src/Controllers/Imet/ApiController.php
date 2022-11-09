@@ -146,8 +146,9 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
      * @param Request $request
      * @param string $language
      * @return object
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public static function get_protected_areas_list(Request $request, string $language = 'en'): object
+    public function get_protected_areas_list(Request $request, string $language = 'en'): object
     {
         $api = [];
         $list = Imet::retrieve_list($request, ['country']);
