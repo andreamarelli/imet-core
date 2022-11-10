@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
@@ -85,7 +86,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
     {
         static::forceLanguage($request->input('form_id'));
 
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
         $form_id = $request->input('form_id');
 
         static::dropFromDependencies($form_id, $records, [

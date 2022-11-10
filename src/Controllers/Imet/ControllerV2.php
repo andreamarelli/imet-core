@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\File\File;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,13 +55,13 @@ class ControllerV2 extends Controller
             $this->authorize('create', Imet::class);
         }
 
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
 
         // #### Create an prefilled IMET (data from a previous year) ####
         if(array_key_exists('prev_year_selection', $records[0])){
             $prev_year_selection = $records[0]['prev_year_selection'] ?? null;
             unset($records[0]['prev_year_selection']);
-            $request->merge(['records_json' => json_encode($records)]);
+            $request->merge(['records_json' => Payload::encode($records)]);
             if($prev_year_selection!==null && $prev_year_selection!=='no_import'){
                 return $this->store_prefilled($request, $prev_year_selection);
             }
@@ -84,7 +85,7 @@ class ControllerV2 extends Controller
      */
     private function store_non_wdpa(Request $request): array
     {
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
 
         try {
 
@@ -104,7 +105,7 @@ class ControllerV2 extends Controller
             $form_record['wdpa_id'] = $new_pa->getKey();
             $form_record['Country'] = $records[0]['country'];
             $form_record['version'] = Imet::version;
-            $request->merge(['records_json' => json_encode([$form_record])]);
+            $request->merge(['records_json' => Payload::encode([$form_record])]);
             return parent::store($request);
 
         } catch (\Exception $e) {
@@ -138,7 +139,7 @@ class ControllerV2 extends Controller
 
     public function store_prefilled(Request $request, $prev_year_selection)
     {
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
 
         $records[0]['language'] = null;
         $json = static::export(Imet::find($prev_year_selection), false);
