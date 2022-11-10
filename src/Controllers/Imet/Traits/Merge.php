@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,7 @@ trait Merge
         }, $records);
 
         $request = new Request();
-        $request->merge(['records_json' => json_encode($records)]);
+        $request->merge(['records_json' => Payload::encode($records)]);
         $request->merge(['form_id' => $destination_form_id]);
 
         $module_class::updateModule($request);

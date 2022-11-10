@@ -177,7 +177,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
                     let url = form.getAttribute('action');
                     let method = form.getAttribute('method');
                     let form_data = new FormData(form);
-                    form_data.append('records', JSON.stringify(this.records));
+                    form_data.append('records', window.ModularForms.Mixins.Payload.encode(this.records));
 
                     fetch(url, {
                         method: method,
