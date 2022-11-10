@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class ImportanceHabitats extends Modules\Component\ImetModule_Eval
@@ -77,7 +78,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     {
         static::forceLanguage($request->input('form_id'));
 
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
         $form_id = $request->input('form_id');
         $num_valid_records = collect($records)->filter(function($item){
             return $item['IncludeInStatistics'];

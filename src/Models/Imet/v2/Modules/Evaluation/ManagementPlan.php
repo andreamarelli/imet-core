@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class ManagementPlan extends Modules\Component\ImetModule_Eval
@@ -48,9 +49,9 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
 
     public static function updateModule(Request $request): array
     {
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
         $records[0] = static::ensureNullValues($records[0]);
-        $request->merge(['records_json' => json_encode($records)]);
+        $request->merge(['records_json' => Payload::encode($records)]);
         return parent::updateModule($request);
     }
 
