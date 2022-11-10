@@ -19,6 +19,7 @@ use AndreaMarelli\ModularForms\Helpers\HTTP;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Helpers\Module;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
 use Carbon\Carbon;
 use Exception;
@@ -486,7 +487,7 @@ class Controller extends __Controller
         }, $records);
 
         $request = new \Illuminate\Http\Request();
-        $request->merge(['records_json' => json_encode($records)]);
+        $request->merge(['records_json' => Payload::encode($records)]);
         $request->merge(['form_id' => $destination_form_id]);
 
         $module_class::updateModule($request);

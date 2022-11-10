@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class Create extends Modules\Component\ImetModule
@@ -34,7 +35,7 @@ class Create extends Modules\Component\ImetModule
 
     public static function updateModule(Request $request): array
     {
-        $records = json_decode($request->input('records_json'), true);
+        $records = Payload::decode($request->input('records_json'));
 
         $pa = ProtectedArea::getByWdpa($records[0]['wdpa_id']);
         $records[0]['Country'] = $pa->country;
@@ -43,7 +44,7 @@ class Create extends Modules\Component\ImetModule
 
         $records[0]['version'] = Imet::version;
 
-        $request->merge(['records_json' => json_encode($records)]);
+        $request->merge(['records_json' => Payload::encode($records)]);
         return parent::updateModule($request);
     }
 
