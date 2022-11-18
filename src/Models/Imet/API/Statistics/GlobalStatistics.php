@@ -287,7 +287,7 @@ class GlobalStatistics
         $new_item['FormID'] = $item['FormID'];
         if (static::$hide_protected_area_info) {
             $new_item['wdpa_id'] = "-";
-            $new_item['name'] = ucfirst(trans('imet-core::analysis_report.protected_area_label')) . " " . $i;
+            $new_item['name'] = ucfirst(trans('imet-core::common.protected_area.protected_area',0)) . " " . $i;
         } else {
             $new_item['wdpa_id'] = $item['wdpa_id'];
             $new_item['name'] = $item['name'];
