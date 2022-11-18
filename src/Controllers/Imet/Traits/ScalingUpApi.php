@@ -21,8 +21,9 @@ Trait ScalingUpApi
     public function get_general_info(Request $request, string $lang): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
+
         list($form_ids, $records) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
         return static::sendAPIResponse(Api::get_general_info($form_ids));
     }
 
@@ -34,8 +35,9 @@ Trait ScalingUpApi
     public function get_overall_ranking(Request $request, string $lang): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
+
         list($form_ids) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
         return static::sendAPIResponse(Api::overall_ranking($form_ids));
     }
 
@@ -47,9 +49,9 @@ Trait ScalingUpApi
     public function get_overall_average_of_six_elements(Request $request, string $lang): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
 
         list($form_ids) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
         return static::sendAPIResponse(Api::overall_average_of_six_elements($form_ids));
     }
 
@@ -61,8 +63,9 @@ Trait ScalingUpApi
     public function get_visualization_synthetics_indicators(Request $request, string $lang): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
+
         list($form_ids) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
         return static::sendAPIResponse(Api::visualization_synthetics_indicators($form_ids));
     }
 
@@ -74,8 +77,9 @@ Trait ScalingUpApi
     public function get_scatter_visualization_synthetic_indicators(Request $request, string $lang): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
+
         list($form_ids) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
         return static::sendAPIResponse(Api::scatter_visualization_synthetic_indicators($form_ids));
     }
 
@@ -87,9 +91,8 @@ Trait ScalingUpApi
     public function get_key_elements_conservation(Request $request, string $lang): object
     {
         $items = $request->attributes->get('records');
-
+        $this->auth_api($items);
         list($form_ids, $records) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
         $response = Api::get_key_elements_conservation($form_ids);
 
         return static::sendAPIResponse(Common::add_fields_to_response($response, $records));
@@ -104,8 +107,9 @@ Trait ScalingUpApi
     public function get_analysis_ranking(Request $request, string $lang, string $slug): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
         list($form_ids, $records) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
+
         $slug = str_replace('-', '_', $slug);
         $func = $slug . "_ranking";
         $response = $this->execute_function_url($form_ids, $func);
@@ -121,8 +125,8 @@ Trait ScalingUpApi
     public function get_analysis_average(Request $request,string $lang, string $slug): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
         list($form_ids, $records) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
         if(count($form_ids) === 0){
             return static::sendAPIResponse([]);
         }
@@ -140,8 +144,9 @@ Trait ScalingUpApi
     public function get_analysis_radar(Request $request,string $lang, string $slug): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
         list($form_ids, $records) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
+
         if(count($form_ids) === 0){
             return static::sendAPIResponse([]);
         }
@@ -160,8 +165,9 @@ Trait ScalingUpApi
     public function get_analysis_table(Request $request,string $lang, string $slug): object
     {
         $items = $request->attributes->get('records');
+        $this->auth_api($items);
         list($form_ids, $records) = Common::retrieve_form_ids($items);
-        $this->auth_api($form_ids);
+
         if(count($form_ids) === 0){
             return static::sendAPIResponse([]);
         }
