@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers;
 
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -86,7 +87,7 @@ class UsersController extends __Controller
     {
         $this->authorize('manage', static::$form_class);
 
-        $records = json_decode($request->input('records'), true);
+        $records = Payload::decode($request->input('records'));
         $role_type = $request->input('role_type');
 
         DB::beginTransaction();
