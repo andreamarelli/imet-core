@@ -261,17 +261,34 @@ class GlobalStatistics
     /**
      * @param Request $request
      * @param string|null $year
+     * @param string|null $version
+     * @param string|null $country
+     * @param string|null $type
      * @return array
      */
-    public static function from_year_get_form_ids(Request $request, string $year = null): array
+    public static function from_year_get_form_ids(Request $request, string $year = null, string $version = null, string $country = null, string $type = null): array
     {
         $form_ids = [];
+        $records = null;
+        if ($year !== null || $version !== null || $country !== null) {
+            $records = new Imet();
 
-        if ($year != null) {
-            $years = explode(',', $year);
-            $form_ids = Imet::whereIn('Year', $years)->pluck('FormID')->toArray();
+            if ($year !== null) {
+                $records = $records::where('Year', $year);
+            } else if ($version !== null) {
+                $records = $records->where('version', $version);
+            } else if ($country !== null) {
+                $records = $records->where('Country', $country);
+            }
+            $form_ids = $records->pluck('FormID')->toArray();
         }
 
+        if (count($form_ids) > 0) {
+            $form_ids = GeneralInfo::where('Type', $type)
+                ->whereIn('FormID', $form_ids)
+                ->pluck('FormID')
+                ->toArray();
+        }
         return $form_ids;
     }
 
@@ -287,7 +304,7 @@ class GlobalStatistics
         $new_item['FormID'] = $item['FormID'];
         if (static::$hide_protected_area_info) {
             $new_item['wdpa_id'] = "-";
-            $new_item['name'] = ucfirst(trans('imet-core::common.protected_area.protected_area',0)) . " " . $i;
+            $new_item['name'] = ucfirst(trans_choice('imet-core::common.protected_area.protected_area', 0)) . " " . $i;
         } else {
             $new_item['wdpa_id'] = $item['wdpa_id'];
             $new_item['name'] = $item['name'];

@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\Report;
@@ -150,11 +151,15 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
      */
     public function get_protected_areas_list(Request $request, string $language = 'en'): object
     {
-        $api = [];
-        $list = Imet::retrieve_list($request, ['country']);
 
-        $list->map(function ($item){
-            if(ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
+        $api = [];
+        $list = Imet::get_list_of_protected_areas($request, ['country']);
+        $hasType = $request->has("type");
+        $type = $request->input("type");
+
+
+        $list->map(function ($item) {
+            if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;
             }
             return $item;
@@ -162,15 +167,19 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
 
         foreach ($list as $item) {
             $country_name = "name_" . $language;
-            $api[] = [
-                'wdpa_id' => $item['wdpa_id'],
-                'language' => $item['language'],
-                'name' => $item['name'],
-                'year' => $item['Year'],
-                'iso3' => $item['Country'],
-                'country' => $item->country->$country_name,
-                'version' => $item['version']
-            ];
+            $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
+            if (!$hasType  || (!$type && $item['Type'] === null) || $type === $item['Type']) {
+                $api[] = [
+                    'wdpa_id' => $item['wdpa_id'],
+                    'language' => $item['language'],
+                    'name' => $item['name'],
+                    'year' => $item['Year'],
+                    'iso3' => $item['Country'],
+                    'country' => $item->country->$country_name,
+                    'type' => $item['Type'],
+                    'version' => $item['version']
+                ];
+            }
         }
 
         return static::sendAPIResponse(['data' => $api]);

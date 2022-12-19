@@ -64,8 +64,7 @@ class Imet extends Form
     public function encoder(): HasMany
     {
         return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
-            ->select(['FormID','first_name', 'last_name'])
-            ;
+            ->select(['FormID', 'first_name', 'last_name']);
     }
 
     /**
@@ -89,11 +88,24 @@ class Imet extends Form
     {
         $allowed_wdpas = Role::allowedWdpas();
 
+        return static::get_list_of_protected_areas($request, $relations, $allowed_wdpas);
+    }
+
+    /**
+     *
+     * Retrieve IMET assessment's list without permission
+     * @param Request $request
+     * @param array $relations
+     * @param array $allowed_wdpas
+     * @return mixed
+     */
+    protected static function get_list_of_protected_areas(Request $request, array $relations = [], array $allowed_wdpas = null)
+    {
         $list_v1 = v1\Imet
             ::filterList($request)
             ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas){
-                if($allowed_wdpas !== null){
+            ->where(function ($query) use ($allowed_wdpas) {
+                if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
@@ -102,8 +114,8 @@ class Imet extends Form
         $list_v2 = v2\Imet
             ::filterList($request)
             ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas){
-                if($allowed_wdpas !== null){
+            ->where(function ($query) use ($allowed_wdpas) {
+                if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
@@ -167,10 +179,10 @@ class Imet extends Form
      * @param Request $request
      * @return Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function scopeCommonSearchWithWdpa(Builder $query, Request $request) : Collection
+    public function scopeCommonSearchWithWdpa(Builder $query, Request $request): Collection
     {
         $this->commonFilters($query, $request);
-        if($request->filled('wdpa')){
+        if ($request->filled('wdpa')) {
             $query->where('wdpa_id', $request->input('wdpa'));
         }
         return $query->get();
@@ -184,11 +196,14 @@ class Imet extends Form
      */
     private function commonFilters(Builder $query, Request $request)
     {
-        if($request->filled('country')){
+        if ($request->filled('country')) {
             $query->where('Country', $request->input('country'));
         }
-        if($request->filled('year')){
+        if ($request->filled('year')) {
             $query->where('Year', $request->input('year'));
+        }
+        if ($request->filled('wdpa_id')) {
+            $query->where('wdpa_id', $request->input('wdpa_id'));
         }
     }
 
@@ -203,9 +218,9 @@ class Imet extends Form
     {
         // filters
         $this->commonFilters($query, $request);
-        if($request->filled('search')){
-            $query->whereRaw('unaccent(name) ILIKE unaccent(?)', '%'.$request->input('search').'%')
-                ->orWhere('wdpa_id', 'LIKE', '%'.$request->input('search').'%');
+        if ($request->filled('search')) {
+            $query->whereRaw('unaccent(name) ILIKE unaccent(?)', '%' . $request->input('search') . '%')
+                ->orWhere('wdpa_id', 'LIKE', '%' . $request->input('search') . '%');
         }
         $query->where('version', static::version);
 
@@ -228,7 +243,7 @@ class Imet extends Form
             ->orWhere('wdpa_id', null)
             ->orWhere('name', null)
             ->get()
-            ->map(function ($imet){
+            ->map(function ($imet) {
                 /** @var Imet $imet */
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
                     ? ProtectedAreaNonWdpa::find($imet->wdpa_id)
@@ -247,9 +262,9 @@ class Imet extends Form
      */
     public static function getLanguage($form_id)
     {
-        $session_key = 'imet_language_'.$form_id;
+        $session_key = 'imet_language_' . $form_id;
         $language = session($session_key, null);
-        if($language===null || $language===""){
+        if ($language === null || $language === "") {
             $language = strtolower(static::find($form_id)->language);
             session([$session_key => $language]);
         }
@@ -312,7 +327,7 @@ class Imet extends Form
      * @param string[] $fields
      * @return array
      */
-    public static function getFieldsSplitToArrays(array $fields = ['Country','Year','wdpa_id', 'FormID']): array
+    public static function getFieldsSplitToArrays(array $fields = ['Country', 'Year', 'wdpa_id', 'FormID']): array
     {
 
         $getRecords = static::select($fields)
@@ -321,8 +336,8 @@ class Imet extends Form
             ->toArray();
 
         $records = [];
-        foreach($getRecords as $key => $field){
-            foreach($fields as $k => $f){
+        foreach ($getRecords as $key => $field) {
+            foreach ($fields as $k => $f) {
                 $records[$f][$field[$f]] = $field[$f];
             }
         }
@@ -347,10 +362,10 @@ class Imet extends Form
     }
 
     /**
+     * @return array
      * @deprecated
      * Retrieve years for existing IMETs
      *
-     * @return array
      */
     public static function getAvailableYears(): array
     {
@@ -365,7 +380,7 @@ class Imet extends Form
      */
     public static function getProtectedArea($wdpa_id)
     {
-        if(ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)){
+        if (ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)) {
             $pa = ProtectedAreaNonWdpa::find($wdpa_id);
             $pa->wdpa_id = $pa->id;
             $pa->Type = null;
@@ -386,7 +401,7 @@ class Imet extends Form
      */
     public static function importForm($data)
     {
-        if(!array_key_exists('wdpa_id', $data) || $data['wdpa_id']===null){
+        if (!array_key_exists('wdpa_id', $data) || $data['wdpa_id'] === null) {
             $pa = ProtectedArea::getByGlobalId($data['protected_area_global_id']);
         } else {
             $pa = static::getProtectedArea($data['wdpa_id']);
@@ -419,19 +434,19 @@ class Imet extends Form
     public static function updateModuleAndForm($item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);
-        if($return['status'] == 'success'){
+        if ($return['status'] == 'success') {
             (new Controller)->backup($item);
         }
 
         $user_info = Auth::user()->getInfo();
         unset($user_info['country']);
 
-        if(Encoder::where('first_name', $user_info['first_name'])
+        if (Encoder::where('first_name', $user_info['first_name'])
                 ->where('last_name', $user_info['last_name'])
                 ->where('FormID', $item)
                 ->whereDate(static::UPDATED_AT, Carbon::today())
-                ->count()===0){
-            $encoder =  new Encoder();
+                ->count() === 0) {
+            $encoder = new Encoder();
             $encoder->fill($user_info);
             $encoder['FormID'] = $item;
             $encoder->save();
@@ -477,7 +492,7 @@ class Imet extends Form
         $upgraded_data = [];
         /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
-            if(array_key_exists($module_class::getShortClassName(), $data)){
+            if (array_key_exists($module_class::getShortClassName(), $data)) {
                 $upgraded_data[$module_class::getShortClassName()]
                     = $module_class::upgradeModuleRecords($data[$module_class::getShortClassName()], $imet_version);
             }
@@ -499,7 +514,7 @@ class Imet extends Form
         $wdpa_id = ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '_' . $this->wdpa_id;
 
         return 'IMET' .
-            $wdpa_id  .
+            $wdpa_id .
             '-' . $this->Year .
             '-' . $name .
             '-' . $this->FormID .
@@ -535,7 +550,7 @@ class Imet extends Form
             ->havingRaw('count(*) > ?', [1])
             ->get()
             ->pluck('json_agg')
-            ->map(function ($item) use (&$haveDuplicates){
+            ->map(function ($item) use (&$haveDuplicates) {
                 $haveDuplicates = array_merge($haveDuplicates, json_decode($item));
                 return $item;
             });
@@ -547,7 +562,7 @@ class Imet extends Form
      *
      * @return array
      */
-    public static function getModulesKeys() : array
+    public static function getModulesKeys(): array
     {
         return array_keys(static::$modules);
     }
