@@ -147,5 +147,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     }
 
+    Route::get('stats_in_php', [\AndreaMarelli\ImetCore\Controllers\DevStatsController::class, 'index']);
+
 });
 
