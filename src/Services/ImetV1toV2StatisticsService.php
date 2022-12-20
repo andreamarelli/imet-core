@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 class ImetV1toV2StatisticsService extends ImetStatisticsService
 {
 
-    public static function get_index(Imet $imet_id, string $step = 'global'): array
+    public static function get_scores(Imet $imet_id, string $step = 'global'): array
     {
         $stats = [
             'context' => null,

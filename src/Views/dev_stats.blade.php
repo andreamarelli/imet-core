@@ -65,12 +65,34 @@
                     <div><b>EI:</b> {{ $v2_stats_from_db[$id]['OC'] }}</div>
                 </td>
                 <td>
-                    <div><b>C:</b> {{ $v2_stats_from_php[$id]['C'] }}</div>
-                    <div><b>P:</b> {{ $v2_stats_from_php[$id]['P'] }}</div>
-                    <div><b>I:</b> {{ $v2_stats_from_php[$id]['I'] }}</div>
-                    <div><b>PR:</b> {{ $v2_stats_from_php[$id]['PR'] }}</div>
-                    <div><b>R:</b> {{ $v2_stats_from_php[$id]['OP'] }}</div>
-                    <div><b>EI:</b> {{ $v2_stats_from_php[$id]['OC'] }}</div>
+                    <div>
+                        <b>C:</b> {{ $v2_stats_from_php[$id]['C'] }}
+                        @if($v2_stats_from_db[$id]['C'] === $v2_stats_from_php[$id]['C'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
+                    </div>
+                    <div>
+                        <b>P:</b> {{ $v2_stats_from_php[$id]['P'] }}
+                        @if($v2_stats_from_db[$id]['P'] === $v2_stats_from_php[$id]['P'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
+                    </div>
+                    <div>
+                        <b>I:</b> {{ $v2_stats_from_php[$id]['I'] }}
+                    </div>
+                    <div>
+                        <b>PR:</b> {{ $v2_stats_from_php[$id]['PR'] }}
+                    </div>
+                    <div>
+                        <b>R:</b> {{ $v2_stats_from_php[$id]['OP'] }}
+                    </div>
+                    <div>
+                        <b>EI:</b> {{ $v2_stats_from_php[$id]['OC'] }}
+                    </div>
                 </td>
             </tr>
         @endforeach

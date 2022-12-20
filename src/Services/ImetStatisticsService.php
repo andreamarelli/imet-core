@@ -14,10 +14,10 @@ class ImetStatisticsService
 
         if($imet->version === 'v1'){
             /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $imet */
-            $stats = ImetV1toV2StatisticsService::get_index($imet, $step);
+            $stats = ImetV1toV2StatisticsService::get_scores($imet, $step);
         } else {
             /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $imet */
-            $stats = ImetV2StatisticsService::get_indexes($imet, $step);
+            $stats = ImetV2StatisticsService::get_scores($imet, $step);
         }
 
         return array_merge([
