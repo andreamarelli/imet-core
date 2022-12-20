@@ -38,7 +38,7 @@ class V2StatisticsService extends StatisticsService
         $scores['c2'] = static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_c2', 'eval_supports_and_constaints');
         $scores['c3'] = static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_c3', 'context_menaces_pressions');
 
-        // average step score
+        // aggregate step score
         $sum = ($scores['c1'] ?? 0)
             + ($scores['c2'] ? $scores['c2']/2+50 : 0)
             + ($scores['c3'] ? $scores['c3']+100 : 0);
@@ -67,7 +67,7 @@ class V2StatisticsService extends StatisticsService
             'p6' => static::table_db_function($imet_id, 'eval_objectives', 'EvaluationScore'),
         ];
 
-        // average step score
+        // aggregate step score
         $scores['avg_indicator'] = static::average([
             $scores['p1'],  $scores['p2'], $scores['p3'], $scores['p4'], $scores['p5'], $scores['p6']
         ], 1);
@@ -93,7 +93,7 @@ class V2StatisticsService extends StatisticsService
             'i5' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i5', 'eval_management_equipment_adequacy', ['Importance']),
         ];
 
-        // average step score
+        // aggregate step score
         $scores['avg_indicator'] = static::average([
            $scores['i1'],  $scores['i2'], $scores['i3'], $scores['i4'], $scores['i5']
         ], 1);
@@ -132,22 +132,16 @@ class V2StatisticsService extends StatisticsService
             'pr18' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr18', 'eval_ecosystem_services', ['EvaluationScore', 'group_key', 'spam']),
         ];
 
-        // average step score
+        // aggregate step score
+        $scores['avg_indicator'] = static::average($scores, 1);
+
+        // intermediate scores
         $scores['pr1_6'] = static::average([$scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6']]);
         $scores['pr7_9'] = static::average([$scores['pr7'],  $scores['pr8'],  $scores['pr9']]);
         $scores['pr10_12'] = static::average([$scores['pr10'],  $scores['pr11'],  $scores['pr12']]);
         $scores['pr13_14'] = static::average([$scores['pr13'],  $scores['pr14']]);
         $scores['pr15_16'] = static::average([$scores['pr15'],  $scores['pr16']]);
         $scores['pr17_18'] = static::average([$scores['pr17'],  $scores['pr18']]);
-
-        $scores['avg_indicator'] = static::average([
-            $scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6'],
-            $scores['pr7'],  $scores['pr8'],  $scores['pr9'],
-            $scores['pr10'],  $scores['pr11'],  $scores['pr12'],
-            $scores['pr13'],  $scores['pr14'],
-            $scores['pr15'],  $scores['pr16'],
-            $scores['pr17'],  $scores['pr18']
-        ], 1);
 
         return $scores;
     }
@@ -168,7 +162,7 @@ class V2StatisticsService extends StatisticsService
             'op3' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_op3', 'eval_area_domination'),
         ];
 
-        // average step score
+        // aggregate step score
         $scores['avg_indicator'] = static::average([
             $scores['op1'],  $scores['op2'], $scores['op3']
         ], 2);
@@ -192,7 +186,7 @@ class V2StatisticsService extends StatisticsService
             'oc3' => static::group_db_function($imet_id, 'eval_life_quality_impact', 'EvaluationScore', 'group_key'),
         ];
 
-        // average step score
+        // aggregate step score
         $sum = ($scores['oc1'] ?? 0)
             + ($scores['oc2'] ? $scores['oc2']/2+50 : 0)
             + ($scores['oc3'] ? $scores['oc3']/2+50 : 0);

@@ -35,7 +35,7 @@ class V1ToV2StatisticsService extends StatisticsService
             'c15' => $scores_v1['c16']
         ];
 
-        // average step score
+        // aggregate step score
         $sum = ($scores['c1'] ?? 0)
             + (($scores['c2'] ?? 0) / 2 + 50)
             + (($scores['c3'] ?? 0) + 100);
@@ -80,7 +80,7 @@ class V1ToV2StatisticsService extends StatisticsService
             'p6' => $scores_v1['p6'],
         ];
 
-        // average step score
+        // aggregate step score
         $sum = (($scores['p1'] ?? 0) / 2 + 50)
             + (($scores['p2'] ?? 0) / 2 + 50)
             + ($scores['p3'] ?? 0)
@@ -139,25 +139,88 @@ class V1ToV2StatisticsService extends StatisticsService
             'i5' => $scores_v1['i5']!==null ? round($scores_v1['i5'] * 0.893, 2) : null,
         ];
 
-        // average step score
+        // aggregate step score
         $scores['avg_indicator'] = static::average([
             $scores['i1'],  $scores['i2'], $scores['i3'], $scores['i4'], $scores['i5']
         ], 1);
-
-//
-//        if($imet->getKey()===29){
-//            dd(
-//                ((array) EvalController::assessment($imet->getKey(), 'inputs'))['original'],
-//                $scores_v1,
-//                $scores
-//            );
-//        }
 
         return $scores;
 
 
     }
-    public static function scores_process($imet): array {return ['avg_indicator' => null];}
-    public static function scores_outputs($imet): array {return ['avg_indicator' => null];}
-    public static function scores_outcomes($imet): array {return ['avg_indicator' => null];}
+    public static function scores_process($imet): array
+    {
+        $scores_v1 = V1StatisticsService::scores_process($imet);
+        $scores = [
+            'pr1' => $scores_v1['pr1'],
+            'pr2' => $scores_v1['pr2'],
+            'pr3' => $scores_v1['pr3'],
+            'pr4' => $scores_v1['pr4'],
+            'pr5' => $scores_v1['pr5'],
+            'pr6' => $scores_v1['pr6']!==null ? round($scores_v1['pr6'] * 0.8, 2) : null,
+            'pr7' => $scores_v1['pr7'],
+            'pr8' => $scores_v1['pr10'],
+            'pr9' => $scores_v1['pr10'],
+            'pr10' => $scores_v1['pr11'],
+            'pr11' => $scores_v1['pr12'],
+            'pr12' => $scores_v1['pr13'],
+            'pr13' => $scores_v1['pr14'],
+            'pr14' => $scores_v1['pr15'],
+            'pr15' => $scores_v1['pr16'],
+            'pr16' => $scores_v1['pr17'],
+            'pr17' => $scores_v1['pr18'],
+            'pr18' => $scores_v1['pr19']
+        ];
+
+        // aggregate step score
+        $scores['avg_indicator'] = static::average($scores, 1);
+
+        $scores['pr1_6'] = $scores_v1['pr1_6'];
+        $scores['pr7_10'] = $scores_v1['pr7_10'];
+        $scores['pr11_13'] = $scores_v1['pr11_13'];
+        $scores['pr14_14'] = $scores_v1['pr14_14'];
+        $scores['pr16_17'] = $scores_v1['pr16_17'];
+        $scores['pr18_19'] = 0;
+
+
+        return $scores;
+    }
+    public static function scores_outputs($imet): array
+    {
+        $scores_v1 = V1StatisticsService::scores_outputs($imet);
+        $scores = [
+            'op1' => $scores_v1['r1']!==null ? round($scores_v1['r1'] * 0.76, 2) : null,
+            'op2' => $scores_v1['r2']!==null ? round($scores_v1['r2'] * 0.76, 2) : null,
+            'op3' => V1StatisticsService::rank_db_function($imet->getKey(), 'eval_control', 'EvaluationScore', 'EVAL PR9'),
+        ];
+
+        // aggregate step score
+        $scores['avg_indicator'] = static::average($scores, 2);
+
+        return $scores;
+    }
+    public static function scores_outcomes($imet): array
+    {
+        $scores_v1 = V1StatisticsService::scores_outcomes($imet);
+        $scores = [
+            'oc1' => $scores_v1['ei1']!==null ? round($scores_v1['ei1'] * 0.76, 2) : null,
+            'oc2' => round(((($scores_v1['ei2'] ?? 0) + $scores_v1['ei3'])/2), 2),
+            'oc3' => $scores_v1['ei4'],
+        ];
+
+        $sum = ($scores['oc1'] ?? 0)
+            + ($scores['oc2']/2+50 ?? 0)
+            + ($scores['oc3']/2+50 ?? 0);
+        $count = count(array_filter($scores, function($x) { return $x!==null; }));
+        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+
+//        if($imet->getKey()===1){
+//            dd(
+//                ((array) EvalController::assessment($imet->getKey(), 'outcomes'))['original'],
+//                $scores_v1,
+//                $scores
+//            );
+//        }
+        return $scores;
+    }
 }

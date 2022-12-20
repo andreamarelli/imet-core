@@ -47,7 +47,7 @@ trait DBFunctions
             : round(json_decode($records[0]->row_to_json, true)['value_p'], 2);
     }
 
-    private static function rank_db_function($imet_id, $db_table, $field, $rank_group): ?float
+    public static function rank_db_function($imet_id, $db_table, $field, $rank_group): ?float
     {
         $function = static::SCHEMA . ".get_imet_evaluation_stats_rank_all( '" . $db_table . "', '".$field."',  '".$rank_group."',  '".$imet_id."')";
         $records = (array) DB::select(DB::raw('SELECT row_to_json(' . $function . ');'));
