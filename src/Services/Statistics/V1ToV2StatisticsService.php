@@ -148,6 +148,13 @@ class V1ToV2StatisticsService extends StatisticsService
 
 
     }
+
+    /**
+     * Return PROCESS step scores
+     *
+     * @param $imet
+     * @return array
+     */
     public static function scores_process($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_process($imet);
@@ -185,6 +192,13 @@ class V1ToV2StatisticsService extends StatisticsService
 
         return $scores;
     }
+
+    /**
+     * Return OUTPUTS step scores
+     *
+     * @param $imet
+     * @return array
+     */
     public static function scores_outputs($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_outputs($imet);
@@ -199,6 +213,13 @@ class V1ToV2StatisticsService extends StatisticsService
 
         return $scores;
     }
+
+    /**
+     * Return OUTCOMES step scores
+     *
+     * @param $imet
+     * @return array
+     */
     public static function scores_outcomes($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_outcomes($imet);
