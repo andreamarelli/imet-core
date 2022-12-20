@@ -31,12 +31,39 @@
                     <div><b>EI:</b> {{ $v1_stats_from_db[$id]['EI'] }}</div>
                 </td>
                 <td>
-                    <div><b>C:</b> {{ $v1_stats_from_php[$id]['C'] }}</div>
-                    <div><b>P:</b> {{ $v1_stats_from_php[$id]['P'] }}</div>
-                    <div><b>I:</b> {{ $v1_stats_from_php[$id]['I'] }}</div>
-                    <div><b>PR:</b> {{ $v1_stats_from_php[$id]['PR'] }}</div>
-                    <div><b>R:</b> {{ $v1_stats_from_php[$id]['R'] }}</div>
-                    <div><b>EI:</b> {{ $v1_stats_from_php[$id]['EI'] }}</div>
+                    <div><b>C:</b>
+                        @if($v1_stats_from_db[$id]['C'] === $v1_stats_from_php[$id]['C'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
+                        {{ $v1_stats_from_php[$id]['C'] }}
+                    </div>
+                    <div><b>P:</b>
+                        @if($v1_stats_from_db[$id]['P'] === $v1_stats_from_php[$id]['P'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
+                        {{ $v1_stats_from_php[$id]['P'] }}
+                    </div>
+                    <div><b>I:</b>
+                        @if($v1_stats_from_db[$id]['I'] === $v1_stats_from_php[$id]['I'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
+                        {{ $v1_stats_from_php[$id]['I'] }}
+                    </div>
+                    <div><b>PR:</b>
+                        {{ $v1_stats_from_php[$id]['PR'] }}
+                    </div>
+                    <div><b>R:</b>
+                        {{ $v1_stats_from_php[$id]['R'] }}
+                    </div>
+                    <div><b>EI:</b>
+                        {{ $v1_stats_from_php[$id]['EI'] }}
+                    </div>
                 </td>
             </tr>
         @endforeach

@@ -7,8 +7,19 @@ use AndreaMarelli\ModularForms\Helpers\Locale;
 
 abstract class StatisticsService
 {
-    public static function get_scores(Imet $imet, string $step = 'global'): array
+    /**
+     * Retrieve assessment's scores
+     *
+     * @param \AndreaMarelli\ImetCore\Models\Imet\Imet|int $imet
+     * @param string $step
+     * @return array
+     */
+    public static function get_scores($imet, string $step = 'global'): array
     {
+        if(is_int($imet)){
+            $imet = Imet::find($imet);
+        }
+
         if($step === 'global'){
             $scores = [
                 'context' => static::scores_context($imet)['avg_indicator'],

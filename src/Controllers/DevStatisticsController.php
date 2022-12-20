@@ -30,18 +30,26 @@ class DevStatisticsController extends BaseFormController
             ->pluck((new Imet)->getKeyName())
             ->toArray();
 
+        $labels = StatisticsService::assessment_steps_labels();
+
+
         $v1_stats_from_db = [];
         $v1_stats_from_php = [];
         foreach ($assessments_v1 as $id){
             $v1_stats_from_db[$id] = EvalController::radar_assessment($id);
-            $v1_stats_from_php[$id] = static::radar_assessment($id);
-
+            $v1_stats_from_php[$id] = array_combine(
+                $labels['v1']['abbreviations'],
+                V1ToV2StatisticsService::get_scores($id)
+            );
         }
         $v2_stats_from_db = [];
         $v2_stats_from_php = [];
         foreach ($assessments_v2 as $id){
             $v2_stats_from_db[$id] = EvalController::radar_assessment($id);
-            $v2_stats_from_php[$id] = static::radar_assessment($id);
+            $v2_stats_from_php[$id] = array_combine(
+                $labels['v2']['abbreviations'],
+                V2StatisticsService::get_scores($id)
+            );
         }
 
         return view('imet-core::dev_stats', [
@@ -69,8 +77,11 @@ class DevStatisticsController extends BaseFormController
             $stats["outcomes"]
         ];
 
-        $labels = StatisticsService::assessment_steps_labels()[$stats['version']][$abbreviations ? 'abbreviations' : 'full'];
-        return array_combine($labels, $values);
+        $labels = StatisticsService::assessment_steps_labels();
+        return array_combine(
+            $labels[$stats['version']][$abbreviations ? 'abbreviations' : 'full'],
+            $values
+        );
     }
 
 

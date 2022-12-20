@@ -199,14 +199,6 @@ class V2StatisticsService extends StatisticsService
         $count = count(array_filter([$scores['oc1'], $scores['oc2'], $scores['oc3']], function($x) { return $x!==null; }));
         $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
 
-//        if($imet->getKey()===15){
-//            dd(
-//                ((array) EvalController::assessment($imet_id, 'global'))['original'],
-//                ((array) EvalController::assessment($imet_id, 'outcomes'))['original'],
-//                $scores
-//            );
-//        }
-
         return $scores;
     }
 
