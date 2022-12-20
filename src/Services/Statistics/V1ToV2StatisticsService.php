@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
+
 class V1ToV2StatisticsService extends StatisticsService
 {
     use DBFunctions;
@@ -19,7 +20,7 @@ class V1ToV2StatisticsService extends StatisticsService
      * @param $imet
      * @return array
      */
-    public static function scores_context($imet): array
+    protected static function scores_context($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_context($imet);
         $scores = [
@@ -51,7 +52,7 @@ class V1ToV2StatisticsService extends StatisticsService
      * @param $imet
      * @return array
      */
-    public static function scores_planning($imet): array
+    protected static function scores_planning($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_planning($imet);
 
@@ -99,7 +100,7 @@ class V1ToV2StatisticsService extends StatisticsService
      * @param $imet
      * @return array
      */
-    public static function scores_inputs($imet): array
+    protected static function scores_inputs($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_inputs($imet);
 
@@ -140,9 +141,7 @@ class V1ToV2StatisticsService extends StatisticsService
         ];
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average([
-            $scores['i1'],  $scores['i2'], $scores['i3'], $scores['i4'], $scores['i5']
-        ], 1);
+        $scores['avg_indicator'] = static::average($scores, 1);
 
         return $scores;
 
@@ -155,7 +154,7 @@ class V1ToV2StatisticsService extends StatisticsService
      * @param $imet
      * @return array
      */
-    public static function scores_process($imet): array
+    protected static function scores_process($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_process($imet);
         $scores = [
@@ -199,7 +198,7 @@ class V1ToV2StatisticsService extends StatisticsService
      * @param $imet
      * @return array
      */
-    public static function scores_outputs($imet): array
+    protected static function scores_outputs($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_outputs($imet);
         $scores = [
@@ -220,7 +219,7 @@ class V1ToV2StatisticsService extends StatisticsService
      * @param $imet
      * @return array
      */
-    public static function scores_outcomes($imet): array
+    protected static function scores_outcomes($imet): array
     {
         $scores_v1 = V1StatisticsService::scores_outcomes($imet);
         $scores = [

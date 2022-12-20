@@ -96,9 +96,7 @@ class V1StatisticsService extends StatisticsService
         ];
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average([
-               $scores['i1'],  $scores['i2'], $scores['i3'], $scores['i4'], $scores['i5']
-           ], 1);
+        $scores['avg_indicator'] = static::average($scores, 1);
 
         return $scores;
     }

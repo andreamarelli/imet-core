@@ -68,9 +68,7 @@ class V2StatisticsService extends StatisticsService
         ];
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average([
-            $scores['p1'],  $scores['p2'], $scores['p3'], $scores['p4'], $scores['p5'], $scores['p6']
-        ], 1);
+        $scores['avg_indicator'] = static::average($scores, 1);
 
         return $scores;
     }
@@ -94,9 +92,7 @@ class V2StatisticsService extends StatisticsService
         ];
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average([
-           $scores['i1'],  $scores['i2'], $scores['i3'], $scores['i4'], $scores['i5']
-        ], 1);
+        $scores['avg_indicator'] = static::average($scores, 1);
 
         return $scores;
     }
@@ -163,9 +159,7 @@ class V2StatisticsService extends StatisticsService
         ];
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average([
-            $scores['op1'],  $scores['op2'], $scores['op3']
-        ], 2);
+        $scores['avg_indicator'] = static::average($scores, 2);
 
         return $scores;
     }
