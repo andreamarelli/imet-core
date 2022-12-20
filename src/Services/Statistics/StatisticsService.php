@@ -1,51 +1,25 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services;
+namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 
-class ImetStatisticsService
+abstract class StatisticsService
 {
-
-    public static function assessment(int $imet_id, string $step = 'global', bool $labels = false): array
+    public static function get_scores(Imet $imet, string $step = 'global'): array
     {
-        $imet = Imet::find($imet_id);
-
-        if($imet->version === 'v1'){
-            /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $imet */
-            $stats = ImetV1toV2StatisticsService::get_scores($imet, $step);
-        } else {
-            /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $imet */
-            $stats = ImetV2StatisticsService::get_scores($imet, $step);
+        if($step === 'global'){
+            $scores = [
+                'context' => static::scores_context($imet)['avg_indicator'],
+                'planning' => static::scores_planning($imet)['avg_indicator'],
+                'inputs' => static::scores_inputs($imet)['avg_indicator'],
+                'process' => static::scores_process($imet)['avg_indicator'],
+                'outputs' => static::scores_outputs($imet)['avg_indicator'],
+                'outcomes' => static::scores_outcomes($imet)['avg_indicator'],
+            ];
         }
-
-        return array_merge([
-            'formid' => $imet->getKey(),
-            'wdpa_id' => $imet->wdpa_id,
-            'year' => $imet->Year,
-            'iso3' => $imet->Country,
-            'name' => $imet->name,
-            'version' => $imet->version,
-            'labels' => $labels ? static::labels($imet->version) : null,
-           ],
-   $stats);
-    }
-
-    public static function radar_assessment(int $imet_id, $abbreviations = true)
-    {
-        $stats = static::assessment($imet_id, 'global', true);
-        $values = [
-            $stats["context"],
-            $stats["planning"],
-            $stats["inputs"],
-            $stats["process"],
-            $stats["outputs"],
-            $stats["outcomes"]
-        ];
-
-        $labels = static::assessment_steps_labels()[$stats['version']][$abbreviations ? 'abbreviations' : 'full'];
-        return array_combine($labels, $values);
+        return $scores;
     }
 
     /**

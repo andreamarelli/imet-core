@@ -1,13 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services;
+namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 
-class ImetV1StatisticsService extends ImetStatisticsService
+class V1ToV2StatisticsService extends StatisticsService
 {
 
-    public static function get_index(Imet $imet_id, string $step = 'global'): array
+    public static function get_scores(Imet $imet_id, string $step = 'global'): array
     {
         $stats = [
             'context' => null,

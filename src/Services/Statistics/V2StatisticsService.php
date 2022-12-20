@@ -1,39 +1,29 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services;
+namespace AndreaMarelli\ImetCore\Services\Statistics;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\AdministrativeManagement;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\WorkPlan;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\DBFunctions;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 
-class ImetV2StatisticsService extends ImetStatisticsService
+class V2StatisticsService extends StatisticsService
 {
     use DBFunctions;
     use Math;
 
     const SCHEMA = 'imet_assessment_v2'; // todo: to be removed after conversion to PHP
 
-    public static function get_scores(Imet $imet, string $step = 'global'): array
-    {
-        if($step === 'global'){
-            $scores = [
-                'context' => static::scores_context($imet)['avg_indicator'],
-                'planning' => static::scores_planning($imet)['avg_indicator'],
-                'inputs' => static::scores_inputs($imet)['avg_indicator'],
-                'process' => static::scores_process($imet)['avg_indicator'],
-                'outputs' => static::scores_outputs($imet)['avg_indicator'],
-                'outcomes' => static::scores_outcomes($imet)['avg_indicator'],
-            ];
-        }
-        return $scores;
-    }
-
-    private static function scores_context($imet)
+    /**
+     * Return CONTEXT step scores
+     *
+     * @param $imet
+     * @return array
+     */
+    protected static function scores_context($imet): array
     {
         $imet_id = $imet->getKey();
 
@@ -58,7 +48,13 @@ class ImetV2StatisticsService extends ImetStatisticsService
         return $scores;
     }
 
-    private static function scores_planning($imet)
+    /**
+     * Return PLANNING step scores
+     *
+     * @param $imet
+     * @return array
+     */
+    protected static function scores_planning($imet): array
     {
         $imet_id = $imet->getKey();
 
@@ -79,7 +75,13 @@ class ImetV2StatisticsService extends ImetStatisticsService
         return $scores;
     }
 
-    private static function scores_inputs($imet)
+    /**
+     * Return INPUTS step scores
+     *
+     * @param $imet
+     * @return array
+     */
+    protected static function scores_inputs($imet): array
     {
         $imet_id = $imet->getKey();
 
@@ -98,7 +100,14 @@ class ImetV2StatisticsService extends ImetStatisticsService
 
         return $scores;
     }
-    private static function scores_process($imet)
+
+    /**
+     * Return PROCESS step scores
+     *
+     * @param $imet
+     * @return array
+     */
+    protected static function scores_process($imet): array
     {
         $imet_id = $imet->getKey();
 
@@ -142,7 +151,14 @@ class ImetV2StatisticsService extends ImetStatisticsService
 
         return $scores;
     }
-    private static function scores_outputs($imet)
+
+    /**
+     * Return OUPUTS step scores
+     *
+     * @param $imet
+     * @return array
+     */
+    protected static function scores_outputs($imet): array
     {
         $imet_id = $imet->getKey();
 
@@ -159,7 +175,14 @@ class ImetV2StatisticsService extends ImetStatisticsService
 
         return $scores;
     }
-    private static function scores_outcomes($imet)
+
+    /**
+     * Return OUTCOMES step scores
+     *
+     * @param $imet
+     * @return array
+     */
+    protected static function scores_outcomes($imet): array
     {
         $imet_id = $imet->getKey();
 
@@ -188,7 +211,7 @@ class ImetV2StatisticsService extends ImetStatisticsService
     }
 
     /**
-     * Custom function for ManagementPlan and WorkPlan
+     * Custom score function for ManagementPlan and WorkPlan
      *
      * @param $imet
      * @param $module_class
@@ -233,7 +256,7 @@ class ImetV2StatisticsService extends ImetStatisticsService
     }
 
     /**
-     * Custom function for BudgetSecurization
+     * Custom score function for BudgetSecurization
      *
      * @param $imet
      * @return float|int|null
@@ -251,7 +274,7 @@ class ImetV2StatisticsService extends ImetStatisticsService
     }
 
     /**
-     * Custom function for GovernanceLeadership
+     * Custom score function for GovernanceLeadership
      *
      * @param $imet
      * @return float|int|null
