@@ -4,6 +4,9 @@ namespace AndreaMarelli\ImetCore\Services;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\AdministrativeManagement;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetSecurization;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\WorkPlan;
 
@@ -63,28 +66,15 @@ class ImetV2StatisticsService extends ImetStatisticsService
             'p1' => static::table_db_function($imet_id, 'eval_regulations_adequacy', 'EvaluationScore'),
             'p2' => static::table_db_function($imet_id, 'eval_design_adequacy', 'EvaluationScore'),
             'p3' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_p3', 'eval_boundary_level_v2'),
-            'p4' => static::eval_plans($imet_id, ManagementPlan::class),
-            'p5' => static::eval_plans($imet_id, WorkPlan::class),
+            'p4' => static::score_management_and_work_plans($imet_id, ManagementPlan::class),
+            'p5' => static::score_management_and_work_plans($imet_id, WorkPlan::class),
             'p6' => static::table_db_function($imet_id, 'eval_objectives', 'EvaluationScore'),
         ];
 
         // average step score
-        $sum = ($scores['p1'] ?? 0)
-            + ($scores['p2'] ?? 0)
-            + ($scores['p3'] ?? 0)
-            + ($scores['p4'] ?? 0)
-            + ($scores['p5'] ?? 0)
-            + ($scores['p6'] ?? 0);
-        $count = count(array_filter($scores, function($x) { return $x!==null; }));
-        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
-
-//        if($imet->getKey()===7){
-//            dd(
-//                ((array) EvalController::assessment($imet_id, 'global'))['original'],
-//                ((array) EvalController::assessment($imet_id, 'planning'))['original'],
-//                $scores,
-//            );
-//        }
+        $scores['avg_indicator'] = static::average([
+            $scores['p1'],  $scores['p2'], $scores['p3'], $scores['p4'], $scores['p5'], $scores['p6']
+        ], 1);
 
         return $scores;
     }
@@ -93,9 +83,18 @@ class ImetV2StatisticsService extends ImetStatisticsService
     {
         $imet_id = $imet->getKey();
 
-        $scores = [];
-        $scores['avg_indicator'] = null;
-        // TODO
+        $scores = [
+            'i1' => static::group_db_function($imet_id, 'eval_information_availability', 'EvaluationScore', 'group_key'),
+            'i2' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i2', 'eval_staff', ['EvaluationScore']),
+            'i3' => static::rank_db_function($imet_id, 'eval_budget_adequacy', 'EvaluationScore', 'EVAL I3'),
+            'i4' => static::score_budget_securization($imet_id),
+            'i5' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i5', 'eval_management_equipment_adequacy', ['Importance']),
+        ];
+
+        // average step score
+        $scores['avg_indicator'] = static::average([
+           $scores['i1'],  $scores['i2'], $scores['i3'], $scores['i4'], $scores['i5']
+        ], 1);
 
         return $scores;
     }
@@ -103,10 +102,44 @@ class ImetV2StatisticsService extends ImetStatisticsService
     {
         $imet_id = $imet->getKey();
 
-        $scores = [];
-        $scores['avg_indicator'] = null;
-        // TODO
+        $scores = [
+            'pr1' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr1', 'eval_staff_competence', ['EvaluationScore']),
+            'pr2' => static::table_db_function($imet_id, 'eval_hr_management_politics', 'EvaluationScore'),
+            'pr3' => static::table_db_function($imet_id, 'eval_hr_management_systems', 'EvaluationScore'),
+            'pr4' => static::score_governance_leadership($imet_id),
+            'pr5' => static::table_db_function($imet_id, 'eval_administrative_management', 'EvaluationScore', 'get_imet_evaluation_stats_table_all_4'),
+            'pr6' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr6', 'eval_equipment_maintenance', ['EvaluationScore']),
+            'pr7' => static::group_db_function($imet_id, 'eval_management_activities', 'EvaluationScore', 'group_key'),
+            'pr8' => static::table_db_function($imet_id, 'eval_law_enforcement_implementation', 'Adequacy'),
+            'pr9' => static::group_db_function($imet_id, 'eval_intelligence_implementation', 'Adequacy', 'group_key', 'get_imet_evaluation_stats_group_all_fix'),
+            'pr10' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr10', 'eval_stakeholder_cooperation', ['Cooperation', 'group_key']),
+            'pr11' => static::group_db_function($imet_id, 'eval_assistance_activities', 'EvaluationScore', 'group_key', 'get_imet_evaluation_stats_group_all_fix'),
+            'pr12' => static::table_db_function($imet_id, 'eval_actors_relations', 'EvaluationScore'),
+            'pr13' => static::group_db_function($imet_id,  'eval_visitors_management', 'EvaluationScore', 'group_key'),
+            'pr14' => static::group_db_function($imet_id, 'eval_visitors_impact', 'EvaluationScore', 'group_key'),
+            'pr15' => static::table_db_function($imet_id, 'eval_natural_resources_monitoring', 'EvaluationScore'),
+            'pr16' => static::table_db_function($imet_id, 'eval_research_and_monitoring', 'EvaluationScore'),
+            'pr17' => static::table_db_function($imet_id, 'eval_climate_change_monitoring', 'EvaluationScore'),
+            'pr18' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr18', 'eval_ecosystem_services', ['EvaluationScore', 'group_key', 'spam']),
+        ];
 
+        // average step score
+        $scores['pr1_6'] = static::average([$scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6']]);
+        $scores['pr7_9'] = static::average([$scores['pr7'],  $scores['pr8'],  $scores['pr9']]);
+        $scores['pr10_12'] = static::average([$scores['pr10'],  $scores['pr11'],  $scores['pr12']]);
+        $scores['pr13_14'] = static::average([$scores['pr13'],  $scores['pr14']]);
+        $scores['pr15_16'] = static::average([$scores['pr15'],  $scores['pr16']]);
+        $scores['pr17_18'] = static::average([$scores['pr17'],  $scores['pr18']]);
+
+        $scores['avg_indicator'] = static::average([
+            $scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6'],
+            $scores['pr7'],  $scores['pr8'],  $scores['pr9'],
+            $scores['pr10'],  $scores['pr11'],  $scores['pr12'],
+            $scores['pr13'],  $scores['pr14'],
+            $scores['pr15'],  $scores['pr16'],
+            $scores['pr17'],  $scores['pr18']
+        ], 1);
+        
         return $scores;
     }
     private static function scores_outputs($imet)
@@ -130,13 +163,14 @@ class ImetV2StatisticsService extends ImetStatisticsService
         return $scores;
     }
 
-
     /**
      * Custom function for ManagementPlan and WorkPlan
+     *
      * @param $imet
+     * @param $module_class
      * @return float|int|null
      */
-    private static function eval_plans($imet, $module_class)
+    private static function score_management_and_work_plans($imet, $module_class)
     {
         $record = $module_class::where('FormID', $imet)->first();
 
@@ -174,7 +208,41 @@ class ImetV2StatisticsService extends ImetStatisticsService
         return $score;
     }
 
+    /**
+     * Custom function for BudgetSecurization
+     *
+     * @param $imet
+     * @return float|int|null
+     */
+    private static function score_budget_securization($imet)
+    {
+        $record = BudgetSecurization::where('FormID', $imet)->first();
 
+        $score = null;
+        if($record && $record['Percentage']!==null && $record['EvaluationScore'] !== null){
+            $score = (($record['Percentage'] / 5) + ( $record['EvaluationScore'] / 3 )) / 2 * 100;
+            $score = round($score, 2);
+        }
+        return $score;
+    }
 
+    /**
+     * Custom function for GovernanceLeadership
+     *
+     * @param $imet
+     * @return float|int|null
+     */
+    private static function score_governance_leadership($imet)
+    {
+        $record = GovernanceLeadership::where('FormID', $imet)->first();
+
+        $score = null;
+        // (eval_governance_leadership."EvaluationScoreGovernace" + eval_governance_leadership."EvaluationScoreLeadership") / 6.0 * 100.0 AS value_p
+        if($record){
+            $score = ($record['EvaluationScoreGovernace'] + $record['EvaluationScoreLeadership']) / 6.0 * 100.0;
+            $score = round($score, 2);
+        }
+        return $score;
+    }
 
 }

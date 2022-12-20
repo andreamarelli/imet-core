@@ -83,9 +83,19 @@
                     </div>
                     <div>
                         <b>I:</b> {{ $v2_stats_from_php[$id]['I'] }}
+                        @if($v2_stats_from_db[$id]['I'] === $v2_stats_from_php[$id]['I'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
                     </div>
                     <div>
                         <b>PR:</b> {{ $v2_stats_from_php[$id]['PR'] }}
+                        @if($v2_stats_from_db[$id]['PR'] === $v2_stats_from_php[$id]['PR'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
                     </div>
                     <div>
                         <b>R:</b> {{ $v2_stats_from_php[$id]['OP'] }}
