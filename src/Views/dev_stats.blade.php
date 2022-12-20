@@ -66,41 +66,51 @@
                 </td>
                 <td>
                     <div>
-                        <b>C:</b> {{ $v2_stats_from_php[$id]['C'] }}
                         @if($v2_stats_from_db[$id]['C'] === $v2_stats_from_php[$id]['C'])
                             <i class="fas fa-check-circle" style="color: green;"></i>
                         @else
                             <i class="fas fa-times-circle" style="color: red;"></i>
                         @endif
+                        <b>C:</b> {{ $v2_stats_from_php[$id]['C'] }}
                     </div>
                     <div>
-                        <b>P:</b> {{ $v2_stats_from_php[$id]['P'] }}
                         @if($v2_stats_from_db[$id]['P'] === $v2_stats_from_php[$id]['P'])
                             <i class="fas fa-check-circle" style="color: green;"></i>
                         @else
                             <i class="fas fa-times-circle" style="color: red;"></i>
                         @endif
+                        <b>P:</b> {{ $v2_stats_from_php[$id]['P'] }}
                     </div>
                     <div>
-                        <b>I:</b> {{ $v2_stats_from_php[$id]['I'] }}
                         @if($v2_stats_from_db[$id]['I'] === $v2_stats_from_php[$id]['I'])
                             <i class="fas fa-check-circle" style="color: green;"></i>
                         @else
                             <i class="fas fa-times-circle" style="color: red;"></i>
                         @endif
+                        <b>I:</b> {{ $v2_stats_from_php[$id]['I'] }}
                     </div>
                     <div>
-                        <b>PR:</b> {{ $v2_stats_from_php[$id]['PR'] }}
                         @if($v2_stats_from_db[$id]['PR'] === $v2_stats_from_php[$id]['PR'])
                             <i class="fas fa-check-circle" style="color: green;"></i>
                         @else
                             <i class="fas fa-times-circle" style="color: red;"></i>
                         @endif
+                        <b>PR:</b> {{ $v2_stats_from_php[$id]['PR'] }}
                     </div>
                     <div>
+                        @if($v2_stats_from_db[$id]['OP'] === $v2_stats_from_php[$id]['OP'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
                         <b>R:</b> {{ $v2_stats_from_php[$id]['OP'] }}
                     </div>
                     <div>
+                        @if($v2_stats_from_db[$id]['OC'] === $v2_stats_from_php[$id]['OC'])
+                            <i class="fas fa-check-circle" style="color: green;"></i>
+                        @else
+                            <i class="fas fa-times-circle" style="color: red;"></i>
+                        @endif
                         <b>EI:</b> {{ $v2_stats_from_php[$id]['OC'] }}
                     </div>
                 </td>

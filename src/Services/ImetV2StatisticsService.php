@@ -139,16 +139,23 @@ class ImetV2StatisticsService extends ImetStatisticsService
             $scores['pr15'],  $scores['pr16'],
             $scores['pr17'],  $scores['pr18']
         ], 1);
-        
+
         return $scores;
     }
     private static function scores_outputs($imet)
     {
         $imet_id = $imet->getKey();
 
-        $scores = [];
-        $scores['avg_indicator'] = null;
-        // TODO
+        $scores = [
+            'op1' => static::table_db_function($imet_id, 'eval_work_program_implementation', 'EvaluationScore'),
+            'op2' => static::table_db_function($imet_id, 'eval_achieved_results', 'EvaluationScore'),
+            'op3' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_op3', 'eval_area_domination'),
+        ];
+
+        // average step score
+        $scores['avg_indicator'] = static::average([
+            $scores['op1'],  $scores['op2'], $scores['op3']
+        ], 2);
 
         return $scores;
     }
@@ -156,9 +163,26 @@ class ImetV2StatisticsService extends ImetStatisticsService
     {
         $imet_id = $imet->getKey();
 
-        $scores = [];
-        $scores['avg_indicator'] = null;
-        // TODO
+        $scores = [
+            'oc1' => static::table_db_function($imet_id, 'eval_achived_objectives', 'EvaluationScore'),
+            'oc2' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_oc2', 'eval_key_conservation_trends', ['Condition', 'Trend']),
+            'oc3' => static::group_db_function($imet_id, 'eval_life_quality_impact', 'EvaluationScore', 'group_key'),
+        ];
+
+        // average step score
+        $sum = ($scores['oc1'] ?? 0)
+            + ($scores['oc2'] ? $scores['oc2']/2+50 : 0)
+            + ($scores['oc3'] ? $scores['oc3']/2+50 : 0);
+        $count = count(array_filter([$scores['oc1'], $scores['oc2'], $scores['oc3']], function($x) { return $x!==null; }));
+        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+
+//        if($imet->getKey()===15){
+//            dd(
+//                ((array) EvalController::assessment($imet_id, 'global'))['original'],
+//                ((array) EvalController::assessment($imet_id, 'outcomes'))['original'],
+//                $scores
+//            );
+//        }
 
         return $scores;
     }
