@@ -104,18 +104,21 @@
         </popover>
     </div>
 </div>
-<div v-for="(value, index) in data.props.values.values" class="align-items-center" :id="'{{$name}}-'+index">
-    <container_actions :data="value" :name="'{{$name}}-'+index"
-                       :event_image="'save_entire_block_as_image'"
-                       :exclude_elements="'{{$exclude_elements}}'">
-        <template slot-scope="v">
-            <bar_reverse
-                :title="(index+1)+'. '+ container.props.stores.BaseStore.localization(`imet-core::v2_context.MenacesPressions.categories.title${index+1}`)"
-                :event_id="'save_image_s'"
-                :show_legends="true"
-                :values="v.props.map(item => item.value)"
-                :colors="['5C7BD9']"
-                :fields='v.props.map(item => item.name)'></bar_reverse>
-        </template>
-    </container_actions>
+
+<div v-for="(value, index) in data.props.values.values" class="align-items-center">
+    <div :id="'{{$name}}-x-'+index">
+        <container_actions :data="value" :name="'{{$name}}-x-'+index"
+                           :event_image="'save_entire_block_as_image'"
+                           :exclude_elements="'{{$exclude_elements}}'">
+            <template slot-scope="v">
+
+                <bar_reverse
+                    :title="(index+1)+'. '+ container.props.stores.BaseStore.localization(`imet-core::v2_context.MenacesPressions.categories.title${index+1}`)"
+                    :show_legends="true"
+                    :values="v.props.map(item => item.value)"
+                    :colors="['5C7BD9']"
+                    :fields='v.props.map(item => item.name)'></bar_reverse>
+            </template>
+        </container_actions>
+    </div>
 </div>
