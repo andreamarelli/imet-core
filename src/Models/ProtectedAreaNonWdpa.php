@@ -48,9 +48,9 @@ class ProtectedAreaNonWdpa extends BaseModel
     public static function generate_fake_wdpa(int $max_id = null)
     {
         $max_id = $max_id ?? ProtectedAreaNonWdpa::max('id');
-        return $max_id===null || static::isNonWdpa($max_id)
-                ? static::START_FAKE_ID
-                : $max_id + 1;
+        return $max_id===null || !static::isNonWdpa($max_id)
+            ? static::START_FAKE_ID
+            : intval($max_id) + 1;
     }
 
     /**
