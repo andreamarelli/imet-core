@@ -384,7 +384,8 @@ fieldset[disabled] .vue-swatches {
   height: 100px;
   width: 30px;
   box-sizing: content-box;
-  border-radius: 5px 0px 0px 5px; /* Rounded corners on the top right and bottom right side */
+  border-radius: 5px 0px 0px 5px;
+  /* Rounded corners on the top right and bottom right side */
 }
 .basket[data-v-b0a25256] {
   background-color: #eee;
@@ -409,17 +410,26 @@ fieldset[disabled] .vue-swatches {
   color: red;
 }
 #sidePreview[data-v-b0a25256] {
-  position: fixed; /* Position them relative to the browser window */
-  right: -490px; /* Position them outside of the screen */
-  transition: 0.5s; /* Add transition on hover */
-  padding: 20px 0px 0px 5px; /* 15px padding */
-  text-decoration: none; /* Remove underline */
-  font-size: 18px; /* Increase font size */
-  color: white; /* White text color */
-  border-radius: 5px 5px 5px 5px; /* Rounded corners on the top right and bottom right side */
+  position: fixed;
+  /* Position them relative to the browser window */
+  right: -490px;
+  /* Position them outside of the screen */
+  transition: 0.5s;
+  /* Add transition on hover */
+  padding: 20px 0px 0px 5px;
+  /* 15px padding */
+  text-decoration: none;
+  /* Remove underline */
+  font-size: 18px;
+  /* Increase font size */
+  color: white;
+  /* White text color */
+  border-radius: 5px 5px 5px 5px;
+  /* Rounded corners on the top right and bottom right side */
 }
 #sidePreview[data-v-b0a25256]:hover {
-  right: 0; /* On mouse-over, make the elements appear as they should */
+  right: 0;
+  /* On mouse-over, make the elements appear as they should */
 }
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/label-cloud.vue?vue&type=style&index=0&id=37d478c6&lang=scss&scoped=true& ***!
@@ -438,7 +448,8 @@ fieldset[disabled] .vue-swatches {
 .imet_modules .field-disabled {
   color: #404040;
 }
-.imet_modules .module-header .module-type { /* for marine/terrestrial icons */
+.imet_modules .module-header .module-type {
+  /* for marine/terrestrial icons */
   padding: 6px 15px;
 }
 
@@ -686,4 +697,11 @@ nav.steps a.step.cross-analysis-warnings {
   text-align: center;
   padding: 60px 0;
   color: #00A74B;
+}
+
+.btn-circle {
+  padding: 13px 18px;
+  border-radius: 60px;
+  font-size: 15px;
+  text-align: center;
 }

@@ -34,6 +34,10 @@ return [
     'name' => 'Nombre',
     'category' => 'Categoría',
     'short_name' => 'Código de colores y nombre corto',
+    'add_choices' => 'Añadir opciones',
+    'add_all' => 'Añadir todo',
+    'close' => 'Cerrar',
+    'remove_all' => 'Eliminar todo',
     'sections' => [
         'first' => 'Ubicación de las áreas protegidas seleccionadas',
         'second' => 'Información General de las áreas protegidas',
