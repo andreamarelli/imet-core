@@ -110,7 +110,10 @@ export default {
                     data: this.x_axis_data,
                     axisLabel: {
                         interval: 0,
-                        rotate: 45
+                        rotate: 0,
+                        formatter: function(value, index){
+                            return value.replace(/ /g, "\n")
+                        }
                     }
                 },
                 yAxis: {
