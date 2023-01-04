@@ -36,6 +36,7 @@
                                        :event_image="'save_entire_block_as_image'">
                         <template slot-scope="data_elements">
                             <bar_category_stack
+                                :title="tableValue['menu']['ranking']"
                                 :show_y_axis="false"
                                 :show_option_label="tableValue['ranking_labels']"
                                 :x_axis_data="data_elements.props[tableValue['name']].ranking.xAxis"
@@ -74,6 +75,7 @@
                                        :event_image="'save_entire_block_as_image'">
                         <template slot-scope="data_elements">
                             <imet_bar_error
+                                :title="tableValue['menu']['average_contribution']"
                                 :axis_dimensions_x="{max:100}"
                                 :inverse_y="true"
                                 :show_legends="true"
@@ -102,7 +104,8 @@
                                            :name="'{{$name}}-'+section+'-'+tableValue['name']+'-'+index+'scaling-radar'"
                                            :event_image="'save_entire_block_as_image'">
                             <template slot-scope="data_elements">
-                                <scaling_radar class="sm" :height=700
+                                <scaling_radar class="sm" :height=750
+                                               :title="tableValue['menu']['radar']"
                                                :single="false"
                                                :radar_indicators_for_negative="data_elements.props[tableValue['name']].radar.radar_indicators_for_negative"
                                                :radar_indicators_for_zero_negative="data_elements.props[tableValue['name']].radar.radar_indicators_zero_negative"

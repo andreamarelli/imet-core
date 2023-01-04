@@ -10,6 +10,10 @@ export default {
     ],
     inject: ['stores'],
     props: {
+        title:{
+            type: String,
+            default: ''
+        },
         width: {
             type: String,
             default: '100%'
@@ -70,11 +74,16 @@ export default {
             const {values, error_data, legends, indicators} = this.getValues();
 
             return {
-                title: {
-                    text: ''
+                title:{
+                    text: this.title,
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
                 },
                 legend: {
-                    data: legends
+                    data: legends,
+                    padding: [30, 0, 0, 0]
                 },
                 ...this.grid(),
                 xAxis: {...this.axis_dimensions_x, inverse:this.inverse_x},

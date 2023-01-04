@@ -10,6 +10,10 @@ export default {
         window.ImetCore.ScalingUp.Mixins.resize
     ],
     props: {
+        title:{
+            type: String,
+            default: ''
+        },
         label_position: {
             type: String,
             default: 'top'
@@ -81,9 +85,17 @@ export default {
                 return this.show_option_label;
             };
             return {
+                title:{
+                    text: this.title,
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
+                },
                 legend: {
                     data: Object.values(this.legends),
-                    selectedMode: false
+                    selectedMode: false,
+                    padding: [30, 0, 0, 0]
                 },
                 ...this.grid,
                 tooltip: {
@@ -139,6 +151,7 @@ export default {
     },
     mounted() {
         const legends = Object.values(this.legends).length;
+        console.log(this.title);
         this.height_value = parseInt(this.height.replace('px', ''));
         if (legends > 7) {
             this.height_value += (legends - 7) * 4;

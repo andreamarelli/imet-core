@@ -21,6 +21,7 @@
         <template slot-scope="v">
             <div v-if="v.props.ranking">
                 <bar_category_stack
+                    :title="container.props.config.element_diagrams.threats.menu.ranking"
                     :show_y_axis="false"
                     :label_position="'bottom'"
                     :show_option_label="container.props.config.element_diagrams.threats.ranking_labels"
@@ -56,6 +57,7 @@
         <template slot-scope="v">
             <div v-if="v.props.average_contribution">
                 <imet_bar_error
+                    :title="container.props.config.element_diagrams.threats.menu.average_contribution"
                     :error_color="'#fff000'"
                     :axis_dimensions_x="{max:100}"
                     :show_legends="true"
@@ -83,7 +85,8 @@
         <template slot-scope="v">
             <div v-if="v.props.radar">
                 <radar_threats class="sm"
-                               :height=700
+                               :title="container.props.config.element_diagrams.threats.menu.radar"
+                               :height=750
                                :single="false"
                                :unselect_legends_on_load="true"
                                :show_legends="true"

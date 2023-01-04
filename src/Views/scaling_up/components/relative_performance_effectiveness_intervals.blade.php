@@ -19,7 +19,7 @@
                                     <small_menu v-if="index!=='form_ids'" :items="data.props.values.diagrams" :ids="'upper_lower_'"
                                                 :exclude="'Average,upper limit,lower limit'"></small_menu>
 
-                                    <container_upper_lower_radars v-if="index!=='form_ids'" :width=480 :height=600
+                                    <container_upper_lower_radars v-if="index!=='form_ids'" :width=480 :height=750
                                                                   :unselect_legends_on_load="true"
                                                                   :single="false"
                                                                   :show_legends="true"
