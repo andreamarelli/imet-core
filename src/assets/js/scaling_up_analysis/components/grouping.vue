@@ -29,7 +29,7 @@
                 <drop_drag_area :drop_id="i.id" :key="i.id" :color="i.color">
                     <template>
                         <div class="bg-white text-center mb-1">
-                            <span class="text-center " v-if="i.input_visible"> <input type="text" :id="'item-'+i.id" :value="i.name" maxlength="30" size="15"/></span>
+                            <span class="text-center " v-if="i.input_visible"> <input type="text" :id="'item-'+i.id" :value="i.name" maxlength="25" size="15"/></span>
                             <span class="text-center " v-if="!i.input_visible"> {{ i.name }}</span>
                             <i class="fa fa-pen" v-if="!i.input_visible"
                                aria-hidden="true" @click='edit_component_name(i.id)'></i>
