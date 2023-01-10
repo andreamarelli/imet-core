@@ -93,7 +93,7 @@ export default {
                     }
                 },
                 legend: {
-                    data: Object.values(this.legends),
+                    data: Object.values(Array.isArray(this.legends[0]) ? this.legends[0]: this.legends),
                     selectedMode: false,
                     padding: [30, 0, 0, 0]
                 },
@@ -151,7 +151,6 @@ export default {
     },
     mounted() {
         const legends = Object.values(this.legends).length;
-        console.log(this.title);
         this.height_value = parseInt(this.height.replace('px', ''));
         if (legends > 7) {
             this.height_value += (legends - 7) * 4;

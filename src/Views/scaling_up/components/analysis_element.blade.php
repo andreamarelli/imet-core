@@ -77,6 +77,7 @@
                             <imet_bar_error
                                 :title="tableValue['menu']['average_contribution']"
                                 :axis_dimensions_x="{max:100}"
+                                :indicators_color="data_elements.props[tableValue['name']].average_contribution.data['Average'][0]['itemStyle']['color']"
                                 :inverse_y="true"
                                 :show_legends="true"
                                 :values="data_elements.props[tableValue['name']].average_contribution.data"

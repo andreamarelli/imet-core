@@ -191,6 +191,12 @@ return [
     ],
     'management_context' => [
         'key_species' => 'Especies clave',
+        'animal_species_chart' => 'Especies animales',
+        'plant_species_chart' => 'Especies vegetales',
+        'habitats_chart' => 'Hábitats',
+        'threats_charts' => 'Amenazas',
+        'values_sensitive_chart' => 'Valores clave sensibles al cambio climático',
+        'ecosystem_services_chart' => 'Ecosistemas más importantes',
         'animal_species' => 'Especies animales (emblemáticas, en peligro de extinción, endémicas, ...)',
         'occurrences_species' => 'Especies animales clave presentes en 2 o más áreas protegidas ',
         'occurrences_plants' => 'especies vegetales clave presentes en 2 o más zonas protegidas ',

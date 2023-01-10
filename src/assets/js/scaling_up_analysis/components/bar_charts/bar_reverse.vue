@@ -4,18 +4,24 @@ import bar from './bar.vue';
 export default {
     name: "bar_reverse",
     mixins: [bar],
+    props: {
+        title_data: {
+            type: String,
+            default: 'threats'
+        }
+    },
     computed: {
         bar_options() {
 
             return {
+                legend: {show: true,
+                    padding: [30, 0, 0, 0]},
                 colors: ['#5470C6'],
                 title: {
                     text: this.title,
-                    left: 'center',
-                    textStyle: {
-                        fontWeight: 'normal'
-                    }
+                    left: 'center'
                 },
+
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
@@ -50,8 +56,25 @@ export default {
                         show: true,
                         position: 'left'
                     },
+                    name: this.title_data,
                     type: 'bar'
                 }],
+// echarts.apache create a new instance of the chart with yaxis type category and legend
+                // this.values.map(item => {
+                //     return {
+                //
+                //         type: 'bar',
+                //         name: item.name,
+                //         itemStyle: {
+                //             color: '#C23531'
+                //         },
+                //         label: {
+                //             show: true,
+                //             position: 'left'
+                //         },
+                //         data: [item.value]
+                //     }
+                // }),
                 ...this.has_zoom()
 
             }

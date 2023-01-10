@@ -20,6 +20,7 @@
                             <template>
                                 <div v-if="show_species && show_group0" class="mb-3">
                                     <bar :fields="Object.keys(species_statistics_group0)"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.animal_species_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_species')"
                                          :rotate="45" :zoom="true"
                                          :values='Object.values(species_statistics_group0)'></bar>
@@ -32,6 +33,7 @@
                             <template>
                                 <div v-if="show_species && show_group1" class="mb-3">
                                     <bar :fields="Object.keys(species_statistics_group1)"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.plant_species_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_plants')"
                                          :rotate="45" :zoom="true"
                                          :values='Object.values(species_statistics_group1)'></bar>
@@ -62,6 +64,7 @@
                             <template>
                                 <div v-if="show_habitats" class="mb-3">
                                     <bar :fields="Object.keys(habitats_statistics)"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.habitats_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_habitats')"
                                          :rotate="45" :zoom="true"
                                          :values='Object.values(habitats_statistics)'></bar>
@@ -89,6 +92,7 @@
                             <template>
                                 <div v-if="show_climate" class="mb-3">
                                     <bar :fields="Object.keys(climate_change_statistics)"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.values_sensitive_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_climate')"
                                          :rotate="60" :zoom="true"
                                          :values='Object.values(climate_change_statistics)'></bar>
@@ -115,6 +119,7 @@
                             <template>
                                 <div v-if="show_ecosystem" class="mb-3">
                                     <bar :fields="Object.keys(ecosystem_services_statistics)"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.ecosystem_services_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_ecosystem_services')"
                                          :rotate="45" :zoom="true"
                                          :values='Object.values(ecosystem_services_statistics)'></bar>
@@ -143,6 +148,7 @@
                                 <div v-if="show_threats" class="mb-3">
                                     <bar :fields="Object.keys(threats_statistics)"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_threats')"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.threats_charts')"
                                          :rotate="30" :zoom="true"
                                          :values='Object.values(threats_statistics)'></bar>
                                 </div>

@@ -10,7 +10,7 @@ export default {
     ],
     inject: ['stores'],
     props: {
-        title:{
+        title: {
             type: String,
             default: ''
         },
@@ -32,6 +32,11 @@ export default {
             default: () => {
             }
         },
+        indicators_color:{
+            type: String,
+            default: ''
+        },
+
         show_legends: {
             type: Boolean,
             default: false
@@ -57,7 +62,7 @@ export default {
         },
         error_color: {
             type: String,
-            default: ''
+            default: '#C23531'
         },
         inverse_y: {
             type: Boolean,
@@ -74,7 +79,7 @@ export default {
             const {values, error_data, legends, indicators} = this.getValues();
 
             return {
-                title:{
+                title: {
                     text: this.title,
                     left: 'center',
                     textStyle: {
@@ -82,14 +87,14 @@ export default {
                     }
                 },
                 legend: {
-                    data: legends,
+                   show:true,
                     padding: [30, 0, 0, 0]
                 },
                 ...this.grid(),
-                xAxis: {...this.axis_dimensions_x, inverse:this.inverse_x},
+                xAxis: {...this.axis_dimensions_x, inverse: this.inverse_x},
                 yAxis: {
                     data: indicators,
-                    inverse:this.inverse_y,
+                    inverse: this.inverse_y,
                     axisLabel: {
                         fontSize: this.font_size,
                         interval: 0,
@@ -185,7 +190,7 @@ export default {
             if (!this.indicators?.length) {
                 return [];
             }
-            if(this.values.Average){
+            if (this.values.Average) {
                 return this.values.Average.map((value, key) => {
                     return value['indicator'];
                 });
@@ -195,7 +200,6 @@ export default {
             });
         },
         colors: function (colors) {
-
             return colors;
         },
         legends: function (legends = null) {
@@ -203,18 +207,21 @@ export default {
                 return null;
             }
             return {
-                legend: {
-                    data: legends
-                }
+                data: legends
             }
-
         },
-        setLegends: function () {
+        setLegends: function (data) {
             const legends = [];
-            Object.entries(this.values)
+            Object.entries(data)
                 .reverse()
                 .forEach(([key, value]) => {
-                    legends.push({name: key});
+                    if (key === 'Average') {
+                        value.map((item, index) => {
+                            legends.push({name: item['indicator']});
+                        });
+                    } else {
+                        legends.push({name: value['ind']});
+                    }
                 });
             return this.legends(legends);
         },
@@ -225,6 +232,7 @@ export default {
             let error_data = [];
 
             indicators = this.setIndicators();
+            debugger;
             if (this.show_legends) {
                 legends = this.setLegends(data);
             }
@@ -261,12 +269,12 @@ export default {
             return [
                 {
                     type: 'bar',
-                    name: 'bar',
+                    name: 'Indicators',
                     data: bar_data.map(data => {
                         return {value: data.value, itemStyle: {color: data.itemStyle.color}, label: {color: "#000000"}}
                     }),
                     itemStyle: {
-                        color: '#77bef7'
+                        color: this.indicators_color
                     },
                     label: {
                         show: true,
@@ -275,7 +283,7 @@ export default {
                     }
                 }, {
                     type: 'custom',
-                    name: 'error',
+                    name: 'Variability',
                     itemStyle: {
                         normal: {
                             borderWidth: 1.5,
@@ -298,7 +306,7 @@ export default {
         draw_chart() {
             if (Object.keys(this.values).length > 0) {
                 this.chart = echarts.init(this.$el);
-
+                // console.log(this.bar_options);
                 this.chart.setOption(this.bar_options);
             }
         }
@@ -306,7 +314,3 @@ export default {
 
 }
 </script>
-
-<style scoped>
-
-</style>

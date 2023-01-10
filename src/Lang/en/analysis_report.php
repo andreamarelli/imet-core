@@ -191,6 +191,12 @@ return [
     ],
     'management_context' => [
         'key_species' => 'Key species',
+        'animal_species_chart' => 'Animal species',
+        'plant_species_chart' => 'Plant species',
+        'habitats_chart' => 'Habitats',
+        'threats_charts' => 'Threats',
+        'values_sensitive_chart' => 'Values sensitive to climate change',
+        'ecosystem_services_chart' => 'Important ecosystem services',
         'animal_species' => 'Animal species (flagship, endangered, endemic, ...)',
         'occurrences_species' => 'Key animal species present in two or more Protected Areas ',
         'occurrences_plants' => 'key plants species present in two or more Protected Areas ',
