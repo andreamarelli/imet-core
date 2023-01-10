@@ -363,7 +363,7 @@ return [
         'pr16' => 'Research and biomonitoring',
         'pr17' => 'Management of the effects of climate change',
         'pr18' => 'Ecosystem services',
-        'op1' => 'IImplementation of the work/action plan',
+        'op1' => 'Implementation of the work/action plan',
         'op2' => 'Annual outputs – targets – achievement',
         'op3' => 'Area domination',
         'op4' => 'Enforcement in MPA',

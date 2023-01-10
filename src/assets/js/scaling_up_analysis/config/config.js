@@ -436,7 +436,7 @@ export default {
                         "field": "op1"
                     },
                     {
-                        "label": `O/P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op3')}`,
+                        "label": `O/P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op2')}`,
                         "field": "op2",
                     },
                     {
