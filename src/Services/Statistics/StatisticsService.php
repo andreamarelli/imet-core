@@ -8,17 +8,29 @@ use AndreaMarelli\ModularForms\Helpers\Locale;
 abstract class StatisticsService
 {
     /**
+     * Ensure to return IMET model
+     *
+     * @param $imet
+     * @return Imet
+     */
+    protected static function get_imet($imet): Imet
+    {
+        if(is_int($imet)){
+            $imet = Imet::find($imet);
+        }
+        return $imet;
+    }
+
+    /**
      * Retrieve assessment's scores
      *
-     * @param \AndreaMarelli\ImetCore\Models\Imet\Imet|int $imet
+     * @param Imet|int $imet
      * @param string $step
      * @return array
      */
     public static function get_scores($imet, string $step = 'global'): array
     {
-        if(is_int($imet)){
-            $imet = Imet::find($imet);
-        }
+        $imet = static::get_imet($imet);
 
         if($step === 'global'){
             $scores = [

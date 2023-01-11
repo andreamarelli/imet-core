@@ -14,9 +14,13 @@ trait Math
                 $count_not_null++;
             }
         }
-        return $count_not_null > 0
-            ? round(($sum / $count_not_null), $precision)
+        $average = $count_not_null > 0
+            ? $sum / $count_not_null
             : null;
+
+        return $average!==null && $precision!==null
+            ? round($average, $precision)
+            : $average;
     }
 
 

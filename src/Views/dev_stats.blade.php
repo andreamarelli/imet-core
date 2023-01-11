@@ -4,82 +4,63 @@
 /** @var array $v1_stats_from_db */
 /** @var array $v2_stats_from_db */
 
-?>
-@extends('layouts.admin')
+$steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outcomes'];
 
-@section('content')
+?>
+@extends('modular-forms::layouts._base')
+
+
+@section('body')
+
+<div style="margin: 20px 40px;">
 
     <h1>IMET v1</h1>
     <table class="striped">
         <thead>
             <tr>
                 <th>assessment ID</th>
-                <th>radar from DB</th>
-                <th>radar from PHP</th>
+                @foreach($steps as $step)
+                    <th>{{ $step }}</th>
+                @endforeach
             </tr>
         </thead>
         <tbody>
         @foreach($assessments_v1 as $id)
             <tr>
                 <td>{{ $id }}</td>
-                <td>
-                    <div><b>C:</b> {{ $v1_stats_from_db[$id]['C'] }}</div>
-                    <div><b>P:</b> {{ $v1_stats_from_db[$id]['P'] }}</div>
-                    <div><b>I:</b> {{ $v1_stats_from_db[$id]['I'] }}</div>
-                    <div><b>PR:</b> {{ $v1_stats_from_db[$id]['PR'] }}</div>
-                    <div><b>R:</b> {{ $v1_stats_from_db[$id]['R'] }}</div>
-                    <div><b>EI:</b> {{ $v1_stats_from_db[$id]['EI'] }}</div>
-                </td>
-                <td>
-                    <div>
-                        @if($v1_stats_from_db[$id]['C'] === $v1_stats_from_php[$id]['C'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
+                @foreach($steps as $step)
+                    <td>
+                        @if(array_key_exists($step, $v1_stats_from_db))
+                            <div style="display: flex; align-items: flex-start; justify-content: flex-start; column-gap: 20px;">
+                                <div>
+                                    <div><b>INDICATOR</b></div>
+                                    @foreach($v1_stats_from_db[$step][$id] as $key=>$value)
+                                        <div><b>{{ $key }}</b></div>
+                                    @endforeach
+                                </div>
+                                <div>
+                                    <div><b>DB</b></div>
+                                    @foreach($v1_stats_from_db[$step][$id] as $key=>$value)
+                                        <div>{{ $value ?? '-' }}</div>
+                                    @endforeach
+                                </div>
+                                <div>
+                                    <div><b>PHP</b></div>
+                                    @foreach($v1_stats_from_php[$step][$id] as $key=>$value)
+                                        <div>
+                                            @if($v1_stats_from_db[$step][$id][$key] === $value)
+                                                <i class="fas fa-check-circle" style="color: green;"></i>
+                                            @else
+                                                <i class="fas fa-times-circle" style="color: red;"></i>
+                                            @endif
+                                            {{ $value ?? '-' }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         @endif
-                            <b>C:</b>{{ $v1_stats_from_php[$id]['C'] }}
-                    </div>
-                    <div>
-                        @if($v1_stats_from_db[$id]['P'] === $v1_stats_from_php[$id]['P'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                            <b>P:</b>{{ $v1_stats_from_php[$id]['P'] }}
-                    </div>
-                    <div>
-                        @if($v1_stats_from_db[$id]['I'] === $v1_stats_from_php[$id]['I'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                            <b>I:</b>{{ $v1_stats_from_php[$id]['I'] }}
-                    </div>
-                    <div>
-                        @if($v1_stats_from_db[$id]['PR'] === $v1_stats_from_php[$id]['PR'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                            <b>PR:</b>{{ $v1_stats_from_php[$id]['PR'] }}
-                    </div>
-                    <div>
-                        @if($v1_stats_from_db[$id]['R'] === $v1_stats_from_php[$id]['R'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                        <b>R:</b>{{ $v1_stats_from_php[$id]['R'] }}
-                    </div>
-                    <div>
-                        @if($v1_stats_from_db[$id]['EI'] === $v1_stats_from_php[$id]['EI'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                        <b>EI:</b>{{ $v1_stats_from_php[$id]['EI'] }}
-                    </div>
-                </td>
+                    </td>
+                @endforeach
             </tr>
         @endforeach
         </tbody>
@@ -90,75 +71,51 @@
         <thead>
             <tr>
                 <th>assessment ID</th>
-                <th>radar from DB</th>
-                <th>radar from PHP</th>
+                @foreach($steps as $step)
+                    <th>{{ $step }}</th>
+                @endforeach
             </tr>
         </thead>
         <tbody>
         @foreach($assessments_v2 as $id)
             <tr>
                 <td>{{ $id }}</td>
-                <td>
-                    <div><b>C:</b> {{ $v2_stats_from_db[$id]['C'] }}</div>
-                    <div><b>P:</b> {{ $v2_stats_from_db[$id]['P'] }}</div>
-                    <div><b>I:</b> {{ $v2_stats_from_db[$id]['I'] }}</div>
-                    <div><b>PR:</b> {{ $v2_stats_from_db[$id]['PR'] }}</div>
-                    <div><b>R:</b> {{ $v2_stats_from_db[$id]['OP'] }}</div>
-                    <div><b>EI:</b> {{ $v2_stats_from_db[$id]['OC'] }}</div>
-                </td>
-                <td>
-                    <div>
-                        @if($v2_stats_from_db[$id]['C'] === $v2_stats_from_php[$id]['C'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
+                @foreach($steps as $step)
+                    <td>
+                        @if(array_key_exists($step, $v2_stats_from_db))
+                            <div style="display: flex; align-items:stretch; justify-content: flex-start; column-gap: 20px;">
+                                <div>
+                                    <div><b>INDICATOR</b></div>
+                                    @foreach($v2_stats_from_db[$step][$id] as $key=>$value)
+                                        <div><b>{{ $key }}</b></div>
+                                    @endforeach
+                                </div>
+                                <div>
+                                    <div><b>DB</b></div>
+                                    @foreach($v2_stats_from_db[$step][$id] as $key=>$value)
+                                        <div>{{ $value }}</div>
+                                    @endforeach
+                                </div>
+                                <div>
+                                    <div><b>PHP</b></div>
+                                    @foreach($v2_stats_from_php[$step][$id] as $key=>$value)
+                                        <div>
+                                            @if($v2_stats_from_db[$step][$id][$key] === $value)
+                                                <i class="fas fa-check-circle" style="color: green;"></i>
+                                            @else
+                                                <i class="fas fa-times-circle" style="color: red;"></i>
+                                            @endif
+                                            {{ $value }}
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         @endif
-                        <b>C:</b> {{ $v2_stats_from_php[$id]['C'] }}
-                    </div>
-                    <div>
-                        @if($v2_stats_from_db[$id]['P'] === $v2_stats_from_php[$id]['P'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                        <b>P:</b> {{ $v2_stats_from_php[$id]['P'] }}
-                    </div>
-                    <div>
-                        @if($v2_stats_from_db[$id]['I'] === $v2_stats_from_php[$id]['I'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                        <b>I:</b> {{ $v2_stats_from_php[$id]['I'] }}
-                    </div>
-                    <div>
-                        @if($v2_stats_from_db[$id]['PR'] === $v2_stats_from_php[$id]['PR'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                        <b>PR:</b> {{ $v2_stats_from_php[$id]['PR'] }}
-                    </div>
-                    <div>
-                        @if($v2_stats_from_db[$id]['OP'] === $v2_stats_from_php[$id]['OP'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                        <b>R:</b> {{ $v2_stats_from_php[$id]['OP'] }}
-                    </div>
-                    <div>
-                        @if($v2_stats_from_db[$id]['OC'] === $v2_stats_from_php[$id]['OC'])
-                            <i class="fas fa-check-circle" style="color: green;"></i>
-                        @else
-                            <i class="fas fa-times-circle" style="color: red;"></i>
-                        @endif
-                        <b>EI:</b> {{ $v2_stats_from_php[$id]['OC'] }}
-                    </div>
-                </td>
+                    </td>
+                @endforeach
             </tr>
         @endforeach
         </tbody>
     </table>
-
+</div>
 @endsection

@@ -1,23 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics;
+namespace AndreaMarelli\ImetCore\Services\Statistics\traits\DB;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController;
+
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\V1\Process;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\DBFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\V1_DBFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\V1ToV2_DBFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
+use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
 
-
-class V1ToV2StatisticsService extends StatisticsService
-{
-    use DBFunctions;
-    use V1ToV2_DBFunctions;
-    use Math;
-
-    const SCHEMA = 'imet_assessment_v1_to_v2'; // todo: to be removed after conversion to PHP
+trait V1ToV2_DBFunctions {
 
     /**
      * Return CONTEXT step scores
@@ -25,15 +14,15 @@ class V1ToV2StatisticsService extends StatisticsService
      * @param Imet|int $imet
      * @return array
      */
-    public static function scores_context($imet): array
+    public static function db_scores_context($imet): array
     {
         $imet = static::get_imet($imet);
 
-        $scores_v1 = V1StatisticsService::scores_context($imet);
+        $scores_v1 = V1StatisticsService::db_scores_context($imet);
         $scores = [
             'c1' => self::average([
-                    $scores_v1['c12'], $scores_v1['c13'], $scores_v1['c14'], $scores_v1['c15'], $scores_v1['c16']
-                ]),
+                $scores_v1['c12'], $scores_v1['c13'], $scores_v1['c14'], $scores_v1['c15'], $scores_v1['c16']
+            ]),
             'c2' => $scores_v1['c2'],
             'c3' => $scores_v1['c3'],
             'c11' => $scores_v1['c12'],
@@ -42,6 +31,7 @@ class V1ToV2StatisticsService extends StatisticsService
             'c14' => $scores_v1['c15'],
             'c15' => $scores_v1['c16']
         ];
+
 
         // aggregate step score
         $sum = ($scores['c1'] ?? 0)
@@ -53,15 +43,10 @@ class V1ToV2StatisticsService extends StatisticsService
         return $scores;
     }
 
-    /**
-     * Return PLANNING step scores
-     *
-     * @param $imet
-     * @return array
-     */
-    public static function scores_planning($imet): array
+    public static function db_scores_planning($imet): array
     {
-        $scores_v1 = V1StatisticsService::scores_planning($imet);
+        $imet = static::get_imet($imet);
+        $scores_v1 = V1StatisticsService::db_scores_planning($imet);
 
         $conditional_p3 = function($value){
             if($value===null) {
@@ -101,15 +86,10 @@ class V1ToV2StatisticsService extends StatisticsService
         return $scores;
     }
 
-    /**
-     * Return INPUTS step scores
-     *
-     * @param $imet
-     * @return array
-     */
-    public static function scores_inputs($imet): array
+    public static function db_scores_inputs($imet): array
     {
-        $scores_v1 = V1StatisticsService::scores_inputs($imet);
+        $imet = static::get_imet($imet);
+        $scores_v1 = V1StatisticsService::db_scores_inputs($imet);
 
         $conditional_i3 = function($value){
             if($value===0) {
@@ -129,11 +109,11 @@ class V1ToV2StatisticsService extends StatisticsService
             if($value===0) {
                 return 0;
             } else if($value <= 16.7) {
-                 return(5/16.7)*$value;
+                return(5/16.7)*$value;
             } else if($value <= 50) {
-                 return(5+($value-16.7)/(50-16.7)*31.6666667);
+                return(5+($value-16.7)/(50-16.7)*31.6666667);
             } else if($value <= 83.3) {
-                 return(36.666667+($value-50)/(83.3-50)*36.66666667);
+                return(36.666667+($value-50)/(83.3-50)*36.66666667);
             } else {
                 return (73.333333333 + ($value - 83.3) / 16.7 * 26.6666666666667);
             }
@@ -155,15 +135,10 @@ class V1ToV2StatisticsService extends StatisticsService
 
     }
 
-    /**
-     * Return PROCESS step scores
-     *
-     * @param $imet
-     * @return array
-     */
-    public static function scores_process($imet): array
+    public static function db_scores_process($imet): array
     {
-        $scores_v1 = V1StatisticsService::scores_process($imet);
+        $imet = static::get_imet($imet);
+        $scores_v1 = V1StatisticsService::db_scores_process($imet);
         $scores = [
             'pr1' => $scores_v1['pr1'],
             'pr2' => $scores_v1['pr2'],
@@ -199,19 +174,14 @@ class V1ToV2StatisticsService extends StatisticsService
         return $scores;
     }
 
-    /**
-     * Return OUTPUTS step scores
-     *
-     * @param $imet
-     * @return array
-     */
-    public static function scores_outputs($imet): array
+    public static function db_scores_outputs($imet): array
     {
-        $scores_v1 = V1StatisticsService::scores_outputs($imet);
+        $imet = static::get_imet($imet);
+        $scores_v1 = V1StatisticsService::db_scores_outputs($imet);
         $scores = [
             'op1' => $scores_v1['r1']!==null ? round($scores_v1['r1'] * 0.76, 2) : null,
             'op2' => $scores_v1['r2']!==null ? round($scores_v1['r2'] * 0.76, 2) : null,
-            'op3' => V1StatisticsService::score_pr9($imet)
+            'op3' => V1StatisticsService::rank_db_function($imet->getKey(), 'eval_control', 'EvaluationScore', 'EVAL PR9'),
         ];
 
         // aggregate step score
@@ -220,15 +190,10 @@ class V1ToV2StatisticsService extends StatisticsService
         return $scores;
     }
 
-    /**
-     * Return OUTCOMES step scores
-     *
-     * @param $imet
-     * @return array
-     */
-    public static function scores_outcomes($imet): array
+    public static function db_scores_outcomes($imet): array
     {
-        $scores_v1 = V1StatisticsService::scores_outcomes($imet);
+        $imet = static::get_imet($imet);
+        $scores_v1 = V1StatisticsService::db_scores_outcomes($imet);
         $scores = [
             'oc1' => $scores_v1['ei1']!==null ? round($scores_v1['ei1'] * 0.76, 2) : null,
             'oc2' => round(((($scores_v1['ei2'] ?? 0) + $scores_v1['ei3'])/2), 2),
@@ -243,4 +208,5 @@ class V1ToV2StatisticsService extends StatisticsService
 
         return $scores;
     }
+
 }

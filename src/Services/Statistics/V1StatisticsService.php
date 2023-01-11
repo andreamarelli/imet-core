@@ -2,13 +2,23 @@
 
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DBFunctions;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\DBFunctions;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\V1_DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 
 class V1StatisticsService extends StatisticsService
 {
     use DBFunctions;
+    use V1_DBFunctions;
+    use CommonFunctions\V1;
+    use CustomFunctions\V1\Context;
+    use CustomFunctions\V1\Planning;
+    use CustomFunctions\V1\Inputs;
+    use CustomFunctions\V1\Process;
     use Math;
 
     const SCHEMA = 'imet_assessment'; // todo: to be removed after conversion to PHP
@@ -21,19 +31,20 @@ class V1StatisticsService extends StatisticsService
      */
     public static function scores_context($imet): array
     {
+        $imet = static::get_imet($imet);
         $imet_id = $imet->getKey();
 
         $scores = [
-            'c11' => static::table_db_function($imet_id, 'eval_importance_c11', 'EvaluationScore'),
-            'c12' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_c12', 'eval_importance_c12'),
-            'c13' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_c13', 'eval_importance_c13'),
-            'c14' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_c14', 'eval_importance_c14'),
-            'c15' => static::table_db_function($imet_id, 'eval_importance_c15', 'EvaluationScore'),
-            'c16' => static::table_db_function($imet_id, 'eval_importance_c16', 'EvaluationScore'),
+            'c11' => static::score_table($imet_id, Evaluation\ImportanceGovernance::class, 'EvaluationScore'),
+            'c12' => static::score_c12($imet_id),
+            'c13' => static::score_c13($imet_id),
+            'c14' => static::score_c14($imet_id),
+            'c15' => static::score_table($imet_id, Evaluation\ImportanceClimateChange::class, 'EvaluationScore'),
+            'c16' => static::score_table($imet_id, Evaluation\ImportanceEcosystemServices::class, 'EvaluationScore'),
         ];
         $scores['c1'] = self::average($scores);
-        $scores['c2'] = static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_c2', 'eval_supports_and_constaints');
-        $scores['c3'] = static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_c3', 'context_menaces_pressions');
+        $scores['c2'] = static::score_c2($imet_id);
+        $scores['c3'] = static::score_c3($imet_id);
 
         // aggregate step score
         $sum = ($scores['c1'] ?? 0)
@@ -45,6 +56,7 @@ class V1StatisticsService extends StatisticsService
         return $scores;
     }
 
+
     /**
      * Return PLANNING step scores
      *
@@ -53,15 +65,16 @@ class V1StatisticsService extends StatisticsService
      */
     public static function scores_planning($imet): array
     {
+        $imet = static::get_imet($imet);
         $imet_id = $imet->getKey();
 
         $scores = [
-            'p1' => static::table_db_function($imet_id, 'eval_regulations_adequacy', 'EvaluationScore'),
-            'p2' => static::table_db_function($imet_id, 'eval_design_adequacy', 'EvaluationScore'),
-            'p3' => static::rank_db_function($imet_id, 'eval_boundary_level', 'EvaluationScore', 'EVAL P3'),
-            'p4' => static::table_db_function($imet_id, 'eval_management_plan', 'PlanExistenceScore'),
-            'p5' => static::table_db_function($imet_id, 'eval_work_plan', 'PlanExistenceScore'),
-            'p6' => static::table_db_function($imet_id, 'eval_objectives', 'EvaluationScore'),
+            'p1' => static::score_table($imet_id, Evaluation\RegulationsAdequacy::class, 'EvaluationScore'),
+            'p2' => static::score_table($imet_id, Evaluation\DesignAdequacy::class, 'EvaluationScore'),
+            'p3' => static::score_p3($imet_id),
+            'p4' => static::score_table($imet_id, Evaluation\ManagementPlan::class, 'PlanExistenceScore'),
+            'p5' => static::score_table($imet_id, Evaluation\WorkPlan::class, 'PlanExistenceScore'),
+            'p6' => static::score_table($imet_id, Evaluation\Objectives::class, 'EvaluationScore'),
         ];
 
         // aggregate step score
@@ -85,14 +98,15 @@ class V1StatisticsService extends StatisticsService
      */
     public static function scores_inputs($imet): array
     {
+        $imet = static::get_imet($imet);
         $imet_id = $imet->getKey();
 
         $scores = [
-            'i1' => static::group_db_function($imet_id, 'eval_information_availability', 'EvaluationScore', 'group_key'),
-            'i2' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i2', 'eval_staff', ['EvaluationScore']),
-            'i3' => static::rank_db_function($imet_id, 'eval_budget_adequacy', 'EvaluationScore', 'EVAL I3'),
-            'i4' => static::rank_db_function($imet_id, 'eval_budget_securization', 'EvaluationScore', 'EVAL I4'),
-            'i5' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i5', 'eval_management_equipment_adequacy', ['EvaluationScore']),
+            'i1' => static::score_group($imet_id, Evaluation\InformationAvailability::class, 'EvaluationScore', 'group_key'),
+            'i2' => static::score_i2($imet_id),
+            'i3' => static::score_i3($imet_id),
+            'i4' => static::score_i4($imet_id),
+            'i5' => static::score_i5($imet_id),
         ];
 
         // aggregate step score
@@ -109,28 +123,29 @@ class V1StatisticsService extends StatisticsService
      */
     public static function scores_process($imet): array
     {
+        $imet = static::get_imet($imet);
         $imet_id = $imet->getKey();
 
         $scores = [
-            'pr1' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr1', 'eval_staff_competence', ['EvaluationScore']),
-            'pr2' => static::table_db_function($imet_id, 'eval_hr_management_politics', 'EvaluationScore'),
-            'pr3' => static::table_db_function($imet_id, 'eval_hr_management_systems', 'EvaluationScore'),
-            'pr4' => static::table_db_function($imet_id, 'eval_governance_leadership', 'EvaluationScoreGovernace'),
-            'pr5' => static::table_db_function($imet_id, 'eval_administrative_management', 'EvaluationScore'),
-            'pr6' => static::table_db_function($imet_id, 'eval_equipment_maintenance', 'EvaluationScore'),
-            'pr7' => static::group_db_function($imet_id, 'eval_management_activities', 'EvaluationScore', 'group_key'),
-            'pr8' => static::group_db_function($imet_id, 'eval_protection_activities', 'EvaluationScore', 'group_key'),
-            'pr9' => static::rank_db_function($imet_id, 'eval_control', 'EvaluationScore', 'EVAL PR9'),
-            'pr10' => static::table_db_function($imet_id, 'eval_law_enforcement', 'EvaluationScore'),
-            'pr11' => static::group_db_function($imet_id, 'eval_implications', 'EvaluationScore', 'group_key'),
-            'pr12' => static::table_db_function($imet_id, 'eval_assistance_activities', 'EvaluationScore'),
-            'pr13' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr13', 'eval_actors_relations', ['EvaluationScore']),
-            'pr14' => static::group_db_function($imet_id,  'eval_visitors_management', 'EvaluationScore', 'group_key'),
-            'pr15' => static::group_db_function($imet_id, 'eval_visitors_impact', 'EvaluationScore', 'group_key'),
-            'pr16' => static::table_db_function($imet_id, 'eval_natural_resources_monitoring', 'EvaluationScore'),
-            'pr17' => static::table_db_function($imet_id, 'eval_research_and_monitoring', 'EvaluationScore'),
-            'pr18' => static::table_db_function($imet_id, 'eval_climate_change_monitoring', 'EvaluationScore'),
-            'pr19' => static::group_db_function($imet_id, 'eval_ecosystem_services', 'EvaluationScore', 'group_key')
+            'pr1' => static::score_pr1($imet_id),
+            'pr2' => static::score_table($imet_id, Evaluation\HRmanagementPolitics::class, 'EvaluationScore'),
+            'pr3' => static::score_table($imet_id, Evaluation\HRmanagementSystems::class, 'EvaluationScore'),
+            'pr4' => static::score_table($imet_id, Evaluation\GovernanceLeadership::class, 'EvaluationScoreGovernace'),
+            'pr5' => static::score_table($imet_id, Evaluation\AdministrativeManagement::class, 'EvaluationScore'),
+            'pr6' => static::score_table($imet_id, Evaluation\EquipmentMaintenance::class, 'EvaluationScore'),
+            'pr7' => static::score_group($imet_id, Evaluation\ManagementActivities::class, 'EvaluationScore', 'group_key'),
+            'pr8' => static::score_group($imet_id, Evaluation\ProtectionActivities::class, 'EvaluationScore', 'group_key'),
+            'pr9' => static::score_pr9($imet),
+            'pr10' => static::score_table($imet_id, Evaluation\LawEnforcement::class, 'EvaluationScore'),
+            'pr11' => static::score_group($imet_id, Evaluation\Implications::class, 'EvaluationScore', 'group_key'),
+            'pr12' => static::score_table($imet_id, Evaluation\AssistanceActivities::class, 'EvaluationScore'),
+            'pr13' => static::score_pr13($imet_id),
+            'pr14' => static::score_group($imet_id, Evaluation\VisitorsManagement::class, 'EvaluationScore', 'group_key'),
+            'pr15' => static::score_group($imet_id, Evaluation\VisitorsImpact::class, 'EvaluationScore', 'group_key'),
+            'pr16' => static::score_table($imet_id, Evaluation\NaturalResourcesMonitoring::class, 'EvaluationScore'),
+            'pr17' => static::score_table($imet_id, Evaluation\ResearchAndMonitoring::class, 'EvaluationScore'),
+            'pr18' => static::score_table($imet_id, Evaluation\ClimateChangeMonitoring::class, 'EvaluationScore'),
+            'pr19' => static::score_group($imet_id, Evaluation\EcosystemServices::class, 'EvaluationScore', 'group_key')
         ];
 
         // aggregate step score
@@ -155,11 +170,12 @@ class V1StatisticsService extends StatisticsService
      */
     public static function scores_outputs($imet): array
     {
+        $imet = static::get_imet($imet);
         $imet_id = $imet->getKey();
 
         $scores = [
-            'r1' => static::table_db_function($imet_id, 'eval_work_program_implementation', 'EvaluationScore'),
-            'r2' => static::table_db_function($imet_id, 'eval_achieved_results', 'EvaluationScore'),
+            'r1' => static::score_table($imet_id, Evaluation\WorkProgramImplementation::class, 'EvaluationScore'),
+            'r2' => static::score_table($imet_id, Evaluation\AchievedResults::class, 'EvaluationScore'),
         ];
 
         // aggregate step score
@@ -176,16 +192,16 @@ class V1StatisticsService extends StatisticsService
      */
     public static function scores_outcomes($imet): array
     {
+        $imet = static::get_imet($imet);
         $imet_id = $imet->getKey();
 
         $scores = [
-            'ei1' => static::table_db_function($imet_id, 'eval_achived_objectives', 'EvaluationScore'),
-            'ei2' => static::group_db_function($imet_id, 'eval_designated_values_conservation', 'EvaluationScore', 'group_key'),
-            'ei3' => static::group_db_function($imet_id, 'eval_designated_values_conservation_tendency', 'EvaluationScore', 'group_key'),
-            'ei4' => static::table_db_function($imet_id, 'eval_local_communities_impact', 'EvaluationScore'),
-            'ei5' => static::table_db_function($imet_id, 'eval_climate_change_impact', 'EvaluationScore'),
-            'ei6' => static::table_db_function($imet_id, 'eval_ecosystem_services_impact', 'EvaluationScore'),
-
+            'ei1' => static::score_table($imet_id, Evaluation\AchievedObjectives::class, 'EvaluationScore'),
+            'ei2' => static::score_group($imet_id, Evaluation\DesignatedValuesConservation::class, 'EvaluationScore', 'group_key'),
+            'ei3' => static::score_group($imet_id, Evaluation\DesignatedValuesConservationTendency::class, 'EvaluationScore', 'group_key'),
+            'ei4' => static::score_table($imet_id, Evaluation\LocalCommunitiesImpact::class, 'EvaluationScore'),
+            'ei5' => static::score_table($imet_id, Evaluation\ClimateChangeImpact::class, 'EvaluationScore'),
+            'ei6' => static::score_table($imet_id, Evaluation\EcosystemServicesImpact::class, 'EvaluationScore'),
         ];
 
         // aggregate step score

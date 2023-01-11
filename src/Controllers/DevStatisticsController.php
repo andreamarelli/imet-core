@@ -6,6 +6,7 @@ namespace AndreaMarelli\ImetCore\Controllers;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Controllers\FormController as BaseFormController;
@@ -36,28 +37,39 @@ class DevStatisticsController extends BaseFormController
         $v1_stats_from_db = [];
         $v1_stats_from_php = [];
         foreach ($assessments_v1 as $id){
-            $v1_stats_from_db[$id] = EvalController::radar_assessment($id);
-            $v1_stats_from_php[$id] = array_combine(
+            $v1_stats_from_db['radar'][$id] = EvalController::radar_assessment($id);
+            $v1_stats_from_php['radar'][$id] = array_combine(
                 $labels['v1']['abbreviations'],
                 V1ToV2StatisticsService::get_scores($id)
             );
+            $v1_stats_from_db['context'][$id] = V1ToV2StatisticsService::db_scores_context($id);
+            $v1_stats_from_php['context'][$id] = V1ToV2StatisticsService::scores_context($id);
+            $v1_stats_from_db['planning'][$id] = V1ToV2StatisticsService::db_scores_planning($id);
+            $v1_stats_from_php['planning'][$id] = V1ToV2StatisticsService::scores_planning($id);
+            $v1_stats_from_db['inputs'][$id] = V1ToV2StatisticsService::db_scores_inputs($id);
+            $v1_stats_from_php['inputs'][$id] = V1ToV2StatisticsService::scores_inputs($id);
+            $v1_stats_from_db['process'][$id] = V1ToV2StatisticsService::db_scores_process($id);
+            $v1_stats_from_php['process'][$id] = V1ToV2StatisticsService::scores_process($id);
+            $v1_stats_from_db['outputs'][$id] = V1ToV2StatisticsService::db_scores_outputs($id);
+            $v1_stats_from_php['outputs'][$id] = V1ToV2StatisticsService::scores_outputs($id);
+            $v1_stats_from_db['outcomes'][$id] = V1ToV2StatisticsService::db_scores_outcomes($id);
+            $v1_stats_from_php['outcomes'][$id] = V1ToV2StatisticsService::scores_outcomes($id);
         }
+
         $v2_stats_from_db = [];
         $v2_stats_from_php = [];
         foreach ($assessments_v2 as $id){
-            $v2_stats_from_db[$id] = EvalController::radar_assessment($id);
-            $v2_stats_from_php[$id] = array_combine(
+            $v2_stats_from_db['radar'][$id] = EvalController::radar_assessment($id);
+            $v2_stats_from_php['radar'][$id] = array_combine(
                 $labels['v2']['abbreviations'],
                 V2StatisticsService::get_scores($id)
             );
         }
 
         return view('imet-core::dev_stats', [
-
             'assessments_v1' => $assessments_v1,
             'v1_stats_from_db' => $v1_stats_from_db,
             'v1_stats_from_php' => $v1_stats_from_php,
-
             'assessments_v2' => $assessments_v2,
             'v2_stats_from_db' => $v2_stats_from_db,
             'v2_stats_from_php' => $v2_stats_from_php,

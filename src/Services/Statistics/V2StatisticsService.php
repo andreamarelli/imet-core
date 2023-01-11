@@ -6,7 +6,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\WorkPlan;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\DBFunctions;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 
