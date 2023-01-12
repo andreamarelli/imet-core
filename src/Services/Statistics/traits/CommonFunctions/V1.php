@@ -4,10 +4,19 @@ namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 
 trait V1 {
 
+    /**
+     * Standard function for TABLE type modules
+     *
+     * @param $imet_id
+     * @param $module_class
+     * @param $module_field
+     * @param $function_variant
+     * @return float|null
+     */
     private static function score_table($imet_id, $module_class, $module_field, $function_variant = null): ?float
     {
-        $records = $module_class::getModuleRecords($imet_id)['records'];
-        $values = collect($records)
+        $records = $module_class::getModule($imet_id);
+        $values = $records
             ->pluck($module_field)
             ->filter(function ($value) {
                 return $value != -99;
@@ -22,10 +31,20 @@ trait V1 {
             : null;
     }
 
+    /**
+     * Standard function for GROUP type modules
+     *
+     * @param $imet_id
+     * @param $module_class
+     * @param $module_field
+     * @param $group_field
+     * @param $function_variant
+     * @return float|null
+     */
     private static function score_group($imet_id, $module_class, $module_field, $group_field, $function_variant = null): ?float
     {
-        $records = $module_class::getModuleRecords($imet_id)['records'];
-        $values = collect($records)
+        $records = $module_class::getModule($imet_id);
+        $values = $records
             ->groupBy($group_field)
             ->map(function($group) use($module_field) {
                 $group_values = $group

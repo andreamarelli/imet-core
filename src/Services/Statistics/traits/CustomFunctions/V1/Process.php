@@ -8,12 +8,12 @@ use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\StaffCompetence;
 
 trait Process {
 
-    protected static function score_pr1($imet_id)
+    protected static function score_pr1($imet_id): ?float
     {
         $staff_weights = static::staff_weights($imet_id);
-        $records = StaffCompetence::getModuleRecords($imet_id)['records'];
+        $records = StaffCompetence::getModule($imet_id);
 
-        $values = collect($records)
+        $values = $records
             ->filter(function ($record){
                 return $record['EvaluationScore']!==null;
             })
@@ -37,13 +37,14 @@ trait Process {
             : null;
     }
 
-    public static function score_pr9($imet)
+    public static function score_pr9($imet): ?float
     {
         $imet = static::get_imet($imet);
         $imet_id = $imet->getKey();
-        $records = Control::getModuleRecords($imet_id)['records'];
+        $records = Control::getModule($imet_id)
+            ->toArray();
 
-        $value = $records!==null
+        $value = !empty($records)
             ? (int) $records[0]['EvaluationScore']
             : null;
 
@@ -63,11 +64,11 @@ trait Process {
         return $score;
     }
 
-    protected static function score_pr13($imet_id)
+    protected static function score_pr13($imet_id): ?float
     {
-        $records = ActorsRelations::getModuleRecords($imet_id)['records'];
+        $records = ActorsRelations::getModule($imet_id);
 
-        $values = collect($records)
+        $values = $records
             ->filter(function ($record){
                 return $record['EvaluationScore']!==null;
             })

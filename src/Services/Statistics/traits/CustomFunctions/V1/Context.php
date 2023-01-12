@@ -3,16 +3,19 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\V1;
 
 
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceClassification;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceHabitats;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceSpecies;
+use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\SupportsAndConstraints;
 
 trait Context
 {
     protected static function score_c12($imet_id): ?float
     {
-        $records = ImportanceClassification::getModuleRecords($imet_id)['records'];
+        $records = ImportanceClassification::getModule($imet_id);
 
-        $values = collect($records)
+        $values =$records
             ->filter(function ($record){
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0
@@ -37,9 +40,9 @@ trait Context
 
     protected static function score_c13($imet_id): ?float
     {
-        $records = ImportanceSpecies::getModuleRecords($imet_id)['records'];
+        $records = ImportanceSpecies::getModule($imet_id);
 
-        $values = collect($records)
+        $values = $records
             ->filter(function ($record){
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0;
@@ -68,16 +71,115 @@ trait Context
 
     protected static function score_c14($imet_id)
     {
-        return null;
+        $records = ImportanceHabitats::getModule($imet_id);
+
+        $values = $records
+            ->filter(function ($record){
+                return $record['EvaluationScore'] !== null
+                    && intval($record['EvaluationScore']) >= 0;
+            })->map(function ($record){
+                $record['EvaluationScore2'] = $record['EvaluationScore2']===null
+                    ? 1
+                    : $record['EvaluationScore2'];
+                return $record;
+            });
+
+        $numerator = $values->sum(function ($item){
+            return $item['EvaluationScore2'] * $item['EvaluationScore'];
+        });
+        $denominator = $values->sum('EvaluationScore2');
+        $denominator = $denominator===0 ? null : $denominator;
+
+        $score = $denominator>0
+            ? $numerator/$denominator * 100 / 3
+            : null;
+
+        return $score!== null ?
+            round($score, 2)
+            : null;
     }
 
     protected static function score_c2($imet_id)
     {
-        return null;
+        $records = SupportsAndConstraints::getModule($imet_id);
+
+        $values = $records
+            ->filter(function ($record){
+                return $record['EvaluationScore'] !== null
+                    && intval($record['EvaluationScore']) != -99
+                    && intval($record['EvaluationScore']) > -4;
+            });
+
+        $numerator = $values->sum(function ($item){
+            return $item['EvaluationScore'] * $item['EvaluationScore2'];
+        });
+        $denominator = $values->sum(function ($item){
+            return $item['EvaluationScore2']===null
+                ? 0
+                : $item['EvaluationScore2'];
+
+        });
+        $denominator = $denominator===0 ? null : $denominator;
+
+        $score = $denominator>0
+            ? $numerator/$denominator * 100 / 3
+            : null;
+
+
+        return $score!== null ?
+            round($score, 2)
+            : null;
     }
 
-    protected static function score_c3($imet_id)
+    protected static function score_c3($imet_id): ?float
     {
-        return null;
+        $records = MenacesPressions::getModule($imet_id);
+
+        $values = $records
+            ->map(function ($record){
+                $impact = $record['Impact']!==null ? $record['Impact'] * -1 + 4 : null;
+                $extension = $record['Extension']!==null ? $record['Extension'] * -1 + 4 : null;
+                $duration = $record['Duration']!==null ? $record['Duration'] * -1 + 4 : null;
+                $probability = $record['Probability']!==null ? $record['Probability'] * -1 + 4 : null;
+                $trend = $record['Trend']!==null ? $record['Trend'] * -0.75 + 2.5 : null;
+                $product =
+                    ($impact===null ? 1 : $impact) *
+                    ($extension===null ? 1 : $extension) *
+                    ($duration===null ? 1 : $duration) *
+                    ($probability===null ? 1 : $probability) *
+                    ($trend===null ? 1 : $trend);
+                $not_null =
+                    ($impact===null ? 0 : 1) +
+                    ($extension===null ? 0 : 1) +
+                    ($duration===null ? 0 : 1) +
+                    ($probability===null ? 0 : 1) +
+                    ($trend===null ? 0 : 1);
+                $exp_denominator = $not_null===0 ? null : $not_null;
+                $record['n_power'] = $exp_denominator!==null
+                    ? 4 - pow($product, (1/$exp_denominator))
+                    : null;
+                return $record;
+            })
+            ->groupBy('group_key')
+            ->map(function ($group){
+                $group_values = $group
+                    ->pluck('n_power')
+                    ->toArray();
+                $average = static::average($group_values, null);
+                return $average!==null
+                    ? -1 * $average
+                    : null;
+            })
+            ->toArray();
+
+        $score = static::average($values, null);
+
+        $score = $score!==null
+            ? $score * 100 / 3
+            : null;
+
+        return $score!== null ?
+            round($score, 2)
+            : null;
     }
 }

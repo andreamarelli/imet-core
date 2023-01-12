@@ -8,9 +8,10 @@ trait Planning
 {
     protected static function score_p3($imet_id)
     {
-        $records = BoundaryLevel::getModuleRecords($imet_id)['records'];
+        $records = BoundaryLevel::getModule($imet_id)
+            ->toArray();
 
-        $value = $records!==null
+        $value = !empty($records)
             ? (int) $records[0]['EvaluationScore']
             : null;
 
