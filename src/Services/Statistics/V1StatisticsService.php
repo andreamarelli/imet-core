@@ -14,7 +14,7 @@ class V1StatisticsService extends StatisticsService
 {
     use DBFunctions;
     use V1_DBFunctions;
-    use CommonFunctions\V1;
+    use CommonFunctions;
     use CustomFunctions\V1\Context;
     use CustomFunctions\V1\Planning;
     use CustomFunctions\V1\Inputs;

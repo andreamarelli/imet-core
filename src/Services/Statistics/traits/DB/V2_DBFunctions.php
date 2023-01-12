@@ -35,8 +35,8 @@ trait V2_DBFunctions {
 
         // aggregate step score
         $sum = ($scores['c1'] ?? 0)
-            + ($scores['c2'] ? $scores['c2']/2+50 : 0)
-            + ($scores['c3'] ? $scores['c3']+100 : 0);
+            + ($scores['c2'] ? $scores['c2'] / 2 + 50 : 0)
+            + ($scores['c3'] ? $scores['c3'] + 100 : 0);
         $count = count(array_filter([$scores['c1'], $scores['c2'], $scores['c3']], function($x) { return $x!==null; }));
         $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
 

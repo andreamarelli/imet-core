@@ -2,7 +2,9 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\Imet $assessments_v1 */
 /** @var \AndreaMarelli\ImetCore\Models\Imet\Imet $assessments_v2 */
 /** @var array $v1_stats_from_db */
+/** @var array $v1_stats_from_php */
 /** @var array $v2_stats_from_db */
+/** @var array $v2_stats_from_php */
 
 $steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outcomes'];
 
@@ -95,7 +97,7 @@ $steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outco
                                 <div>
                                     <div><b>DB</b></div>
                                     @foreach($v2_stats_from_db[$step][$id] as $key=>$value)
-                                        <div>{{ $value }}</div>
+                                        <div>{{ $value ?? '-' }}</div>
                                     @endforeach
                                 </div>
                                 <div>
@@ -107,7 +109,7 @@ $steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outco
                                             @else
                                                 <i class="fas fa-times-circle" style="color: red;"></i>
                                             @endif
-                                            {{ $value }}
+                                            {{ $value ?? '-' }}
                                         </div>
                                     @endforeach
                                 </div>

@@ -11,7 +11,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\SupportsAndConstrai
 
 trait Context
 {
-    protected static function score_c12($imet_id): ?float
+    public static function score_c12($imet_id): ?float
     {
         $records = ImportanceClassification::getModule($imet_id);
 
@@ -38,7 +38,7 @@ trait Context
             : null;
     }
 
-    protected static function score_c13($imet_id): ?float
+    public static function score_c13($imet_id): ?float
     {
         $records = ImportanceSpecies::getModule($imet_id);
 
@@ -69,7 +69,7 @@ trait Context
             : null;
     }
 
-    protected static function score_c14($imet_id)
+    public static function score_c14($imet_id)
     {
         $records = ImportanceHabitats::getModule($imet_id);
 
@@ -99,7 +99,7 @@ trait Context
             : null;
     }
 
-    protected static function score_c2($imet_id)
+    public static function score_c2($imet_id)
     {
         $records = SupportsAndConstraints::getModule($imet_id);
 
@@ -131,7 +131,7 @@ trait Context
             : null;
     }
 
-    protected static function score_c3($imet_id): ?float
+    public static function score_c3($imet_id): ?float
     {
         $records = MenacesPressions::getModule($imet_id);
 
@@ -182,4 +182,5 @@ trait Context
             round($score, 2)
             : null;
     }
+
 }

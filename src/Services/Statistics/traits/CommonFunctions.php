@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
+namespace AndreaMarelli\ImetCore\Services\Statistics\traits;
 
-trait V1 {
+trait CommonFunctions {
 
     /**
      * Standard function for TABLE type modules
