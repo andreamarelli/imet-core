@@ -14,6 +14,7 @@ $steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outco
 
 <div style="margin: 20px 40px;">
 
+@isset($assessments_v1)
     <h1>IMET v1</h1>
     <table class="striped">
         <thead>
@@ -65,7 +66,8 @@ $steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outco
         @endforeach
         </tbody>
     </table>
-
+@endisset
+@isset($assessments_v2)
     <h1>IMET v2</h1>
     <table class="striped">
         <thead>
@@ -117,5 +119,7 @@ $steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outco
         @endforeach
         </tbody>
     </table>
+@endisset
+
 </div>
 @endsection
