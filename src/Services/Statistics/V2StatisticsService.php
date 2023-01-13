@@ -66,14 +66,7 @@ class V2StatisticsService extends StatisticsService
         ];
 
         // aggregate step score
-        $sum = (($scores['p1'] ?? 0) / 2 + 50)
-            + (($scores['p2'] ?? 0) / 2 + 50)
-            + ($scores['p3'] ?? 0)
-            + ($scores['p4'] ?? 0)
-            + ($scores['p5'] ?? 0)
-            + ($scores['p6'] ?? 0);
-        $count = count(array_filter($scores, function($x) { return $x!==null; }));
-        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+        $scores['avg_indicator'] = static::average($scores, 1);
 
         return $scores;
     }

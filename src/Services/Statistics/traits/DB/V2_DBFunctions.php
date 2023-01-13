@@ -58,8 +58,8 @@ trait V2_DBFunctions {
             'p1' => static::table_db_function($imet_id, 'eval_regulations_adequacy', 'EvaluationScore'),
             'p2' => static::table_db_function($imet_id, 'eval_design_adequacy', 'EvaluationScore'),
             'p3' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_p3', 'eval_boundary_level_v2'),
-            'p4' => static::score_management_and_work_plans($imet_id, ManagementPlan::class),
-            'p5' => static::score_management_and_work_plans($imet_id, WorkPlan::class),
+            'p4' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_p4', 'eval_management_plan'),
+            'p5' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_p5', 'eval_work_plan'),
             'p6' => static::table_db_function($imet_id, 'eval_objectives', 'EvaluationScore'),
         ];
 
@@ -84,7 +84,7 @@ trait V2_DBFunctions {
             'i1' => static::group_db_function($imet_id, 'eval_information_availability', 'EvaluationScore', 'group_key'),
             'i2' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i2', 'eval_staff', ['EvaluationScore']),
             'i3' => static::rank_db_function($imet_id, 'eval_budget_adequacy', 'EvaluationScore', 'EVAL I3'),
-            'i4' => static::score_budget_securization($imet_id),
+            'i4' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i4', ''),
             'i5' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_i5', 'eval_management_equipment_adequacy', ['Importance']),
         ];
 
@@ -109,7 +109,7 @@ trait V2_DBFunctions {
             'pr1' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr1', 'eval_staff_competence', ['EvaluationScore']),
             'pr2' => static::table_db_function($imet_id, 'eval_hr_management_politics', 'EvaluationScore'),
             'pr3' => static::table_db_function($imet_id, 'eval_hr_management_systems', 'EvaluationScore'),
-            'pr4' => static::score_governance_leadership($imet_id),
+            'pr4' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr4', 'eval_governance_leadership'),
             'pr5' => static::table_db_function($imet_id, 'eval_administrative_management', 'EvaluationScore', 'get_imet_evaluation_stats_table_all_4'),
             'pr6' => static::custom_db_function($imet_id, 'get_imet_evaluation_stats_cm_pr6', 'eval_equipment_maintenance', ['EvaluationScore']),
             'pr7' => static::group_db_function($imet_id, 'eval_management_activities', 'EvaluationScore', 'group_key'),
@@ -190,86 +190,5 @@ trait V2_DBFunctions {
         return $scores;
     }
 
-    /**
-     * Custom score function for ManagementPlan and WorkPlan
-     *
-     * @param $imet
-     * @param $module_class
-     * @return float|int|null
-     */
-    private static function score_management_and_work_plans($imet, $module_class)
-    {
-        $record = $module_class::where('FormID', $imet)->first();
-
-        $score = null;
-        if($record){
-            $record = $record->toArray();
-
-            $denominator_VisionAdequacy =
-                intval($record['VisionAdequacy'])!==0
-                    ? (1 - ($record['VisionAdequacy'] / $record['VisionAdequacy']))  // This seems to be wrong
-                    // Original PostgreSQL:   (1 - (eval_work_plan."VisionAdequacy"/nullif(eval_work_plan."VisionAdequacy", 0))
-                    : null;
-
-            $denominator_PlanAdequacyScore =
-                intval($record['PlanAdequacyScore'])!==0
-                    ? (1 - ($record['PlanAdequacyScore'] / $record['PlanAdequacyScore']))  // This seems to be wrong (same as VisionAdequacy)
-                    : null;
-
-            $denominator = (($denominator_VisionAdequacy ?? 3) + ($denominator_PlanAdequacyScore ?? 3));
-
-            if($denominator!==null && $denominator!==0){
-                $score =
-                    100 * (
-                        $record['PlanExistence']
-                        + ($record['PlanUptoDate'] ?? 0)
-                        + ($record['PlanApproved'] ?? 0)
-                        + ($record['PlanImplemented'] ?? 0)
-                        + ($record['VisionAdequacy'] ?? 0)
-                        + ($record['PlanAdequacyScore'] ?? 0)
-                    )
-                    / (10 - $denominator);
-            }
-
-        }
-        return $score;
-    }
-
-    /**
-     * Custom score function for BudgetSecurization
-     *
-     * @param $imet
-     * @return float|int|null
-     */
-    private static function score_budget_securization($imet)
-    {
-        $record = BudgetSecurization::where('FormID', $imet)->first();
-
-        $score = null;
-        if($record && $record['Percentage']!==null && $record['EvaluationScore'] !== null){
-            $score = (($record['Percentage'] / 5) + ( $record['EvaluationScore'] / 3 )) / 2 * 100;
-            $score = round($score, 2);
-        }
-        return $score;
-    }
-
-    /**
-     * Custom score function for GovernanceLeadership
-     *
-     * @param $imet
-     * @return float|int|null
-     */
-    private static function score_governance_leadership($imet)
-    {
-        $record = GovernanceLeadership::where('FormID', $imet)->first();
-
-        $score = null;
-        // (eval_governance_leadership."EvaluationScoreGovernace" + eval_governance_leadership."EvaluationScoreLeadership") / 6.0 * 100.0 AS value_p
-        if($record){
-            $score = ($record['EvaluationScoreGovernace'] + $record['EvaluationScoreLeadership']) / 6.0 * 100.0;
-            $score = round($score, 2);
-        }
-        return $score;
-    }
 
 }
