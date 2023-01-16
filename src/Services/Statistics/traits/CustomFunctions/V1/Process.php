@@ -8,10 +8,10 @@ use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\StaffCompetence;
 
 trait Process {
 
-    protected static function score_pr1($imet_id): ?float
+    public static function score_pr1($imet_id, $records = null, $staff_weights = null): ?float
     {
-        $staff_weights = static::staff_weights($imet_id);
-        $records = StaffCompetence::getModule($imet_id);
+        $staff_weights = $staff_weights ?? static::staff_weights($imet_id);
+        $records = $records ?? StaffCompetence::getModule($imet_id);
 
         $values = $records
             ->filter(function ($record){

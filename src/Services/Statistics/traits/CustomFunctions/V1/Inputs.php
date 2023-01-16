@@ -14,21 +14,24 @@ use Illuminate\Support\Facades\App;
 trait Inputs
 {
 
-    protected static function staff_weights($imet_id): array
+    public static function staff_weights($imet_id, $staff = null): array
     {
-        $records = ManagementStaff::getModule($imet_id);
+        $records = $staff ?? ManagementStaff::getModule($imet_id);
 
         return $records
             ->map(function($record){
-                $record['ratio'] = min(1,
-                    ($record['ActualPermanent'] ?? 0) / ($record['ExpectedPermanent']=="0" ? null : $record['ExpectedPermanent'])
-                );
+                $expected = intval($record['ExpectedPermanent'])== 0 ? null : $record['ExpectedPermanent'];
+                $record['ratio'] = $expected!==null
+                    ? min(1, ($record['ActualPermanent'] ?? 0) / ($expected))
+                    : 1;
                 $record['ratio03'] = $record['ratio']===0
                     ? 0
                     : ($record['ratio']>0
                         ? ceil($record['ratio'] * 4 -1)
                         : null);
-                $record['w_avg'] = 1 + log($record['ExpectedPermanent']=="0" ? null : $record['ExpectedPermanent']);
+                $record['w_avg'] = $expected!==null
+                    ? 1 + log($expected)
+                    : null;
                 return $record;
             })
             ->keyBy('Function')
@@ -152,7 +155,7 @@ trait Inputs
 
         $values = $equipment->map(function ($item, $index) use ($equipment_adequacy){
             $importance = $equipment_adequacy[$index] ?? null;
-//            $importance = null; // !!!!! TODO: to be removed (here only to compare with DB function which is wrong)
+            $importance = null; // !!!!! TODO: to be removed (here only to compare with DB function - which is wrong)
             $imp_p1 = $importance + 1;
             $eq_imp = $imp_p1 * $item;
 

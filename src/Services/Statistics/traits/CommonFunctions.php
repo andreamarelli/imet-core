@@ -13,7 +13,7 @@ trait CommonFunctions {
      * @param $function_variant
      * @return float|null
      */
-    private static function score_table($imet_id, $module_class, $module_field, $function_variant = null): ?float
+    private static function score_table($imet_id, $module_class, $module_field, $denominator = 3): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
@@ -24,7 +24,7 @@ trait CommonFunctions {
             ->toArray();
 
         $average = static::average($values, null);
-        $score = $average!==null ? $average / 3 * 100 : null;
+        $score = $average!==null ? $average / $denominator * 100 : null;
 
         return $score!== null ?
             round($score, 2)
