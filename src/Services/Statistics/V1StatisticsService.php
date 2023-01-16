@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
@@ -26,7 +27,7 @@ class V1StatisticsService extends StatisticsService
     /**
      * Return CONTEXT step scores
      *
-     * @param $imet
+     * @param Imet|int $imet
      * @return array
      */
     public static function scores_context($imet): array
@@ -60,7 +61,7 @@ class V1StatisticsService extends StatisticsService
     /**
      * Return PLANNING step scores
      *
-     * @param $imet
+     * @param Imet|int $imet
      * @return array
      */
     public static function scores_planning($imet): array
@@ -93,7 +94,7 @@ class V1StatisticsService extends StatisticsService
     /**
      * Return INPUTS step scores
      *
-     * @param $imet
+     * @param Imet|int $imet
      * @return array
      */
     public static function scores_inputs($imet): array
@@ -118,7 +119,7 @@ class V1StatisticsService extends StatisticsService
     /**
      * Return PROCESS step scores
      *
-     * @param $imet
+     * @param Imet|int $imet
      * @return array
      */
     public static function scores_process($imet): array
@@ -165,7 +166,7 @@ class V1StatisticsService extends StatisticsService
     /**
      * Return OUTPUT step scores
      *
-     * @param $imet
+     * @param Imet|int $imet
      * @return array
      */
     public static function scores_outputs($imet): array
@@ -187,7 +188,7 @@ class V1StatisticsService extends StatisticsService
     /**
      * Return OUTCOME step scores
      *
-     * @param $imet
+     * @param Imet|int $imet
      * @return array
      */
     public static function scores_outcomes($imet): array

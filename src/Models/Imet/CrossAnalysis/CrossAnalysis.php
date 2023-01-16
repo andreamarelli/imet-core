@@ -3,6 +3,8 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use Illuminate\Database\Eloquent\Model;
 
 class CrossAnalysis extends Model
@@ -40,7 +42,11 @@ class CrossAnalysis extends Model
         $filteredArray = [];
         $compareElements = [];
         foreach (static::$indicators as $key => $indicators) {
-            $results = json_decode(EvalController::assessment($item->FormID, $key, true)->getContent());
+
+            $results = $item->version=='v1'
+                ? V1ToV2StatisticsService::get_assessment($item->FormID, $key)
+                : V2StatisticsService::get_assessment($item->FormID, $key);
+
             $filteredArray = array_merge($filteredArray, array_intersect_key((array)$results, array_flip(static::$indicators[$key])));
 
             foreach ($item::modules()[$key] as $module) {

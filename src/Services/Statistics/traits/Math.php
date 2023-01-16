@@ -4,7 +4,7 @@ namespace AndreaMarelli\ImetCore\Services\Statistics\traits;
 
 trait Math
 {
-    private static function average($data, $precision = 2): ?float
+    protected static function average($data, $precision = 2): ?float
     {
         $sum = 0;
         $count_not_null = 0;

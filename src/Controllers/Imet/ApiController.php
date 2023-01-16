@@ -2,11 +2,15 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment_db;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\Report;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
@@ -23,6 +27,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
     public const AUTHORIZE_BY_POLICY = true;
     use ScalingUpApi;
     use Assessment;
+    use Assessment_db;
     use StatisticsApi;
 
     /**
@@ -121,6 +126,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
         $labels = [];
         App::setLocale($lang);
         $records = $request->attributes->get('records');
+
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
@@ -129,7 +135,11 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
                 'wdpa_id' => $record['wdpa_id'],
                 'year' => $record['Year'],
                 'version' => $record['version']
-            ], static::radar_assessment($record['FormID']));
+            ],
+                $record['version']=='v2'
+                    ? V2StatisticsService::get_radar_scores($record['FormID'])
+                    : V1ToV2StatisticsService::get_radar_scores($record['FormID'])
+            );
             $api[] = $item;
         }
 

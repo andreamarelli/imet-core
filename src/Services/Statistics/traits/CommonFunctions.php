@@ -10,10 +10,10 @@ trait CommonFunctions {
      * @param $imet_id
      * @param $module_class
      * @param $module_field
-     * @param $function_variant
+     * @param int $denominator
      * @return float|null
      */
-    private static function score_table($imet_id, $module_class, $module_field, $denominator = 3): ?float
+    private static function score_table($imet_id, $module_class, $module_field, int $denominator = 3): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
@@ -38,10 +38,9 @@ trait CommonFunctions {
      * @param $module_class
      * @param $module_field
      * @param $group_field
-     * @param $function_variant
      * @return float|null
      */
-    private static function score_group($imet_id, $module_class, $module_field, $group_field, $function_variant = null): ?float
+    private static function score_group($imet_id, $module_class, $module_field, $group_field): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
@@ -64,10 +63,6 @@ trait CommonFunctions {
 
         $average = static::average($values, null);
         $score = $average!==null ? $average / 3 * 100 : null;
-
-//        if($module_class == 'AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\Implications'){
-//            dd($values, $average, $score);
-//        }
 
         return $score!== null ?
             round($score, 2)

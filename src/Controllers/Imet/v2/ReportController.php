@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\Animal;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 
 
@@ -46,8 +47,6 @@ class ReportController extends BaseReportController
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
 
-        $global_assessement = (array) EvalController::assessment($form_id, 'global', true)->getData();
-
         return [
             'item' => $item,
             'key_elements' => [
@@ -69,16 +68,12 @@ class ReportController extends BaseReportController
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
             ],
-            'assessment' =>  [
-                'global' => $global_assessement,
-                'context' => (array) EvalController::assessment($form_id, 'context')->getData(),
-                'planning' => (array) EvalController::assessment($form_id, 'planning')->getData(),
-                'inputs' => (array) EvalController::assessment($form_id, 'inputs')->getData(),
-                'process' => (array) EvalController::assessment($form_id, 'process')->getData(),
-                'outputs' => (array) EvalController::assessment($form_id, 'outputs')->getData(),
-                'outcomes' => (array) EvalController::assessment($form_id, 'outcomes')->getData(),
-                'labels' => $global_assessement['labels']
-            ],
+            'assessment' =>  array_merge(
+                V2StatisticsService::get_scores($form_id, 'ALL'),
+                [
+                    'labels' => V2StatisticsService::indicators_labels('v2')
+                ]
+            ),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v2\Report::getByForm($form_id),
             'connection' => $api_available,
             'show_api' => $show_api,

@@ -2,13 +2,13 @@
 
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\DB\V2_DBFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
-use Faker\Calculator\Ean;
 
 
 class V2StatisticsService extends StatisticsService
@@ -26,6 +26,12 @@ class V2StatisticsService extends StatisticsService
 
     const SCHEMA = 'imet_assessment_v2'; // todo: to be removed after conversion to PHP
 
+    /**
+     * Return CONTEXT step scores
+     *
+     * @param Imet|int $imet
+     * @return array
+     */
     public static function scores_context($imet): array
     {
         $imet = static::get_imet($imet);
@@ -51,6 +57,13 @@ class V2StatisticsService extends StatisticsService
 
         return $scores;
     }
+
+    /**
+     * Return PLANNING step scores
+     *
+     * @param Imet|int $imet
+     * @return array
+     */
     public static function scores_planning($imet): array
     {
         $imet = static::get_imet($imet);
@@ -71,6 +84,12 @@ class V2StatisticsService extends StatisticsService
         return $scores;
     }
 
+    /**
+     * Return INPUTS step scores
+     *
+     * @param Imet|int $imet
+     * @return array
+     */
     public static function scores_inputs($imet): array
     {
         $imet = static::get_imet($imet);
@@ -90,6 +109,12 @@ class V2StatisticsService extends StatisticsService
         return $scores;
     }
 
+    /**
+     * Return PROCESS step scores
+     *
+     * @param Imet|int $imet
+     * @return array
+     */
     public static function scores_process($imet): array
     {
         $imet = static::get_imet($imet);
@@ -130,6 +155,12 @@ class V2StatisticsService extends StatisticsService
         return $scores;
     }
 
+    /**
+     * Return OUTPUTS step scores
+     *
+     * @param Imet|int $imet
+     * @return array
+     */
     public static function scores_outputs($imet): array
     {
         $imet = static::get_imet($imet);
@@ -146,6 +177,13 @@ class V2StatisticsService extends StatisticsService
 
         return $scores;
     }
+
+    /**
+     * Return OUTCOMES step scores
+     *
+     * @param Imet|int $imet
+     * @return array
+     */
     public static function scores_outcomes($imet): array
     {
         $imet = static::get_imet($imet);

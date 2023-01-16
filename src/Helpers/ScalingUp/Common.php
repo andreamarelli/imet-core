@@ -5,6 +5,8 @@ namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
 use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 
 class Common
 {
@@ -180,7 +182,11 @@ class Common
         $filtered = [];
         foreach ($form_ids as $key => $form_id) {
 
-            $results[$form_id] = static::get_sub_indicators_by_context($form_id, $type);
+            $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
+
+            $results[$form_id] = $version==='v1'
+                ? V1ToV2StatisticsService::get_scores($form_id, $type)
+                : V2StatisticsService::get_scores($form_id, $type);
 
             if (count($indicators)) {
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
@@ -208,16 +214,6 @@ class Common
         return $filtered;
     }
 
-
-    /**
-     * @param int $form_id
-     * @param string $type
-     * @return array|array[]
-     */
-    public static function get_sub_indicators_by_context(int $form_id, string $type = ''): array
-    {
-        return (array)EvalController::assessment($form_id, $type)->getData();
-    }
 
     /**
      * if names are duplicate add the year
@@ -298,7 +294,12 @@ class Common
         $assessments = [];
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = (array) EvalController::assessment($form_id, 'global', true)->getData();
+            $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
+
+            $assessments[$k] = $version==='v1'
+                ? V1ToV2StatisticsService::get_scores($form_id, 'global')
+                : V2StatisticsService::get_scores($form_id, 'global');
+
             $name = static::get_pa_name($form_id, $scaling_id);
 
             $assessments[$k]['name'] = $name->name;

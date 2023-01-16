@@ -69,7 +69,7 @@ trait Context
             : null;
     }
 
-    public static function score_c14($imet_id)
+    public static function score_c14($imet_id): ?float
     {
         $records = ImportanceHabitats::getModule($imet_id);
 
@@ -99,7 +99,7 @@ trait Context
             : null;
     }
 
-    public static function score_c2($imet_id)
+    public static function score_c2($imet_id): ?float
     {
         $records = SupportsAndConstraints::getModule($imet_id);
 

@@ -6,7 +6,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\BoundaryLevel;
 
 trait Planning
 {
-    protected static function score_p3($imet_id)
+    protected static function score_p3($imet_id): ?float
     {
         $records = BoundaryLevel::getModule($imet_id)
             ->toArray();

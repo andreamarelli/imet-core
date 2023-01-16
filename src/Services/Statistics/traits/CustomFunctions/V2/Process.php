@@ -77,6 +77,7 @@ trait Process
             round($score, 2)
             : null;
     }
+
     protected static function score_pr6($imet_id): ?float
     {
         $records = EquipmentMaintenance::getModule($imet_id);
@@ -104,6 +105,7 @@ trait Process
             round($score, 2)
             : null;
     }
+
     protected static function score_pr10($imet_id): ?float
     {
         $records = StakeholderCooperation::getModule($imet_id);
@@ -152,7 +154,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr18($imet_id)
+    protected static function score_pr18($imet_id): ?float
     {
         $records = EcosystemServices::getModule($imet_id);
         $scores = $records->map(function($record) {
@@ -162,11 +164,6 @@ trait Process
         $score = $scores->isNotEmpty()
             ? static::average($scores, null) * 100 / 3
             : null;
-
-//        if($imet_id == 6){
-//            dd($scores, $score);
-//        }
-
 
         return $score!== null ?
             round($score, 2)
