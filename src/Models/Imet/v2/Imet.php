@@ -99,16 +99,6 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
     }
 
     /**
-     * Relation to Assessment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function assessment(): HasOne
-    {
-        return $this->hasOne(Assessment::class, 'formid', 'FormID');
-    }
-
-    /**
      * Get IMET available years for the given PA
      *
      * @param $wdpa_id

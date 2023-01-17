@@ -10,6 +10,9 @@ use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
@@ -132,7 +135,7 @@ class Imet extends Form
      */
     public static function get_list(Request $request)
     {
-        $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment']);
+        $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers']);
         $list->map(function ($item) {
             // Add encoders
             $item->encoders_responsibles = [
@@ -141,7 +144,9 @@ class Imet extends Form
                 'external' => $item->responsible_interviewees->unique(),
             ];
             // Add radar
-            $item['assessment_radar'] = $item->assessment->radar();
+            $item['assessment_radar'] = $item->version==='v1'
+                ? V1ToV2StatisticsService::get_radar_scores($item)
+                : V2StatisticsService::get_radar_scores($item);
             // Non WDPA
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;

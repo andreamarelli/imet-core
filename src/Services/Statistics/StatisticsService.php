@@ -94,11 +94,23 @@ abstract class StatisticsService
         $imet = static::get_imet($imet);
 
         $labels = static::steps_labels();
+        $scores = static::get_scores($imet);
+        unset($scores['imet_index']);
 
         return array_combine(
             $labels[$imet->version]['abbreviations'],
-            static::get_scores($imet)
+            $scores
         );
+    }
+
+    /**
+     * Retrieve the global IMET score
+     * @param $imet
+     * @return float
+     */
+    public static function get_imet_score($imet): ?float
+    {
+        return static::get_scores($imet)['imet_index'];
     }
 
     /**

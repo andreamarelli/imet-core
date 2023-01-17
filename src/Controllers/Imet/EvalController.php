@@ -6,14 +6,12 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Controllers\__Controller;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment_db;
 use AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis\CrossAnalysis;
 use function view;
 
 class EvalController extends __Controller
 {
     use Assessment;
-    use Assessment_db;
 
     /**
      * return if any discrepancies are found for cross analysis

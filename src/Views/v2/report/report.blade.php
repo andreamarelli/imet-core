@@ -112,7 +112,7 @@ if ($item->language != App::getLocale()) {
             </div>
             <div class="module-body">
                 <imet_charts
-                        form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::assessment_steps_labels())'
+                        form_id={{ $item->getKey() }} :labels='@json(\AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels())'
                         :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>

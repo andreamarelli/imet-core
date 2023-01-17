@@ -6,9 +6,10 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
-trait Assessment_db {
+class Assessment_db
+{
 
-    // TODO
+    // TODO: to be replaced
     private static $indicators = [
         'context',
         'planning',
@@ -19,7 +20,8 @@ trait Assessment_db {
     ];
 
     // XXXXX DONE: to be removed XXXXX
-    public static function assessment($item, string $step = 'global', bool $labels= false): JsonResponse
+    // #### REPLACED ################
+    private static function assessment($item, string $step = 'global', bool $labels= false): JsonResponse
     {
         $version = Imet::getVersion($item);
         $assessment_schema = $version=='v1'
@@ -75,6 +77,7 @@ trait Assessment_db {
     }
 
     // XXXXX DONE: to be removed XXXXX
+    // #### REPLACED ################
     private static function assessment_labels($schema): JsonResponse
     {
 
@@ -94,6 +97,7 @@ trait Assessment_db {
     }
 
     // XXXXX DONE: to be removed XXXXX
+    // #### REPLACED ################
     public static function radar_assessment($item, $abbreviations = true)
     {
         $stats = static::assessment($item, 'global', true);
@@ -110,7 +114,8 @@ trait Assessment_db {
     }
 
     // XXXXX DONE: to be removed XXXXX
-    public static function assessment_steps_labels(): array
+    // #### REPLACED ################
+    private static function assessment_steps_labels(): array
     {
         return [
             'v1' => [

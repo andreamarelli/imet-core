@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment_db;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
@@ -27,7 +26,6 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
     public const AUTHORIZE_BY_POLICY = true;
     use ScalingUpApi;
     use Assessment;
-    use Assessment_db;
     use StatisticsApi;
 
     /**
@@ -143,7 +141,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
             $api[] = $item;
         }
 
-        $assessment_labels = static::assessment_steps_labels();
+        $assessment_labels = \AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels();
         foreach ($assessment_labels as $key => $values) {
             foreach ($values['abbreviations'] as $abb_key => $value) {
                 $labels[$key][$value] = $values['full'][$abb_key];

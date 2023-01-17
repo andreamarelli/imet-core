@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Controllers;
 
 
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
+use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment_db;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
@@ -27,7 +28,7 @@ class DevStatisticsController extends BaseFormController
         $v1_stats_from_db = [];
         $v1_stats_from_php = [];
         foreach ($assessments_v1 as $id){
-            $v1_stats_from_db['radar'][$id] = EvalController::radar_assessment($id);
+            $v1_stats_from_db['radar'][$id] = Assessment_db::radar_assessment($id);
             $v1_stats_from_db['context'][$id] = V1ToV2StatisticsService::db_scores_context($id);
             $v1_stats_from_db['planning'][$id] = V1ToV2StatisticsService::db_scores_planning($id);
             $v1_stats_from_db['inputs'][$id] = V1ToV2StatisticsService::db_scores_inputs($id);
@@ -54,7 +55,7 @@ class DevStatisticsController extends BaseFormController
         $v2_stats_from_db = [];
         $v2_stats_from_php = [];
         foreach ($assessments_v2 as $id){
-            $v2_stats_from_db['radar'][$id] = EvalController::radar_assessment($id);
+            $v2_stats_from_db['radar'][$id] = Assessment_db::radar_assessment($id);
             $v2_stats_from_db['context'][$id] = V2StatisticsService::db_scores_context($id);
             $v2_stats_from_db['planning'][$id] = V2StatisticsService::db_scores_planning($id);
             $v2_stats_from_db['inputs'][$id] = V2StatisticsService::db_scores_inputs($id);

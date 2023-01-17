@@ -6,6 +6,8 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
@@ -21,19 +23,20 @@ class GlobalStatistics
      */
     public static function get_pa_average_score_per_iucn_categories(array $form_ids): array
     {
-        $assessment_fields_v2 = 'assessment:formid,context,inputs,outputs,process,outcomes,planning';
-        $assessment_fields_v1 = 'assessment:formid,context,inputs,outputs,process,outcomes,plans';
         $imet_index_average = [];
-        $list_v2 = v2\Imet::select(['wdpa_id', 'FormID'])
-            ->with($assessment_fields_v2)
-            ->get();
-        $list_v1 = v1\Imet::select(['wdpa_id', 'FormID'])
-            ->with($assessment_fields_v1)
-            ->get();
-
+        $list_v2 = v2\Imet::select(['wdpa_id', 'FormID', 'version'])->get();
+        $list_v1 = v1\Imet::select(['wdpa_id', 'FormID', 'version'])->get();
         $list = $list_v1->merge($list_v2);
+
+
+
         foreach ($list as $item) {
-            $form_ids[$item['wdpa_id']] = ['wdpa_id' => $item['wdpa_id'], 'imet_index' => $item['assessment']->imet_index()];
+            $form_ids[$item['wdpa_id']] = [
+                'wdpa_id' => $item['wdpa_id'],
+                'imet_index' => $item['version']==='v1'
+                    ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
+                    : V2StatisticsService::get_imet_score($item['FormID'])
+            ];
         }
 
         $fn = function ($item) use (&$form_ids, &$imet_index_average) {
@@ -224,16 +227,12 @@ class GlobalStatistics
      */
     public static function get_pas_rating(array $form_ids, string $language = 'en'): array
     {
-        $assessment_fields_v2 = 'assessment:formid,context,inputs,outputs,process,outcomes,planning';
-        $assessment_fields_v1 = 'assessment:formid,context,inputs,outputs,process,outcomes,plans';
         $name = 'name_' . $language;
         $country_fields = 'country:iso3,' . $name;
 
         $i = 0;
-        $list_of_pas_rating_v2 = v2\Imet
-            ::with($country_fields, $assessment_fields_v2);
-        $list_of_pas_rating_v1 = v1\Imet
-            ::with($country_fields, $assessment_fields_v1);
+        $list_of_pas_rating_v2 = v2\Imet::with($country_fields);
+        $list_of_pas_rating_v1 = v1\Imet::with($country_fields);
 
         if (count($form_ids) > 0) {
             $list_of_pas_rating_v2 = $list_of_pas_rating_v2->whereIn('FormID', $form_ids);
@@ -312,7 +311,10 @@ class GlobalStatistics
         $new_item['Year'] = $item['Year'];
 
         $new_item['country'] = $item->country["$name"];
-        $new_item['imet_index'] = $item['assessment']->imet_index();
+
+        $new_item['imet_index'] = $item['version']==='v1'
+            ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
+            : V2StatisticsService::get_imet_score($item['FormID']);
 
         return $new_item;
     }

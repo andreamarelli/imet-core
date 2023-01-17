@@ -100,14 +100,4 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             ->select(['FormID','Name']);
     }
 
-    /**
-     * Relation to Assessment
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function assessment(): HasOne
-    {
-        return $this->hasOne(Assessment::class, 'formid', 'FormID');
-    }
-
 }
