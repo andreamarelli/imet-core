@@ -3,12 +3,24 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use function response;
 
 trait Assessment
 {
+
+    public static function assessment($item, string $step = 'global', bool $labels= false): JsonResponse
+    {
+        $stats = Imet::getVersion($item)==='v1'
+            ? V1ToV2StatisticsService::get_assessment($item)
+            : V2StatisticsService::get_assessment($item);
+
+        return response()->json($stats);
+    }
+
 
     public static function score_class($value, $additional_classes=''): string
     {

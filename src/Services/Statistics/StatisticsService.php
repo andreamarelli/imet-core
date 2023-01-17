@@ -27,7 +27,7 @@ abstract class StatisticsService
      */
     protected static function get_imet($imet): Imet
     {
-        if(is_int($imet)){
+        if(is_int($imet) or is_string($imet)){
             $imet = Imet::find($imet);
         }
         return $imet;
@@ -70,13 +70,13 @@ abstract class StatisticsService
                 return static::scores_outcomes($imet);
             case "ALL":
                 return [
-                    static::get_scores($imet),
-                    static::get_scores($imet, StatisticsService::CONTEXT),
-                    static::get_scores($imet, StatisticsService::PLANNING),
-                    static::get_scores($imet, StatisticsService::INPUTS),
-                    static::get_scores($imet, StatisticsService::PROCESS),
-                    static::get_scores($imet, StatisticsService::OUTPUTS),
-                    static::get_scores($imet, StatisticsService::OUTCOMES),
+                    static::GLOBAL => static::get_scores($imet),
+                    static::CONTEXT => static::get_scores($imet, StatisticsService::CONTEXT),
+                    static::PLANNING => static::get_scores($imet, StatisticsService::PLANNING),
+                    static::INPUTS => static::get_scores($imet, StatisticsService::INPUTS),
+                    static::PROCESS => static::get_scores($imet, StatisticsService::PROCESS),
+                    static::OUTPUTS => static::get_scores($imet, StatisticsService::OUTPUTS),
+                    static::OUTCOMES => static::get_scores($imet, StatisticsService::OUTCOMES),
                 ];
             default:
                 return [];

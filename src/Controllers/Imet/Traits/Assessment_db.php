@@ -64,7 +64,7 @@ class Assessment_db
 
             // labels
             if ($labels) {
-                $stats['labels'] = (array) static::assessment_labels($assessment_schema)->getData();
+                $stats['labels'] = (array) Assessment_db::assessment_labels($assessment_schema)->getData();
             }
 
             // version
