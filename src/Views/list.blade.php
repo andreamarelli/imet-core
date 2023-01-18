@@ -33,12 +33,6 @@ $url = URL::route('imet-core::index');
     <div class="functional_buttons">
 
         @can('edit', Imet::class)
-            {{-- Import json IMETs --}}
-            <a class="btn-nav rounded"
-               href="{{ route('imet-core::import') }}">
-                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
-                {{ ucfirst(trans('modular-forms::common.import')) }}
-            </a>
             {{-- Create new IMET --}}
             @include('modular-forms::buttons.create', [
                 'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
@@ -48,6 +42,20 @@ $url = URL::route('imet-core::index');
                href="{{ route('imet-core::create_non_wdpa') }}">
                 {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
                 {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
+            </a>
+            {{-- Import json IMETs --}}
+            <a class="btn-nav rounded"
+               href="{{ route('imet-core::import') }}">
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
+                {{ ucfirst(trans('modular-forms::common.import')) }}
+            </a>
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            {{-- Scaling Up --}}
+            <a class="btn-nav rounded"
+               href="{{ route('imet-core::scaling_up_index') }}">
+                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('chart-bar', 'white') !!}
+                {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
             </a>
 
         @endcan
