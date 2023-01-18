@@ -93,6 +93,9 @@
 .vue-dropzone .files .file-row .progress {
         flex-grow: 1;
 }
+.vue-dropzone a.dz-remove {
+    display: none;
+}
 
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/selector-wdpa_multiple.vue?vue&type=style&index=0&id=0400f0a6&lang=scss&scoped=true& ***!
