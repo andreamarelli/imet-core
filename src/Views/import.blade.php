@@ -18,6 +18,7 @@
             <br/>
             <multiple-files-upload
                 upload-url="{{ route('imet-core::upload_json') }}"
+                back-url="{{ route('imet-core::index') }}"
             ></multiple-files-upload>
         </div>
     </div>
