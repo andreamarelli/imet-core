@@ -6,7 +6,7 @@ return [
         'title' => 'Crear un nuevo IMET (WDPA)',
         'fields' => [
             'version' => 'versión',
-            'Year' => 'año',
+            'Year' => 'Año sujeto a evaluación',
             'wdpa_id' => 'área protegida',
             'language' => 'idioma',
             'prefill_prev_year' => 'Pre-rellenado con el año anterior',
@@ -17,7 +17,7 @@ return [
         'title' => 'Crear un nuevo IMET (no WDPA)',
         'fields' => [
             'version' => 'versión',
-            'Year' => 'año',
+            'Year' => 'Año sujeto a evaluación',
             'wdpa_id' => 'área protegida',
             'language' => 'idioma',
             'prefill_prev_year' => 'Pre-rellenado con el año anterior',
@@ -45,31 +45,31 @@ return [
         'fields' => [
             'Element' =>        'Elemento / indicador',
             'Status' =>         'Linea base',
-            'Objective' =>      'Objetivo: Metas / Metas a largo plazo',
+            'Objective' =>      'Objetivo – Estado óptimo o favorable',
             'Comments' =>       'Comentarios'
         ]
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para la gobernanza, las asociaciones y la designación del área protegida.<br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para la gobernanza, las asociaciones y la designación del área protegida.<br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
     ],
     'Objectives2' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación relacionados con <b>los límites, el índice de configuración, la extensión de las patrullas y la aplicación de la ley y el contexto territorial del área protegida</b><br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos relacionados con <b>los límites, el índice de configuración, la extensión de las patrullas y la aplicación de la ley y el contexto territorial del área protegida</b><br /> Los objetivos ingresados a continuación se utilizarán para mejorar la gestión, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el seguimiento de las actividades de gestión del área protegida.'
     ],
     'Objectives3' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>recursos humanos y financieros/apoyo de las asociaciones en la gestión</b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b>recursos humanos y financieros/apoyo de las asociaciones en la gestión</b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida'
     ],
     'Objectives4' => [
-        'module_info' => 'Establezca y describa los objetivos de conservación de los factores clave: <b> i) especies de animales; ii) especies de plantas; iii) hábitats y; iv) cambio de cobertura de uso del suelo </b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el monitoreo de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos de los factores clave: <b> i) especies de animales; ii) especies de plantas; iii) hábitats y; iv) cambio de cobertura de uso del suelo </b> del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el monitoreo de las actividades de gestión del área protegida'
     ],
     'Objectives5' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>amenazas</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b>amenazas</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de gestión del área protegida'
     ],
     'Objectives6' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>los efectos del cambio climático</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b>los efectos del cambio climático</b> frente al área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida'
     ],
     'Objectives7' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b> los servicios y funciones ecosistémicas y la dependencia de estos servicios de las comunidades/sociedades</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar el manejo, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de manejo del área protegida'
+        'module_info' => 'Establecer y describir los objetivos para <b> los servicios y funciones ecosistémicas y la dependencia de estos servicios de las comunidades/sociedades</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar el manejo, y más específicamente para la planificación, la movilización de recursos (insumos), las fases del proceso y para el monitoreo de las actividades de manejo del área protegida'
     ],
 
     'ResponsablesInterviewers' => [
@@ -101,7 +101,7 @@ return [
         'fields' => [
             'CompleteName' => 'Nombre completo del área protegida',
             'CompleteNameWDPA' => 'Nombre con el cual se hace referencia al área protegida',
-            'WDPA' => 'Nombre del área protegida en el sitio de la WDPA Código del sitio WDPA (de los códigos en <a href="http://www.unep-wcmc.org/wdpa/">www.unep-wcmc.org/wdpa/</a>)',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'UsedName' => 'Nombre por el que se hace referencia al área protegida',
             'Type' => 'Tipología',
             'NationalCategory' => 'Categoría nacional',

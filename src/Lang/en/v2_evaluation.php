@@ -7,7 +7,7 @@ return [
         'fields' => [
             'Element' => 'Element/Indicator',
             'Status' => 'Baseline',
-            'Objective' => 'Objective - Favourable conservation status',
+            'Objective' => 'Optimal or favourable status',
             'comments' => 'Comments'
         ],
     ],
@@ -38,7 +38,7 @@ return [
     ],
 
     'ObjectivesClassification' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>the current national, regional or international designation(s) </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>the current national, regional or international designation(s) </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceSpecies' => [
@@ -76,7 +76,7 @@ return [
     ],
 
     'ObjectivesSpecies' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceHabitats' => [
@@ -115,7 +115,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establish and describe conservation objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceClimateChange' => [
@@ -148,7 +148,7 @@ return [
     ],
 
     'ObjectivesClimateChange' => [
-        'module_info' => 'Establish and describe conservation objectives to the <b> most significant effects of climate change</b> on the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives to the <b> most significant effects of climate change</b> on the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'ImportanceEcosystemServices' => [
@@ -181,7 +181,7 @@ return [
     ],
 
     'ObjectivesEcosystemServices' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>preserving ecosystem services</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>preserving ecosystem services</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'SupportsAndConstraints' => [
@@ -259,7 +259,7 @@ return [
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'Menaces' => [
@@ -527,7 +527,7 @@ return [
     ],
 
     'ObjectivesPlanification' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'InformationAvailability' => [
@@ -687,7 +687,7 @@ return [
     ],
 
     'ObjectivesIntrants' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'StaffCompetence' => [
@@ -1452,7 +1452,7 @@ return [
     ],
 
     'ObjectivesProcessus' => [
-        'module_info' => 'Establish and describe conservation objectives related <b>to implementation process of the planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives related <b>to implementation process of the planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
     ],
 
     'WorkProgramImplementation' => [

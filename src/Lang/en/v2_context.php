@@ -6,7 +6,7 @@ return [
         'title' => 'Create a new IMET (WDPA)',
         'fields' => [
             'version' => 'IMET version',
-            'Year' => 'year',
+            'Year' => 'Year subject to evaluation',
             'wdpa_id' => 'protected area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
@@ -17,7 +17,7 @@ return [
         'title' => 'Create a new IMET (non-WDPA)',
         'fields' => [
             'version' => 'version',
-            'Year' => 'year',
+            'Year' => 'Year subject to evaluation',
             'wdpa_id' => 'protected area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
@@ -45,31 +45,31 @@ return [
         'fields' => [
             'Element' =>        'Element/Indicator',
             'Status' =>         'Baseline',
-            'Objective' =>      'Objective - Long term Targets/Goals',
+            'Objective' =>      'Objective - Optimal or favourable status',
             'Comments' =>       'Comments'
         ]
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for the governance, partnerships and the designation of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives2' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>boundaries, configuration index, extension of patrols and law enforcement and territorial context</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>boundaries, configuration index, extension of patrols and law enforcement and territorial context</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives3' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives4' => [
-        'module_info' => ' Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => ' Establish and describe objectives for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives5' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives6' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives7' => [
-        'module_info' => 'Establish and describe conservation objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
 
     'ResponsablesInterviewers' => [
@@ -101,7 +101,7 @@ return [
         'fields' => [
             'CompleteName' => 'Full name of the protected area',
             'CompleteNameWDPA' => 'Name of the protected area in the WDPA site',
-            'WDPA' => 'WPDA site code (from the codes at www.unep-wcmc.org/wdpa/)',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'UsedName' => 'Name by which protected area is referred to',
             'Type' => 'typology',
             'NationalCategory' => 'National category',

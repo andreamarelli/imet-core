@@ -7,7 +7,7 @@ return [
         'fields' => [
             'Element' => 'Elément/Indicateur',
             'Status' => 'Base de référence',
-            'Objective' => 'Objectif - Condition souhaitée',
+            'Objective' => 'Objectif - Condition optimal ou favorable',
             'comments' => 'Commentaires'
         ]
     ],

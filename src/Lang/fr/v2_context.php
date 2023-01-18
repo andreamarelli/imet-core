@@ -6,7 +6,7 @@ return [
         'title' => 'Créer un nouveau IMET (WDPA)',
         'fields' => [
             'version' => 'version',
-            'Year' => 'année',
+            'Year' => 'Année sujette à évaluation',
             'wdpa_id' => 'aire protégée',
             'language' => 'langue',
             'prefill_prev_year' => 'préremplir avec l\'année précédente',
@@ -17,7 +17,7 @@ return [
         'title' => 'Créer un nouveau IMET (non-WDPA)',
         'fields' => [
             'version' => 'version IMET',
-            'Year' => 'année',
+            'Year' => 'Année sujette à évaluation',
             'wdpa_id' => 'aire protégée',
             'language' => 'langue',
             'prefill_prev_year' => 'préremplir avec l\'année précédente',
@@ -45,31 +45,31 @@ return [
         'fields' => [
             'Element' => 'Elément/Indicateur',
             'Status' => 'Ligne de base',
-            'Objective' => 'Objectif - Conditions souhaitées',
+            'Objective' => 'Objectif – Condition optimal ou favorable',
             'Comments' => 'Commentaires'
         ]
     ],
 
     'Objectives1' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs à la <b>gouvernance, les partenariats et la désignation </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs à la <b>gouvernance, les partenariats et la désignation </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>limites, l’indice de configuration, l’extension des patrouilles et l’application de la loi et le contexte territorial de l’aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b>limites, l’indice de configuration, l’extension des patrouilles et l’application de la loi et le contexte territorial de l’aire protégée</b><br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives3' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pour les ressources humaines, financières et matérielles pour la gestion </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b>pour les ressources humaines, financières et matérielles pour la gestion </b> de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives4' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b> i) espèces animales; ii) espèces de plante; iii) habitats iv) couverture, utilisation et occupation des terres </b>de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b> i) espèces animales; ii) espèces de plante; iii) habitats iv) couverture, utilisation et occupation des terres </b>de l\'aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives5' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b>pressions et menaces</b> qui pèsent sur l’aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b>pressions et menaces</b> qui pèsent sur l’aire protégée<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives6' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs au <b>changement climatique </b> qui pèsent sur l’aire protégée.<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs au <b>changement climatique </b> qui pèsent sur l’aire protégée.<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
     'Objectives7' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation relatifs aux <b> services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
+        'module_info' => 'Établir et décrire les objectifs relatifs aux <b> services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
     ],
 
     'ResponsablesInterviewers' => [
@@ -102,7 +102,7 @@ return [
             'CompleteName' => 'Nom complet de l\'aire protégée',
             'CompleteNameWDPA' => 'Nom de l\'aire protégée dans le site WDPA',
             'UsedName' => 'Nom utilisé',
-            'WDPA' => 'Code WDPA du site',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'Type' => 'Typologie',
             'NationalCategory' => 'Catégorie Nationale',
             'IUCNCategory1' => 'Catégorie UICN principale',

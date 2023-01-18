@@ -13,7 +13,7 @@ class ObjectivesClimateChange extends _Objectives
 
     public function __construct(array $attributes = [])
     {
-        $this->module_code = 'C1.4';
+        $this->module_code = 'CX1.4';
         $this->module_info = trans('imet-core::v2_evaluation.ObjectivesClimateChange.module_info');
 
         parent::__construct($attributes);

@@ -6,7 +6,7 @@ return [
         'title' => 'Criar um novo IMET (WDPA)',
         'fields' => [
             'version' => 'versão',
-            'Year' => 'ano',
+            'Year' => 'Ano sujeito a avaliação',
             'wdpa_id' => 'zona protegida',
             'language' => 'língua',
             'prefill_prev_year' => 'pré-preencher com o ano anterior'
@@ -17,7 +17,7 @@ return [
         'title' => 'Criar um novo IMET (não WDPA)',
         'fields' => [
             'version' => 'versão',
-            'Year' => 'ano',
+            'Year' => 'Ano sujeito a avaliação',
             'wdpa_id' => 'zona protegida',
             'language' => 'língua',
             'prefill_prev_year' => 'pré-preencher com o ano anterior',
@@ -45,7 +45,7 @@ return [
         'fields' => [
             'Element' => 'Elemento/Indicador',
             'Status' => 'Dados de referencia',
-            'Objective' => 'Objectivo - Metas de Longo termo/Objectivos',
+            'Objective' => 'Objetivo - Status ótimo ou favorável',
             'Comments' => 'Comments'
         ]
     ],
@@ -101,7 +101,7 @@ return [
         'fields' => [
             'CompleteName' => 'Nome completo da área protegida',
             'CompleteNameWDPA' => 'Nome pelo qual a área protegida é referida',
-            'WDPA' => 'Nome da área protegida no sítio da WDPA',
+            'WDPA' => 'WDPA ID (www.protectedplanet.net)',
             'UsedName' => 'Código do sítio WDPA (a partir dos códigos em <a href="http://www.unep-wcmc.org/wdpa/">www.unep-wcmc.org/wdpa/</a>)',
             'Type' => 'tipologia',
             'NationalCategory' => 'Categoria Nacional',
@@ -113,7 +113,7 @@ return [
             'CreationYear' => 'Ano de Criacao',
             'Institution' => 'Instituição(ões) supervisora(s)',
             'Biome' => 'Bioma',
-            'Ecoregions' => 'ecorregião(ões) de referência [Ecoregiões G200, Olson, WWF; Spalding M. et alt. 2007]',
+            'Ecoregions' => 'Ecorregião(ões) de referência [Ecoregiões G200, Olson, WWF; Spalding M. et alt. 2007]',
             'Ecotype' => 'Ecotipos (até três elementos que descem pela predominância)',
             'ReferenceText' => 'Referência à designação do texto de declaração',
             'ReferenceTextDocument' => '',

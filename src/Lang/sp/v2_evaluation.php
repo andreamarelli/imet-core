@@ -7,7 +7,7 @@ return [
         'fields' => [
             'Element' => 'Elemento/Indicador',
             'Status' => 'Línea de base',
-            'Objective' => 'Objetivo - Estado de conservación favorable',
+            'Objective' => 'Objetivo – Estado óptimo o favorable',
             'comments' => 'Comentarios'
         ],
     ],
@@ -38,7 +38,7 @@ return [
     ],
 
     'ObjectivesClassification' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>la(s) actual(es) designación(es) nacional(es), regional(es) o internacional(es) </b>del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>la(s) actual(es) designación(es) nacional(es), regional(es) o internacional(es) </b>del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'ImportanceSpecies' => [
@@ -76,7 +76,7 @@ return [
     ],
 
     'ObjectivesSpecies' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación de <b>especies (emblemáticas o bandera, en peligro, endémicas, explotadas, invasoras o sobre las que no hay datos suficientes) </b> en el área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos de <b>especies (emblemáticas o bandera, en peligro, endémicas, explotadas, invasoras o sobre las que no hay datos suficientes) </b> en el área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
     ],
 
     'ImportanceHabitats' => [
@@ -115,7 +115,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para mantener los <b>hábitats terrestres y marinos y las dimensiones relacionadas de la cobertura de suelo, el cambio de uso de suelos  y la ocupación del territorio</b> del área protegida.<br /> Los objetivos (productos y resultados) que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión en el área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para mantener los <b>hábitats terrestres y marinos y las dimensiones relacionadas de la cobertura de suelo, el cambio de uso de suelos  y la ocupación del territorio</b> del área protegida.<br /> Los objetivos (productos y resultados) que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión en el área protegida.'
     ],
 
     'ImportanceClimateChange' => [
@@ -148,7 +148,7 @@ return [
     ],
 
     'ObjectivesClimateChange' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación a los <b> efectos más significativos del cambio climático</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos a los <b> efectos más significativos del cambio climático</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'ImportanceEcosystemServices' => [
@@ -181,7 +181,7 @@ return [
     ],
 
     'ObjectivesEcosystemServices' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>preservar los servicios/funciones ecosistémicas</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases de los procesos y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>preservar los servicios/funciones ecosistémicas</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases de los procesos y la supervisión de las actividades de gestión del área protegida.'
     ],
 
     'SupportsAndConstraints' => [
@@ -259,7 +259,7 @@ return [
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>limitaciones/conflictos o factores de apoyo/cumplimiento </b>para el área protegida <br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>limitaciones/conflictos o factores de apoyo/cumplimiento </b>para el área protegida <br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
     ],
 
     'Menaces' => [
@@ -281,7 +281,7 @@ return [
     ],
 
     'ObjectivesMenaces' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para for <b>las amenazas más importantes a las que se enfrenta</b>  el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para for <b>las amenazas más importantes a las que se enfrenta</b>  el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'RegulationsAdequacy' => [
@@ -527,7 +527,7 @@ return [
     ],
 
     'ObjectivesPlanification' => [
-      'module_info' => 'Establecer y describir los objetivos de conservación para <b>la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+      'module_info' => 'Establecer y describir los objetivos para <b>la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'InformationAvailability' => [
@@ -687,7 +687,7 @@ return [
     ],
 
     'ObjectivesIntrants' => [
-      'module_info' => 'Establecer y describir los objetivos de conservación de los <b>insumos</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+      'module_info' => 'Establecer y describir los objetivos de los <b>insumos</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
         ],
 
     'StaffCompetence' => [
@@ -1453,7 +1453,7 @@ return [
     ],
 
     'ObjectivesProcessus' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación relacionados <b> con el proceso implementación de la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento y monitoreo de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos relacionados <b> con el proceso implementación de la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento y monitoreo de las actividades de gestión del área protegida.'
     ],
 
     'WorkProgramImplementation' => [
