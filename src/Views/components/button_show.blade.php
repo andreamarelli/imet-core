@@ -68,48 +68,5 @@ if ($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1) {
 </span>
 
 @push('scripts')
-    <style>
-        .popover-header {
-            font-size: 0.9em;
-            font-style: italic;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .popover-body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .popover-body a {
-            margin: 3px;
-        }
-    </style>
-
-    @push('scripts')
-        @once
-
-            <script>
-
-                // ###########################  Bootstrap popover  ###########################
-                window.onload = function () {
-
-                    $('[data-toggle="popover"]').popover({
-                        html: true,
-                        content: function () {
-                            return document
-                                .getElementById(this.getAttribute('data-popover-content'))
-                                .querySelector(".popover-body").innerHTML;
-                        },
-                        title: function () {
-                            return document
-                                .getElementById(this.getAttribute('data-popover-content'))
-                                .querySelector(".popover-heading").innerHTML;
-                        }
-                    });
-                }
-
-            </script>
-        @endonce
-    @endpush
+    @include('imet-core::components.popover')
 @endpush
