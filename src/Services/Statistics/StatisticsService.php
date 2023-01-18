@@ -144,7 +144,7 @@ abstract class StatisticsService
     public static function steps_labels(): array
     {
         return [
-            'v1' => [
+            Imet::IMET_V1 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'R', 'EI'],
                 'full' => [
                     trans('imet-core::v1_common.steps_eval.context'),
@@ -155,7 +155,7 @@ abstract class StatisticsService
                     trans('imet-core::v1_common.steps_eval.outcomes'),
                 ]
             ],
-            'v2' => [
+            Imet::IMET_V2 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'OP', 'OC'],
                 'full' => [
                     trans('imet-core::v2_common.steps_eval.context'),

@@ -1,7 +1,7 @@
 <?php
 /** @var String $version */
 
-if ($version === 'v1') {
+if ($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1) {
     $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
     $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class;
     $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ReportController::class;

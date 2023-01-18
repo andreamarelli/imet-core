@@ -7,13 +7,13 @@ use \AndreaMarelli\ImetCore\Models\Imet\v2;
 /** @var array $duplicated_forms */
 
 
-if($primary_form->version==='v1'){
+if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
     $all_modules = \AndreaMarelli\ModularForms\Helpers\Module::getModulesList([
         v1\Imet::$modules,
         v1\Imet_Eval::$modules,
     ]);
     $imet_class = v1\Imet::class;
-} elseif($primary_form->version==='v2'){
+} elseif($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
     $all_modules = \AndreaMarelli\ModularForms\Helpers\Module::getModulesList([
         v2\Imet::$modules,
         v2\Imet_Eval::$modules,

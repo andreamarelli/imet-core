@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
@@ -184,7 +183,7 @@ class Common
 
             $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
 
-            $results[$form_id] = $version==='v1'
+            $results[$form_id] = $version=== \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
                 ? V1ToV2StatisticsService::get_scores($form_id, $type)
                 : V2StatisticsService::get_scores($form_id, $type);
 
@@ -296,7 +295,7 @@ class Common
 
             $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
 
-            $assessments[$k] = $version==='v1'
+            $assessments[$k] = $version=== \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
                 ? V1ToV2StatisticsService::get_scores($form_id, 'global')
                 : V2StatisticsService::get_scores($form_id, 'global');
 

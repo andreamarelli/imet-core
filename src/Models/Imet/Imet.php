@@ -39,6 +39,10 @@ use function session;
  */
 class Imet extends Form
 {
+    const IMET_V1 = 'v1';
+    const IMET_V2 = 'v2';
+
+
     protected $table = 'imet.imet_form';
     protected $primaryKey = 'FormID';
     public const CREATED_AT = 'UpdateDate';
@@ -144,7 +148,7 @@ class Imet extends Form
                 'external' => $item->responsible_interviewees->unique(),
             ];
             // Add radar
-            $item['assessment_radar'] = $item->version==='v1'
+            $item['assessment_radar'] = $item->version===Imet::IMET_V1
                 ? V1ToV2StatisticsService::get_radar_scores($item)
                 : V2StatisticsService::get_radar_scores($item);
             // Non WDPA
@@ -285,10 +289,10 @@ class Imet extends Form
      */
     public static function getResponsibles($form_id, $version): array
     {
-        $internal = $version === 'v1'
+        $internal = $version === Imet::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewers::getNames($form_id);
-        $external = $version === 'v1'
+        $external = $version === Imet::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
 

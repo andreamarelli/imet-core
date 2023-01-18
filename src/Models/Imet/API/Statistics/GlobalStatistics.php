@@ -33,7 +33,7 @@ class GlobalStatistics
         foreach ($list as $item) {
             $form_ids[$item['wdpa_id']] = [
                 'wdpa_id' => $item['wdpa_id'],
-                'imet_index' => $item['version']==='v1'
+                'imet_index' => $item['version']===Imet::IMET_V1
                     ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
                     : V2StatisticsService::get_imet_score($item['FormID'])
             ];
@@ -312,7 +312,7 @@ class GlobalStatistics
 
         $new_item['country'] = $item->country["$name"];
 
-        $new_item['imet_index'] = $item['version']==='v1'
+        $new_item['imet_index'] = $item['version']===Imet::IMET_V1
             ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
             : V2StatisticsService::get_imet_score($item['FormID']);
 

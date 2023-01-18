@@ -24,7 +24,7 @@ class Assessment_db
     private static function assessment($item, string $step = 'global', bool $labels= false): JsonResponse
     {
         $version = Imet::getVersion($item);
-        $assessment_schema = $version=='v1'
+        $assessment_schema = $version==Imet::IMET_V1
             ? 'imet_assessment_v1_to_v2'
             : 'imet_assessment_v2';
 
@@ -118,7 +118,7 @@ class Assessment_db
     private static function assessment_steps_labels(): array
     {
         return [
-            'v1' => [
+            Imet::IMET_V1 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'R', 'EI'],
                 'full' => [
                     trans('imet-core::v1_common.steps_eval.context'),
@@ -129,7 +129,7 @@ class Assessment_db
                     trans('imet-core::v1_common.steps_eval.outcomes'),
                 ]
             ],
-            'v2' => [
+            Imet::IMET_V2 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'OP', 'OC'],
                 'full' => [
                     trans('imet-core::v2_common.steps_eval.context'),

@@ -20,7 +20,7 @@ class DevStatisticsController extends BaseFormController
     {
         $assessments_v1 = Imet
             ::select((new Imet)->getKeyName())
-            ->where('version', 'v1')
+            ->where('version', Imet::IMET_V1)
             ->get()
             ->pluck((new Imet)->getKeyName())
             ->toArray();
@@ -47,7 +47,7 @@ class DevStatisticsController extends BaseFormController
 
         $assessments_v2 = Imet
             ::select((new Imet)->getKeyName())
-            ->where('version', 'v2')
+            ->where('version', Imet::IMET_V2)
             ->get()
             ->pluck((new Imet)->getKeyName())
             ->toArray();
@@ -81,32 +81,6 @@ class DevStatisticsController extends BaseFormController
             'v2_stats_from_php' => $v2_stats_from_php,
         ]);
 
-    }
-
-
-
-    private static function assessment(int $imet_id, string $step = 'global', bool $labels = false): array
-    {
-        $imet = Imet::find($imet_id);
-
-        if($imet->version === 'v1'){
-            /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $imet */
-            $stats = V1ToV2StatisticsService::get_scores($imet, $step);
-        } else {
-            /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $imet */
-            $stats = V2StatisticsService::get_scores($imet, $step);
-        }
-
-        return array_merge([
-           'formid' => $imet->getKey(),
-           'wdpa_id' => $imet->wdpa_id,
-           'year' => $imet->Year,
-           'iso3' => $imet->Country,
-           'name' => $imet->name,
-           'version' => $imet->version,
-           'labels' => $labels ? StatisticsService::indicators_labels($imet->version) : null,
-       ],
-       $stats);
     }
 
 }

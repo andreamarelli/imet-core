@@ -54,7 +54,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
         $form_id = $records[0]['FormID'] ?? null;
         $form = Imet::find($form_id);
 
-        if($form['version'] == 'v1') {
+        if($form['version'] == Imet::IMET_V1) {
             $data = ReportV1::get_assessment_report($request, $form);
         }else{
             $data = ReportV2::get_assessment_report($request, $form);
@@ -134,7 +134,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
                 'year' => $record['Year'],
                 'version' => $record['version']
             ],
-                $record['version']=='v2'
+                $record['version']==Imet::IMET_V2
                     ? V2StatisticsService::get_radar_scores($record['FormID'])
                     : V1ToV2StatisticsService::get_radar_scores($record['FormID'])
             );

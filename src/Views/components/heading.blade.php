@@ -1,6 +1,7 @@
 <?php
 /** @var string $phase */
 
+use \AndreaMarelli\ImetCore\Models\Imet\Imet;
 use \Illuminate\Support\Facades\Route;
 use \Illuminate\Support\Str;
 
@@ -9,9 +10,9 @@ $route_action = Str::endsWith(Route::currentRouteName(), 'show') ? 'show' : 'edi
 ?>
 <div class="id" style="margin-bottom: 4px;">
     IMET #{{ $item->getKey() }}
-    @if($item->version==='v1')
+    @if($item->version===Imet::IMET_V1)
         &nbsp;<span class="badge badge-secondary" style="vertical-align: text-top;">v1</span>
-    @elseif($item->version==='v2')
+    @elseif($item->version===Imet::IMET_V2)
         &nbsp;<span class="badge badge-success" style="vertical-align: text-top;">v2</span>
     @endif
 
@@ -33,7 +34,7 @@ $route_action = Str::endsWith(Route::currentRouteName(), 'show') ? 'show' : 'edi
 
 <nav class="steps">
 
-    @if($item->version=='v1')
+    @if($item->version==Imet::IMET_V1)
 
         <a href="{{ route('imet-core::v1_context_' . $route_action, [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"

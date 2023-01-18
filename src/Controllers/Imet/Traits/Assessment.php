@@ -14,7 +14,7 @@ trait Assessment
 
     public static function assessment($item, string $step = 'global', bool $labels= false): JsonResponse
     {
-        $stats = Imet::getVersion($item)==='v1'
+        $stats = Imet::getVersion($item)===Imet::IMET_V1
             ? V1ToV2StatisticsService::get_assessment($item)
             : V2StatisticsService::get_assessment($item);
 
