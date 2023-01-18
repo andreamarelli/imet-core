@@ -3,9 +3,7 @@
 
 /** @var int $item_id */
 
-$assessment_step = json_decode(
-    \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::assessment($item_id, $step, true)->getContent()
-);
+$assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService::get_assessment($item_id, $step);
 
 ?>
 

@@ -7,6 +7,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Report;
@@ -43,8 +44,6 @@ class ReportV1
 
         $vision = static::get_vision($form_id);
 
-        list($global_assessment, $context, $planning, $inputs, $process, $outputs, $outcomes) = static::get_assessments_values($form_id);
-
         $lang = $request->route('lang', 'en');
         App::setLocale($lang);
 
@@ -53,15 +52,7 @@ class ReportV1
         return [
             'data' => [
                 'key_elements' => static::get_key_elements($form_id),
-                'assessment' => [
-                    'global' => $global_assessment,
-                    'context' => $context,
-                    'planning' => $planning,
-                    'inputs' => $inputs,
-                    'process' => $process,
-                    'outputs' => $outputs,
-                    'outcomes' => $outcomes
-                ],
+                'assessment' => V1ToV2StatisticsService::get_scores($form_id, 'ALL'),
                 'report' => $report,
                 'dopa_radar' => $dopa_radar,
                 'dopa_indicators' => $dopa_indicators[0] ?? null,
@@ -147,25 +138,6 @@ class ReportV1
                 return $item['IncludeInStatistics'];
             })->pluck('Aspect')->toArray(),
         ];
-    }
-
-    /**
-     * @param int $form_id
-     * @return array
-     */
-    protected static function get_assessments_values(int $form_id): array
-    {
-        $global_assessment = (array)EvalController::assessment($form_id, 'global')->getData();
-        $global_assessment = static::remove_fields($global_assessment);
-
-        $context = static::remove_fields((array)EvalController::assessment($form_id, 'context')->getData());
-        $planning = static::remove_fields((array)EvalController::assessment($form_id, 'planning')->getData());
-        $inputs = static::remove_fields((array)EvalController::assessment($form_id, 'inputs')->getData());
-        $process = static::remove_fields((array)EvalController::assessment($form_id, 'process')->getData());
-        $outputs = static::remove_fields((array)EvalController::assessment($form_id, 'outputs')->getData());
-        $outcomes = static::remove_fields((array)EvalController::assessment($form_id, 'outcomes')->getData());
-
-        return [$global_assessment, $context, $planning, $inputs, $process, $outputs, $outcomes];
     }
 
     /**

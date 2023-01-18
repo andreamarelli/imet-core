@@ -129,7 +129,7 @@ class Controller extends BaseController
         $wdpa_id = ProtectedArea::getByWdpa($request->input('wdpa_id'))->wdpa_id;
         return (static::$form_class)::select(['FormID','Year','wdpa_id'])
             ->where('wdpa_id', $wdpa_id)
-            ->where('version', 'v2')
+            ->where('version', \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2)
             ->where('Year', '<', $year)
             ->orderByDesc('Year')
             ->get()

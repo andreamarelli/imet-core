@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 
+use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet_Eval;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
@@ -42,7 +43,7 @@ trait ConvertSQLite{
                 "name" => $pa_name,
                 "Country" => $imet->Country,
                 "Year" => $imet->Year,
-                "version" => "v1",
+                "version" => ImetAlias::IMET_V1,
                 "wdpa_id" => trim($wdpa),
                 "language" => Str::lower($imet->FormLanguage),
                 "imet_version" => "SQLITE",

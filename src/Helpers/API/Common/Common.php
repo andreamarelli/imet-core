@@ -144,10 +144,10 @@ class Common
             throw new ErrorException(trans('imet-core::api.error_messages.wdpa_ids_missing'));
         }
 
-        if($query_key && stripos( $query_key, 'imet__v2__') > -1){
-            $key = 'v2';
-        } else if($query_key && stripos( $query_key, 'imet__v1__') > -1){
-            $key = 'v1';
+        if($query_key && stripos( $query_key, 'imet__'.\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2.'__') > -1){
+            $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2;
+        } else if($query_key && stripos( $query_key, 'imet__'.\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1.'__') > -1){
+            $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1;
         }
 
         if ($query_years) {

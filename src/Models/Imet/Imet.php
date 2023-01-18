@@ -10,6 +10,9 @@ use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
@@ -36,6 +39,10 @@ use function session;
  */
 class Imet extends Form
 {
+    const IMET_V1 = 'v1';
+    const IMET_V2 = 'v2';
+
+
     protected $table = 'imet.imet_form';
     protected $primaryKey = 'FormID';
     public const CREATED_AT = 'UpdateDate';
@@ -132,7 +139,7 @@ class Imet extends Form
      */
     public static function get_list(Request $request)
     {
-        $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers', 'assessment']);
+        $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers']);
         $list->map(function ($item) {
             // Add encoders
             $item->encoders_responsibles = [
@@ -141,7 +148,9 @@ class Imet extends Form
                 'external' => $item->responsible_interviewees->unique(),
             ];
             // Add radar
-            $item['assessment_radar'] = $item->assessment->radar();
+            $item['assessment_radar'] = $item->version===Imet::IMET_V1
+                ? V1ToV2StatisticsService::get_radar_scores($item)
+                : V2StatisticsService::get_radar_scores($item);
             // Non WDPA
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;
@@ -280,10 +289,10 @@ class Imet extends Form
      */
     public static function getResponsibles($form_id, $version): array
     {
-        $internal = $version === 'v1'
+        $internal = $version === Imet::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewers::getNames($form_id);
-        $external = $version === 'v1'
+        $external = $version === Imet::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
 

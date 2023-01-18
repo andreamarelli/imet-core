@@ -119,8 +119,8 @@ $url = URL::route('imet-core::index');
                         {{-- version --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.version')) }}:
-                            <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
-                            <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
+                            <span v-if="item.version==='{{ Imet::IMET_V2 }}'" class="badge badge-success">v2</span>
+                            <span v-else-if="item.version==='{{ Imet::IMET_V1 }}'" class="badge badge-secondary">v1</span>
                         </div>
                     </div>
                 </td>
@@ -140,21 +140,21 @@ $url = URL::route('imet-core::index');
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
                     {{-- Show --}}
-                    <span v-if="item.version==='v1'">
-                        @include('imet-core::components.button_show', ['version' => 'v1'])
+                    <span v-if="item.version==='{{ Imet::IMET_V1 }}'">
+                        @include('imet-core::components.button_show', ['version' => Imet::IMET_V1])
                     </span>
-                    <span v-else-if="item.version==='v2'">
-                        @include('imet-core::components.button_show', ['version' => 'v2'])
+                    <span v-else-if="item.version==='{{ Imet::IMET_V2 }}'">
+                        @include('imet-core::components.button_show', ['version' => Imet::IMET_V2])
                     </span>
 
                     @can('edit', Imet::class)
 
                         {{-- Edit --}}
-                        <span v-if="item.version==='v1'">
-                            @include('imet-core::components.button_edit', ['version' => 'v1'])
+                        <span v-if="item.version==='{{ Imet::IMET_V1 }}'">
+                            @include('imet-core::components.button_edit', ['version' => Imet::IMET_V1])
                         </span>
-                        <span v-else-if="item.version==='v2'">
-                            @include('imet-core::components.button_edit', ['version' => 'v2'])
+                        <span v-else-if="item.version==='{{ Imet::IMET_V2 }}'">
+                            @include('imet-core::components.button_edit', ['version' => Imet::IMET_V2])
                         </span>
 
                         {{-- Merge tool --}}
@@ -185,7 +185,7 @@ $url = URL::route('imet-core::index');
 
                     {{-- Print --}}
 
-                    <span v-if="item.version==='v1'">
+                    <span v-if="item.version==='{{ Imet::IMET_V1 }}'">
                         @include('modular-forms::buttons._generic', [
                             'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class,
                             'action' =>'print',
@@ -195,7 +195,7 @@ $url = URL::route('imet-core::index');
                             'class' => 'btn-primary'
                         ])
                     </span>
-                    <span v-else-if="item.version==='v2'">
+                    <span v-else-if="item.version==='{{ Imet::IMET_V2 }}'">
                         @include('modular-forms::buttons._generic', [
                             'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class,
                             'action' =>'print',

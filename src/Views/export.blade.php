@@ -3,6 +3,9 @@
 /** @var \Illuminate\Http\Request $request */
 /** @var array $countries */
 /** @var array $years */
+
+use \AndreaMarelli\ImetCore\Models\Imet\Imet;
+
 $url = \Illuminate\Support\Facades\URL::route('imet-core::export_view');
 $filter_selected = false;
 ?>
@@ -75,8 +78,8 @@ $filter_selected = false;
                 </td>
                 <td class="align-baseline text-center">
                     <div>
-                        <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
-                        <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
+                        <span v-if="item.version==='{{ Imet::IMET_V2 }}'" class="badge badge-success">v2</span>
+                        <span v-else-if="item.version==='{{ Imet::IMET_V1 }}'" class="badge badge-secondary">v1</span>
                     </div>
                 </td>
                 <td>

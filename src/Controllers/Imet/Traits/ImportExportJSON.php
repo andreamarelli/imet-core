@@ -122,7 +122,7 @@ trait ImportExportJSON
                 }
             })
             ->whereHas('imet', function ($q) {
-                $q->where('version', 'v2');
+                $q->where('version', Imet::IMET_V2);
             })
             ->get();
 
@@ -243,10 +243,10 @@ trait ImportExportJSON
         $json = [
             'Imet' => $imet_form,
             'Encoders' => Encoder::exportModule($imet_id),
-            'Context' => $imet_form['version'] === 'v1'
+            'Context' => $imet_form['version'] === Imet::IMET_V1
                 ? v1\Imet::exportModules($imet_id)
                 : v2\Imet::exportModules($imet_id),
-            'Evaluation' => $imet_form['version'] === 'v1'
+            'Evaluation' => $imet_form['version'] === Imet::IMET_V1
                 ? v1\Imet_Eval::exportModules($imet_id)
                 : v2\Imet_Eval::exportModules($imet_id),
             'Report' => Report::export($imet_id)
@@ -313,7 +313,7 @@ trait ImportExportJSON
                 $json['Imet']['wdpa_id'] = $wdpa_id;
             }
 
-            if ($version === 'v1') {
+            if ($version === Imet::IMET_V1) {
                 // Create new form and return ID
                 $formID = v1\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules
@@ -321,7 +321,7 @@ trait ImportExportJSON
                 $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
                 Encoder::importModule($formID, $json['Encoders'] ?? null);
                 Report::import($formID, $json['Report'] ?? null);
-            } elseif ($version === 'v2') {
+            } elseif ($version === Imet::IMET_V2) {
                 // Create new form and return ID
                 $formID = v2\Imet::importForm($json['Imet']);
                 // Populate Imet & Imet_Eval modules

@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
@@ -46,8 +47,6 @@ class ReportController extends BaseReportController
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
 
-        $global_assessement = (array) EvalController::assessment($form_id, 'global', true)->getData();
-
         return [
             'item' => $item,
             'key_elements' => [
@@ -62,16 +61,12 @@ class ReportController extends BaseReportController
                 'ecosystem_services' => array_values(Modules\Evaluation\ImportanceEcosystemServices::getPredefined()['values']),
                 'threats' => array_values(Modules\Evaluation\Menaces::getPredefined()['values'])
             ],
-            'assessment' =>  [
-                'global' => $global_assessement,
-                'context' => (array) EvalController::assessment($form_id, 'context')->getData(),
-                'planning' => (array) EvalController::assessment($form_id, 'planning')->getData(),
-                'inputs' => (array) EvalController::assessment($form_id, 'inputs')->getData(),
-                'process' => (array) EvalController::assessment($form_id, 'process')->getData(),
-                'outputs' => (array) EvalController::assessment($form_id, 'outputs')->getData(),
-                'outcomes' => (array) EvalController::assessment($form_id, 'outcomes')->getData(),
-                'labels' => $global_assessement['labels']
-            ],
+            'assessment' =>  array_merge(
+                V1ToV2StatisticsService::get_scores($form_id, 'ALL'),
+                [
+                            'labels' => V1ToV2StatisticsService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1)
+                        ]
+            ),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v1\Report::getByForm($form_id),
             'connection' => $api_available,
             'show_api' => $show_api,

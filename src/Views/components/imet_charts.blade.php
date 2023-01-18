@@ -3,7 +3,9 @@
 
 /** @var string $version */
 
-$labels = \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::assessment_steps_labels();
+$labels = \AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels();
+
+
 
 ?>
 
