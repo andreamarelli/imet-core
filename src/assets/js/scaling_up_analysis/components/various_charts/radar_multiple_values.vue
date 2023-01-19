@@ -7,6 +7,10 @@
 export default {
     name: "radar_multiple_values",
     props: {
+        title:{
+            type: String,
+            default: ''
+        },
         width: {
             type: Number,
             default: 180
@@ -77,6 +81,13 @@ export default {
             }
 
             return {
+                title: {
+                    text: this.title,
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
+                },
                 color: this.default_colors,
                 tooltip: {
                     trigger: 'axis'
@@ -89,6 +100,7 @@ export default {
                     bottom: "3%",
                     width: "80%",
                     height: "82%",
+                    top:30,
                     "containLabel": true,
                 },
                 radar: {
@@ -183,7 +195,7 @@ export default {
                         return name;
                     },
                     data: legends,
-                    padding: [5, 5, 10, 5]
+                    padding: [35, 5, 10, 5]
                 }
             }
 

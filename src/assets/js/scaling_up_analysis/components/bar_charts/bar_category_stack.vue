@@ -10,6 +10,10 @@ export default {
         window.ImetCore.ScalingUp.Mixins.resize
     ],
     props: {
+        title:{
+            type: String,
+            default: ''
+        },
         label_position: {
             type: String,
             default: 'top'
@@ -93,9 +97,17 @@ export default {
             };
             const {raw_values, percent_values} = this;
             return {
+                title:{
+                    text: this.title,
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
+                },
                 legend: {
-                    data: Object.values(this.legends),
-                    selectedMode: false
+                    data: Object.values(Array.isArray(this.legends[0]) ? this.legends[0]: this.legends),
+                    selectedMode: false,
+                    padding: [30, 0, 0, 0]
                 },
                 ...this.grid,
                 tooltip: {

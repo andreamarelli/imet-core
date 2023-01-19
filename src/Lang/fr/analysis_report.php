@@ -195,6 +195,12 @@ return [
     ],
     'management_context' => [
         'key_species' => 'Espèces clés',
+        'animal_species_chart' => 'Espèces animales',
+        'plant_species_chart' => 'Espèces végétales',
+        'habitats_chart' => 'Habitats',
+        'threats_charts' => 'Menaces',
+        'values_sensitive_chart' => 'Valeurs sensibles au changement climatique',
+        'ecosystem_services_chart' => 'écosystèmes les plus importants',
         'animal_species' => 'Espèces animales (phares, menacées, endémiques,…)',
         'occurrences_species' => 'Espèces animales clés présentes dans deux aires protégées ou plus ',
         'occurrences_plants' => 'les espèces végétales clés présentes dans deux aires protégées ou plus ',

@@ -10,6 +10,10 @@ export default {
         window.ImetCore.ScalingUp.Mixins.resize
     ],
     props: {
+        title: {
+            type: String,
+            default: ''
+        },
         width: {
             type: String,
             default: '100%'
@@ -64,10 +68,14 @@ export default {
                 },
                 title: {
                     text: this.title,
-                    left: 'center'
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
                 },
                 legend: {
-                    ...this.get_legends()
+                    ...this.get_legends(),
+                    padding: [35, 5, 10, 5]
                 },
                 tooltip: {
                     trigger: 'item',

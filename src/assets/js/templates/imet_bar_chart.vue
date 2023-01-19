@@ -55,12 +55,20 @@ export default {
             type: Object,
             default: () => {
             }
-        }
+        },
+        title_data :{
+            type: String,
+            default: ''
+        },
     },
     computed: {
         bar_options() {
             return {
                 ...this.get_colors(),
+                legend:{
+                    show: true,
+                    padding: [35, 0, 0, 0],
+                },
                 title: {
                     text: this.title,
                     left: 'center'
@@ -95,6 +103,7 @@ export default {
                 series: [{
                     data: this.values,
                     type: 'bar',
+                    name: this.title_data,
                     ...this.series_data
                 }],
                 ...this.has_zoom()
