@@ -34,6 +34,10 @@ return [
     'name' => 'Name',
     'category' => 'Category',
     'short_name' => 'Color code and short name',
+    'add_choices' => 'Add choices',
+    'add_all' => 'Add all',
+    'close' => 'Close',
+    'remove_all' => 'Remove all',
     'sections' => [
         'first' => 'Location of the selected protected areas',
         'second' => 'General Information of the protected areas',

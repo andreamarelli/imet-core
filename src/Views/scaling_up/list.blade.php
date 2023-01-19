@@ -41,19 +41,23 @@ $url = URL::route('imet-core::scaling_up_index');
 
     <br/>
     <div id="sortable_list">
-
         <div id="cloud">
             <label-cloud
                 :cookie-name="'analysis'"
                 url="{{ route('imet-core::scaling_up_report', ['items' => "__items__"]) }}"
+                :label-scaling-up="'Scaling up analysis'"
+                :label-remove-all="'@lang('imet-core::analysis_report.remove_all')'"
                 :source-of-data="'cookie'"></label-cloud>
         </div>
+
         <action-button-cookie
             :class-name="'btn btn-success'"
             :cookie-name="'analysis'"
             :event="'update_cloud_tags'"
-            :label="'Save choices'">
+            :label="'@lang('imet-core::analysis_report.add_choices')'">
         </action-button-cookie>
+
+        <button class="btn btn-success" @click="add_all()">@lang('imet-core::analysis_report.add_all')</button>
         <br/>
         <br/>
 
@@ -76,7 +80,6 @@ $url = URL::route('imet-core::scaling_up_index');
                 <th class="width200px">{{-- actions --}}</th>
             </tr>
             </thead>
-
             <tbody>
             <tr v-for="item of items">
                 <td class="align-baseline text-center">
@@ -125,10 +128,10 @@ $url = URL::route('imet-core::scaling_up_index');
                 </td>
                 <td>
                     <imet_radar
-                            style="margin: 0 auto;"
-                            :width=150 :height=150
-                            :values=item.assessment_radar
-                            v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                        style="margin: 0 auto;"
+                        :width=150 :height=150
+                        :values=item.assessment_radar
+                        v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
                     ></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
@@ -174,6 +177,16 @@ $url = URL::route('imet-core::scaling_up_index');
 
                 mounted: function () {
                     this.sort('{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortBy }}', '{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortDirection }}');
+                },
+                methods: {
+                    add_all() {
+                        this.list.forEach(function (item) {
+                            this.selectValueByIdAndValue(item.FormID, item.name);
+                        }, this);
+
+                        this.$root.$emit('store_cookie_and_value', 'analysis', JSON.stringify(this.checkboxes));
+                        this.$root.$emit('add_cloud_tags');
+                    }
                 }
 
             });

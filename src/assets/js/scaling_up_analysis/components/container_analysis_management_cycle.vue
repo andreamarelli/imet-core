@@ -28,6 +28,9 @@
                     <!--        <small_menu v-if="show_menu" :items="data.values.diagrams"></small_menu>-->
                     <slot :props="data"></slot>
                 </div>
+                <div class="text-right mt-3">
+                    <div class="btn btn-success" @click="toggle_view()"><strong>Close</strong></div>
+                </div>
             </div>
         </div>
     </div>

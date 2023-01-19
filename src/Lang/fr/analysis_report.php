@@ -34,6 +34,10 @@ return [
     'name' => 'Nom',
     'category' => 'Catégorie',
     'short_name' => 'Code couleur et nom court',
+    'add_choices' => 'Ajouter des choix',
+    'add_all' => 'Tout ajouter',
+    'close' => 'Fermer',
+    'remove_all' => 'Tout supprimer',
     'sections' => [
         'first' => 'Localisation des aires protégées sélectionnées',
         'second' => 'Informations genérales des aires protégées',
