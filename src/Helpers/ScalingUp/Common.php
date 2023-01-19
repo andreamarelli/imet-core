@@ -134,7 +134,7 @@ class Common
     public static function values_correction(string $indicator, $value)
     {
         if ($indicator === "c3") {
-            if($value > 0) {
+            if ($value > 0) {
                 return static::round_number((100 + $value), 3);
             }
         } else if (in_array($indicator, ["c2", "oc2", "oc3"])) {
@@ -176,16 +176,23 @@ class Common
      * @param array $indicators
      * @return array
      */
-    public static function filtered_indicators_and_round_values(array $form_ids, string $type, array $indicators = []): array
+    public static function filtered_indicators_and_round_values(array $form_ids, string $type, array $indicators = [], bool $add_synthetic_indicator = false): array
     {
         $filtered = [];
+        $indicator = null;
         foreach ($form_ids as $key => $form_id) {
 
             $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
 
-            $results[$form_id] = $version=== \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
+            $results[$form_id] = $version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
                 ? V1ToV2StatisticsService::get_scores($form_id, $type)
                 : V2StatisticsService::get_scores($form_id, $type);
+            if($add_synthetic_indicator) {
+                $indicator = $version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
+                    ? V1ToV2StatisticsService::get_scores($form_id, 'global')
+                    : V2StatisticsService::get_scores($form_id, 'global');
+            }
+
 
             if (count($indicators)) {
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
@@ -206,8 +213,13 @@ class Common
 
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed
+            if($indicator) {
+                $filtered[$form_id][$type] = static::round_number($indicator[$type]);
+            }
             $filtered[$form_id]['avg'] = static::get_average($filtered[$form_id], $number_of_indicators);
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
+
+            //
         }
 
         return $filtered;
@@ -277,6 +289,7 @@ class Common
 
     /**
      * @param array $form_ids
+     * @param int $scaling_id
      * @return array|array[]
      */
     public static function get_assessments(array $form_ids, int $scaling_id = 0): array
@@ -295,7 +308,7 @@ class Common
 
             $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
 
-            $assessments[$k] = $version=== \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
+            $assessments[$k] = $version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
                 ? V1ToV2StatisticsService::get_scores($form_id, 'global')
                 : V2StatisticsService::get_scores($form_id, 'global');
 
@@ -304,6 +317,7 @@ class Common
             $assessments[$k]['name'] = $name->name;
             $assessments[$k]['color'] = $name->color;
             $assessments[$k]['wdpa_id'] = $name->wdpa_id;
+            $assessments[$k]['formid'] = (int)$form_id;
 
             $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
             foreach ($indicators as $key => $indicator) {

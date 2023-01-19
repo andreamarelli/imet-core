@@ -121,7 +121,7 @@
                             <template slot-scope="data_elements">
                                 <datatable_interact_with_radar class="col-sm"
                                                                :values="data_elements.props[tableValue['name']].radar.values"
-                                                               :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns"></datatable_interact_with_radar>
+                                                               :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns.slice(0,-1)"></datatable_interact_with_radar>
 
                             </template>
                         </container_actions>

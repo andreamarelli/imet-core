@@ -482,7 +482,7 @@ class ScalingUpAnalysis extends Model
         $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $custom_type, $colors[$type], $options, "", static::$scaling_id);
 
         //table data
-        $tables = DataTable::get_datatable_analysis_indicators($form_ids, $table_indicators, $custom_type, static::$scaling_id);
+        $tables = DataTable::get_datatable_analysis_indicators($form_ids, $table_indicators, $custom_type, static::$scaling_id, true);
 
         //radar data
         $ranking = Ranking::ranking_indicators($form_ids, $custom_type, $table_indicators, static::$scaling_id);
@@ -521,8 +521,7 @@ class ScalingUpAnalysis extends Model
      * @param int $scaling_id
      * @return array[]
      */
-    public
-    static function get_averages_of_each_indicator_of_six_elements(array $form_ids, array $assessments = [], bool $overall = false, int $scaling_id = 0): array
+    public static function get_averages_of_each_indicator_of_six_elements(array $form_ids, array $assessments = [], bool $overall = false, int $scaling_id = 0): array
     {
         $id = $scaling_id;
         if (static::$scaling_id) {
