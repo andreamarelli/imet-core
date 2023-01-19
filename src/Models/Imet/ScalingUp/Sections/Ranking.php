@@ -17,7 +17,11 @@ class Ranking
     public static function ranking_indicators(array $form_ids, string $type, array $indicators, int $scaling_id = 0): array
     {
         $ranking_values = [];
+        $percent_values = [];
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => []];
+        $new_ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => []];
+        $separated_values_by_pa = [];
+        $sum_values = [];
 
         // only for process sub-indicators average
         if (isset($indicators['pr15_16'])) {
@@ -29,7 +33,7 @@ class Ranking
         }
 
         $sort_keys = [];
-        //loop the each imet record sorted and get pa name
+        //loop each imet record sorted and get pa name
         //and merge it with the table
         foreach ($filtered as $id => $values) {
             $pa = Common::get_pa_name($id, $scaling_id);
@@ -77,19 +81,63 @@ class Ranking
         }
         arsort($sort_keys);
 
-        $new_ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => []];
+
         foreach ($ranking_values as $name => $ranking_value) {
             $new_ranking['xAxis'] = [];
             $new_ranking['wdpa_ids'] = [];
+            $i = 0;
             foreach ($sort_keys as $k => $val) {
-                $new_ranking['values'][$name][] = $ranking_value[$k];
+                $new_ranking['actual_value'][$name][] = $ranking_value[$k];
+                //$new_ranking['values'][$name][] = $ranking_value[$k];
                 $new_ranking['xAxis'][] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][] = $ranking['wdpa_ids'][$k];
+
+                $separated_values_by_pa[$i][] = Common::round_number((float)($ranking_value[$k]));
+                if (!isset($sum_values[$i])) {
+                    $sum_values[$i] = 0;
+                }
+                $sum_values[$i] += (float)($ranking_value[$k]);
+                $i++;
             }
         }
 
-        $new_ranking['legends'] = $ranking['legends'];
-        return $new_ranking;
+        return static::get_values_ranking($new_ranking, $sum_values, $separated_values_by_pa, $percent_values);
+    }
+
+    /**
+     * @param array $ranking
+     * @param array $sum_values
+     * @param array $separated_values_by_pa
+     * @param array $percent_values
+     * @return array
+     */
+    private static function get_values_ranking(array $ranking, array $sum_values, array $separated_values_by_pa, array $percent_values): array{
+        $keys = array_keys($ranking['actual_value']);
+        foreach ($separated_values_by_pa as $k => $values) {
+            foreach ($values as $kk => $value) {
+                $percent_values[$keys[$kk]][$k] = Common::round_number(($value / $sum_values[$k]) * 100);
+            }
+        }
+
+        $average_values = array_map(function ($value) use ($separated_values_by_pa) {
+            return Common::round_number($value / count($separated_values_by_pa[0]));
+        }, $sum_values);
+
+
+        $ranking['values'] = [];
+
+        foreach ($percent_values as $k => $values) {
+            foreach ($values as $kk => $value) {
+                $ranking['values'][$k][$kk] = Common::round_number(($value / 100) * $average_values[$kk]);
+            }
+        }
+
+        //$new_ranking['average'] = $average_values;
+        $ranking['percent_value'] = $percent_values;
+        $ranking['raw_values_protected_area'] = $separated_values_by_pa;
+        $ranking['legends'] = $ranking['legends'];
+
+        return $ranking;
     }
 
     /**
@@ -136,51 +184,56 @@ class Ranking
     public static function ranking_threats_indicators(array $form_ids, int $scaling_id = 0): array
     {
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => []];
-        $wdpa_ids = [];
         $sort_keys = [];
         $ranking_raw_values = [];
-        $protected_areas_names = [];
+        $separated_values_by_pa = [];
+        $sum_values = [];
+        $percent_values = [];
 
         foreach ($form_ids as $j => $form_id) {
             $pa = Common::get_pa_name($form_id, $scaling_id);
 
-            $protected_areas_names[$form_id] = $pa->name;
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
 
             $wdpa_id = $pa->wdpa_id;
             $collect_values = [];
+
             foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
+                $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($k + 1), []);
+
                 if ($protected_area === "") {
                     $value = "-";
                 } else {
                     $value = Common::round_number((-1 * (double)$protected_area));
                 }
-                $ranking_raw_values[$form_id][] = $collect_values[] = $value;
+                $ranking_raw_values[$name][] = $collect_values[] = $value;
+
             }
-            $sort_keys[$form_id] = array_sum($collect_values);
-            $wdpa_ids[$form_id] = $wdpa_id;
+            $ranking['xAxis'][] = $pa->name;
+            $ranking['wdpa_ids'][] = $wdpa_id;
+            $sort_keys[] = array_sum($collect_values);
         }
 
         //sorting array
         arsort($sort_keys);
-        $new_ranking = [];
 
-        foreach ($sort_keys as $k => $val) {
-            $new_ranking[$k] = $ranking_raw_values[$k];
-        }
+        foreach ($ranking_raw_values as $name => $ranking_value) {
+            $i = 0;
+            foreach ($sort_keys as $k => $val) {
+                $ranking['actual_value'][$name][] = $ranking_value[$k];
+                $ranking['legends'][$k] = $name;
 
-        foreach ($new_ranking as $id => $values) {
+                $separated_values_by_pa[$i][] = $value === "-" ? 0 : (float)($ranking_value[$k]);
+                if (!isset($sum_values[$i])) {
+                    $sum_values[$i] = 0;
+                }
+                $sum_values[$i] += (float)($ranking_value[$k]);
+                $i++;
 
-            foreach ($values as $v => $value) {
-                $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($v + 1), []);
-                $ranking['values'][$name][] = $value;
-                $ranking['legends'][$v] = $name;
             }
-            $ranking['xAxis'][] = $protected_areas_names[$id];
-            $ranking['wdpa_ids'][] = $wdpa_ids[$id];
         }
 
-        return $ranking;
+        return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values);
     }
 
     /**

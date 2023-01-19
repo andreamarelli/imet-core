@@ -36,12 +36,14 @@
                                        :event_image="'save_entire_block_as_image'">
                         <template slot-scope="data_elements">
                             <bar_category_stack
-                                :show_y_axis="false"
+                                :axis_dimensions_y="{max:100}"
                                 :show_option_label="tableValue['ranking_labels']"
                                 :x_axis_data="data_elements.props[tableValue['name']].ranking.xAxis"
                                 :legends="data_elements.props[tableValue['name']].ranking.legends"
                                 :colors="container.props.config.color_correct_order"
-                                :values="data_elements.props[tableValue['name']].ranking.values"></bar_category_stack>
+                                :values="data_elements.props[tableValue['name']].ranking.values"
+                                :percent_values="data_elements.props[tableValue['name']].ranking.percent_value"
+                                :raw_values="data_elements.props[tableValue['name']].ranking.raw_values_protected_area"></bar_category_stack>
                             <div class="row mb-1 mt-1" style="font-size: 12px">
                                 <div class="col-sm align-self-center">
                                    {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
