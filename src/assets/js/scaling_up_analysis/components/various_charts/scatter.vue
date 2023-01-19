@@ -156,7 +156,7 @@ export default {
                     tooltip: {
                         show: true,
                         formatter(params) {
-                            return `<b>${_this.label_axis_y}</b>: ${params.value[1]}<br/><b>${_this.label_axis_x}</b>: ${params.value[0]}<br/><b>${_this.label_axis_y2}</b>: ${params.value[2]}`;
+                            return `<b>${params.name}</b><br/><b>${_this.label_axis_y}</b>: ${params.value[1]}<br/><b>${_this.label_axis_x}</b>: ${params.value[0]}<br/><b>${_this.label_axis_y2}</b>: ${params.value[2]}`;
                         }
                     },
                     data: [record],
@@ -164,7 +164,7 @@ export default {
                     name: record['name'],
                     symbol: "rect",
                     symbolSize: function (data) {
-                        return Math.sqrt(data[2]) * (5 + idx);
+                        return Math.sqrt(data[2]) * (9);
                     },
                     emphasis: {
                         focus: 'self'
@@ -172,7 +172,7 @@ export default {
                     label: {
                         show: true,
                         formatter: function (param) {
-                            return param.data['name'];
+                            return '';
                         }
                     }
                 })
