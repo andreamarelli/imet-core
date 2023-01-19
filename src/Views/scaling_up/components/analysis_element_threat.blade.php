@@ -21,8 +21,8 @@
         <template slot-scope="v">
             <div v-if="v.props.ranking">
                 <bar_category_stack
-                    :show_y_axis="false"
                     :label_position="'bottom'"
+                    :axis_dimensions_y="{max:0, min:-100}"
                     :show_option_label="container.props.config.element_diagrams.threats.ranking_labels"
                     :grid='{"grid": {
                                             "left": "3%",
@@ -34,7 +34,9 @@
                     :x_axis_data="v.props.ranking.xAxis"
                     :legends="v.props.ranking.legends"
                     :colors="container.props.config.color_correct_order"
-                    :values="v.props.ranking.values"></bar_category_stack>
+                    :values="v.props.ranking.values"
+                    :percent_values="v.props.ranking.percent_value"
+                    :raw_values="v.props.ranking.raw_values_protected_area"></bar_category_stack>
             </div>
         </template>
     </container_actions>

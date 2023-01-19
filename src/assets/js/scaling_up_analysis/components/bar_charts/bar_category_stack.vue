@@ -31,6 +31,16 @@ export default {
             default: () => {
             }
         },
+        raw_values: {
+            type: [Array, Object],
+            default: () => {
+            }
+        },
+        percent_values: {
+            type: [Array, Object],
+            default: () => {
+            }
+        },
         legends: {
             type: [Array, Object],
             default: () => {
@@ -77,9 +87,11 @@ export default {
     computed: {
 
         bar_options() {
+
             this.grid.grid.containLabel = function () {
                 return this.show_option_label;
             };
+            const {raw_values, percent_values} = this;
             return {
                 legend: {
                     data: Object.values(this.legends),
@@ -93,14 +105,24 @@ export default {
                     },
                     formatter: function (params) {
                         let tooltip_text = `${params[0].axisValueLabel} <br/>`;
-                        params.forEach(function (item) {
+                        if(raw_values){
+                            params.forEach(function (item) {
+                                if (item.value === -0) {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
+                                } else {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : ${raw_values[item.dataIndex][item.componentIndex]} (${percent_values[item.seriesName][item.dataIndex]}%)</div> <br/>`;
+                                }
+                            });
+                        }else{
+                            params.forEach(function (item) {
+                                if(item.value === -0){
+                                    tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
+                                }else {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : ${item.value}</div> <br/>`;
+                                }
+                            });
+                        }
 
-                            if(item.value === -0){
-                                tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
-                            }else {
-                                tooltip_text += `${item.marker} ${item.seriesName} : ${item.value}</div> <br/>`;
-                            }
-                        });
                         return tooltip_text;
                     }
                 },
@@ -108,6 +130,7 @@ export default {
                 xAxis: {
                     type: 'category',
                     data: this.x_axis_data,
+                    ...this.axis_dimensions_x,
                     axisLabel: {
                         interval: 0,
                         rotate: 45
@@ -115,6 +138,7 @@ export default {
                 },
                 yAxis: {
                     type: 'value',
+                    ...this.axis_dimensions_y,
                     show: this.show_y_axis,
                     realtimeSort: true,
                     minInterval: 1
@@ -134,7 +158,9 @@ export default {
     data() {
         return {
             height_value: 700,
-            data: []
+            data: [],
+            new_values: [],
+            calculated_values: [],
         }
     },
     mounted() {
@@ -147,9 +173,9 @@ export default {
         this.draw_chart();
     },
     methods: {
-
         series: function () {
             const bars = [];
+
             Object.entries(this.values).forEach((value, idx) => {
                 bars.push({
                     color: this.colors[idx],
@@ -164,10 +190,11 @@ export default {
                         focus: 'series'
                     },
                     data: value[1].map((item, idx) => {
-                        if(item == '-'){
+                        if (item == '-') {
                             return -0
                         }
-                        return item
+
+                        return item;
                     })
                 })
             });
@@ -189,10 +216,8 @@ export default {
                         formatter: (param) => {
                             let sum = 0;
                             has_value = true;
-                            if(index === bars.length - 1 && param.dataIndex === bars[index].data.length - 1) {
-                            }
                             bars.forEach(item => {
-                                if(item.data[param.dataIndex] !== '-') {
+                                if (item.data[param.dataIndex] !== '-') {
                                     sum += parseFloat(item.data[param.dataIndex]);
                                 }
                             });
@@ -200,7 +225,6 @@ export default {
                             return sum.toFixed(1);
                         }
                     }
-
                 }
 
                 return bar;
