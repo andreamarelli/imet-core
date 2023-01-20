@@ -14,6 +14,7 @@
                 :search-url=searchUrl
                 :key-min-length=3
                 :parent-search-params-valid=searchParamValid
+                :radioTooltip=radioTooltip
             >
                 <template v-slot:modal_search_filters>&nbsp;
                     {{ Locale.getLabel('imet-core::common.country') }}
@@ -85,7 +86,8 @@
                 selectedValue: null,
                 confirmedValue: null,
                 confirmedLabel: null,
-                filterByCountry: null
+                filterByCountry: null,
+                radioTooltip: window.Locale.getLabel('imet-core::common.double_check_wdpa')
             }
         },
 

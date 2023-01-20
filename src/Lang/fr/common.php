@@ -68,6 +68,7 @@ return [
     'upgrade_success'   => 'Conversion en IMET v2 terminée avec succès',
     'upgrade_failed'    => 'Erreur lors de la conversion en IMET v2',
     'not_authorized_module' => 'Aucune autorisation de visualiser ces informations',
+    'double_check_wdpa' => 'Assurez-vous de sélectionner la bonne WDPA',
 
     'synthetic_indicator' => 'indicateur synthese',
     'cross_analysis_info' => 'La fonction d’analyse croisée vise à identifier d’éventuelles incohérences dans les scores de l’analyse IMET. Elle cherche à savoir si les scores d’une paire (ou d’un triplet) de questions IMET sont significativement différents. Le seuil de différence significative est fixé à 20 points de pourcentage pour les questions mesurées sur l’échelle (min: 0 — max: 100). Vous trouverez ci-dessous les indicateurs pour lesquels une différence dépassant le seuil prédéfini a été identifiée dans votre évaluation. L’analyse croisée n’étant que consultative, aucune suggestion n’est fournie quant à la raison de la différence des valeurs ou aux éventuels changements qui pourraient être adoptés dans l’analyse. Les réponses fournies peuvent rester inchangées, mais les valeurs attribuées doivent être vérifiées ensemble à l’équipe de l’aire protégée. Des commentaires supplémentaires doivent aussi être ajoutés dans les indicateurs sélectionnés pour expliquer la différence de score significative ou pour les dispositions de gestion à adopter.',
