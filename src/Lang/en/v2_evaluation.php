@@ -69,7 +69,6 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration of 3 to 10 key species in the management of the protected area (based on an analysis of the Context of Intervention, points 4.1 and 4.2, automatically reported below). (The representativeness or highly representative of a key specie corresponds to the degree to which it: (i) represents a strong natural characteristic of one habitat, ecosystem, biome; (ii) influences an ecological process or community or (iii) affects a species-directed management policy)'
         ],
-        'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -108,7 +107,6 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration in the management of the protected area of 3 to 10 of the most representative and important habitats and related dimensions of land-cover, land-change and land-take types (based on the analysis of the Context of Intervention, points 4.3, automatically reported below). (The regional and global value/importance of habitats is a degree to which it: (i) represents at the regional or global level the natural environment of key plants or animals; (ii) influences an ecological process or community and (iii) affects a habitat directed management policy)'
         ],
-        'validation_3to10' => 'Please include in statistics not less than 3 and not more than 10 of the key species',
         'warning_on_save' =>
             'WARNING!! <br /> Any modification will cause complete data loss in the following
             evaluation modules (if already encoded):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
