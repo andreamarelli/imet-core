@@ -25,7 +25,7 @@ return [
             'name' => 'name as provided by the operator',
             'origin_name' => 'name in original language',
             'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
-            'designation_eng' => 'designation in english',
+            'designation_eng' => 'designation in English',
             'designation_type' => 'designation type',
             'marine' => 'typology',
             'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',

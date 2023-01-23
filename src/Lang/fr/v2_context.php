@@ -25,7 +25,7 @@ return [
             'name' => 'nom fourni par l’exploitant',
             'origin_name' => 'nom dans la langue d’origine',
             'designation' => 'nom de la désignation (ex. réserve, sanctuaire, etc.)',
-            'designation_eng' => 'désignation obligatoire en anglais',
+            'designation_eng' => 'désignation obligatoire en Anglais',
             'designation_type' => 'type de désignation',
             'marine' => 'typologie',
             'rep_m_area' => 'surface de l’aire protégée conservée marine [km<sup>2</sup>]',

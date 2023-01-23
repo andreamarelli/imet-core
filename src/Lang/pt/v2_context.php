@@ -25,7 +25,7 @@ return [
             'name' => 'nome fornecido pelo operador',
             'origin_name' => 'nome na língua original',
             'designation' => 'nome da designação (por exemplo, reserva, santuário, etc.) ',
-            'designation_eng' => 'designação obrigatória em inglês',
+            'designation_eng' => 'designação obrigatória em Inglês',
             'designation_type' => 'Tipo de designação',
             'marine' => 'tipologia',
             'rep_m_area' => 'superfície da área protegida marinha conservada [km<sup>2</sup>]',

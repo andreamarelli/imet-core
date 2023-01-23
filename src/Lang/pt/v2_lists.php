@@ -3,10 +3,10 @@
 return [
 
     'languages' => [
-        'fr'        => 'french',
-        'en'        => 'english',
-        'sp'        => 'spanish',
-        'pt'        => 'portuguese'
+        'fr'        => 'French',
+        'en'        => 'English',
+        'sp'        => 'Spanish',
+        'pt'        => 'Portuguese'
     ],
 
     'NonWdpaPaDef' => [

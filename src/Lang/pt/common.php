@@ -25,10 +25,10 @@ return [
     'dopa_not_available' => 'DOPA serviços não disponíveis',
 
     'languages' => [
-        'fr'        => 'francês',
-        'en'        => 'inglês',
-        'sp'        => 'espanhol',
-        'pt'        => 'português'
+        'fr'        => 'Francês',
+        'en'        => 'Inglês',
+        'sp'        => 'Espanhol',
+        'pt'        => 'Português'
     ],
     'switch_language' => 'Mudar a língua actual para',
 
