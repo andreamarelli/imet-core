@@ -1,4 +1,5 @@
 <?php
+/** @var Imet $item */
 /** @var string $phase */
 
 use \AndreaMarelli\ImetCore\Models\Imet\Imet;
@@ -7,15 +8,24 @@ use \Illuminate\Support\Str;
 
 $route_action = Str::endsWith(Route::currentRouteName(), 'show') ? 'show' : 'edit';
 
+$last_update = $item->getLastUpdate();
+
 ?>
-<div class="id" style="margin-bottom: 4px;">
-    IMET #{{ $item->getKey() }}
+<div class="id" style="margin-bottom: 4px;">{{-- version --}}
     @if($item->version===Imet::IMET_V1)
         &nbsp;<span class="badge badge-secondary" style="vertical-align: text-top;">v1</span>
     @elseif($item->version===Imet::IMET_V2)
         &nbsp;<span class="badge badge-success" style="vertical-align: text-top;">v2</span>
     @endif
-
+    {{-- ID --}}
+    <span style="margin-left: 10px;">
+        IMET #: {{ $item->getKey() }}
+    </span>
+    {{-- last update --}}
+    <span style="margin-left: 10px;">
+        @uclang('modular-forms::entities.common.last_update'):&nbsp;
+        <b><i>{{ $last_update['date'] }}</i></b>
+    </span>
 </div>
 
 <div class="entity-heading">
@@ -31,6 +41,7 @@ $route_action = Str::endsWith(Route::currentRouteName(), 'show') ? 'show' : 'edi
         @endif
     </div>
 </div>
+
 
 <nav class="steps">
 

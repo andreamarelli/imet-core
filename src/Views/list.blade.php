@@ -130,6 +130,11 @@ $url = URL::route('imet-core::index');
                             <span v-if="item.version==='{{ Imet::IMET_V2 }}'" class="badge badge-success">v2</span>
                             <span v-else-if="item.version==='{{ Imet::IMET_V1 }}'" class="badge badge-secondary">v1</span>
                         </div>
+                        {{-- last update --}}
+                        <div>
+                            @uclang('modular-forms::entities.common.last_update'):&nbsp;
+                            <b><i>@{{ item.last_update.date }}</i></b>
+                        </div>
                     </div>
                 </td>
                 <td class="align-baseline">
