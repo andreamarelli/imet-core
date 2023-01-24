@@ -924,7 +924,7 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Ranger patrol management',
+            'group0' => 'Terrestrial ranger patrol management',
             'group1' => 'Sea ranger patrol management',
         ],
         'predefined_values' => [

@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
 use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
@@ -100,6 +101,34 @@ trait Process
         $score = $denominator>0
             ? $numerator / $denominator / 3 * 100
             : null;
+
+        return $score!== null ?
+            round($score, 2)
+            : null;
+    }
+
+    protected static function score_pr8($imet_id): ?float
+    {
+        $records = LawEnforcementImplementation::getModule($imet_id);
+
+        $terrestrial_avg = $records
+            ->where('group_key', 'group0')
+            ->pluck('Adequacy')
+            ->filter(function ($value) {
+                return $value != -99;
+            })
+            ->avg();
+
+        $marine_avg = $records
+            ->where('group_key', 'group1')
+            ->pluck('Adequacy')
+            ->filter(function ($value) {
+                return $value != -99;
+            })
+            ->avg();
+
+        $average = static::average([$terrestrial_avg, $marine_avg], null);
+        $score = $average!==null ? $average / 3 * 100 : null;
 
         return $score!== null ?
             round($score, 2)

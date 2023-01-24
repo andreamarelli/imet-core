@@ -925,7 +925,7 @@ return [
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
-            'group0' => 'Gestión de las patrullas del parque',
+            'group0' => 'Gestión de las patrullas del parque terrestres',
             'group1' => 'Gestión de patrullas de parques marinos',
         ],
         'predefined_values' => [

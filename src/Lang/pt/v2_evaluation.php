@@ -925,7 +925,7 @@ return [
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
-            'group0' => 'Gestão de patrulhas de Ranger',
+            'group0' => 'Gestão de patrulhas de Ranger terrestre',
             'group1' => 'Gestão de patrulhas de guarda-marinha',
         ],
         'predefined_values' => [

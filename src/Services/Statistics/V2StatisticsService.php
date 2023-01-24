@@ -128,7 +128,7 @@ class V2StatisticsService extends StatisticsService
             'pr5' => static::score_table($imet_id, Evaluation\AdministrativeManagement::class, 'EvaluationScore', 4),
             'pr6' => static::score_pr6($imet_id),
             'pr7' => static::score_group($imet_id, Evaluation\ManagementActivities::class, 'EvaluationScore', 'group_key'),
-            'pr8' => static::score_table($imet_id, Evaluation\LawEnforcementImplementation::class, 'Adequacy'),
+            'pr8' => static::score_pr8($imet_id),
             'pr9' => static::score_group($imet_id, Evaluation\IntelligenceImplementation::class, 'Adequacy', 'group_key'),
             'pr10' => static::score_pr10($imet_id),
             'pr11' => static::score_group($imet_id, Evaluation\AssistanceActivities::class, 'EvaluationScore', 'group_key'),
@@ -170,6 +170,7 @@ class V2StatisticsService extends StatisticsService
             'op1' => static::score_table($imet_id, Evaluation\WorkProgramImplementation::class, 'EvaluationScore'),
             'op2' => static::score_table($imet_id, Evaluation\AchievedResults::class, 'EvaluationScore'),
             'op3' => static::score_op3($imet_id),
+            'op4' => static::score_op4($imet_id),
         ];
 
         // aggregate step score

@@ -925,7 +925,7 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Gestion des patrouilles de rangers',
+            'group0' => 'Gestion des patrouilles de rangers terrestre',
             'group1' => 'Gestion des patrouilles de gardes maritimes',
         ],
         'predefined_values' => [
