@@ -35,6 +35,18 @@ return [
         'Established'
     ],
 
+    'OwnershipType' => [
+        'state' => 'State',
+        'communal' => 'Communal',
+        'individual_landowners' => 'Individual landowners',
+        'for_profit_organizations' => 'For-profit organisations',
+        'nonprofit_organizations' => 'Non-profit organisations',
+        'joint_ownership' => 'Joint ownership',
+        'multiple_ownership' => 'Multiple ownership',
+        'contested' => 'Contested',
+        'not_reported' => 'Not Reported',
+    ],
+
     'PaType' => [
         'terrestrial'           => 'Terrestrial',
         'marine_and_coastal'    => 'Marine and coastal',

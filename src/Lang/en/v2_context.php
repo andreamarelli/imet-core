@@ -31,6 +31,7 @@ return [
             'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
             'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
             'status' => 'status',
+            'ownership_type' => 'Ownership type',
             'status_year' => 'year of the enactment',
             'country' => 'country',
         ],

@@ -31,6 +31,7 @@ return [
             'rep_m_area' => 'superfície da área protegida marinha conservada [km<sup>2</sup>]',
             'rep_area' => 'superfície da área protegida conservada [km<sup>2</sup>]',
             'status' => 'estado',
+            'ownership_type' => 'Tipo de propriedade',
             'status_year' => 'ano da promulgação do estatuto',
             'country' => 'país',
         ],
