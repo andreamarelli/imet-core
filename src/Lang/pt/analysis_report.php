@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variabilidade',
     'scaling_up' => 'Escalonamento',
     'conclusions' => 'Conclusões',
     'title' => 'Relatório de análise de escalonamento para ',

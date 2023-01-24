@@ -127,7 +127,6 @@ export default {
             this.selections = this.get_values();
         },
         remove_item: function (item) {
-            console.log(this.selections);
             this.selections = this.selections?.filter((selection) => {
                 return selection[this.fieldId] !== item[this.fieldId];
             });

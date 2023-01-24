@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variability',
     'scaling_up' => 'Scaling up',
     'conclusions' => 'Conclusions',
     'title' => 'Scaling up analysis report for ',
@@ -18,7 +19,7 @@ return [
     'average_explained' => '* Average calculated based on the set of protected areas participating in the scaling-up exercise',
     'ranking_rescaled_indicators' => 'Ranking of indicators rescaled to 0-100',
     'ranking_info_indicators' => '* The scores in the pop-up are the contribution to the synthetic indicator',
-    'source'=> 'Source',
+    'source' => 'Source',
     'download_files' => 'Download',
     'print' => 'print',
     'custom_names' => 'Names of protected areas',
@@ -231,8 +232,7 @@ return [
         'protected_marine_area' => 'Protected Marine Area [km2]',
         'marine_coverage' => 'Marine Coverage [%]',
         'protected_connected_land' => 'Protected Connected Land [%]',
-    ]
-    ,
+    ],
     'land_degradation' => [
         'indicators' => [
             'title' => 'Land degradation',
@@ -271,6 +271,16 @@ return [
             'process_sub_indicators' => 'Average contribution of the six sub-elements of the Process indicators',
             'outputs' => 'Average contribution of the Outputs indicators',
             'outcomes' => 'Average contribution of the Outcomes indicators'
+        ],
+        'legends' => [
+            'context_sub_indicators' => 'Sub-indicators to Value and Importance',
+            'context_indicators' => 'indicators to the Management context',
+            'planning_indicators' => 'Planning indicators',
+            'inputs_indicators' => 'Inputs indicators',
+            'process_indicators' => 'Process indicators',
+            'process_sub_indicators' => 'Sub-elements of the Process indicators',
+            'outputs_indicators' => 'Outputs indicators',
+            'outcomes_indicators' => 'Outcomes indicators'
         ]
     ],
     'terrestial_ecoregions' => [
@@ -389,7 +399,7 @@ return [
     ],
     'legends' => [
         'pr1_6' => [
-            'PR A'
+            'PR A',
         ],
         'pr7_9' => [
             'PR B'

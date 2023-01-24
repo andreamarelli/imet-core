@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variabilité',
     'scaling_up' => 'Mise à l’échelle',
     'conclusions' => 'Conclusions',
     'title' => 'Rapport d’analyse de la mise à l’échelle pour ',

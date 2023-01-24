@@ -144,6 +144,7 @@ export default {
         },
         field_name: function () {
             return this.fields.map(field => {
+                console.log(field);
                 return field;
             })
         },

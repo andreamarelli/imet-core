@@ -32,11 +32,15 @@ export default {
             default: () => {
             }
         },
-        indicators_color:{
+        indicators_color: {
             type: String,
             default: ''
         },
-
+        legends: {
+            type: Array,
+            default: () => {
+            }
+        },
         show_legends: {
             type: Boolean,
             default: false
@@ -73,7 +77,13 @@ export default {
             default: false
         },
     },
-
+    data: function () {
+        const Locale = window.Locale;
+        return {
+            Locale: Locale,
+            gather_colors: []
+        }
+    },
     computed: {
         bar_options() {
             const {values, error_data, legends, indicators} = this.getValues();
@@ -87,7 +97,8 @@ export default {
                     }
                 },
                 legend: {
-                   show:true,
+                    show: this.show_legends,
+                    data: this.legends,
                     padding: [30, 0, 0, 0]
                 },
                 ...this.grid(),
@@ -202,29 +213,6 @@ export default {
         colors: function (colors) {
             return colors;
         },
-        legends: function (legends = null) {
-            if (!legends) {
-                return null;
-            }
-            return {
-                data: legends
-            }
-        },
-        setLegends: function (data) {
-            const legends = [];
-            Object.entries(data)
-                .reverse()
-                .forEach(([key, value]) => {
-                    if (key === 'Average') {
-                        value.map((item, index) => {
-                            legends.push({name: item['indicator']});
-                        });
-                    } else {
-                        legends.push({name: value['ind']});
-                    }
-                });
-            return this.legends(legends);
-        },
         getValues: function (data = this.values) {
             let values = []
             let indicators = [];
@@ -232,10 +220,6 @@ export default {
             let error_data = [];
 
             indicators = this.setIndicators();
-            debugger;
-            if (this.show_legends) {
-                legends = this.setLegends(data);
-            }
 
             Object.entries(data)
                 .reverse()
@@ -248,6 +232,7 @@ export default {
 
                     if (key === 'Average') {
                         values = value.map((i, k) => {
+                            this.gather_colors[i['itemStyle']['color']] = i['itemStyle']['color'];
                             return {'value': i['value'], 'itemStyle': {'color': i['itemStyle']['color']}}
                         });
                         error_data = value.map((i, k) => [k, ...i['upper limit']]);
@@ -266,15 +251,16 @@ export default {
             }
         },
         bar_item: function (bar_data, error_data) {
+            const color = bar_data[0].itemStyle.color;
             return [
                 {
                     type: 'bar',
-                    name: 'Indicators',
+                    name: this.legends[0],
                     data: bar_data.map(data => {
                         return {value: data.value, itemStyle: {color: data.itemStyle.color}, label: {color: "#000000"}}
                     }),
                     itemStyle: {
-                        color: this.indicators_color
+                        color
                     },
                     label: {
                         show: true,
@@ -283,7 +269,7 @@ export default {
                     }
                 }, {
                     type: 'custom',
-                    name: 'Variability',
+                    name: this.legends[1],
                     itemStyle: {
                         normal: {
                             borderWidth: 1.5,
@@ -306,7 +292,6 @@ export default {
         draw_chart() {
             if (Object.keys(this.values).length > 0) {
                 this.chart = echarts.init(this.$el);
-                // console.log(this.bar_options);
                 this.chart.setOption(this.bar_options);
             }
         }

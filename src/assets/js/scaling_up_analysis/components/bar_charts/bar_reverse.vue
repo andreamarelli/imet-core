@@ -12,7 +12,6 @@ export default {
     },
     computed: {
         bar_options() {
-
             return {
                 legend: {show: true,
                     padding: [30, 0, 0, 0]},

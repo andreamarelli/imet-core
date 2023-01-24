@@ -26,6 +26,7 @@ class ScalingUpAnalysis extends Model
     protected $fillable = ['wdpas'];
     public $timestamps = false;
     public static $scaling_id = null;
+    public const UNDEFINED_VALUE = -99999999;
 
     /**
      * @param string $wdpas
@@ -441,15 +442,20 @@ class ScalingUpAnalysis extends Model
         ];
 
         $origType = $type;
+        $extra_type_words = '';
         if (str_contains($type, "process")) {
-            $origType = explode("_", $type)[0];
+            $name =  explode("_", $type);
+            if(count($name) > 1) {
+                $extra_type_words = $name[1]."_".$name[2] ?? '';
+            }
+            $origType = $name[0];
         }
 
         $data = [$type => []];
         $time_start = microtime(true);
         foreach ($table_indicators[$type] as $t => $array) {
             Common::reset_areas_ids();
-            $data[$type][$t] = static::analysis_diagram_protected_areas($form_ids, $origType, $array, $options[$origType], $type);
+            $data[$type][$t] = static::analysis_diagram_protected_areas($form_ids, $origType, $array, $options[$origType], $type, $extra_type_words);
         }
         $time_end = microtime(true);
         $execution_time = ($time_end - $time_start);
@@ -465,7 +471,7 @@ class ScalingUpAnalysis extends Model
      * @param string $custom_type
      * @return array|array[]
      */
-    private static function analysis_diagram_protected_areas(array $form_ids, string $type, array $table_indicators, array $options, string $custom_type): array
+    private static function analysis_diagram_protected_areas(array $form_ids, string $type, array $table_indicators, array $options, string $custom_type, string $extra_type_words = ''): array
     {
         $colors = [
             'context' => '#ffff00',
@@ -479,16 +485,16 @@ class ScalingUpAnalysis extends Model
         ];
 
         //radar data
-        $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $custom_type, $colors[$type], $options, "", static::$scaling_id);
+        $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $type, $colors[$type], $options, "", static::$scaling_id);
 
         //table data
-        $tables = DataTable::get_datatable_analysis_indicators($form_ids, $table_indicators, $custom_type, static::$scaling_id, true);
+        $tables = DataTable::get_datatable_analysis_indicators($form_ids, $table_indicators, $type, static::$scaling_id, true);
 
         //radar data
-        $ranking = Ranking::ranking_indicators($form_ids, $custom_type, $table_indicators, static::$scaling_id);
+        $ranking = Ranking::ranking_indicators($form_ids, $type, $table_indicators, static::$scaling_id);
 
         //average data
-        $averages = AverageContribution::average_contribution_calculations($form_ids, $table_indicators, $custom_type, $colors[$type], $options, 'imet-core::analysis_report.assessment.');
+        $averages = AverageContribution::average_contribution_calculations($form_ids, $table_indicators, $type, $colors[$type], $options, 'imet-core::analysis_report.assessment.', $custom_type);
 
         return [
             'table' => $tables['table'],
@@ -544,6 +550,10 @@ class ScalingUpAnalysis extends Model
             ['value' => $average['planning'], 'upper limit' => [$lowerLimit['planning'], $upperLimit['planning']], 'indicator_raw' => 'planning', 'indicator' => trans('imet-core::v2_common.steps_eval.planning'), "itemStyle" => ["color" => '#bfbfbf']],
             ['value' => $average['context'], 'upper limit' => [$lowerLimit['context'], $upperLimit['context']], 'indicator_raw' => 'context', 'indicator' => trans('imet-core::v2_common.steps_eval.context'), "itemStyle" => ["color" => '#ffff00']]];
 
+        $response['legends'] = [
+            'Synthetic indicators',
+            'Variability',
+        ];
         return ['status' => 'success', 'data' => $response];
     }
 

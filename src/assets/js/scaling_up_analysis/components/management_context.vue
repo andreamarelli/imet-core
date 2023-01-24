@@ -20,6 +20,7 @@
                             <template>
                                 <div v-if="show_species && show_group0" class="mb-3">
                                     <bar :fields="remove_parenthesis_words(Object.keys(species_statistics_group0))"
+                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.animal_species_chart')"
                                          :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_species')"
                                          :rotate="0            " :zoom="true"
                                          :values='Object.values(species_statistics_group0)'></bar>

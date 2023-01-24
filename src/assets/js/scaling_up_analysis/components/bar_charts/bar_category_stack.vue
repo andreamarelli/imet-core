@@ -10,7 +10,7 @@ export default {
         window.ImetCore.ScalingUp.Mixins.resize
     ],
     props: {
-        title:{
+        title: {
             type: String,
             default: ''
         },
@@ -28,7 +28,7 @@ export default {
         },
         height: {
             type: String,
-            default: '700px'
+            default: '800px'
         },
         values: {
             type: [Array, Object],
@@ -97,7 +97,7 @@ export default {
             };
             const {raw_values, percent_values} = this;
             return {
-                title:{
+                title: {
                     text: this.title,
                     left: 'center',
                     textStyle: {
@@ -105,7 +105,7 @@ export default {
                     }
                 },
                 legend: {
-                    data: Object.values(Array.isArray(this.legends[0]) ? this.legends[0]: this.legends),
+                    data: Object.values(Array.isArray(this.legends) ? this.legends[0] : this.legends),
                     selectedMode: false,
                     padding: [30, 0, 0, 0]
                 },
@@ -117,20 +117,31 @@ export default {
                     },
                     formatter: function (params) {
                         let tooltip_text = `${params[0].axisValueLabel} <br/>`;
-                        if(raw_values){
+                        if (raw_values) {
                             params.forEach(function (item) {
-                                if (item.value === -0) {
+                                const value = item.value;
+                                if (value == -99999999) {
                                     tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
                                 } else {
-                                    tooltip_text += `${item.marker} ${item.seriesName} : ${raw_values[item.dataIndex][item.componentIndex]} (${percent_values[item.seriesName][item.dataIndex]}%)</div> <br/>`;
+                                    let percent = percent_values[item.seriesName][item.dataIndex];
+                                    let raw_value = raw_values[item.dataIndex][item.componentIndex];
+                                    if (percent == -99999999) {
+                                        percent = '-';
+                                        raw_value = '-';
+                                    }
+                                    else{
+                                        percent = percent + '%';
+                                    }
+                                    tooltip_text += `${item.marker} ${item.seriesName} : ${raw_value} (${percent})</div> <br/>`;
                                 }
                             });
-                        }else{
+                        } else {
                             params.forEach(function (item) {
-                                if(item.value === -0){
-                                    tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
-                                }else {
-                                    tooltip_text += `${item.marker} ${item.seriesName} : ${item.value}</div> <br/>`;
+                                const value = item.value;
+                                if (value == -99999999) {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : - </div> <br/>`;
+                                } else {
+                                    tooltip_text += `${item.marker} ${item.seriesName} : ${value}</div> <br/>`;
                                 }
                             });
                         }
@@ -146,7 +157,7 @@ export default {
                     axisLabel: {
                         interval: 0,
                         rotate: 0,
-                        formatter: function(value, index){
+                        formatter: function (value, index) {
                             return value.replace(/ /g, "\n")
                         }
                     }
@@ -205,8 +216,8 @@ export default {
                         focus: 'series'
                     },
                     data: value[1].map((item, idx) => {
-                        if (item == '-') {
-                            return -0
+                        if (item == -99999999) {
+                            return 0
                         }
 
                         return item;
@@ -236,7 +247,9 @@ export default {
                                     sum += parseFloat(item.data[param.dataIndex]);
                                 }
                             });
-
+                            if(sum === 0){
+                                return sum;
+                            }
                             return sum.toFixed(1);
                         }
                     }

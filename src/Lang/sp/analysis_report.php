@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variabilidade',
     'scaling_up' => 'Aumento de la escala',
     'conclusions' => 'Conclusiones',
     'title' => 'Informe de análisis de la ampliación para ',
@@ -18,7 +19,7 @@ return [
     'average_explained' => '* Media calculada en base al conjunto de áreas protegidas que participan en el ejercicio de ampliación',
     'ranking_rescaled_indicators' => 'Clasificación de los indicadores reescalada a 0-100',
     'ranking_info_indicators' => '* Las puntuaciones en la ventana emergente son la contribución al indicador sintético',
-    'source'=> 'Fuente',
+    'source' => 'Fuente',
     'download_files' => 'descarga de archivos',
     'print' => 'imprimir',
     'custom_names' => 'Nombres de zonas protegidas',

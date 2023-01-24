@@ -22,7 +22,7 @@
             <div v-if="v.props.ranking">
                 <bar_category_stack
                     :title="container.props.config.element_diagrams.threats.menu.ranking"
-                    :show_y_axis="false"
+                    :show_y_axis="true"
                     :label_position="'bottom'"
                     :axis_dimensions_y="{max:0, min:-100}"
                     :show_option_label="container.props.config.element_diagrams.threats.ranking_labels"
@@ -65,6 +65,7 @@
                     :axis_dimensions_x="{max:100}"
                     :show_legends="true"
                     :values="v.props.average_contribution.data"
+                    :legends="v.props.average_contribution.legends"
                     :height="v.props.average_contribution.options.height"
                     :indicators="v.props.average_contribution.indicators"></imet_bar_error>
             </div>
@@ -119,6 +120,7 @@
             <template slot-scope="v">
 
                 <bar_reverse
+                    :title_data="'{{ucfirst(trans('imet-core::v2_common.steps.threats'))}}'"
                     :title="(index+1)+'. '+ container.props.stores.BaseStore.localization(`imet-core::v2_context.MenacesPressions.categories.title${index+1}`)"
                     :show_legends="true"
                     :values="v.props.map(item => item.value)"
