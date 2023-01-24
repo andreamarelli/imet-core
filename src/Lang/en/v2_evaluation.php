@@ -75,7 +75,7 @@ return [
     ],
 
     'ObjectivesSpecies' => [
-        'module_info' => 'Establish and describe objectives for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>species (flagship, endangered, endemic, exploited, invasive and for which there is insufficient data) </b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2.'
     ],
 
     'ImportanceHabitats' => [
@@ -113,7 +113,7 @@ return [
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establish and describe objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for maintaining of <b>maintaining terrestrial and marine habitats and related dimensions of land-cover, land-change and land-take elements</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2.'
     ],
 
     'ImportanceClimateChange' => [
@@ -146,7 +146,7 @@ return [
     ],
 
     'ObjectivesClimateChange' => [
-        'module_info' => 'Establish and describe objectives to the <b> most significant effects of climate change</b> on the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives to the <b> most significant effects of climate change</b> on the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the effects of climate change as a condition to improve to prevent loss of the value.'
     ],
 
     'ImportanceEcosystemServices' => [
@@ -179,7 +179,7 @@ return [
     ],
 
     'ObjectivesEcosystemServices' => [
-        'module_info' => 'Establish and describe objectives for <b>preserving ecosystem services</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>preserving ecosystem services</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values.'
     ],
 
     'SupportsAndConstraints' => [
@@ -257,7 +257,7 @@ return [
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establish and describe objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>constraints/conflicts or supporting/complying factors</b> for the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2.'
     ],
 
     'Menaces' => [
@@ -279,7 +279,7 @@ return [
     ],
 
     'ObjectivesMenaces' => [
-        'module_info' => 'Setting target conservation objectives and indicators for <b>the most important threats facing</b> the protected area<br /> The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Setting target conservation objectives and indicators for <b>the most important threats facing</b> the protected area<br /> The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the threats as condition to improve to prevent loss of the value.'
     ],
 
     'RegulationsAdequacy' => [
@@ -525,7 +525,7 @@ return [
     ],
 
     'ObjectivesPlanification' => [
-        'module_info' => 'Establish and describe objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component ## - Criterion ## - Generic indicator ##.'
     ],
 
     'InformationAvailability' => [
@@ -685,7 +685,7 @@ return [
     ],
 
     'ObjectivesIntrants' => [
-        'module_info' => 'Establish and describe objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives for <b>inputs</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component ## - Criterion ## - Generic indicator ##.'
     ],
 
     'StaffCompetence' => [
@@ -1450,7 +1450,7 @@ return [
     ],
 
     'ObjectivesProcessus' => [
-        'module_info' => 'Establish and describe objectives related <b>to implementation process of the planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe objectives related <b>to implementation process of the planning</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component ## - Criterion ## - Generic indicator ##.'
     ],
 
     'WorkProgramImplementation' => [
