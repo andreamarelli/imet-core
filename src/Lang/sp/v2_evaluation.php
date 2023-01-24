@@ -705,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Actividades de fomento de la capacidad del personal totalmente inadecuadas',
-                '1' => 'Actividades de fomento de la capacidad del personal algo adecuadas',
+                '1' => 'Actividades de fomento de la capacidad del personal algo inadecuadas',
                 '2' => 'Actividades adecuadas de fomento de la capacidad del personal, pero se necesitan mejoras',
                 '3' => 'Actividades de fomento de la capacidad del personal plenamente adecuadas (suficientes y actualizadas)'
             ]

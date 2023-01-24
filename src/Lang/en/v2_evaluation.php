@@ -705,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Completely inadequate staff capacity-building activities',
-                '1' => 'Somewhat adequate staff capacity building activities',
+                '1' => 'Somewhat inadequate staff capacity building activities',
                 '2' => 'Adequate staff capacity-building activities, but improvements are needed',
                 '3' => 'Fully adequate staff capacity building activities (sufficient and updated)'
             ]

@@ -705,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Actividades de capacitação de pessoal totalmente inadequadas',
-                '1' => 'Actividades de capacitação de pessoal um pouco adequadas',
+                '1' => 'Actividades de capacitação de pessoal um pouco inadequadas',
                 '2' => 'Actividades de capacitação de pessoal adequadas, mas são necessárias melhorias',
                 '3' => 'Actividades de capacitação de pessoal totalmente adequadas (suficientes e actualizadas)'
             ]

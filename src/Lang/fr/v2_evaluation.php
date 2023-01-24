@@ -705,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Activités de renforcement des capacités du personnel inadéquates',
-                '1' => 'Activités de renforcement des capacités du personnel plutôt adéquates',
+                '1' => 'Activités de renforcement des capacités du personnel plutôt inadéquates',
                 '2' => 'Activités de renforcement des capacités du personnel adéquates, mais des améliorations s’imposent',
                 '3' => 'Activités de renforcement des capacités du personnel totalement adéquat (suffisantes et mise à jour)'
             ]
