@@ -38,7 +38,7 @@ class Radar
             $i = 0;
             foreach ($values as $v => $value) {
                 if ($v !== "avg") {
-                    if ($type === "process") {
+                    if ($type === "process" && stripos($v, "_") === true) {
                         $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
                     } else {
                         $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.');

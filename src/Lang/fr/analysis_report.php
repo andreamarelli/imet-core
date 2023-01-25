@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variabilité',
     'scaling_up' => 'Mise à l’échelle',
     'conclusions' => 'Conclusions',
     'title' => 'Rapport d’analyse de la mise à l’échelle pour ',
@@ -34,6 +35,10 @@ return [
     'name' => 'Nom',
     'category' => 'Catégorie',
     'short_name' => 'Code couleur et nom court',
+    'add_choices' => 'Ajouter des choix',
+    'add_all' => 'Tout ajouter',
+    'close' => 'Fermer',
+    'remove_all' => 'Tout supprimer',
     'sections' => [
         'first' => 'Localisation des aires protégées sélectionnées',
         'second' => 'Informations genérales des aires protégées',
@@ -191,6 +196,12 @@ return [
     ],
     'management_context' => [
         'key_species' => 'Espèces clés',
+        'animal_species_chart' => 'Espèces animales',
+        'plant_species_chart' => 'Espèces végétales',
+        'habitats_chart' => 'Habitats',
+        'threats_charts' => 'Menaces',
+        'values_sensitive_chart' => 'Valeurs sensibles au changement climatique',
+        'ecosystem_services_chart' => 'écosystèmes les plus importants',
         'animal_species' => 'Espèces animales (phares, menacées, endémiques,…)',
         'occurrences_species' => 'Espèces animales clés présentes dans deux aires protégées ou plus ',
         'occurrences_plants' => 'les espèces végétales clés présentes dans deux aires protégées ou plus ',
