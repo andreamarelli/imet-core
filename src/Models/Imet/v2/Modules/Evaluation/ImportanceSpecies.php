@@ -7,13 +7,11 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Parent_;
 
 class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_importance_c13';
     protected $fixed_rows = true;
-    protected $validation_3to10 = '';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -39,8 +37,6 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ImportanceSpecies.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::v2_evaluation.ImportanceSpecies.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v2_evaluation.ImportanceSpecies.ratingLegend');
-
-        $this->validation_3to10 = trans('imet-core::v2_evaluation.ImportanceSpecies.validation_3to10');
 
         parent::__construct($attributes);
 
@@ -93,20 +89,13 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
             return $item['IncludeInStatistics'];
         })->count();
 
-        if($num_valid_records>=3 && $num_valid_records<=10){
+        static::dropFromDependencies($form_id, $records, [
+            Modules\Evaluation\InformationAvailability::class,
+            Modules\Evaluation\KeyConservationTrend::class,
+            Modules\Evaluation\ManagementActivities::class,
+        ]);
 
-            static::dropFromDependencies($form_id, $records, [
-                Modules\Evaluation\InformationAvailability::class,
-                Modules\Evaluation\KeyConservationTrend::class,
-                Modules\Evaluation\ManagementActivities::class,
-            ]);
-
-            return parent::updateModule($request);
-        } else {
-            return static::validationErrorResponse([
-                'Aspect' => [(new static())->validation_3to10]
-            ]);
-        }
+        return parent::updateModule($request);
     }
 
     /**

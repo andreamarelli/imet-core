@@ -12,7 +12,6 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_importance_c14';
     protected $fixed_rows = true;
-    protected $validation_3to10 = '';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -33,8 +32,6 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ImportanceHabitats.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::v2_evaluation.ImportanceHabitats.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v2_evaluation.ImportanceHabitats.ratingLegend');
-
-        $this->validation_3to10 = trans('imet-core::v2_evaluation.ImportanceHabitats.validation_3to10');
 
         parent::__construct($attributes);
 
@@ -80,24 +77,14 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 
         $records = Payload::decode($request->input('records_json'));
         $form_id = $request->input('form_id');
-        $num_valid_records = collect($records)->filter(function($item){
-            return $item['IncludeInStatistics'];
-        })->count();
 
-        if($num_valid_records>=3 && $num_valid_records<=10){
+        static::dropFromDependencies($form_id, $records, [
+            Modules\Evaluation\InformationAvailability::class,
+            Modules\Evaluation\KeyConservationTrend::class,
+            Modules\Evaluation\ManagementActivities::class,
+        ]);
 
-            static::dropFromDependencies($form_id, $records, [
-                Modules\Evaluation\InformationAvailability::class,
-                Modules\Evaluation\KeyConservationTrend::class,
-                Modules\Evaluation\ManagementActivities::class,
-            ]);
-
-            return parent::updateModule($request);
-        } else {
-            return static::validationErrorResponse([
-                'Aspect' => [(new static())->validation_3to10]
-            ]);
-        }
+        return parent::updateModule($request);
     }
 
     /**

@@ -47,4 +47,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
         @endforeach
     </div>
 
+    {{--  Scroll buttons  --}}
+    @include('modular-forms::buttons.scroll', ['item' => $item, 'step' => $step])
+
 @endsection

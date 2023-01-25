@@ -332,6 +332,9 @@ trait ImportExportJSON
             }
             DB::commit();
 
+            // backup in JSON
+            (new static)->backup($formID);
+
             $response['modules'] = $modules_imported;
         } catch (Exception $e) {
             DB::rollback();

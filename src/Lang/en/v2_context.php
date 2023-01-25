@@ -25,12 +25,13 @@ return [
             'name' => 'name as provided by the operator',
             'origin_name' => 'name in original language',
             'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
-            'designation_eng' => 'designation in english',
+            'designation_eng' => 'designation in English',
             'designation_type' => 'designation type',
             'marine' => 'typology',
             'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
             'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
             'status' => 'status',
+            'ownership_type' => 'Ownership type',
             'status_year' => 'year of the enactment',
             'country' => 'country',
         ],
@@ -60,16 +61,16 @@ return [
         'module_info' => 'Establish and describe objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
     ],
     'Objectives4' => [
-        'module_info' => ' Establish and describe objectives for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => ' Establish and describe objectives or GL performance thresholds for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2'
     ],
     'Objectives5' => [
-        'module_info' => 'Establish and describe objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the threats as condition to improve to prevent loss of the value'
     ],
     'Objectives6' => [
-        'module_info' => 'Establish and describe objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the effects of climate change as a condition to improve to prevent loss of the value'
     ],
     'Objectives7' => [
-        'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values'
     ],
 
     'ResponsablesInterviewers' => [
@@ -465,12 +466,12 @@ return [
         ],
         'predefined_values' => [
             'group0' =>  ['Offices','Patrol posts','Barrier points','Scientific buildings','Garage and workshop','Room for dive bottles and other dive gear', 'Boat sheds', 'Car-Boat parking', 'Miscellaneous services (magazine, radio, etc.)','Health care centre'],
-            'group1' =>  ['For officers and deputy officers', 'For ranger staff', 'For support staff'],
+            'group1' =>  ['For officers and deputy officers', 'For ranger staff', 'For support staff', 'For scientific staff'],
             'group2' =>  ['Hotels (guest capacity)', 'Eco-lodges (guest capacity)', 'Encampments (guest capacity)', 'Reception facilities for tourists', 'Viewpoints or Observation points', 'Available tourist routes (km)'],
             'group3' =>  ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Outboard motors', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
-            'group4' =>  ['Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
+            'group4' =>  ['Control radar', 'Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
             'group5' =>  ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection'],
-            'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers'],
+            'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers', 'Inverter'],
             'group7' =>  ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility', 'Water supply'],
             'group8' =>  ['Vehicles/boats', 'Radios', 'Buildings', 'Electrical network', 'Hydraulic network', 'Heavy engines'],
             'group9' =>  ['Roads/tracks inside the protected area', 'Paths inside the protected area', 'Road along the border'],

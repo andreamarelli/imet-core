@@ -82,7 +82,7 @@
                 };
 
                 let current_shown = 0;
-                this.items['internal'].forEach(function (item) {
+                Object.values(this.items['internal']).forEach(function (item) {
                     if(current_shown<_this.max_visible || _this.showHidden){
                         if(item['Name']!==null){
                             items['internal'].push(item);
@@ -90,7 +90,7 @@
                     }
                     current_shown++;
                 });
-                this.items['external'].forEach(function (item) {
+                Object.values(this.items['external']).forEach(function (item) {
                     if(current_shown<_this.max_visible || _this.showHidden){
                         if(item['Name']!==null) {
                             items['external'].push(item);
@@ -98,7 +98,7 @@
                     }
                     current_shown++;
                 });
-                this.items['encoders'].forEach(function (item) {
+                Object.values(this.items['encoders']).forEach(function (item) {
                     if(current_shown<_this.max_visible || _this.showHidden){
                         if(item['name']!==null && item['name'].trim()!=="") {
                             items['encoders'].push(item);

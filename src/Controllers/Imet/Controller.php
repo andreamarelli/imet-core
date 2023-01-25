@@ -11,6 +11,10 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Pame;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 use function view;
@@ -39,8 +43,8 @@ class Controller extends __Controller
      * Override index route
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function index(Request $request)
     {

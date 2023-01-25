@@ -35,6 +35,7 @@ class CreateNonWdpa extends Modules\Component\ImetModule
             ['name' => 'rep_m_area',    'type' => 'numeric',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.rep_m_area')],
             ['name' => 'rep_area',      'type' => 'numeric',                                  'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.rep_area')],
             ['name' => 'status',        'type' => 'toggle-ImetV2_NonWdpaStatus',              'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.status')],
+            ['name' => 'ownership_type',  'type' => 'dropdown-ImetV2_OwnershipType',              'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.ownership_type')],
             ['name' => 'status_year',    'type' => 'year',                                      'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.status_year')],
         ];
 

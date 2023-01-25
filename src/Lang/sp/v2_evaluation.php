@@ -69,7 +69,6 @@ return [
         'module_info_Rating' => [
             'Evaluar el nivel de integración de 3 a 10 especies clave en la gestión del área protegida (sobre la base de un análisis del Contexto de Intervención, puntos 4.1 y 4.2, que se informa automáticamente a continuación). La representatividad de una especie clave corresponde al grado en que ésta: i) representa una característica natural fuerte de un hábitat, ecosistema o bioma; ii) influye en un proceso o comunidad ecológica o iii) afecta a una política de gestión dirigida por la especie)'
         ],
-        'validation_3to10' => 'Por favor, incluya en las estadísticas no menos de 3 y no más de 10 de las especies clave',
         'warning_on_save' =>
             'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -108,7 +107,6 @@ return [
         'module_info_Rating' => [
             'Evaluar el nivel de integración en la gestión del área protegida de 3 a 10 de los hábitats y dimensiones relacionadas más representativas e importantes de los tipos de cobertura de suelo, cambio de uso de suelo y ocupación del territorio (sobre la base del análisis del Contexto de la intervención, puntos 4.3, que se informa automáticamente a continuación). (El valor/importancia regional y mundial de los hábitats es un grado en el cual - i - representa a nivel regional o mundial el entorno natural de plantas o animales clave; ii) influye en un proceso ecológico o en una comunidad y - iii) - afecta una política de gestión dirigida a los hábitats)'
         ],
-        'validation_3to10' => 'Por favor, incluya en las estadísticas no menos de 3 y no más de 10 de las especies clave',
         'warning_on_save' =>
             'ADVERTENCIA!! <br /> Cualquier modificación provocará la pérdida completa de datos en
             los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
@@ -707,7 +705,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Actividades de fomento de la capacidad del personal totalmente inadecuadas',
-                '1' => 'Actividades de fomento de la capacidad del personal algo adecuadas',
+                '1' => 'Actividades de fomento de la capacidad del personal algo inadecuadas',
                 '2' => 'Actividades adecuadas de fomento de la capacidad del personal, pero se necesitan mejoras',
                 '3' => 'Actividades de fomento de la capacidad del personal plenamente adecuadas (suficientes y actualizadas)'
             ]
@@ -927,7 +925,7 @@ return [
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
-            'group0' => 'Gestión de las patrullas del parque',
+            'group0' => 'Gestión de las patrullas del parque terrestres',
             'group1' => 'Gestión de patrullas de parques marinos',
         ],
         'predefined_values' => [

@@ -141,12 +141,14 @@ class Imet extends Form
     {
         $list = static::retrieve_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers']);
         $list->map(function ($item) {
+
             // Add encoders
             $item->encoders_responsibles = [
-                'encoders' => $item->encoder->unique(),
-                'internal' => $item->responsible_interviewers->unique(),
-                'external' => $item->responsible_interviewees->unique(),
+                'encoders' => array_values($item->encoder->flatten()->unique()->toArray()),
+                'internal' => array_values($item->responsible_interviewers->flatten()->unique()->toArray()),
+                'external' => array_values($item->responsible_interviewees->flatten()->unique()->toArray()),
             ];
+
             // Add radar
             $item['assessment_radar'] = $item->version===Imet::IMET_V1
                 ? V1ToV2StatisticsService::get_radar_scores($item)
@@ -155,8 +157,10 @@ class Imet extends Form
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;
             }
+            $item['last_update'] = $item->getLastUpdate();
             return $item;
         });
+        $list->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
 
         $hasDuplicates = Imet::foundDuplicates();
         $list->map(function ($item) use ($hasDuplicates) {
@@ -450,15 +454,21 @@ class Imet extends Form
         $user_info = Auth::user()->getInfo();
         unset($user_info['country']);
 
-        if (Encoder::where('first_name', $user_info['first_name'])
+        // Insert encoder (if not present in the day)
+        $encoder = Encoder::where('first_name', $user_info['first_name'])
                 ->where('last_name', $user_info['last_name'])
                 ->where('FormID', $item)
                 ->whereDate(static::UPDATED_AT, Carbon::today())
-                ->count() === 0) {
-            $encoder = new Encoder();
-            $encoder->fill($user_info);
-            $encoder['FormID'] = $item;
-            $encoder->save();
+                ->first();
+        if($encoder){
+            $encoder->touch();
+        } else {
+            Encoder::create(array_merge(
+                $user_info,
+                [
+                    'FormID' => $item
+                ]
+            ));
         }
 
         return $return;
