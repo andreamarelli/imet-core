@@ -111,21 +111,21 @@ class Imet extends Form
         $list_v1 = v1\Imet
             ::filterList($request)
             ->with($relations)
-//            ->where(function ($query) use ($allowed_wdpas) {
-//                if ($allowed_wdpas !== null) {
-//                    $query->whereIn('wdpa_id', $allowed_wdpas);
-//                }
-//            })
+            ->where(function ($query) use ($allowed_wdpas) {
+                if ($allowed_wdpas !== null) {
+                    $query->whereIn('wdpa_id', $allowed_wdpas);
+                }
+            })
             ->get();
 
         $list_v2 = v2\Imet
             ::filterList($request)
             ->with($relations)
-//            ->where(function ($query) use ($allowed_wdpas) {
-//                if ($allowed_wdpas !== null) {
-//                    $query->whereIn('wdpa_id', $allowed_wdpas);
-//                }
-//            })
+            ->where(function ($query) use ($allowed_wdpas) {
+                if ($allowed_wdpas !== null) {
+                    $query->whereIn('wdpa_id', $allowed_wdpas);
+                }
+            })
             ->get();
 
         return $list_v1->merge($list_v2);
