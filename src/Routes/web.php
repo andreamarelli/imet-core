@@ -21,8 +21,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         // ####  common routes (v1 & v2) ####
         Route::match(['get', 'post'],'/',      [Controller::class, 'index'])->name('imet-core::index');
-        Route::match(['get', 'post'],'v1',      [Controller::class, 'index']);     // temporary alias
-        Route::match(['get', 'post'],'v2',      [Controller::class, 'index']);     // temporary alias
         Route::delete('{item}', [Controller::class, 'destroy']);
         Route::get('{item}/export', [Controller::class, 'export']);
 
@@ -36,6 +34,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
 
+            Route::match(['get', 'post'],'/',      [Controller::class, 'index']);     // alias
             Route::get('{item}/print',       [v1\Controller::class, 'print']);
 
             Route::group(['prefix' => 'context'], function () {
@@ -58,6 +57,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         // #### IMET Version 2 ####
         Route::group(['prefix' => 'v2'], function () {
 
+            Route::match(['get', 'post'],'/',      [Controller::class, 'index']);     // alias
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
 
             Route::group(['prefix' => 'context'], function () {
