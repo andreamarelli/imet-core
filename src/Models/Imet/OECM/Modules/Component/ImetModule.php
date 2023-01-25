@@ -1,17 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component;
+namespace AndreaMarelli\ImetCore\Models\Imet\OECM\Modules\Component;
 
 use AndreaMarelli\ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\OECM\Imet;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class ImetModule extends BaseImetModule
 {
-    use Upgrade;
-
     /**
      * Relation to IMET form
      * @return BelongsTo
