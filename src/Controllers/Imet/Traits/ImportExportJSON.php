@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\OECM;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\Imet\Report;
@@ -17,6 +18,7 @@ use AndreaMarelli\ModularForms\Helpers\Module;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
 use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -25,6 +27,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
+use Throwable;
 use function imet_offline_version;
 use function report;
 use function response;
@@ -37,8 +40,8 @@ trait ImportExportJSON
      * Upload file
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Throwable
+     * @return JsonResponse
+     * @throws Throwable
      */
     public function upload(Request $request): JsonResponse
     {
@@ -286,12 +289,12 @@ trait ImportExportJSON
     /**
      * Import a full IMET from json file
      *
-     * @param \Illuminate\Http\Request|null $request
+     * @param Request|null $request
      * @param $json
      * @param boolean $returnJson
-     * @return array|\Illuminate\Http\JsonResponse|string[]
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \Throwable
+     * @return array|JsonResponse|string[]
+     * @throws FileNotFoundException
+     * @throws Throwable
      */
     public function import(Request $request, $json = null, bool $returnJson = true)
     {
@@ -301,10 +304,6 @@ trait ImportExportJSON
                 $json = json_decode($fileContent, True);
             }
             $response = ['status' => 'success', 'modules' => []];
-            $modules_imported = [];
-
-            $imet_version = $json['Imet']['imet_version'] ?? null;
-            $version = $json['Imet']['version'];
 
             $this->authorize('view', (new Imet($json['Imet']))->fill($json['Imet']));
 
@@ -316,23 +315,9 @@ trait ImportExportJSON
                 $json['Imet']['wdpa_id'] = $wdpa_id;
             }
 
-            if ($version === Imet::IMET_V1) {
-                // Create new form and return ID
-                $formID = v1\Imet::importForm($json['Imet']);
-                // Populate Imet & Imet_Eval modules
-                $modules_imported['Context'] = v1\Imet::importModules($json['Context'], $formID, $imet_version);
-                $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-                Encoder::importModule($formID, $json['Encoders'] ?? null);
-                Report::import($formID, $json['Report'] ?? null);
-            } elseif ($version === Imet::IMET_V2) {
-                // Create new form and return ID
-                $formID = v2\Imet::importForm($json['Imet']);
-                // Populate Imet & Imet_Eval modules
-                $modules_imported['Context'] = v2\Imet::importModules($json['Context'], $formID, $imet_version);
-                $modules_imported['Evaluation'] = v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-                Encoder::importModule($formID, $json['Encoders'] ?? null);
-                Report::import($formID, $json['Report'] ?? null);
-            }
+            // Import modules
+            [$formID, $modules_imported] = static::import_modules($json);
+
             DB::commit();
 
             // backup in JSON
@@ -352,6 +337,49 @@ trait ImportExportJSON
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * Import all the IMET modules
+     *
+     * @param $json
+     * @param bool $with_report
+     * @return array
+     * @throws FileNotFoundException
+     */
+    protected static function import_modules($json, bool $with_report = true): array
+    {
+        $modules_imported = [];
+        $imet_version = $json['Imet']['imet_version'] ?? null;
+        $version = $json['Imet']['version'];
+
+        // Create new form and return ID
+        $formID = Imet::importForm($json['Imet']);
+
+        // #####  IMET V1  #####
+        if ($version === Imet::IMET_V1) {
+            $modules_imported['Context'] = v1\Imet::importModules($json['Context'], $formID, $imet_version);
+            $modules_imported['Evaluation'] = v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
+        }
+
+        // #####  IMET V2  #####
+        elseif ($version === Imet::IMET_V2) {
+            $modules_imported['Context'] = v2\Imet::importModules($json['Context'], $formID, $imet_version);
+            $modules_imported['Evaluation'] = v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
+        }
+
+        // #####  IMET OECM  #####
+        elseif ($version === Imet::IMET_OECM) {
+            $modules_imported['Context'] = OECM\Imet::importModules($json['Context'], $formID, $imet_version);
+            $modules_imported['Evaluation'] = OECM\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
+        }
+
+        Encoder::importModule($formID, $json['Encoders'] ?? null);
+        if($with_report){
+            Report::import($formID, $json['Report'] ?? null);
+        }
+
+        return [$formID, $modules_imported];
     }
 
 

@@ -71,8 +71,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
                 Route::get('{item}/edit/{step?}',[v2\Controller::class, 'edit'])->name('imet-core::v2_context_edit');
                 Route::get('{item}/show/{step?}',[v2\Controller::class, 'show'])->name('imet-core::v2_context_show');
                 Route::patch('{item}',           [v2\Controller::class, 'update']);
-                Route::get('create',            [v2\Controller::class, 'create']);
-                Route::get('create_non_wdpa', [v2\Controller::class, 'create_non_wdpa'])->name('imet-core::create_non_wdpa');
+                Route::get('create',            [v2\Controller::class, 'create'])->name('imet-core::v2.create');
+                Route::get('create_non_wdpa', [v2\Controller::class, 'create_non_wdpa'])->name('imet-core::v2.create_non_wdpa');
                 Route::post('store',            [v2\Controller::class, 'store']);
                 Route::post('prev_years',            [v2\Controller::class, 'retrieve_prev_years'])->name('imet-core::retrieve_prev_years');
             });
@@ -142,6 +142,20 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     Route::group(['prefix' => 'admin/imet/oecm', 'middleware' => 'auth'], function () {
 
         Route::match(['get', 'post'],'/',      [OECM\Controller::class, 'index'])->name('imet-core::oecm.index');
+        Route::delete('{item}', [OECM\Controller::class, 'destroy']);
+
+        Route::group(['prefix' => 'context'], function () {
+            Route::get('create',            [OECM\Controller::class, 'create'])->name('imet-core::oecm_create');
+            Route::get('create_non_wdpa', [OECM\Controller::class, 'create_non_wdpa'])->name('imet-core::oecm_create_non_wdpa');
+        });
+
+        Route::group(['prefix' => 'evaluation'], function () {
+
+        });
+
+        Route::group(['prefix' => 'report'], function () {
+
+        });
         
     });
 

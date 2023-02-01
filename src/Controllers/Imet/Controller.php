@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ImportExportJSON;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Merge;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Pame;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
@@ -17,6 +18,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\URL;
+use Spatie\Browsershot\Exceptions\CouldNotTakeBrowsershot;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use function view;
 
 
@@ -29,6 +32,7 @@ class Controller extends __Controller
     use Pame;
 
     protected static $form_class = Imet::class;
+    protected static $route_prefix = 'imet-core::';
     protected static $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
@@ -70,8 +74,27 @@ class Controller extends __Controller
             'filter_selected' => $filter_selected,
             'countries' => $countries,
             'years' => $years,
-            'index_url' => URL::route(static::$form_view_prefix . 'index')
+            'index_url' => URL::route(static::$route_prefix . 'index')
         ]);
+    }
+
+    /**
+     * Manage "pdf" route
+     *
+     * @param $item
+     * @return \Illuminate\View\View|BinaryFileResponse
+     * @throws AuthorizationException
+     * @throws CouldNotTakeBrowsershot
+     */
+    public function pdf($item): BinaryFileResponse
+    {
+        $imet = (static::$form_class)::find($item);
+        $this->authorize('view', $imet);
+
+        $view = view(static::$form_view_prefix . 'print', [
+            'item' => $imet
+        ]);
+        return File::exportToPDF($imet->filename('pdf'), $view);
     }
 
 }
