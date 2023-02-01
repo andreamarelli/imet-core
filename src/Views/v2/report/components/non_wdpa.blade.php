@@ -27,7 +27,7 @@ $fields = [
             @foreach($fields as $field)
                 @component('modular-forms::module.field_container', [
                     'name' => $field,
-                    'label' => trans('imet-core::v2_context.CreateNonWdpa.fields.'.$field)
+                    'label' => trans('imet-core::common.CreateNonWdpa.fields.'.$field)
                 ])
                     <div class="field-preview">
                         @if($field === 'pa_def')

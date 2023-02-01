@@ -23,29 +23,6 @@ return [
         'objectives'            => 'Objectives and Management',
     ],
 
-    'steps_eval' => [
-        'general_info'              => 'General Information',
-        'context'                   => 'Management context',
-        'planning'                  => 'Planning',
-        'inputs'                    => 'Inputs',
-        'process'                   => 'Process',
-        'outputs'                   => 'Outputs',
-        'outcomes'                  => 'Outcomes',
-        'objectives'                => 'Objectives',
-        'management_effectiveness'  => 'Management Effectiveness',
-        'cross_analysis'  => 'Cross Analysis',
-    ],
-
-    'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Context index',
-        'planning'    => 'Planning index',
-        'inputs'      => 'Inputs index',
-        'process'     => 'Process index',
-        'outputs'     => 'Outputs index',
-        'outcomes'    => 'Outcomes index',
-    ],
-
     'assessment' => [
 
         'ctx101' => [

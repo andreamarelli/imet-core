@@ -12,7 +12,6 @@ class Imet_Eval extends Imet
         'process' => [],
         'outputs' => [],
         'outcomes' => [],
-        'objectives' => [],
         'management_effectiveness' => [],
     ];
 

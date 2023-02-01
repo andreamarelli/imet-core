@@ -116,13 +116,13 @@ if ($item->language != App::getLocale()) {
                         :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>
-                        <th>@lang('imet-core::v1_common.steps_eval.context')</th>
-                        <th>@lang('imet-core::v1_common.steps_eval.planning')</th>
-                        <th>@lang('imet-core::v1_common.steps_eval.inputs')</th>
-                        <th>@lang('imet-core::v1_common.steps_eval.process')</th>
-                        <th>@lang('imet-core::v1_common.steps_eval.outputs')</th>
-                        <th>@lang('imet-core::v1_common.steps_eval.outcomes')</th>
-                        <th>@lang('imet-core::v1_common.indexes.imet')</th>
+                        <th>@lang('imet-core::common.steps_eval.context')</th>
+                        <th>@lang('imet-core::common.steps_eval.planning')</th>
+                        <th>@lang('imet-core::common.steps_eval.inputs')</th>
+                        <th>@lang('imet-core::common.steps_eval.process')</th>
+                        <th>@lang('imet-core::common.steps_eval.outputs')</th>
+                        <th>@lang('imet-core::common.steps_eval.outcomes')</th>
+                        <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
                         <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>

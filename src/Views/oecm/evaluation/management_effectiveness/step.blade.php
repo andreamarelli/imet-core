@@ -3,7 +3,7 @@
 
 /** @var int $item_id */
 
-$assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService::get_assessment($item_id, $step);
+$assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService::get_assessment($item_id, $step);
 
 ?>
 
@@ -14,50 +14,11 @@ $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsServi
 
     @if($step=='context')
 
-        {{-- C11->C15 statistics --}}
-        <div style="margin-bottom: 20px;">
-            <div v-for="(item, index) in intermediate_values">
-                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'intermediate_values'])
-            </div>
-        </div>
-
-        {{-- C1->C3 statistics --}}
-        <div style="margin-bottom: 30px;">
-            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c1'])</div>
-            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c2'])</div>
-            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_0', 'values' => 'values', 'index' => 'c3'])</div>
-        </div>
-
     @elseif($step=='process')
-
-        {{-- Step related statistics --}}
-        <div style="margin-bottom: 20px;">
-            <div v-for="(item, index) in values">
-                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
-            </div>
-        </div>
-
-        <div style="margin-bottom: 30px;">
-            <div id="imet_process_radar" style="height: 250px;"></div>
-        </div>
 
     @elseif($step=='outcomes')
 
-        {{-- Step related statistics --}}
-        <div style="margin-bottom: 20px;">
-            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'oc1'])</div>
-            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc2'])</div>
-            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc3'])</div>
-        </div>
-
     @else
-
-        {{-- Step related statistics --}}
-        <div style="margin-bottom: 30px;">
-            <div v-for="(item, index) in values">
-                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
-            </div>
-        </div>
 
     @endif
 
@@ -155,32 +116,28 @@ $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsServi
                 let _this = this;
                 switch (_this.current_step) {
                     case 'context':
-                        _this.step_indexes = ['c1', 'c2', 'c3'];
-                        _this.step_indexes_intermediate = ['c11', 'c12', 'c13', 'c14', 'c15'];
+                        _this.step_indexes = [];
+                        _this.step_indexes_intermediate = [];
                         _this.step_color = '#FFFF00';
                         break;
                     case 'planning':
-                        _this.step_indexes = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'];
+                        _this.step_indexes = [];
                         _this.step_color = '#BFBFBF';
                         break;
                     case 'inputs':
-                        _this.step_indexes = ['i1', 'i2', 'i3', 'i4', 'i5'];
+                        _this.step_indexes = [];
                         _this.step_color = '#FFC000';
                         break;
                     case 'process':
-                        _this.step_indexes = [
-                            'pr1', 'pr2', 'pr3', 'pr4', 'pr5', 'pr6', 'pr7', 'pr8', 'pr9', 'pr10',
-                            'pr11', 'pr12', 'pr13', 'pr14', 'pr15', 'pr16', 'pr17', 'pr18'
-                        ];
-                        _this.step_indexes_intermediate = ['pr1_6', 'pr7_9', 'pr10_12', 'pr13_14', 'pr15_16', 'pr17_18'];
+                        _this.step_indexes =[];
                         _this.step_color = '#00B0F0';
                         break;
                     case 'outputs':
-                        _this.step_indexes = ['op1', 'op2', 'op3', 'op4'];
+                        _this.step_indexes = [];
                         _this.step_color = '#92D050';
                         break;
                     case 'outcomes':
-                        _this.step_indexes = ['oc1', 'oc2', 'oc3'];
+                        _this.step_indexes = [];
                         _this.step_color = '#00B050';
                         break;
                 }

@@ -549,12 +549,12 @@ class ScalingUpAnalysis extends Model
 
         App::setLocale($locale);
         $response['Average'] = [
-            ['value' => $average['outcomes'], 'upper limit' => [$lowerLimit['outcomes'], $upperLimit['outcomes']], 'indicator_raw' => 'outcomes', 'indicator' => trans('imet-core::v2_common.steps_eval.outcomes'), "itemStyle" => ["color" => '#00B050']],
-            ['value' => $average['outputs'], 'upper limit' => [$lowerLimit['outputs'], $upperLimit['outputs']], 'indicator_raw' => 'outputs', 'indicator' => trans('imet-core::v2_common.steps_eval.outputs'), "itemStyle" => ["color" => '#92D050']],
-            ['value' => $average['process'], 'upper limit' => [$lowerLimit['process'], $upperLimit['process']], 'indicator_raw' => 'process', 'indicator' => trans('imet-core::v2_common.steps_eval.process'), "itemStyle" => ["color" => '#0099CC']],
-            ['value' => $average['inputs'], 'upper limit' => [$lowerLimit['inputs'], $upperLimit['inputs']], 'indicator_raw' => 'inputs', 'indicator' => trans('imet-core::v2_common.steps_eval.inputs'), "itemStyle" => ["color" => '#ffc000']],
-            ['value' => $average['planning'], 'upper limit' => [$lowerLimit['planning'], $upperLimit['planning']], 'indicator_raw' => 'planning', 'indicator' => trans('imet-core::v2_common.steps_eval.planning'), "itemStyle" => ["color" => '#bfbfbf']],
-            ['value' => $average['context'], 'upper limit' => [$lowerLimit['context'], $upperLimit['context']], 'indicator_raw' => 'context', 'indicator' => trans('imet-core::v2_common.steps_eval.context'), "itemStyle" => ["color" => '#ffff00']]];
+            ['value' => $average['outcomes'], 'upper limit' => [$lowerLimit['outcomes'], $upperLimit['outcomes']], 'indicator_raw' => 'outcomes', 'indicator' => trans('imet-core::common.steps_eval.outcomes'), "itemStyle" => ["color" => '#00B050']],
+            ['value' => $average['outputs'], 'upper limit' => [$lowerLimit['outputs'], $upperLimit['outputs']], 'indicator_raw' => 'outputs', 'indicator' => trans('imet-core::common.steps_eval.outputs'), "itemStyle" => ["color" => '#92D050']],
+            ['value' => $average['process'], 'upper limit' => [$lowerLimit['process'], $upperLimit['process']], 'indicator_raw' => 'process', 'indicator' => trans('imet-core::common.steps_eval.process'), "itemStyle" => ["color" => '#0099CC']],
+            ['value' => $average['inputs'], 'upper limit' => [$lowerLimit['inputs'], $upperLimit['inputs']], 'indicator_raw' => 'inputs', 'indicator' => trans('imet-core::common.steps_eval.inputs'), "itemStyle" => ["color" => '#ffc000']],
+            ['value' => $average['planning'], 'upper limit' => [$lowerLimit['planning'], $upperLimit['planning']], 'indicator_raw' => 'planning', 'indicator' => trans('imet-core::common.steps_eval.planning'), "itemStyle" => ["color" => '#bfbfbf']],
+            ['value' => $average['context'], 'upper limit' => [$lowerLimit['context'], $upperLimit['context']], 'indicator_raw' => 'context', 'indicator' => trans('imet-core::common.steps_eval.context'), "itemStyle" => ["color" => '#ffff00']]];
 
         $response['legends'] = [
             'Synthetic indicators',

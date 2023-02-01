@@ -272,7 +272,7 @@ class Ranking
             $percent['xAxis'][] = $name;
             $collect_values_for_sorting = [];
             foreach ($indicators as $ind => $indicator) {
-                $label = trans('imet-core::v2_common.steps_eval.' . $ind);
+                $label = trans('imet-core::common.steps_eval.' . $ind);
                 $percent['legends'][$ind] = $label;
                 $percent_value = Common::round_number(($indicator / $total_values[$name]) * 100);
                 $percent['percent_values'][$label][] = $percent_value;

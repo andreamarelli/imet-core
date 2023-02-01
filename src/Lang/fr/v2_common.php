@@ -24,28 +24,6 @@ return [
         'cross_analysis'  => 'Cross Analysis',
     ],
 
-    'steps_eval' => [
-        'general_info'              => 'Informations générales',
-        'context'                   => 'Contexte de gestion',
-        'planning'                  => 'Planification',
-        'inputs'                    => 'Intrants',
-        'process'                   => 'Processus',
-        'outputs'                   => 'Resultats',
-        'outcomes'                  => 'Effects et Impacts',
-        'objectives'                => 'Objectifs',
-        'management_effectiveness'  => 'Efficacité de gestion',
-    ],
-
-    'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Contexte index',
-        'planning'    => 'Planification index',
-        'inputs'      => 'Intrants index',
-        'process'     => 'Processus index',
-        'outputs'     => 'Resultats index',
-        'outcomes'    => 'Effects et Impacts index',
-    ],
-
     'assessment' => [
 
         'ctx101' => [

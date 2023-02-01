@@ -1,11 +1,8 @@
 <?php
 /** @var int $form_id */
-
 /** @var string $version */
 
 $labels = \AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_labels();
-
-
 
 ?>
 

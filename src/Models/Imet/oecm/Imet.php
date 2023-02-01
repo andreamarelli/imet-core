@@ -27,10 +27,8 @@ class Imet extends BaseImetForm
         'areas' => [],
         'resources' => [],
         'key_elements' => [],
-        'threats' => [],
-        'climate' => [],
-        'ecosystem_services' => [],
-        'objectives' => []
+        'access_and_governance' => [],
+        'trends_and_threats' => [],
     ];
 
     /**

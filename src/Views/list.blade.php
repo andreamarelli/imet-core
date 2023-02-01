@@ -49,12 +49,12 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             <a class="btn-nav rounded"
                href="{{ route($route_prefix.'create') }}">
                 {!! Template::icon('plus-circle', 'white') !!}
-                {{ ucfirst(trans('imet-core::v2_context.Create.title')) }}
+                {{ ucfirst(trans('imet-core::common.Create.title')) }}
             </a>
             <a class="btn-nav rounded"
                href="{{ route($route_prefix.'create_non_wdpa') }}">
                 {!! Template::icon('plus-circle', 'white') !!}
-                {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
+                {{ ucfirst(trans('imet-core::common.CreateNonWdpa.title')) }}
             </a>
             {{-- Import json IMETs --}}
             <a class="btn-nav rounded"

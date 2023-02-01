@@ -2,45 +2,6 @@
 
 return [
 
-    'Create' => [
-        'title' => 'Criar um novo IMET (WDPA)',
-        'fields' => [
-            'version' => 'versão',
-            'Year' => 'Ano sujeito a avaliação',
-            'wdpa_id' => 'zona protegida',
-            'language' => 'língua',
-            'prefill_prev_year' => 'pré-preencher com o ano anterior'
-        ]
-    ],
-
-    'CreateNonWdpa' => [
-        'title' => 'Criar um novo IMET (não WDPA)',
-        'fields' => [
-            'version' => 'versão',
-            'Year' => 'Ano sujeito a avaliação',
-            'wdpa_id' => 'zona protegida',
-            'language' => 'língua',
-            'prefill_prev_year' => 'pré-preencher com o ano anterior',
-            'pa_def' => 'definição',
-            'name' => 'nome fornecido pelo operador',
-            'origin_name' => 'nome na língua original',
-            'designation' => 'nome da designação (por exemplo, reserva, santuário, etc.) ',
-            'designation_eng' => 'designação obrigatória em Inglês',
-            'designation_type' => 'Tipo de designação',
-            'marine' => 'tipologia',
-            'rep_m_area' => 'superfície da área protegida marinha conservada [km<sup>2</sup>]',
-            'rep_area' => 'superfície da área protegida conservada [km<sup>2</sup>]',
-            'status' => 'estado',
-            'ownership_type' => 'Tipo de propriedade',
-            'status_year' => 'ano da promulgação do estatuto',
-            'country' => 'país',
-        ],
-
-        'allowed_international' => 'Allowed values for international-level designations',
-        'allowed_regional' => 'Allowed values for regional-level designations',
-        'allowed_national' => 'No fixed values for protected areas designated at a national level',
-    ],
-
     'Objectives' => [
         'title' => 'Definição de objectivos',
         'fields' => [
@@ -71,30 +32,6 @@ return [
     ],
     'Objectives7' => [
         'module_info' => 'Estabelecer e descrever objectivos de conservação para <b>os serviços ecossistémicos e a dependência destes serviços das comunidades/sociedades</b> na área protegida <br/> Os objectivos inseridos abaixo serão utilizados para melhorar a gestão, e mais especificamente para o planeamento, mobilização de recursos (insumos), fases do processo, e para o controlo das actividades de gestão da área protegida.'
-    ],
-
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsibilide pelo preenchimento do formulário: Equipa de Gestão e Parceiros',
-        'fields' => [
-            'Name' => 'Nome',
-            'Institution' => 'Organizaçao',
-            'Function' => 'Função',
-            'Contacts' => 'Detalhes de contacto',
-            'EncodingDate' => 'Data de compilação',
-            'EncodingDuration' => 'Tempo levado para a avaliação (horas)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsibilidade pelo Preenchimento do formulário: Apoio externo para a analise e avaliacao da gestao',
-        'fields' => [
-            'Name' => 'Nome',
-            'Institution' => 'organização',
-            'Function' => 'Função',
-            'Contacts' => 'Detalhes de contacto',
-            'EncodingDate' => 'Data de compilação',
-            'EncodingDuration' => 'Tempo levado para a Avaliação (horas)',
-        ]
     ],
 
     'GeneralInfo' => [

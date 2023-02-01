@@ -30,9 +30,9 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     @include('modular-forms::page.steps', [
         'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'eval_show', ['item' => $item->getKey()]),
         'current_step' => $step,
-        'label_prefix' =>  'imet-core::v2_common.steps_eval.',
+        'label_prefix' =>  'imet-core::common.steps_eval.',
         'classes' => $classes,
-        'steps' => $steps
+        'steps' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::steps($item)
     ])
 
 

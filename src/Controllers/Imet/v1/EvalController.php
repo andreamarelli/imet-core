@@ -26,13 +26,13 @@ class EvalController extends BaseEvalController
         $this->authorize('view', $imet);
 
         $step = $step == null ? 'context' : $step;
-        $steps = $this->steps($imet);
-        $key = array_search('cross_analysis', $steps);
-        unset($steps[$key]);
+//        $steps = $this->steps($imet);
+//        $key = array_search('cross_analysis', $steps);
+//        unset($steps[$key]);
 
         return view(static::$form_view_prefix . '.show', [
             'item' => $imet,
-            'steps' => $steps,
+//            'steps' => $steps,
             'step' => $step
         ]);
     }
