@@ -25,7 +25,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => route('imet-core::v2.context_edit', ['item'=>$item->getKey()]),
+        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'context_edit', ['item'=>$item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v2_common.steps.',
         'steps' => array_keys($item::modules())
