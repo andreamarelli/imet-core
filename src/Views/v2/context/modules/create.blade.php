@@ -1,8 +1,8 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
+/** @var \AndreaMarelli\ImetCore\Controllers\Imet\Controller $controller */   // ATTENTION: not directly passed the parent blade, but anyway available
 
 $vue_record_index = 0;
 
@@ -189,7 +189,7 @@ $vue_record_index = 0;
 
                     return window.axios({
                         method: 'post',
-                        url: '{{ route('imet-core::retrieve_prev_years') }}',
+                        url: '{{ route($controller::ROUTE_PREFIX.'retrieve_prev_years') }}',
                         data: {
                             _token: window.Laravel.csrfToken,
                             year: _this.records[0]['Year'],

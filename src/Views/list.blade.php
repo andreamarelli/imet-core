@@ -1,4 +1,5 @@
 <?php
+
 use \AndreaMarelli\ImetCore\Controllers;
 use \AndreaMarelli\ImetCore\Models\Imet;
 use \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
@@ -15,13 +16,13 @@ use \Illuminate\Http\Request;
 
 if($controller === Controllers\Imet\OECM\Controller::class){
     $form_class = Imet\OECM\Imet::class;
-    $route_prefix = 'imet-core::oecm.';
+    $route_prefix = Controllers\Imet\OECM\Controller::ROUTE_PREFIX;
+    $scaling_up_enable = false;
 } else {
     $form_class = Imet\Imet::class;
-    $route_prefix = 'imet-core::v2.';
+    $route_prefix = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
+    $scaling_up_enable = true;
 }
-
-//dd($controller);
 
 ?>
 
@@ -61,14 +62,16 @@ if($controller === Controllers\Imet\OECM\Controller::class){
                 {!! Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
             </a>
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            {{-- Scaling Up --}}
-            <a class="btn-nav rounded"
-               href="{{ route('imet-core::scaling_up_index') }}">
-                {!! Template::icon('chart-bar', 'white') !!}
-                {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
-            </a>
+            @if($scaling_up_enable)
+                &nbsp;&nbsp;
+                &nbsp;&nbsp;
+                {{-- Scaling Up --}}
+                <a class="btn-nav rounded"
+                   href="{{ route('imet-core::scaling_up_index') }}">
+                    {!! Template::icon('chart-bar', 'white') !!}
+                    {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
+                </a>
+            @endif
 
         @endcan
 
@@ -83,7 +86,7 @@ if($controller === Controllers\Imet\OECM\Controller::class){
             </a>
         @endcan
 
-        </div>
+    </div>
 
 
     @include('imet-core::components.common_filters', [
@@ -139,7 +142,8 @@ if($controller === Controllers\Imet\OECM\Controller::class){
                         {{-- version --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.version')) }}:
-                            <span v-if="item.version==='{{ $form_class::IMET_V2 }}'" class="badge badge-success">v2</span>
+                            <span v-if="item.version==='{{ $form_class::IMET_V2 }}'"
+                                  class="badge badge-success">v2</span>
                             <span v-else-if="item.version==='{{ $form_class::IMET_V1 }}'" class="badge badge-secondary">v1</span>
                         </div>
                         {{-- last update --}}
@@ -209,7 +213,6 @@ if($controller === Controllers\Imet\OECM\Controller::class){
                     @endcan
 
                     {{-- Print --}}
-
                     <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
                         @include('modular-forms::buttons._generic', [
                             'controller' => Controllers\Imet\v1\Controller::class,

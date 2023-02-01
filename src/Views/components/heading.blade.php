@@ -47,29 +47,29 @@ $last_update = $item->getLastUpdate();
 
     @if($item->version==Imet::IMET_V1)
 
-        <a href="{{ route('imet-core::v1_context_' . $route_action, [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v1.context_' . $route_action, [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
         >@uclang('imet-core::common.context_long')</a>
 
-        <a href="{{ route('imet-core::v1_eval_' . $route_action, [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v1.eval_' . $route_action, [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
         >@uclang('imet-core::common.evaluation_long')</a>
 
-        <a href="{{ route('imet-core::v1_report_' . $route_action, [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v1.report_' . $route_action, [$item->getKey()]) }}"
            class="step @if('report'==$phase) selected @endif"
         >@uclang('imet-core::common.report_long')</a>
 
     @else
 
-        <a href="{{ route('imet-core::v2_context_' . $route_action, [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v2.context_' . $route_action, [$item->getKey()]) }}"
            class="step @if('context'==$phase) selected @endif"
         >@uclang('imet-core::common.context_long')</a>
 
-        <a href="{{ route('imet-core::v2_eval_' . $route_action, [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v2.eval_' . $route_action, [$item->getKey()]) }}"
            class="step @if('evaluation'==$phase) selected @endif"
         >@uclang('imet-core::common.evaluation_long')</a>
 
-        <a href="{{ route('imet-core::v2_report_' . $route_action, [$item->getKey()]) }}"
+        <a href="{{ route('imet-core::v2.report_' . $route_action, [$item->getKey()]) }}"
            class="step @if('report'==$phase) selected @endif"
         >@uclang('imet-core::common.report_long')</a>
 

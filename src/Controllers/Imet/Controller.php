@@ -31,8 +31,9 @@ class Controller extends __Controller
     use Merge;
     use Pame;
 
+    public const ROUTE_PREFIX = 'imet-core::';
+
     protected static $form_class = Imet::class;
-    protected static $route_prefix = 'imet-core::';
     protected static $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
@@ -74,7 +75,7 @@ class Controller extends __Controller
             'filter_selected' => $filter_selected,
             'countries' => $countries,
             'years' => $years,
-            'index_url' => URL::route(static::$route_prefix . 'index')
+            'index_url' => URL::route(static::ROUTE_PREFIX . 'index')
         ]);
     }
 

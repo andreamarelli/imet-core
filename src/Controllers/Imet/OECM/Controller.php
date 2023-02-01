@@ -12,8 +12,9 @@ class Controller extends BaseController
     use Prefill;
     use CreateAndStoreNonWdpa;
 
+    public const ROUTE_PREFIX = 'imet-core::oecm.';
+
     protected static $form_class = Imet::class;
-    protected static $route_prefix = 'imet-core::oecm.';
     protected static $form_view_prefix = 'imet-core::oecm.';
     protected static $form_default_step = 'general_info';
 

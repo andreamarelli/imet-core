@@ -2,7 +2,7 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet $item */
 
 // Force Language
-if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
+if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -26,7 +26,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => route('imet-core::v1_eval_show', ['item'=>$item->getKey()]),
+        'url' => route('imet-core::v1.eval_show', ['item'=>$item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::v1_common.steps_eval.',
         'classes' => $classes ?? '',
@@ -44,7 +44,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
         @foreach($item::modules()[$step] as $module)
             @if(Role::hasRequiredAccessLevel($module))
                 @include('modular-forms::module.show.container', [
-               'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class,
+               'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class,
                'module_class' => $module,
                'form_id' => $item->getKey()])
             @else

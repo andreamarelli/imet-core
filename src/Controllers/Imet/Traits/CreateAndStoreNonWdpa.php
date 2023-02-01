@@ -41,6 +41,7 @@ trait CreateAndStoreNonWdpa
 
         $records = Payload::decode($request->input('records_json'));
 
+
         // #### Create a prefilled IMET (data from a previous year) ####
         if(array_key_exists('prev_year_selection', $records[0])){
             $prev_year_selection = $records[0]['prev_year_selection'] ?? null;
@@ -50,13 +51,12 @@ trait CreateAndStoreNonWdpa
                 return $this->store_prefilled($request, $prev_year_selection);
             }
         }
-
         // #### Create an IMET on a non-WDPA site ####
         if(array_key_exists('name', $records[0])){
             return $this->store_non_wdpa($request);
         }
 
-        return parent::store($request);
+        return static::redirect_to_edit($request);
     }
 
     /**
@@ -89,12 +89,24 @@ trait CreateAndStoreNonWdpa
             $form_record['Country'] = $records[0]['country'];
             $form_record['version'] = (static::$form_class)::version;
             $request->merge(['records_json' => Payload::encode([$form_record])]);
-            return parent::store($request);
+            return static::redirect_to_edit($request);
 
         } catch (\Exception $e) {
             Session::flash('message', trans('modular-forms::common.saved_error'));
             throw $e;
         }
+    }
+
+    private static function redirect_to_edit($request)
+    {
+        $form = new static::$form_class();
+        $result = $form->store($request);
+
+        if($result['status'] === 'success'){
+            $result['entity_label'] = $form::find($result['entity_id'])->{$form::LABEL};
+            $result['edit_url'] = route(static::ROUTE_PREFIX. 'context_edit', ['item' => $result['entity_id']]);
+        }
+        return $result;
     }
 
 }
