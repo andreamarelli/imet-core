@@ -9,7 +9,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ImportExportJSON;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Merge;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Pame;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
@@ -17,6 +16,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\URL;
 use function view;
 
 
@@ -51,17 +51,17 @@ class Controller extends __Controller
         $this->authorize('viewAny', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
 
-        // Check and add missing Pa data to form DB record
-        Imet::checkMissingPaData();
-
         // set filter status
         $filter_selected = !empty(array_filter($request->except('_token')));
 
+        /** @var Imet $form_class */
+        $form_class = static::$form_class;
+
         // retrieve IMET list
-        $filtered_list = Imet::get_list($request);
-        $full_list = Imet::get_list(new Request());
-        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
-        $countries = ProtectedArea::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
+        $filtered_list = $form_class::get_assessments_list_with_extras($request);
+        $full_list = $form_class::get_assessments_list(new Request(), ['country']);
+        $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
+        $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'list', [
             'controller' => static::class,
@@ -69,7 +69,8 @@ class Controller extends __Controller
             'request' => $request,
             'filter_selected' => $filter_selected,
             'countries' => $countries,
-            'years' => $years
+            'years' => $years,
+            'index_url' => URL::route(static::$form_view_prefix . 'index')
         ]);
     }
 

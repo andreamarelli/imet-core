@@ -74,7 +74,7 @@ $filter_selected = false;
                     </div>
                 </td>
                 <td class="align-baseline">
-                    <flag :iso2=item.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country_name }}</i>
+                    <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
                 </td>
                 <td class="align-baseline text-center">
                     <div>

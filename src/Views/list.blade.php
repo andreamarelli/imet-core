@@ -1,17 +1,13 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Controllers\Imet\Controller $controller */
-
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
 /** @var array $countries */
 /** @var array $years */
-
 /** @var boolean $filter_selected */
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use Illuminate\Support\Facades\URL;
 
-$url = URL::route('imet-core::index');
 ?>
 
 @extends('layouts.admin')
@@ -76,7 +72,7 @@ $url = URL::route('imet-core::index');
 
     @include('imet-core::components.common_filters', [
         'request'=>$request,
-        'url' => $url,
+        'url' => $index_url,
         'filter_selected' => $filter_selected,
         'countries' => $countries,
         'years' => $years
@@ -249,7 +245,7 @@ $url = URL::route('imet-core::index');
                 },
 
                 mounted: function () {
-                    this.sort('{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortBy }}', '{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortDirection }}');
+                    this.sort('{{ Imet::$sortBy }}', '{{ Imet::$sortDirection }}');
                 }
 
             });

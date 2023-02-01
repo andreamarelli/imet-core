@@ -3,8 +3,12 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\OECM;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller as BaseController;
+use AndreaMarelli\ImetCore\Models\Imet\OECM\Imet;
 
 class Controller extends BaseController
 {
+
+    protected static $form_class = Imet::class;
+    protected static $form_view_prefix = 'imet-core::oecm.';
 
 }

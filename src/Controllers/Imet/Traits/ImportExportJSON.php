@@ -90,11 +90,14 @@ trait ImportExportJSON
         $this->authorize('exportAll', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
 
+        /** @var Imet $form_class */
+        $form_class = static::$form_class;
+
         // retrieve IMET list
-        $filtered_list = Imet::get_list($request);
-        $full_list = Imet::get_list(new Request());
-        $years = array_values($full_list->pluck('Year')->sort()->unique()->toArray());
-        $countries = ProtectedArea::getCountries()->pluck('name', 'iso3')->sort()->unique()->toArray();
+        $filtered_list = $form_class::get_assessments_list_with_extras($request);
+        $full_list = $form_class::get_assessments_list(new Request(), ['country']);
+        $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
+        $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . 'export', [
             'list' => $filtered_list,

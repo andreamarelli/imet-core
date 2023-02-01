@@ -1,7 +1,9 @@
 <?php
 
+use AndreaMarelli\ImetCore\Controllers\DevStatisticsController;
 use AndreaMarelli\ImetCore\Controllers\DevUsersController;
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Controllers\Imet;
+use AndreaMarelli\ImetCore\Controllers\Imet\OECM;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v1;
@@ -17,24 +19,29 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
+    /*
+    |--------------------------------------------------------------------------
+    | IMET v1 & v2 Routes
+    |--------------------------------------------------------------------------
+    */
     Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function () {
 
         // ####  common routes (v1 & v2) ####
-        Route::match(['get', 'post'],'/',      [Controller::class, 'index'])->name('imet-core::index');
-        Route::delete('{item}', [Controller::class, 'destroy']);
-        Route::get('{item}/export', [Controller::class, 'export']);
+        Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name('imet-core::index');
+        Route::delete('{item}', [Imet\Controller::class, 'destroy']);
+        Route::get('{item}/export', [Imet\Controller::class, 'export']);
 
-        Route::post('ajax/upload', [Controller::class, 'upload'])->name('imet-core::upload_json');
-        Route::match(['get','post'],'export_view',        [Controller::class, 'export_view'])->name('imet-core::export_view');
-        Route::get('import',        [Controller::class, 'import_view'])->name('imet-core::import_view');
-        Route::post('import',      [Controller::class, 'import'])->name('imet-core::import');
-        Route::get('{item}/merge',  [Controller::class, 'merge_view'])->name('imet-core::merge_view');
-        Route::post('merge',      [Controller::class, 'merge'])->name('merge');
+        Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name('imet-core::upload_json');
+        Route::match(['get','post'],'export_view',        [Imet\Controller::class, 'export_view'])->name('imet-core::export_view');
+        Route::get('import',        [Imet\Controller::class, 'import_view'])->name('imet-core::import_view');
+        Route::post('import',      [Imet\Controller::class, 'import'])->name('imet-core::import');
+        Route::get('{item}/merge',  [Imet\Controller::class, 'merge_view'])->name('imet-core::merge_view');
+        Route::post('merge',      [Imet\Controller::class, 'merge'])->name('merge');
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
 
-            Route::match(['get', 'post'],'/',      [Controller::class, 'index']);     // alias
+            Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index']);     // alias
             Route::get('{item}/print',       [v1\Controller::class, 'print']);
 
             Route::group(['prefix' => 'context'], function () {
@@ -57,7 +64,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         // #### IMET Version 2 ####
         Route::group(['prefix' => 'v2'], function () {
 
-            Route::match(['get', 'post'],'/',      [Controller::class, 'index']);     // alias
+            Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index']);     // alias
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
 
             Route::group(['prefix' => 'context'], function () {
@@ -105,9 +112,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
 
         Route::group(['prefix' => 'tools'], function () {
-            Route::get('export_csv', [Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
-            Route::get('export_csv/{ids}/{module_key}', [Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
-            Route::post('export_batch',        [Controller::class, 'export_batch'])->name('imet-core::export_json_batch');
+            Route::get('export_csv', [Imet\Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
+            Route::get('export_csv/{ids}/{module_key}', [Imet\Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
+            Route::post('export_batch',        [Imet\Controller::class, 'export_batch'])->name('imet-core::export_json_batch');
         });
 
         /*
@@ -124,6 +131,18 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         });
 
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | IMET OECM Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::group(['prefix' => 'admin/imet/oecm', 'middleware' => 'auth'], function () {
+
+        Route::match(['get', 'post'],'/',      [OECM\Controller::class, 'index'])->name('imet-core::oecm.index');
+        
     });
 
     /*
@@ -147,7 +166,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     }
 
-    Route::get('stats_in_php', [\AndreaMarelli\ImetCore\Controllers\DevStatisticsController::class, 'index']);
+    Route::get('stats_in_php', [DevStatisticsController::class, 'index']);
 
 });
 

@@ -21,6 +21,12 @@ if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
     $imet_class = v2\Imet::class;
 }
 
+function get_quoted_responsible($form_id, $version){
+    $responsible = \AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($form_id, $version);
+    return str_replace('\'', '\\\'', json_encode($responsible));
+}
+
+
 ?>
 
 @extends('layouts.admin')
@@ -48,7 +54,7 @@ if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
                     IMET #{{ $primary_form->getKey() }}
                     <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                         <imet_encoders_responsibles
-                            :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($primary_form->getKey(), $primary_form->version))'
+                            :items='{{ get_quoted_responsible($primary_form->getKey(), $primary_form->version) }}'
                         ></imet_encoders_responsibles>
                     </div>
                 </th>
@@ -61,7 +67,7 @@ if($primary_form->version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
 
                         <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
                             <imet_encoders_responsibles
-                                    :items='@json(\AndreaMarelli\ImetCore\Models\Imet\Imet::getResponsibles($duplicated_form_id, $primary_form->version))'
+                                    :items='{{ get_quoted_responsible($duplicated_form_id, $primary_form->version) }}'
                             ></imet_encoders_responsibles>
                         </div>
 

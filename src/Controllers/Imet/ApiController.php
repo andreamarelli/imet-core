@@ -161,7 +161,7 @@ class ApiController extends \AndreaMarelli\ModularForms\Controllers\Controller
     {
 
         $api = [];
-        $list = Imet::get_list_of_protected_areas($request, ['country']);
+        $list = Imet::get_assessments_list($request, ['country']);
         $hasType = $request->has("type");
         $type = $request->input("type");
 

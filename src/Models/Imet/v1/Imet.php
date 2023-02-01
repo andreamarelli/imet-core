@@ -2,13 +2,12 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v1;
 
-
+use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
+class Imet extends BaseImetForm
 {
     public const version = 'v1';
 
