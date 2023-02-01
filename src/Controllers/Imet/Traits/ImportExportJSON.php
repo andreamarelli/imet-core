@@ -5,7 +5,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\OECM;
+use AndreaMarelli\ImetCore\Models\Imet\oecm;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
 use AndreaMarelli\ImetCore\Models\Imet\Report;
@@ -370,8 +370,8 @@ trait ImportExportJSON
 
         // #####  IMET OECM  #####
         elseif ($version === Imet::IMET_OECM) {
-            $modules_imported['Context'] = OECM\Imet::importModules($json['Context'], $formID, $imet_version);
-            $modules_imported['Evaluation'] = OECM\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
+            $modules_imported['Context'] = oecm\Imet::importModules($json['Context'], $formID, $imet_version);
+            $modules_imported['Evaluation'] = oecm\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
         }
 
         Encoder::importModule($formID, $json['Encoders'] ?? null);

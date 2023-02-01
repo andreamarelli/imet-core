@@ -7,16 +7,16 @@ use \AndreaMarelli\ModularForms\Helpers\Template;
 use \Illuminate\Database\Eloquent\Collection;
 use \Illuminate\Http\Request;
 
-/** @var Controllers\Imet\Controller|Controllers\Imet\OECM\Controller $controller */
+/** @var Controllers\Imet\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var Collection $list */
 /** @var Request $request */
 /** @var array $countries */
 /** @var array $years */
 /** @var boolean $filter_selected */
 
-if($controller === Controllers\Imet\OECM\Controller::class){
-    $form_class = Imet\OECM\Imet::class;
-    $route_prefix = Controllers\Imet\OECM\Controller::ROUTE_PREFIX;
+if($controller === Controllers\Imet\oecm\Controller::class){
+    $form_class = Imet\oecm\Imet::class;
+    $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
     $scaling_up_enable = false;
 } else {
     $form_class = Imet\Imet::class;

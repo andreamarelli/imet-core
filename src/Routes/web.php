@@ -3,7 +3,7 @@
 use AndreaMarelli\ImetCore\Controllers\DevStatisticsController;
 use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet;
-use AndreaMarelli\ImetCore\Controllers\Imet\OECM;
+use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v1;
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 const IMET_PREFIX = Imet\Controller::ROUTE_PREFIX;
 const V1_ROUTE_PREFIX = v1\Controller::ROUTE_PREFIX;
 const V2_ROUTE_PREFIX = v2\Controller::ROUTE_PREFIX;
-const OECM_ROUTE_PREFIX = OECM\Controller::ROUTE_PREFIX;
+const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 
 
@@ -145,13 +145,13 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     */
     Route::group(['prefix' => 'admin/imet/oecm', 'middleware' => 'auth'], function () {
 
-        Route::match(['get', 'post'],'/',      [OECM\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
-        Route::delete('{item}', [OECM\Controller::class, 'destroy']);
-        Route::get('create',            [OECM\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');
-        Route::get('create_non_wdpa', [OECM\Controller::class, 'create_non_wdpa'])->name(OECM_ROUTE_PREFIX.'create_non_wdpa');
-        Route::post('store',            [OECM\ContextController::class, 'store']);
-        Route::post('prev_years',            [OECM\Controller::class, 'retrieve_prev_years'])->name('imet-core::retrieve_prev_years');
-        Route::delete('{item}', [OECM\Controller::class, 'destroy']);
+        Route::match(['get', 'post'],'/',      [oecm\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
+        Route::delete('{item}', [oecm\Controller::class, 'destroy']);
+        Route::get('create',            [oecm\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');
+        Route::get('create_non_wdpa', [oecm\Controller::class, 'create_non_wdpa'])->name(OECM_ROUTE_PREFIX.'create_non_wdpa');
+        Route::post('store',            [oecm\ContextController::class, 'store']);
+        Route::post('prev_years',            [oecm\Controller::class, 'retrieve_prev_years'])->name('imet-core::retrieve_prev_years');
+        Route::delete('{item}', [oecm\Controller::class, 'destroy']);
 
         Route::group(['prefix' => 'context'], function () {
 

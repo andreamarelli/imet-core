@@ -18,13 +18,13 @@ $is_wdpa = $is_wdpa ?? true;
 
     @if($is_wdpa)
         @include('modular-forms::module.edit.container', [
-            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\OECM\ContextController::class,
-            'module_class' => \AndreaMarelli\ImetCore\Models\Imet\OECM\Modules\Context\Create::class,
+            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\oecm\ContextController::class,
+            'module_class' => \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Create::class,
             'form_id' => null])
     @else
         @include('modular-forms::module.edit.container', [
-           'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\OECM\ContextController::class,
-           'module_class' => \AndreaMarelli\ImetCore\Models\Imet\OECM\Modules\Context\CreateNonWdpa::class,
+           'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\oecm\ContextController::class,
+           'module_class' => \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\CreateNonWdpa::class,
            'form_id' => null])
     @endif
 
