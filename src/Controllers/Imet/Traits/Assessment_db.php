@@ -100,7 +100,7 @@ class Assessment_db
     // #### REPLACED ################
     public static function radar_assessment($item, $abbreviations = true)
     {
-        $stats = static::assessment($item, 'global', true);
+        $stats = static::assessment($item, 'global');
         $values = [
             $stats->original["context"],
             $stats->original["planning"],

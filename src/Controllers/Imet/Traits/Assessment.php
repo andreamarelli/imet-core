@@ -13,16 +13,18 @@ use function response;
 trait Assessment
 {
 
-    public static function assessment($item, string $step = 'global', bool $labels= false): JsonResponse
+    public static function assessment($item, string $step = 'global'): JsonResponse
     {
-        $version = Imet::getVersion($item);
-        if($version === Imet::IMET_V1){
-            $stats = V1ToV2StatisticsService::get_assessment($item, $step);
-        } elseif($version === Imet::IMET_V2){
-            $stats = V2StatisticsService::get_assessment($item, $step);
-        } elseif($version === Imet::IMET_OECM){
-            $stats = OEMCStatisticsService::get_assessment($item, $step);
-        }
+        $stats = Imet::getVersion($item)===Imet::IMET_V1
+            ? V1ToV2StatisticsService::get_assessment($item, $step)
+            : V2StatisticsService::get_assessment($item, $step);
+
+        return response()->json($stats);
+    }
+
+    public static function assessment_oecm($item, string $step = 'global'): JsonResponse
+    {
+        $stats = OEMCStatisticsService::get_assessment($item, $step);
 
         return response()->json($stats);
     }

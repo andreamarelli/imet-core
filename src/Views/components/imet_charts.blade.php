@@ -6,4 +6,8 @@ $labels = \AndreaMarelli\ImetCore\Services\Statistics\StatisticsService::steps_l
 
 ?>
 
-<imet_charts :form_id={{ $form_id }} :labels='@json($labels)'></imet_charts>
+<imet_charts
+        :form_id={{ $form_id }}
+        :labels='@json($labels)'
+        version='{{ $version }}'
+></imet_charts>
