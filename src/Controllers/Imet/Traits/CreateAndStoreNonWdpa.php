@@ -41,7 +41,6 @@ trait CreateAndStoreNonWdpa
 
         $records = Payload::decode($request->input('records_json'));
 
-
         // #### Create a prefilled IMET (data from a previous year) ####
         if(array_key_exists('prev_year_selection', $records[0])){
             $prev_year_selection = $records[0]['prev_year_selection'] ?? null;

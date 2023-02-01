@@ -150,19 +150,24 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::get('create',            [oecm\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');
         Route::get('create_non_wdpa', [oecm\Controller::class, 'create_non_wdpa'])->name(OECM_ROUTE_PREFIX.'create_non_wdpa');
         Route::post('store',            [oecm\ContextController::class, 'store']);
-        Route::post('prev_years',            [oecm\Controller::class, 'retrieve_prev_years'])->name('imet-core::retrieve_prev_years');
+        Route::post('prev_years',            [oecm\Controller::class, 'retrieve_prev_years'])->name(OECM_ROUTE_PREFIX.'retrieve_prev_years');
         Route::delete('{item}', [oecm\Controller::class, 'destroy']);
 
         Route::group(['prefix' => 'context'], function () {
-
+            Route::get('{item}/edit/{step?}',[oecm\ContextController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'context_edit');
+            Route::get('{item}/show/{step?}',[oecm\ContextController::class, 'show'])->name(OECM_ROUTE_PREFIX.'context_show');
+            Route::patch('{item}',           [oecm\ContextController::class, 'update']);
         });
-
         Route::group(['prefix' => 'evaluation'], function () {
-
+            Route::get('{item}/edit/{step?}',   [oecm\EvalController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'eval_edit');
+            Route::get('{item}/show/{step?}',   [oecm\EvalController::class, 'show'])->name(OECM_ROUTE_PREFIX.'eval_show');
+            Route::get('{item}/print',          [oecm\EvalController::class, 'print']);
+            Route::patch('{item}',           [oecm\EvalController::class, 'update']);
         });
-
         Route::group(['prefix' => 'report'], function () {
-
+            Route::get('{item}/edit', [oecm\ReportController::class, 'report'])->name(OECM_ROUTE_PREFIX.'report_edit');
+            Route::get('{item}/show', [oecm\ReportController::class, 'report_show'])->name(OECM_ROUTE_PREFIX.'report_show');
+            Route::patch('{item}', [oecm\ReportController::class, 'report_update'])->name(OECM_ROUTE_PREFIX.'report_update');
         });
         
     });

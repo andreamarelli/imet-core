@@ -14,7 +14,10 @@ use Illuminate\Support\Str;
 
 class Imet extends BaseImetForm
 {
+    protected $table = 'imet_oecm.imet_form';
+
     public const version = 'oecm';
+
     public static $modules = [
 
         'general_info' => [

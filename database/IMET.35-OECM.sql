@@ -1,5 +1,7 @@
 BEGIN;
 
+DROP SCHEMA IF EXISTS imet_oecm;
+
 CREATE SCHEMA imet_oecm;
 
 -- ### Form tables ##
@@ -10,7 +12,7 @@ CREATE TABLE imet_oecm.imet_form (
     "UpdateBy" integer,
     "UpdateDate" character varying(30),
     "language" character(2),
-    version character(2),
+    version character(4),
     "Country" character(3),
     validation character varying(25),
     wdpa_id integer,

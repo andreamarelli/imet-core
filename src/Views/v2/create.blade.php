@@ -1,6 +1,6 @@
 <?php
-
 /** @var bool $is_wdpa */
+
 $is_wdpa = $is_wdpa ?? true;
 ?>
 
