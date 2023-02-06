@@ -3,7 +3,7 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Encoder;
+use AndreaMarelli\ImetCore\Models\Imet\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm;
 use AndreaMarelli\ImetCore\Models\Imet\v1;

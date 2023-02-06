@@ -2,13 +2,17 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
+use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -30,6 +34,18 @@ class Imet extends BaseImetForm
         'access_and_governance' => [],
         'trends_and_threats' => [],
     ];
+
+
+    /**
+     * Relation to Encoder (only name)
+     *
+     * @return HasMany
+     */
+    public function encoder(): HasMany
+    {
+        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
+            ->select(['FormID', 'first_name', 'last_name']);
+    }
 
     /**
      * Relation to ResponsablesInterviewees
@@ -61,7 +77,8 @@ class Imet extends BaseImetForm
      * @param bool $only_allowed_wdpas
      * @return mixed
      */
-    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false) {
+    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false)
+    {
         $allowed_wdpas = $only_allowed_wdpas
             ? Role::allowedWdpas()
             : null;
@@ -85,6 +102,80 @@ class Imet extends BaseImetForm
             });
     }
 
+    /**
+     * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public static function get_assessments_list_with_extras(Request $request)
+    {
+        $hasDuplicates = static::foundDuplicates();
+        $list = static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
+            ->map(function ($item)  use ($hasDuplicates) {
+
+                // Add encoders
+                $item->encoders_responsibles = [
+                    'encoders' => array_values($item->encoder->flatten()->unique()->toArray()),
+                    'internal' => array_values($item->responsible_interviewers->flatten()->unique()->toArray()),
+                    'external' => array_values($item->responsible_interviewees->flatten()->unique()->toArray()),
+                ];
+
+                // Add radar
+                $item['assessment_radar'] = OEMCStatisticsService::get_radar_scores($item);
+
+                // Non WDPA
+                if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
+                    $item->wdpa_id = null;
+                }
+
+                // Last IMET update
+                $item['last_update'] = $item->getLastUpdate();
+
+                // has duplicates
+                $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+
+                return $item;
+            })
+            ->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
+
+        return $list;
+    }
+
+    public static function getResponsibles($form_id, $version): array
+    {
+        $internal = ResponsablesInterviewers::getNames($form_id);
+        $external = ResponsablesInterviewees::getNames($form_id);
+
+        return [
+            'encoders' => Encoder::getNames($form_id),
+            'internal' => $internal,
+            'external' => $external
+        ];
+    }
+
+    /**
+     * Extent parent method: save user as encoder
+     *
+     * @param $item
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateModuleAndForm($item, Request $request): array
+    {
+        $return = parent::updateModuleAndForm($item, $request);
+        if ($return['status'] == 'success') {
+            (new Controller())->backup($item);
+        }
+
+        $user_info = Auth::user()->getInfo();
+        unset($user_info['country']);
+
+        Encoder::touchOnFormUpdate($item, $user_info);
+
+        return $return;
+    }
 
 
 }

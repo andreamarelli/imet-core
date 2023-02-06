@@ -22,7 +22,7 @@
 
 <ul class="text-2xs" style="margin-top: 10px; padding-inline-start: 20px;">
     <li>
-        <b>@lang('imet-core::oecm_context.CreateNonWdpa.allowed_international')</b>:
+        <b>@lang('imet-core::common.CreateNonWdpa.allowed_international')</b>:
         <ul>
             <li>Ramsar Site, Wetland of International Importance</li>
             <li>UNESCO-MAB Biosphere Reserve</li>
@@ -30,7 +30,7 @@
         </ul>
     </li>
     <li>
-        <b>@lang('imet-core::oecm_context.CreateNonWdpa.allowed_regional')</b>:
+        <b>@lang('imet-core::common.CreateNonWdpa.allowed_regional')</b>:
         <ul>
             <li>Baltic Sea Protected Area (HELCOM)</li>
             <li>Specially Protected Area (Cartagena Convention)</li>

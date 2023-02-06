@@ -4,7 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Encoder;
+use AndreaMarelli\ImetCore\Models\Imet\Encoder;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
 use AndreaMarelli\ImetCore\Models\Imet\v2;
@@ -447,22 +447,7 @@ class Imet extends Form
         $user_info = Auth::user()->getInfo();
         unset($user_info['country']);
 
-        // Insert encoder (if not present in the day)
-        $encoder = Encoder::where('first_name', $user_info['first_name'])
-                ->where('last_name', $user_info['last_name'])
-                ->where('FormID', $item)
-                ->whereDate(static::UPDATED_AT, Carbon::today())
-                ->first();
-        if($encoder){
-            $encoder->touch();
-        } else {
-            Encoder::create(array_merge(
-                $user_info,
-                [
-                    'FormID' => $item
-                ]
-            ));
-        }
+        Encoder::touchOnFormUpdate($item, $user_info);
 
         return $return;
     }

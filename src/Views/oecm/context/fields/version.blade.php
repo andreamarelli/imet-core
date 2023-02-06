@@ -1,1 +1,1 @@
-<span class="badge badge-success" style="font-size: 1.1em;">v2</span>
+<span class="badge badge-info" style="font-size: 1.1em;">OECM</span>
