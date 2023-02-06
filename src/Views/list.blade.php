@@ -70,7 +70,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             &nbsp;&nbsp;
             {{-- Export json IMETs --}}
             <a class="btn-nav rounded"
-               href="{{ route('imet-core::export_view') }}">
+               href="{{ route($route_prefix.'export_view') }}">
                 {!! Template::icon('file-export', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.export')) }}
             </a>
@@ -161,138 +161,48 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
                     {{-- Show --}}
                     <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                        @include('imet-core::components.button_show', ['version' => $form_class::IMET_V1])
+                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_V1])
                     </span>
                     <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                        @include('imet-core::components.button_show', ['version' => $form_class::IMET_V2])
+                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_V2])
                     </span>
                     <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                        @include('imet-core::components.button_show', ['version' => $form_class::IMET_OECM])
+                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_OECM])
                     </span>
 
                     @can('edit', $form_class)
 
                         {{-- Edit --}}
                         <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                            @include('imet-core::components.button_edit', ['version' => $form_class::IMET_V1])
+                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_V1])
                         </span>
                         <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                            @include('imet-core::components.button_edit', ['version' => $form_class::IMET_V2])
+                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_V2])
                         </span>
                         <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                            @include('imet-core::components.button_edit', ['version' => $form_class::IMET_OECM])
+                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_OECM])
                         </span>
 
                         {{-- Merge tool --}}
                         <span v-if="item.has_duplicates">
-                            <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                                @include('modular-forms::buttons._generic', [
-                                    'controller' => Controllers\Imet\v1\Controller::class,
-                                    'action' =>'merge_view',
-                                    'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
-                                    'icon' => 'clone',
-                                    'class' => 'btn-primary'
-                                ])
-                            </span>
-                            <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                                @include('modular-forms::buttons._generic', [
-                                    'controller' => Controllers\Imet\v2\Controller::class,
-                                    'action' =>'merge_view',
-                                    'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
-                                    'icon' => 'clone',
-                                    'class' => 'btn-primary'
-                                ])
-                            </span>
-                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                                @include('modular-forms::buttons._generic', [
-                                    'controller' => Controllers\Imet\oecm\Controller::class,
-                                    'action' =>'merge_view',
-                                    'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
-                                    'icon' => 'clone',
-                                    'class' => 'btn-primary'
-                                ])
-                            </span>
+                            @include('imet-core::components.buttons.export', ['form_class' => $form_class])
                         </span>
 
                     @endcan
 
                     {{-- Export --}}
                     @can('export_button', $form_class)
-                        <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                            @include('modular-forms::buttons._generic', [
-                                'controller' => Controllers\Imet\v1\Controller::class,
-                                'action' =>'export',
-                                'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('modular-forms::common.export')),
-                                'icon' => 'cloud-download-alt',
-                                'class' => 'btn-primary'
-                            ])
-                        </span>
-                        <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                            @include('modular-forms::buttons._generic', [
-                                'controller' => Controllers\Imet\v2\Controller::class,
-                                'action' =>'export',
-                                'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('modular-forms::common.export')),
-                                'icon' => 'cloud-download-alt',
-                                'class' => 'btn-primary'
-                            ])
-                        </span>
-                        <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                            @include('modular-forms::buttons._generic', [
-                                'controller' => Controllers\Imet\oecm\Controller::class,
-                                'action' =>'export',
-                                'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('modular-forms::common.export')),
-                                'icon' => 'cloud-download-alt',
-                                'class' => 'btn-primary'
-                            ])
-                        </span>
+                        @include('imet-core::components.buttons.export', ['form_class' => $form_class])
                     @endcan
 
                     {{-- Print --}}
-                    <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                        @include('modular-forms::buttons._generic', [
-                            'controller' => Controllers\Imet\v1\Controller::class,
-                            'action' =>'print',
-                            'item' => 'item.FormID',
-                            'tooltip' => ucfirst(trans('modular-forms::common.print')),
-                            'icon' => 'print',
-                            'class' => 'btn-primary'
-                        ])
-                    </span>
-                    <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                        @include('modular-forms::buttons._generic', [
-                            'controller' => Controllers\Imet\v2\Controller::class,
-                            'action' =>'print',
-                            'item' => 'item.FormID',
-                            'tooltip' => ucfirst(trans('modular-forms::common.print')),
-                            'icon' => 'print',
-                            'class' => 'btn-primary'
-                        ])
-                    </span>
-                    <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                        @include('modular-forms::buttons._generic', [
-                            'controller' => Controllers\Imet\oecm\Controller::class,
-                            'action' =>'print',
-                            'item' => 'item.FormID',
-                            'tooltip' => ucfirst(trans('modular-forms::common.print')),
-                            'icon' => 'print',
-                            'class' => 'btn-primary'
-                        ])
-                    </span>
+                    @include('imet-core::components.buttons.print', ['form_class' => $form_class])
 
+                    {{-- Delete --}}
                     @can('edit', $form_class)
-
-                        {{-- Delete --}}
-                        @include('modular-forms::buttons.delete', [
-                            'controller' => $controller,
-                            'item' => 'item.FormID'
+                        @include('imet-core::components.buttons.delete', [
+                            'form_class' => $form_class
                         ])
-
                     @endcan
 
                 </td>

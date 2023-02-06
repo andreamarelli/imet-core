@@ -79,8 +79,8 @@ function get_quoted_responsible($form_id, $version){
 
                         {{-- Delete --}}
                         <div style="margin-top: 5px">
-                            @include('modular-forms::buttons.delete', [
-                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
+                            @include('imet-core::components.buttons.delete', [
+                                'form_class' => $form_class,
                                 'item' => $duplicated_form_id,
                                 'label' => ucfirst(trans('modular-forms::common.delete'))
                             ])

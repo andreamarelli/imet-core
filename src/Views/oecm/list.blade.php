@@ -1,4 +1,1 @@
-<?
-
-?>
 @include('imet-core::list')
