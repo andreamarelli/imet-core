@@ -1,5 +1,6 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
+/** @var String $step */
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 
@@ -12,12 +13,7 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 

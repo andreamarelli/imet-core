@@ -42,7 +42,7 @@
         </ul>
     </li>
     <li>
-        <b>@lang('imet-core::oecm_context.CreateNonWdpa.allowed_national')</b>
+        <b>@lang('imet-core::common.CreateNonWdpa.allowed_national')</b>
     </li>
 </ul>
 

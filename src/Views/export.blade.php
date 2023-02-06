@@ -12,11 +12,7 @@ $filter_selected = false;
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 

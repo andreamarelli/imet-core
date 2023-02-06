@@ -1,7 +1,7 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
+/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 
-use \AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 // Force Language
 if($item->language != \Illuminate\Support\Facades\App::getLocale()){
@@ -16,22 +16,28 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @section('content')
 
-    @include('imet-core::components.heading', ['phase' => 'context'])
+    @include('imet-core::components.heading', ['phase' => 'evaluation'])
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'context_edit', ['item'=>$item->getKey()]),
+        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'eval_show', ['item' => $item->getKey()]),
         'current_step' => $step,
-        'label_prefix' =>  'imet-core::v2_common.steps.',
+        'label_prefix' =>  'imet-core::common.steps_eval.',
         'steps' => array_keys($item::modules())
+    ])
+
+    {{-- management effectiveness --}}
+    @include('imet-core::oecm.evaluation.management_effectiveness.management_effectiveness', [
+        'item_id' => $item->getKey(),
+        'step' => $step
     ])
 
     {{--  Modules (by step) --}}
     <div class="imet_modules">
         @foreach($item::modules()[$step] as $module)
             @if(Role::hasRequiredAccessLevel($module))
-                @include('modular-forms::module.edit.container', [
-                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\ContextController::class,
+                @include('modular-forms::module.show.container', [
+                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class,
                     'module_class' => $module,
                     'form_id' => $item->getKey()])
             @else

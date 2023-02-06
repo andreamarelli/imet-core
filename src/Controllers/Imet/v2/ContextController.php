@@ -2,8 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use Illuminate\Http\Request;
 
 class ContextController extends Controller
 {

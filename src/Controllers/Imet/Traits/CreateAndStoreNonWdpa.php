@@ -82,7 +82,7 @@ trait CreateAndStoreNonWdpa
 
             // Create Form
             $form_record = collect($records[0])
-                ->only(['version', 'Year', 'language', 'FormID', 'UpdateDate', 'UpdateBy'])
+                ->only(['name', 'version', 'Year', 'language', 'FormID', 'UpdateDate', 'UpdateBy'])
                 ->toArray();
             $form_record['wdpa_id'] = $new_pa->getKey();
             $form_record['Country'] = $records[0]['country'];

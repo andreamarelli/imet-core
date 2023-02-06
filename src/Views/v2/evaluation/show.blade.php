@@ -12,15 +12,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
@@ -35,8 +27,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
         'steps' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::steps($item)
     ])
 
-
-    @if($step=='cross_analysis')
+    @if($step==='cross_analysis')
         @include('imet-core::v2.cross_analysis.index', [
             'item_id' => $item->getKey(),
             'warnings' => $warnings

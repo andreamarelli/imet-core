@@ -279,7 +279,6 @@ class ScalingUpAnalysisController extends __Controller
         $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
-        // dd($custom_items);
         $custom_colors = array_map(function ($v) {
             return $v->color;
         }, $custom_items);

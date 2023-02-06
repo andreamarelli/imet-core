@@ -1,10 +1,10 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
+/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 
 use \AndreaMarelli\ImetCore\Models\User\Role;
 
 // Force Language
-if($item->language != \Illuminate\Support\Facades\App::getLocale()){
+if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -20,9 +20,9 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'context_edit', ['item'=>$item->getKey()]),
+        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'context_show', ['item' => $item->getKey()]),
         'current_step' => $step,
-        'label_prefix' =>  'imet-core::v2_common.steps.',
+        'label_prefix' =>  'imet-core::oecm_common.steps.',
         'steps' => array_keys($item::modules())
     ])
 
@@ -30,8 +30,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     <div class="imet_modules">
         @foreach($item::modules()[$step] as $module)
             @if(Role::hasRequiredAccessLevel($module))
-                @include('modular-forms::module.edit.container', [
-                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\ContextController::class,
+                @include('modular-forms::module.show.container', [
                     'module_class' => $module,
                     'form_id' => $item->getKey()])
             @else

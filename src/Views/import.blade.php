@@ -1,11 +1,6 @@
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
     <div class="module-container" id="import_imet">

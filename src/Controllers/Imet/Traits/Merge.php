@@ -25,7 +25,7 @@ trait Merge
      */
     public function merge_view($item)
     {
-        $form = Imet\Imet::find($item);
+        $form = (static::$form_class)::find($item);
         $this->authorize('edit', $form);
 
         return view(static::$form_view_prefix . 'merge.list', [
@@ -43,7 +43,6 @@ trait Merge
      */
     public function merge(Request $request): RedirectResponse
     {
-        /** @var Imet\v1\Modules\Component\ImetModule|Imet\v2\Modules\Component\ImetModule $module_class */
         $module_class = $request->input('module');
         $source_form_id = $request->input('source_form');
         $destination_form_id = $request->input('destination_form');

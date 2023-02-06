@@ -28,6 +28,8 @@ if($item->version===Imet::IMET_V1){
         &nbsp;<span class="badge badge-secondary" style="vertical-align: text-top;">v1</span>
     @elseif($item->version===Imet::IMET_V2)
         &nbsp;<span class="badge badge-success" style="vertical-align: text-top;">v2</span>
+    @elseif($item->version===Imet::IMET_OECM)
+        &nbsp;<span class="badge badge-info" style="vertical-align: text-top;">OECM</span>
     @endif
     {{-- ID --}}
     <span style="margin-left: 10px;">

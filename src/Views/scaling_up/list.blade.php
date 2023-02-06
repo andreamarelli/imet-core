@@ -15,17 +15,7 @@ $url = URL::route('imet-core::scaling_up_index');
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
-@endif
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 

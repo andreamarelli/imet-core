@@ -147,6 +147,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
         Route::match(['get', 'post'],'/',      [oecm\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
         Route::delete('{item}', [oecm\Controller::class, 'destroy']);
+        Route::get('{item}/print',       [oecm\Controller::class, 'print']);
         Route::get('create',            [oecm\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');
         Route::get('create_non_wdpa', [oecm\Controller::class, 'create_non_wdpa'])->name(OECM_ROUTE_PREFIX.'create_non_wdpa');
         Route::post('store',            [oecm\ContextController::class, 'store']);

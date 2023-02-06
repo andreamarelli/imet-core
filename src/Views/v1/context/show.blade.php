@@ -1,6 +1,8 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
 
+use AndreaMarelli\ImetCore\Models\User\Role;
+
 // Force Language
 if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     \Illuminate\Support\Facades\App::setLocale($item->language);
@@ -10,15 +12,7 @@ if($item->language != \Illuminate\Support\Facades\App::getLocale()){
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        route('imet-core::index') => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 

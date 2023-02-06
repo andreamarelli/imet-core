@@ -2,9 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller as BaseController;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
-
 
 class ContextController extends Controller
 {

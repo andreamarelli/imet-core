@@ -1,6 +1,5 @@
 <?php
 /** @var String $step */
-
 /** @var int $item_id */
 
 $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService::get_assessment($item_id, $step);

@@ -225,7 +225,6 @@ class Ranking
             $ranking['xAxis'][$j] = $pa->name;
             $ranking['wdpa_ids'][$j] = $wdpa_id;
         }
-        //dd($ranking);
         return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 

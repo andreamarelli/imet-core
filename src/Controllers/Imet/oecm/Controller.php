@@ -16,6 +16,5 @@ class Controller extends BaseController
 
     protected static $form_class = Imet::class;
     protected static $form_view_prefix = 'imet-core::oecm.';
-    protected static $form_default_step = 'general_info';
 
 }
