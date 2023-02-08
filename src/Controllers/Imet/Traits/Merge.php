@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
 use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Exception;
@@ -28,7 +29,8 @@ trait Merge
         $form = (static::$form_class)::find($item);
         $this->authorize('edit', $form);
 
-        return view(static::$form_view_prefix . 'merge.list', [
+        return view(Controller::$form_view_prefix . '.merge.list', [
+            'controller' => static::class,
             'primary_form' => $form,
             'duplicated_forms' => $form->getDuplicates()
         ]);

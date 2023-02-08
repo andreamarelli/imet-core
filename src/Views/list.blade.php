@@ -185,7 +185,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
                         {{-- Merge tool --}}
                         <span v-if="item.has_duplicates">
-                            @include('imet-core::components.buttons.export', ['form_class' => $form_class])
+                            @include('imet-core::components.buttons.merge', ['form_class' => $form_class])
                         </span>
 
                     @endcan

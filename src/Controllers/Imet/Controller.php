@@ -15,6 +15,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\URL;
@@ -77,6 +78,24 @@ class Controller extends __Controller
             'years' => $years,
             'index_url' => URL::route(static::ROUTE_PREFIX . 'index')
         ]);
+    }
+
+    /**
+     * Manage "destroy" route
+     *
+     * @param $item
+     * @return RedirectResponse
+     * @throws AuthorizationException
+     */
+    public function destroy($item): RedirectResponse
+    {
+        if(static::AUTHORIZE_BY_POLICY) {
+            $this->authorize('destroy', (static::$form_class)::find($item));
+        }
+        $form = new static::$form_class();
+        $form = $form->find($item);
+        $form->delete();
+        return redirect()->route(static::ROUTE_PREFIX.'index');
     }
 
     /**
