@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
-/** @var \Illuminate\Routing\Route $route */
+/** @var string $route_prefix */
 /** @var array $countries */
 /** @var array $years */
 
@@ -17,7 +17,7 @@ use \AndreaMarelli\ImetCore\Models\Imet\Imet;
 
     @include('imet-core::components.common_filters', [
             'request'=>$request,
-            'url' => $route,
+            'url' => route($route_prefix . 'export_view'),
             'filter_selected' => false,
             'countries' => $countries,
             'years' => $years
@@ -27,7 +27,7 @@ use \AndreaMarelli\ImetCore\Models\Imet\Imet;
         <div class="row">
             <div class="col">
                 <form target="_blank" ref="filterForm" method="POST"
-                      action="{{ \Illuminate\Support\Facades\URL::route('imet-core::export_json_batch') }}">
+                      action="{{ route($route_prefix . 'export_batch') }}">
                     <button type="submit" class="btn act-btn-active float-left" :disabled="exportDisabled">Export
                     </button>
                     {{ csrf_field() }}

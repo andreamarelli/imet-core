@@ -28,7 +28,12 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     | IMET Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function (){
+
+         // ####  common routes (v1 & v2 & oecm) ####
+        Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
+        Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
+        Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
 
         // ####  common routes (v1 & v2) ####
         Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
@@ -41,11 +46,10 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
             Route::get('{item}/print',  [v1\Controller::class, 'print']);
             Route::get('{item}/export', [v1\Controller::class, 'export']);
-            Route::get('import',        [v1\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
-            Route::post('import',      [v1\Controller::class, 'import'])->name(IMET_PREFIX.'import');
+            Route::post('export_batch',        [v1\Controller::class, 'export_batch'])->name(V1_ROUTE_PREFIX.'export_batch');
+
             Route::get('{item}/merge',  [v1\Controller::class, 'merge_view'])->name(IMET_PREFIX.'merge_view');
             Route::post('merge',      [v1\Controller::class, 'merge'])->name(IMET_PREFIX.'merge');
-            Route::post('ajax/upload', [v1\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
 
             Route::delete('{item}',     [v1\Controller::class, 'destroy']);
 
@@ -71,15 +75,13 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
 
             Route::match(['get', 'post'],'/',[Imet\Controller::class, 'index'])->name(V2_ROUTE_PREFIX.'index');    // alias
             Route::match(['get','post'],'export_view',        [v2\Controller::class, 'export_view'])->name(V2_ROUTE_PREFIX.'export_view');
-            Route::get('import',        [v2\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
 
             Route::get('{item}/print',       [v2\Controller::class, 'print']);
             Route::get('{item}/export', [v2\Controller::class, 'export']);
+            Route::post('export_batch',        [v2\Controller::class, 'export_batch'])->name(V2_ROUTE_PREFIX.'export_batch');
             Route::delete('{item}',     [v2\Controller::class, 'destroy']);
-            Route::post('import',      [v2\Controller::class, 'import'])->name(V2_ROUTE_PREFIX.'import');
             Route::get('{item}/merge',  [v2\Controller::class, 'merge_view'])->name(IMET_PREFIX.'merge_view');
             Route::post('merge',      [v2\Controller::class, 'merge'])->name(IMET_PREFIX.'merge');
-            Route::post('ajax/upload', [v2\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
 
             Route::get('create',        [v2\Controller::class, 'create'])->name(V2_ROUTE_PREFIX.'create');
             Route::get('create_non_wdpa',[v2\Controller::class, 'create_non_wdpa'])->name(V2_ROUTE_PREFIX.'create_non_wdpa');
@@ -128,7 +130,6 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::group(['prefix' => 'tools'], function () {
             Route::get('export_csv', [Imet\Controller::class, 'exportListCSV'])->name('imet-core::csv_list');
             Route::get('export_csv/{ids}/{module_key}', [Imet\Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
-            Route::post('export_batch',        [Imet\Controller::class, 'export_batch'])->name('imet-core::export_json_batch');
         });
 
         /*
@@ -161,11 +162,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::get('{item}/print',      [oecm\Controller::class, 'print']);
         Route::get('{item}/export',     [oecm\Controller::class, 'export']);
         Route::match(['get','post'],'export_view',        [oecm\Controller::class, 'export_view'])->name(OECM_ROUTE_PREFIX.'export_view');
-        Route::get('import',        [oecm\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
-        Route::post('import',      [oecm\Controller::class, 'import'])->name(OECM_ROUTE_PREFIX.'import');
+        Route::post('export_batch',        [oecm\Controller::class, 'export_batch'])->name(OECM_ROUTE_PREFIX.'export_batch');
         Route::get('{item}/merge',  [oecm\Controller::class, 'merge_view'])->name(IMET_PREFIX.'merge_view');
         Route::post('merge',      [oecm\Controller::class, 'merge'])->name(OECM_ROUTE_PREFIX.'merge');
-        Route::post('ajax/upload', [oecm\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
 
         Route::get('create',            [oecm\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');
         Route::get('create_non_wdpa',   [oecm\Controller::class, 'create_non_wdpa'])->name(OECM_ROUTE_PREFIX.'create_non_wdpa');
