@@ -23,7 +23,7 @@ trait CreateAndStoreNonWdpa
     {
         $this->authorize('create', static::$form_class);
 
-        return view(static::$form_view_prefix.'.create', ['is_wdpa' => false]);
+        return view(static::$form_view_prefix . '.create', ['is_wdpa' => false]);
     }
 
     /**

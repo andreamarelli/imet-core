@@ -55,7 +55,7 @@ else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
             ])
 
             {{-- Analysis Report --}}
-            @if($version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2)
+            @if($version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2 || $version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
                 @include('modular-forms::buttons._generic', [
                     'controller' => $controller_report,
                     'action' =>'report_show',

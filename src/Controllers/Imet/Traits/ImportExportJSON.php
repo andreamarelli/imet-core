@@ -18,7 +18,10 @@ use AndreaMarelli\ModularForms\Helpers\Module;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ModularForms\Models\Traits\Upload;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -85,8 +88,8 @@ trait ImportExportJSON
     /**
      * return a list of Imet's for export in json/zip
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return Application|Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function export_view(Request $request)
     {
@@ -102,7 +105,8 @@ trait ImportExportJSON
         $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
-        return view(static::$form_view_prefix . 'export', [
+        return view(static::$form_view_prefix . '.export', [
+            'route' => route(static::ROUTE_PREFIX . 'export_view'),
             'list' => $filtered_list,
             'request' => $request,
             'countries' => $countries,
@@ -145,7 +149,7 @@ trait ImportExportJSON
      * return modules list for export
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|\Illuminate\View\View
      */
     public function exportListCSV(Request $request): \Illuminate\View\View
     {
@@ -188,7 +192,7 @@ trait ImportExportJSON
             unset($temp_array[$key]);
         }
 
-        return view(static::$form_view_prefix . 'v2.tools.export_csv',
+        return view(static::$form_view_prefix . '.tools.export_csv',
                     [
                         'modules' => $modules_final_list,
                         'imet_keys' => $imet_keys,
@@ -233,7 +237,7 @@ trait ImportExportJSON
      * @param bool $to_file
      * @param bool $download
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|array
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function export(Imet $item, bool $to_file = true, bool $download = true)
     {
@@ -277,13 +281,13 @@ trait ImportExportJSON
     /**
      * View for importing an IMET from json file
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function import_view()
     {
         $this->authorize('viewAny', static::$form_class);
 
-        return view(static::$form_view_prefix . 'import');
+        return view(static::$form_view_prefix . '.import');
     }
 
     /**

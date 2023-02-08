@@ -1,13 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
+/** @var \Illuminate\Routing\Route $route */
 /** @var array $countries */
 /** @var array $years */
 
 use \AndreaMarelli\ImetCore\Models\Imet\Imet;
 
-$url = \Illuminate\Support\Facades\URL::route('imet-core::export_view');
-$filter_selected = false;
 ?>
 
 @extends('layouts.admin')
@@ -18,8 +17,8 @@ $filter_selected = false;
 
     @include('imet-core::components.common_filters', [
             'request'=>$request,
-            'url' => $url,
-            'filter_selected' => $filter_selected,
+            'url' => $route,
+            'filter_selected' => false,
             'countries' => $countries,
             'years' => $years
         ])

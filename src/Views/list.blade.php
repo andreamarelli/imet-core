@@ -48,7 +48,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             </a>
             {{-- Import json IMETs --}}
             <a class="btn-nav rounded"
-               href="{{ route('imet-core::import') }}">
+               href="{{ route($route_prefix.'import') }}">
                 {!! Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
             </a>

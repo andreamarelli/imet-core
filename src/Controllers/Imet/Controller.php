@@ -69,7 +69,7 @@ class Controller extends __Controller
         $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
-        return view(static::$form_view_prefix . 'list', [
+        return view(Controller::$form_view_prefix . 'list', [
             'controller' => static::class,
             'list' => $filtered_list,
             'request' => $request,
