@@ -335,5 +335,64 @@ return [
         ],
     ],
 
+    'AnalysisStakeholder' => [
+        'title' => 'Analysis per stakeholder',
+        'fields' => [
+            'Element' => 'Criteria',
+            'Dependence' => 'Dependence',
+            'Access' => 'Access',
+            'Rivalry' => 'Rivalry',
+            'Involvement' => 'Involvement',
+            'Accountability' => 'Accountability',
+            'Orientation' => 'Orientation',
+            'Comments' => 'Note/Description',
+        ],
+        'groups' => [
+            'group0' => 'Key animals and plants species in the OECM',
+            'group1' => 'Key Provisioning services',
+            'group2' => 'Key Cultural services',
+            'group3' => 'Key Regulating services',
+            'group4' => 'Key supporting services (services which enable other services)',
+        ],
+        'predefined_values' => [
+            'group0' => [
+                    ''
+            ],
+            'group1' => [
+                'Provisioning-Nutrition [Nutrition: human food vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.); Human food animal (wild/farmed meat, insects, etc.); Medicines and blue biotechnology (fish oil); Fish/livestock feed (wild, farmed, bait); etc.]',
+                'Provisioning-Water [Nutrition: drinking water; water for hygiene, water for agriculture, water for fish/livestock water for energy; etc.]',
+                'Provisioning-Materials [High value timber; Timber for local construction; Stems - fibres (palms, kenaf, etc.); Other fibres (leaves, kapok, coco, etc.); Ornamental and aquarian resources (seeds, shells and fish collection); Sand (building); etc.]',
+                'Provisioning-Energy [Fuelwood and biofuels; Wind for energy; Fertiliser; etc.]'
+            ],
+            'group2' => [
+                'Aesthetic appreciation, recreation, and tourism [Aesthetic benefits; Ecotourism and nature watching; Walking, hiking and general recreation; Boating, swimming and diving; Hunting or fishing if permitted; Specified traditional fishing]',
+                'Intellectual interactions and performances [Science – Research; Educational; Cultural heritage; etc.]',
+                'Spiritual and/or emblematic [Symbolic or historic; Sacred or religious; etc.]'
+            ],
+            'group3' => [
+                'Remediation of air and water pollutants [Air quality; Water purification; Waste removal/neutralisation; Waste regulation; etc.]',
+                'Erosion prevention and maintenance of soil fertility [Flood control; Prevention of coastal erosion; Drought control; Storm protection; Water erosion control; Wind erosion control; Prevention of coastal erosion; etc.]'
+            ],
+            'group4' => [
+                'Provisioning lands (agriculture, livestock, forests) [Soil formation, structure and fertility; Grazing lands, Woodland habitats, etc.]',
+                'Habitats for animals and plants [Bird nesting sites – sea/river/lake spawning grounds - Nursery habitats (e.g. corals, bees, etc.); Plants for pollination, etc.)]'
+            ]
+        ],
+        'module_info' => '',
+        'ratingLegend' => [
+            'Impact' => [
+                '0' => 'No impact',
+                '1' => 'Low impact',
+                '2' => 'Medium impact',
+                '3' => 'High impact',
+            ],
+            'Role' => [
+                '0' => 'No role',
+                '1' => 'Little role (e.g., only advice)',
+                '2' => 'Medium role (some mix of advice, analysis, planning, implementation and monitoring)',
+                '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
+            ]
+        ],
+    ],
 
 ];

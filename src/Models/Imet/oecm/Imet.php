@@ -56,6 +56,7 @@ class Imet extends BaseImetForm
         ],
         'access_and_governance' => [
             Modules\Context\Objectives5::class,
+            Modules\Context\AnalysisStakeholder::class,
         ],
         'trends_and_threats' => [
             Modules\Context\Objectives6::class,
