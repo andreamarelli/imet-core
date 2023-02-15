@@ -27,12 +27,39 @@ class Imet extends BaseImetForm
         'general_info' => [
             Modules\Context\ResponsablesInterviewers::class,
             Modules\Context\ResponsablesInterviewees::class,
+            Modules\Context\GeneralInfo::class,
+          //Modules\Context\Governance::class
+            Modules\Context\SpecialStatus::class,
+            Modules\Context\Networks::class,
+            Modules\Context\Missions::class,
+            Modules\Context\Contexts::class,
+            Modules\Context\Objectives1::class,
         ],
-        'areas' => [],
-        'resources' => [],
-        'key_elements' => [],
-        'access_and_governance' => [],
-        'trends_and_threats' => [],
+        'areas' => [
+            Modules\Context\GeographicalLocation::class,
+            Modules\Context\Areas::class,
+            Modules\Context\Objectives2::class,
+        ],
+        'resources' => [
+            Modules\Context\ManagementStaff::class,
+            Modules\Context\StakeholdersNaturalResources::class,
+            Modules\Context\ManagementStaffPartners::class,
+            Modules\Context\FinancialResources::class,
+            Modules\Context\Equipments::class,
+            Modules\Context\Objectives3::class,
+        ],
+        'key_elements' => [
+            Modules\Context\AnimalSpecies::class,
+            Modules\Context\VegetalSpecies::class,
+            Modules\Context\Habitats::class,
+            Modules\Context\Objectives4::class,
+        ],
+        'access_and_governance' => [
+            Modules\Context\Objectives5::class,
+        ],
+        'trends_and_threats' => [
+            Modules\Context\Objectives6::class,
+        ],
     ];
 
 
