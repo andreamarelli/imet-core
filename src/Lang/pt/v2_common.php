@@ -5,13 +5,6 @@ return [
     'management'        => 'Gestão do IMET (v2 - Consolidado)',
     'v2' => 'v2 - Consolidado',
 
-    'indicator'     => 'Indicador',
-    'methodology'   => 'Questão de Avaliação',
-    'criteria'      => 'Classificação',
-
-    'terrestrial' => 'terrestre',
-    'marine' => 'marítima e costeira',
-
     'steps' => [
         'general_info'          => 'Informações gerais sobre a área protegida',
         'areas'                 => 'Áreas, limites e índice de forma, nível de controlo',

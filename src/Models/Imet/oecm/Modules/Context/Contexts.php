@@ -27,7 +27,7 @@ class Contexts extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'Context',
-            'values' => trans('imet-core::v2_context.Contexts.predefined_values')
+            'values' => trans('imet-core::oecm_context.Contexts.predefined_values')
         ];
 
         parent::__construct($attributes);

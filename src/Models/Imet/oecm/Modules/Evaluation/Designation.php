@@ -25,7 +25,6 @@ class Designation extends Modules\Component\ImetModule_Eval
 
         $this->module_subTitle = trans('imet-core::oecm_evaluation.Designation.module_subTitle');
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.Designation.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::oecm_evaluation.Designation.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.Designation.ratingLegend');
 
         parent::__construct($attributes);
