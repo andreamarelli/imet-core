@@ -491,6 +491,10 @@ export default {
                         "field": "op3"
                     },
                     {
+                        "label": `O/P4: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op4')}`,
+                        "field": "op4"
+                    },
+                    {
                         "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs')}`,
                         "field": "outputs",
                         "extra_label": ``
