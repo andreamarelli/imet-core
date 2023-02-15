@@ -3,10 +3,17 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesIntrants;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesKeyElements;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesPlanification;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesProcessus;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesSupportsAndConstraints;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
 
@@ -14,7 +21,11 @@ class Imet_Eval extends Imet
 {
 
     public static $modules = [
-        'context' => [],
+        'context' => [
+            Designation::class,
+            ObjectivesKeyElements::class,
+            ObjectivesSupportsAndConstraints::class
+        ],
         'planning' => [
             RegulationsAdequacy::class,
             DesignAdequacy::class,
@@ -24,8 +35,15 @@ class Imet_Eval extends Imet
             Objectives::class,
             ObjectivesPlanification::class
         ],
-        'inputs' => [],
-        'process' => [],
+        'inputs' => [
+            BudgetAdequacy::class,
+            BudgetSecurization::class,
+
+            ObjectivesIntrants::class
+        ],
+        'process' => [
+            ObjectivesProcessus::class
+        ],
         'outputs' => [],
         'outcomes' => [],
         'management_effectiveness' => [],
