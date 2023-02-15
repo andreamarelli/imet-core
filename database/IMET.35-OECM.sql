@@ -403,4 +403,22 @@ CREATE TABLE imet_oecm.context_stakeholders_natural_resources
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE imet_oecm.context_analysis_stakeholders
+(
+    id               serial PRIMARY KEY,
+    "FormID"         integer,
+    "UpdateBy"       integer,
+    "UpdateDate"     character varying(30),
+    "Element"        text,
+    "Dependence"     numeric,
+    "Access"         text,
+    "Rivalry"        boolean,
+    "Involvement"    boolean,
+    "Accountability" boolean,
+    "Orientation"    boolean,
+    "Comments"       text,
+    group_key        character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 COMMIT;

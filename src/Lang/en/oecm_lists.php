@@ -68,4 +68,9 @@ return [
         'Enforcement (pr eserving biodiversity and managing the use of natural resources, cultural and other values.)',
         'Market economy'
     ],
+    'Access' => [
+        'No access',
+        'Exclusion (criteria for access, use, withdrawal, management)',
+        'Open (generally use or enjoy of NR including lands)'
+    ],
 ];
