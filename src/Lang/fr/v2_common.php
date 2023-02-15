@@ -5,13 +5,6 @@ return [
     'management'        => 'gestion des formulaires IMET (v2 - Consolidé)',
     'v2' => 'v2 - Consolidé',
 
-    'indicator'     => 'Indicateur',
-    'methodology'   => 'Question posée',
-    'criteria'      => 'Notation',
-
-    'terrestrial' => 'terrestre',
-    'marine' => 'maritime et côtier',
-
     'steps' => [
         'general_info'          => 'Informations générales sur l\'aire protégée',
         'areas'                 => 'Superficies, limites et indice de forme, niveau de contrôle',

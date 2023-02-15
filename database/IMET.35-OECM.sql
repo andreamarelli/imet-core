@@ -32,8 +32,9 @@ CREATE TABLE imet_oecm.imet_encoders
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
--- ### Modules' tables ##
+-- ##########################################
+-- ######  Modules' tables  - CONTEXT  ######
+-- ##########################################
 
 CREATE TABLE imet_oecm.context_encoding_responsables_interviewees
 (

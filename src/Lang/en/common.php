@@ -22,6 +22,12 @@ return [
         'iucn_category'     => 'IUCN category',
     ],
 
+    'methodology'   => 'Evaluation question',
+    'criteria'      => 'Rating',
+
+    'terrestrial' => 'terrestrial',
+    'marine' => 'marine and coastal',
+
     'dopa_not_available' => 'DOPA services not available',
 
     'languages' => [
@@ -51,7 +57,7 @@ return [
 
     'context'           => 'context',
     'evaluation'        => 'evaluation',
-    'cross_analysis'        => 'cross analysis',
+    'cross_analysis'    => 'cross analysis',
     'report'            => 'analysis report',
     'context_long'      => 'intervention context',
     'evaluation_long'   => 'management evaluation',

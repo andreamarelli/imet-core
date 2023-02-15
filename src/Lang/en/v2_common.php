@@ -5,10 +5,6 @@ return [
     'management'        => 'IMET management (v2 - Consolidated)',
     'v2' => 'v2 - Consolidated',
 
-    'indicator'     => 'Indicator',
-    'methodology'   => 'Evaluation question',
-    'criteria'      => 'Rating',
-
     'terrestrial' => 'terrestrial',
     'marine' => 'marine and coastal',
 

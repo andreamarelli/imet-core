@@ -57,14 +57,6 @@ class Equipments extends Modules\Component\ImetModule
 
     }
 
-    public static function upgradeModule($record, $imet_version = null)
-    {
-        // ####  v2.0 -> v2.0b  ####
-        $record = static::replacePredefinedValue($record, 'Resource', 'Hydraulic electric facility', 'Hydropower electric facility');
-
-        return $record;
-    }
-
     public static function getAverages($form_id){
         $records = Equipments::getModuleRecords($form_id)['records'];
 
