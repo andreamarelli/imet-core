@@ -25,8 +25,8 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'suggestion_multiple-ImetOECM_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.Comments')],
+            ['name' => 'Type',      'type' => 'suggestion_multiple-ImetOECM_GovernanceType',   'label' => trans('imet-core::oecm_context.Governance.fields.Type')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Governance.fields.Comments')],
         ];
 
         parent::__construct($attributes);

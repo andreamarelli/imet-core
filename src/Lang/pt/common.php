@@ -22,6 +22,12 @@ return [
         'iucn_category'     => 'Categoria UICN',
     ],
 
+    'methodology'   => 'Questão de Avaliação',
+    'criteria'      => 'Classificação',
+
+    'terrestrial' => 'terrestre',
+    'marine' => 'marítima e costeira',
+
     'dopa_not_available' => 'DOPA serviços não disponíveis',
 
     'languages' => [

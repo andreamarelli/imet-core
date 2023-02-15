@@ -36,7 +36,7 @@ class VegetalSpecies extends Modules\Component\ImetModule
 //    public static function getVueData($form_id, $collection = null): array
 //    {
 //        $vue_data = parent::getVueData($form_id, $collection);
-//        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.VegetalSpecies.warning_on_save');
+//        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.VegetalSpecies.warning_on_save');
 //        return $vue_data;
 //    }
 //
