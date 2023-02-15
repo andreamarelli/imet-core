@@ -11,6 +11,36 @@ return [
         ],
     ],
 
+    'Designation' => [
+        'title' => 'Designations',
+        'fields' => [
+            'Aspect' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Integration',
+            'SignificativeClassification' => 'Highly significant international designation',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                '0' => 'no integration',
+                '1' => 'low integration',
+                '2' => 'moderate integration',
+                '3' => 'high integration',
+            ]
+        ],
+        'module_subTitle' => 'Value and Importance - Designations',
+        'module_info_EvaluationQuestion' => [
+            'Evaluate the integration of values and importance of designations (national designation and international designations, e.g., World Heritage site or Ramsar site) for the management of the OECM'
+        ]
+    ],
+
+    'ObjectivesKeyElements' => [
+        'module_info' => 'Establish and describe conservation objectives for the designation and the key elements of the OECM. The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+    ],
+
+    'ObjectivesSupportsAndConstraints' => [
+        'module_info' => 'Establish and describe conservation objectives for mitigation constraints/conflicts or enhancing supporting/complying factors for the OECM. The objectives entered below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+    ],
+
     'RegulationsAdequacy' => [
         'title' => 'Adequacy of legal and regulatory provisions',
         'fields' => [
@@ -220,5 +250,77 @@ return [
     'ObjectivesPlanification' => [
         'module_info' => 'Establish and describe conservation objectives for planning of the OECM<br />The objectives listed below will be used for improving management, and more spe cifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
+
+
+
+    'BudgetAdequacy' => [
+        'title' => 'Current budget',
+        'fields' => [
+            'EvaluationScore' => 'Adequacy of current budget',
+            'Percentage' => 'Percentage indicating the extent to which the budget is adequate relative to the requirements',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                '0' => 'No budget (0% of requirements)',
+                '1' => 'Inadequate for even essential management activities (between 1 and 25% of requirements)',
+                '2' => 'Inadequate for many management activities (26-50% of requirements)',
+                '3' => 'Adequate for essential management activities (between 51 and 70% of requirements)',
+                '4' => 'Adequate for many but not all activities (between 71% and 90% of requirements)',
+                '5' => 'Adequate for all activities (91% or more of requirements)'
+
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Is the current budget adequate for appropriate management of the OECM?',
+            'OECMs prepare their annual operating budgets each year or for several years. Key financial planning and budget documents are necessary to improve operational efficiency and effectiveness.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of current year funding of the OECM in relation to conservation requirements (based on the analysis of the context of intervention, point CTX 3.2)'
+        ]
+    ],
+
+    'BudgetSecurization' => [
+        'title' => 'Securing the budget',
+        'fields' => [
+            'Percentage' => 'A) Evaluate in percent the "Security of future funding"',
+            'EvaluationScore' => 'B) Evaluate in years the "Period of security of future funding"',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'Percentage' => [
+                '0' => 'Basic financial needs for the OECM management are not secured (0–20% of needs secured)',
+                '1' => 'Basic financial needs for the OECM management are very weakly secured (21–40% of needs secured)',
+                '2' => 'Basic financial needs for the OECM management are weakly secured (41-60% of needs secured)',
+                '3' => 'Basic financial needs for the OECM management are partially secured (61–75% of needs secured)',
+                '4' => 'Basic financial needs for the OECM management are relatively well secured (76-90% of needs secured)',
+                '5' => 'Basic financial needs for the OECM management are secured (> 90% of needs secured)',
+            ],
+            'EvaluationScore' =>[
+                '0' => 'Basic financial needs for the OECM management are secured only for 1 year (current year)',
+                '1' => 'Basic financial needs for the OECM management are secured for 2 years (current year +1 year)',
+                '2' => 'Basic financial needs for the OECM management are secured for 3 years (current year +2 years)',
+                '3' => 'Basic financial needs for the OECM management are secured for 4 – and more years. (current year +3 years and more)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'How much of the required budget is secured, and for how long, to cover basic OECM management needs?',
+            'Secure and reliable budget is critical for OECM planning and management, for large -scale and long- term activities.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate: A) the security of funding and B) the period of security of funding for the forthcoming years in relation to conservation requirements in the OECM'
+        ]
+    ],
+
+
+    'ObjectivesIntrants' => [
+        'module_info' => 'Establish and describe conservation objectives for inputs of the OECM<br />The objectives listed below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+    ],
+
+
+    'ObjectivesProcessus' => [
+        'module_info' => 'Establish and describe conservation objectives related to implementation process of the OECM The objectives entered below will be used for improving management, and mo re specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+    ],
+
 
 ];
