@@ -2,8 +2,10 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
+use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 
 class AnalysisStakeholder extends Modules\Component\ImetModule
 {
@@ -17,77 +19,61 @@ class AnalysisStakeholder extends Modules\Component\ImetModule
         $this->module_code = 'CTX 5.1';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholder.title');
         $this->module_fields = [
-            ['name' => 'Element', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Element'), 'other' => 'rows="3"'],
-            ['name' => 'Dependence', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Dependence')],
-            ['name' => 'Access', 'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Access')],
-            ['name' => 'Rivalry', 'type' => 'toggle-yes_no', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Rivalry')],
-            ['name' => 'Involvement', 'type' => 'toggle-yes_no', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Involvement')],
-            ['name' => 'Accountability', 'type' => 'toggle-yes_no', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Accountability')],
-            ['name' => 'Orientation', 'type' => 'toggle-yes_no', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Accountability')],
-            ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Comments')],
+            ['name' => 'Element',       'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Dependence',    'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Dependence')],
+            ['name' => 'Access',        'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Access')],
+            ['name' => 'Rivalry',       'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Rivalry')],
+            ['name' => 'Involvement',   'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Involvement')],
+            ['name' => 'Accountability', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Accountability')],
+            ['name' => 'Orientation',   'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Orientation')],
+            ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholder.fields.Comments')],
         ];
 
-        $this->module_groups = [
-            'group0' => trans('imet-core::oecm_context.AnalysisStakeholder.groups.group0'),
-            'group1' => trans('imet-core::oecm_context.AnalysisStakeholder.groups.group1'),
-            'group2' => trans('imet-core::oecm_context.AnalysisStakeholder.groups.group2'),
-            'group3' => trans('imet-core::oecm_context.AnalysisStakeholder.groups.group3'),
-            'group4' => trans('imet-core::oecm_context.AnalysisStakeholder.groups.group3'),
+        $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholder.groups');
+        $this->predefined_values = [
+            'field' => 'Element',
+            'values' => trans('imet-core::oecm_context.AnalysisStakeholder.predefined_values')
         ];
 
-//        $this->predefined_values = [
-//            'field' => 'Element',
-//            'values' => [
-//                'group0' => trans('imet-core::oecm_context.AnalysisStakeholder.predefined_values.group0'),
-//                'group1' => trans('imet-core::oecm_context.AnalysisStakeholder.predefined_values.group1'),
-//                'group2' => trans('imet-core::oecm_context.AnalysisStakeholder.predefined_values.group2'),
-//                'group3' => trans('imet-core::oecm_context.AnalysisStakeholder.predefined_values.group3'),
-//                'group4' => trans('imet-core::oecm_context.AnalysisStakeholder.predefined_values.group3')
-//            ]
-//        ];
-
-        $this->module_info = trans('imet-core::oecm_context.StakeholdersNaturalResources.module_info');
-        $this->ratingLegend = trans('imet-core::oecm_context.StakeholdersNaturalResources.ratingLegend');
+        $this->module_info = trans('imet-core::oecm_context.AnalysisStakeholder.module_info');
+        $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholder.ratingLegend');
 
         parent::__construct($attributes);
     }
 
     /**
-     * Preload data from CTX
+     * Preload data from CTX 4.x
+     *
      * @param $form_id
      * @param null $collection
      * @return array
      */
     public static function getModuleRecords($form_id, $collection = null): array
     {
-
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 
         $records = $module_records['records'];
-        array_shift($records);
-        $animals = Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')->toArray() ?? [];
-        $vegetals = Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray() ?? [];
-        $habitats = Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray() ?? [];
-
-        $species = [];
-        if(count($animals)>0) {
-            $species = explode("|", $animals[0]);
-        }
-        if(count($vegetals)>0) {
-            $species = array_merge(explode("|", $vegetals[0]), $species);
-        }
-        if(count($habitats)>0) {
-            $species = array_merge(explode("|", $habitats[0]), $species);
-        }
 
         $preLoaded = [
             'field' => 'Element',
             'values' => [
-                'group0' => $species
+                'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')
+                    ->map(function($item){
+                        return Animal::getScientificName($item);
+                    })
+                    ->toArray(),
+                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray(),
+                'group2' => Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')
+                    ->map(function($item){
+                        return SelectionList::getList('ImetOECM_Habitats')[$item];
+                    })
+                    ->toArray(),
             ]
         ];
+
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;
     }
+
 }

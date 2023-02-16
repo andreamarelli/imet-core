@@ -420,7 +420,7 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders
     "UpdateDate"     character varying(30),
     "Element"        text,
     "Dependence"     numeric,
-    "Access"         text,
+    "Access"         character varying(50),
     "Rivalry"        boolean,
     "Involvement"    boolean,
     "Accountability" boolean,

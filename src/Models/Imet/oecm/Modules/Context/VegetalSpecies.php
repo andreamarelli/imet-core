@@ -18,7 +18,7 @@ class VegetalSpecies extends Modules\Component\ImetModule
         $this->module_code = 'CTX 4.2';
         $this->module_title = trans('imet-core::oecm_context.VegetalSpecies.title');
         $this->module_fields = [
-            ['name' => 'species', 'type' => 'imet-core::selector-species_animal_withFreeText', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.SpeciesID')],
+            ['name' => 'species', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.SpeciesID')],
             ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ExploitedSpecies')],
             ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ProtectedSpecies')],
             ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DisappearingSpecies')],

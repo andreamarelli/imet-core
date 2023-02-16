@@ -348,51 +348,57 @@ return [
             'Orientation' => 'Orientation',
             'Comments' => 'Note/Description',
         ],
+        'titles' => [
+            'title0' => 'Key animals and plants species in the OECM',
+            'title1' => 'Key Provisioning services',
+            'title2' => 'Key Cultural services',
+            'title3' => 'Key Regulating services',
+            'title4' => 'Key supporting services (services which enable other services)',
+        ],
         'groups' => [
-            'group0' => 'Key animals and plants species in the OECM',
-            'group1' => 'Key Provisioning services',
-            'group2' => 'Key Cultural services',
-            'group3' => 'Key Regulating services',
-            'group4' => 'Key supporting services (services which enable other services)',
+            'group0' => 'Animals',
+            'group1' => 'Plants',
+            'group2' => 'Habitats',
+            'group3' => 'Provisioning-Nutrition',
+            'group4' => 'Provisioning-Water',
+            'group5' => 'Provisioning-Materials',
+            'group6' => 'Provisioning-Energy',
+            'group7' => 'Aesthetic appreciation, recreation, and tourism',
+            'group8' => 'Intellectual interactions and performances',
+            'group9' => 'Spiritual and/or emblematic',
+            'group10' => 'Remediation of air and water pollutants',
+            'group11' => 'Erosion prevention and maintenance of soil fertility',
+            'group12' => 'Provisioning lands (agriculture, livestock, forests)',
+            'group13' => 'Habitats for animals and plants',
         ],
         'predefined_values' => [
-            'group0' => [
-                    ''
-            ],
-            'group1' => [
-                'Provisioning-Nutrition [Nutrition: human food vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.); Human food animal (wild/farmed meat, insects, etc.); Medicines and blue biotechnology (fish oil); Fish/livestock feed (wild, farmed, bait); etc.]',
-                'Provisioning-Water [Nutrition: drinking water; water for hygiene, water for agriculture, water for fish/livestock water for energy; etc.]',
-                'Provisioning-Materials [High value timber; Timber for local construction; Stems - fibres (palms, kenaf, etc.); Other fibres (leaves, kapok, coco, etc.); Ornamental and aquarian resources (seeds, shells and fish collection); Sand (building); etc.]',
-                'Provisioning-Energy [Fuelwood and biofuels; Wind for energy; Fertiliser; etc.]'
-            ],
-            'group2' => [
-                'Aesthetic appreciation, recreation, and tourism [Aesthetic benefits; Ecotourism and nature watching; Walking, hiking and general recreation; Boating, swimming and diving; Hunting or fishing if permitted; Specified traditional fishing]',
-                'Intellectual interactions and performances [Science – Research; Educational; Cultural heritage; etc.]',
-                'Spiritual and/or emblematic [Symbolic or historic; Sacred or religious; etc.]'
-            ],
-            'group3' => [
-                'Remediation of air and water pollutants [Air quality; Water purification; Waste removal/neutralisation; Waste regulation; etc.]',
-                'Erosion prevention and maintenance of soil fertility [Flood control; Prevention of coastal erosion; Drought control; Storm protection; Water erosion control; Wind erosion control; Prevention of coastal erosion; etc.]'
-            ],
-            'group4' => [
-                'Provisioning lands (agriculture, livestock, forests) [Soil formation, structure and fertility; Grazing lands, Woodland habitats, etc.]',
-                'Habitats for animals and plants [Bird nesting sites – sea/river/lake spawning grounds - Nursery habitats (e.g. corals, bees, etc.); Plants for pollination, etc.)]'
-            ]
+            'group3' => ['Nutrition: human food vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food animal (wild/farmed meat, insects, etc.)', 'Medicines and blue biotechnology (fish oil)', 'Fish/livestock feed (wild, farmed, bait)'],
+            'group4' => ['Nutrition: drinking water', 'water for hygiene, water for agriculture, water for fish/livestock water for energy'],
+            'group5' => ['High value timber', 'Timber for local construction', 'Stems - fibres (palms, kenaf, etc.)', 'Other fibres (leaves, kapok, coco, etc.)', 'Ornamental and aquarian resources (seeds, shells and fish collection)', 'Sand (building)'],
+            'group6' => ['Fuelwood and biofuels', 'Wind for energy', 'Fertiliser'],
+            'group7' => ['Aesthetic benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Boating, swimming and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],
+            'group8' => ['Science – Research', 'Educational', 'Cultural heritage'],
+            'group9' => ['Symbolic or historic', 'Sacred or religious'],
+            'group10' => ['Air quality', 'Water purification', 'Waste removal/neutralisation', 'Waste regulation'],
+            'group11' => ['Flood control', 'Prevention of coastal erosion', 'Drought control', 'Storm protection', 'Water erosion control', 'Wind erosion control', 'Prevention of coastal erosion'],
+            'group12' => ['Soil formation, structure and fertility', 'Grazing lands, Woodland habitats'],
+            'group13' => ['Bird nesting sites – sea/river/lake spawning grounds - Nursery habitats (e.g. corals, bees, etc.)', 'Plants for pollination, etc.)']
         ],
-        'module_info' => '',
+        'module_info' =>
+            '<b>Dependence</b>: Dependence of the stakeholder’s human well-being on the OECM’ key element</br >' .
+            '<b>Access</b>: Access rules to be applied by stakeholders in the management (or operation?) of OECM’ key elements</br >' .
+            '<b>Rivalry</b>: Conflict in the use of the OECM’ key element due to a lack of access regulations, insufficient resources, etc.</br >' .
+            '<b>Involvement</b>: Stakeholder’ involvement in the governance of the OECM’ key element. Is your community / group involved in management of the OECM with regards to the key elements?</br >' .
+            '<b>Accountability</b>: Stakeholder’ accountability in the governance and management of the OECM’ key element. Is your community or group committed to following the rules and taking accountability for the results of your operations to all stakeholders to ensure good management and governance of the key elements of the OECM?</br >' .
+            '<b>Orientation</b>: Stakeholders contribution to long-term objectives orientation of the OECM’ key element. Is your community or group dedicated to achieving the common long-term management and governance goals based on the equity and sustainable use of the OECM\'s key elements by all stakeholders?</br >',
+            '<b>Note/Description</b>: Record important information on access and governance</br >',
         'ratingLegend' => [
-            'Impact' => [
-                '0' => 'No impact',
-                '1' => 'Low impact',
-                '2' => 'Medium impact',
-                '3' => 'High impact',
+            'Dependence' => [
+                '0' => 'Very low',
+                '1' => 'Low',
+                '2' => 'Medium',
+                '3' => 'High',
             ],
-            'Role' => [
-                '0' => 'No role',
-                '1' => 'Little role (e.g., only advice)',
-                '2' => 'Medium role (some mix of advice, analysis, planning, implementation and monitoring)',
-                '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
-            ]
         ],
     ],
 
