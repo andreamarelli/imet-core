@@ -94,6 +94,7 @@ return [
             'Observation' => 'Observation',
         ]
     ],
+
     'Contexts' => [
         'title' => 'References of historical, political, legal and institutional and socio-economic contexts of the OECM',
         'fields' => [
@@ -112,6 +113,7 @@ return [
         ],
         'module_info' => 'Data at national level with verification at local level'
     ],
+
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
@@ -287,46 +289,40 @@ return [
         'module_info' => '<b>Species types</b> <ul> <li><b>EXP</b>: Exploited species</li> <li><b>PRT</b>: : Protected species</li> <li><b>DSG</b>: Disappearing species</li></ul>'
     ],
 
-
     'StakeholdersNaturalResources' => [
         'title' => 'Stakeholders involved or impacting in the use of natural resources of the OECM',
         'fields' => [
-            'Element' => 'Elements',
-            'GeographicalProximity' => 'Stakeholder’s geographical proximity to the OECM',
-            'Engagement' => 'Stakeholder’s engagement with OECM\'s NR',
-            'Impact' => 'Stakeholder’s impact on NR in the OECM',
-            'Role' => 'Stakeholder’s role in NR management in the OECM',
+            'Element' => 'Stakeholder',
+            'GeographicalProximity' => 'Geographical proximity to the OECM',
+            'Engagement' => 'Engagement with OECM\'s NR',
+            'Impact' => 'Impact on NR in the OECM',
+            'Role' => 'Role in NR management in the OECM',
             'Comments' => 'Note',
         ],
+        'titles' => [
+            'title0' => 'Community/group or other',
+            'title1' => 'Economic operators',
+            'title2' => 'Government',
+            'title3' => 'NGOs, Scientists and Donors',
+        ],
         'groups' => [
-            'group0' => 'Community/group or other',
-            'group1' => 'Economic operators (Identify groups of IPLCs and not IPLCs operating in market economy',
-            'group2' => 'Government',
-            'group3' => 'NGOs, Scientists and Donors',
+            'group0' => 'Traditional authorities (Identify the traditional authorities)',
+            'group1' => 'Indigenous peoples and local communities (IPLCs*) (Identify the ILPCs community/group)',
+            'group2' => 'Not Indigenous peoples and local communities (IPLCs) (Identify the not ILPCs community/group)',
+            'group3' => 'Disadvantaged groups, minorities, …) (Identify the disadvantaged groups as women’s associations, youth groups, etc.)',
+            'group4' => 'Other Community/group (Identify others community/group)',
+
+            'group5' => 'IPLCs operating in market economy of natural resources (Identify groups of IPLCs operating in market economy of timber, non-timber, fisheries, medicinal plant, tourism, etc.)',
+            'group6' => 'NOT IPLCs operating in market economy of natural resources (Identify groups of not IPLCs operating in market economy of forest, fishing, tourism, agriculture, mining -coal, diamonds, water, sand etc., etc.)',
+
+            'group7' => 'Local authorities (Identify local elected and appointed officials and parliament members, territorial / departmental and municipal council, land services environment services, etc.)',
+            'group8' => 'National authorities (Identify national Ministry or department in charge of NR management Central government Armed forces (paramilitary police force and navy, etc.)',
+
+            'group9' => 'NGOs (Identify Social rights NGO, Environmental NGO, Development NGO, etc.)',
+            'group10' => 'Scientists/Researchers (Identify scientists/researchers, etc.)',
+            'group11' => 'Donors (Identify private and public donors, etc.)',
+
         ],
-        'predefined_values' => [
-            'group0' => [
-                'Traditional authorities (Identify the traditional authorities)',
-                'Indigenous peoples and local communities (IPLCs*) (Identify the ILPCs community/group)',
-                'Not Indigenous peoples and local communities (IPLCs) (Identify the not ILPCs community/group)',
-                'Disadvantaged groups, minorities, …) (Identify the disadvantaged groups as women’s associations, youth groups, etc.)',
-                'Other Community/group (Identify others community/group)'
-            ],
-            'group1' => [
-                'IPLCs operating in market economy of natural resources (Identify groups of IPLCs operating in market economy of timber, non-timber, fisheries, medicinal plant, tourism, etc.)',
-                'NOT IPLCs operating in market economy of natural resources (Identify groups of not IPLCs operating in market economy of forest, fishing, tourism, agriculture, mining -coal, diamonds, water, sand etc., etc.)'
-            ],
-            'group2' => [
-                'Local authorities (Identify local elected and appointed officials and parliament members, territorial / departmental and municipal council, land services environment services, etc.)',
-                'National authorities (Identify national Ministry or department in charge of NR management Central government Armed forces (paramilitary police force and navy, etc.)'
-            ],
-            'group3' => [
-                'NGOs (Identify Social rights NGO, Environmental NGO, Development NGO, etc.)',
-                'Scientists/Researchers (Identify scientists/researchers, etc.)',
-                'Donors (Identify private and public donors, etc.)'
-            ]
-        ],
-        'module_info' => '',
         'ratingLegend' => [
             'Impact' => [
                 '0' => 'No impact',

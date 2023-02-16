@@ -26,24 +26,7 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
             ['name' => 'Comments',               'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Comments')],
         ];
 
-        $this->module_groups = [
-            'group0' => trans('imet-core::oecm_context.StakeholdersNaturalResources.groups.group0'),
-            'group1' => trans('imet-core::oecm_context.StakeholdersNaturalResources.groups.group1'),
-            'group2' => trans('imet-core::oecm_context.StakeholdersNaturalResources.groups.group2'),
-            'group3' => trans('imet-core::oecm_context.StakeholdersNaturalResources.groups.group3'),
-        ];
-
-        $this->predefined_values = [
-            'field' => 'Element',
-            'values' => [
-                'group0' => trans('imet-core::oecm_context.StakeholdersNaturalResources.predefined_values.group0'),
-                'group1' => trans('imet-core::oecm_context.StakeholdersNaturalResources.predefined_values.group1'),
-                'group2' => trans('imet-core::oecm_context.StakeholdersNaturalResources.predefined_values.group2'),
-                'group3' => trans('imet-core::oecm_context.StakeholdersNaturalResources.predefined_values.group3')
-            ]
-        ];
-
-        $this->module_info = trans('imet-core::oecm_context.StakeholdersNaturalResources.module_info');
+        $this->module_groups = trans('imet-core::oecm_context.StakeholdersNaturalResources.groups');
         $this->ratingLegend = trans('imet-core::oecm_context.StakeholdersNaturalResources.ratingLegend');
 
         parent::__construct($attributes);
