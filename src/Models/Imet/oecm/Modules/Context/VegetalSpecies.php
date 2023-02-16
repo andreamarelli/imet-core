@@ -23,7 +23,7 @@ class VegetalSpecies extends Modules\Component\ImetModule
             ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ProtectedSpecies')],
             ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DisappearingSpecies')],
             ['name' => 'InvasiveSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.InvasiveSpecies')],
-            ['name' => 'PopulationEstimation', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.PopulationEstimation')],
+            ['name' => 'PopulationEstimation', 'type' => 'dropdown-ImetOECM_PopulationStatus', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.PopulationEstimation')],
             ['name' => 'DescribeEstimation', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DescribeEstimation')],
             ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.Comments')],
         ];

@@ -101,6 +101,13 @@ return [
         'market_economy' => 'Market economy'
     ],
 
+    'PopulationStatus' => [
+        'scarce'            => 'Scarse',
+        'below_optimum'     => 'Below optimum',
+        'optimum'           => 'Optimum',
+        'exceeding_optimum' => 'Exceeding optimum'
+    ],
+
     'Access' => [
         'no_access' => 'No access',
         'exclusion' => 'Exclusion (criteria for access, use, withdrawal, management)',
