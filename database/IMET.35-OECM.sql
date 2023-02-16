@@ -66,6 +66,26 @@ CREATE TABLE imet_oecm.context_encoding_responsables_interviewers
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE imet_oecm.context_governance
+(
+    id                          serial PRIMARY KEY,
+    "FormID"                    integer,
+    "UpdateBy"                  integer,
+    "UpdateDate"                character varying(30),
+    "Stakeholder"               text,
+    "StakeholderType"           character varying(250),
+    "GovernanceModel"           character varying(250),
+    "AdditionalInfo"            text,
+    "ManagementUnique"          character varying(125),
+    "ManagementName"            text,
+    "ManagementList"            text,
+    "ManagementType"            character varying(250),
+    "DateOfCreation"            character varying(125),
+    "OfficialRecognition"       boolean,
+    "SupervisoryInstitution"    text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE imet_oecm.context_general_info
 (
     id                    serial PRIMARY KEY,
@@ -80,7 +100,8 @@ CREATE TABLE imet_oecm.context_general_info
     "Country"             character(3),
     "CreationYear"        integer,
     "ReferenceText"       text,
-    "ReferenceTextValues" text,
+    "Ownership"           character varying(350),
+    "Importance" text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 

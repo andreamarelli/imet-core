@@ -38,7 +38,8 @@ function imet_selection_lists(string $type): array
     if (Str::startsWith($type, 'ImetV1')
         || Str::startsWith($type, 'ImetV2')
         || Str::startsWith($type, 'Imet_')
-        || Str::startsWith($type, 'ImetOECM')) {
+        || Str::startsWith($type, 'OECM_')
+        || Str::startsWith($type, 'ImetOECM_')) {
         preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
 
 

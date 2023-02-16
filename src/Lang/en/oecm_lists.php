@@ -1,33 +1,64 @@
 <?php
 return [
-    'ManagementType' => [
-        'Association',
-        'Community and indigenous group',
-        'Private',
-        'Faith-based organization',
-        'NGO',
-        'public organization',
-        'other',
-        'concession (eg. tourism)',
-        'collaboration',
-        'PPP (Public/Private Partnership)'
+
+    'GovernanceModel' => [
+        'government' => 'Governance by government',
+        'shared' => 'Shared governance',
+        'private' => 'Private governance',
+        'indigenous' => 'Governance by indigenous peoples and local communities',
+        'not_reported' => 'Not Reported'
     ],
 
-    'GovernanceType' => [
-        'Community-based conservation (CBC)',
-        'CBM (Community-based management (CBM)',
-        'CBA (Conservation Based Area)',
-        'Locally Managed Marine Areas - LMMA',
-        'Indigenous Community Conserved Areas - ICCAs',
-        'Protected and Conserved Areas (PCAs)',
+    'StakeholderType' => [
+        'Academic',
+        'Confessionnel',
+        'Independent',
+        'NGO / ASBL',
+        'International organisation',
+        'Private',
+        'Project / Program',
+        'Public (state)',
         'Other'
     ],
 
-    'PaType' => [
-        'terrestrial' => 'Terrestrial',
-        'marine_and_coastal' => 'Marine and coastal',
-        'mixed' => 'Mixed',
+    'ManagementUnique' => [
+        'unique' => 'A specified entity',
+        'multiple' => 'An agreed upon combination of entities'
     ],
+
+    'ManagementType'=> [
+        'association' => 'Association',
+        'community' => 'Community and indigenous group',
+        'private' => 'Private',
+        'faith_based' => 'Faith-based organization',
+        'ngo' => 'NGO',
+        'public' => 'public organization',
+        'other' => 'other'
+    ],
+
+    'DateOfCreation'=> [
+        'always_existed' => 'Has always existed',
+        'not_known' => 'Not known'
+    ],
+
+    'PaType' => [
+        'terrestrial' => 'Terrestrial and/or freshwater',
+        'marine_and_coastal' => 'Marine',
+        'mixed' => 'Partially marine and terrestrial (or freshwater)',
+    ],
+
+    'Ownership' => [
+        'State',
+        'Communal',
+        'Individual landowners',
+        'For-profit organisations',
+        'Non-profit organisations',
+        'Joint ownership',
+        'Multiple ownership',
+        'Contested',
+        'Not Reported'
+    ],
+
     'Habitats' => [
         # Forest
         'Forest temperate',

@@ -7,12 +7,13 @@ return [
             'CompleteName' => 'Full name of the OECM',
             'UsedName' => 'Name by which OECM is referred to',
             'CompleteNameWDPA' => 'Name of the OECM in the WDPA site',
-            'WDPA' => 'WPDA site code  WDPA',
+            'WDPA' => 'WPDA',
             'Type' => 'typology',
             'Country' => 'Country',
             'CreationYear' => 'Year created',
             'ReferenceText' => 'Reference to the designation of the gazetting text',
-            'ReferenceTextValues' => 'What are the main values for which the area has been designated? (Provide a list and then a brief description)',
+            'Ownership' => 'OECM ownership type',
+            'Importance' => 'What are the main values for which the area has been designated? (Provide a list and then a brief description)',
         ],
         'module_info' => '<b>Introduction to typology</b>: IMET identifies three categories of conserved areas: (1) Terrestrial protected area (2)
             Marine and Coastal protected area (3) OECM - Other Effective Conservation Measures (OECM).<br />
@@ -31,20 +32,27 @@ return [
             in cases where the governance authority prefers the area to be considered an OECM.<br/>
             <strong>If your site is protected area, please use the IMET for Protected Area</strong>',
     ],
+
     'Governance' => [
         'title' => 'Governance and Management Entity',
         'fields' => [
-            'Stakeholder' => 'NList your stakeholder (if any)',
-            'InstitutionType' => 'Kind of institution',
-            'CreationYear' => 'Year created',
-            'OfficialRecognition' => 'Official recognition',
-            'SupervisoryInstitution' => 'Supervisory institution',
-            'Type' => 'Governance model',
-            'Comments' => 'Additional information on governance model (if needed)',
+            'Stakeholder' => 'Stakeholder',
+            'StakeholderType' => 'Kind of institution',
+            'GovernanceModel' => 'Governance model',
+            'AdditionalInfo' => 'Additional information on governance model (if needed)',
+            'ManagementUnique' => 'Determine the entity in charge of the management and governance of the OECM',
+            'ManagementName' => 'Name',
+            'ManagementList' => 'List of entities involved in the daily management and governance (do not list partners)',
+            'ManagementType' => 'Type',
+            'DateOfCreation' => 'Date of creation',
+            'OfficialRecognition' => 'Official Recognition: Has the Management Entity received an official recognition from the national or regional authorities?',
+            'SupervisoryInstitution' => 'Supervisory Institution (if any)',
         ],
         'governance' => 'Governance',
         'stakeholders' => 'Stakeholders',
+        'management' => 'Management Entity',
     ],
+
     'SpecialStatus' => [
         'title' => 'Special designations (World Heritage, MAB, Ramsar site, IBAs, SPAMI, LMMA, etc. )',
         'fields' => [

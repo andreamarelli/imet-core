@@ -28,7 +28,7 @@ class Imet extends BaseImetForm
             Modules\Context\ResponsablesInterviewers::class,
             Modules\Context\ResponsablesInterviewees::class,
             Modules\Context\GeneralInfo::class,
-          //Modules\Context\Governance::class
+            Modules\Context\Governance::class,
             Modules\Context\SpecialStatus::class,
             Modules\Context\Networks::class,
             Modules\Context\Missions::class,
