@@ -311,13 +311,10 @@ return [
             'group2' => 'Not Indigenous peoples and local communities (IPLCs) (Identify the not ILPCs community/group)',
             'group3' => 'Disadvantaged groups, minorities, …) (Identify the disadvantaged groups as women’s associations, youth groups, etc.)',
             'group4' => 'Other Community/group (Identify others community/group)',
-
             'group5' => 'IPLCs operating in market economy of natural resources (Identify groups of IPLCs operating in market economy of timber, non-timber, fisheries, medicinal plant, tourism, etc.)',
             'group6' => 'NOT IPLCs operating in market economy of natural resources (Identify groups of not IPLCs operating in market economy of forest, fishing, tourism, agriculture, mining -coal, diamonds, water, sand etc., etc.)',
-
             'group7' => 'Local authorities (Identify local elected and appointed officials and parliament members, territorial / departmental and municipal council, land services environment services, etc.)',
             'group8' => 'National authorities (Identify national Ministry or department in charge of NR management Central government Armed forces (paramilitary police force and navy, etc.)',
-
             'group9' => 'NGOs (Identify Social rights NGO, Environmental NGO, Development NGO, etc.)',
             'group10' => 'Scientists/Researchers (Identify scientists/researchers, etc.)',
             'group11' => 'Donors (Identify private and public donors, etc.)',
