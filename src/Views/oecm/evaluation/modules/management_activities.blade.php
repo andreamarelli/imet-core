@@ -27,20 +27,12 @@
             {{--  fields  --}}
             @foreach($definitions['fields'] as $i => $field)
                 <td>
-                    @if($i===0 && $group_key==='group6')
-                        @include('modular-forms::module.edit.field.vue', [
-                             'type' => 'text-area',
-                             'v_value' => 'records[\''.$group_key.'\'][index].'.$field['name'],
-                             'id' => "'".$definitions['module_key']."_".$group_key."_'+index+'_".$field['name']."'"
-                         ])
-                    @else
-                        @include('modular-forms::module.edit.field.module-to-vue', [
-                            'definitions' => $definitions,
-                            'field' => $field,
-                            'vue_record_index' => 'index',
-                            'group_key' => $group_key
-                        ])
-                    @endif
+                    @include('modular-forms::module.edit.field.module-to-vue', [
+                        'definitions' => $definitions,
+                        'field' => $field,
+                        'vue_record_index' => 'index',
+                        'group_key' => $group_key
+                    ])
                 </td>
             @endforeach
             <td>
@@ -49,30 +41,16 @@
                     'type' => 'hidden',
                     'v_value' => 'item.'.$definitions['primary_key']
                 ])
-                @if($group_key==='group6')
-                    <span v-if="typeof item.__predefined === 'undefined'">
-                            @include('modular-forms::buttons.delete_item')
-                        </span>
-                @endif
+
             </td>
         </tr>
         </tbody>
 
-        @if($group_key==='group6')
-            <tfoot v-if="max_rows==null || records.length < max_rows">
-            {{-- add button --}}
-            <tr>
-                <td colspan="{{ count($definitions['fields']) + 1 }}">
-                    @include('modular-forms::buttons.add_item')
-                </td>
-            </tr>
-            </tfoot>
-        @endif
 
     </table>
 
-    <br />
-    <br />
+    <br/>
+    <br/>
 
 @endforeach
 
@@ -84,27 +62,27 @@
             data: @json($vue_data),
 
             methods: {
-                plain_name(fullName){
-                    return fullName!=null && this.isTaxonomy(fullName)
+                plain_name(fullName) {
+                    return fullName != null && this.isTaxonomy(fullName)
                         ? this.getScientificName(fullName)
                         : fullName;
                 },
 
-                tooltip(fullName){
-                    return fullName!=null && this.isTaxonomy(fullName)
+                tooltip(fullName) {
+                    return fullName != null && this.isTaxonomy(fullName)
                         ? fullName.replace(/\|/g, " ")
                         : '';
                 },
 
-                isTaxonomy(fullName){
-                    return (fullName.match(/\|/g) || []).length===5
+                isTaxonomy(fullName) {
+                    return (fullName.match(/\|/g) || []).length === 5
                 },
 
-                getScientificName (fullName){
+                getScientificName(fullName) {
                     let sciName = null;
-                    if(fullName!==null){
+                    if (fullName !== null) {
                         let taxonomy = fullName.split("|");
-                        sciName =  taxonomy[4] + ' ' + taxonomy[5]
+                        sciName = taxonomy[4] + ' ' + taxonomy[5]
                     }
                     return sciName;
                 },

@@ -30,8 +30,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
             'group0' => trans('imet-core::oecm_evaluation.StakeholderCooperation.groups.group0'),
             'group1' => trans('imet-core::oecm_evaluation.StakeholderCooperation.groups.group1'),
             'group2' => trans('imet-core::oecm_evaluation.StakeholderCooperation.groups.group2'),
-            'group3' => trans('imet-core::oecm_evaluation.StakeholderCooperation.groups.group3'),
-            'group4' => trans('imet-core::oecm_evaluation.StakeholderCooperation.groups.group4'),
+            'group3' => trans('imet-core::oecm_evaluation.StakeholderCooperation.groups.group3')
         ];
 
         $this->predefined_values = [

@@ -13,6 +13,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LawEnforcementImplementation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGovernance;
@@ -64,8 +65,9 @@ class Imet_Eval extends Imet
             EquipmentMaintenance::class,
 
             ManagementActivities::class,
+            LawEnforcementImplementation::class,
             AssistanceActivities::class,
-            //StakeholderCooperation::class,
+            StakeholderCooperation::class,
             EnvironmentalEducation::class,
             VisitorsManagement::class,
             NaturalResourcesMonitoring::class,
