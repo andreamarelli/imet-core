@@ -427,65 +427,70 @@ CREATE TABLE imet_oecm.designation
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_objectives_key_elements (
-    id              serial PRIMARY KEY,
-    "FormID"        integer,
-    "UpdateBy"      integer,
-    "UpdateDate"    character varying(30),
-    "Element"       text,
-    "Status"        text,
-    "Objective"     text,
-    "Comments"      text,
+CREATE TABLE imet_oecm.eval_objectives_key_elements
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Element"    text,
+    "Status"     text,
+    "Objective"  text,
+    "Comments"   text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_objectives_supports_and_contraints (
-    id              serial PRIMARY KEY,
-    "FormID"        integer,
-    "UpdateBy"      integer,
-    "UpdateDate"    character varying(30),
-    "Element"       text,
-    "Status"        text,
-    "Objective"     text,
-    "Comments"      text,
+CREATE TABLE imet_oecm.eval_objectives_supports_and_contraints
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Element"    text,
+    "Status"     text,
+    "Objective"  text,
+    "Comments"   text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_regulations_adequacy (
-    id                  serial PRIMARY KEY,
-    "FormID"            integer,
-    "UpdateBy"          integer,
-    "UpdateDate"        character varying(30),
-    "Regulation"        text,
-    "EvaluationScore"   numeric,
-    "Comments"          text,
+CREATE TABLE imet_oecm.eval_regulations_adequacy
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Regulation"      text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_design_adequacy (
-    id                  serial PRIMARY KEY,
-    "FormID"            integer,
-    "UpdateBy"          integer,
-    "UpdateDate"        character varying(30),
-    "Values"            text,
-    "EvaluationScore"   numeric,
-    "Comments"          text,
+CREATE TABLE imet_oecm.eval_design_adequacy
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Values"          text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE imet_oecm.eval_boundary_level
 (
-    id                      serial PRIMARY KEY,
-    "FormID"                integer,
-    "UpdateBy"              integer,
-    "UpdateDate"            character varying(30),
-    "Boundaries"            numeric,
-    "Adequacy"              numeric,
-    "Comments"              text,
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Boundaries" numeric,
+    "Adequacy"   numeric,
+    "Comments"   text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_management_plan (
+CREATE TABLE imet_oecm.eval_management_plan
+(
     id                  serial PRIMARY KEY,
     "FormID"            integer,
     "UpdateBy"          integer,
@@ -495,11 +500,12 @@ CREATE TABLE imet_oecm.eval_management_plan (
     "PlanApproved"      boolean,
     "PlanImplemented"   boolean,
     "PlanAdequacyScore" numeric,
-    "Comments" text,
+    "Comments"          text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_work_plan (
+CREATE TABLE imet_oecm.eval_work_plan
+(
     id                  serial PRIMARY KEY,
     "FormID"            integer,
     "UpdateBy"          integer,
@@ -509,78 +515,265 @@ CREATE TABLE imet_oecm.eval_work_plan (
     "PlanApproved"      boolean,
     "PlanImplemented"   boolean,
     "PlanAdequacyScore" numeric,
-    "Comments" text,
-    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE imet_oecm.eval_objectives (
-    id                  serial PRIMARY KEY,
-    "FormID"            integer,
-    "UpdateBy"          integer,
-    "UpdateDate"        character varying(30),
-    "EvaluationScore"   numeric,
-    "Comments"          text,
-    "Objective"         text,
-    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE imet_oecm.eval_objectives_planification (
-    id              serial PRIMARY KEY,
-    "FormID"        integer,
-    "UpdateBy"      integer,
-    "UpdateDate"    character varying(30),
-    "Element"       text,
-    "Status"        text,
-    "Objective"     text,
-    "Comments"      text,
-    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE imet_oecm.eval_budget_adequacy (
-    id                  serial PRIMARY KEY,
-    "FormID"            integer,
-    "UpdateBy"          integer,
-    "UpdateDate"        character varying(30),
-    "EvaluationScore"   numeric,
-    "Percentage"        numeric,
     "Comments"          text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_budget_securization (
-    id                  serial PRIMARY KEY,
-    "FormID"            integer,
-    "UpdateBy"          integer,
-    "UpdateDate"        character varying(30),
-    "EvaluationScore"   numeric,
-    "Percentage"        numeric,
-    "Comments"          text,
+CREATE TABLE imet_oecm.eval_objectives
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    "Objective"       text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_objectives_planification
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Element"    text,
+    "Status"     text,
+    "Objective"  text,
+    "Comments"   text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_budget_adequacy
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "EvaluationScore" numeric,
+    "Percentage"      numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_budget_securization
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "EvaluationScore" numeric,
+    "Percentage"      numeric,
+    "Comments"        text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
-CREATE TABLE imet_oecm.eval_objectives_intrants (
-     id              serial PRIMARY KEY,
-     "FormID"        integer,
-     "UpdateBy"      integer,
-     "UpdateDate"    character varying(30),
-     "Element"       text,
-     "Status"        text,
-     "Objective"     text,
-     "Comments"      text,
-     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+CREATE TABLE imet_oecm.eval_objectives_intrants
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Element"    text,
+    "Status"     text,
+    "Objective"  text,
+    "Comments"   text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_objectives_processus (
-     id              serial PRIMARY KEY,
-     "FormID"        integer,
-     "UpdateBy"      integer,
-     "UpdateDate"    character varying(30),
-     "Element"       text,
-     "Status"        text,
-     "Objective"     text,
-     "Comments"      text,
-     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+CREATE TABLE imet_oecm.eval_objectives_processus
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Element"    text,
+    "Status"     text,
+    "Objective"  text,
+    "Comments"   text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_staff_competence
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Theme"           text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_hr_management_politics
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Conditions"      text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_administrative_management
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Aspect"          text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_equipment_maintenance
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Equipment"       text,
+    "AdequacyLevel"   numeric,
+    "EvaluationScore" numeric,
+    "Percentage"      numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_management_activities
+(
+    id                 serial PRIMARY KEY,
+    "FormID"           integer,
+    "UpdateBy"         integer,
+    "UpdateDate"       character varying(30),
+    "Activity"         text,
+    "EvaluationScore"  numeric,
+    "InManagementPlan" numeric,
+    "Comments"         text,
+    group_key          character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_assistance_activities
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Activity"        text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    group_key         character varying(25),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_actors_relations
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Activity"        text,
+    "EvaluationScore" numeric,
+    "Percentage"      numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_visitors_management
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Aspect"          text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    group_key         character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_natural_resources_monitoring
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Aspect"          text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_work_program_implementation
+(
+    id                 serial PRIMARY KEY,
+    "FormID"           integer,
+    "UpdateBy"         integer,
+    "UpdateDate"       character varying(30),
+    "Activity"         text,
+    "EvaluationScore"  numeric,
+    "Percentage"       numeric,
+    "Comments"         text,
+    "Action"           text,
+    "Category"         text,
+    "TargetedActivity" text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_management_governance
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Patrol"     numeric,
+    "Comments"   text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_achived_objectives
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Objective"       text,
+    "EvaluationScore" numeric,
+    "Percentage"      numeric,
+    "Comments"        text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_life_quality_impact
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Element"         text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    group_key         character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_empowerment_governance
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Conditions"      text,
+    "EvaluationScore" numeric,
+    "Comments"        text,
+    group_key         character varying(25),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 COMMIT;

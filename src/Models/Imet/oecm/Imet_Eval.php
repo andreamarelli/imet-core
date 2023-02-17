@@ -2,12 +2,22 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AdministrativeManagement;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AssistanceActivities;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGovernance;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesIntrants;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesKeyElements;
@@ -15,7 +25,12 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesPlanifi
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesProcessus;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesSupportsAndConstraints;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
 
 class Imet_Eval extends Imet
 {
@@ -42,10 +57,29 @@ class Imet_Eval extends Imet
             ObjectivesIntrants::class
         ],
         'process' => [
-            ObjectivesProcessus::class
+            StaffCompetence::class,
+            HRmanagementPolitics::class,
+            EmpowermentGovernance::class,
+            AdministrativeManagement::class,
+            EquipmentMaintenance::class,
+
+            ManagementActivities::class,
+            AssistanceActivities::class,
+            //StakeholderCooperation::class,
+            EnvironmentalEducation::class,
+            VisitorsManagement::class,
+            NaturalResourcesMonitoring::class,
+            ObjectivesProcessus::class,
+
         ],
-        'outputs' => [],
-        'outcomes' => [],
+        'outputs' => [
+            WorkProgramImplementation::class,
+            ManagementGovernance::class
+        ],
+        'outcomes' => [
+            AchievedObjectives::class,
+            LifeQualityImpact::class,
+        ],
         'management_effectiveness' => [],
     ];
 
