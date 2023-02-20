@@ -10,6 +10,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipmentAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesIntrants;
@@ -46,6 +47,7 @@ class Imet_Eval extends Imet
             CapacityAdequacy::class,
             BudgetAdequacy::class,
             BudgetSecurization::class,
+            ManagementEquipmentAdequacy::class,
             ObjectivesIntrants::class
         ],
         'process' => [

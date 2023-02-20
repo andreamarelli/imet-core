@@ -626,8 +626,6 @@ CREATE TABLE imet_oecm.eval_capacity_adequacy (
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
-
 CREATE TABLE imet_oecm.eval_budget_adequacy (
     id                  serial PRIMARY KEY,
     "FormID"            integer,
@@ -650,6 +648,17 @@ CREATE TABLE imet_oecm.eval_budget_securization (
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE imet_oecm.eval_management_equipment_adequacy (
+    id serial PRIMARY KEY,
+    "FormID" integer,
+    "UpdateBy" integer,
+    "UpdateDate" character varying(30),
+    "Equipment" text,
+    "Adequacy" numeric,
+    "PresentNeeds" numeric,
+    "Comments" text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 CREATE TABLE imet_oecm.eval_objectives_intrants (
      id              serial PRIMARY KEY,

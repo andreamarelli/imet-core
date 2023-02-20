@@ -321,10 +321,6 @@ return [
             'EvaluationScore' => 'Availability',
             'Comments' => 'Comments/Explanation',
         ],
-        'groups' => [
-            'group0' => 'Governance',
-            'group1' => 'Key elements of the OECM'
-        ],
         'ratingLegend' => [
             'EvaluationScore' => [
                 '0' => 'No or little information available to assist in the management (0-30% of the needs)',
@@ -429,6 +425,35 @@ return [
         ]
     ],
 
+    'ManagementEquipmentAdequacy' => [
+        'title' => 'Infrastructure, equipment and facilities',
+        'fields' => [
+            'Equipment' => 'Criteria – Concept measured – Variable',
+            'Adequacy' => 'A) Adequacy of infrastructure, equipment and facilities  (CTX 3.3)',
+            'PresentNeeds' => 'B) Present needs for the availability for OECM management',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'adequacy' => 'Adequacy of infrastructure, equipment and facilities',
+        'ratingLegend' => [
+            'Adequacy' => [
+                '0' => 'Completely inadequate (0-30% of the needs)',
+                '1' => 'Somewhat inadequate (31-60% of the needs)',
+                '2' => 'Adequate (61-90% of the needs)',
+                '3' => 'Fully adequate (91-100% of the needs)',
+            ],
+            'PresentNeeds' => [
+                '0' => 'Normal',
+                '1' => 'High',
+                '2' => 'Very high',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are the infrastructure, equipment and facilities of the OECM adequate for the management requirements? The infrastructure, equipment and facilities are important to ensure and enhance the operational efficiency and effectiveness of the OECM.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate: A) the adequacy of infrastructure, equipment and facilities (results automatically calculated on the basis of the analysis of the context of intervention, point CTX 3.3), B) the present needs for the availability of specific infrastructure, equipment and facilities for the OECM',
+        ]
+    ],
 
     'ObjectivesIntrants' => [
         'module_info' => 'Establish and describe conservation objectives for inputs of the OECM<br />The objectives listed below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
