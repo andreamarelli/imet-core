@@ -3,6 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
 use \Illuminate\Support\Facades\View;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -10,11 +11,11 @@ $view_groups = View::make('imet-core::components.module.show.group_with_nothing_
 
 // Inject titles
 $dom = HtmlPageCrawler::create('<div>'.$view_groups.'</div>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.titles.title0').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.titles.title1').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.titles.title2').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.titles.title3').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.titles.title4').'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderTrendsThreats())->titles['title0'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderTrendsThreats())->titles['title1'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderTrendsThreats())->titles['title2'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderTrendsThreats())->titles['title3'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderTrendsThreats())->titles['title4'].'</h3>');
 
 ?>
 

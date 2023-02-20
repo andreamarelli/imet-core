@@ -7,9 +7,13 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 
+/**
+ * @property $titles
+ */
 class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_analysis_stakeholders_access_governance';
+    public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -30,6 +34,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');
+        $this->titles = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles');
         $this->predefined_values = [
             'field' => 'Element',
             'values' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.predefined_values')
@@ -39,6 +44,14 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.ratingLegend');
 
         parent::__construct($attributes);
+    }
+
+
+    public static function getVueData($form_id, $collection = null): array
+    {
+        $vue_data = parent::getVueData($form_id, $collection);
+        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.warning_on_save');
+        return $vue_data;
     }
 
     /**

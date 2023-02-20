@@ -334,6 +334,7 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [
@@ -400,6 +401,8 @@ return [
                 '3' => 'High',
             ],
         ],
+        'warning_on_save' =>
+            'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>'
     ],
 
     'AnalysisStakeholderTrendsThreats' => [
@@ -411,29 +414,6 @@ return [
             'MainThreat' => 'Main threats',
             'ClimateChangeEffect' => 'Effects of climate change',
             'Comments' => 'Note/Description',
-        ],
-        'titles' => [
-            'title0' => 'Key animals and plants species in the OECM',
-            'title1' => 'Key Provisioning services',
-            'title2' => 'Key Cultural services',
-            'title3' => 'Key Regulating services',
-            'title4' => 'Key supporting services (services which enable other services)',
-        ],
-        'groups' => [
-            'group0' => 'Animals',
-            'group1' => 'Plants',
-            'group2' => 'Habitats',
-            'group3' => 'Provisioning-Nutrition',
-            'group4' => 'Provisioning-Water',
-            'group5' => 'Provisioning-Materials',
-            'group6' => 'Provisioning-Energy',
-            'group7' => 'Aesthetic appreciation, recreation, and tourism',
-            'group8' => 'Intellectual interactions and performances',
-            'group9' => 'Spiritual and/or emblematic',
-            'group10' => 'Remediation of air and water pollutants',
-            'group11' => 'Erosion prevention and maintenance of soil fertility',
-            'group12' => 'Provisioning lands (agriculture, livestock, forests)',
-            'group13' => 'Habitats for animals and plants',
         ],
         'module_info' =>
             '<b>Status</b>: Estimation of current status</br >' .

@@ -3,6 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
 use \Illuminate\Support\Facades\View;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -21,11 +22,11 @@ $other_groups = View::make('modular-forms::module.edit.type.group_table', compac
 
 // Inject titles
 $dom = HtmlPageCrawler::create('<div>'.$first_groups.$other_groups.'</div>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title0').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title1').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title2').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title3').'</h3>');
-$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title4').'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title0'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title1'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title2'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title3'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.(new AnalysisStakeholderAccessGovernance())->titles['title4'].'</h3>');
 
 ?>
 

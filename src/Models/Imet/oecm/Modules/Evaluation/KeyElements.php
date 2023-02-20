@@ -1,42 +1,36 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
+namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
-/**
- * @property $titles
- */
-class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
+class KeyElements extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.context_analysis_stakeholders_trends_threats';
+    protected $table = 'imet_oecm.eval_key_elements';
     protected $fixed_rows = true;
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = [])
-    {
+    public function __construct(array $attributes = []) {
+
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 6.1';
-        $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.title');
+        $this->module_code = 'C1.2';
+        $this->module_title = trans('imet-core::oecm_evaluation.KeyElements.title');
         $this->module_fields = [
-            ['name' => 'Element',       'type' => 'disabled', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element'), 'other' => 'rows="3"'],
-            ['name' => 'Status',        'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')],
-            ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')],
-            ['name' => 'MainThreat',    'type' => 'dropdown-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.MainThreat')],
-            ['name' => 'ClimateChangeEffect',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.ClimateChangeEffect')],
-            ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Comments')],
+            ['name' => 'Aspect',                'type' => 'disabled',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Aspect')],
+            ['name' => 'EvaluationScore',       'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.EvaluationScore')],
+            ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.IncludeInStatistics')],
+            ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Comments')],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');     // Re-use groups from CTX 5.1
         $this->titles = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles');            // Re-use titles from CTX 5.1
 
-        $this->module_info = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.module_info');
-        $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.ratingLegend');
+        $this->module_subTitle = trans('imet-core::oecm_evaluation.KeyElements.module_subTitle');
+        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.KeyElements.module_info_EvaluationQuestion');
+        $this->ratingLegend = trans('imet-core::oecm_evaluation.KeyElements.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -50,7 +44,6 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
      */
     public static function getModuleRecords($form_id, $collection = null): array
     {
-
         $module_records = parent::getModuleRecords($form_id, $collection);
         $empty_record = static::getEmptyRecord($form_id);
 
@@ -58,7 +51,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
 
         $ctx5 = Modules\Context\AnalysisStakeholderAccessGovernance::getModule($form_id);
         $preLoaded = [
-            'field' => 'Element',
+            'field' => 'Aspect',
             'values' => [
                 'group0' => $ctx5->where('group_key', 'group0')->pluck('Element')->toArray(),
                 'group1' => $ctx5->where('group_key', 'group1')->pluck('Element')->toArray(),
@@ -80,5 +73,4 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;
     }
-
 }
