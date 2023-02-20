@@ -16,7 +16,7 @@ class TrendsAndThreats extends Modules\Component\ImetModule
     {
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 6.1';
-        $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholder.title');
+        $this->module_title = trans('imet-core::oecm_context.TrendsAndThreats.title');
         $this->module_fields = [
             ['name' => 'Element', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.TrendsAndThreats.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Status', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.TrendsAndThreats.fields.Status')],

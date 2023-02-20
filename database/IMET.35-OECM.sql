@@ -412,7 +412,7 @@ CREATE TABLE imet_oecm.context_stakeholders_natural_resources
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.context_analysis_stakeholders
+CREATE TABLE imet_oecm.context_analysis_stakeholders_access_governance
 (
     id               serial PRIMARY KEY,
     "FormID"         integer,
@@ -427,6 +427,22 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders
     "Orientation"    boolean,
     "Comments"       text,
     group_key        character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.context_analysis_stakeholders_trends_threats
+(
+    id                      serial PRIMARY KEY,
+    "FormID"                integer,
+    "UpdateBy"              integer,
+    "UpdateDate"            character varying(30),
+    "Element"               text,
+    "Status"                numeric,
+    "Trend"                 numeric,
+    "MainThreat"            character varying(50),
+    "ClimateChangeEffect"   numeric,
+    "Comments"              text,
+    group_key               character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 

@@ -336,7 +336,7 @@ return [
         ],
     ],
 
-    'AnalysisStakeholder' => [
+    'AnalysisStakeholderAccessGovernance' => [
         'title' => 'Analysis per stakeholder',
         'fields' => [
             'Element' => 'Criteria',
@@ -398,6 +398,68 @@ return [
                 '1' => 'Low',
                 '2' => 'Medium',
                 '3' => 'High',
+            ],
+        ],
+    ],
+
+    'AnalysisStakeholderTrendsThreats' => [
+        'title' => 'Trends and threats on key elements – A stakeholder analysis',
+        'fields' => [
+            'Element' => 'Criteria',
+            'Status' => 'Status',
+            'Trend' => 'Dependence',
+            'MainThreat' => 'Main threats',
+            'ClimateChangeEffect' => 'Effects of climate change',
+            'Comments' => 'Note/Description',
+        ],
+        'titles' => [
+            'title0' => 'Key animals and plants species in the OECM',
+            'title1' => 'Key Provisioning services',
+            'title2' => 'Key Cultural services',
+            'title3' => 'Key Regulating services',
+            'title4' => 'Key supporting services (services which enable other services)',
+        ],
+        'groups' => [
+            'group0' => 'Animals',
+            'group1' => 'Plants',
+            'group2' => 'Habitats',
+            'group3' => 'Provisioning-Nutrition',
+            'group4' => 'Provisioning-Water',
+            'group5' => 'Provisioning-Materials',
+            'group6' => 'Provisioning-Energy',
+            'group7' => 'Aesthetic appreciation, recreation, and tourism',
+            'group8' => 'Intellectual interactions and performances',
+            'group9' => 'Spiritual and/or emblematic',
+            'group10' => 'Remediation of air and water pollutants',
+            'group11' => 'Erosion prevention and maintenance of soil fertility',
+            'group12' => 'Provisioning lands (agriculture, livestock, forests)',
+            'group13' => 'Habitats for animals and plants',
+        ],
+        'module_info' =>
+            '<b>Status</b>: Estimation of current status</br >' .
+            '<b>Trend</b>: Trend in the quantity or quality</br >' .
+            '<b>Effects of climate change</b>: Change in quality, quantity and ecosystem production due to climate factors (precipitation, temperature, extreme events)</br >',
+        'ratingLegend' => [
+            'Status' => [
+                '-2' => 'Very bad',
+                '-1' => 'Bad',
+                '0' => 'Neutral',
+                '1' => 'Good',
+                '2' => 'Very good',
+            ],
+            'Trend' => [
+                '-2' => 'Strongly decreasing',
+                '-1' => 'Decreasing',
+                '0' => 'No change',
+                '1' => 'Increasing',
+                '2' => 'Strongly Increasing',
+            ],
+            'ClimateChangeEffect' => [
+                '-2' => 'Very harmful',
+                '-1' => 'Harmful',
+                '0' => 'No change',
+                '1' => 'Beneficial',
+                '2' => 'Very beneficial',
             ],
         ],
     ],

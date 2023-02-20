@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
@@ -55,10 +56,11 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives4::class,
         ],
         'access_and_governance' => [
+            Modules\Context\AnalysisStakeholderAccessGovernance::class,
             Modules\Context\Objectives5::class,
-            Modules\Context\AnalysisStakeholder::class,
         ],
         'trends_and_threats' => [
+            Modules\Context\AnalysisStakeholderTrendsThreats::class,
             Modules\Context\Objectives6::class,
         ],
     ];

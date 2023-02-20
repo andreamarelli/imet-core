@@ -113,4 +113,13 @@ return [
         'exclusion' => 'Exclusion (criteria for access, use, withdrawal, management)',
         'open'      => 'Open (generally use or enjoy of NR including lands)'
     ],
+
+    'MainThreat' => [
+        'over_exploitation'     => 'Illegal or overexploitation',
+        'habitat_loss'          => 'Habitat loss or degradation - Infrastructures',
+        'pollution'             => 'Pollution',
+        'invasive_species'      => 'Invasive species',
+        'gas_oil_mining'        => 'gas/oil exploitation, mining',
+        'other'                 => 'Others',
+    ]
 ];
