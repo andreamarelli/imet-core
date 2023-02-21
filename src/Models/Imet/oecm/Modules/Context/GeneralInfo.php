@@ -27,10 +27,11 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'CompleteNameWDPA',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.CompleteNameWDPA')],
             ['name' => 'WDPA',  'type' => 'code',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.WDPA')],
             ['name' => 'Type',  'type' => 'blade-imet-core::oecm.context.fields.ctx11_type',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Type')],
-            ['name' => 'Country',  'type' => 'dropdown-ImetV2_Country',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Country')],
+            ['name' => 'Country',  'type' => 'dropdown-Imet_Country',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Country')],
             ['name' => 'CreationYear',  'type' => 'year',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.CreationYear')],
             ['name' => 'ReferenceText',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.ReferenceText')],
-            ['name' => 'ReferenceTextValues',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.ReferenceTextValues')],
+            ['name' => 'Ownership',  'type' => 'dropdown-ImetOECM_Ownership',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Ownership')],
+            ['name' => 'Importance',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Importance')],
         ];
 
         $this->module_info = trans('imet-core::oecm_context.GeneralInfo.module_info');

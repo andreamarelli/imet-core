@@ -7,12 +7,13 @@ return [
             'CompleteName' => 'Full name of the OECM',
             'UsedName' => 'Name by which OECM is referred to',
             'CompleteNameWDPA' => 'Name of the OECM in the WDPA site',
-            'WDPA' => 'WPDA site code  WDPA',
+            'WDPA' => 'WPDA',
             'Type' => 'typology',
             'Country' => 'Country',
             'CreationYear' => 'Year created',
             'ReferenceText' => 'Reference to the designation of the gazetting text',
-            'ReferenceTextValues' => 'What are the main values for which the area has been designated? (Provide a list and then a brief description)',
+            'Ownership' => 'OECM ownership type',
+            'Importance' => 'What are the main values for which the area has been designated? (Provide a list and then a brief description)',
         ],
         'module_info' => '<b>Introduction to typology</b>: IMET identifies three categories of conserved areas: (1) Terrestrial protected area (2)
             Marine and Coastal protected area (3) OECM - Other Effective Conservation Measures (OECM).<br />
@@ -31,20 +32,27 @@ return [
             in cases where the governance authority prefers the area to be considered an OECM.<br/>
             <strong>If your site is protected area, please use the IMET for Protected Area</strong>',
     ],
+
     'Governance' => [
         'title' => 'Governance and Management Entity',
         'fields' => [
-            'Stakeholder' => 'NList your stakeholder (if any)',
-            'InstitutionType' => 'Kind of institution',
-            'CreationYear' => 'Year created',
-            'OfficialRecognition' => 'Official recognition',
-            'SupervisoryInstitution' => 'Supervisory institution',
-            'Type' => 'Governance model',
-            'Comments' => 'Additional information on governance model (if needed)',
+            'Stakeholder' => 'Stakeholder',
+            'StakeholderType' => 'Kind of institution',
+            'GovernanceModel' => 'Governance model',
+            'AdditionalInfo' => 'Additional information on governance model (if needed)',
+            'ManagementUnique' => 'Determine the entity in charge of the management and governance of the OECM',
+            'ManagementName' => 'Name',
+            'ManagementList' => 'List of entities involved in the daily management and governance (do not list partners)',
+            'ManagementType' => 'Type',
+            'DateOfCreation' => 'Date of creation',
+            'OfficialRecognition' => 'Official Recognition: Has the Management Entity received an official recognition from the national or regional authorities?',
+            'SupervisoryInstitution' => 'Supervisory Institution (if any)',
         ],
         'governance' => 'Governance',
         'stakeholders' => 'Stakeholders',
+        'management' => 'Management Entity',
     ],
+
     'SpecialStatus' => [
         'title' => 'Special designations (World Heritage, MAB, Ramsar site, IBAs, SPAMI, LMMA, etc. )',
         'fields' => [
@@ -86,6 +94,7 @@ return [
             'Observation' => 'Observation',
         ]
     ],
+
     'Contexts' => [
         'title' => 'References of historical, political, legal and institutional and socio-economic contexts of the OECM',
         'fields' => [
@@ -104,6 +113,7 @@ return [
         ],
         'module_info' => 'Data at national level with verification at local level'
     ],
+
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
@@ -242,8 +252,8 @@ return [
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
             'InvasiveSpecies' => 'INV',
-            'PopulationEstimation' => 'Estimated status Scarce - Below optimum – Optimum – Exceeding Optimum',
-            'DescribeEstimation' => 'Optimum status Describe the optimum status',
+            'PopulationEstimation' => 'Estimated status',
+            'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
         'module_info' => '<b>Species types</b> <ul> <li><b>EXP</b>: Exploited species</li> <li><b>PRT</b>: : Protected species</li> <li><b>DSG</b>: Disappearing species</li> <li><b>INV</b>: Invasive species</li></ul>',
@@ -258,8 +268,8 @@ return [
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
             'InvasiveSpecies' => 'INV',
-            'PopulationEstimation' => 'Estimated status Scarce - Below optimum – Optimum – Exceeding Optimum',
-            'DescribeEstimation' => 'Optimum status Describe the optimum status',
+            'PopulationEstimation' => 'Estimated status',
+            'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
         'module_info' => '<b>Species types</b> <ul> <li><b>EXP</b>: Exploited species</li> <li><b>PRT</b>: : Protected species</li> <li><b>DSG</b>: Disappearing species</li> <li><b>INV</b>: Invasive species</li></ul>'
@@ -272,53 +282,44 @@ return [
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
-            'PopulationEstimation' => 'Estimated status Scarce - Below optimum – Optimum – Exceeding Optimum',
-            'DescribeEstimation' => 'Optimum status Describe the optimum status',
+            'PopulationEstimation' => 'Estimated status',
+            'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
         'module_info' => '<b>Species types</b> <ul> <li><b>EXP</b>: Exploited species</li> <li><b>PRT</b>: : Protected species</li> <li><b>DSG</b>: Disappearing species</li></ul>'
     ],
 
-
     'StakeholdersNaturalResources' => [
         'title' => 'Stakeholders involved or impacting in the use of natural resources of the OECM',
         'fields' => [
-            'Element' => 'Elements',
-            'GeographicalProximity' => 'Stakeholder’s geographical proximity to the OECM',
-            'Engagement' => 'Stakeholder’s engagement with OECM\'s NR',
-            'Impact' => 'Stakeholder’s impact on NR in the OECM',
-            'Role' => 'Stakeholder’s role in NR management in the OECM',
+            'Element' => 'Stakeholder',
+            'GeographicalProximity' => 'Geographical proximity to the OECM',
+            'Engagement' => 'Engagement with OECM\'s NR',
+            'Impact' => 'Impact on NR in the OECM',
+            'Role' => 'Role in NR management in the OECM',
             'Comments' => 'Note',
         ],
+        'titles' => [
+            'title0' => 'Community/group or other',
+            'title1' => 'Economic operators',
+            'title2' => 'Government',
+            'title3' => 'NGOs, Scientists and Donors',
+        ],
         'groups' => [
-            'group0' => 'Community/group or other',
-            'group1' => 'Economic operators (Identify groups of IPLCs and not IPLCs operating in market economy',
-            'group2' => 'Government',
-            'group3' => 'NGOs, Scientists and Donors',
+            'group0' => 'Traditional authorities (Identify the traditional authorities)',
+            'group1' => 'Indigenous peoples and local communities (IPLCs*) (Identify the ILPCs community/group)',
+            'group2' => 'Not Indigenous peoples and local communities (IPLCs) (Identify the not ILPCs community/group)',
+            'group3' => 'Disadvantaged groups, minorities, …) (Identify the disadvantaged groups as women’s associations, youth groups, etc.)',
+            'group4' => 'Other Community/group (Identify others community/group)',
+            'group5' => 'IPLCs operating in market economy of natural resources (Identify groups of IPLCs operating in market economy of timber, non-timber, fisheries, medicinal plant, tourism, etc.)',
+            'group6' => 'NOT IPLCs operating in market economy of natural resources (Identify groups of not IPLCs operating in market economy of forest, fishing, tourism, agriculture, mining -coal, diamonds, water, sand etc., etc.)',
+            'group7' => 'Local authorities (Identify local elected and appointed officials and parliament members, territorial / departmental and municipal council, land services environment services, etc.)',
+            'group8' => 'National authorities (Identify national Ministry or department in charge of NR management Central government Armed forces (paramilitary police force and navy, etc.)',
+            'group9' => 'NGOs (Identify Social rights NGO, Environmental NGO, Development NGO, etc.)',
+            'group10' => 'Scientists/Researchers (Identify scientists/researchers, etc.)',
+            'group11' => 'Donors (Identify private and public donors, etc.)',
+
         ],
-        'predefined_values' => [
-            'group0' => [
-                'Traditional authorities (Identify the traditional authorities)',
-                'Indigenous peoples and local communities (IPLCs*) (Identify the ILPCs community/group)',
-                'Not Indigenous peoples and local communities (IPLCs) (Identify the not ILPCs community/group)',
-                'Disadvantaged groups, minorities, …) (Identify the disadvantaged groups as women’s associations, youth groups, etc.)',
-                'Other Community/group (Identify others community/group)'
-            ],
-            'group1' => [
-                'IPLCs operating in market economy of natural resources (Identify groups of IPLCs operating in market economy of timber, non-timber, fisheries, medicinal plant, tourism, etc.)',
-                'NOT IPLCs operating in market economy of natural resources (Identify groups of not IPLCs operating in market economy of forest, fishing, tourism, agriculture, mining -coal, diamonds, water, sand etc., etc.)'
-            ],
-            'group2' => [
-                'Local authorities (Identify local elected and appointed officials and parliament members, territorial / departmental and municipal council, land services environment services, etc.)',
-                'National authorities (Identify national Ministry or department in charge of NR management Central government Armed forces (paramilitary police force and navy, etc.)'
-            ],
-            'group3' => [
-                'NGOs (Identify Social rights NGO, Environmental NGO, Development NGO, etc.)',
-                'Scientists/Researchers (Identify scientists/researchers, etc.)',
-                'Donors (Identify private and public donors, etc.)'
-            ]
-        ],
-        'module_info' => '',
         'ratingLegend' => [
             'Impact' => [
                 '0' => 'No impact',
@@ -333,9 +334,10 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
     ],
 
-    'AnalysisStakeholder' => [
+    'AnalysisStakeholderAccessGovernance' => [
         'title' => 'Analysis per stakeholder',
         'fields' => [
             'Element' => 'Criteria',
@@ -347,51 +349,98 @@ return [
             'Orientation' => 'Orientation',
             'Comments' => 'Note/Description',
         ],
+        'titles' => [
+            'title0' => 'Key animals and plants species in the OECM',
+            'title1' => 'Key Provisioning services',
+            'title2' => 'Key Cultural services',
+            'title3' => 'Key Regulating services',
+            'title4' => 'Key supporting services (services which enable other services)',
+        ],
         'groups' => [
-            'group0' => 'Key animals and plants species in the OECM',
-            'group1' => 'Key Provisioning services',
-            'group2' => 'Key Cultural services',
-            'group3' => 'Key Regulating services',
-            'group4' => 'Key supporting services (services which enable other services)',
+            'group0' => 'Animals',
+            'group1' => 'Plants',
+            'group2' => 'Habitats',
+            'group3' => 'Provisioning-Nutrition',
+            'group4' => 'Provisioning-Water',
+            'group5' => 'Provisioning-Materials',
+            'group6' => 'Provisioning-Energy',
+            'group7' => 'Aesthetic appreciation, recreation, and tourism',
+            'group8' => 'Intellectual interactions and performances',
+            'group9' => 'Spiritual and/or emblematic',
+            'group10' => 'Remediation of air and water pollutants',
+            'group11' => 'Erosion prevention and maintenance of soil fertility',
+            'group12' => 'Provisioning lands (agriculture, livestock, forests)',
+            'group13' => 'Habitats for animals and plants',
         ],
         'predefined_values' => [
-            'group0' => [
-                    ''
-            ],
-            'group1' => [
-                'Provisioning-Nutrition [Nutrition: human food vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.); Human food animal (wild/farmed meat, insects, etc.); Medicines and blue biotechnology (fish oil); Fish/livestock feed (wild, farmed, bait); etc.]',
-                'Provisioning-Water [Nutrition: drinking water; water for hygiene, water for agriculture, water for fish/livestock water for energy; etc.]',
-                'Provisioning-Materials [High value timber; Timber for local construction; Stems - fibres (palms, kenaf, etc.); Other fibres (leaves, kapok, coco, etc.); Ornamental and aquarian resources (seeds, shells and fish collection); Sand (building); etc.]',
-                'Provisioning-Energy [Fuelwood and biofuels; Wind for energy; Fertiliser; etc.]'
-            ],
-            'group2' => [
-                'Aesthetic appreciation, recreation, and tourism [Aesthetic benefits; Ecotourism and nature watching; Walking, hiking and general recreation; Boating, swimming and diving; Hunting or fishing if permitted; Specified traditional fishing]',
-                'Intellectual interactions and performances [Science – Research; Educational; Cultural heritage; etc.]',
-                'Spiritual and/or emblematic [Symbolic or historic; Sacred or religious; etc.]'
-            ],
-            'group3' => [
-                'Remediation of air and water pollutants [Air quality; Water purification; Waste removal/neutralisation; Waste regulation; etc.]',
-                'Erosion prevention and maintenance of soil fertility [Flood control; Prevention of coastal erosion; Drought control; Storm protection; Water erosion control; Wind erosion control; Prevention of coastal erosion; etc.]'
-            ],
-            'group4' => [
-                'Provisioning lands (agriculture, livestock, forests) [Soil formation, structure and fertility; Grazing lands, Woodland habitats, etc.]',
-                'Habitats for animals and plants [Bird nesting sites – sea/river/lake spawning grounds - Nursery habitats (e.g. corals, bees, etc.); Plants for pollination, etc.)]'
-            ]
+            'group3' => ['Nutrition: human food vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food animal (wild/farmed meat, insects, etc.)', 'Medicines and blue biotechnology (fish oil)', 'Fish/livestock feed (wild, farmed, bait)'],
+            'group4' => ['Nutrition: drinking water', 'water for hygiene, water for agriculture, water for fish/livestock water for energy'],
+            'group5' => ['High value timber', 'Timber for local construction', 'Stems - fibres (palms, kenaf, etc.)', 'Other fibres (leaves, kapok, coco, etc.)', 'Ornamental and aquarian resources (seeds, shells and fish collection)', 'Sand (building)'],
+            'group6' => ['Fuelwood and biofuels', 'Wind for energy', 'Fertiliser'],
+            'group7' => ['Aesthetic benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Boating, swimming and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],
+            'group8' => ['Science – Research', 'Educational', 'Cultural heritage'],
+            'group9' => ['Symbolic or historic', 'Sacred or religious'],
+            'group10' => ['Air quality', 'Water purification', 'Waste removal/neutralisation', 'Waste regulation'],
+            'group11' => ['Flood control', 'Prevention of coastal erosion', 'Drought control', 'Storm protection', 'Water erosion control', 'Wind erosion control', 'Prevention of coastal erosion'],
+            'group12' => ['Soil formation, structure and fertility', 'Grazing lands, Woodland habitats'],
+            'group13' => ['Bird nesting sites – sea/river/lake spawning grounds - Nursery habitats (e.g. corals, bees, etc.)', 'Plants for pollination, etc.)']
         ],
-        'module_info' => '',
+        'module_info' =>
+            '<b>Dependence</b>: Dependence of the stakeholder’s human well-being on the OECM’ key element</br >' .
+            '<b>Access</b>: Access rules to be applied by stakeholders in the management (or operation?) of OECM’ key elements</br >' .
+            '<b>Rivalry</b>: Conflict in the use of the OECM’ key element due to a lack of access regulations, insufficient resources, etc.</br >' .
+            '<b>Involvement</b>: Stakeholder’ involvement in the governance of the OECM’ key element. Is your community / group involved in management of the OECM with regards to the key elements?</br >' .
+            '<b>Accountability</b>: Stakeholder’ accountability in the governance and management of the OECM’ key element. Is your community or group committed to following the rules and taking accountability for the results of your operations to all stakeholders to ensure good management and governance of the key elements of the OECM?</br >' .
+            '<b>Orientation</b>: Stakeholders contribution to long-term objectives orientation of the OECM’ key element. Is your community or group dedicated to achieving the common long-term management and governance goals based on the equity and sustainable use of the OECM\'s key elements by all stakeholders?</br >',
+            '<b>Note/Description</b>: Record important information on access and governance</br >',
         'ratingLegend' => [
-            'Impact' => [
-                '0' => 'No impact',
-                '1' => 'Low impact',
-                '2' => 'Medium impact',
-                '3' => 'High impact',
+            'Dependence' => [
+                '0' => 'Very low',
+                '1' => 'Low',
+                '2' => 'Medium',
+                '3' => 'High',
             ],
-            'Role' => [
-                '0' => 'No role',
-                '1' => 'Little role (e.g., only advice)',
-                '2' => 'Medium role (some mix of advice, analysis, planning, implementation and monitoring)',
-                '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
-            ]
+        ],
+        'warning_on_save' =>
+            'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>'
+    ],
+
+    'AnalysisStakeholderTrendsThreats' => [
+        'title' => 'Trends and threats on key elements – A stakeholder analysis',
+        'fields' => [
+            'Element' => 'Criteria',
+            'Status' => 'Status',
+            'Trend' => 'Dependence',
+            'MainThreat' => 'Main threats',
+            'ClimateChangeEffect' => 'Effects of climate change',
+            'Comments' => 'Note/Description',
+        ],
+        'module_info' =>
+            '<b>Status</b>: Estimation of current status</br >' .
+            '<b>Trend</b>: Trend in the quantity or quality</br >' .
+            '<b>Effects of climate change</b>: Change in quality, quantity and ecosystem production due to climate factors (precipitation, temperature, extreme events)</br >',
+        'ratingLegend' => [
+            'Status' => [
+                '-2' => 'Very bad',
+                '-1' => 'Bad',
+                '0' => 'Neutral',
+                '1' => 'Good',
+                '2' => 'Very good',
+            ],
+            'Trend' => [
+                '-2' => 'Strongly decreasing',
+                '-1' => 'Decreasing',
+                '0' => 'No change',
+                '1' => 'Increasing',
+                '2' => 'Strongly Increasing',
+            ],
+            'ClimateChangeEffect' => [
+                '-2' => 'Very harmful',
+                '-1' => 'Harmful',
+                '0' => 'No change',
+                '1' => 'Beneficial',
+                '2' => 'Very beneficial',
+            ],
         ],
     ],
 

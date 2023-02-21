@@ -13,7 +13,7 @@ class Objectives2 extends _Objectives
 
     public function __construct(array $attributes = []) {
 
-        $this->module_code = 'CTX 2.5';
+        $this->module_code = 'CTX 2.3';
         $this->module_info = trans('imet-core::oecm_context.Objectives2.module_info');
 
         parent::__construct($attributes);

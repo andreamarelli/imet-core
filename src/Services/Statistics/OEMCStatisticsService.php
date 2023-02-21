@@ -3,12 +3,18 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
+use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 class OEMCStatisticsService extends StatisticsService
 {
     use CommonFunctions;
+    use CustomFunctions\oecm\Context;
     use Math;
 
     /**
@@ -37,13 +43,11 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'c11' => null,
-            'c12' =>  null,
-            'c13' =>  null
+            'c11' => static::score_table($imet_id, Designation::class, 'EvaluationScore'),
+            'c12' =>  static::score_c12($imet_id)
         ];
         $scores['c1'] = self::average($scores);
-        $scores['c2'] =  null;
-        $scores['c3'] =  null;
+        $scores['c2'] =  static::score_c2($imet_id);
 
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 2);
@@ -63,12 +67,12 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'p1' => null,
-            'p2' => null,
+            'p1' => static::score_table($imet_id, RegulationsAdequacy::class, 'EvaluationScore'),
+            'p2' => static::score_table($imet_id, DesignAdequacy::class, 'EvaluationScore'),
             'p3' => null,
             'p4' => null,
             'p5' => null,
-            'p6' => null
+            'p6' => static::score_table($imet_id, Objectives::class, 'EvaluationScore'),
         ];
 
         // aggregate step score

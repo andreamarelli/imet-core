@@ -33,8 +33,71 @@ return [
         ]
     ],
 
+    'KeyElements' => [
+        'title' => 'Key elements of the OECM',
+        'fields' => [
+            'Aspect' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Integration',
+            'IncludeInStatistics' => 'To prioritise in management',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Identify the animal species (flagship, endangered, endemic, …) chosen as key species',
+            'group1' => 'Identify the plant species (flagship, endangered, endemic, …) chosen as key species',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                '0' => 'no integration',
+                '1' => 'low integration',
+                '2' => 'moderate integration',
+                '3' => 'high integration',
+            ]
+        ],
+        'module_subTitle' => 'Key elements animals, plants, habitats (protected, exploited, disappearing, invasive, etc.) and services (provisioning, control, cultural, supporting services)',
+        'module_info_EvaluationQuestion' => [
+            'Has the OECM prioritised the key elements its management?'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
+        ]
+    ],
+
+
     'ObjectivesKeyElements' => [
         'module_info' => 'Establish and describe conservation objectives for the designation and the key elements of the OECM. The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+    ],
+
+    'SupportsAndConstraints' => [
+        'title' => 'Constraints or supports from stakeholders',
+        'fields' => [
+            'Stakeholder'       => 'Criteria – Concept measured – Variable',
+            'Influence'         => 'Influence/power of the stakeholders',
+            'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
+            'Comments'          => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'Influence' => [
+                'N/A' => 'this stakeholder is not involved in the process',
+                '1' => 'Low influence/power',
+                '2' => 'Moderate influence/power',
+                '3' => 'High influence/power'
+            ],
+            'ConstraintLevel' => [
+                '-3' => 'Severe constraints/conflicts',
+                '-2' => 'Moderate constraints/conflicts',
+                '-1' => 'Minor constraints/conflicts',
+                '0' => 'No constraints/conflicts but also no support role',
+                '+1' => 'Minor supports/compliances',
+                '+2' => 'Moderate supports/compliances',
+                '+3' => 'Strong supports/compliances',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'The constraints/conflicts or supports/compliances by the political, institutional and civil environment can be measured by their intensity, and by the influence/power of the stakeholders in constraining/conflicting or supporting/complying the OECM.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the most important constraints/conflicts or supporting/complying factors from the political, institutional and social environment in the management of the OECM'
+        ]
     ],
 
     'ObjectivesSupportsAndConstraints' => [
@@ -251,6 +314,56 @@ return [
         'module_info' => 'Establish and describe conservation objectives for planning of the OECM<br />The objectives listed below will be used for improving management, and more spe cifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
+    'InformationAvailability' => [
+        'title' => 'Basic information',
+        'fields' => [
+            'Element' => 'Rating – Concept measured – Variables',
+            'EvaluationScore' => 'Availability',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                '0' => 'No or little information available to assist in the management (0-30% of the needs)',
+                '1' => 'Very limited information available - insufficient to assist in the management  (31-60% of the needs)',
+                '2' => 'Information available but moderately sufficient to assist in the management (61-90% of the needs)',
+                '3' => 'Information available and largely sufficient to assist in the management (90-100% of the needs)',
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Do you have sufficient and relevant information supporting your decision -making in managing the OECM?',
+            'Effective OECM management requires sufficient knowledge and information to inform decision- making. Without information good management is highly unlikely.'
+        ],
+        'module_info_Rating' => [
+            'Analyse the availability of information to support the management of the key elements of the OECM, based on the analysis of the context of intervention, points CTX 4; 5; 6; 7'
+        ]
+    ],
+
+    'CapacityAdequacy' => [
+        'title' => 'Basic information',
+        'fields' => [
+            'Member' => 'Member',
+            'Adequacy' => 'Adequacy',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Composition and staff or members of the OECM',
+            'group1' => 'Stakeholders involved or impacting in the use of natural resources'
+        ],
+        'ratingLegend' => [
+            'Adequacy' => [
+                '0' => 'Extremely weak capacities (0-30% of the needs)',
+                '1' => 'Insufficient capacities (31-60% of the needs)',
+                '2' => 'Adequate capacities adequate but further improvements required (61-90% of the needs)',
+                '3' => 'Completely sufficient capacities (91-100% of the needs)',
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the management and governance specific entity or combination of entities have enough capacity to fulfil the management and governance requirements of the OECM?'
+        ],
+        'module_info_Rating' => [
+            'Qualified, competent, committed and adequate human resources are central to the success of OECMs.'
+        ]
+    ],
 
     'BudgetAdequacy' => [
         'title' => 'Current budget',
@@ -311,6 +424,35 @@ return [
         ]
     ],
 
+    'ManagementEquipmentAdequacy' => [
+        'title' => 'Infrastructure, equipment and facilities',
+        'fields' => [
+            'Equipment' => 'Criteria – Concept measured – Variable',
+            'Adequacy' => 'A) Adequacy of infrastructure, equipment and facilities  (CTX 3.3)',
+            'PresentNeeds' => 'B) Present needs for the availability for OECM management',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'adequacy' => 'Adequacy of infrastructure, equipment and facilities',
+        'ratingLegend' => [
+            'Adequacy' => [
+                '0' => 'Completely inadequate (0-30% of the needs)',
+                '1' => 'Somewhat inadequate (31-60% of the needs)',
+                '2' => 'Adequate (61-90% of the needs)',
+                '3' => 'Fully adequate (91-100% of the needs)',
+            ],
+            'PresentNeeds' => [
+                '0' => 'Normal',
+                '1' => 'High',
+                '2' => 'Very high',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are the infrastructure, equipment and facilities of the OECM adequate for the management requirements? The infrastructure, equipment and facilities are important to ensure and enhance the operational efficiency and effectiveness of the OECM.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate: A) the adequacy of infrastructure, equipment and facilities (results automatically calculated on the basis of the analysis of the context of intervention, point CTX 3.3), B) the present needs for the availability of specific infrastructure, equipment and facilities for the OECM',
+        ]
+    ],
 
     'ObjectivesIntrants' => [
         'module_info' => 'Establish and describe conservation objectives for inputs of the OECM<br />The objectives listed below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'

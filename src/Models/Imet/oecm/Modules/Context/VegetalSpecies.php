@@ -18,12 +18,12 @@ class VegetalSpecies extends Modules\Component\ImetModule
         $this->module_code = 'CTX 4.2';
         $this->module_title = trans('imet-core::oecm_context.VegetalSpecies.title');
         $this->module_fields = [
-            ['name' => 'species', 'type' => 'imet-core::selector-species_animal_withFreeText', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.SpeciesID')],
+            ['name' => 'species', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.SpeciesID')],
             ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ExploitedSpecies')],
             ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ProtectedSpecies')],
             ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DisappearingSpecies')],
             ['name' => 'InvasiveSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.InvasiveSpecies')],
-            ['name' => 'PopulationEstimation', 'type' => 'numeric', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.PopulationEstimation')],
+            ['name' => 'PopulationEstimation', 'type' => 'dropdown-ImetOECM_PopulationStatus', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.PopulationEstimation')],
             ['name' => 'DescribeEstimation', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DescribeEstimation')],
             ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.Comments')],
         ];
@@ -32,29 +32,5 @@ class VegetalSpecies extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
     }
-
-//    public static function getVueData($form_id, $collection = null): array
-//    {
-//        $vue_data = parent::getVueData($form_id, $collection);
-//        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.VegetalSpecies.warning_on_save');
-//        return $vue_data;
-//    }
-//
-//    public static function updateModule(Request $request): array
-//    {
-//        static::forceLanguage($request->input('form_id'));
-//
-//        $records = Payload::decode($request->input('records_json'));
-//        $form_id = $request->input('form_id');
-//
-//        static::dropFromDependencies($form_id, $records, [
-//            Modules\Evaluation\ImportanceSpecies::class,
-//            Modules\Evaluation\InformationAvailability::class,
-//            Modules\Evaluation\KeyConservationTrend::class,
-//            Modules\Evaluation\ManagementActivities::class,
-//        ]);
-//
-//        return parent::updateModule($request);
-//    }
 
 }

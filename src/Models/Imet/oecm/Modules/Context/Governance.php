@@ -13,20 +13,25 @@ class Governance extends Modules\Component\ImetModule
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'ACCORDION';
+        $this->module_type = 'TABLE';
         $this->module_code = 'CTX 1.2';
         $this->module_title = trans('imet-core::oecm_context.Governance.title');
         $this->module_fields = [
-            ['name' => 'Name',               'type' => 'text-area',         'label' => trans('imet-core::oecm_context.Governance.fields.Stakeholder'),            'other' => 'style="width:200px"'],
-            ['name' => 'Type',       'type' => 'dropdown-OECM_InstitutionType',      'label' => trans('imet-core::oecm_context.Governance.fields.InstitutionType'),    'other' => 'style="width:205px"'],
-            ['name' => 'DateOfCreation',     'type' => 'dropdown-ImetV2_PartnershipsType',     'label' => trans('imet-core::oecm_context.Governance.fields.CreationYear'),  'other' => 'style="width:205px"'],
-            ['name' => 'OfficialRecognition',     'type' => 'checkbox-boolean',     'label' => trans('imet-core::oecm_context.Governance.fields.OfficialRecognition'),  'other' => 'style="width:205px"'],
-            ['name' => 'SupervisoryInstitution',   'type' => 'text-area',     'label' => trans('imet-core::oecm_context.Governance.fields.SupervisoryInstitution'),  'other' => 'style="width:205px"'],
+            ['name' => 'Stakeholder',   'type' => 'text-area',         'label' => trans('imet-core::oecm_context.Governance.fields.Stakeholder')],
+            ['name' => 'StakeholderType',   'type' => 'dropdown-ImetOECM_StakeholderType',      'label' => trans('imet-core::oecm_context.Governance.fields.StakeholderType')],
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'suggestion_multiple-ImetOECM_GovernanceType',   'label' => trans('imet-core::oecm_context.Governance.fields.Type')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.Governance.fields.Comments')],
+            ['name' => 'GovernanceModel',   'type' => 'dropdown-ImetOECM_GovernanceModel',   'label' => trans('imet-core::oecm_context.Governance.fields.GovernanceModel')],
+            ['name' => 'AdditionalInfo',    'type' => 'text',   'label' => trans('imet-core::oecm_context.Governance.fields.AdditionalInfo')],
+
+            ['name' => 'ManagementUnique',  'type' => 'toggle-ImetOECM_ManagementUnique',         'label' => trans('imet-core::oecm_context.Governance.fields.ManagementUnique')],
+            ['name' => 'ManagementName',    'type' => 'text-area',      'label' => trans('imet-core::oecm_context.Governance.fields.ManagementName')],
+            ['name' => 'ManagementType',    'type' => 'dropdown-ImetOECM_ManagementType',     'label' => trans('imet-core::oecm_context.Governance.fields.ManagementType')],
+            ['name' => 'ManagementList',    'type' => 'text-area',      'label' => trans('imet-core::oecm_context.Governance.fields.ManagementList')],
+            ['name' => 'DateOfCreation',    'type' => 'suggestion-ImetOECM_DateOfCreation',     'label' => trans('imet-core::oecm_context.Governance.fields.DateOfCreation')],
+            ['name' => 'OfficialRecognition',   'type' => 'toggle-yes_no',   'label' => trans('imet-core::oecm_context.Governance.fields.OfficialRecognition')],
+            ['name' => 'SupervisoryInstitution','type' => 'text-area',          'label' => trans('imet-core::oecm_context.Governance.fields.SupervisoryInstitution')],
         ];
 
         parent::__construct($attributes);
