@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP SCHEMA IF EXISTS imet_oecm;
+DROP SCHEMA IF EXISTS imet_oecm CASCADE;
 
 CREATE SCHEMA imet_oecm;
 
