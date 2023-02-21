@@ -2,14 +2,10 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\Components\Modules;
 
-use AndreaMarelli\ImetCore\Helpers\Template;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Module;
 use Illuminate\Support\Facades\App;
 use ReflectionException;
-use Wa72\HtmlPageDom\Helpers;
-use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
 class ImetModule extends Module
@@ -72,7 +68,7 @@ class ImetModule extends Module
     public static function forceLanguage($form_id = null)
     {
         if($form_id!==null){
-            $FormLang = Imet::getLanguage($form_id);
+            $FormLang = (static::$form_class)::getLanguage($form_id);
             if($FormLang != App::getLocale()){
                 App::setLocale($FormLang);
             }

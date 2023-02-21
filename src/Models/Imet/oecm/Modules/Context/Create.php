@@ -45,6 +45,7 @@ class Create extends Modules\Component\ImetModule
         $records[0]['version'] = Imet::version;
 
         $request->merge(['records_json' => Payload::encode($records)]);
+
         return parent::updateModule($request);
     }
 

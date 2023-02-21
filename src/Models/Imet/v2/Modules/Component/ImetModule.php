@@ -12,6 +12,8 @@ class ImetModule extends BaseImetModule
 {
     use Upgrade;
 
+    protected static $form_class = Imet::class;
+
     /**
      * Relation to IMET form
      * @return BelongsTo

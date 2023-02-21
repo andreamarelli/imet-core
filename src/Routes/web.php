@@ -20,7 +20,6 @@ const V2_ROUTE_PREFIX = v2\Controller::ROUTE_PREFIX;
 const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 
-
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
     /*
@@ -48,8 +47,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/export', [v1\Controller::class, 'export']);
             Route::post('export_batch',        [v1\Controller::class, 'export_batch'])->name(V1_ROUTE_PREFIX.'export_batch');
 
-            Route::get('{item}/merge',  [v1\Controller::class, 'merge_view'])->name(IMET_PREFIX.'merge_view');
-            Route::post('merge',      [v1\Controller::class, 'merge'])->name(IMET_PREFIX.'merge');
+            Route::get('{item}/merge',  [v1\Controller::class, 'merge_view'])->name(V1_ROUTE_PREFIX.'merge_view');
+            Route::post('merge',      [v1\Controller::class, 'merge'])->name(V1_ROUTE_PREFIX.'merge');
 
             Route::delete('{item}',     [v1\Controller::class, 'destroy']);
 
@@ -80,8 +79,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/export', [v2\Controller::class, 'export']);
             Route::post('export_batch',        [v2\Controller::class, 'export_batch'])->name(V2_ROUTE_PREFIX.'export_batch');
             Route::delete('{item}',     [v2\Controller::class, 'destroy']);
-            Route::get('{item}/merge',  [v2\Controller::class, 'merge_view'])->name(IMET_PREFIX.'merge_view');
-            Route::post('merge',      [v2\Controller::class, 'merge'])->name(IMET_PREFIX.'merge');
+            Route::get('{item}/merge',  [v2\Controller::class, 'merge_view'])->name(V2_ROUTE_PREFIX.'merge_view');
+            Route::post('merge',      [v2\Controller::class, 'merge'])->name(V2_ROUTE_PREFIX.'merge');
 
             Route::get('create',        [v2\Controller::class, 'create'])->name(V2_ROUTE_PREFIX.'create');
             Route::get('create_non_wdpa',[v2\Controller::class, 'create_non_wdpa'])->name(V2_ROUTE_PREFIX.'create_non_wdpa');
@@ -163,7 +162,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::get('{item}/export',     [oecm\Controller::class, 'export']);
         Route::match(['get','post'],'export_view',        [oecm\Controller::class, 'export_view'])->name(OECM_ROUTE_PREFIX.'export_view');
         Route::post('export_batch',        [oecm\Controller::class, 'export_batch'])->name(OECM_ROUTE_PREFIX.'export_batch');
-        Route::get('{item}/merge',  [oecm\Controller::class, 'merge_view'])->name(IMET_PREFIX.'merge_view');
+        Route::get('{item}/merge',  [oecm\Controller::class, 'merge_view'])->name(OECM_ROUTE_PREFIX.'merge_view');
         Route::post('merge',      [oecm\Controller::class, 'merge'])->name(OECM_ROUTE_PREFIX.'merge');
 
         Route::get('create',            [oecm\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');

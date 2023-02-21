@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ImetModule extends BaseImetModule
 {
+    protected static $form_class = Imet::class;
+
     /**
      * Relation to IMET form
      * @return BelongsTo
