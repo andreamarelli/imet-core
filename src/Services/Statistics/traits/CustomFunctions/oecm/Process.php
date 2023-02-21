@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\oecm;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
 
 trait Process
 {
@@ -28,6 +29,54 @@ trait Process
         $score = $denominator>0
             ? $numerator / $denominator / 3 * 100
             : null;
+
+        return $score!== null ?
+            round($score, 2)
+            : null;
+    }
+
+    protected static function score_pr8($imet_id): ?float
+    {
+        $records = StakeholderCooperation::getModule($imet_id);
+
+        $values = $records
+            ->sortBy("Element")
+            ->map(function($record){
+                $record['score'] = $record['Cooperation'] === "-99" ? 0 : $record['Cooperation'];
+                $record['weight'] =
+                    ($record['MPInvolvement'] ?? 0) +
+                    ($record['BAInvolvement'] ?? 0) +
+                    ($record['EEInvolvement'] ?? 0) +
+                    ($record['MPIImplementation'] ?? 0);
+                return $record;
+            })
+            ->groupBy('group_key')
+            ->map(function($group){
+                $sw = $group->sum('weight');
+                $wi = (function($data) {
+                    $sum = null;
+                    foreach ($data as $item){
+                        if($item['score']===null || $item['weight']===null){
+                            continue;
+                        } else {
+                            $sum += ($item['score'] / 3 * $item['weight']);
+                        }
+                    }
+                    return $sum;
+                })($group);
+                return [
+                    'sw' => $sw,
+                    'wi' => $wi,
+                ];
+            });
+
+        $numerator = $values->sum('wi');
+        $denominator = $values->sum('sw');
+
+        $score = $denominator>0
+            ? $numerator / $denominator * 100
+            : null;
+
 
         return $score!== null ?
             round($score, 2)

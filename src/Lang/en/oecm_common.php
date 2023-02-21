@@ -128,6 +128,22 @@ return [
             'PR12',
             'Systems for monitoring and research of the key elements'
         ],
+        'op1' => [
+            'O/P1',
+            'Implementation of the work/action plan'
+        ],
+        'op2' => [
+            'O/P2',
+            'Control of management and governance of the key elements'
+        ],
+        'oc1' => [
+            'O/C1',
+            'Achievement of long-term conservation objectives of the management'
+        ],
+        'oc2' => [
+            'O/C2',
+            ' Effects on the quality of life of local stakeholders'
+        ],
     ]
 
 ];

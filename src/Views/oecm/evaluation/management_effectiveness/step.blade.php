@@ -28,9 +28,13 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
             <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c2'])</div>
         </div>
 
-    @elseif($step=='outputs')
-
     @elseif($step=='outcomes')
+
+        {{-- Step related statistics --}}
+        <div style="margin-bottom: 20px;">
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'oc1'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc2'])</div>
+        </div>
 
     @else
 
@@ -158,11 +162,11 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
                         _this.step_color = '#00B0F0';
                         break;
                     case 'outputs':
-                        _this.step_indexes = [];
+                        _this.step_indexes = ['op1', 'op2'];
                         _this.step_color = '#92D050';
                         break;
                     case 'outcomes':
-                        _this.step_indexes = [];
+                        _this.step_indexes = ['oc1', 'oc2'];
                         _this.step_color = '#00B050';
                         break;
                 }

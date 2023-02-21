@@ -1,93 +1,24 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
+/** @var Mixed $vue_data */
+
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
+use \Illuminate\Support\Facades\View;
+use \Wa72\HtmlPageDom\HtmlPageCrawler;
+
+$view_groups = View::make('imet-core::components.module.edit.group_with_nothing_to_evaluate', compact(['collection', 'vue_data', 'definitions']))->render();
+
+// Inject titles
+$dom = HtmlPageCrawler::create('<div>'.$view_groups.'</div>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->before('<h3 style="margin-bottom: 20px;">'.(new ManagementActivities())->titles['title0'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group3')->before('<h3 style="margin-bottom: 20px;">'.(new ManagementActivities())->titles['title1'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group7')->before('<h3 style="margin-bottom: 20px;">'.(new ManagementActivities())->titles['title2'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group10')->before('<h3 style="margin-bottom: 20px;">'.(new ManagementActivities())->titles['title3'].'</h3>');
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<h3 style="margin-bottom: 20px;">'.(new ManagementActivities())->titles['title4'].'</h3>');
+
 ?>
 
-@foreach($definitions['groups'] as $group_key => $group_label)
+{!! $dom->saveHTML() !!}
 
-    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
-
-    <table id="{{ 'group_table_'.$definitions['module_key'].'_'.$group_key }}" class="table module-table">
-
-        {{-- labels  --}}
-        <thead>
-        <tr>
-            @foreach($definitions['fields'] as $field)
-                @if($field['type']!=='hidden')
-                    <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>
-                @endif
-            @endforeach
-            <th></th>
-        </tr>
-        </thead>
-
-        {{-- inputs --}}
-        <tbody class="{{ $group_key }}">
-        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'attributes' => 'v-if="records[\'' . $group_key . '\'][0].' . $definitions['fields'][0]['name'] . '===null"'])
-        <tr v-else class="module-table-item" v-for="(item, index) in {{ 'records[\''.$group_key.'\']' }}">
-            {{--  fields  --}}
-            @foreach($definitions['fields'] as $i => $field)
-                <td>
-                    @include('modular-forms::module.edit.field.module-to-vue', [
-                        'definitions' => $definitions,
-                        'field' => $field,
-                        'vue_record_index' => 'index',
-                        'group_key' => $group_key
-                    ])
-                </td>
-            @endforeach
-            <td>
-                {{-- record id  --}}
-                @include('modular-forms::module.edit.field.vue', [
-                    'type' => 'hidden',
-                    'v_value' => 'item.'.$definitions['primary_key']
-                ])
-
-            </td>
-        </tr>
-        </tbody>
-
-
-    </table>
-
-    <br/>
-    <br/>
-
-@endforeach
-
-@push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
-
-            methods: {
-                plain_name(fullName) {
-                    return fullName != null && this.isTaxonomy(fullName)
-                        ? this.getScientificName(fullName)
-                        : fullName;
-                },
-
-                tooltip(fullName) {
-                    return fullName != null && this.isTaxonomy(fullName)
-                        ? fullName.replace(/\|/g, " ")
-                        : '';
-                },
-
-                isTaxonomy(fullName) {
-                    return (fullName.match(/\|/g) || []).length === 5
-                },
-
-                getScientificName(fullName) {
-                    let sciName = null;
-                    if (fullName !== null) {
-                        let taxonomy = fullName.split("|");
-                        sciName = taxonomy[4] + ' ' + taxonomy[5]
-                    }
-                    return sciName;
-                },
-            }
-
-        });
-    </script>
-@endpush
+@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
