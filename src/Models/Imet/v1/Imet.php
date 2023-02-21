@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v1;
 
+use AndreaMarelli\ImetCore\Models\Imet\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
@@ -76,6 +77,18 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives7::class,
         ]
     ];
+
+
+    /**
+     * Relation to Encoder (only name)
+     *
+     * @return HasMany
+     */
+    public function encoder(): HasMany
+    {
+        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
+            ->select(['FormID', 'first_name', 'last_name']);
+    }
 
     /**
      * Relation to ResponsablesInterviewees

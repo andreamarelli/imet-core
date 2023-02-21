@@ -66,16 +66,6 @@ class Imet extends Form
         return $this->hasOne(Country::class, 'iso3', 'Country');
     }
 
-    /**
-     * Relation to Encoder (only name)
-     *
-     * @return HasMany
-     */
-    public function encoder(): HasMany
-    {
-        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
-            ->select(['FormID', 'first_name', 'last_name']);
-    }
 
     /**
      * Mutator: ensure to retrieve in lowercase
@@ -427,29 +417,6 @@ class Imet extends Form
         $form->Country = $pa->country;
         $form->save();
         return $form->getKey();
-    }
-
-    /**
-     * Extent parent method: save user as encoder
-     *
-     * @param $item
-     * @param Request $request
-     * @return mixed
-     * @throws \Exception
-     */
-    public static function updateModuleAndForm($item, Request $request): array
-    {
-        $return = parent::updateModuleAndForm($item, $request);
-        if ($return['status'] == 'success') {
-            (new Controller)->backup($item);
-        }
-
-        $user_info = Auth::user()->getInfo();
-        unset($user_info['country']);
-
-        Encoder::touchOnFormUpdate($item, $user_info);
-
-        return $return;
     }
 
     /**
