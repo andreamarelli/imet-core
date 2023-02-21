@@ -2,45 +2,6 @@
 
 return [
 
-    'Create' => [
-        'title' => 'Create a new IMET (WDPA)',
-        'fields' => [
-            'version' => 'IMET version',
-            'Year' => 'Year subject to evaluation',
-            'wdpa_id' => 'protected area',
-            'language' => 'language',
-            'prefill_prev_year' => 'prefill with previous year',
-        ]
-    ],
-
-    'CreateNonWdpa' => [
-        'title' => 'Create a new IMET (non-WDPA)',
-        'fields' => [
-            'version' => 'version',
-            'Year' => 'Year subject to evaluation',
-            'wdpa_id' => 'protected area',
-            'language' => 'language',
-            'prefill_prev_year' => 'prefill with previous year',
-            'pa_def' => 'definition',
-            'name' => 'name as provided by the operator',
-            'origin_name' => 'name in original language',
-            'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
-            'designation_eng' => 'designation in English',
-            'designation_type' => 'designation type',
-            'marine' => 'typology',
-            'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
-            'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
-            'status' => 'status',
-            'ownership_type' => 'Ownership type',
-            'status_year' => 'year of the enactment',
-            'country' => 'country',
-        ],
-
-        'allowed_international' => 'Allowed values for international-level designations',
-        'allowed_regional' => 'Allowed values for regional-level designations',
-        'allowed_national' => 'No fixed values for protected areas designated at a national level',
-    ],
-
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
@@ -73,29 +34,6 @@ return [
         'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values'
     ],
 
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsibility for filling the form: Management team and partners',
-        'fields' => [
-            'Name'          => 'name',
-            'Institution'   => 'organisation',
-            'Function'      => 'job role',
-            'Contacts'      => 'contact details',
-            'EncodingDate'  => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsibility for filling the form: External support for analysis and management evaluation',
-        'fields' => [
-            'Name' => 'Name',
-            'Institution'   => 'organisation',
-            'Function'      => 'job role',
-            'Contacts' => 'contact details',
-            'EncodingDate' => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)',
-        ]
-    ],
 
     'GeneralInfo' => [
         'title' => 'Basic data',

@@ -2,45 +2,6 @@
 
 return [
 
-    'Create' => [
-        'title' => 'Créer un nouveau IMET (WDPA)',
-        'fields' => [
-            'version' => 'version',
-            'Year' => 'Année sujette à évaluation',
-            'wdpa_id' => 'aire protégée',
-            'language' => 'langue',
-            'prefill_prev_year' => 'préremplir avec l\'année précédente',
-        ]
-    ],
-
-    'CreateNonWdpa' => [
-        'title' => 'Créer un nouveau IMET (non-WDPA)',
-        'fields' => [
-            'version' => 'version IMET',
-            'Year' => 'Année sujette à évaluation',
-            'wdpa_id' => 'aire protégée',
-            'language' => 'langue',
-            'prefill_prev_year' => 'préremplir avec l\'année précédente',
-            'pa_def' => 'définition',
-            'name' => 'nom fourni par l’exploitant',
-            'origin_name' => 'nom dans la langue d’origine',
-            'designation' => 'nom de la désignation (ex. réserve, sanctuaire, etc.)',
-            'designation_eng' => 'désignation obligatoire en Anglais',
-            'designation_type' => 'type de désignation',
-            'marine' => 'typologie',
-            'rep_m_area' => 'surface de l’aire protégée conservée marine [km<sup>2</sup>]',
-            'rep_area' => 'surface de l’aire protégée conservée [km<sup>2</sup>]',
-            'status' => 'statut',
-            'ownership_type' => 'Type de propriété',
-            'status_year' => 'année de promulgation du statut',
-            'country' => 'pays',
-        ],
-
-        'allowed_international' => 'Valeurs autorisées pour les désignations de niveau international',
-        'allowed_regional' => 'Valeurs autorisées pour les désignations de niveau régional',
-        'allowed_national' => 'Pas de valeurs fixes pour les protégées - conservées désignées au niveau national',
-    ],
-
     'Objectives' => [
         'title' => 'Détermination des objectifs',
         'fields' => [
@@ -71,30 +32,6 @@ return [
     ],
     'Objectives7' => [
         'module_info' => 'Établir et décrire les objectifs relatifs aux <b> services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et les cibles indiqués ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l’aire protégée'
-    ],
-
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsables de la compilation du fichier: Équipe de gestion et partenaires',
-        'fields' => [
-            'Name'          => 'Nom',
-            'Institution'   => 'Organisation',
-            'Function'      => 'Fonction',
-            'Contacts'      => 'Coordonnées de contact',
-            'EncodingDate'  => 'Date de compilation',
-            'EncodingDuration' => 'Durée de l\'évaluation (h)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsables de la compilation du formulaire: Support extérieur à l\'analyse et à l\'évaluation',
-        'fields' => [
-            'Name' => 'Nom',
-            'Institution' => 'Organisation',
-            'Function' => 'Fonction',
-            'Contacts' => 'Coordonnées de contact',
-            'EncodingDate' => 'Date de compilation',
-            'EncodingDuration' => 'Durée de l\'évaluation (h)',
-        ]
     ],
 
     'GeneralInfo' => [

@@ -35,30 +35,6 @@ return [
         'module_info' => 'Setting objectives associated with <b>he maintenance of ecosystem services and the dependence on these services of communities</b> in the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives'
     ],
 
-    'ResponsablesInterviewers' => [
-        'title' => 'Responsibility for filling the form: Management team and partners',
-        'fields' => [
-            'Name'          => 'name',
-            'Institution'   => 'institution',
-            'Function'      => 'function',
-            'Contacts'      => 'contacts',
-            'EncodingDate'  => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)'
-        ]
-    ],
-
-    'ResponsablesInterviewees' => [
-        'title' => 'Responsibility for completing the form: External support for analysis and management evaluation',
-        'fields' => [
-            'Name' => 'Name',
-            'Institution' => 'Institution',
-            'Function' => 'Function',
-            'Contacts' => 'Contacts',
-            'EncodingDate' => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)',
-        ]
-    ],
-
     'GeneralInfo' => [
         'title' => 'Basic data',
         'fields' => [

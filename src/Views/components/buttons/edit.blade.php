@@ -1,14 +1,19 @@
 <?php
 /** @var String $version */
 
-if ($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1) {
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
-    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class;
-    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ReportController::class;
+if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::class;
+    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class;
+    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ReportController::class;
+}
+else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v2\ContextController::class;
+    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class;
+    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class;
 } else {
-    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class;
-    $controller_eval    = \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class;
-    $controller_report  = \AndreaMarelli\ImetCore\Controllers\Imet\v2\ReportController::class;
+    $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\oecm\ContextController::class;
+    $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\oecm\EvalController::class;
+    $controller_report = \AndreaMarelli\ImetCore\Controllers\Imet\oecm\ReportController::class;
 }
 ?>
 
