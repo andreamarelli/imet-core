@@ -3,10 +3,25 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AdministrativeManagement;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AssistanceActivities;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LawEnforcementImplementation;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
@@ -15,6 +30,8 @@ class OEMCStatisticsService extends StatisticsService
 {
     use CommonFunctions;
     use CustomFunctions\oecm\Context;
+    use CustomFunctions\oecm\Inputs;
+    use CustomFunctions\oecm\Process;
     use Math;
 
     /**
@@ -93,11 +110,11 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'i1' => null,
-            'i2' => null,
-            'i3' => null,
-            'i4' => null,
-            'i5' => null,
+            'i1' => static::score_group($imet_id, InformationAvailability::class, 'EvaluationScore', 'group_key'),
+            'i2' => static::score_group($imet_id, CapacityAdequacy::class, 'Adequacy', 'group_key'),
+            'i3' => static::score_i3($imet_id),
+            'i4' => static::score_i4($imet_id),
+            'i5' => static::score_i5($imet_id),
         ];
 
         // aggregate step score
@@ -118,18 +135,18 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'pr1' => null,
-            'pr2' => null,
-            'pr3' => null,
-            'pr4' => null,
-            'pr5' => null,
-            'pr6' => null,
-            'pr7' => null,
-            'pr8' => null,
-            'pr9' => null,
-            'pr10' => null,
-            'pr11' => null,
-            'pr12' => null,
+            'pr1' => static::score_table($imet_id, StaffCompetence::class, 'EvaluationScore'),
+            'pr2' => static::score_table($imet_id, HRmanagementPolitics::class, 'EvaluationScore'),
+            'pr3' => static::score_group($imet_id, EmpowermentGovernance::class, 'EvaluationScore', 'group_key'),
+            'pr4' => static::score_table($imet_id, AdministrativeManagement::class, 'EvaluationScore', 4),
+            'pr5' => static::score_pr5($imet_id),
+            'pr6' => static::score_group($imet_id, ManagementActivities::class, 'EvaluationScore', 'group_key'),
+            'pr7' => static::score_group($imet_id, LawEnforcementImplementation::class, 'Adequacy', 'group_key'),
+            'pr8' => static::score_pr8($imet_id),
+            'pr9' => static::score_group($imet_id, AssistanceActivities::class, 'EvaluationScore', 'group_key'),
+            'pr10' => static::score_table($imet_id, EnvironmentalEducation::class, 'EvaluationScore'),
+            'pr11' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore'),
+            'pr12' => static::score_table($imet_id, NaturalResourcesMonitoring::class, 'EvaluationScore'),
 
         ];
 
@@ -151,9 +168,8 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'op1' => null,
-            'op2' => null,
-
+            'op1' => static::score_table($imet_id, WorkProgramImplementation::class, 'EvaluationScore'),
+            'op2' => null
         ];
 
         // aggregate step score
@@ -174,8 +190,8 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'oc1' => null,
-            'oc2' => null,
+            'oc1' => static::score_table($imet_id, AchievedObjectives::class, 'EvaluationScore'),
+            'oc2' => static::score_group($imet_id, LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
         ];
 
         // aggregate step score

@@ -179,7 +179,7 @@ return [
         ],
         'op1' => [
             'O/P1',
-            'IImplementation of the work/action plan'
+            'Implementation of the work/action plan'
         ],
         'op2' => [
             'O/P2',

@@ -339,7 +339,7 @@ return [
     ],
 
     'CapacityAdequacy' => [
-        'title' => 'Basic information',
+        'title' => 'Capacities of the management and governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Member',
             'Adequacy' => 'Adequacy',
@@ -614,12 +614,12 @@ return [
         'title' => 'Actions against illegal activities or to solve contentious issues on the OECM key elements management',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
-            'Adequacy' => 'Adequacy of ranger unites/groups management',
+            'Adequacy' => 'Adequacy',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
             'group0' => 'Terrestrial and Sea control activities',
-            'group1' => 'Sea ranger patrol management',
+            'group1' => 'Actions against illegal activities or to solve contentious issue',
         ],
         'predefined_values' => [
             'group0' => [
@@ -657,7 +657,7 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate the adequacy of elements of the ranger patrols management oriented on ensuring long-term protection of biodiversity and other values',
-            'Evaluate the acting against illegal activities or to solve contentious issues in the sustainability of the management of the key elements of the OECM?'
+            'Evaluate the acting against illegal activities or to solve contentious issues in the sustainability of the management of the key elements of the OECM'
         ]
     ],
 

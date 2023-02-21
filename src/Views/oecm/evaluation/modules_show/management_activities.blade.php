@@ -1,13 +1,13 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $records */
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
 use \Illuminate\Support\Facades\View;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$view_groups = View::make('imet-core::components.module.edit.group_with_nothing_to_evaluate', compact(['collection', 'vue_data', 'definitions']))->render();
+$view_groups = View::make('imet-core::components.module.show.group_with_nothing_to_evaluate', compact(['collection', 'records', 'definitions']))->render();
 
 // Inject titles
 $dom = HtmlPageCrawler::create('<div>'.$view_groups.'</div>');
@@ -20,5 +20,3 @@ $dom->filter('h5.group_title_'.$definitions['module_key'].'_group12')->before('<
 ?>
 
 {!! $dom->saveHTML() !!}
-
-@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))

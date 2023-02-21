@@ -72,11 +72,10 @@ class Imet_Eval extends Imet
             EmpowermentGovernance::class,
             AdministrativeManagement::class,
             EquipmentMaintenance::class,
-
             ManagementActivities::class,
             LawEnforcementImplementation::class,
-            AssistanceActivities::class,
             StakeholderCooperation::class,
+            AssistanceActivities::class,
             EnvironmentalEducation::class,
             VisitorsManagement::class,
             NaturalResourcesMonitoring::class,
