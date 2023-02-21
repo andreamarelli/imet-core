@@ -60,6 +60,74 @@ return [
             'P6',
             ' Objectives of the OECM'
         ],
+        'i1' => [
+            'I1',
+            'Basic information'
+        ],
+        'i2' => [
+            'I2',
+            'Capacities of the management and governance specific entity or combination of entities'
+        ],
+        'i3' => [
+            'I3',
+            'Current budget'
+        ],
+        'i4' => [
+            'I4',
+            'Securing the budget'
+        ],
+        'i5' => [
+            'I5',
+            'Infrastructure, equipment and facilities'
+        ],
+        'pr1' => [
+            'PR1',
+            'Training and capacity-building programme'
+        ],
+        'pr2' => [
+            'PR2',
+            'Human resource management policies and procedures'
+        ],
+        'pr3' => [
+            'PR3',
+            'Empowerment of the stakeholders in the governance of key elements'
+        ],
+        'pr4' => [
+            'PR4',
+            'Budget and financial management'
+        ],
+        'pr5' => [
+            'PR5',
+            'Maintenance of infrastructure, equipment and facilities'
+        ],
+        'pr6' => [
+            'PR6',
+            'Managing the key elements of the OECM with specific actions'
+        ],
+        'pr7' => [
+            'PR7',
+            'Actions against illegal activities or to solve contentious issues'
+        ],
+        'pr8' => [
+            'PR8',
+            'Cooperation between the stakeholders'
+        ],
+        'pr9' => [
+            'PR9',
+            'Benefits for local communities'
+        ],
+        'pr10' => [
+            'PR10',
+            'Environmental education and public awareness'
+        ],
+        'pr11' => [
+            'PR11',
+            'Management of visitor facilities and services'
+        ],
+        'pr12' => [
+            'PR12',
+            'Systems for monitoring and research of the key elements'
+        ],
     ]
 
 ];

@@ -339,7 +339,7 @@ return [
     ],
 
     'CapacityAdequacy' => [
-        'title' => 'Basic information',
+        'title' => 'Capacities of the management and governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Member',
             'Adequacy' => 'Adequacy',

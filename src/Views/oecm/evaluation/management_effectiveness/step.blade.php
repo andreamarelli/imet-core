@@ -28,8 +28,11 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
             <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c2'])</div>
         </div>
 
+    @elseif($step=='outputs')
 
-    @elseif($step=='planning')
+    @elseif($step=='outcomes')
+
+    @else
 
         {{-- Step related statistics --}}
         <div style="margin-bottom: 20px;">
@@ -37,16 +40,6 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
                 @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
             </div>
         </div>
-
-    @elseif($step=='inputs')
-
-    @elseif($step=='process')
-
-    @elseif($step=='outputs')
-
-    @elseif($step=='outcomes')
-
-    @else
 
     @endif
 
@@ -111,7 +104,7 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
                             min: 0,
                             max: 100
                         };
-                        if (labels[item[0]].code === 'C2' || labels[item[0]].code === 'C3') {
+                        if (labels[item[0]].code === 'C2') {
                             labels[item[0]].min = -100;
                         }
                     });
@@ -155,11 +148,13 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
                         _this.step_color = '#BFBFBF';
                         break;
                     case 'inputs':
-                        _this.step_indexes = [];
+                        _this.step_indexes = ['i1', 'i2', 'i3', 'i4', 'i5'];
                         _this.step_color = '#FFC000';
                         break;
                     case 'process':
-                        _this.step_indexes =[];
+                        _this.step_indexes =[
+                            'pr1', 'pr2', 'pr3', 'pr4', 'pr5', 'pr6', 'pr7', 'pr8', 'pr9', 'pr10', 'pr11', 'pr12'
+                        ];
                         _this.step_color = '#00B0F0';
                         break;
                     case 'outputs':
