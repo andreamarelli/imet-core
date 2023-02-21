@@ -2,7 +2,10 @@
 /** @var String $step */
 /** @var int $item_id */
 
-$assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService::get_assessment($item_id, $step);
+use \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use \Illuminate\Support\Facades\App;
+
+$assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
 
 ?>
 
@@ -13,7 +16,33 @@ $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsSer
 
     @if($step=='context')
 
+        {{-- C11->C12 statistics --}}
+        <div style="margin-bottom: 20px;">
+            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c11'])
+            @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c12'])
+        </div>
+
+        {{-- C1->C2 statistics --}}
+        <div style="margin-bottom: 30px;">
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'c1'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'c2'])</div>
+        </div>
+
+
+    @elseif($step=='planning')
+
+        {{-- Step related statistics --}}
+        <div style="margin-bottom: 20px;">
+            <div v-for="(item, index) in values">
+                @include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100_full_width', 'values' => 'values'])
+            </div>
+        </div>
+
+    @elseif($step=='inputs')
+
     @elseif($step=='process')
+
+    @elseif($step=='outputs')
 
     @elseif($step=='outcomes')
 
@@ -68,6 +97,9 @@ $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsSer
         },
 
         computed: {
+            local_now(){
+               return Locale.getLocale();
+            },
             labels() {
                 let _this = this;
                 let labels = {};
@@ -75,7 +107,7 @@ $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsSer
                     Object.entries(_this.api_labels).forEach(function (item) {
                         labels[item[0]] = {
                             code: item[1]['code_label'],
-                            title: item[1]['title_' + Locale.getLocale()],
+                            title: item[1]['title_{{ App::getLocale() }}'],
                             min: 0,
                             max: 100
                         };
@@ -115,12 +147,11 @@ $assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsSer
                 let _this = this;
                 switch (_this.current_step) {
                     case 'context':
-                        _this.step_indexes = [];
-                        _this.step_indexes_intermediate = [];
+                        _this.step_indexes = ['c11', 'c12', 'c1', 'c2'];
                         _this.step_color = '#FFFF00';
                         break;
                     case 'planning':
-                        _this.step_indexes = [];
+                        _this.step_indexes = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'];
                         _this.step_color = '#BFBFBF';
                         break;
                     case 'inputs':

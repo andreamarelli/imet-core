@@ -34,30 +34,4 @@ class Habitats extends Modules\Component\ImetModule
 
     }
 
-//    public static function getVueData($form_id, $collection = null): array
-//    {
-//        $vue_data = parent::getVueData($form_id, $collection);
-//        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.Habitats.warning_on_save');
-//        return $vue_data;
-//    }
-//
-//    public static function updateModule(Request $request): array
-//    {
-//        static::forceLanguage($request->input('form_id'));
-//
-//        $records = Payload::decode($request->input('records_json'));
-//        $form_id = $request->input('form_id');
-//
-//        static::dropFromDependencies($form_id, $records, [
-//            Modules\Evaluation\ImportanceHabitats::class,
-//            Modules\Evaluation\InformationAvailability::class,
-//            Modules\Evaluation\KeyConservationTrend::class,
-//            Modules\Evaluation\ManagementActivities::class,
-//        ]);
-//
-//        return parent::updateModule($request);
-//    }
-
-
-
 }

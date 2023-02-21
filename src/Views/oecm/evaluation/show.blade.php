@@ -2,10 +2,11 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 
 use AndreaMarelli\ImetCore\Models\User\Role;
+use Illuminate\Support\Facades\App;
 
 // Force Language
-if($item->language != \Illuminate\Support\Facades\App::getLocale()){
-    \Illuminate\Support\Facades\App::setLocale($item->language);
+if ($item->language != App::getLocale()) {
+    App::setLocale($item->language);
 }
 
 ?>

@@ -20,6 +20,46 @@ return [
             'CTX 1.0.2',
             'Responsibility for completing the form: Management team and partners and external support for analysis and management evaluation'
         ],
+        'c11' => [
+            'C1.1',
+            'Designations'
+        ],
+        'c12' => [
+            'C1.2',
+            'Key elements'
+        ],
+        'c1' => [
+            'C1',
+            'Key elements'
+        ],
+        'c2' => [
+            'C2',
+            'Constraints or supports from stakeholders'
+        ],
+        'p1' => [
+            'P1',
+            'Adequacy of legal and regulatory provisions'
+        ],
+        'p2' => [
+            'P2',
+            'Design and layout of the OECM'
+        ],
+        'p3' => [
+            'P3',
+            'Demarcation of the OECM'
+        ],
+        'p4' => [
+            'P4',
+            'Management plan'
+        ],
+        'p5' => [
+            'P5',
+            'Work plan'
+        ],
+        'p6' => [
+            'P6',
+            ' Objectives of the OECM'
+        ],
     ]
 
 ];
