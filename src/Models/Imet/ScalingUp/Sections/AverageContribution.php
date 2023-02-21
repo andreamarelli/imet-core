@@ -68,6 +68,7 @@ class AverageContribution
      * @param string $colors
      * @param array $options
      * @param string $label
+     * @param string $origType
      * @return array|array[]
      */
     public static function average_contribution_calculations(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", string $origType = ''): array

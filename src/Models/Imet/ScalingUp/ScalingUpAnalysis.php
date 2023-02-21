@@ -110,7 +110,7 @@ class ScalingUpAnalysis extends Model
             if ($general_info_data['records'][0]) {
                 $general_info = $general_info_data['records'][0];
                 $lang = Locale::lower();
-                $name = "name_".(trim($lang) === ""  ?  "en" : $lang);
+                $name = "name_" . (trim($lang) === "" ? "en" : $lang);
                 $country_name = Country::getByISO($general_info['Country'])->$name;
 
                 //echo $general_info['Country']."-".$country_name."\n";
@@ -435,7 +435,8 @@ class ScalingUpAnalysis extends Model
                 'main' => [
                     'op1' => [],
                     'op2' => [],
-                    'op3' => []
+                    'op3' => [],
+                    'op4' => []
                 ]
             ],
             'outcomes' => [
@@ -450,9 +451,9 @@ class ScalingUpAnalysis extends Model
         $origType = $type;
         $extra_type_words = '';
         if (str_contains($type, "process")) {
-            $name =  explode("_", $type);
-            if(count($name) > 1) {
-                $extra_type_words = $name[1]."_".$name[2] ?? '';
+            $name = explode("_", $type);
+            if (count($name) > 1) {
+                $extra_type_words = $name[1] . "_" . $name[2] ?? '';
             }
             $origType = $name[0];
         }
@@ -516,8 +517,7 @@ class ScalingUpAnalysis extends Model
      * @param bool $overall
      * @return array
      */
-    public
-    static function get_protected_areas_diagram_compare(array $form_ids, array $assessments = [], bool $overall = false): array
+    public static function get_protected_areas_diagram_compare(array $form_ids, array $assessments = [], bool $overall = false): array
     {
         $data = Radar::get_radar_indicators($form_ids, false, $assessments, $overall, static::$scaling_id);
         unset($data['diagrams']['upper limit']);
