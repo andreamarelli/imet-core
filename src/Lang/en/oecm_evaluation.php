@@ -365,7 +365,6 @@ return [
         ]
     ],
 
-
     'BudgetAdequacy' => [
         'title' => 'Current budget',
         'fields' => [
@@ -409,7 +408,7 @@ return [
                 '4' => 'Basic financial needs for the OECM management are relatively well secured (76-90% of needs secured)',
                 '5' => 'Basic financial needs for the OECM management are secured (> 90% of needs secured)',
             ],
-            'EvaluationScore' =>[
+            'EvaluationScore' => [
                 '0' => 'Basic financial needs for the OECM management are secured only for 1 year (current year)',
                 '1' => 'Basic financial needs for the OECM management are secured for 2 years (current year +1 year)',
                 '2' => 'Basic financial needs for the OECM management are secured for 3 years (current year +2 years)',
@@ -463,6 +462,589 @@ return [
     'ObjectivesProcessus' => [
         'module_info' => 'Establish and describe conservation objectives related to implementation process of the OECM The objectives entered below will be used for improving management, and mo re specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
+    'StaffCompetence' => [
+        'title' => 'Training and capacity-building programme for the OECM Management and Governance specific entity or combination of entities',
+        'fields' => [
+            'Theme' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'A) Adequacy of capacity building activities for the OECM management entity',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                '0' => 'Completely inadequate capacity building activities',
+                '1' => 'Somewhat adequate capacity building activities',
+                '2' => 'Adequate capacity-building activities, but improvements are needed',
+                '3' => 'Fully adequate capacity building activities (sufficient and updated)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are the OECM Management and Governance specific entity or combination of entities implementing an adequate training and capacity-building programme that responds to its/theirs members needs in achieving OECM objectives?',
+            'Qualified, competent and committed workforce central to the success of OECMs.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 or CTX 3.1.2)'
+        ]
+
+    ],
+
+    'HRmanagementPolitics' => [
+        'title' => 'Human resource management policies and procedures',
+        'fields' => [
+            'Conditions' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Adequacy of the human resource management policies and procedures ',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'predefined_values' => [
+            'Compensation and benefits for employees',
+            'Compensations on participation-based tasks',
+            'Job or task assignment',
+            'Health, safety and security',
+            'Gender and ethnic equity',
+            'Management of the relationships with stakeholders in tasks assignments to carry out',
+            'Rules reducing favouritism and discrimination in task assignments',
+            'Equity in accountability for activities carried out'
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the protected area',
+                '0' => 'Completely inadequate (0-30% of the needs)',
+                '1' => 'Somewhat inadequate (31-60% of the needs)',
+                '2' => 'Adequate (61-90% of the needs)',
+                '3' => 'Fully adequate (91-100% of the needs)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Have the OECM Management and Governance specific entity or combination of entities adopted adequate management policies to motivate and retain its human resources?'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of the provisions of the human resource management policies',
+            'Adequacy of the human resource management policies:'
+        ],
+        'module_info' => 'Provisions of the human resource management policies of the OECM Management and Governance specific entity or combination of entities (identified in CTX 3.1.1 or CTX 3.1.2):',
+    ],
+
+    'AdministrativeManagement' => [
+        'title' => 'Budget and financial management',
+        'fields' => [
+            'Aspect' => 'Criteria - Measured concept – Variables',
+            'EvaluationScore' => 'Rating: Set-up of the basic elements of budgetary and financial management',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'predefined_values' => [
+            'Accountability: you are able to explain and demonstrate to all stakeholders how you have used your resources and what you have achieved',
+            'Transparency: your organisation is transparent regarding its work and its finances, making information available to all stakeholders',
+            'Integrity: individuals in your organisation are operating with honesty and propriety',
+            'Financial stewardship: your organisation takes good care of the financial resources it has been given and ensures that they are used for the purpose intended',
+            'Accounting standards: your organisation\'s system for keeping financial records and documentation follows accepted external accounting standards'
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Never',
+                '1' => 'Rarely',
+                '2' => 'Sometimes',
+                '3' => 'Often',
+                '4' => 'Always'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are the budget and financial resources well managed to meet essential and priority management requirements of the OECM?',
+            'The budget and financial management of a OECM should be robust to permit adequate budgeting and resource allocation. You can only achieve effective budget and financial management if you have a sound management and work plan with clear objectives.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the set-up of the basic elements that must be in place to achieve good practice in budget and financial management.'
+        ]
+    ],
+
+    'EquipmentMaintenance' => [
+        'title' => 'Maintenance of infrastructure, equipment and facilities',
+        'fields' => [
+            'Equipment' => 'Criteria - Measured concept – Variables',
+            'EvaluationScore' => 'Rating: Adequacy of maintenance',
+            'AdequacyLevel' => 'Value from CTX 3.3',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Completely inadequate (0-30% of the needs)',
+                '1' => 'Somewhat inadequate (31-60% of the needs)',
+                '2' => 'Adequate (61-90% of the needs)',
+                '3' => 'Fully adequate (91-100% of the needs)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are the OECM’s infrastructure, equipment and facilities adequately maintained?',
+            'Poorly maintained infrastructure, equipment and facilities not only wear out more quickly, but also waste resources and fundamentally degrade the OECM’s capacity to achieve objectives.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the level of maintenance of infrastructure, equipment and facilities in relation to management requirements for the OECM (based on the analysis of the context of intervention, point CTX 3.3)'
+        ]
+    ],
+    'ManagementActivities' => [
+        'title' => 'Managing the key elements of the OECM with specific actions',
+        'fields' => [
+            'Activity' => 'Criteria - Measured concept – Variable',
+            'EvaluationScore' => 'Adequacy of management actions',
+            'InManagementPlan' => 'Action included in the management plan',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Key elements of the OECM'
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Completely inadequate (0-30% of the needs)',
+                '1' => 'Somewhat inadequate (31-60% of the needs)',
+                '2' => 'Adequate (61-90% of the needs)',
+                '3' => 'Fully adequate (91-100% of the needs)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are there specific management actions for the key elements of the OECM?',
+            'To ensure a sustainability management of the key elements of the OECM, stakeholder(s)/management association(s) should evaluate the practices and actions can include conservation/restoration of animal (e.g., bees) and plant species (e.g., pharmacopoeia), managing fire, revegetation work, controlling invasive species, management of cultural resources, threat containment, etc.'
+        ],
+        'module_info_Rating' => [
+            'Based on the list of the key elements identified in the Intervention context CTX 5 and prioritise in Management analysis C1.2, evaluate adequacy of related management practices and actions.'
+        ]
+    ],
+
+    'LawEnforcementImplementation' => [
+        'title' => 'Actions against illegal activities or to solve contentious issues on the OECM key elements management',
+        'fields' => [
+            'Element' => 'Criteria – Concept measured – Variable',
+            'Adequacy' => 'Adequacy of ranger unites/groups management',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Terrestrial and Sea control activities',
+            'group1' => 'Sea ranger patrol management',
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'Organisation management of unites/groups of control',
+                'Number of unites/groups of control per month',
+                'Use of collaborative control achieved through the collaboration with stakeholders',
+                'Organisation of unites/groups of control in collaboration with forest – sea agents and sworn officers',
+                'Equipped unites/groups of control by diverse means (e.g., patrol types such as observation points, foot, bicycle, motorcycles, vehicle/boats-assisted unites/groups, etc.)',
+                'Use of GPS or other supports tools to conduct briefing and debriefing of the unites/groups of control',
+                'Enforcement of control by unites/groups operating during the night or unscheduled hours',
+                'Continuous update and use of a simple fact sheet outlining zoning, controls, restrictions, and illegal activities'
+            ],
+            'group1' => [
+                'Specific unit or administrator / warden orienting and supporting the control unites/groups against illegal activities or contentious issues',
+                'Organisation of informants system orienting and supporting orienting and supporting the control unites/groups against illegal activities or contentious issues',
+                'System for implementing legal actions against illegal activities',
+                'Judgements obtained in court',
+                'System to solve contentious issues',
+                'Judgements obtained under traditional rules',
+                'Collaboration with NGOs specialised in terrestrial and marine laws, enforcement, etc. (rights, rules, etc.) on management sustainability of the key elements of the OECM'
+            ]
+        ],
+        'ratingLegend' => [
+            'Adequacy' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Completely inadequate (0-30%)',
+                '1' => 'Somewhat inadequate (31-60%)',
+                '2' => 'Adequate (61-90%)',
+                '3' => 'Fully adequate (91-100%)',
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'How adequate are the control and actions against illegal activities aimed at guaranteeing sustainability of the management of the key elements of the OECM?',
+            'Control (observation activities and data collection) is an essential activity to enforce existing legal, traditional and specific rules to ensure long-term management of the key elements of the OECM.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of elements of the ranger patrols management oriented on ensuring long-term protection of biodiversity and other values',
+            'Evaluate the acting against illegal activities or to solve contentious issues in the sustainability of the management of the key elements of the OECM?'
+        ]
+    ],
 
 
+    'StakeholderCooperation' => [
+        'title' => 'Cooperation between the stakeholders (deep analysis of the Governance of the key elements of the OECM)',
+        'fields' => [
+            'Element' => 'Criteria – Concept measured – Variable',
+            'MPInvolvement' => 'P',
+            'MPIImplementation' => 'PM',
+            'BAInvolvement' => 'B/A',
+            'EEInvolvement' => 'IEC',
+            'Cooperation' => 'Degree of cooperation',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Community/group or other',
+            'group1' => 'Government',
+            'group2' => 'NGOs, Scientists and Donors',
+            'group3' => 'Economic operators',
+        ],
+        'predefined_values' => [
+            'group0' => [
+                ''
+            ],
+            'group1' => [
+                ''
+            ],
+            'group2' => [
+                ''
+            ],
+            'group3' => [
+                ''
+            ]
+        ],
+        'ratingLegend' => [
+            'Cooperation' => [
+                'N/A' => 'this element is not related to the management of the protected area',
+                '0' => 'No cooperation',
+                '1' => 'Very little cooperation',
+                '2' => 'Moderate cooperation',
+                '3' => 'Very high cooperation'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are there actions to improve governance of the key elements in the OECM?',
+            'This step of the analysis evaluates how some or all relevant stakeholders are involved in management of the OECM in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance (IEC) Information, education and communication for community understanding and engagement.'
+        ],
+        'module_info_Rating' => [
+            'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance</li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>'
+        ]
+    ],
+
+    'AssistanceActivities' => [
+        'title' => 'Benefits for local communities',
+        'fields' => [
+            'Activity' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Adequacy of activities to provide benefits/assistance',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Elements of material living standard',
+            'group1' => 'Elements of immaterial living standard'
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'Support food security (small farming, small scale fisheries, harvesting, hunting, etc.)',
+                'Support for local business (processing of agricultural food production, fishing construction of boat sheds, boat parking, forest products, etc.)',
+                'Support for tourism businesses (distribution of tourism incomes, traditional products and crafts for tourists, agriculture products or seafood, etc.)',
+                'Support for local funding pathways',
+                'Support for human-wildlife conflict resolutions - compensation',
+                'Support of employment local human resources in the OECM, in tourism, etc.',
+                'Support local service providers',
+                'Provision of natural resources in case of need (e.g., water, fibres, etc. from the OECMs during crises or materiel contribution for social buildings such as hospital, school)',
+                'Provide power supply, electrical connection, water supply – connection, construction, maintenance and improvement of roads, etc.'
+            ],
+            'group1' => [
+                'Minimisation of conflicts and strengthening of the sustainable management and use of key elements of the OECM (provisioning and cultural)',
+                'Provision of education, health infrastructure (i.e., buildings, clean water)',
+                'Provision of educational services (teaching), health services (health care)',
+                'Provision of cultural services (physical – intellectual – emblematic – spiritual – interaction from OECM services)',
+                'Facilitation of social problem solving',
+                'Strengthening of the identity and sense of place of indigenous peoples and local communities (IPLCs)',
+                'Minimisation of conflicts and strengthening of the sustainable management and use of key elements of the OECM (provisioning and cultural)',
+                'Provision of education, health infrastructure (i.e., buildings, clean water)',
+                'Provision of educational services (teaching), health services (health care)',
+                'Provision of cultural services (physical – intellectual – emblematic – spiritual – interaction from OECM services)',
+                'Facilitation of social problem solving',
+                'Strengthening of the identity and sense of place of indigenous peoples and local communities (IPLCs)'
+            ]
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Completely inadequate (0-30%)',
+                '1' => 'Somewhat inadequate (31-60%)',
+                '2' => 'Adequate (61-90%)',
+                '3' => 'Fully adequate (91-100%)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the OECM carry out activities/programmes designed to provide appropriate benefits/assistance for communities?',
+            'OECMs should contribute to sustainable development and economic well-being of the stakeholders. Accordingly, international best practice standards promote OECM assessment that accounts for both ecological and socio-economic outcomes (Sources UNESCO - IUCN).'
+        ],
+        'module_info_Rating' => [
+            'Evaluate adequacy of the activities/programme that the OECM is carrying out to provide benefits/assistance for stakeholders.'
+        ],
+    ],
+
+    'EnvironmentalEducation' => [
+        'title' => 'Environmental education and public awareness',
+        'fields' => [
+            'Activity' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Adequacy of the activities of environmental education and public awareness',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'predefined_values' => [
+            'Stakeholders conservation programmes of the OECM',
+            'Programmes to raise awareness of the stakeholders of the OECM',
+            'Programmes to raise awareness among stakeholders other than the stakeholders of the OECM',
+            'Environmental education programme in schools of the landscape of the OECM',
+            'Radio - Television programmes about the OECM (e.g., on community radio stations)',
+            'Conferences and debates on OECM',
+            'Guided tours for stakeholders in the OECM',
+            'Waste and clean-up operations',
+            'Public awareness (e.g., ecomuseums)'
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Completely inadequate (0-30%)',
+                '1' => 'somewhat inadequate (31-60%)',
+                '2' => 'adequate (61-90%)',
+                '3' => 'fully adequate (91-100%)',
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the OECM carry out activities/programmes of environmental education and public awareness specifically linked to the needs and objectives of conservation/management of key elements?',
+            'Environmental education can help individuals to balance their own vital needs with the needs of the natural environment that provides services (provisioning, regulating, cultural and supporting) for the stakeholders inside and outside, near and far from the OECM (considering the specific designation of the OECM). This could be achieved by increasing awareness and effectively changing the stakeholders’ perspective on the OECM'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of the environmental education and the public awareness activities/programmes that are supported by the OECM'
+        ]
+    ],
+
+    'VisitorsManagement' => [
+        'title' => 'Management of visitor facilities and services',
+        'fields' => [
+            'Aspect' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Adequacy of visitor facilities and services',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'predefined_values' => [
+            'Existence of specific objectives for tourism and visitor management',
+            'Existence of tourism management procedures',
+            'Raising awareness of the consequences of ecotourism activities',
+            'Actions to minimise human‐induced changes (transport, accommodation, and leisure activities)',
+            'Tourism diversification through promoting biophysical, cultural and social values',
+            'Economic benefits for OECMs management and governance ensured',
+            'Accommodation, catering and leisure activities management (also for disabled people)',
+            'Tourist guides in the OECM',
+            'Tourism monitoring data'
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Completely inadequate (0-30%)',
+                '1' => 'Somewhat inadequate (31-60%)',
+                '2' => 'Adequate (61-90%)',
+                '3' => 'Fully adequate (91-100%)',
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the OECM manage (designs, establishes, maintains and improves) the required visitor facilities, services and impact of the environmental tourism?',
+            'Tourism occur in unique historical, cultural and geographical contexts involving multiple values and stakeholders of the OECM. Effective management of OECM tourism requires appreciation and understanding of environmental, social and economic sustainability contexts and a compatible management of visitor facilities and services.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of the management of visitor facilities, services, impact on the OECM environmental and cultural tourism'
+        ]
+    ],
+
+    'NaturalResourcesMonitoring' => [
+        'title' => 'Systems for monitoring and research of the key elements of the OECM',
+        'fields' => [
+            'Aspect' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Adequacy of monitoring',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'predefined_values' => [
+            'Use of data from monitoring to induce changes in the management and governance of the OECM',
+            'Monitoring of the key elements',
+            'Monitoring threats to the OECM',
+            'Monitoring material and immaterial living standard of stakeholders',
+            'Research on the key elements',
+            'Research on material and immaterial living standard of stakeholders'
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '0' => 'Completely inadequate (0-30%)',
+                '1' => 'somewhat inadequate (31-60%)',
+                '2' => 'adequate (61-90%)',
+                '3' => 'fully adequate (91-100%)',
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Are the monitoring and research systems adequate to effectively monitor of the key elements of the OECM?',
+            'To anticipate potential issues and plan the best interventions, a solid understanding of the trends of the key elements of the OECM environmental and services as biodiversity, provisioning (water, food supply, etc.), forest quality, threats, etc. is indispensable'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of the monitoring and research systems in place for the key elements of the OECM'
+        ]
+    ],
+
+    'WorkProgramImplementation' => [
+        'title' => 'Activities implementation of the work/action plan',
+        'fields' => [
+            'Category' => 'Categories of activities',
+            'Activity' => 'Activity',
+            'TargetedActivity' => 'Targeted activity',
+            'EvaluationScore' => 'Level of implementation',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                '0' => 'No or very low level of implementation of the activities targeted for the last year (between 0 and 25%)',
+                '1' => 'Low level of implementation of the activities targeted for the last year (between 26 and 50%)',
+                '2' => 'Moderate level of implementation of the activities targeted for the last year (between 51 and 75%)',
+                '3' => 'High level of implementation of the activities targeted for the last year (between 76 and 100%)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'To what extent has the OECM implemented the main activities of the work/action plan?',
+            'Implementation is the carrying out, or execution, of the annual or multi-year work/action plan concerning the activities of the OECM'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the level of implementation of the priorities defined in the work/action plan for the previous year (in the comments box indicate the year of reference if you use a multi-year work/action plan)',
+            '<b>Category of activities</b>: key elements management, control, environmental education, tourism management, etc.',
+            '<b>Activity</b>: action belonging to one of the main categories of activities that is executed to achieve particular purpose',
+            'Without a work/action plan you can refer to the categories and the activities of the Process element: Management and protection of the key elements; Stakeholder relations; Tourism; Monitoring and research; etc.'
+        ]
+    ],
+
+    'ManagementGovernance' => [
+        'title' => 'Control of management and governance of the key elements of the OECM',
+        'fields' => [
+            'Patrol' => 'A) Area covered by control and collection and information',
+            'Comments' => 'Comments/Explanation'
+        ],
+        'ratingLegend' => [
+            'Patrol' => [
+                '0' => 'Area covered by control is minimal (from 0 to 25% of the surface area)',
+                '1' => 'Area covered by control is limited (from 26 to 50% of the surface area)',
+                '2' => 'Area covered by control is fair (from 51 to 75% of the surface area)',
+                '3' => 'Area covered by control is very good (more than 76% of the surface area)',
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'What is the current extent of control of the management and the governance of the key elements of the OECM?',
+            'The ability to ensure the control and collection of information of the key elements prioritised in the management and governance of OECM prevent or minimise illegal activities or contentious issues.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the control of the key elements prioritised in the management and governance of OECM.'
+        ]
+    ],
+
+    'AchievedObjectives' => [
+        'title' => 'Achievement of long-term conservation objectives of the management',
+        'fields' => [
+            'Objective' => 'Main long-term goals-objective',
+            'EvaluationScore' => 'Level of achievement of the objectives',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                '0' => 'no or very low level of achievement (between 0 and 25%).',
+                '1' => 'low level of achievement (between 26 and 50%)',
+                '2' => 'moderate level of achievement (between 51 and 75%)',
+                '3' => 'high level of achievement (between 76 and 100%)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'To what extent has the OECM achieved the main objectives of their plan of management and governance?',
+            '(Based on the analysis of the context of intervention, point CTX1.5 Vision –Objectives or element Planning, point P6 - Objectives of the OECM)',
+            'The goals and objectives of an OECM must be clearly understood if management is to be successful based on measurable achievements. '
+        ],
+        'module_info_Rating' => [
+            'Evaluate the level of achievement of principal long-term goals / objectives related to the key elements of the OECM.'
+        ]
+    ],
+
+    'LifeQualityImpact' => [
+        'title' => 'Effects on the quality of life of local stakeholders',
+        'fields' => [
+            'Element' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Effects',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Elements of material living standard',
+            'group1' => 'Elements of immaterial living standard',
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'Food security (small farming, small scale fisheries, harvesting, hunting, etc.)',
+                'Local business (processing of agricultural food production, fishing construction of boat sheds, boat parking, forest products, etc.)',
+                'Human-wildlife conflict resolutions - compensation',
+                'Employment local human resources in the OECM, in tourism, etc.',
+                'Natural resources in case of need (e.g., water, fibres, etc. from the OECMs during crises or materiel contribution for social buildings such as hospital, school)',
+                'Power supply, electrical connection, water supply – connection, construction, maintenance and improvement of roads, etc.'
+            ],
+            'group1' => [
+                'Conflicts and strengthening of the sustainable management and use of key elements of the OECM (provisioning and cultural)',
+                'Education, health infrastructures (i.e., buildings, clean water)',
+                'Educational services (teaching), health services (health care)',
+                'Cultural services (physical – intellectual – emblematic – spiritual – interaction from OECM services)',
+                'Social problem solving',
+                'Identity and sense of place of indigenous peoples and local communities (IPLCs)'
+            ]
+        ],
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the OECM',
+                '-3' => 'Highly damaging effects',
+                '-2' => 'Damaging effects',
+                '-1' => 'Slightly damaging effects',
+                '0' => 'Neutral',
+                '+1' => 'Slightly favourable effects',
+                '+2' => 'Favourable effects',
+                '+3' => 'Highly favourable effects'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the management and governance of the OECM exert positive or negative effects on the quality of life of the stakeholders?',
+            'The OECM management and governance should take great care in the effects on the quality of life of local stakeholders. The availability of essential resources can affect the quality of life through impacts on consumption, income and wealth (material living standards) and on good life, health and social and cultural relations (immaterial living standards). '
+        ],
+        'module_info_Rating' => [
+            'Evaluate the effects of the management and governance of the OECM on stakeholders.'
+        ]
+    ],
+
+    'EmpowermentGovernance' => [
+        'title' => 'Empowerment of the stakeholders in the governance of key elements of the OECM',
+        'fields' => [
+            'Conditions' => 'Criteria – Concept measured – Variable',
+            'EvaluationScore' => 'Adequacy of stakeholders empowerment',
+            'Comments' => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'INVOLVEMENT',
+            'group1' => 'RESPONSIBILITY',
+            'group2' => 'DIRECTION'
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'Representation: existing mechanisms that will ensure the legitimate representation of stakeholders in OECM decision-making',
+                'Acceptance: understanding and recognition of customary rights on ecosystem services',
+                'Acceptance: social acceptance of the legitimacy of legal rights of the ecosystem services',
+                'Consensus orientation: decision-making maintaining an active dialogue and seeking consensus on solutions that meet, at least in part, the concerns and interest of everyone'
+            ],
+            'group1' => [
+                'Respect for agreements: monitoring of the respect of agreements made between different stakeholders',
+                'Fairness in cost-benefit associated with conservation: maximising the ecological, social, economic and cultural benefits of OECMs without incurring unnecessary costs or causing damage to the local communities',
+                'Management efficiency: application of the existing governance of the ecosystem services effective and efficient in delivering ecological, social, economic and cultural benefits of OECM'
+            ],
+            'group2' => [
+                'Direction (Vision): development and application of a coherent strategic vision (long-term perspective) based on agreed values and an appreciation of ecological, historical, social and cultural complexities',
+                'Legalisation: promoting the legalisation of stakeholders\' rights in the management and governance of ecosystem services maximising the ecological, social, economic and cultural benefits of protected and conserved',
+                'Respect for values: supporting the improvement of all the ecological, provisioning, control, cultural values of OECM for the benefit of communities'
+            ]
+        ],
+
+        'ratingLegend' => [
+            'EvaluationScore' => [
+                'N/A' => 'this element is not related to the management of the protected area',
+                '0' => 'Completely inadequate (0-30% of the needs)',
+                '1' => 'Somewhat inadequate (31-60% of the needs)',
+                '2' => 'Adequate (61-90% of the needs)',
+                '3' => 'Fully adequate (91-100% of the needs)'
+            ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the management of the protected area use adequate measures / approaches / tools for ensuring staff motivation?',
+            'For a protected area, motivated staff is essential to achieve success in conservation. Working conditions and staff motivation strongly influence the ability of staff to carry out their work. Managers and leaders must understand that they need to provide a work environment that creates and maintains motivation in the staff to achieve results on conservation',
+        ],
+        'module_info_Rating' => [
+            'Evaluate the adequacy of staff motivation measures / approaches / tools in the protected area',
+        ]
+    ],
 ];
