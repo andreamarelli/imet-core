@@ -42,25 +42,18 @@ trait Context {
 
     protected static function score_c2($imet_id): ?float
     {
-        $records = SupportsAndConstraints::getModule($imet_id);
+        $records = SupportsAndConstraints::getModuleRecords($imet_id)['records'];
 
-        $values = $records
+        $values = collect($records)
             ->filter(function ($record){
-                return $record['Influence'] !== null
-                    && intval($record['Influence']) > -4
-                    && $record['ConstraintLevel'] !== null
-                    && intval($record['ConstraintLevel']) > -4;
-            })->map(function ($record){
-                $record['ConstraintLevel'] = $record['ConstraintLevel']===null
-                    ? 1
-                    : $record['ConstraintLevel'];
-                return $record;
+                return $record['Weight'] !== null
+                    && $record['ConstraintLevel'] !== null;
             });
 
         $numerator = $values->sum(function ($item){
-            return $item['ConstraintLevel'] * $item['Influence'];
+            return $item['ConstraintLevel'] * $item['Weight'];
         });
-        $denominator = $values->sum('Influence');
+        $denominator = $values->sum('Weight');
 
         $score = $denominator>0
             ? $numerator/$denominator * 100 / 3

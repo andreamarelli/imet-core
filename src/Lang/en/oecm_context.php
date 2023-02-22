@@ -7,7 +7,7 @@ return [
             'CompleteName' => 'Full name of the OECM',
             'UsedName' => 'Name by which OECM is referred to',
             'CompleteNameWDPA' => 'Name of the OECM in the WDPA site',
-            'WDPA' => 'WPDA',
+            'WDPA' => 'WDPA',
             'Type' => 'typology',
             'Country' => 'Country',
             'CreationYear' => 'Year created',

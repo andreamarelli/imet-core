@@ -22,7 +22,7 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         $this->module_fields = [
             ['name' => 'Element',                'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'GeographicalProximity',  'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.GeographicalProximity')],
-            ['name' => 'Engagement',             'type' => 'suggestion-ImetOECM_Engagement', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Engagement')],
+            ['name' => 'Engagement',             'type' => 'dropdown_multiple-ImetOECM_Engagement', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Engagement')],
             ['name' => 'Impact',                 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Impact')],
             ['name' => 'Role',                   'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Role')],
             ['name' => 'Comments',               'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Comments')],
@@ -56,5 +56,24 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         // Execute update
         $request->merge(['records_json' => Payload::encode($records)]);
         return parent::updateModule($request);
+    }
+
+
+    public static function calculateWeights($form_id){
+        $records = static::getModuleRecords($form_id)['records'];
+
+        $records = collect($records)->map(function($item){
+
+            $sum = $item['Impact']!==null ? $item['Impact'] : 0;
+            $sum += $item['Role']!==null ? $item['Role'] : 0;
+            $sum += $item['Engagement']!==null && $item['Engagement']!=="" ? count(json_decode($item['Engagement'])) : 0;
+            $sum += $item['GeographicalProximity'] ? 4 : 0;
+
+            $item['__weight'] = round($sum * 100 / 16, 2);
+
+            return $item;
+        })->pluck('__weight', 'Element')->toArray();
+
+        return $records;
     }
 }

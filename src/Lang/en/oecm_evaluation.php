@@ -71,17 +71,11 @@ return [
         'title' => 'Constraints or supports from stakeholders',
         'fields' => [
             'Stakeholder'       => 'Criteria – Concept measured – Variable',
-            'Influence'         => 'Influence/power of the stakeholders',
+            'Weight'            => 'Importance of the stakeholder (0-100)',
             'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
             'Comments'          => 'Comments/Explanation',
         ],
         'ratingLegend' => [
-            'Influence' => [
-                'N/A' => 'this stakeholder is not involved in the process',
-                '1' => 'Low influence/power',
-                '2' => 'Moderate influence/power',
-                '3' => 'High influence/power'
-            ],
             'ConstraintLevel' => [
                 '-3' => 'Severe constraints/conflicts',
                 '-2' => 'Moderate constraints/conflicts',
@@ -113,14 +107,10 @@ return [
         ],
         'predefined_values' => [
             'Gazetting and designation (e.g., conserved area, community forest)',
-            'Clarity of legal demarcation of the OECM (e.g. natural boundaries such as rivers, non-',
-            'natural boundaries, customary rights, enclaves).',
+            'Clarity of legal demarcation of the OECM (e.g. natural boundaries such as rivers, non-natural boundaries, customary rights, enclaves).',
             'Internal rules for the management of the OECM',
-            'Ratification and application of international conventions (CITES, CBD, Nagoya, CMS,',
-            'World Heritage, RAMSAR, etc.)',
-            'Locally established laws on OECM and conservation (spatial and temporal harvesting,',
-            'hunting, fishing closures; quotas limits on control on the number and size of vessels;',
-            'bans on harvesting-hunting-fishing methods or gear, etc.)',
+            'Ratification and application of international conventions (CITES, CBD, Nagoya, CMS, World Heritage, RAMSAR, etc.)',
+            'Locally established laws on OECM and conservation (spatial and temporal harvesting, hunting, fishing closures; quotas limits on control on the number and size of vessels; bans on harvesting-hunting-fishing methods or gear, etc.)',
             'National environmental laws (natural resources management, conservation, OECM)',
             'Other national laws (land and property rights, taxes, business laws, etc.)'
         ],
@@ -230,8 +220,8 @@ return [
             'PlanExistence' => 'A) Is there a management plan?',
             'PlanUptoDate' => 'Is the management plan up to date?',
             'PlanApproved' => 'Has the management plan been approved?',
-            'PlanImplemented' => 'Is the management plan been implemented?',
-            'PlanAdequacyScore' => 'B) Adequacy regarding the clarity and applicability',
+            'PlanImplemented' => 'Has the management plan been implemented?',
+            'PlanAdequacyScore' => 'B) Adequacy regarding the clarity and applicability of the management plan',
             'Comments' => 'Comments / Explanation',
         ],
         'ratingLegend' => [
@@ -247,7 +237,7 @@ return [
             'The Management Plan is a document which sets management approach and goals for management. Critical to the success of the plan is the widest possible consultation with stakeholders and development of objectives that can be agreed and adhered to by all who have interest in the use and ongoing survival of the area concerned (from IUCN/WDPA: Guidelines for recognising and reporting other effective area-based conservation measures, 2017)'
         ],
         'module_info_Rating' => [
-            'Evaluate: A) the status of the management plan, B) Adequacy of the management plan to the needs of conservation B) Adequacy regarding the clarity and applicability:'
+            'Evaluate: A) the status of the management plan, B) Adequacy regarding the clarity and applicability:'
         ]
     ],
 
@@ -256,8 +246,8 @@ return [
         'fields' => [
             'PlanExistence' => 'A) Is there a workplan? Yes/no',
             'PlanUptoDate' => 'Is the workplan up to date (covering current period)? Yes/no',
-            'PlanApproved' => 'as the workplan been officially approved? Yes/no',
-            'PlanImplemented' => 'Is the workplan or monitoring plan being implemented? Yes/no',
+            'PlanApproved' => 'Has the workplan been officially approved? Yes/no',
+            'PlanImplemented' => 'Has the workplan or monitoring plan being implemented? Yes/no',
             'PlanAdequacyScore' => 'B) Adequacy regarding the clarity and applicability of the activities and established results of the work/action plan or monitoring plan',
             'Comments' => 'Comments/Explanation',
         ],
@@ -318,7 +308,7 @@ return [
         'title' => 'Basic information',
         'fields' => [
             'Element' => 'Rating – Concept measured – Variables',
-            'EvaluationScore' => 'Availability',
+            'EvaluationScore' => 'Information availability',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -342,6 +332,7 @@ return [
         'title' => 'Capacities of the management and governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Member',
+            'Weight' => 'Importance',
             'Adequacy' => 'Adequacy',
             'Comments' => 'Comments/Explanation',
         ],
