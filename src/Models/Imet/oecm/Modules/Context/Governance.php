@@ -13,15 +13,11 @@ class Governance extends Modules\Component\ImetModule
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'TABLE';
+        $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 1.2';
         $this->module_title = trans('imet-core::oecm_context.Governance.title');
-        $this->module_fields = [
-            ['name' => 'Stakeholder',   'type' => 'text-area',         'label' => trans('imet-core::oecm_context.Governance.fields.Stakeholder')],
-            ['name' => 'StakeholderType',   'type' => 'dropdown-ImetOECM_StakeholderType',      'label' => trans('imet-core::oecm_context.Governance.fields.StakeholderType')],
-        ];
 
-        $this->module_common_fields = [
+        $this->module_fields = [
             ['name' => 'GovernanceModel',   'type' => 'dropdown-ImetOECM_GovernanceModel',   'label' => trans('imet-core::oecm_context.Governance.fields.GovernanceModel')],
             ['name' => 'AdditionalInfo',    'type' => 'text',   'label' => trans('imet-core::oecm_context.Governance.fields.AdditionalInfo')],
 

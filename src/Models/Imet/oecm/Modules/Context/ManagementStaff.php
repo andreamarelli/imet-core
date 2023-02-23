@@ -26,8 +26,6 @@ class ManagementStaff extends Modules\Component\ImetModule
         ];
 
 
-        $this->max_rows = 14;
-
         $this->module_info = trans('imet-core::oecm_context.ManagementStaff.module_info');
 
         parent::__construct($attributes);

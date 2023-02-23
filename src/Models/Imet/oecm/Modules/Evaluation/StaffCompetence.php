@@ -32,8 +32,6 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         $this->module_info_Rating = trans('imet-core::oecm_evaluation.StaffCompetence.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.StaffCompetence.ratingLegend');
 
-        $this->max_rows = 14;
-
         parent::__construct($attributes);
 
     }

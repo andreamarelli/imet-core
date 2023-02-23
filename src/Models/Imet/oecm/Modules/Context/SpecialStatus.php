@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
+use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 
@@ -33,6 +34,14 @@ class SpecialStatus extends Modules\Component\ImetModule
         ];
 
         parent::__construct($attributes);
-
     }
+
+    public static function get_marine_groups(): array
+    {
+        $groups = (new static())->module_groups;
+        return [
+            $groups['marine_pa']
+        ];
+    }
+
 }

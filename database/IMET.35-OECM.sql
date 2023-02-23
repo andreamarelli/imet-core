@@ -72,8 +72,6 @@ CREATE TABLE imet_oecm.context_governance
     "FormID"                    integer,
     "UpdateBy"                  integer,
     "UpdateDate"                character varying(30),
-    "Stakeholder"               text,
-    "StakeholderType"           character varying(250),
     "GovernanceModel"           character varying(250),
     "AdditionalInfo"            text,
     "ManagementUnique"          character varying(125),
