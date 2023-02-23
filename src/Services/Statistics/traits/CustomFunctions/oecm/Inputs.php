@@ -130,7 +130,7 @@ trait Inputs
             ->map(function($record){
                 $record['Adequacy'] = $record['Adequacy']!==null
                     ? floatval($record['Adequacy'])
-                    : 1;
+                    : 0;
                 return $record;
             })
             ->pluck('Adequacy', 'Equipment');

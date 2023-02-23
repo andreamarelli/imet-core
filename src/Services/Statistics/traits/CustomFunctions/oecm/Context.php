@@ -55,7 +55,7 @@ trait Context {
                     : null;
             })
             ->toArray();
-        
+
         $score = static::average($values, null);
 
         return $score!== null ?
