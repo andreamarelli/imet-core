@@ -25,10 +25,15 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
             ['name' => 'Engagement',             'type' => 'dropdown_multiple-ImetOECM_Engagement', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Engagement')],
             ['name' => 'Impact',                 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Impact')],
             ['name' => 'Role',                   'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Role')],
+            ['name' => 'MPInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.MPInvolvement')],
+            ['name' => 'MPIImplementation', 'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.MPIImplementation')],
+            ['name' => 'BAInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.BAInvolvement')],
+            ['name' => 'EEInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.EEInvolvement')],
             ['name' => 'Comments',               'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Comments')],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.StakeholdersNaturalResources.groups');
+        $this->module_info = trans('imet-core::oecm_context.StakeholdersNaturalResources.module_info');
         $this->ratingLegend = trans('imet-core::oecm_context.StakeholdersNaturalResources.ratingLegend');
 
         parent::__construct($attributes);
@@ -68,8 +73,12 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
             $sum += $item['Role']!==null ? $item['Role'] : 0;
             $sum += $item['Engagement']!==null && $item['Engagement']!=="" ? count(json_decode($item['Engagement'])) : 0;
             $sum += $item['GeographicalProximity'] ? 4 : 0;
+            $sum += $item['MPInvolvement'] ? 1 : 0;
+            $sum += $item['MPIImplementation'] ? 1 : 0;
+            $sum += $item['BAInvolvement'] ? 1 : 0;
+            $sum += $item['EEInvolvement'] ? 1 : 0;
 
-            $item['__weight'] = round($sum * 100 / 16, 2);
+            $item['__weight'] = round($sum * 100 / 20, 0);
 
             return $item;
         })->pluck('__weight', 'Element')->toArray();

@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\oecm;
 
 
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeImportance;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Equipments;
@@ -44,7 +45,21 @@ trait Inputs
             ? $numerator_stakeholders/$denominator_stakeholders * 100 / 3
             : null;
 
-        $score = static::average([$score_staff, $score_stakeholders]);
+        $relative_importance = ManagementRelativeImportance::getModuleRecords($imet_id);
+        $relative_importance = (int) $relative_importance['records'][0]['RelativeImportance'] ?? 0;
+
+        if($score_staff!==null && $score_stakeholders!==null){
+            $score = (
+                    ($score_staff * (50 - $relative_importance * 16.67)) +
+                    ($score_stakeholders * (50 + $relative_importance * 16.67))
+                ) / 100;
+        } elseif($score_staff===null){
+            $score = $score_stakeholders;
+        } elseif($score_stakeholders===null){
+            $score = $score_staff;
+        } else {
+            $score = null;
+        }
 
         return $score!== null ?
             round($score, 2)

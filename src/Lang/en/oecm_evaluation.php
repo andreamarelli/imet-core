@@ -473,7 +473,7 @@ return [
             'Qualified, competent and committed workforce central to the success of OECMs.'
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 or CTX 3.1.2)'
+            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 and CTX 3.1.2)'
         ]
 
     ],
@@ -657,10 +657,7 @@ return [
         'title' => 'Cooperation between the stakeholders (deep analysis of the Governance of the key elements of the OECM)',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
-            'MPInvolvement' => 'P',
-            'MPIImplementation' => 'PM',
-            'BAInvolvement' => 'B/A',
-            'EEInvolvement' => 'IEC',
+            'Weight' => 'Importance of the stakeholder (0-100)',
             'Cooperation' => 'Degree of cooperation',
             'Comments' => 'Comments/Explanation',
         ],
@@ -696,9 +693,6 @@ return [
         'module_info_EvaluationQuestion' => [
             'Are there actions to improve governance of the key elements in the OECM?',
             'This step of the analysis evaluates how some or all relevant stakeholders are involved in management of the OECM in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance (IEC) Information, education and communication for community understanding and engagement.'
-        ],
-        'module_info_Rating' => [
-            'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance</li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>'
         ]
     ],
 
@@ -767,8 +761,8 @@ return [
         ],
         'predefined_values' => [
             'Stakeholders conservation programmes of the OECM',
-            'Programmes to raise awareness of the stakeholders of the OECM',
-            'Programmes to raise awareness among stakeholders other than the stakeholders of the OECM',
+            'Programs to raise awareness of the stakeholders of the OECM',
+            'Programs to raise awareness among stakeholders other than the stakeholders of the OECM',
             'Environmental education programme in schools of the landscape of the OECM',
             'Radio - Television programmes about the OECM (e.g., on community radio stations)',
             'Conferences and debates on OECM',

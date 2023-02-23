@@ -33,6 +33,7 @@ class OEMCStatisticsService extends StatisticsService
     use CustomFunctions\oecm\Planning;
     use CustomFunctions\oecm\Inputs;
     use CustomFunctions\oecm\Process;
+    use CustomFunctions\oecm\Outputs;
     use Math;
 
     /**
@@ -61,7 +62,7 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'c11' => static::score_table($imet_id, Designation::class, 'EvaluationScore'),
+            'c11' => static::score_c11($imet_id),
             'c12' =>  static::score_c12($imet_id)
         ];
         $scores['c1'] = self::average($scores);
@@ -170,7 +171,7 @@ class OEMCStatisticsService extends StatisticsService
 
         $scores = [
             'op1' => static::score_table($imet_id, WorkProgramImplementation::class, 'EvaluationScore'),
-            'op2' => null
+            'op2' => static::score_op2($imet_id)
         ];
 
         // aggregate step score

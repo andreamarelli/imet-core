@@ -19,20 +19,16 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
         $this->module_code = 'PR8';
         $this->module_title = trans('imet-core::oecm_evaluation.StakeholderCooperation.title');
         $this->module_fields = [
-            ['name' => 'Element',           'type' => 'disabled',          'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Element'), 'other'=>'rows="3"'],
-            ['name' => 'MPInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.MPInvolvement')],
-            ['name' => 'MPIImplementation', 'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.MPIImplementation')],
-            ['name' => 'BAInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.BAInvolvement')],
-            ['name' => 'EEInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.EEInvolvement')],
+            ['name' => 'Element',           'type' => 'disabled',           'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Element'), 'other'=>'rows="3"'],
+            ['name' => 'Weight',            'type' => 'disabled',           'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Weight')],
             ['name' => 'Cooperation',       'type' => 'imet-core::rating-0to3WithNA',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Cooperation')],
-            ['name' => 'Comments',          'type' => 'text-area',               'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Comments')],
+            ['name' => 'Comments',          'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Comments')],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.StakeholdersNaturalResources.groups');        // Re-use groups from CTX 3.1.2
         $this->titles = trans('imet-core::oecm_context.StakeholdersNaturalResources.titles');               // Re-use titles from CTX 3.1.2
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_EvaluationQuestion');
-        $this->module_info_Rating = trans('imet-core::oecm_evaluation.StakeholderCooperation.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.StakeholderCooperation.ratingLegend');
 
         parent::__construct($attributes);
@@ -74,6 +70,16 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
+
+        $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+
+        foreach($module_records['records'] as $idx => $module_record){
+            if(array_key_exists($module_record['Element'], $weight)){
+                $module_records['records'][$idx]['Weight'] = $weight[$module_record['Element']];
+            } else {
+                $module_records['records'][$idx]['Weight'] = null;
+            }
+        }
         return $module_records;
     }
 

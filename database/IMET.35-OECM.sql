@@ -319,6 +319,17 @@ CREATE TABLE imet_oecm.context_management_staff_partners
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+
+CREATE TABLE imet_oecm.context_management_relative_importance
+(
+    id             serial PRIMARY KEY,
+    "FormID"       integer,
+    "UpdateBy"     integer,
+    "UpdateDate"   character varying(30),
+    "RelativeImportance"  numeric,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE imet_oecm.context_financial_resources
 (
     id                           serial PRIMARY KEY,
@@ -407,6 +418,10 @@ CREATE TABLE imet_oecm.context_stakeholders_natural_resources
     "Engagement"            text,
     "Impact"                numeric,
     "Role"                  numeric,
+    "MPInvolvement"         numeric,
+    "MPIImplementation"     numeric,
+    "BAInvolvement"         numeric,
+    "EEInvolvement"         numeric,
     "Comments"              text,
     group_key               character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
@@ -889,10 +904,7 @@ CREATE TABLE imet_oecm.eval_stakeholder_cooperation
     "UpdateDate"        character varying(30),
     "Element"           text,
     "Cooperation"       numeric,
-    "MPInvolvement"     numeric,
-    "MPIImplementation" numeric,
-    "BAInvolvement"     numeric,
-    "EEInvolvement"     numeric,
+    "Weight"            numeric,
     "Comments"          text,
     group_key           character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
