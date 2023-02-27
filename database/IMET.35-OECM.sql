@@ -512,6 +512,7 @@ CREATE TABLE imet_oecm.eval_supports_and_constaints
     "UpdateDate"      character varying(30),
     "Stakeholder"     text,
     "Influence"       numeric,
+    "Weight"          numeric,
     "ConstraintLevel" numeric,
     "Comments"        text,
     group_key         character varying(50),
@@ -615,11 +616,10 @@ CREATE TABLE imet_oecm.eval_objectives_planification
     "FormID"     integer,
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
-    "Member" text,
-    "Weight" numeric,
-    "Adequacy" numeric,
-    "Comments" text,
-    group_key character varying(50),
+    "Element"    text,
+    "Status"     text,
+    "Objective"  text,
+    "Comments"   text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -643,6 +643,7 @@ CREATE TABLE imet_oecm.eval_capacity_adequacy
     "UpdateBy"   integer,
     "UpdateDate" character varying(30),
     "Member"     text,
+    "Weight"     numeric,
     "Adequacy"   numeric,
     "Comments"   text,
     group_key    character varying(50),
