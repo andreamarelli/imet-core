@@ -71,17 +71,11 @@ return [
         'title' => 'Constraints or supports from stakeholders',
         'fields' => [
             'Stakeholder'       => 'Criteria – Concept measured – Variable',
-            'Influence'         => 'Influence/power of the stakeholders',
+            'Weight'            => 'Importance of the stakeholder (0-100)',
             'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
             'Comments'          => 'Comments/Explanation',
         ],
         'ratingLegend' => [
-            'Influence' => [
-                'N/A' => 'this stakeholder is not involved in the process',
-                '1' => 'Low influence/power',
-                '2' => 'Moderate influence/power',
-                '3' => 'High influence/power'
-            ],
             'ConstraintLevel' => [
                 '-3' => 'Severe constraints/conflicts',
                 '-2' => 'Moderate constraints/conflicts',
@@ -113,14 +107,10 @@ return [
         ],
         'predefined_values' => [
             'Gazetting and designation (e.g., conserved area, community forest)',
-            'Clarity of legal demarcation of the OECM (e.g. natural boundaries such as rivers, non-',
-            'natural boundaries, customary rights, enclaves).',
+            'Clarity of legal demarcation of the OECM (e.g. natural boundaries such as rivers, non-natural boundaries, customary rights, enclaves).',
             'Internal rules for the management of the OECM',
-            'Ratification and application of international conventions (CITES, CBD, Nagoya, CMS,',
-            'World Heritage, RAMSAR, etc.)',
-            'Locally established laws on OECM and conservation (spatial and temporal harvesting,',
-            'hunting, fishing closures; quotas limits on control on the number and size of vessels;',
-            'bans on harvesting-hunting-fishing methods or gear, etc.)',
+            'Ratification and application of international conventions (CITES, CBD, Nagoya, CMS, World Heritage, RAMSAR, etc.)',
+            'Locally established laws on OECM and conservation (spatial and temporal harvesting, hunting, fishing closures; quotas limits on control on the number and size of vessels; bans on harvesting-hunting-fishing methods or gear, etc.)',
             'National environmental laws (natural resources management, conservation, OECM)',
             'Other national laws (land and property rights, taxes, business laws, etc.)'
         ],
@@ -230,8 +220,8 @@ return [
             'PlanExistence' => 'A) Is there a management plan?',
             'PlanUptoDate' => 'Is the management plan up to date?',
             'PlanApproved' => 'Has the management plan been approved?',
-            'PlanImplemented' => 'Is the management plan been implemented?',
-            'PlanAdequacyScore' => 'B) Adequacy regarding the clarity and applicability',
+            'PlanImplemented' => 'Has the management plan been implemented?',
+            'PlanAdequacyScore' => 'B) Adequacy regarding the clarity and applicability of the management plan',
             'Comments' => 'Comments / Explanation',
         ],
         'ratingLegend' => [
@@ -247,7 +237,7 @@ return [
             'The Management Plan is a document which sets management approach and goals for management. Critical to the success of the plan is the widest possible consultation with stakeholders and development of objectives that can be agreed and adhered to by all who have interest in the use and ongoing survival of the area concerned (from IUCN/WDPA: Guidelines for recognising and reporting other effective area-based conservation measures, 2017)'
         ],
         'module_info_Rating' => [
-            'Evaluate: A) the status of the management plan, B) Adequacy of the management plan to the needs of conservation B) Adequacy regarding the clarity and applicability:'
+            'Evaluate: A) the status of the management plan, B) Adequacy regarding the clarity and applicability:'
         ]
     ],
 
@@ -256,8 +246,8 @@ return [
         'fields' => [
             'PlanExistence' => 'A) Is there a workplan? Yes/no',
             'PlanUptoDate' => 'Is the workplan up to date (covering current period)? Yes/no',
-            'PlanApproved' => 'as the workplan been officially approved? Yes/no',
-            'PlanImplemented' => 'Is the workplan or monitoring plan being implemented? Yes/no',
+            'PlanApproved' => 'Has the workplan been officially approved? Yes/no',
+            'PlanImplemented' => 'Has the workplan or monitoring plan being implemented? Yes/no',
             'PlanAdequacyScore' => 'B) Adequacy regarding the clarity and applicability of the activities and established results of the work/action plan or monitoring plan',
             'Comments' => 'Comments/Explanation',
         ],
@@ -318,7 +308,7 @@ return [
         'title' => 'Basic information',
         'fields' => [
             'Element' => 'Rating – Concept measured – Variables',
-            'EvaluationScore' => 'Availability',
+            'EvaluationScore' => 'Information availability',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -342,6 +332,7 @@ return [
         'title' => 'Capacities of the management and governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Member',
+            'Weight' => 'Importance',
             'Adequacy' => 'Adequacy',
             'Comments' => 'Comments/Explanation',
         ],
@@ -482,7 +473,7 @@ return [
             'Qualified, competent and committed workforce central to the success of OECMs.'
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 or CTX 3.1.2)'
+            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 and CTX 3.1.2)'
         ]
 
     ],
@@ -666,10 +657,7 @@ return [
         'title' => 'Cooperation between the stakeholders (deep analysis of the Governance of the key elements of the OECM)',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
-            'MPInvolvement' => 'P',
-            'MPIImplementation' => 'PM',
-            'BAInvolvement' => 'B/A',
-            'EEInvolvement' => 'IEC',
+            'Weight' => 'Importance of the stakeholder (0-100)',
             'Cooperation' => 'Degree of cooperation',
             'Comments' => 'Comments/Explanation',
         ],
@@ -705,9 +693,6 @@ return [
         'module_info_EvaluationQuestion' => [
             'Are there actions to improve governance of the key elements in the OECM?',
             'This step of the analysis evaluates how some or all relevant stakeholders are involved in management of the OECM in four areas: (P) planning; (PM) planning and management (B/A) benefits/assistance (IEC) Information, education and communication for community understanding and engagement.'
-        ],
-        'module_info_Rating' => [
-            'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance</li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>'
         ]
     ],
 
@@ -776,8 +761,8 @@ return [
         ],
         'predefined_values' => [
             'Stakeholders conservation programmes of the OECM',
-            'Programmes to raise awareness of the stakeholders of the OECM',
-            'Programmes to raise awareness among stakeholders other than the stakeholders of the OECM',
+            'Programs to raise awareness of the stakeholders of the OECM',
+            'Programs to raise awareness among stakeholders other than the stakeholders of the OECM',
             'Environmental education programme in schools of the landscape of the OECM',
             'Radio - Television programmes about the OECM (e.g., on community radio stations)',
             'Conferences and debates on OECM',

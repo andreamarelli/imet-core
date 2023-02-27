@@ -56,21 +56,4 @@ class Equipments extends Modules\Component\ImetModule
         parent::__construct($attributes);
 
     }
-
-    public static function getAverages($form_id){
-        $records = Equipments::getModuleRecords($form_id)['records'];
-
-        $averages = [];
-        foreach (array_keys((new Equipments())->module_groups) as $group){
-            $sum = $count = 0;
-            foreach ($records as $record){
-                if($record['group_key'] === $group && $record['AdequacyLevel']!==null){
-                    $sum += (integer) $record['AdequacyLevel'];
-                    $count++;
-                }
-            }
-            $averages[] = $count>0 ? round($sum/$count, 2) : 0;
-        }
-        return $averages;
-    }
 }

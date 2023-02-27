@@ -5,7 +5,7 @@
 
 ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
-@foreach($definitions['common_fields'] as  $idx => $field)
+@foreach($definitions['fields'] as  $idx => $field)
 
     @if($field['name']==='GovernanceModel' || $field['name']==='AdditionalInfo')
 
@@ -25,7 +25,7 @@
 @endforeach
 
 <h3>@lang('imet-core::oecm_context.Governance.management')</h3>
-@foreach($definitions['common_fields'] as  $idx => $field)
+@foreach($definitions['fields'] as  $idx => $field)
 
     @if($idx>=2)
 
@@ -51,7 +51,3 @@
     @endif
 
 @endforeach
-
-
-<h3>@lang('imet-core::oecm_context.Governance.stakeholders')</h3>
-@include('modular-forms::module.show.type.table', compact(['collection', 'records', 'definitions']))

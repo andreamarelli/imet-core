@@ -30,8 +30,10 @@ class OEMCStatisticsService extends StatisticsService
 {
     use CommonFunctions;
     use CustomFunctions\oecm\Context;
+    use CustomFunctions\oecm\Planning;
     use CustomFunctions\oecm\Inputs;
     use CustomFunctions\oecm\Process;
+    use CustomFunctions\oecm\Outputs;
     use Math;
 
     /**
@@ -60,7 +62,7 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'c11' => static::score_table($imet_id, Designation::class, 'EvaluationScore'),
+            'c11' => static::score_c11($imet_id),
             'c12' =>  static::score_c12($imet_id)
         ];
         $scores['c1'] = self::average($scores);
@@ -86,9 +88,9 @@ class OEMCStatisticsService extends StatisticsService
         $scores = [
             'p1' => static::score_table($imet_id, RegulationsAdequacy::class, 'EvaluationScore'),
             'p2' => static::score_table($imet_id, DesignAdequacy::class, 'EvaluationScore'),
-            'p3' => null,
-            'p4' => null,
-            'p5' => null,
+            'p3' => static::score_p3($imet_id),
+            'p4' => static::score_p4($imet_id),
+            'p5' => static::score_p5($imet_id),
             'p6' => static::score_table($imet_id, Objectives::class, 'EvaluationScore'),
         ];
 
@@ -111,7 +113,7 @@ class OEMCStatisticsService extends StatisticsService
 
         $scores = [
             'i1' => static::score_group($imet_id, InformationAvailability::class, 'EvaluationScore', 'group_key'),
-            'i2' => static::score_group($imet_id, CapacityAdequacy::class, 'Adequacy', 'group_key'),
+            'i2' => static::score_i2($imet_id),
             'i3' => static::score_i3($imet_id),
             'i4' => static::score_i4($imet_id),
             'i5' => static::score_i5($imet_id),
@@ -174,7 +176,7 @@ class OEMCStatisticsService extends StatisticsService
 
         $scores = [
             'op1' => static::score_table($imet_id, WorkProgramImplementation::class, 'EvaluationScore'),
-            'op2' => null
+            'op2' => static::score_op2($imet_id)
         ];
 
         // aggregate step score

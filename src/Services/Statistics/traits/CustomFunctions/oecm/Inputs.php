@@ -3,13 +3,69 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\oecm;
 
 
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeImportance;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Equipments;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipmentAdequacy;
 
 trait Inputs
 {
+
+    protected static function score_i2($imet_id): ?float
+    {
+        $records = CapacityAdequacy::getModuleRecords($imet_id)['records'];
+
+        $values = collect($records)
+            ->filter(function ($record){
+                return $record['Weight'] !== null
+                    && $record['Adequacy'] !== null;
+            });
+
+        $numerator_staff = $values
+            ->where('group_key', 'group0')
+            ->sum(function ($item){
+                return $item['Adequacy'] * $item['Weight'];
+            });
+        $denominator_staff = $values->where('group_key', 'group0')->sum('Weight');
+
+        $score_staff = $denominator_staff>0
+            ? $numerator_staff/$denominator_staff * 100 / 3
+            : null;
+
+        $numerator_stakeholders = $values
+            ->where('group_key', 'group1')
+            ->sum(function ($item){
+                return $item['Adequacy'] * $item['Weight'];
+            });
+        $denominator_stakeholders = $values->where('group_key', 'group1')->sum('Weight');
+
+        $score_stakeholders = $denominator_stakeholders>0
+            ? $numerator_stakeholders/$denominator_stakeholders * 100 / 3
+            : null;
+
+        $relative_importance = ManagementRelativeImportance::getModuleRecords($imet_id);
+        $relative_importance = (int) $relative_importance['records'][0]['RelativeImportance'] ?? 0;
+
+        if($score_staff!==null && $score_stakeholders!==null){
+            $score = (
+                    ($score_staff * (50 - $relative_importance * 16.67)) +
+                    ($score_stakeholders * (50 + $relative_importance * 16.67))
+                ) / 100;
+        } elseif($score_staff===null){
+            $score = $score_stakeholders;
+        } elseif($score_stakeholders===null){
+            $score = $score_staff;
+        } else {
+            $score = null;
+        }
+
+        return $score!== null ?
+            round($score, 2)
+            : null;
+    }
+
     protected static function score_i3($imet_id)
     {
         $records = BudgetAdequacy::getModule($imet_id)
@@ -72,17 +128,16 @@ trait Inputs
 
         $equipment_adequacy = ManagementEquipmentAdequacy::getModule($imet_id)
             ->map(function($record){
-                $record['Importance'] = $record['Importance']!==null
-                    ? floatval($record['Importance'])
-                    : 1;
-
+                $record['Adequacy'] = $record['Adequacy']!==null
+                    ? floatval($record['Adequacy'])
+                    : 0;
                 return $record;
             })
-            ->pluck('Importance', 'Equipment');
+            ->pluck('Adequacy', 'Equipment');
 
         $values = $equipment->map(function ($item, $index) use ($equipment_adequacy){
-            $importance = $equipment_adequacy[$index] ?? null;
-            $imp_p1 = $importance + 1;
+            $adequacy = $equipment_adequacy[$index] ?? null;
+            $imp_p1 = $adequacy + 1;
             $eq_imp = $imp_p1 * $item;
 
             return [

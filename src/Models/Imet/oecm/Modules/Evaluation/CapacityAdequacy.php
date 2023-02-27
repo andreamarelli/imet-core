@@ -19,6 +19,7 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.CapacityAdequacy.title');
         $this->module_fields = [
             ['name' => 'Member',        'type' => 'disabled',                   'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Member')],
+            ['name' => 'Weight',        'type' => 'disabled',                   'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Weight')],
             ['name' => 'Adequacy',      'type' => 'imet-core::rating-0to3',     'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Adequacy')],
             ['name' => 'Comments',      'type' => 'text-area',                  'label' => trans('imet-core::oecm_evaluation.CapacityAdequacy.fields.Comments')],
         ];
@@ -55,6 +56,18 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
         ];
 
         $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
+
+        $weighted_staff = Modules\Context\ManagementStaff::calculateWeights($form_id);
+        $weighted_stakeholder = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+
+        foreach($module_records['records'] as $idx => $module_record){
+            if($module_record['group_key']==='group0'){
+                $module_records['records'][$idx]['Weight'] = $weighted_staff[$module_record['Member']] ?? null;
+            } elseif($module_record['group_key']==='group1'){
+                $module_records['records'][$idx]['Weight'] = $weighted_stakeholder[$module_record['Member']] ?? null;
+            }
+        }
+
         return $module_records;
     }
 }

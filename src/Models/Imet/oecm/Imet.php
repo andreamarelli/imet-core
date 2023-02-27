@@ -44,6 +44,7 @@ class Imet extends BaseImetForm
         'resources' => [
             Modules\Context\ManagementStaff::class,
             Modules\Context\StakeholdersNaturalResources::class,
+            Modules\Context\ManagementRelativeImportance::class,
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\FinancialResources::class,
             Modules\Context\Equipments::class,

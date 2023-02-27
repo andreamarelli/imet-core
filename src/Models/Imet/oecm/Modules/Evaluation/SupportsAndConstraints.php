@@ -23,7 +23,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraints.title');
         $this->module_fields = [
             ['name' => 'Stakeholder',       'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Stakeholder')],
-            ['name' => 'Influence',         'type' => 'imet-core::rating-1to3WithNA',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Influence')],
+            ['name' => 'Weight',            'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Weight')],
             ['name' => 'ConstraintLevel',   'type' => 'imet-core::rating-Minus3to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.ConstraintLevel')],
             ['name' => 'Comments',           'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Comments')],
         ];
@@ -74,7 +74,18 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
+
+        $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+
+        foreach($module_records['records'] as $idx => $module_record){
+            if(array_key_exists($module_record['Stakeholder'], $weight)){
+                $module_records['records'][$idx]['Weight'] = $weight[$module_record['Stakeholder']];
+            } else {
+                $module_records['records'][$idx]['Weight'] = null;
+            }
+        }
         return $module_records;
     }
+
 
 }

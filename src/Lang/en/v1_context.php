@@ -39,9 +39,9 @@ return [
         'title' => 'Basic data',
         'fields' => [
             'CompleteName' => 'Full name of the protected area',
-            'CompleteNameWDPA' => 'WPDA site name (from https://www.protectedplanet.net/)',
+            'CompleteNameWDPA' => 'WDPA site name (from https://www.protectedplanet.net/)',
             'UsedName' => 'Name by which referred to',
-            'WDPA' => 'WPDA site code  WDPA',
+            'WDPA' => 'WDPA site code  WDPA',
             'NationalCategory' => 'National category',
             'IUCNCategory1' => 'IUCN category(ies) (protected areas with more classifications for internal zoning) (1st category)',
             'IUCNCategory2' => '2nd UICN category',
@@ -155,7 +155,7 @@ return [
         'title' => 'Land areas of the protected area and the conservation context',
         'fields' => [
             'AdministrativeArea' => 'Administrative land area',
-            'WDPAArea' => 'WPDA area',
+            'WDPAArea' => 'WDPA area',
             'GISArea' => 'Actual land area (GIS for the park or the authority responsible for protected areas) corresponding to the uploaded file',
             'TerrestrialArea' => 'Mixed protected areas = terrestrial and marine area (the coastal zone must be included in the terrestrial protected area)',
             'MarineArea' => 'Mixed protected areas: Marine area',

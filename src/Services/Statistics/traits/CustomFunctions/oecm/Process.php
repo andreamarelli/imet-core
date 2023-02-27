@@ -37,46 +37,23 @@ trait Process
 
     protected static function score_pr8($imet_id): ?float
     {
-        $records = StakeholderCooperation::getModule($imet_id);
+        $records = StakeholderCooperation::getModuleRecords($imet_id)['records'];
 
-        $values = $records
-            ->sortBy("Element")
-            ->map(function($record){
-                $record['score'] = $record['Cooperation'] === "-99" ? 0 : $record['Cooperation'];
-                $record['weight'] =
-                    ($record['MPInvolvement'] ?? 0) +
-                    ($record['BAInvolvement'] ?? 0) +
-                    ($record['EEInvolvement'] ?? 0) +
-                    ($record['MPIImplementation'] ?? 0);
-                return $record;
-            })
-            ->groupBy('group_key')
-            ->map(function($group){
-                $sw = $group->sum('weight');
-                $wi = (function($data) {
-                    $sum = null;
-                    foreach ($data as $item){
-                        if($item['score']===null || $item['weight']===null){
-                            continue;
-                        } else {
-                            $sum += ($item['score'] / 3 * $item['weight']);
-                        }
-                    }
-                    return $sum;
-                })($group);
-                return [
-                    'sw' => $sw,
-                    'wi' => $wi,
-                ];
+        $values = collect($records)
+            ->filter(function ($record){
+                return $record['Weight'] !== null
+                    && $record['Cooperation'] !== null
+                    && $record['Cooperation'] !== '-99';
             });
 
-        $numerator = $values->sum('wi');
-        $denominator = $values->sum('sw');
+        $numerator = $values->sum(function ($item){
+            return $item['Cooperation'] * $item['Weight'];
+        });
+        $denominator = $values->sum('Weight');
 
         $score = $denominator>0
-            ? $numerator / $denominator * 100
+            ? $numerator/$denominator * 100 / 3
             : null;
-
 
         return $score!== null ?
             round($score, 2)

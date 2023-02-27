@@ -7,7 +7,7 @@ return [
             'CompleteName' => 'Full name of the OECM',
             'UsedName' => 'Name by which OECM is referred to',
             'CompleteNameWDPA' => 'Name of the OECM in the WDPA site',
-            'WDPA' => 'WPDA',
+            'WDPA' => 'WDPA',
             'Type' => 'typology',
             'Country' => 'Country',
             'CreationYear' => 'Year created',
@@ -194,6 +194,24 @@ return [
         ]
     ],
 
+    'ManagementRelativeImportance' => [
+        'title' => 'Relative importance of staff and stakeholders in management',
+        'fields' => [
+            'RelativeImportance' => 'Relative importance of staff and stakeholders'
+        ],
+        'ratingLegend' => [
+            'RelativeImportance' => [
+                '-3' => 'All decisions are made by staff',
+                '-2' => 'Most decisions are made by staff',
+                '-1' => 'Majority of decisions are made by staff',
+                '0' => 'There is equal contribution of staff and stakeholders to decision-making',
+                '1' => 'Majority of decisions are made by stakeholders',
+                '2' => 'Most decisions are made by stakeholders',
+                '3' => 'All decisions are made by stakeholders',
+            ]
+        ]
+    ],
+
     'FinancialResources' => [
         'title' => 'Financial resources: Budget and management costs',
         'fields' => [
@@ -297,6 +315,10 @@ return [
             'Engagement' => 'Engagement with OECM\'s NR',
             'Impact' => 'Impact on NR in the OECM',
             'Role' => 'Role in NR management in the OECM',
+            'MPInvolvement' => 'P',
+            'MPIImplementation' => 'PM',
+            'BAInvolvement' => 'B/A',
+            'EEInvolvement' => 'IEC',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -334,6 +356,8 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
+        'module_info' => 'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul><li><b>P</b>: management planning</li><li><b>PM</b>: management plan implementation</li><li><b>B/A</b>:benefits/assistance</li><li><b>IEC</b>:environmental education, community awareness and engagement</li></ul>',
+
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
     ],
 

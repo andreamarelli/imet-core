@@ -26,11 +26,18 @@ class ManagementStaff extends Modules\Component\ImetModule
         ];
 
 
-        $this->max_rows = 14;
-
         $this->module_info = trans('imet-core::oecm_context.ManagementStaff.module_info');
 
         parent::__construct($attributes);
+    }
 
+    public static function calculateWeights($form_id){
+        $records = static::getModuleRecords($form_id)['records'];
+        $records = collect($records)->map(function($item){
+            $item['__weight'] = round(sqrt($item['Number']), 2);
+            return $item;
+        })->pluck('__weight', 'Function')->toArray();
+
+        return $records;
     }
 }
