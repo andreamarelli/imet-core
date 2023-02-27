@@ -405,7 +405,7 @@ trait ImportExportJSON
             $formID = Imet\v2\Imet::importForm($json['Imet']);
             $modules_imported['Context'] = Imet\v2\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\oecm\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            Imet\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if($with_report){
                 Imet\Report::import($formID, $json['Report'] ?? null);
             }
