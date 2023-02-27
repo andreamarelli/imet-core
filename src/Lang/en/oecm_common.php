@@ -128,6 +128,18 @@ return [
             'PR12',
             'Systems for monitoring and research of the key elements'
         ],
+        'pr1_6' => [
+            'PR1-6',
+            'Internal management systems and processes'
+        ],
+        'pr7_9' => [
+            'PR7-9',
+            'Management / Protection of the values'
+        ],
+        'pr10_12' => [
+            'PR10-12',
+            'Stakeholder relations'
+        ],
         'op1' => [
             'O/P1',
             'Implementation of the work/action plan'

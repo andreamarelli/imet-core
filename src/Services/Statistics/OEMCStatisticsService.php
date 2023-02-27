@@ -155,6 +155,11 @@ class OEMCStatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 1);
 
+        // intermediate scores
+        $scores['pr1_6'] = static::average([$scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6']]);
+        $scores['pr7_9'] = static::average([$scores['pr7'],  $scores['pr8'],  $scores['pr9']]);
+        $scores['pr10_12'] = static::average([$scores['pr10'],  $scores['pr11'],  $scores['pr12']]);
+
         return $scores;
     }
 
