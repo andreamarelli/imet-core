@@ -36,6 +36,10 @@ return [
             'C2',
             'Constraints or supports from stakeholders'
         ],
+        'c3' => [
+            'C3',
+            'Threats'
+        ],
         'p1' => [
             'P1',
             'Adequacy of legal and regulatory provisions'

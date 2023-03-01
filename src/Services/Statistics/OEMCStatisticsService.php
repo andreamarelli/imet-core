@@ -67,6 +67,7 @@ class OEMCStatisticsService extends StatisticsService
         ];
         $scores['c1'] = self::average($scores);
         $scores['c2'] =  static::score_c2($imet_id);
+        $scores['c3'] =  static::score_c3($imet_id);
 
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 2);

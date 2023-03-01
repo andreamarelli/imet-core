@@ -98,6 +98,75 @@ return [
         'module_info' => 'Establish and describe conservation objectives for mitigation constraints/conflicts or enhancing supporting/complying factors for the OECM. The objectives entered below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
+    'Threats' => [
+        'title' => 'OECM threat calculator',
+        'fields' => [
+            'Value' => 'Values',
+            'Impact' => 'Impact/ Severity',
+            'Extension' => 'Scale/ Extent',
+            'Duration' => 'Duration/ Irreversibility',
+            'Trend' => 'Trend',
+            'Probability' => 'Probability for the threat in future',
+        ],
+        'predefined_values' => [
+            'Commercial and residential',
+            'Agriculture and aquaculture (Annual or multi-annual crops (non-woody); Wood and pulpwood plantations; Small- and large-scale livestock farming; Marine and freshwater aquaculture; Other typology of production)',
+            'Energy and mining',
+            'Transport and infrastructure',
+            'Use of biological resources (Hunting and harvesting of land animals; Gathering and harvesting of land plants; Forestry and timber harvesting; Fishing and harvesting aquatic resources)',
+            'Human disturbance / intrusion',
+            'Changes in the natural system (Bush fires (fires); Dams and water management or use; Other changes in the ecosystem)',
+            'Invasive / problematic species (Invasive / challenging species)',
+            'Pollution (Domestic and urban waste water; Industrial and military effluent; Agricultural and forestry effluents; Rubbish and solid waste)',
+            'Geological phenomena',
+            'Climate change effects',
+            'Other pressures and threats'
+        ],
+        'ratingLegend' => [
+            'Impact' => [
+                '0' => 'Mild',
+                '1' => 'Moderate',
+                '2' => 'High',
+                '3' => 'Severe',
+            ],
+            'Extension' => [
+                '0' => 'Localised <5%',
+                '1' => 'Sparse 5-15%',
+                '2' => 'Widely dispersed 15-50%',
+                '3' => 'Everywhere >50%',
+            ],
+            'Duration' => [
+                '0' => 'Short term < 5 years',
+                '1' => 'Medium term 5-20 years',
+                '2' => 'Very long term 20-100 years',
+                '3' => 'Permanent >100 years',
+            ],
+            'Trend' => [
+                '-2' => 'Decreasing',
+                '-1' => 'Slightly decreasing',
+                '0' => 'No change',
+                '1' => 'Slightly increasing',
+                '2' => 'Increasing',
+            ],
+            'Probability' => [
+                '0' => 'Very low',
+                '1' => 'Low',
+                '2' => 'Average',
+                '3' => 'High',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Has the protected area clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the level of integration of most important threats in the management of the protected area based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below . Threats evaluation (automatically reported from CTX 5.1) To prioritise in management Comments/Explanation'
+        ]
+    ],
+
+    'ObjectivesThreats' => [
+        'module_info' => 'Setting target conservation objectives and indicators for the most important threats facing the OECM. The objectives entered below will be used for improving the management, and more specifically for the planning, resource (input) mobilization, process phases, and for monitoring management activities of the OECM.'
+    ],
+
     'RegulationsAdequacy' => [
         'title' => 'Adequacy of legal and regulatory provisions',
         'fields' => [
