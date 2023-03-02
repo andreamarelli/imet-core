@@ -64,7 +64,7 @@ return [
 
 
     'ObjectivesKeyElements' => [
-        'module_info' => 'Establish and describe conservation objectives for the designation and the key elements of the OECM. The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.'
+        'module_info' => 'Establish and describe conservation objectives for the designation and the key elements of the OECM. The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'SupportsAndConstraints' => [
@@ -156,10 +156,10 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'Has the protected area clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
+            'Has the OECM clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of most important threats in the management of the protected area based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below . Threats evaluation (automatically reported from CTX 5.1) To prioritise in management Comments/Explanation'
+            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5.1 and automatically reported below . Threats evaluation (automatically reported from CTX 5.1) To prioritise in management Comments/Explanation'
         ]
     ],
 
@@ -569,7 +569,7 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-                'N/A' => 'this element is not related to the management of the protected area',
+                'N/A' => 'this element is not related to the management of the OECM',
                 '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
@@ -755,7 +755,7 @@ return [
         ],
         'ratingLegend' => [
             'Cooperation' => [
-                'N/A' => 'this element is not related to the management of the protected area',
+                'N/A' => 'this element is not related to the management of the OECM',
                 '0' => 'No cooperation',
                 '1' => 'Very little cooperation',
                 '2' => 'Moderate cooperation',
@@ -1089,7 +1089,7 @@ return [
 
         'ratingLegend' => [
             'EvaluationScore' => [
-                'N/A' => 'this element is not related to the management of the protected area',
+                'N/A' => 'this element is not related to the management of the OECM',
                 '0' => 'Completely inadequate (0-30% of the needs)',
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
@@ -1097,11 +1097,11 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the management of the protected area use adequate measures / approaches / tools for ensuring staff motivation?',
-            'For a protected area, motivated staff is essential to achieve success in conservation. Working conditions and staff motivation strongly influence the ability of staff to carry out their work. Managers and leaders must understand that they need to provide a work environment that creates and maintains motivation in the staff to achieve results on conservation',
+            'Does the management of the OECM use adequate measures / approaches / tools for ensuring staff motivation?',
+            'For a OECM, motivated staff is essential to achieve success in conservation. Working conditions and staff motivation strongly influence the ability of staff to carry out their work. Managers and leaders must understand that they need to provide a work environment that creates and maintains motivation in the staff to achieve results on conservation',
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of staff motivation measures / approaches / tools in the protected area',
+            'Evaluate the adequacy of staff motivation measures / approaches / tools in the OECM',
         ]
     ],
 ];
