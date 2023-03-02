@@ -32,6 +32,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
             ['name' => 'Accountability', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Accountability')],
             ['name' => 'Orientation',   'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Orientation')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Comments')],
+            ['name' => 'Stakeholder',    'type' => 'disabled', 'label' =>''],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');
@@ -47,7 +48,6 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
@@ -56,40 +56,110 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     }
 
     /**
-     * Preload data from CTX 4.x
+     * Override
+     * @param $record
+     * @param null $foreign_key
+     * @return bool
+     */
+    public function isEmptyRecord($record, $foreign_key=null): bool
+    {
+        $isEmpty = true;
+
+        if($record['Dependence']!==null
+            || $record['Access']!==null
+            || $record['Rivalry']===true
+            || $record['Involvement']===true
+            || $record['Accountability']===true
+            || $record['Orientation']===true
+            || $record['Comments']!==null
+        ){
+            $isEmpty = false;
+        }
+
+        return $isEmpty;
+    }
+
+    /**
+     * Override: Inject predefined values and replicate for each stakeholder
      *
-     * @param $form_id
-     * @param null $collection
+     * @param $predefined_values
+     * @param $records
+     * @param $empty_record
      * @return array
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
+        $form_id = $empty_record['FormID'];
 
-        $records = $module_records['records'];
+        // inject additional predefined values (first 3 groups) retrieved from CTX
+        $predefined_values = (new static())->predefined_values;
+        $predefined_values['values']['group0'] =
+            Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')
+                ->map(function($item){
+                    return Str::contains($item, '|')
+                        ? Animal::getScientificName($item)
+                        : $item;
+                })
+                ->toArray();
+        $predefined_values['values']['group1'] = Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray();
+        $predefined_values['values']['group2'] =
+            Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')
+                ->map(function($item){
+                    return SelectionList::getList('ImetOECM_Habitats')[$item];
+                })
+                ->toArray();
 
-        $preLoaded = [
-            'field' => 'Element',
-            'values' => [
-                'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')
-                    ->map(function($item){
-                        return Str::contains($item, '|')
-                            ? Animal::getScientificName($item)
-                            : $item;
-                    })
-                    ->toArray(),
-                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray(),
-                'group2' => Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')
-                    ->map(function($item){
-                        return SelectionList::getList('ImetOECM_Habitats')[$item];
-                    })
-                    ->toArray(),
-            ]
-        ];
+        if(!empty($records)) {
+            // ensure first record has id field (set to null if doesn't)
+            if (!array_key_exists((new static())->primaryKey, $records[0])) {
+                $records[0][(new static())->primaryKey] = null;
+            }
+            // ensure records are empty if the first record is empty (no id)
+            if (count($predefined_values['values']) >= 1
+                && count($records) == 1
+                && $records[0][(new static())->primaryKey] == null
+            ) {
+                $records = [];
+            }
+        }
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
+        // retrieve stakeholders
+        $stakeholders = StakeholdersNaturalResources::getStakeholders($form_id);
+
+        // inject predefined values and replicate for each stakeholder
+        $new_records = [];
+        foreach($stakeholders as $stakeholder) {
+            foreach ($predefined_values['values'] as $g => $group) {
+                foreach ($group as $predefined_value) {
+                    $new_record = $empty_record;
+                    foreach ($records as $r => $record) {
+                        if($record['Element'] == $predefined_value
+                            && $record['group_key'] == $g
+                            && $record['Stakeholder'] == $stakeholder){
+                            $new_record = $record;
+                            unset($records[$r]);
+                            break;
+                        }
+                    }
+                    $new_record['Element'] = $predefined_value;
+                    $new_record['group_key'] = $g;
+                    $new_record['Stakeholder'] = $stakeholder;
+                    $new_record['__predefined'] = true;
+                    $new_records[] = $new_record;
+                }
+            }
+        }
+
+        // Add remaining records (without predefined)
+        if(count($records)>0){
+            foreach($records as $r => $record){
+                $new_record = $record;
+                $new_record['__predefined'] = false;
+                $new_records[] = $record;
+            }
+        }
+
+        return $new_records;
     }
 
 }

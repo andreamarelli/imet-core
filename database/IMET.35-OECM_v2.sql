@@ -431,6 +431,7 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_access_governance
     "FormID"         integer,
     "UpdateBy"       integer,
     "UpdateDate"     character varying(30),
+    "Stakeholder"    text,
     "Element"        text,
     "Dependence"     numeric,
     "Access"         character varying(50),
