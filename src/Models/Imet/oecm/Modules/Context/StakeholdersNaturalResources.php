@@ -69,9 +69,12 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
 
         $records = collect($records)->map(function($item){
 
+            $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
+            $Engagement = is_array($Engagement) ? count($Engagement) : null;
+
             $sum = $item['Impact']!==null ? $item['Impact'] : 0;
             $sum += $item['Role']!==null ? $item['Role'] : 0;
-            $sum += $item['Engagement']!==null && $item['Engagement']!=="" ? count(json_decode($item['Engagement'])) : 0;
+            $sum += $Engagement ?? 0;
             $sum += $item['GeographicalProximity'] ? 4 : 0;
             $sum += $item['MPInvolvement'] ? 1 : 0;
             $sum += $item['MPIImplementation'] ? 1 : 0;

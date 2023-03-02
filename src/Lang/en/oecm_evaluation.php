@@ -343,8 +343,6 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
-            'Governance from C1.2',
-            'Key elements of the OECM automatically reported from C1.2',
             'Support to the local economy',
             'Support social aspects of the stakeholders',
             'Tourism',
@@ -525,12 +523,17 @@ return [
     'StaffCompetence' => [
         'title' => 'Training and capacity-building programme for the OECM Management and Governance specific entity or combination of entities',
         'fields' => [
-            'Theme' => 'Criteria – Concept measured – Variable',
-            'EvaluationScore' => 'A) Adequacy of capacity building activities for the OECM management entity',
+            'Member' => 'Criteria – Concept measured – Variable',
+            'Weight' => 'Importance',
+            'Adequacy' => 'Adequacy of capacity building activities for the OECM management entity',
             'Comments' => 'Comments/Explanation',
         ],
+        'groups' => [
+            'group0' => 'Composition and staff or members of the OECM',
+            'group1' => 'Stakeholders involved or impacting in the use of natural resources'
+        ],
         'ratingLegend' => [
-            'EvaluationScore' => [
+            'Adequacy' => [
                 '0' => 'Completely inadequate capacity building activities',
                 '1' => 'Somewhat adequate capacity building activities',
                 '2' => 'Adequate capacity-building activities, but improvements are needed',
