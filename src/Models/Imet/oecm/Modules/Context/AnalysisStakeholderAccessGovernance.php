@@ -56,6 +56,13 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         return $vue_data;
     }
 
+    public static function updateModule(Request $request): array
+    {
+        $return = parent::updateModule($request);
+        $return['stakeholders_averages'] = static::calculateStakeholdersAverages($return['records'], $return['id']);
+        return $return;
+    }
+
     /**
      * Override
      * @param $record
@@ -164,7 +171,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         return $new_records;
     }
 
-    public static function getAggregatedImportances($records, $form_id): array
+    public static function calculateStakeholdersAverages($records, $form_id): array
     {
         $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
         foreach($records as $idx => $record){
@@ -200,13 +207,6 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         arsort($values);
 
         return $values;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        $return = parent::updateModule($request);
-        $return['aggregated'] = static::getAggregatedImportances($return['records'], $return['id']);
-        return $return;
     }
 
 }

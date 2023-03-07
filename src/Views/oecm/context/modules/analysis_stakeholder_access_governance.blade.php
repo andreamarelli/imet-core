@@ -1,16 +1,17 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
+
 /** @var Mixed $vue_data */
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
 $stakeholders = StakeholdersNaturalResources::getStakeholders($vue_data['form_id']);
-$aggregated = AnalysisStakeholderAccessGovernance::getAggregatedImportances($vue_data['records'], $vue_data['form_id']);
+$stakeholders_averages = AnalysisStakeholderAccessGovernance::calculateStakeholdersAverages($vue_data['records'], $vue_data['form_id']);
 
 $vue_data['current_stakeholder'] = 'summary';
-$vue_data['aggregated'] = $aggregated;
+$vue_data['stakeholders_averages'] = $stakeholders_averages;
 $num_cols = count($definitions['fields']);
 
 
@@ -28,16 +29,16 @@ $num_cols = count($definitions['fields']);
 
             <table class="table module-table">
                 <thead>
-                    <tr>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
-                    </tr>
+                <tr>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr class="module-table-item" v-for="(importance, element) in aggregated">
-                        <td style="text-align: left;">@{{ element }}</td>
-                        <td style="text-align: left;">@{{ importance }}</td>
-                    </tr>
+                <tr class="module-table-item" v-for="(importance, element) in stakeholders_averages">
+                    <td style="text-align: left;">@{{ element }}</td>
+                    <td style="text-align: left;">@{{ importance }}</td>
+                </tr>
                 </tbody>
             </table>
 
@@ -103,58 +104,60 @@ $num_cols = count($definitions['fields']);
                         </thead>
 
                         {{-- nothing to evaluate --}}
-                        <tbody class="{{ $group_key }}" v-if="records['{{ $group_key }}'][0].{{ $definitions['fields'][0]['name'] }}===null">
-                            @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
+                        <tbody class="{{ $group_key }}"
+                               v-if="records['{{ $group_key }}'][0].{{ $definitions['fields'][0]['name'] }}===null">
+                        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
                         </tbody>
 
                         {{-- records --}}
                         <tbody class="{{ $group_key }}" v-else>
 
-                            <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}" v-if="isCurrentStakeholder(item['Stakeholder'])">
-                                {{--  fields  --}}
-                                @foreach($definitions['fields'] as $index => $field)
-                                    <td>
-                                        @include('modular-forms::module.edit.field.module-to-vue', [
-                                           'definitions' => $definitions,
-                                           'field' => $field,
-                                           'vue_record_index' => 'index',
-                                           'group_key' => $group_key
-                                       ])
-                                    </td>
-                                @endforeach
+                        <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}"
+                            v-if="isCurrentStakeholder(item['Stakeholder'])">
+                            {{--  fields  --}}
+                            @foreach($definitions['fields'] as $index => $field)
                                 <td>
-                                    {{-- record id  --}}
-                                    @include('modular-forms::module.edit.field.vue', [
-                                        'type' => 'hidden',
-                                        'v_value' => 'item.'.$definitions['primary_key']
-                                    ])
-                                    @if(!$definitions['fixed_rows'])
-                                        <span v-if="typeof item.__predefined === 'undefined'">
+                                    @include('modular-forms::module.edit.field.module-to-vue', [
+                                       'definitions' => $definitions,
+                                       'field' => $field,
+                                       'vue_record_index' => 'index',
+                                       'group_key' => $group_key
+                                   ])
+                                </td>
+                            @endforeach
+                            <td>
+                                {{-- record id  --}}
+                                @include('modular-forms::module.edit.field.vue', [
+                                    'type' => 'hidden',
+                                    'v_value' => 'item.'.$definitions['primary_key']
+                                ])
+                                @if(!$definitions['fixed_rows'])
+                                    <span v-if="typeof item.__predefined === 'undefined'">
                                             @include('modular-forms::buttons.delete_item')
                                         </span>
-                                    @endif
-                                </td>
-                            </tr>
+                                @endif
+                            </td>
+                        </tr>
 
                         </tbody>
 
                         {{-- add button --}}
                         @if(!$definitions['fixed_rows'])
                             <tfoot>
-                                <tr>
-                                    <td colspan="{{ count($definitions['fields']) + 1 }}">
-                                        @include('modular-forms::buttons.add_item', [
-                                            'onClick' => "addItem('". $group_key . "', '". $stakeholder . "')"
-                                        ])
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td colspan="{{ count($definitions['fields']) + 1 }}">
+                                    @include('modular-forms::buttons.add_item', [
+                                        'onClick' => "addItem('". $group_key . "', '". $stakeholder . "')"
+                                    ])
+                                </td>
+                            </tr>
                             </tfoot>
                         @endif
 
                     </table>
 
-                    <br />
-                    <br />
+                    <br/>
+                    <br/>
                 @endforeach
 
             </div>
@@ -173,12 +176,12 @@ $num_cols = count($definitions['fields']);
 
             methods: {
 
-                isCurrentStakeholder(value){
+                isCurrentStakeholder(value) {
                     return this.current_stakeholder === value;
                 },
 
-                switchStakeholder(value){
-                    if(!this.isCurrentStakeholder(value)){
+                switchStakeholder(value) {
+                    if (!this.isCurrentStakeholder(value)) {
                         this.current_stakeholder = value;
                     } else {
                         this.current_stakeholder = null;
@@ -192,8 +195,8 @@ $num_cols = count($definitions['fields']);
                     this.records[group_key][this.records[group_key].length - 1]['Stakeholder'] = stakeholder;
                 },
 
-                saveModuleDoneCallback(data){
-                    this.aggregated = data.aggregated;
+                saveModuleDoneCallback(data) {
+                    this.stakeholders_averages = data.stakeholders_averages;
                     this.current_stakeholder = '{{ $vue_data['current_stakeholder'] }}';
                 },
 

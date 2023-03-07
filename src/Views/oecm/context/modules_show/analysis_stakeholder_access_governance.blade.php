@@ -1,6 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
+
 /** @var Mixed $records */
 
 
@@ -9,14 +10,14 @@ use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNatural
 
 $form_id = $collection[0]['FormID'];
 $stakeholders = StakeholdersNaturalResources::getStakeholders($form_id);
-$aggregated = AnalysisStakeholderAccessGovernance::getAggregatedImportances($records, $form_id);
+$stakeholders_averages = AnalysisStakeholderAccessGovernance::calculateStakeholdersAverages($records, $form_id);
 
 $num_cols = count($definitions['fields']);
 
 $grouped_records = collect($records)->groupBy('group_key')->toArray();
 $stakeholders_records = collect($records)
     ->groupBy('Stakeholder')
-    ->map(function($group){
+    ->map(function ($group) {
         return $group->groupBy('group_key');
     })
     ->toArray();
@@ -41,7 +42,7 @@ $stakeholders_records = collect($records)
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($aggregated as $element=>$importance)
+                @foreach($stakeholders_averages as $element=>$importance)
                     <tr class="module-table-item">
                         <td style="text-align: left;">{{ $element }}</td>
                         <td style="text-align: left;">{{ $importance }}</td>
@@ -103,29 +104,27 @@ $stakeholders_records = collect($records)
 
                         <tbody class="{{ $group_key }}">
 
-                            {{-- nothing to evaluate --}}
-                            @if(!array_key_exists($group_key, $grouped_records))
-                                @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
+                        {{-- nothing to evaluate --}}
+                        @if(!array_key_exists($group_key, $grouped_records))
+                            @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
 
-                            @else
-                                @foreach($stakeholders_records[$stakeholder][$group_key] as $record)
-                                    <tr class="module-table-item">
-                                        @foreach($definitions['fields'] as $f_index=>$field)
-                                            <td>
-                                                @include('modular-forms::module.show.field', [
-                                                       'type' => $field['type'],
-                                                       'value' => $record[$field['name']]
-                                                  ])
-                                            </td>
-                                        @endforeach
-                                    </tr>
-                                @endforeach
-                            @endif
+                        @else
+                            @foreach($stakeholders_records[$stakeholder][$group_key] as $record)
+                                <tr class="module-table-item">
+                                    @foreach($definitions['fields'] as $f_index=>$field)
+                                        <td>
+                                            @include('modular-forms::module.show.field', [
+                                                   'type' => $field['type'],
+                                                   'value' => $record[$field['name']]
+                                              ])
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        @endif
                         </tbody>
 
                     </table>
-
-
 
                 @endforeach
 
