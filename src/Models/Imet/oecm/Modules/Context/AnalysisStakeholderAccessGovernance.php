@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 /**
@@ -32,7 +33,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
             ['name' => 'Accountability', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Accountability')],
             ['name' => 'Orientation',   'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Orientation')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Comments')],
-            ['name' => 'Stakeholder',    'type' => 'disabled', 'label' =>''],
+            ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');
@@ -125,6 +126,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
 
         // retrieve stakeholders
         $stakeholders = StakeholdersNaturalResources::getStakeholders($form_id);
+        $weighted_stakeholder = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
 
         // inject predefined values and replicate for each stakeholder
         $new_records = [];
@@ -160,6 +162,51 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         }
 
         return $new_records;
+    }
+
+    public static function getAggregatedImportances($records, $form_id): array
+    {
+        $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        foreach($records as $idx => $record){
+            $records[$idx]['__stakeholder_weight'] = $weights[$record['Stakeholder']] / 100;
+        }
+
+        $values = collect($records)
+            ->map(function($item){
+                if($item['Dependence']!==null || $item['Access']!==null || $item['Rivalry']!==null){
+                    $item['__importance'] = (
+                            ($item['Dependence'] ?? 0)
+                            + ($item['Access']==='open' ? 3 : ($item['Access']==='exclusion' ? 2 : 0))
+                            + ($item['Rivalry'] ? 1 : 0)*2
+                        ) * 100 / 8 * $item['__stakeholder_weight'];
+                } else {
+                    $item['__importance'] = null;
+                }
+                return $item;
+            })
+            ->filter(function ($item){
+                return $item['__importance'] != null;
+            })
+            ->groupBy('Element')
+            ->map(function($group_values){
+                return round($group_values
+                    ->map(function($item){
+                        return $item['__importance'];
+                    })
+                    ->average(), 2);
+            })
+            ->toArray();
+
+        arsort($values);
+
+        return $values;
+    }
+
+    public static function updateModule(Request $request): array
+    {
+        $return = parent::updateModule($request);
+        $return['aggregated'] = static::getAggregatedImportances($return['records'], $return['id']);
+        return $return;
     }
 
 }
