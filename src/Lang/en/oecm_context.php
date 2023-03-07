@@ -484,6 +484,7 @@ return [
                 '2' => 'Very beneficial',
             ],
         ],
+        'summary' => 'Aggregated',
     ],
 
 ];

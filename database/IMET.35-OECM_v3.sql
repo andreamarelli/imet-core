@@ -450,6 +450,7 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_trends_threats
     "FormID"              integer,
     "UpdateBy"            integer,
     "UpdateDate"          character varying(30),
+    "Stakeholder"         text,
     "Element"             text,
     "Status"              numeric,
     "Trend"               numeric,

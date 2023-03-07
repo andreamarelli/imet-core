@@ -1,7 +1,6 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-
 /** @var Mixed $vue_data */
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
@@ -13,7 +12,6 @@ $stakeholders_averages = AnalysisStakeholderAccessGovernance::calculateStakehold
 $vue_data['current_stakeholder'] = 'summary';
 $vue_data['stakeholders_averages'] = $stakeholders_averages;
 $num_cols = count($definitions['fields']);
-
 
 ?>
 
@@ -105,7 +103,7 @@ $num_cols = count($definitions['fields']);
 
                         {{-- nothing to evaluate --}}
                         <tbody class="{{ $group_key }}"
-                               v-if="records['{{ $group_key }}'][0].{{ $definitions['fields'][0]['name'] }}===null">
+                               v-if="records['{{ $group_key }}'][0].Element===null">
                         @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
                         </tbody>
 
