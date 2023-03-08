@@ -28,7 +28,6 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             ['name' => 'Status',        'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')],
             ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')],
             ['name' => 'MainThreat',    'type' => 'dropdown_multiple-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.MainThreat')],
-            ['name' => 'ClimateChangeEffect',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.ClimateChangeEffect')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Comments')],
             ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
@@ -49,7 +48,6 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
         if($record['Status']!==null
             || $record['Trend']!==null
             || $record['MainThreat']!==null
-            || $record['ClimateChangeEffect']!==null
             || $record['Comments']!==null
         ){
             $isEmpty = false;
@@ -91,8 +89,13 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
     public static function calculateStakeholdersAverages($records, $form_id): array
     {
         $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weights_sum = collect($weights)->sum();
+        $weights_div = collect($weights)->map(function($item) use($weights_sum){
+            return $item / $weights_sum;
+        })->toArray();
+
         foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights[$record['Stakeholder']];
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
         }
 
         return collect($records)
@@ -101,17 +104,20 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             })
             ->groupBy('Element')
             ->map(function($group, $stakeholder){
+
+                $sum_weights = $group->pluck('__stakeholder_weight')->sum();
+                $status = round($group->map(function($item){
+                        return $item['__stakeholder_weight'] * ($item['Status'] * 25 + 50);
+                    })->sum() / $sum_weights, 1);
+                $trend = round($group->map(function($item){
+                        return $item['__stakeholder_weight'] * ($item['Trend'] * 25 + 50);
+                    })->sum() / $sum_weights, 1);
+
                 return [
                     'Element' => $stakeholder,
-                    'Status' => $group->map(function($item){
-                        return $item['__stakeholder_weight'] * $item['Status'];
-                    })->average(),
-                    'Trend' => $group->map(function($item){
-                        return $item['__stakeholder_weight'] * $item['Trend'];
-                    })->average(),
-                    'ClimateChangeEffect' => $group->map(function($item){
-                        return $item['__stakeholder_weight'] * $item['ClimateChangeEffect'];
-                    })->average(),
+                    'Status' => $status,
+                    'Trend' => $trend,
+                    'Average' => round(($status + $trend) / 2, 2)
                 ];
             })
             ->values()

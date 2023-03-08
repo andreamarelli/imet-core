@@ -8,14 +8,13 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 class Designation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet_oecm.designation';
-    protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C1.1';
+        $this->module_code = 'C1';
         $this->module_title = trans('imet-core::oecm_evaluation.Designation.title');
         $this->module_fields = [
             ['name' => 'Aspect',  'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.Designation.fields.Aspect')],

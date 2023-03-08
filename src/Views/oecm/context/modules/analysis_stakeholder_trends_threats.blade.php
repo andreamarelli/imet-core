@@ -32,7 +32,7 @@ $num_cols = count($definitions['fields']);
                     <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element')</th>
                     <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')</th>
                     <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')</th>
-                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.ClimateChangeEffect')</th>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.average')</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,7 +40,7 @@ $num_cols = count($definitions['fields']);
                     <td style="text-align: left;">@{{ average.Element }}</td>
                     <td style="text-align: left;">@{{ average.Status }}</td>
                     <td style="text-align: left;">@{{ average.Trend }}</td>
-                    <td style="text-align: left;">@{{ average.ClimateChangeEffect }}</td>
+                    <td style="text-align: left;">@{{ average.Average }}</td>
                 </tr>
                 </tbody>
             </table>

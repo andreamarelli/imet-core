@@ -195,9 +195,9 @@ return [
     ],
 
     'ManagementRelativeImportance' => [
-        'title' => 'Relative importance of staff and stakeholders in management',
+        'title' => 'Relative involvement of staff and stakeholders in management',
         'fields' => [
-            'RelativeImportance' => 'Relative importance of staff and stakeholders'
+            'RelativeImportance' => 'Relative involvement of staff and stakeholders'
         ],
         'ratingLegend' => [
             'RelativeImportance' => [
@@ -475,6 +475,7 @@ return [
             ],
         ],
         'summary' => 'Aggregated',
+        'average' => 'Average'
     ],
 
 ];

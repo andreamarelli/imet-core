@@ -63,15 +63,22 @@ class OEMCStatisticsService extends StatisticsService
         $imet_id = $imet->getKey();
 
         $scores = [
-            'c11' => static::score_c11($imet_id),
-            'c12' =>  static::score_c12($imet_id)
+            'c1' => static::score_c11($imet_id),
+            'c2' => static::score_c12($imet_id),
+            'c3' => static::score_c2($imet_id),
+            'c4' => static::score_c3($imet_id),
         ];
-        $scores['c1'] = self::average($scores);
-        $scores['c2'] =  static::score_c2($imet_id);
-        $scores['c3'] =  static::score_c3($imet_id);
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average($scores, 2);
+        $denominator = ($scores['c1']!==null ? 1 : 0)
+            + ($scores['c2']!==null ? 3 : 0)
+            + ($scores['c3']!==null ? 3 : 0)
+            + ($scores['c4']!==null ? 3 : 0);
+
+        $scores['avg_indicator'] = ($scores['c1']
+            + 3 * $scores['c2']
+            + 3 * $scores['c3']
+            + 3 * $scores['c4']) / $denominator;
 
         return $scores;
     }

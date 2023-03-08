@@ -16,7 +16,7 @@ return [
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
-            'SignificativeClassification' => 'Highly significant international designation',
+            'SignificativeClassification' => 'Highly significant designation',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -71,7 +71,7 @@ return [
         'title' => 'Constraints or supports from stakeholders',
         'fields' => [
             'Stakeholder'       => 'Criteria – Concept measured – Variable',
-            'Weight'            => 'Importance of the stakeholder (0-100)',
+            'Weight'            => 'Involvement of the stakeholder (0-100)',
             'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
             'Comments'          => 'Comments/Explanation',
         ],
@@ -399,7 +399,7 @@ return [
         'title' => 'Capacities of the management and governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Member',
-            'Weight' => 'Importance',
+            'Weight' => 'Involvement',
             'Adequacy' => 'Adequacy',
             'Comments' => 'Comments/Explanation',
         ],
@@ -524,7 +524,7 @@ return [
         'title' => 'Training and capacity-building programme for the OECM Management and Governance specific entity or combination of entities',
         'fields' => [
             'Member' => 'Criteria – Concept measured – Variable',
-            'Weight' => 'Importance',
+            'Weight' => 'Involvement',
             'Adequacy' => 'Adequacy of capacity building activities for the OECM management entity',
             'Comments' => 'Comments/Explanation',
         ],
@@ -729,7 +729,7 @@ return [
         'title' => 'Cooperation between the stakeholders (deep analysis of the Governance of the key elements of the OECM)',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
-            'Weight' => 'Importance of the stakeholder (0-100)',
+            'Weight' => 'Involvement of the stakeholder (0-100)',
             'Cooperation' => 'Degree of cooperation',
             'Comments' => 'Comments/Explanation',
         ],

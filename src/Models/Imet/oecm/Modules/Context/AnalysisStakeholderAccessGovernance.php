@@ -178,7 +178,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $weights_div = collect($weights)->map(function($item) use($weights_sum){
             return $item / $weights_sum;
         })->toArray();
-        
+
         foreach($records as $idx => $record){
             $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
         }
@@ -216,7 +216,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                     ->map(function($item){
                         return $item['__weighted_importance'];
                     })
-                    ->sum(), 2);
+                    ->sum(), 1);
             })
             ->toArray();
 

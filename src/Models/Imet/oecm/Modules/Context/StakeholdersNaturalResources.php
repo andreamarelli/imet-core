@@ -99,6 +99,7 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
                 $sum = $item['Impact']!==null ? $item['Impact'] : 0;
                 $sum += $item['Role']!==null ? $item['Role'] : 0;
                 $sum += $Engagement ?? 0;
+                $sum += $item['GeographicalProximity'] ? 4 : 0;
 
                 $item['__weight'] = round($sum * 100 / 16, 0);
 
