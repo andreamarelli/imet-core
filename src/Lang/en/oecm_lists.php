@@ -93,12 +93,12 @@ return [
     ],
 
     'Engagement' => [
-        'provisioning'  => 'Provisioning (food, energy, material, pharmacopeia)',
-        'spiritual'     => 'Spiritual',
-        'cultural'      => 'Cultural (tourism, education, etc.)',
-        'regulation'    => 'Regulation / Defence (fight against degradation/ climate change, erosion, desertification, etc)',
-        'enforcement'   => 'Enforcement (pr eserving biodiversity and managing the use of natural resources, cultural and other values.)',
-        'market_economy' => 'Market economy'
+        'provisioning'  => 'a. Provisioning and subsistence economy (food, energy, material, pharmacopeia)',
+        'regulation'    => 'b. Protection and restoration (fight against degradation, tree planting, erosion control, etc)',
+        'cultural'      => 'c. Cultural and spiritual',
+        'educartion'    => 'd. Education and Tourism',
+        'enforcement'   => 'e. Enforcement and Regulation (patrolling and managing the use of natural resources, cultural and other values)',
+        'market_economy' => 'f. Market economy'
     ],
 
     'PopulationStatus' => [

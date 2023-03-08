@@ -174,33 +174,49 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     public static function calculateStakeholdersAverages($records, $form_id): array
     {
         $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weights_sum = collect($weights)->sum();
+        $weights_div = collect($weights)->map(function($item) use($weights_sum){
+            return $item / $weights_sum;
+        })->toArray();
+        
         foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights[$record['Stakeholder']] / 100;
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
         }
 
         $values = collect($records)
             ->map(function($item){
-                if($item['Dependence']!==null || $item['Access']!==null || $item['Rivalry']!==null){
+                if($item['Dependence']!==null
+                    || $item['Access']!==null
+                    || $item['Rivalry']!==null
+                    || $item['Involvement']!==null
+                    || $item['Accountability']!==null
+                    || $item['Orientation']!==null){
+
                     $item['__importance'] = (
-                            ($item['Dependence'] ?? 0)
-                            + ($item['Access']==='open' ? 3 : ($item['Access']==='exclusion' ? 2 : 0))
+                            3
+                            + ($item['Dependence'] ?? 0)
                             + ($item['Rivalry'] ? 1 : 0)*2
-                        ) * 100 / 8 * $item['__stakeholder_weight'];
+                            - ($item['Involvement'] ? 1 : 0)
+                            - ($item['Accountability'] ? 1 : 0)
+                            - ($item['Orientation'] ? 1 : 0)
+                        ) * 100 / 8;
+                    $item['__weighted_importance'] = $item['__importance'] * $item['__stakeholder_weight'];
+
                 } else {
-                    $item['__importance'] = null;
+                    $item['__weighted_importance'] = null;
                 }
                 return $item;
             })
             ->filter(function ($item){
-                return $item['__importance'] != null;
+                return $item['__weighted_importance'] != null;
             })
             ->groupBy('Element')
             ->map(function($group_values){
                 return round($group_values
                     ->map(function($item){
-                        return $item['__importance'];
+                        return $item['__weighted_importance'];
                     })
-                    ->average(), 2);
+                    ->sum(), 2);
             })
             ->toArray();
 

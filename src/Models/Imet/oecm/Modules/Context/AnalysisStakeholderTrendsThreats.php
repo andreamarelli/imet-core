@@ -27,10 +27,10 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             ['name' => 'Element',       'type' => 'disabled', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Status',        'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')],
             ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')],
-            ['name' => 'MainThreat',    'type' => 'dropdown-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.MainThreat')],
+            ['name' => 'MainThreat',    'type' => 'dropdown_multiple-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.MainThreat')],
             ['name' => 'ClimateChangeEffect',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.ClimateChangeEffect')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Comments')],
-            ['name' => 'Stakeholder',    'type' => 'disabled', 'label' =>''],
+            ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');     // Re-use groups from CTX 5.1
@@ -90,11 +90,32 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
 
     public static function calculateStakeholdersAverages($records, $form_id): array
     {
-        $values = [
+        $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        foreach($records as $idx => $record){
+            $records[$idx]['__stakeholder_weight'] = $weights[$record['Stakeholder']];
+        }
 
-        ];
-
-        return $values;
+        return collect($records)
+            ->filter(function ($item){
+                return !(new static())->isEmptyRecord($item);
+            })
+            ->groupBy('Element')
+            ->map(function($group, $stakeholder){
+                return [
+                    'Element' => $stakeholder,
+                    'Status' => $group->map(function($item){
+                        return $item['__stakeholder_weight'] * $item['Status'];
+                    })->average(),
+                    'Trend' => $group->map(function($item){
+                        return $item['__stakeholder_weight'] * $item['Trend'];
+                    })->average(),
+                    'ClimateChangeEffect' => $group->map(function($item){
+                        return $item['__stakeholder_weight'] * $item['ClimateChangeEffect'];
+                    })->average(),
+                ];
+            })
+            ->values()
+            ->toArray();
     }
 
 }

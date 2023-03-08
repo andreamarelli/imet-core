@@ -416,10 +416,6 @@ CREATE TABLE imet_oecm.context_stakeholders_natural_resources
     "Engagement"            text,
     "Impact"                numeric,
     "Role"                  numeric,
-    "InvolvementM"         numeric,
-    "InvolvementME"     numeric,
-    "InvolvementE"         numeric,
-    "InvolvementCAE"         numeric,
     "Comments"              text,
     group_key               character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE

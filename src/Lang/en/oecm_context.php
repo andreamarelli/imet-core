@@ -319,17 +319,13 @@ return [
     ],
 
     'StakeholdersNaturalResources' => [
-        'title' => 'Stakeholders involved or impacting in the use of natural resources of the OECM',
+        'title' => 'Stakeholders involved in management or impacting in the use of natural resources of the OECM',
         'fields' => [
             'Element' => 'Stakeholder',
-            'GeographicalProximity' => 'Geographical proximity to the OECM',
-            'Engagement' => 'Engagement with OECM\'s NR',
-            'Impact' => 'Impact on NR in the OECM',
-            'Role' => 'Role in NR management in the OECM',
-            'InvolvementM' => 'M',
-            'InvolvementME' => 'ME',
-            'InvolvementE' => 'E',
-            'InvolvementCAE' => 'CAE',
+            'GeographicalProximity' => 'Geographical proximity (achievable in less than 1 day)',
+            'Engagement' => 'Typology of management / use of OECM\'s NR',
+            'Impact' => 'Level of engagement on NR',
+            'Role' => 'Role in NR management',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -355,10 +351,10 @@ return [
         ],
         'ratingLegend' => [
             'Impact' => [
-                '0' => 'No impact',
-                '1' => 'Low impact',
-                '2' => 'Medium impact',
-                '3' => 'High impact',
+                '0' => 'No engagement',
+                '1' => 'Low engagement',
+                '2' => 'Medium engagement',
+                '3' => 'High engagement',
             ],
             'Role' => [
                 '0' => 'No role',
@@ -367,12 +363,6 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
-        'module_info' =>
-            'Select (A) the areas in which the stakeholders are involved in managing the OECM and evaluate:<ul>
-                <li><b>M</b>: management</li>
-                <li><b>ME</b>: management and exploitation</li>
-                <li><b>E</b>: exploitation</li>
-                <li><b>CAE</b>: community awareness and engagement</li></ul>',
 
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
     ],
@@ -452,7 +442,7 @@ return [
         'fields' => [
             'Element' => 'Criteria',
             'Status' => 'Status',
-            'Trend' => 'Dependence',
+            'Trend' => 'Trend',
             'MainThreat' => 'Main threats',
             'ClimateChangeEffect' => 'Effects of climate change',
             'Comments' => 'Note/Description',
