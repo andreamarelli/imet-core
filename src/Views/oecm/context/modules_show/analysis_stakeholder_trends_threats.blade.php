@@ -1,6 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
+
 /** @var Mixed $records */
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
@@ -8,7 +9,7 @@ use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNatural
 
 $form_id = $collection[0]['FormID'];
 $stakeholders = StakeholdersNaturalResources::getStakeholders($form_id);
-$stakeholders_averages = AnalysisStakeholderTrendsThreats::calculateStakeholdersAverages($records, $form_id);
+$key_elements_importance = AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($form_id, $records);
 
 $num_cols = count($definitions['fields']);
 
@@ -35,20 +36,20 @@ $stakeholders_records = collect($records)
         <div class="card-body">
             <table class="table module-table">
                 <thead>
-                    <tr>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')</th>
-                    </tr>
+                <tr>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element')</th>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')</th>
+                    <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach($stakeholders_averages as $average)
-                        <tr class="module-table-item">
-                            <td style="text-align: left;">{{ $average['Element'] }}</td>
-                            <td style="text-align: left;">{{ $average['Status'] }}</td>
-                            <td style="text-align: left;">{{ $average['Trend'] }}</td>
-                        </tr>
-                    @endforeach
+                @foreach($key_elements_importance as $key_elements)
+                    <tr class="module-table-item">
+                        <td style="text-align: left;">{{ $key_elements['element'] }}</td>
+                        <td style="text-align: left;">{{ $key_elements['status'] }}</td>
+                        <td style="text-align: left;">{{ $key_elements['trend'] }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -104,24 +105,24 @@ $stakeholders_records = collect($records)
 
                         <tbody class="{{ $group_key }}">
 
-                            {{-- nothing to evaluate --}}
-                            @if(!array_key_exists($group_key, $grouped_records))
-                                @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
+                        {{-- nothing to evaluate --}}
+                        @if(!array_key_exists($group_key, $grouped_records))
+                            @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
 
-                            @else
-{{--                                @foreach($stakeholders_records[$stakeholder][$group_key] as $record)--}}
-{{--                                    <tr class="module-table-item">--}}
-{{--                                        @foreach($definitions['fields'] as $f_index=>$field)--}}
-{{--                                            <td>--}}
-{{--                                                @include('modular-forms::module.show.field', [--}}
-{{--                                                       'type' => $field['type'],--}}
-{{--                                                       'value' => $record[$field['name']]--}}
-{{--                                                  ])--}}
-{{--                                            </td>--}}
-{{--                                        @endforeach--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
-                            @endif
+                        @else
+                            {{--                                @foreach($stakeholders_records[$stakeholder][$group_key] as $record)--}}
+                            {{--                                    <tr class="module-table-item">--}}
+                            {{--                                        @foreach($definitions['fields'] as $f_index=>$field)--}}
+                            {{--                                            <td>--}}
+                            {{--                                                @include('modular-forms::module.show.field', [--}}
+                            {{--                                                       'type' => $field['type'],--}}
+                            {{--                                                       'value' => $record[$field['name']]--}}
+                            {{--                                                  ])--}}
+                            {{--                                            </td>--}}
+                            {{--                                        @endforeach--}}
+                            {{--                                    </tr>--}}
+                            {{--                                @endforeach--}}
+                        @endif
                         </tbody>
                     </table>
                 @endforeach

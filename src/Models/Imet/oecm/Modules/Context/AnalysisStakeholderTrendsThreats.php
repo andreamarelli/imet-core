@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use Illuminate\Http\Request;
 
 /**
  * @property $titles
@@ -39,6 +40,13 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
         $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.ratingLegend');
 
         parent::__construct($attributes);
+    }
+
+    public static function updateModule(Request $request): array
+    {
+        $return = parent::updateModule($request);
+        $return['key_elements_importance'] = static::calculateKeyElementsImportances2( $return['id'], $return['records']);
+        return $return;
     }
 
     public function isEmptyRecord($record, $foreign_key=null): bool
@@ -86,13 +94,18 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
         return $new_records;
     }
 
-    public static function calculateStakeholdersAverages($records, $form_id): array
+    public static function calculateKeyElementsImportances2($form_id, $records = null): array
     {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
         $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $num_stakeholders = count($weights);
         $weights_sum = collect($weights)->sum();
-        $weights_div = collect($weights)->map(function($item) use($weights_sum){
-            return $item / $weights_sum;
-        })->toArray();
+        $weights_div = $weights_sum>0 ?
+            collect($weights)->map(function($item) use($weights_sum){
+                return $item / $weights_sum;
+            })->toArray()
+            : null;
 
         foreach($records as $idx => $record){
             $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
@@ -103,22 +116,34 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
                 return !(new static())->isEmptyRecord($item);
             })
             ->groupBy('Element')
-            ->map(function($group, $stakeholder){
+            ->map(function($group, $stakeholder) use ($num_stakeholders){
 
                 $sum_weights = $group->pluck('__stakeholder_weight')->sum();
-                $status = round($group->map(function($item){
+
+                $status = $sum_weights>0
+                    ? $group->map(function($item){
                         return $item['__stakeholder_weight'] * ($item['Status'] * 25 + 50);
-                    })->sum() / $sum_weights, 1);
-                $trend = round($group->map(function($item){
+                    })->sum() / $sum_weights
+                    : null;
+
+                $trend = $sum_weights>0
+                    ? $group->map(function($item){
                         return $item['__stakeholder_weight'] * ($item['Trend'] * 25 + 50);
-                    })->sum() / $sum_weights, 1);
+                    })->sum() / $sum_weights
+                    : null;
+
+                $stakeholder_count = $group->count() * (100 / $num_stakeholders);
 
                 return [
-                    'Element' => $stakeholder,
-                    'Status' => $status,
-                    'Trend' => $trend,
-                    'Average' => round(($status + $trend) / 2, 2)
+                    'element' => $stakeholder,
+                    'status' => $status!==null ? round($status, 1) : null,
+                    'trend' => $trend!==null ? round($trend, 1) : null,
+                    'importance' => $status!==null && $trend!==null ? round(($status + $trend) / 2, 2) : null,
+                    'stakeholder_count' => $stakeholder_count
                 ];
+            })
+            ->filter(function($item){
+                return $item['importance']!==null;
             })
             ->values()
             ->toArray();

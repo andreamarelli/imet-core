@@ -19,14 +19,12 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C2';
         $this->module_title = trans('imet-core::oecm_evaluation.KeyElements.title');
         $this->module_fields = [
-            ['name' => 'Aspect',                'type' => 'disabled',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Aspect')],
+            ['name' => 'Aspect',                'type' => 'blade-imet-core::oecm.evaluation.fields.key_elements_element',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Aspect')],
+            ['name' => 'Importance',            'type' => 'disabled',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Importance')],
             ['name' => 'EvaluationScore',       'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.EvaluationScore')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.IncludeInStatistics')],
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Comments')],
         ];
-
-//        $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');     // Re-use groups from CTX 5.1
-//        $this->titles = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles');            // Re-use titles from CTX 5.1
 
         $this->module_subTitle = trans('imet-core::oecm_evaluation.KeyElements.module_subTitle');
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.KeyElements.module_info_EvaluationQuestion');
@@ -48,32 +46,55 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         $empty_record = static::getEmptyRecord($form_id);
 
         $records = $module_records['records'];
-        $preLoaded = [
+
+        // Retrieve key elements (and importance calculation) form CTX
+        $key_elements =  collect(static::getKeyElementsFromCTX($form_id))->keyBy('element');
+
+        // Inject key elements
+        $predefined = [
             'field' => 'Aspect',
-            'values' => self::ctx5and6($form_id)
+            'values' => $key_elements->pluck('element')->toArray()
         ];
+        $module_records['records'] = static::arrange_records($predefined, $records, $empty_record);
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
-    }
-
-    public static function ctx5and6($form_id)
-    {
-        $ctx5 = Modules\Context\AnalysisStakeholderAccessGovernance::getModuleRecords($form_id);
-        $ctx5_averages = Modules\Context\AnalysisStakeholderAccessGovernance::calculateStakeholdersAverages($ctx5['records'], $form_id);
-
-        $ctx6 = Modules\Context\AnalysisStakeholderTrendsThreats::getModuleRecords($form_id);
-        $ctx6_averages = Modules\Context\AnalysisStakeholderTrendsThreats::calculateStakeholdersAverages($ctx6['records'], $form_id);
-        $ctx6_averages = collect($ctx6_averages)->pluck('Average', 'Element')->toArray();
-
-        $averages = [];
-        foreach ($ctx5_averages as $key=>$ctx5_average){
-            $averages[$key] = null;
-            if(array_key_exists($key, $ctx6_averages)){
-                $averages[$key] = ($ctx5_average + (100-$ctx6_averages[$key])) / 2;
+        // Inject also importance
+        foreach ($module_records['records'] as $index => $record){
+            if(array_key_exists($record['Aspect'], $key_elements->toArray())){
+                $module_records['records'][$index]['Importance'] = $key_elements[$record['Aspect']]['importance'];
+                $module_records['records'][$index]['__percentage_stakeholders'] = $key_elements[$record['Aspect']]['stakeholder_count'];
             }
         }
 
-        return $averages;
+
+        return $module_records;
+    }
+
+    public static function getKeyElementsFromCTX($form_id): array
+    {
+        $ctx5_key_elements = Modules\Context\AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances( $form_id);
+        $ctx6_key_elements = Modules\Context\AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($form_id);
+
+        $ctx5_key_elements = collect($ctx5_key_elements)->keyBy('element')->toArray();
+        $ctx6_key_elements = collect($ctx6_key_elements)->keyBy('element')->toArray();
+
+        $key_elements = collect();
+        foreach ($ctx5_key_elements as $key => $ctx5_key_element){
+            if(array_key_exists($key, $ctx6_key_elements)){
+                $importance = ($ctx5_key_element['importance'] + (100 - $ctx6_key_elements[$key]['importance'])) / 2;
+                $stakeholder_count = $ctx6_key_elements[$key]['stakeholder_count'];
+            }
+            $key_elements->push([
+                'element' => $key,
+                'importance' => $importance ? round($importance, 2): null,
+                'stakeholder_count' => $stakeholder_count ?? null,
+            ]);
+        }
+
+        return $key_elements
+            ->sortByDesc('importance')
+            ->filter(function ($item){
+                return $item['importance']!==null;
+            })
+            ->toArray();
     }
 }
