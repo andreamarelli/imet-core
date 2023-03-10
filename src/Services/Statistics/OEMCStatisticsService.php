@@ -75,10 +75,13 @@ class OEMCStatisticsService extends StatisticsService
             + ($scores['c3']!==null ? 3 : 0)
             + ($scores['c4']!==null ? 3 : 0);
 
-        $scores['avg_indicator'] = ($scores['c1']
-            + 3 * $scores['c2']
-            + 3 * $scores['c3']
-            + 3 * $scores['c4']) / $denominator;
+        $scores['avg_indicator'] = $denominator>0
+            ? (
+                $scores['c1']
+                + 3 * $scores['c2']
+                + 3 * ($scores['c3']/2+50)
+                + 3 * ($scores['c4']+100)) / $denominator
+            : null;
 
         return $scores;
     }
@@ -210,8 +213,17 @@ class OEMCStatisticsService extends StatisticsService
             'oc2' => static::score_group($imet_id, LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
         ];
 
+
         // aggregate step score
-        $scores['avg_indicator'] = static::average($scores, 2);
+        $denominator =
+            ($scores['oc1']!==null ? 1 : 0)
+            + ($scores['oc2']!==null ? 1 : 0);
+
+        // aggregate step score
+        $scores['avg_indicator'] = $denominator>0
+            ? ($scores['oc1']
+                + ($scores['oc2']/2+50)) / $denominator
+            : null;
 
         return $scores;
     }

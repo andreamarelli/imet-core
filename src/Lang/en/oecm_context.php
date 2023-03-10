@@ -67,7 +67,7 @@ return [
             'conventions' => 'Designations (inclusions) in the international conventions list (World Heritage, RAMSAR, etc.)',
             'networks' => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
             'conservation' => 'Designation for the status of conservation importance by international bodies (IBA, AZE, etc.)',
-            'marine_pa' => 'Designation of marine OECMs',
+            'marine_pa' => 'Other designations',
         ]
     ],
 
@@ -137,7 +137,7 @@ return [
     ],
 
     'Objectives4' => [
-        'module_info' => 'Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the OECM<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+        'module_info' => 'Establish and describe conservation objectives for key factors: <b> i) animal species ii) plant species and iii) habitats </b> of the OECM<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'Objectives5' => [
@@ -241,10 +241,10 @@ return [
             'group9' => 'Links and connections of the OECM with the outer world'
         ],
         'predefined_values' => [
-            'group0' => ['Offices', 'Information centre', 'Miscellaneous services (magazine, etc.)', 'Health care centre'],
+            'group0' => ['Offices', 'Information centre', 'Service buildings (magazine, etc.)', 'Health care centre'],
             'group1' => ['Hotels (guests capacity)', 'Eco-lodges (total capacity - guests)', 'Encampments (total capacity - guests)', 'Available tourist routes (km)', 'Trails'],
             'group2' => ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Outboard motors', 'Pirogues'],
-            'group3' => ['Working unit', 'GPS, compasses', 'Camping equipment'],
+            'group3' => ['Equipment for community field work', 'GPS, compasses', 'Camping equipment'],
             'group4' => ['VHF/HF radios', 'V-SAT', 'GSM telephones', 'Internet connection'],
             'group5' => ['Desktop computers', 'Laptop computers', 'Printers', 'Photocopiers'],
             'group6' => ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility'],
