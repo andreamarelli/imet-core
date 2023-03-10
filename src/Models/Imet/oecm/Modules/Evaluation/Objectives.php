@@ -13,15 +13,17 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'P6';
         $this->module_title = trans('imet-core::oecm_evaluation.Objectives.title');
         $this->module_fields = [
             ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Objective')],
             ['name' => 'Existence',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Existence')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Comments')],
         ];
+
+        $this->module_groups = trans('imet-core::oecm_evaluation.Objectives.groups');
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.Objectives.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::oecm_evaluation.Objectives.module_info_Rating');
@@ -30,8 +32,21 @@ class Objectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null)
+
+    /**
+     * Preload data from C2
+     *
+     * @param $form_id
+     * @param null $collection
+     * @return array
+     */
+    public static function getModuleRecords($form_id, $collection = null): array
     {
+        $module_records = parent::getModuleRecords($form_id, $collection);
+        $empty_record = static::getEmptyRecord($form_id);
+
+        $records = $module_records['records'];
+
         $c2_values = collect(KeyElements::getModuleRecords($form_id)['records'])
             ->filter(function($item){
                 return $item['IncludeInStatistics'];
@@ -39,10 +54,34 @@ class Objectives extends Modules\Component\ImetModule_Eval
             ->pluck('Aspect')
             ->toArray();
 
-        return [
+        $preLoaded = [
             'field' => 'Objective',
-            'values' => $c2_values
+            'values' => [
+                'group0' => [],
+                'group1' => $c2_values
+            ]
         ];
+
+        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
+        return $module_records;
     }
+//
+//    protected static function getPredefined($form_id = null)
+//    {
+//        $c2_values = collect(KeyElements::getModuleRecords($form_id)['records'])
+//            ->filter(function($item){
+//                return $item['IncludeInStatistics'];
+//            })
+//            ->pluck('Aspect')
+//            ->toArray();
+//
+//        return [
+//            'field' => 'Objective',
+//            'values' => [
+//                'group0' => [],
+//                'group1' => $c2_values
+//            ]
+//        ];
+//    }
 
 }

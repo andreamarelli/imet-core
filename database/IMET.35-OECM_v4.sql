@@ -618,6 +618,7 @@ CREATE TABLE imet_oecm.eval_objectives
     "Existence"       boolean,
     "EvaluationScore" numeric,
     "Comments"        text,
+    "group_key"      character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 

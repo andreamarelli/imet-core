@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 class AchievedObjectives extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet_oecm.eval_achived_objectives';
+    protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

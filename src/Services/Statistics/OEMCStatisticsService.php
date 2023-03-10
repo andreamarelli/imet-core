@@ -103,7 +103,7 @@ class OEMCStatisticsService extends StatisticsService
             'p3' => static::score_p3($imet_id),
             'p4' => static::score_p4($imet_id),
             'p5' => static::score_p5($imet_id),
-            'p6' => static::score_table($imet_id, Objectives::class, 'EvaluationScore'),
+            'p6' => static::score_p6($imet_id)
         ];
 
         // aggregate step score

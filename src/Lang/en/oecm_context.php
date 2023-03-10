@@ -117,7 +117,7 @@ return [
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
-            'Element' => 'Element/Indicator',
+            'Element' => 'Objective',
             'ShortOrLongTerm' => 'Short/Long term',
             'Comments' => 'Comments'
         ]
@@ -464,14 +464,7 @@ return [
                 '0' => 'No change',
                 '1' => 'Increasing',
                 '2' => 'Strongly Increasing',
-            ],
-            'ClimateChangeEffect' => [
-                '-2' => 'Very harmful',
-                '-1' => 'Harmful',
-                '0' => 'No change',
-                '1' => 'Beneficial',
-                '2' => 'Very beneficial',
-            ],
+            ]
         ],
         'summary' => 'Aggregated',
         'average' => 'Average'
