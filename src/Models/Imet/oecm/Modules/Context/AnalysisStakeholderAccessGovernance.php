@@ -22,7 +22,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 5.1';
+        $this->module_code = 'CTX 5';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element'), 'other' => 'rows="3"'],

@@ -22,7 +22,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 6.1';
+        $this->module_code = 'CTX 6';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'disabled', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element'), 'other' => 'rows="3"'],

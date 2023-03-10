@@ -18,13 +18,9 @@ class Objectives extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.Objectives.title');
         $this->module_fields = [
             ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Objective')],
+            ['name' => 'Existence',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Existence')],
             ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3WithNA',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Comments')],
-        ];
-
-        $this->predefined_values = [
-            'field' => 'Objective',
-            'values' => trans('imet-core::oecm_evaluation.Objectives.predefined_values')
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.Objectives.module_info_EvaluationQuestion');
@@ -36,18 +32,17 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null)
     {
-        $predefined = (new static())->predefined_values;
-
-        $c12_values = collect(KeyElements::getModuleRecords($form_id)['records'])
+        $c2_values = collect(KeyElements::getModuleRecords($form_id)['records'])
             ->filter(function($item){
                 return $item['IncludeInStatistics'];
             })
             ->pluck('Aspect')
             ->toArray();
 
-        $predefined['values'] = array_merge($c12_values,$predefined['values']);
-
-        return $predefined;
+        return [
+            'field' => 'Objective',
+            'values' => $c2_values
+        ];
     }
 
 }

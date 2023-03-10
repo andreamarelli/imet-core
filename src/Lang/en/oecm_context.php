@@ -118,8 +118,7 @@ return [
         'title' => 'Setting objectives',
         'fields' => [
             'Element' => 'Element/Indicator',
-            'Status' => 'Baseline',
-            'Objective' => 'Objective - Long term Targets/Goals',
+            'ShortOrLongTerm' => 'Short/Long term',
             'Comments' => 'Comments'
         ]
     ],

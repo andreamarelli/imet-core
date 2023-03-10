@@ -341,15 +341,9 @@ return [
         'title' => 'Objectives of the OECM',
         'fields' => [
             'Objective' => 'Objective',
+            'Existence' => 'Existence',
             'EvaluationScore' => 'Adequacy',
             'Comments' => 'Comments/Explanation',
-        ],
-        'predefined_values' => [
-            'Support to the local economy',
-            'Support social aspects of the stakeholders',
-            'Tourism',
-            'Management systems – human resources, finances, purchasing',
-            'Infrastructure and equipment',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [

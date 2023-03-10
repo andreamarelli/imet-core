@@ -1,6 +1,11 @@
 <?php
 return [
 
+    'ShortOrLongTerm' => [
+        'short'     => 'Short term',
+        'long'      => 'Long term'
+    ],
+
     'GovernanceModel' => [
         'government'    => 'Governance by government',
         'shared'        => 'Shared governance',

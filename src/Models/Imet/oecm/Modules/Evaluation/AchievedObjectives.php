@@ -28,4 +28,20 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+
+    protected static function getPredefined($form_id = null)
+    {
+        $p6_values = collect(Objectives::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['Existence'];
+            })
+            ->pluck('Objective')
+            ->toArray();
+
+        return [
+            'field' => 'Objective',
+            'values' => $p6_values
+        ];
+    }
+
 }
