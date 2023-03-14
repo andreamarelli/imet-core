@@ -41,5 +41,5 @@ return [
     'intervention' => 'Intervention',
     'activity' => 'Activity',
     'other' => 'Other',
-    'year' => 'Year',
+    'year' => 'Y',
 ];

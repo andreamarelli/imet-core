@@ -78,6 +78,7 @@ class ReportController extends BaseReportController
                 ]
             ),
             'report' => Report::getByForm($form_id),
+            'report_schema' => Report::getSchema(),
             'connection' => $api_available,
             'show_api' => $show_api,
             'dopa_radar' => $dopa_radar,
