@@ -25,9 +25,9 @@
                 },
                 percentage_stakeholder_label(element_id){
                     let index =  this.__get_index(element_id);
-                    let percentage = this.records[index]['__percentage_stakeholders'];
-                    percentage = parseFloat(percentage).toFixed(2);
-                    return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.percentage_stakeholders', {'percentage': '<b>' + percentage + '</b>'})
+                    let num = this.records[index]['__num_stakeholders'];
+                    num = parseInt(num);
+                    return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.num_stakeholders', {'num': '<b>' + num + '</b>'})
                 }
             }
 

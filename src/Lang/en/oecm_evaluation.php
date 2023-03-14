@@ -62,7 +62,7 @@ return [
             'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
         ],
         'from_group' => 'From category: ',
-        'percentage_stakeholders' => 'Evaluated by :percentage% of stakeholders'
+        'num_stakeholders' => 'Evaluated by :num stakeholder(s)'
     ],
 
 
@@ -73,7 +73,7 @@ return [
     'SupportsAndConstraints' => [
         'title' => 'Constraints or supports from stakeholders',
         'fields' => [
-            'Stakeholder'       => 'Criteria – Concept measured – Variable',
+            'Stakeholder'       => 'Stakeholder',
             'Weight'            => 'Involvement of the stakeholder (0-100)',
             'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
             'Comments'          => 'Comments/Explanation',
@@ -97,6 +97,25 @@ return [
         ]
     ],
 
+    'SupportsAndConstraintsIntegration' => [
+        'title' => 'Constraints or supports integration from stakeholders',
+        'fields' => [
+            'Stakeholder'       => 'Stakeholder',
+            'Weight'            => 'Involvement of the stakeholder (0-100)',
+            'Integration'       => 'Integration',
+            'IncludeInStatistics' => 'To prioritise in management',
+            'Comments'          => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'Integration' => [
+                '0' => 'no integration',
+                '1' => 'low integration',
+                '2' => 'moderate integration',
+                '3' => 'high integration',
+            ]
+        ]
+    ],
+
     'ObjectivesSupportsAndConstraints' => [
         'module_info' => 'Establish and describe conservation objectives for mitigation constraints/conflicts or enhancing supporting/complying factors for the OECM. The objectives entered below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
@@ -110,20 +129,6 @@ return [
             'Duration' => 'Duration/ Irreversibility',
             'Trend' => 'Trend',
             'Probability' => 'Probability for the threat in future',
-        ],
-        'predefined_values' => [
-            'Commercial and residential',
-            'Agriculture and aquaculture (Annual or multi-annual crops (non-woody); Wood and pulpwood plantations; Small- and large-scale livestock farming; Marine and freshwater aquaculture; Other typology of production)',
-            'Energy and mining',
-            'Transport and infrastructure',
-            'Use of biological resources (Hunting and harvesting of land animals; Gathering and harvesting of land plants; Forestry and timber harvesting; Fishing and harvesting aquatic resources)',
-            'Human disturbance / intrusion',
-            'Changes in the natural system (Bush fires (fires); Dams and water management or use; Other changes in the ecosystem)',
-            'Invasive / problematic species (Invasive / challenging species)',
-            'Pollution (Domestic and urban waste water; Industrial and military effluent; Agricultural and forestry effluents; Rubbish and solid waste)',
-            'Geological phenomena',
-            'Climate change effects',
-            'Other pressures and threats'
         ],
         'ratingLegend' => [
             'Impact' => [
@@ -163,6 +168,25 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5 and automatically reported below . Threats evaluation (automatically reported from CTX 5) To prioritise in management Comments/Explanation'
+        ],
+        'stakeholders' => 'evaluated by :num stakeholder(s)'
+    ],
+
+    'ThreatsIntegration' => [
+        'title' => 'Threats integration',
+        'fields' => [
+            'Threat'       => 'Threat',
+            'Integration'       => 'Integration',
+            'IncludeInStatistics' => 'To prioritise in management',
+            'Comments'          => 'Comments/Explanation',
+        ],
+        'ratingLegend' => [
+            'Integration' => [
+                '0' => 'no integration',
+                '1' => 'low integration',
+                '2' => 'moderate integration',
+                '3' => 'high integration',
+            ]
         ]
     ],
 
@@ -428,7 +452,6 @@ return [
         'title' => 'Current budget',
         'fields' => [
             'EvaluationScore' => 'Adequacy of current budget',
-            'Percentage' => 'Percentage indicating the extent to which the budget is adequate relative to the requirements',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [

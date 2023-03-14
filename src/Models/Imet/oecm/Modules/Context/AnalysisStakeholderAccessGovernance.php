@@ -224,7 +224,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                     })
                     ->sum();
 
-                $stakeholder_count = $group_values->count() * (100 / $num_stakeholders);
+                $stakeholder_count = $group_values->count();
 
                 return [
                     'element' => $group_values[0]['Element'],

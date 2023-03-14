@@ -499,6 +499,21 @@ CREATE TABLE imet_oecm.eval_supports_and_constaints
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+CREATE TABLE imet_oecm.eval_supports_and_constraints_integration
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Stakeholder"     text,
+    "Weight"          numeric,
+    "Integration"     numeric,
+    "IncludeInStatistics" boolean,
+    "Comments"        text,
+    group_key         character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 CREATE TABLE imet_oecm.eval_objectives_supports_and_contraints
 (
     id           serial PRIMARY KEY,
@@ -525,6 +540,20 @@ CREATE TABLE imet_oecm.eval_threats
     "Trend"         numeric,
     "Probability"   numeric,
     group_key       character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE imet_oecm.eval_threats_integration
+(
+    id                serial PRIMARY KEY,
+    "FormID"          integer,
+    "UpdateBy"        integer,
+    "UpdateDate"      character varying(30),
+    "Threat"        text,
+    "Integration"     numeric,
+    "IncludeInStatistics" boolean,
+    "Comments"        text,
+    group_key         character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -669,7 +698,6 @@ CREATE TABLE imet_oecm.eval_budget_adequacy
     "UpdateBy"        integer,
     "UpdateDate"      character varying(30),
     "EvaluationScore" numeric,
-    "Percentage"      numeric,
     "Comments"        text,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );

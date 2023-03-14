@@ -132,7 +132,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
                     })->sum() / $sum_weights
                     : null;
 
-                $stakeholder_count = $group->count() * (100 / $num_stakeholders);
+                $stakeholder_count = $group->count();
 
                 return [
                     'element' => $stakeholder,
@@ -148,6 +148,28 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             })
             ->values()
             ->toArray();
+    }
+
+    public static function getNumStakeholdersElementsByThreat($form_id): array
+    {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
+        $threats = [];
+        foreach($records as $record){
+            if($record['MainThreat']!==null){
+                foreach (json_decode($record['MainThreat']) as $threat){
+                    if(!array_key_exists($threat, $threats)){
+                        $threats[$threat] = [];
+                    }
+                    if(!array_key_exists($record['Element'], $threats[$threat])){
+                        $threats[$threat][$record['Element']] = 1;
+                    } else {
+                        $threats[$threat][$record['Element']]++;
+                    }
+                }
+            }
+        }
+        return $threats;
     }
 
 }
