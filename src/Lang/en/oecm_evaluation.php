@@ -698,7 +698,7 @@ return [
     ],
 
     'LawEnforcementImplementation' => [
-        'title' => 'Actions against illegal activities or to solve contentious issues on the OECM key elements management',
+        'title' => 'Actions in response to illegal activities or resolution of contentious issues',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Adequacy' => 'Adequacy',
@@ -706,7 +706,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Terrestrial and Sea control activities',
-            'group1' => 'Actions against illegal activities or to solve contentious issue',
+            'group1' => 'Actions in response to illegal activities or resolution of contentious issues',
         ],
         'predefined_values' => [
             'group0' => [
@@ -750,7 +750,7 @@ return [
 
 
     'StakeholderCooperation' => [
-        'title' => 'Cooperation between the stakeholders (deep analysis of the Governance of the key elements of the OECM)',
+        'title' => 'Cooperation between stakeholders',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement of the stakeholder (0-100)',
@@ -983,9 +983,9 @@ return [
     ],
 
     'ManagementGovernance' => [
-        'title' => 'Control of management and governance of the key elements of the OECM',
+        'title' => 'Area Control',
         'fields' => [
-            'Patrol' => 'A) Area covered by control and collection and information',
+            'Patrol' => 'A) Area covered by control',
             'Comments' => 'Comments/Explanation'
         ],
         'ratingLegend' => [

@@ -1,6 +1,45 @@
 <?php
 return [
 
+    'Create' => [
+        'title' => 'Create a new IMET OECM (WDPA)',
+        'fields' => [
+            'version' => 'IMET version',
+            'Year' => 'Year subject to evaluation',
+            'wdpa_id' => 'OECM',
+            'language' => 'language',
+            'prefill_prev_year' => 'prefill with previous year',
+        ]
+    ],
+
+    'CreateNonWdpa' => [
+        'title' => 'Create a new IMET OECM (non-WDPA)',
+        'fields' => [
+            'version' => 'version',
+            'Year' => 'Year subject to evaluation',
+            'wdpa_id' => 'protected area',
+            'language' => 'language',
+            'prefill_prev_year' => 'prefill with previous year',
+            'pa_def' => 'definition',
+            'name' => 'name as provided by the operator',
+            'origin_name' => 'name in original language',
+            'designation' => 'name of designation (ex. reserve, sanctuary park, etc.)',
+            'designation_eng' => 'designation in English',
+            'designation_type' => 'designation type',
+            'marine' => 'typology',
+            'rep_m_area' => 'surface of the protected conserved marine area [km<sup>2</sup>]',
+            'rep_area' => 'surface of the protected conserved area [km<sup>2</sup>]',
+            'status' => 'status',
+            'ownership_type' => 'Ownership type',
+            'status_year' => 'year of the enactment',
+            'country' => 'country',
+        ],
+
+        'allowed_international' => 'Allowed values for international-level designations',
+        'allowed_regional' => 'Allowed values for regional-level designations',
+        'allowed_national' => 'No fixed values for protected areas designated at a national level',
+    ],
+
     'GeneralInfo' => [
         'title' => 'Basic data',
         'fields' => [
@@ -316,9 +355,9 @@ return [
         'title' => 'Stakeholders involved in management or impacting in the use of natural resources of the OECM',
         'fields' => [
             'Element' => 'Stakeholder',
-            'GeographicalProximity' => 'Geographical proximity (achievable in less than 1 day)',
+            'GeographicalProximity' => 'Geographical proximity to the OECM (less than a day\'s walk)',
             'Engagement' => 'Typology of management / use of OECM\'s NR',
-            'Impact' => 'Level of engagement on NR',
+            'Impact' => 'Level of management or impact on NR',
             'Role' => 'Role in NR management',
             'Comments' => 'Note',
         ],

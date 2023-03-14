@@ -105,7 +105,7 @@ return [
 
     'Access' => [
         'no_access' => 'No access',
-        'exclusion' => 'Exclusion (criteria for access, use, withdrawal, management)',
+        'limited' => 'Limitation of the use and management',
         'open'      => 'Open (generally use or enjoy of NR including lands)'
     ],
 

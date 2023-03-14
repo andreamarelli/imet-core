@@ -106,11 +106,11 @@ return [
         ],
         'pr7' => [
             'PR7',
-            'Actions against illegal activities or to solve contentious issues'
+            'Actions in response to illegal activities or resolution of contentious issues'
         ],
         'pr8' => [
             'PR8',
-            'Cooperation between the stakeholders'
+            'Cooperation between stakeholders'
         ],
         'pr9' => [
             'PR9',
@@ -146,7 +146,7 @@ return [
         ],
         'op2' => [
             'O/P2',
-            'Control of management and governance of the key elements'
+            'Area Control'
         ],
         'oc1' => [
             'O/C1',
