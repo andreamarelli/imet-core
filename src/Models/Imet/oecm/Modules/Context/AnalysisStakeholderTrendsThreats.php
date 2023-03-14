@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use Illuminate\Http\Request;
 
 /**
  * @property $titles
@@ -21,15 +22,15 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 6.1';
+        $this->module_code = 'CTX 6';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'disabled', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Status',        'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Status')],
             ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Trend')],
-            ['name' => 'MainThreat',    'type' => 'dropdown-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.MainThreat')],
-            ['name' => 'ClimateChangeEffect',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.ClimateChangeEffect')],
+            ['name' => 'MainThreat',    'type' => 'dropdown_multiple-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.MainThreat')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.fields.Comments')],
+            ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups');     // Re-use groups from CTX 5.1
@@ -41,44 +42,111 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data from CTX 5.1
-     *
-     * @param $form_id
-     * @param null $collection
-     * @return array
-     */
-    public static function getModuleRecords($form_id, $collection = null): array
+    public static function updateModule(Request $request): array
     {
+        $return = parent::updateModule($request);
+        $return['key_elements_importance'] = static::calculateKeyElementsImportances2( $return['id'], $return['records']);
+        return $return;
+    }
 
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
+    public function isEmptyRecord($record, $foreign_key=null): bool
+    {
+        $isEmpty = true;
 
-        $records = $module_records['records'];
+        if($record['Status']!==null
+            || $record['Trend']!==null
+            || $record['MainThreat']!==null
+            || $record['Comments']!==null
+        ){
+            $isEmpty = false;
+        }
 
-        $ctx5 = Modules\Context\AnalysisStakeholderAccessGovernance::getModule($form_id);
-        $preLoaded = [
-            'field' => 'Element',
-            'values' => [
-                'group0' => $ctx5->where('group_key', 'group0')->pluck('Element')->toArray(),
-                'group1' => $ctx5->where('group_key', 'group1')->pluck('Element')->toArray(),
-                'group2' => $ctx5->where('group_key', 'group2')->pluck('Element')->toArray(),
-                'group3' => $ctx5->where('group_key', 'group3')->pluck('Element')->toArray(),
-                'group4' => $ctx5->where('group_key', 'group4')->pluck('Element')->toArray(),
-                'group5' => $ctx5->where('group_key', 'group5')->pluck('Element')->toArray(),
-                'group6' => $ctx5->where('group_key', 'group6')->pluck('Element')->toArray(),
-                'group7' => $ctx5->where('group_key', 'group7')->pluck('Element')->toArray(),
-                'group8' => $ctx5->where('group_key', 'group8')->pluck('Element')->toArray(),
-                'group9' => $ctx5->where('group_key', 'group9')->pluck('Element')->toArray(),
-                'group10' => $ctx5->where('group_key', 'group10')->pluck('Element')->toArray(),
-                'group11' => $ctx5->where('group_key', 'group11')->pluck('Element')->toArray(),
-                'group12' => $ctx5->where('group_key', 'group12')->pluck('Element')->toArray(),
-                'group13' => $ctx5->where('group_key', 'group13')->pluck('Element')->toArray(),
-            ]
-        ];
+        return $isEmpty;
+    }
 
-        $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $form_id = $empty_record['FormID'];
+
+        // inject predefined values and replicate for each stakeholder
+        $ctx5_records = Modules\Context\AnalysisStakeholderAccessGovernance::getModule($form_id);
+
+        $new_records = [];
+        foreach ($ctx5_records as $ctx5_record){
+            $new_record = $empty_record;
+            foreach ($records as $r => $record) {
+                // record already there
+                if($record['Element'] === $ctx5_record['Element']
+                    && $record['group_key'] == $ctx5_record['group_key']
+                    && $record['Stakeholder'] == $ctx5_record['Stakeholder']){
+                    $new_record = $record;
+                    unset($records[$r]);
+                    break;
+                }
+            }
+            $new_record['Element'] = $ctx5_record['Element'];
+            $new_record['group_key'] = $ctx5_record['group_key'];
+            $new_record['Stakeholder'] = $ctx5_record['Stakeholder'];
+            $new_record['__predefined'] = true;
+            $new_records[] = $new_record;
+        }
+
+        return $new_records;
+    }
+
+    public static function calculateKeyElementsImportances2($form_id, $records = null): array
+    {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
+        $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $num_stakeholders = count($weights);
+        $weights_sum = collect($weights)->sum();
+        $weights_div = $weights_sum>0 ?
+            collect($weights)->map(function($item) use($weights_sum){
+                return $item / $weights_sum;
+            })->toArray()
+            : null;
+
+        foreach($records as $idx => $record){
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
+        }
+
+        return collect($records)
+            ->filter(function ($item){
+                return !(new static())->isEmptyRecord($item);
+            })
+            ->groupBy('Element')
+            ->map(function($group, $stakeholder) use ($num_stakeholders){
+
+                $sum_weights = $group->pluck('__stakeholder_weight')->sum();
+
+                $status = $sum_weights>0
+                    ? $group->map(function($item){
+                        return $item['__stakeholder_weight'] * ($item['Status'] * 25 + 50);
+                    })->sum() / $sum_weights
+                    : null;
+
+                $trend = $sum_weights>0
+                    ? $group->map(function($item){
+                        return $item['__stakeholder_weight'] * ($item['Trend'] * 25 + 50);
+                    })->sum() / $sum_weights
+                    : null;
+
+                $stakeholder_count = $group->count() * (100 / $num_stakeholders);
+
+                return [
+                    'element' => $stakeholder,
+                    'status' => $status!==null ? round($status, 1) : null,
+                    'trend' => $trend!==null ? round($trend, 1) : null,
+                    'importance' => $status!==null && $trend!==null ? round(($status + $trend) / 2, 2) : null,
+                    'stakeholder_count' => $stakeholder_count
+                ];
+            })
+            ->filter(function($item){
+                return $item['importance']!==null;
+            })
+            ->values()
+            ->toArray();
     }
 
 }
