@@ -3,7 +3,6 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vue_data */
 
-//$vue_data['locale'] = 'window.Locale';
 
 ?>
 
@@ -17,11 +16,18 @@
             data: @json($vue_data),
 
             methods:{
+                __get_index(element_id){
+                    return element_id.replace(this.module_key, '').replace('Aspect', '').replaceAll('_', '');
+                },
+                group_label(element_id){
+                    let index = this.__get_index(element_id);
+                    return this.records[index]['__group_stakeholders'];
+                },
                 percentage_stakeholder_label(element_id){
-                    let index = element_id.replace(this.module_key, '').replace('Aspect', '').replaceAll('_', '');
+                    let index =  this.__get_index(element_id);
                     let percentage = this.records[index]['__percentage_stakeholders'];
                     percentage = parseFloat(percentage).toFixed(2);
-                    return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.percentage_stakeholders', {'percentage': percentage})
+                    return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.percentage_stakeholders', {'percentage': '<b>' + percentage + '</b>'})
                 }
             }
 

@@ -229,7 +229,8 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                 return [
                     'element' => $group_values[0]['Element'],
                     'importance' => round($importance, 1),
-                    'stakeholder_percentage' => $stakeholder_count
+                    'stakeholder_percentage' => $stakeholder_count,
+                    'group' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups.'.$group_values[0]['group_key'])
                 ];
             })
             ->sortByDesc('importance')

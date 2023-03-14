@@ -139,7 +139,8 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
                     'status' => $status!==null ? round($status, 1) : null,
                     'trend' => $trend!==null ? round($trend, 1) : null,
                     'importance' => $status!==null && $trend!==null ? round(($status + $trend) / 2, 2) : null,
-                    'stakeholder_count' => $stakeholder_count
+                    'stakeholder_count' => $stakeholder_count,
+                    'group' => trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups.'.$group[0]['group_key'])
                 ];
             })
             ->filter(function($item){

@@ -61,6 +61,7 @@ return [
         'module_info_Rating' => [
             'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
         ],
+        'from_group' => 'From category: ',
         'percentage_stakeholders' => 'Evaluated by :percentage% of stakeholders'
     ],
 
