@@ -32,7 +32,6 @@ class Objectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-
     /**
      * Preload data from C2
      *
@@ -65,23 +64,5 @@ class Objectives extends Modules\Component\ImetModule_Eval
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;
     }
-//
-//    protected static function getPredefined($form_id = null)
-//    {
-//        $c2_values = collect(KeyElements::getModuleRecords($form_id)['records'])
-//            ->filter(function($item){
-//                return $item['IncludeInStatistics'];
-//            })
-//            ->pluck('Aspect')
-//            ->toArray();
-//
-//        return [
-//            'field' => 'Objective',
-//            'values' => [
-//                'group0' => [],
-//                'group1' => $c2_values
-//            ]
-//        ];
-//    }
 
 }
