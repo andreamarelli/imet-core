@@ -198,17 +198,12 @@ return [
         'fields' => [
             'RelativeImportance' => 'Relative involvement of staff and stakeholders'
         ],
-        'ratingLegend' => [
-            'RelativeImportance' => [
-                '-3' => 'All decisions are made by staff',
-                '-2' => 'Most decisions are made by staff',
-                '-1' => 'Majority of decisions are made by staff',
-                '0' => 'There is equal contribution of staff and stakeholders to decision-making',
-                '1' => 'Majority of decisions are made by stakeholders',
-                '2' => 'Most decisions are made by stakeholders',
-                '3' => 'All decisions are made by stakeholders',
-            ]
-        ]
+        'staff' => 'staff',
+        'stakeholders' => 'stakeholders',
+        'equal' =>  'majority by',
+        'majority_by' =>  'equal',
+        'most_by' =>  'most by',
+        'all_by' =>  'all by',
     ],
 
     'FinancialResources' => [
