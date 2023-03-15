@@ -34,7 +34,7 @@ return [
     'driving_forces' => 'Driving forces /Pressures',
     'current_state' => 'Current state',
     'expected_conditions' => 'Expected conditions',
-    'possible_roadmap' => 'Possible road map for ## (see expected condition) - Management plan midterm and long term',
+    'possible_roadmap' => 'Possible road map - Management plan midterm and long term',
     'long_term_objectives' => 'Long term Objective – Goals',
     'outcome' => 'Outcome 1',
     'annual_multi_annual_targets' => 'Annual or multi-annual targets',
@@ -42,4 +42,7 @@ return [
     'activity' => 'Activity',
     'other' => 'Other',
     'year' => 'Y',
+    'proposed_long_objectives' => 'Proposed long term objectives',
+    'proposed_short_objectives' => 'Proposed short term objectives',
+    'general_planning' => 'General planning',
 ];

@@ -4,6 +4,7 @@
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
+/** @var array $planning_objectives */
 /** @var array $report */
 /** @var array $report_schema */
 /** @var array $dopa_radar */
@@ -186,13 +187,13 @@ if ($item->language != App::getLocale()) {
             </div>
         </div>
         <div class="module-container">
+            <div class="module-header">
+                <div class="module-title">@lang('imet-core::oecm_report.general_planning')</div>
+            </div>
             <div class="module-body">
                 <h5>@lang('imet-core::oecm_report.driving_forces')</h5>
                 <ul>
                     @foreach($main_threats as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                    @foreach($climate_change as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
@@ -205,6 +206,18 @@ if ($item->language != App::getLocale()) {
                 <h5>@lang('imet-core::oecm_report.expected_conditions')</h5>
                 <ul>
                     @foreach($status as $elem)
+                        <li>{{ $elem }}</li>
+                    @endforeach
+                </ul>
+                <h5>@lang('imet-core::oecm_report.proposed_short_objectives')</h5>
+                <ul>
+                    @foreach($planning_objectives['short'] as $elem)
+                        <li>{{ $elem }}</li>
+                    @endforeach
+                </ul>
+                <h5>@lang('imet-core::oecm_report.proposed_long_objectives')</h5>
+                <ul>
+                    @foreach($planning_objectives['long'] as $elem)
                         <li>{{ $elem }}</li>
                     @endforeach
                 </ul>
@@ -275,12 +288,6 @@ if ($item->language != App::getLocale()) {
                 }
 
             },
-            computed: {
-                reportLength: function () {
-
-                    return this.report.length;
-                }
-            },
             watch: {
                 status(value) {
                     let _this = this;
@@ -290,13 +297,8 @@ if ($item->language != App::getLocale()) {
                         }, 4000);
                     }
                 },
-                reportLength() {
-                    console.log(this.report.length);
-                        console.log('test')
-                },
                 'report': {
                     handler: function (val, oldVal) {
-                        console.log({val})
                         this.status = 'changed';
                     },
                     deep: true
