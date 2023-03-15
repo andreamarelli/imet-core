@@ -90,7 +90,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'The constraints/conflicts or supports/compliances by the political, institutional and civil environment can be measured by their intensity, and by the influence/power of the stakeholders in constraining/conflicting or supporting/complying the OECM.'
+            'The constraints/conflicts or supports/compliances by the stakeholders can be measured by their intensity in constraining/conflicting or supporting/complying the OECM'
         ],
         'module_info_Rating' => [
             'Evaluate the most important constraints/conflicts or supporting/complying factors from the political, institutional and social environment in the management of the OECM'
@@ -366,13 +366,14 @@ return [
         'title' => 'Objectives of the OECM',
         'fields' => [
             'Objective' => 'Objective',
-            'Existence' => 'Existence',
+            'Existence' => 'Existing in management plan',
             'EvaluationScore' => 'Adequacy',
+            'IncludeInPlanning' => 'To add in planning',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
             'group0' => 'Existing objectives from management plan',
-            'group1' => 'Proposed objectives from C2',
+            'group1' => 'Prospective objectives from C2',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -421,7 +422,7 @@ return [
     ],
 
     'CapacityAdequacy' => [
-        'title' => 'Capacities of the management and governance specific entity or combination of entities',
+        'title' => 'Capacities of specific or combination of entities/stakeholders in the management and governance',
         'fields' => [
             'Member' => 'Member',
             'Weight' => 'Involvement',
@@ -434,10 +435,10 @@ return [
         ],
         'ratingLegend' => [
             'Adequacy' => [
-                '0' => 'Extremely weak capacities (0-30% of the needs)',
-                '1' => 'Insufficient capacities (31-60% of the needs)',
-                '2' => 'Adequate capacities adequate but further improvements required (61-90% of the needs)',
-                '3' => 'Completely sufficient capacities (91-100% of the needs)',
+                '0' => 'Capacities building to strong improve (0-30% of the needs)',
+                '1' => 'Capacities building to improve (31-60% of the needs)',
+                '2' => 'Capacities building adequate but further improvements required (61-90% of the needs)',
+                '3' => 'Capacities building completely sufficient (91-100% of the needs)',
             ]
         ],
         'module_info_EvaluationQuestion' => [
@@ -545,7 +546,7 @@ return [
         'module_info' => 'Establish and describe conservation objectives related to implementation process of the OECM The objectives entered below will be used for improving management, and mo re specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
     'StaffCompetence' => [
-        'title' => 'Training and capacity-building programme for the OECM Management and Governance specific entity or combination of entities',
+        'title' => 'Training and capacity-building programme for the OECM management and governance“ or “Training and capacity building programme',
         'fields' => [
             'Member' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement',
@@ -554,7 +555,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Composition and staff or members of the OECM',
-            'group1' => 'Stakeholders involved or impacting the use of natural resources'
+            'group1' => 'Stakeholders involved in management and impacting on the use of natural resources of the OECM'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -1006,7 +1007,7 @@ return [
     ],
 
     'AchievedObjectives' => [
-        'title' => 'Achievement of long-term conservation objectives of the management',
+        'title' => 'Achievement of long-term objectives of the OECM management and governance',
         'fields' => [
             'Objective' => 'Main long-term goals-objective',
             'EvaluationScore' => 'Level of achievement of the objectives',

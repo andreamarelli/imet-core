@@ -66,7 +66,7 @@ return [
         ],
         'i2' => [
             'I2',
-            'Capacities of the management and governance specific entity or combination of entities'
+            'Capacities of specific or combination of entities/stakeholders in the management and governance'
         ],
         'i3' => [
             'I3',
@@ -150,7 +150,7 @@ return [
         ],
         'oc1' => [
             'O/C1',
-            'Achievement of long-term conservation objectives of the management'
+            'Achievement of long-term objectives of the OECM management and governance'
         ],
         'oc2' => [
             'O/C2',

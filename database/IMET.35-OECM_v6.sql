@@ -410,6 +410,7 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_access_governance
     "UpdateDate"     character varying(30),
     "Stakeholder"    text,
     "Element"        text,
+    "Description"    text,
     "Dependence"     numeric,
     "Access"         character varying(50),
     "Rivalry"        boolean,
@@ -646,6 +647,7 @@ CREATE TABLE imet_oecm.eval_objectives
     "Objective"       text,
     "Existence"       boolean,
     "EvaluationScore" numeric,
+    "IncludeInPlanning" boolean,
     "Comments"        text,
     "group_key"      character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
