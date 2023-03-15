@@ -86,7 +86,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             }
             $key_elements->push([
                 'element' => $key,
-                'importance' => $importance ? round($importance, 2): null,
+                'importance' => isset($importance) ? round($importance, 2): null,
                 'stakeholder_count' => $stakeholder_count ?? null,
                 'group' => $ctx5_key_element['group'] ?? null,
             ]);

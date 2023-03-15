@@ -84,6 +84,10 @@ class OEMCStatisticsService extends StatisticsService
             ) / $denominator
             : null;
 
+        $scores['avg_indicator'] =  $scores['avg_indicator']!== null
+            ? round($scores['avg_indicator'], 2)
+            : null;
+        
         return $scores;
     }
 
