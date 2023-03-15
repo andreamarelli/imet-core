@@ -16,7 +16,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C2';
+        $this->module_code = 'C4';
         $this->module_title = trans('imet-core::oecm_evaluation.KeyElements.title');
         $this->module_fields = [
             ['name' => 'Aspect',                'type' => 'blade-imet-core::oecm.evaluation.fields.key_elements_element',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Aspect')],

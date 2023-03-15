@@ -452,6 +452,7 @@ CREATE TABLE imet_oecm.designation
     "UpdateDate"                  character varying(30),
     "Aspect"                      text,
     "EvaluationScore"             numeric,
+    "IncludeInStatistics"         boolean,
     "Comments"                    text,
     "SignificativeClassification" boolean,
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
