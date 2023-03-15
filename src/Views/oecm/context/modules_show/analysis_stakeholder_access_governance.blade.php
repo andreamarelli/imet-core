@@ -34,6 +34,7 @@ $stakeholders_records = collect($records)
     </div>
     <div>
         <div class="card-body">
+            <h3>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h3>
             <table class="table module-table">
                 <thead>
                 <tr>

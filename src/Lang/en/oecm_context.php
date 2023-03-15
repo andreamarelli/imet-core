@@ -411,6 +411,7 @@ return [
             'Involvement' => 'Involvement',
             'Accountability' => 'Accountability',
             'Orientation' => 'Orientation',
+            'Stakeholder' => 'Stakeholder',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -595,8 +596,11 @@ return [
         ],
         'warning_on_save' =>
             'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>',
-        'summary' => 'Importance of elements',
-        'importance' => 'Importance (0-100)'
+        'summary' => 'Importance of elements & Involvement of stakeholders',
+        'elements_importance' => 'Importance of elements',
+        'involvement_ranking' => 'Involvement of stakeholders',
+        'importance' => 'Importance (0-100)',
+        'involvement' => 'Involvement of the stakeholder (0-100)'
     ],
 
     'AnalysisStakeholderTrendsThreats' => [

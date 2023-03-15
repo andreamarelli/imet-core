@@ -7,7 +7,8 @@
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
 
-$stakeholders = StakeholdersNaturalResources::getStakeholders($vue_data['form_id']);
+$stakeholders = StakeholdersNaturalResources::calculateWeights($vue_data['form_id']);
+arsort($stakeholders);
 
 $vue_data['current_stakeholder'] = 'summary';
 $vue_data['key_elements_importance'] = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($vue_data['form_id'], $vue_data['records']);
@@ -25,6 +26,7 @@ $num_cols = count($definitions['fields']);
     <div>
         <div class="card-body" v-if="isCurrentStakeholder('summary') ">
 
+            <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>
             <table class="table module-table">
                 <thead>
                 <tr>
@@ -40,12 +42,31 @@ $num_cols = count($definitions['fields']);
                 </tbody>
             </table>
 
+            <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement_ranking')</h4>
+            <table class="table module-table">
+                <thead>
+                    <tr>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Stakeholder')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement')</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($stakeholders as $stakeholder => $ranking)
+                    <tr class="module-table-item">
+                        <td style="text-align: left;">{{ $stakeholder }}</td>
+                        <td style="text-align: left;">{{ $ranking }}</td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
 
 
-@foreach($stakeholders as $index => $stakeholder)
+@foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
             <h4 class="card-title" role="button" @click="switchStakeholder('{{ $stakeholder }}')">
