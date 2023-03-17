@@ -207,7 +207,8 @@ return [
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Adequate number',
         ],
-        'module_info' => 'Number and categories of members of the OECM Management Entity'
+        'module_info' => 'Number and categories of members of the OECM Management Entity',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>'
     ],
 
     'ManagementStaffPartners' => [
@@ -280,7 +281,8 @@ return [
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)',
             ]
-        ]
+        ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I5, PR5</i>'
     ],
 
     'AnimalSpecies' => [
@@ -300,7 +302,7 @@ return [
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
             <li><b>INV</b>: Invasive species</li></ul>',
-        'validation_min3' => 'Please encode not less than 3 key species'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
     ],
 
     'VegetalSpecies' => [
@@ -319,7 +321,8 @@ return [
             <li><b>EXP</b>: Exploited species</li>
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
-            <li><b>INV</b>: Invasive species</li></ul>'
+            <li><b>INV</b>: Invasive species</li></ul>',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
     ],
 
     'Habitats' => [
@@ -336,7 +339,8 @@ return [
         'module_info' => '<b>Species types</b><ul>
                 <li><b>EXP</b>: Exploited</li>
                 <li><b>PRT</b>: Protected</li>
-                <li><b>DSG</b>: Disappearing</li></ul>'
+                <li><b>DSG</b>: Disappearing</li></ul>',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
     ],
 
     'StakeholdersNaturalResources' => [
@@ -384,8 +388,7 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
-
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5, CTX6, C2.2, I2, PR1, PR8</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5, CTX6, C1.2, C2.2, I2, PR1, PR8</i>'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [
@@ -581,6 +584,7 @@ return [
                 '3' => 'High',
             ],
         ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 6, C4</i>',
         'summary' => 'Importance of elements & Involvement of stakeholders',
         'elements_importance' => 'Importance of elements',
         'involvement_ranking' => 'Involvement of stakeholders',
@@ -618,6 +622,7 @@ return [
                 '2' => 'Strongly Increasing',
             ]
         ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>C4</i>',
         'summary' => 'Aggregated',
         'average' => 'Average',
         'elements_importance' => 'Importance of elements',

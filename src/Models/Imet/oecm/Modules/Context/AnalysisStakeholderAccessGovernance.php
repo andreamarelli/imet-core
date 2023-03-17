@@ -6,6 +6,7 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -54,6 +55,15 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     {
         $return = parent::updateModule($request);
         $return['key_elements_importance'] = static::calculateKeyElementsImportances($return['id'], $return['records']);
+
+        // Clean dependent modules form removed records
+        $records = Payload::decode($request->input('records_json'));
+        $form_id = $request->input('form_id');
+        static::dropFromDependentModules($form_id, $records, 'species', [
+            [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Element'],
+            [Modules\Evaluation\KeyElements::class, 'Aspect']
+        ]);
+
         return $return;
     }
 
@@ -94,6 +104,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $form_id = $empty_record['FormID'];
 
         // inject additional predefined values (first 3 groups) retrieved from CTX
+
         $predefined_values = (new static())->predefined_values;
         $predefined_values['values']['group0'] =
             Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')
@@ -103,15 +114,14 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
                         : $item;
                 })
                 ->toArray();
-        $predefined_values['values']['group1'] = Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray();
+        $predefined_values['values']['group1'] =
+            Modules\Context\VegetalSpecies::getModule($form_id)->pluck('species')->toArray();
         $predefined_values['values']['group2'] =
             Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')
                 ->map(function($item){
                     return SelectionList::getList('ImetOECM_Habitats')[$item];
                 })
                 ->toArray();
-
-
 
         if(!empty($records)) {
             // ensure first record has id field (set to null if doesn't)

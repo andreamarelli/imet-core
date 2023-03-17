@@ -4,6 +4,9 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 class KeyElements extends Modules\Component\ImetModule_Eval
 {
@@ -98,5 +101,30 @@ class KeyElements extends Modules\Component\ImetModule_Eval
                 return $item['importance']!==null;
             })
             ->toArray();
+    }
+
+    /**
+     * clean dependencies
+     *
+     * @param Request $request
+     * @return array
+     * @throws Exception
+     */
+    public static function updateModule(Request $request): array
+    {
+        // get request
+        $records = Payload::decode($request->input('records_json'));
+
+        // Clean dependent modules form removed records
+        $form_id = $request->input('form_id');
+        static::dropFromDependentModules($form_id, $records, 'Aspect', [
+            [Modules\Evaluation\Objectives::class, 'Objective'],
+            [Modules\Evaluation\InformationAvailability::class, 'Element'],
+            [Modules\Evaluation\ManagementActivities::class, 'Activity']
+        ]);
+
+        // Execute update
+        $request->merge(['records_json' => Payload::encode($records)]);
+        return parent::updateModule($request);
     }
 }

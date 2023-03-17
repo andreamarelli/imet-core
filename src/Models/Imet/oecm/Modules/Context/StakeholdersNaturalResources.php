@@ -51,9 +51,11 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         static::dropFromDependentModules($form_id, $records, 'Element', [
             [Modules\Context\AnalysisStakeholderAccessGovernance::class, 'Stakeholder'],
             [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Stakeholder'],
+            [Modules\Evaluation\SupportsAndConstraints::class, 'Stakeholder'],
             [Modules\Evaluation\SupportsAndConstraintsIntegration::class, 'Stakeholder'],
+            [Modules\Evaluation\CapacityAdequacy::class, 'Member'],
             [Modules\Evaluation\StaffCompetence::class, 'Member'],
-            [Modules\Evaluation\StakeholderCooperation::class, 'Member'],
+            [Modules\Evaluation\StakeholderCooperation::class, 'Element'],
         ]);
 
         // Execute update

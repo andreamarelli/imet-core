@@ -31,7 +31,8 @@ return [
         'module_subTitle' => 'Value and Importance - Designations',
         'module_info_EvaluationQuestion' => [
             'Evaluate the integration of values and importance of designations (national designation and international designations, e.g., World Heritage site or Ramsar site) for the management of the OECM'
-        ]
+        ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
     ],
 
     'KeyElements' => [
@@ -63,7 +64,8 @@ return [
             'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
         ],
         'from_group' => 'From category: ',
-        'num_stakeholders' => 'Evaluated by :num stakeholder(s)'
+        'num_stakeholders' => 'Evaluated by :num stakeholder(s)',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>P6, I1, PR6</i>',
     ],
 
     'SupportsAndConstraints' => [
@@ -109,7 +111,8 @@ return [
                 '2' => 'moderate integration',
                 '3' => 'high integration',
             ]
-        ]
+        ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
     ],
 
     'Threats' => [
@@ -180,7 +183,8 @@ return [
                 '3' => 'high integration',
             ]
         ],
-        'ranking' => 'Ranking'
+        'ranking' => 'Ranking',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
     ],
 
     'RegulationsAdequacy' => [
@@ -379,7 +383,8 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluate adequacy of the management plan objectives for the key elements of the OECM, based on the analysis of the intervention context, points: CTX1.5, CTX 4, 5, 6, 7 and context of management, points from C 1.1 to C 1.5)'
-        ]
+        ],
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>O/C1</i>',
     ],
 
     'ObjectivesPlanification' => [

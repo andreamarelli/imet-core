@@ -10,6 +10,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 class ImetModule_Eval extends BaseImetEvalModule
 {
     use Upgrade;
+    use Dependencies;
 
     protected static $form_class = Imet::class;
 }

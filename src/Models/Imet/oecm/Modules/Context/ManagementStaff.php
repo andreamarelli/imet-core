@@ -4,6 +4,9 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 class ManagementStaff extends Modules\Component\ImetModule
 {
@@ -31,13 +34,45 @@ class ManagementStaff extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function calculateWeights($form_id){
-        $records = static::getModuleRecords($form_id)['records'];
-        $records = collect($records)->map(function($item){
-            $item['__weight'] = round(sqrt($item['Number']), 2);
-            return $item;
-        })->pluck('__weight', 'Function')->toArray();
+    /**
+     * clean dependencies
+     *
+     * @param Request $request
+     * @return array
+     * @throws Exception
+     */
+    public static function updateModule(Request $request): array
+    {
+        // get request
+        $records = Payload::decode($request->input('records_json'));
 
-        return $records;
+        // Clean dependent modules form removed records
+        $form_id = $request->input('form_id');
+        static::dropFromDependentModules($form_id, $records, 'Function', [
+            [Modules\Evaluation\StaffCompetence::class, 'Member'],
+            [Modules\Evaluation\CapacityAdequacy::class, 'Member']
+        ]);
+
+        // Execute update
+        $request->merge(['records_json' => Payload::encode($records)]);
+        return parent::updateModule($request);
+    }
+
+    /**
+     * Calculate weights
+     *
+     * @param $form_id
+     * @return array
+     */
+    public static function calculateWeights($form_id): array
+    {
+        $records = static::getModuleRecords($form_id)['records'];
+        return collect($records)
+            ->map(function($item){
+                $item['__weight'] = round(sqrt($item['Number']), 2);
+                return $item;
+            })
+            ->pluck('__weight', 'Function')
+            ->toArray();
     }
 }

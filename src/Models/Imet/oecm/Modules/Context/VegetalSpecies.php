@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
 use Illuminate\Http\Request;
 
 class VegetalSpecies extends Modules\Component\ImetModule
@@ -31,6 +32,29 @@ class VegetalSpecies extends Modules\Component\ImetModule
         $this->module_info = trans('imet-core::oecm_context.VegetalSpecies.module_info');
 
         parent::__construct($attributes);
+    }
+
+    /**
+     * clean dependencies
+     *
+     * @param Request $request
+     * @return array
+     * @throws Exception
+     */
+    public static function updateModule(Request $request): array
+    {
+        // get request
+        $records = Payload::decode($request->input('records_json'));
+
+        // Clean dependent modules form removed records
+        $form_id = $request->input('form_id');
+        static::dropFromDependentModules($form_id, $records, 'species', [
+            [Modules\Context\AnalysisStakeholderAccessGovernance::class, 'Element']
+        ]);
+
+        // Execute update
+        $request->merge(['records_json' => Payload::encode($records)]);
+        return parent::updateModule($request);
     }
 
 }

@@ -4,6 +4,9 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 class Designation extends Modules\Component\ImetModule_Eval
 {
@@ -32,7 +35,6 @@ class Designation extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-
     /**
      * Preload data from CTX 5.1
      *
@@ -54,6 +56,30 @@ class Designation extends Modules\Component\ImetModule_Eval
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;
+    }
+
+    /**
+     * clean dependencies
+     *
+     * @param Request $request
+     * @return array
+     * @throws Exception
+     */
+    public static function updateModule(Request $request): array
+    {
+        // get request
+        $records = Payload::decode($request->input('records_json'));
+
+        // Clean dependent modules form removed records
+        $form_id = $request->input('form_id');
+        static::dropFromDependentModules($form_id, $records, 'Aspect', [
+            [Modules\Evaluation\InformationAvailability::class, 'Element'],
+            [Modules\Evaluation\ManagementActivities::class, 'Activity']
+        ]);
+
+        // Execute update
+        $request->merge(['records_json' => Payload::encode($records)]);
+        return parent::updateModule($request);
     }
 
 }

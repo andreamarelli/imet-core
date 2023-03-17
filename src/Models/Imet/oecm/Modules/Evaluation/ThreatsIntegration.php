@@ -4,6 +4,9 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use Exception;
+use Illuminate\Http\Request;
 
 /**
  * @property $titles
@@ -51,6 +54,30 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         }
 
         return $module_records;
+    }
+
+    /**
+     * clean dependencies
+     *
+     * @param Request $request
+     * @return array
+     * @throws Exception
+     */
+    public static function updateModule(Request $request): array
+    {
+        // get request
+        $records = Payload::decode($request->input('records_json'));
+
+        // Clean dependent modules form removed records
+        $form_id = $request->input('form_id');
+        static::dropFromDependentModules($form_id, $records, 'Threat', [
+            [Modules\Evaluation\InformationAvailability::class, 'Element'],
+            [Modules\Evaluation\ManagementActivities::class, 'Activity']
+        ]);
+
+        // Execute update
+        $request->merge(['records_json' => Payload::encode($records)]);
+        return parent::updateModule($request);
     }
 
 
