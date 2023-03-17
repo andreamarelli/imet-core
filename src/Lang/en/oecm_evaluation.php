@@ -179,7 +179,8 @@ return [
                 '2' => 'moderate integration',
                 '3' => 'high integration',
             ]
-        ]
+        ],
+        'ranking' => 'Ranking'
     ],
 
     'RegulationsAdequacy' => [

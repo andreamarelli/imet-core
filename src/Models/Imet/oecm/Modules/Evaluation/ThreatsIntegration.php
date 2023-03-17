@@ -22,7 +22,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C3.2';
         $this->module_title = trans('imet-core::oecm_evaluation.ThreatsIntegration.title');
         $this->module_fields = [
-            ['name' => 'Threat',           'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Threat')],
+            ['name' => 'Threat',           'type' => 'blade-imet-core::oecm.evaluation.fields.threat_with_ranking',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Threat')],
             ['name' => 'Integration',       'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Integration')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.IncludeInStatistics')],
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Comments')],
@@ -36,6 +36,21 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::oecm_evaluation.ThreatsIntegration.ratingLegend');
 
         parent::__construct($attributes);
+    }
+
+    public static function getModuleRecords($form_id, $collection = null): array
+    {
+        $module_records = parent::getModuleRecords($form_id, $collection);
+
+        $threats_ranking = collect(Threats::calculateRanking($form_id))
+            ->pluck('__score', 'Value')
+            ->toArray();
+
+        foreach ($module_records['records'] as $index => $record){
+            $module_records['records'][$index]['__score'] = $threats_ranking[$record['Threat']];
+        }
+
+        return $module_records;
     }
 
 
