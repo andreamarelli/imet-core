@@ -385,7 +385,7 @@ return [
             ]
         ],
 
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5, CTX6, C2.2, I2, PR1, PR8</i>'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [
@@ -581,8 +581,6 @@ return [
                 '3' => 'High',
             ],
         ],
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following modules(if already encoded): <i>CTX 6.1</i>, <i>C1.2</i> and <i>I1</i>',
         'summary' => 'Importance of elements & Involvement of stakeholders',
         'elements_importance' => 'Importance of elements',
         'involvement_ranking' => 'Involvement of stakeholders',

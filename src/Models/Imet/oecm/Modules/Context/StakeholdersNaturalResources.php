@@ -34,13 +34,6 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.StakeholdersNaturalResources.warning_on_save');
-        return $vue_data;
-    }
-
     public static function updateModule(Request $request): array
     {
         // get request
@@ -52,6 +45,16 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
                 unset($records[$index]);
             }
         }
+
+        // Clean dependent modules form removed records
+        $form_id = $request->input('form_id');
+        static::dropFromDependentModules($form_id, $records, 'Element', [
+            [Modules\Context\AnalysisStakeholderAccessGovernance::class, 'Stakeholder'],
+            [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Stakeholder'],
+            [Modules\Evaluation\SupportsAndConstraintsIntegration::class, 'Stakeholder'],
+            [Modules\Evaluation\StaffCompetence::class, 'Member'],
+            [Modules\Evaluation\StakeholderCooperation::class, 'Member'],
+        ]);
 
         // Execute update
         $request->merge(['records_json' => Payload::encode($records)]);

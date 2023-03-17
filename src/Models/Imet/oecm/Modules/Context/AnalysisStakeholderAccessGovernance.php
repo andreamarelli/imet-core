@@ -50,13 +50,6 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.warning_on_save');
-        return $vue_data;
-    }
-
     public static function updateModule(Request $request): array
     {
         $return = parent::updateModule($request);
