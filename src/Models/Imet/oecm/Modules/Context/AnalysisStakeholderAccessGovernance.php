@@ -21,6 +21,12 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Stakeholder'],
+        [Modules\Evaluation\KeyElements::class, 'Element']
+    ];
+
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
@@ -55,15 +61,6 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
     {
         $return = parent::updateModule($request);
         $return['key_elements_importance'] = static::calculateKeyElementsImportances($return['id'], $return['records']);
-
-        // Clean dependent modules form removed records
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'species', [
-            [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Element'],
-            [Modules\Evaluation\KeyElements::class, 'Aspect']
-        ]);
-
         return $return;
     }
 

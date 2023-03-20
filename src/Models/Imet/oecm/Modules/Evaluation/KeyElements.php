@@ -16,6 +16,13 @@ class KeyElements extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Aspect';
+    protected static $DEPENDENCIES = [
+        [Objectives::class, 'Aspect'],
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [Modules\Evaluation\ManagementActivities::class, 'Aspect']
+    ];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
@@ -103,28 +110,4 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             ->toArray();
     }
 
-    /**
-     * clean dependencies
-     *
-     * @param Request $request
-     * @return array
-     * @throws Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
-
-        // Clean dependent modules form removed records
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'Aspect', [
-            [Modules\Evaluation\Objectives::class, 'Objective'],
-            [Modules\Evaluation\InformationAvailability::class, 'Element'],
-            [Modules\Evaluation\ManagementActivities::class, 'Activity']
-        ]);
-
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
-    }
 }

@@ -2,17 +2,19 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
+use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use Exception;
-use Illuminate\Http\Request;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_species_animal_presence';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [AnalysisStakeholderAccessGovernance::class, 'species', 'Element']
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -37,26 +39,22 @@ class AnimalSpecies extends Modules\Component\ImetModule
     }
 
     /**
-     * clean dependencies
-     *
-     * @param Request $request
+     * Override: replace values with labels
+     * @param $records
+     * @param $form_id
+     * @param $dependency_on
      * @return array
-     * @throws Exception
      */
-    public static function updateModule(Request $request): array
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
+        $to_be_dropped = parent::getRecordsToBeDropped($records, $form_id, $dependency_on);
 
-        // Clean dependent modules form removed records
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'species', [
-            [Modules\Context\AnalysisStakeholderAccessGovernance::class, 'Element']
-        ]);
+        // ### replace values with labels ###
+        foreach ($to_be_dropped as $index => $item){
+            $to_be_dropped[$index] = Animal::getScientificName($item);
+        }
 
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
+        return array_values($to_be_dropped);
     }
 
 }

@@ -14,6 +14,11 @@ class Equipments extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\EquipmentMaintenance::class, 'Resource'],
+        [Modules\Evaluation\ManagementEquipmentAdequacy::class, 'Resource']
+    ];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';
@@ -58,30 +63,6 @@ class Equipments extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
 
-    }
-
-    /**
-     * clean dependencies
-     *
-     * @param Request $request
-     * @return array
-     * @throws Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
-
-        // Clean dependent modules form removed records
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'Resource', [
-            [Modules\Evaluation\EquipmentMaintenance::class, 'Equipment'],
-            [Modules\Evaluation\ManagementEquipmentAdequacy::class, 'Equipment']
-        ]);
-
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
     }
 
 

@@ -14,6 +14,11 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    protected static $DEPENDENCY_ON = 'Objective';
+    protected static $DEPENDENCIES = [
+        [AchievedObjectives::class, 'Aspect']
+    ];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';
@@ -69,29 +74,6 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;
-    }
-
-    /**
-     * clean dependencies
-     *
-     * @param Request $request
-     * @return array
-     * @throws Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
-
-        // Clean dependent modules form removed records
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'Aspect', [
-            [Modules\Evaluation\AchievedObjectives::class, 'Objective']
-        ]);
-
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
     }
 
 }

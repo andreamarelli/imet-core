@@ -16,6 +16,8 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';

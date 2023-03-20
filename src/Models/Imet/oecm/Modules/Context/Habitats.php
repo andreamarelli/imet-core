@@ -2,19 +2,20 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Component\ImetModule;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Exception;
-use Illuminate\Http\Request;
 
 class Habitats extends Modules\Component\ImetModule
 {
     protected $table = 'imet_oecm.context_habitats';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [AnalysisStakeholderAccessGovernance::class, 'species', 'Element']
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -36,48 +37,18 @@ class Habitats extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    /**
-     * clean dependencies
-     *
-     * @param Request $request
-     * @return array
-     * @throws Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
-
-        // Clean dependent modules form removed records
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'EcosystemType', [
-            [Modules\Context\AnalysisStakeholderAccessGovernance::class, 'Element']
-        ]);
-
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
-    }
 
     /**
      * Override: replace values with labels
-     *
+     * @param $records
      * @param $form_id
-     * @param $updated_records
-     * @param $reference_field
-     * @param $dependency_classes
-     * @return void
+     * @param $dependency_on
+     * @return array
      * @throws Exception
      */
-    public static function dropFromDependentModules($form_id, $updated_records, $reference_field, $dependency_classes)
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
-        // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)->pluck($reference_field)->unique()->toArray();
-        $updated_values = collect($updated_records)->pluck($reference_field)->unique()->toArray();
-
-        // Make diff to find out what to drop
-        $to_be_dropped = array_diff($existing_values, $updated_values);
-        $to_be_dropped = array_values($to_be_dropped);
+        $to_be_dropped = parent::getRecordsToBeDropped($records, $form_id, $dependency_on);
 
         // ### replace values with labels ###
         $labels =  SelectionList::getList('ImetOECM_Habitats');
@@ -85,10 +56,6 @@ class Habitats extends Modules\Component\ImetModule
             $to_be_dropped[$index] = $labels[$item];
         }
 
-        foreach ($dependency_classes as [$dependency_class, $dependency_field]){
-            /** @var ImetModule $dependency_class */
-            $dependency_class::dropOrphansDependencyRecords($form_id, $dependency_field, $to_be_dropped);
-        }
+        return array_values($to_be_dropped);
     }
-
 }

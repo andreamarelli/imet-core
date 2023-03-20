@@ -19,6 +19,12 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
+        [Modules\Evaluation\ManagementActivities::class, 'Stakeholder']
+    ];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
@@ -69,30 +75,5 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         }
         return $module_records;
     }
-
-    /**
-     * clean dependencies
-     *
-     * @param Request $request
-     * @return array
-     * @throws Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
-
-        // Clean dependent modules form removed records
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'Stakeholder', [
-            [Modules\Evaluation\InformationAvailability::class, 'Element'],
-            [Modules\Evaluation\ManagementActivities::class, 'Activity']
-        ]);
-
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
-    }
-
 
 }

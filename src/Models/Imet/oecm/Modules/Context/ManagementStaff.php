@@ -14,6 +14,11 @@ class ManagementStaff extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\StaffCompetence::class, 'Function'],
+        [Modules\Evaluation\CapacityAdequacy::class, 'Function']
+    ];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
@@ -32,30 +37,6 @@ class ManagementStaff extends Modules\Component\ImetModule
         $this->module_info = trans('imet-core::oecm_context.ManagementStaff.module_info');
 
         parent::__construct($attributes);
-    }
-
-    /**
-     * clean dependencies
-     *
-     * @param Request $request
-     * @return array
-     * @throws Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        // get request
-        $records = Payload::decode($request->input('records_json'));
-
-        // Clean dependent modules form removed records
-        $form_id = $request->input('form_id');
-        static::dropFromDependentModules($form_id, $records, 'Function', [
-            [Modules\Evaluation\StaffCompetence::class, 'Member'],
-            [Modules\Evaluation\CapacityAdequacy::class, 'Member']
-        ]);
-
-        // Execute update
-        $request->merge(['records_json' => Payload::encode($records)]);
-        return parent::updateModule($request);
     }
 
     /**
