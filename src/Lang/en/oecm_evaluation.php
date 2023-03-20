@@ -99,7 +99,6 @@ return [
         'title' => 'Integration of stakeholders\' constraints or supports in management and governance',
         'fields' => [
             'Stakeholder'       => 'Stakeholder',
-            'Weight'            => 'Involvement of the stakeholder (0-100)',
             'Integration'       => 'Integration',
             'IncludeInStatistics' => 'To prioritise in management',
             'Comments'          => 'Comments/Explanation',
@@ -112,6 +111,7 @@ return [
                 '3' => 'high integration',
             ]
         ],
+        'ranking' => 'Ranking (C2.1)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
     ],
 
@@ -183,7 +183,7 @@ return [
                 '3' => 'high integration',
             ]
         ],
-        'ranking' => 'Ranking',
+        'ranking' => 'Ranking (C3.1)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
     ],
 

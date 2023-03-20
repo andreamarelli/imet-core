@@ -487,7 +487,7 @@ CREATE TABLE imet_oecm.eval_objectives_key_elements
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE imet_oecm.eval_supports_and_constaints
+CREATE TABLE imet_oecm.eval_supports_constraints
 (
     id                serial PRIMARY KEY,
     "FormID"          integer,
@@ -509,7 +509,6 @@ CREATE TABLE imet_oecm.eval_supports_and_constraints_integration
     "UpdateBy"        integer,
     "UpdateDate"      character varying(30),
     "Stakeholder"     text,
-    "Weight"          numeric,
     "Integration"     numeric,
     "IncludeInStatistics" boolean,
     "Comments"        text,
