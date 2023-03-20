@@ -22,7 +22,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
     protected static $DEPENDENCIES = [
-        Modules\Evaluation\KeyElements::class
+        [Modules\Evaluation\KeyElements::class, 'Element']
     ];
 
     public function __construct(array $attributes = [])
@@ -114,7 +114,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             : null;
 
         foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']] ?? null;
         }
 
         return collect($records)
@@ -152,6 +152,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
             ->filter(function($item){
                 return $item['importance']!==null;
             })
+            ->sortByDesc('importance')
             ->values()
             ->toArray();
     }

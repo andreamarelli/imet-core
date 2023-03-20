@@ -96,7 +96,7 @@ return [
     ],
 
     'SupportsAndConstraintsIntegration' => [
-        'title' => 'Constraints or supports integration from stakeholders',
+        'title' => 'Integration of stakeholders\' constraints or supports in management and governance',
         'fields' => [
             'Stakeholder'       => 'Stakeholder',
             'Weight'            => 'Involvement of the stakeholder (0-100)',

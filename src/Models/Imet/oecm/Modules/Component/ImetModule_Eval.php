@@ -13,6 +13,7 @@ class ImetModule_Eval extends BaseImetEvalModule
 {
     use Upgrade;
     use Dependencies;
+    public const MODULE_SCOPE = null;
 
     protected static $form_class = Imet::class;
 

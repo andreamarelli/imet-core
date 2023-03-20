@@ -188,7 +188,7 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
             : null;
 
         foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']];
+            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']] ?? null;
         }
 
         return collect($records)

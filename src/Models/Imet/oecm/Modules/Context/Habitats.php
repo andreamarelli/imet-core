@@ -53,7 +53,9 @@ class Habitats extends Modules\Component\ImetModule
         // ### replace values with labels ###
         $labels =  SelectionList::getList('ImetOECM_Habitats');
         foreach ($to_be_dropped as $index => $item){
-            $to_be_dropped[$index] = $labels[$item];
+            if(array_key_exists($item, $labels)){
+                $to_be_dropped[$index] = $labels[$item];
+            }
         }
 
         return array_values($to_be_dropped);

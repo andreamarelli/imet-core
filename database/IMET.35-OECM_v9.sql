@@ -292,6 +292,7 @@ CREATE TABLE imet_oecm.context_management_staff_partners
     "UpdateBy"     integer,
     "UpdateDate"   character varying(30),
     "Partner"      text,
+    "Function"      text,
     "Coordinators" numeric,
     "Technicians"  numeric,
     "Auxiliaries"  numeric,

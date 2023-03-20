@@ -192,8 +192,8 @@ return [
             'AdministrativeArea' => 'Administrative surface',
             'WDPAArea' => 'Surface according to WDPA',
             'GISArea' => 'Actual surface (GIS for the park or the authority responsible for OECMs) corresponding to the uploaded file',
-            'TerrestrialArea' => 'Terrestrial OECM, Community Forest, ICCAs, Other',
-            'MarineArea' => 'Marine and coastal OECM, ICCAs, LMMA, Other'
+            'TerrestrialArea' => 'Surface of Terrestrial OECM, Community Forest, ICCAs, Other',
+            'MarineArea' => 'Surface of Marine and coastal OECM, ICCAs, LMMA, Other'
         ]
     ],
 
@@ -215,6 +215,7 @@ return [
         'title' => 'Size and composition of staff: Staff from partner organisations',
         'fields' => [
             'Partner' => 'Partners',
+            'Function' => 'Function',
             'Coordinators' => 'Coordinators (number)',
             'Technicians' => 'Technical and administrative staff (number)',
             'Auxiliaries' => 'Auxiliary staff (number)',
@@ -228,10 +229,10 @@ return [
         ],
         'staff' => 'staff',
         'stakeholders' => 'stakeholders',
-        'equal' =>  'majority by',
-        'majority_by' =>  'equal',
-        'most_by' =>  'most by',
-        'all_by' =>  'all by',
+        'equal' =>  'Equal involvement between Staff and stakeholders',
+        'majority_by' =>  'Involvement majority by',
+        'most_by' =>  'Involvement most by',
+        'all_by' =>  'Involvement all by',
     ],
 
     'FinancialResources' => [
@@ -349,8 +350,8 @@ return [
             'Element' => 'Stakeholder',
             'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than a day\'s walk)',
             'Engagement' => 'Typology of management / use of OECM\'s NR',
-            'Impact' => 'Level of management or impact on NR',
-            'Role' => 'Role in NR management',
+            'Role' => 'Level of engagement in NR management',
+            'Impact' => 'Level of impact on NR',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -586,7 +587,7 @@ return [
         ],
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 6, C4</i>',
         'summary' => 'Importance of elements & Involvement of stakeholders',
-        'elements_importance' => 'Importance of elements',
+        'elements_importance' => 'Importance of elements by the stakeholders',
         'involvement_ranking' => 'Involvement of stakeholders',
         'importance' => 'Importance (0-100)',
         'involvement' => 'Involvement of the stakeholder (0-100)'
@@ -625,7 +626,7 @@ return [
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>C4</i>',
         'summary' => 'Aggregated',
         'average' => 'Average',
-        'elements_importance' => 'Importance of elements',
+        'elements_importance' => 'Conditions of elements',
         'involvement_ranking' => 'Involvement of stakeholders',
         'involvement' => 'Involvement of the stakeholder (0-100)'
     ],

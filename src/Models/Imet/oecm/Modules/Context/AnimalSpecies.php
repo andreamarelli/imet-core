@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use Illuminate\Support\Str;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
@@ -51,7 +52,9 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
         // ### replace values with labels ###
         foreach ($to_be_dropped as $index => $item){
-            $to_be_dropped[$index] = Animal::getScientificName($item);
+            if(Str::contains('|', $item)){
+                $to_be_dropped[$index] = Animal::getScientificName($item);
+            }
         }
 
         return array_values($to_be_dropped);
