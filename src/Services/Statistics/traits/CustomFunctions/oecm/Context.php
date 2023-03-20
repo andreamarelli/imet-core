@@ -22,7 +22,7 @@ trait Context {
                 return $item['SignificativeClassification'] ? 3 : 1;
             });
 
-        $score = $denominator>0
+        $score = $numerator>0 && $denominator>0
             ? $numerator/$denominator * 100 / 3
             : null;
 
@@ -66,16 +66,12 @@ trait Context {
 
     protected static function score_support_contraints($imet_id): ?float
     {
-        $records = SupportsAndConstraints::getModuleRecords($imet_id)['records'];
+        $values = collect(SupportsAndConstraints::calculateRanking($imet_id));
 
-        $values = collect($records)
-            ->filter(function ($record){
-                return $record['Weight'] !== null
-                    && $record['ConstraintLevel'] !== null;
-            });
+//        dd($values);
 
         $numerator = $values->sum(function ($item){
-            return $item['ConstraintLevel'] * $item['Weight'];
+            return $item['__score'];
         });
         $denominator = $values->sum('Weight');
 

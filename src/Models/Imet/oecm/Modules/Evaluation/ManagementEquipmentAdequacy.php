@@ -49,7 +49,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
         $adequacy = static::calculateEquipmentAdequacy($form_id);
         foreach($predefined_values['values'] as $i => $predefined_value){
-            if($adequacy[$i]!=null){
+            if($adequacy[$i] !== null){
                 $records[$i]['__adequacy'] = $adequacy[$i];
                 $new_records[] = $records[$i];
             }

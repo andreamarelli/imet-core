@@ -16,8 +16,6 @@ trait _Common{
                     && $record['Adequacy'] !== '-99';
             });
 
-//        dd($values);
-
         $scores = $values->groupBy('group_key')
             ->map(function ($group){
                 $numerator = $group->sum(function ($item){
