@@ -1,8 +1,10 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
 
+use AndreaMarelli\ImetCore\Models\User\Role;
+
 // Force Language
-if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
+if($item->language != \Illuminate\Support\Facades\App::getLocale()){
     \Illuminate\Support\Facades\App::setLocale($item->language);
 }
 
@@ -10,23 +12,19 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['show' => false, 'links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
     @include('imet-core::components.heading', ['phase' => 'evaluation'])
+
     {{--  Form Controller Menu --}}
     @include('modular-forms::page.steps', [
-        'url' => action([\AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class, 'edit'], ['item'=>$item->getKey()]),
+        'url' => route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'eval_edit', ['item' => $item->getKey()]),
         'current_step' => $step,
-        'label_prefix' =>  'imet-core::v2_common.steps_eval.',
+        'label_prefix' =>  'imet-core::common.steps_eval.',
         'classes' => $classes,
-        'steps' => $steps
+        'steps' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::steps($item)
     ])
 
     @if($step==='cross_analysis')
@@ -41,20 +39,23 @@ if ($item->language != \Illuminate\Support\Facades\App::getLocale()) {
             'step' => $step
         ])
 
-        {{--  Modules (by step)--}}
+        {{--  Modules (by step) --}}
         <div class="imet_modules">
             @foreach($item::modules()[$step] as $module)
-                @include('modular-forms::module.edit.container', [
-                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\EvalControllerV2::class,
-                    'module_class' => $module,
-                    'form_id' => $item->getKey()])
+                @if(Role::hasRequiredAccessLevel($module))
+                    @include('modular-forms::module.edit.container', [
+                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController::class,
+                        'module_class' => $module,
+                        'form_id' => $item->getKey()])
+                @else
+                    @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
+                @endif
             @endforeach
         </div>
 
-        {{--  Scroll buttons--}}
+        {{--  Scroll buttons  --}}
         @include('modular-forms::buttons.scroll', ['item' => $item, 'step' => $step])
 
     @endif
-
 
 @endsection

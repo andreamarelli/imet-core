@@ -3,12 +3,15 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class MenacesPressions extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_menaces_pressions';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public static $groupByCategory = [
             ['group0'],
@@ -131,6 +134,18 @@ class MenacesPressions extends Modules\Component\ImetModule
         return parent::updateModule($request);
     }
 
+    public static function upgradeModule($record, $imet_version = null)
+    {
+        // ####  v2.7 -> v2.8 (marine pas)  ####
+        $record = static::replacePredefinedValue($record, 'Value', 'Other: Increased rainfall and seasonal changes', 'Increased rainfall and seasonal changes');
+        $record = static::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
+        $record = static::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
+        $record = static::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
+        // TODO: "Renewable energies" to "Renewable abiotic energy use" for FR, PT and SP
+
+        return $record;
+    }
+
     public static function getStats($form_id)
     {
         $records = static::getModuleRecords($form_id)['records'];
@@ -194,6 +209,43 @@ class MenacesPressions extends Modules\Component\ImetModule
         return $count>0
             ? (4 - round(pow($prod, 1/($count)),2))
             : null;
+    }
+
+    public static function get_marine_predefined(): array
+    {
+        $predefined = (new static())->predefined_values['values'];
+        return [
+            $predefined['group0'][4],
+            $predefined['group0'][5],
+            $predefined['group7'][2],
+            $predefined['group7'][3],
+            $predefined['group7'][4],
+            $predefined['group12'][5],
+            $predefined['group12'][6],
+            $predefined['group12'][7],
+            $predefined['group12'][8],
+        ];
+    }
+
+    public static function get_terrestrial_groups(): array
+    {
+        $groups = (new static())->module_groups;
+        return [
+            $groups['group1'],
+            $groups['group2'],
+            $groups['group3'],
+            $groups['group8'],
+            $groups['group9']
+        ];
+    }
+
+    public static function get_marine_groups(): array
+    {
+        $groups = (new static())->module_groups;
+        return [
+            $groups['group4'],
+            $groups['group11']
+        ];
     }
 
 }

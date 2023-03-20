@@ -3,11 +3,14 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_management_equipment_adequacy';
     protected $fixed_rows = true;
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public function __construct(array $attributes = []) {
 
@@ -69,8 +72,8 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         }
 
         $result = [];
-        foreach($adequacy as $i=>$v){
-            $result[] = $adequacy[$i]['count']>0 ? round($adequacy[$i]['sum']/$adequacy[$i]['count'],2) : null;
+        foreach($adequacy as $value){
+            $result[] = $value['count']>0 ? round($value['sum']/ $value['count'],2) : null;
         }
 
         return $result;

@@ -5,9 +5,8 @@ return [
     'management'        => 'IMET management (v2 - Consolidated)',
     'v2' => 'v2 - Consolidated',
 
-    'indicator'     => 'Indicator',
-    'methodology'   => 'Evaluation question',
-    'criteria'      => 'Rating',
+    'terrestrial' => 'terrestrial',
+    'marine' => 'marine and coastal',
 
     'steps' => [
         'general_info'          => 'General Information about the protected area',
@@ -18,29 +17,6 @@ return [
         'climate'               => 'Climate change and conservation',
         'ecosystem_services'    => 'Ecosystem Services and community dependence',
         'objectives'            => 'Objectives and Management',
-    ],
-
-    'steps_eval' => [
-        'general_info'              => 'General Information',
-        'context'                   => 'Management context',
-        'planning'                  => 'Planning',
-        'inputs'                    => 'Inputs',
-        'process'                   => 'Process',
-        'outputs'                   => 'Outputs',
-        'outcomes'                  => 'Outcomes',
-        'objectives'                => 'Objectives',
-        'management_effectiveness'  => 'Management Effectiveness',
-        'cross_analysis'  => 'Cross Analysis',
-    ],
-
-    'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Context index',
-        'planning'    => 'Planning index',
-        'inputs'      => 'Inputs index',
-        'process'     => 'Process index',
-        'outputs'     => 'Outputs index',
-        'outcomes'    => 'Outcomes index',
     ],
 
     'assessment' => [
@@ -203,7 +179,7 @@ return [
         ],
         'op1' => [
             'O/P1',
-            'IImplementation of the work/action plan'
+            'Implementation of the work/action plan'
         ],
         'op2' => [
             'O/P2',
@@ -212,6 +188,10 @@ return [
         'op3' => [
             'O/P3',
             'Area domination'
+        ],
+        'op4' => [
+            'O/P4',
+            'Enforcement in MPA'
         ],
         'oc1' => [
             'O/C1',

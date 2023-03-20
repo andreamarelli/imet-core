@@ -2,11 +2,13 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v1;
 
-
+use AndreaMarelli\ImetCore\Models\Imet\Encoder;
+use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
+class Imet extends BaseImetForm
 {
     public const version = 'v1';
 
@@ -76,22 +78,38 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
         ]
     ];
 
-    public function responsible_interviees()
+
+    /**
+     * Relation to Encoder (only name)
+     *
+     * @return HasMany
+     */
+    public function encoder(): HasMany
+    {
+        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
+            ->select(['FormID', 'first_name', 'last_name']);
+    }
+
+    /**
+     * Relation to ResponsablesInterviewees
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewees(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
     }
 
-    public function responsible_interviers()
+    /**
+     * Relation to ResponsablesInterviewers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewers(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
-    }
-
-
-    public function assessment()
-    {
-        return $this->hasOne(Assessment::class, 'formid', 'FormID');
     }
 
 }

@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variability',
     'scaling_up' => 'Scaling up',
     'conclusions' => 'Conclusions',
     'title' => 'Scaling up analysis report for ',
@@ -18,10 +19,9 @@ return [
     'average_explained' => '* Average calculated based on the set of protected areas participating in the scaling-up exercise',
     'ranking_rescaled_indicators' => 'Ranking of indicators rescaled to 0-100',
     'ranking_info_indicators' => '* The scores in the pop-up are the contribution to the synthetic indicator',
-    'source'=> 'Source',
+    'source' => 'Source',
     'download_files' => 'Download',
     'print' => 'print',
-    'protected_area' => 'protected area',
     'custom_names' => 'Names of protected areas',
     'apply' => 'Apply',
     'no_value' => 'No value',
@@ -35,6 +35,10 @@ return [
     'name' => 'Name',
     'category' => 'Category',
     'short_name' => 'Color code and short name',
+    'add_choices' => 'Add choices',
+    'add_all' => 'Add all',
+    'close' => 'Close',
+    'remove_all' => 'Remove all',
     'sections' => [
         'first' => 'Location of the selected protected areas',
         'second' => 'General Information of the protected areas',
@@ -192,6 +196,12 @@ return [
     ],
     'management_context' => [
         'key_species' => 'Key species',
+        'animal_species_chart' => 'Animal species',
+        'plant_species_chart' => 'Plant species',
+        'habitats_chart' => 'Habitats',
+        'threats_charts' => 'Threats',
+        'values_sensitive_chart' => 'Values sensitive to climate change',
+        'ecosystem_services_chart' => 'Important ecosystem services',
         'animal_species' => 'Animal species (flagship, endangered, endemic, ...)',
         'occurrences_species' => 'Key animal species present in two or more Protected Areas ',
         'occurrences_plants' => 'key plants species present in two or more Protected Areas ',
@@ -222,8 +232,7 @@ return [
         'protected_marine_area' => 'Protected Marine Area [km2]',
         'marine_coverage' => 'Marine Coverage [%]',
         'protected_connected_land' => 'Protected Connected Land [%]',
-    ]
-    ,
+    ],
     'land_degradation' => [
         'indicators' => [
             'title' => 'Land degradation',
@@ -262,6 +271,16 @@ return [
             'process_sub_indicators' => 'Average contribution of the six sub-elements of the Process indicators',
             'outputs' => 'Average contribution of the Outputs indicators',
             'outcomes' => 'Average contribution of the Outcomes indicators'
+        ],
+        'legends' => [
+            'context_sub_indicators' => 'Sub-indicators to Value and Importance',
+            'context_indicators' => 'indicators to the Management context',
+            'planning_indicators' => 'Planning indicators',
+            'inputs_indicators' => 'Inputs indicators',
+            'process_indicators' => 'Process indicators',
+            'process_sub_indicators' => 'Sub-elements of the Process indicators',
+            'outputs_indicators' => 'Outputs indicators',
+            'outcomes_indicators' => 'Outcomes indicators'
         ]
     ],
     'terrestial_ecoregions' => [
@@ -364,10 +383,11 @@ return [
         'pr16' => 'Research and biomonitoring',
         'pr17' => 'Management of the effects of climate change',
         'pr18' => 'Ecosystem services',
-        'op1' => 'IImplementation of the work/action plan',
+        'op1' => 'Implementation of the work/action plan',
         'op2' => 'Annual outputs – targets – achievement',
         'op3' => 'Area domination',
-        'oc1' => 'Achievement of long-term conservation objectives of the management',
+        'op4' => 'Enforcement in MPA',
+        'oc1' => 'Achievement of long-term objectives of the OECM management and governance',
         'oc2' => 'Conditions and trends of the key conservation elements of the protected area',
         'oc3' => 'Effects and outcomes for stakeholders on quality of life',
         'pr1_6' => 'Internal management systems and processes',
@@ -379,7 +399,7 @@ return [
     ],
     'legends' => [
         'pr1_6' => [
-            'PR A'
+            'PR A',
         ],
         'pr7_9' => [
             'PR B'

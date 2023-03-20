@@ -2,16 +2,21 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Models\Imet\Encoder;
+use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
-class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
+class Imet extends BaseImetForm
 {
     public const version = 'v2';
 
@@ -50,8 +55,6 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
-            Modules\Context\HabitatsMarine::class,
-            Modules\Context\LandCover::class,
             Modules\Context\Objectives4::class,
         ],
         'threats'               => [
@@ -77,45 +80,44 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
         ]
     ];
 
+    /**
+     * Relation to Encoder (only name)
+     *
+     * @return HasMany
+     */
+    public function encoder(): HasMany
+    {
+        return $this->hasMany(Encoder::class, $this->primaryKey, 'FormID')
+            ->select(['FormID', 'first_name', 'last_name']);
+    }
 
-    public function responsible_interviees()
+    /**
+     * Relation to ResponsablesInterviewees
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewees(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
     }
 
-    public function responsible_interviers()
+    /**
+     * Relation to ResponsablesInterviewers
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function responsible_interviewers(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
             ->select(['FormID','Name']);
     }
 
-    public function assessment()
-    {
-        return $this->hasOne(Assessment::class, 'formid', 'FormID');
-    }
-
-//    /**
-//     * Override parent scopeFilterList()
-//     *
-//     * @param \Illuminate\Database\Eloquent\Builder $query
-//     * @param Request $request
-//     * @return \Illuminate\Database\Eloquent\Builder
-//     */
-//    public function scopeFilterList(Builder $query, Request $request): Builder
-//    {
-//        $query
-//            ->where('version', static::version)
-//            ->orderBy('Year', 'desc')
-//            ->orderBy('wdpa_id', 'desc');
-//        return $query;
-//    }
-
-
     /**
      * Get IMET available years for the given PA
+     *
      * @param $wdpa_id
-     * @return mixed
+     * @return \AndreaMarelli\ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Collection
      */
     public static function getYears($wdpa_id)
     {
@@ -123,6 +125,29 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             ->where('wdpa_id', $wdpa_id)
             ->orderBy('Year','DESC')
             ->get();
+    }
+
+    /**
+     * Extent parent method: save user as encoder
+     *
+     * @param $item
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public static function updateModuleAndForm($item, Request $request): array
+    {
+        $return = parent::updateModuleAndForm($item, $request);
+        if ($return['status'] == 'success') {
+            (new Controller)->backup($item);
+        }
+
+        $user_info = Auth::user()->getInfo();
+        unset($user_info['country']);
+
+        Encoder::touchOnFormUpdate($item, $user_info);
+
+        return $return;
     }
 
     /**
@@ -139,6 +164,11 @@ class Imet extends \AndreaMarelli\ImetCore\Models\Imet\Imet
             $data = FinancialResourcesBudgetLines::copyCurrencyFromCTX213($data);
             $data = FinancialResourcesPartners::copyCurrencyFromCTX213($data);
         }
+
+        // ####  v2.7 -> v2.8 (marine pas):  merge CTX 4.3.1, 4.3.2, 4.4 into 4.3 ####
+        $data = Habitats::mergeFromCTX432($data);
+        $data = Habitats::mergeFromCTX44($data);
+
         return parent::upgradeModules($data, $imet_version);
     }
 

@@ -2,6 +2,7 @@
 
 
 return [
+    'variability' => 'Variabilidade',
     'scaling_up' => 'Escalonamento',
     'conclusions' => 'Conclusões',
     'title' => 'Relatório de análise de escalonamento para ',
@@ -21,7 +22,6 @@ return [
     'source' => 'Fonte',
     'download_files' => 'ficheiros',
     'print' => 'imprimir',
-    'protected_area' => 'área protegida',
     'custom_names' => 'Nomes de áreas protegidas',
     'apply' => 'Aplicar',
     'no_value' => 'Sem valor',
@@ -35,6 +35,10 @@ return [
     'name' => 'Nome',
     'category' => 'Categoria',
     'short_name' => 'Código de cor e nome curto',
+    'add_choices' => 'Adicionar escolhas',
+    'add_all' => 'Adicionar tudo',
+    'close' => 'Fechar',
+    'remove_all' => 'Remover tudo',
     'sections' => [
         'first' => 'Localização de Áreas Protegidas Seleccionadas',
         'second' => 'Informações Gerais das Áreas Protegidas',
@@ -191,6 +195,12 @@ return [
     ],
     'management_context' => [
         'key_species' => 'Espécies-chave',
+        'animal_species_chart' => 'Espécies de animais',
+        'plant_species_chart' => 'Espécies de plantas',
+        'habitats_chart' => 'Habitats',
+        'threats_charts' => 'Ameaças',
+        'values_sensitive_chart' => 'Valores sensíveis às alterações climáticas',
+        'ecosystem_services_chart' => 'Ecossistemas mais importantes',
         'animal_species' => 'Espécies de animais (emblemáticas, ameaçadas, endémicas, ...)',
         'occurrences_species' => 'Espécies animais chave que ocorrem em 2 ou mais Áreas Protegidas ',
         'occurrences_plants' => 'principais espécies vegetais que ocorrem em 2 ou mais Áreas Protegidas ',
@@ -366,6 +376,7 @@ return [
         'op1' => 'Implementação do plano de trabalho/acção',
         'op2' => 'Anual outputs - targets - achievement',
         'op3' => 'Domínio da área',
+        'op4' => 'Aplicação da lei em MPA',
         'oc1' => 'Realização dos objectivos de conservação a longo prazo da gestão',
         'oc2' => 'Condições e tendências dos elementos-chave de conservação da área protegida',
         'oc3' => 'Efeitos e resultados para as partes interessadas na qualidade de vida',
