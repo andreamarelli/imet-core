@@ -116,7 +116,10 @@ class AnalysisStakeholderAccessGovernance extends Modules\Component\ImetModule
         $predefined_values['values']['group2'] =
             Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')
                 ->map(function($item){
-                    return SelectionList::getList('ImetOECM_Habitats')[$item];
+                    $labels = SelectionList::getList('ImetOECM_Habitats');
+                    return array_key_exists($item, $labels) ?
+                        $labels[$item]
+                        : null;
                 })
                 ->toArray();
 
