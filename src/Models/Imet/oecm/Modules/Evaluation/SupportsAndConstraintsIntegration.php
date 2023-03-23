@@ -67,7 +67,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             ->toArray();
 
         foreach($module_records['records'] as $idx => $module_record){
-            $module_records['records'][$idx]['Weight'] = $weight[$module_record['Stakeholder']] ?? null;
+            $module_records['records'][$idx]['__weight'] = $weight[$module_record['Stakeholder']] ?? null;
             $module_records['records'][$idx]['__score'] = $ranking[$module_record['Stakeholder']] ?? null;
         }
         return $module_records;
