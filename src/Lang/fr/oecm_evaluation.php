@@ -64,7 +64,7 @@ return [
             'Evaluer le niveau d’intégration de 3 à 10 éléments clés pour la gestion de l’AMCE (automatiquement rapportés à partir du contexte d’intervention parce que (i) c’est un élément clé important de l’AMCE ; (ii) il fournit un service important aux parties prenantes ; (iii) il est rare ou en danger d’extinction)'
         ],
         'from_group' => 'De la catégorie : ',
-        'num_Partie prenantes' => 'Évalué par :num partie(s) prenante(s)',
+        'num_stakeholders' => 'Indiqué par :num partie(s) prenante(s)',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
 
@@ -164,7 +164,7 @@ return [
         'module_info_Rating' => [
             'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’AMCE sur la base de l’analyse du calculateur de menaces au point CTX 5 du contexte d’intervention et automatiquement rapporté ci-dessous. Évaluation des menaces (rapportée automatiquement à partir du CTX 5) Priorité dans la gestion Commentaires/explications'
         ],
-        'Partie prenantes' => 'évalué par :num  Partie prenante(s)'
+        'stakeholders' => 'Indiqué par :num  Partie prenante(s)'
     ],
 
     'ThreatsIntégration' => [
@@ -366,7 +366,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Objectifs existants du plan de gestionn',
-            'group1' => 'Objectifs potentiels du C4',
+            'group1' => 'Objectifs potentiels du C1, C2.2, C3.2 & C4',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -429,10 +429,10 @@ return [
         ],
         'ratingLegend' => [
             'Adequacy' => [
-                '0' => 'Renforcement des capacités pour une forte amélioration (0-30% des besoins)',
-                '1' => 'Renforcement des capacités à améliorer (31-60% des besoins)',
-                '2' => 'Le renforcement des capacités est adéquat mais des améliorations supplémentaires sont nécessaires (61-90% des besoins)',
-                '3' => 'Renforcement des capacités totalement suffisant (91-100% des besoins)',
+                '0' => 'Capacités du personnel inexistantes ou très faibles (0-30% des besoins)',
+                '1' => 'Capacités du personnel insuffisantes (31-60% des besoins)',
+                '2' => 'Capacités du personnel adéquates, mais des améliorations supplémentaires sont nécessaires (61-90% des besoins)',
+                '3' => 'Capacités du personnel totalement suffisant (91-100% des besoins)',
             ]
         ],
         'module_info_EvaluationQuestion' => [

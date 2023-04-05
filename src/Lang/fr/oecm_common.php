@@ -28,15 +28,15 @@ return [
         ],
         'c2' => [
             'C2',
-            'Éléments clés'
+            'Contraintes ou soutien des parties prenantes'
         ],
         'c3' => [
             'C3',
-            'Contraintes ou soutien des parties prenantes'
+            'Menaces'
         ],
         'c4' => [
             'C4',
-            'Menaces'
+            'Éléments clés'
         ],
         'p1' => [
             'P1',

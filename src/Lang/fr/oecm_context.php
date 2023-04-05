@@ -372,10 +372,10 @@ return [
         ],
         'ratingLegend' => [
             'Impact' => [
-                '0' => 'Pas d’engagement',
-                '1' => 'Faible engagement',
-                '2' => 'Engagement moyen',
-                '3' => 'Engagement important',
+                '0' => 'Pas d’impact',
+                '1' => 'Faible impact',
+                '2' => 'Impact moyen',
+                '3' => 'Impact important',
             ],
             'Role' => [
                 '0' => 'Pas de rôle',
@@ -495,7 +495,7 @@ return [
                         <li>Contrôle des inondations : les zones humides agissent comme des éponges naturelles, les rivières et les ruisseaux  fournissent des canaux pour l’eau excédentaire, la végétation et les forêts contribuent à absorber les précipitations et à ralentir l’écoulement de l’eau, les plaines d’inondation absorbent l’excès d’eau lors des inondations et protègent contre les tempêtes
                         and forests help absorb rainfall and slow down water flow, floodplains absorb excess water during floods and storm protection</li>
                         <li>Contrôle de l’érosion : la végétation aide à maintenir le sol en place, ses racines stabilisent le sol, la structure du sol résiste à l’érosion, les zones humides réduisent l’érosion en contrôlant le ruissellement et les brise-vent ou les barrières végétales adjacentes aux cours d’eau empêchent l’érosion (érosion côtière, érosion hydrique, érosion éolienne)</li>
-                        <liContrôle de la sécheresse : La santé du sol et la couverture végétale jouent un rôle crucial dans la lutte contre la sécheresse en régulant le cycle de l’eau, en réduisant les pertes d’eau et en conservant l’eau</li>
+                        <li>Contrôle de la sécheresse : La santé du sol et la couverture végétale jouent un rôle crucial dans la lutte contre la sécheresse en régulant le cycle de l’eau, en réduisant les pertes d’eau et en conservant l’eau</li>
                         <li>Contrôle des tempêtes : Les arbres aident à réduire l’impact des tempêtes, les barrières naturelles telles que les montagnes ou les îles peuvent agir comme des barrières en absorbant les tempêtes ou en absorbant une partie de l’énergie des vagues, les plans d’eau contribuent à modérer les températures, ce qui peut réduire la gravité des tempêtes.</li>
                      </ul>',
             'group12' =>
