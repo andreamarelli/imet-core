@@ -1,127 +1,126 @@
 <?php
-
 return [
 
     'ShortOrLongTerm' => [
-        'short'     => 'Short term',
-        'long'      => 'Long term'
+        'short'     => 'Court terme',
+        'long'      => 'Long terme'
     ],
 
     'GovernanceModel' => [
-        'government'    => 'Governance by government',
-        'shared'        => 'Shared governance',
-        'private'       => 'Private governance',
-        'indigenous'    => 'Governance by indigenous peoples and local communities',
-        'not_reported'  => 'Not Reported'
+        'government'    => 'Gouvernance par le gouvernement',
+        'shared'        => 'Gouvernance partagée',
+        'private'       => 'Gouvernance privée',
+        'indigenous'    => 'Gouvernance par les peuples indigènes et les communautés locales',
+        'not_reported'  => 'Non communiqué'
     ],
 
     'StakeholderType' => [
-        'academic'      => 'Academic',
+        'academic'      => 'Académique',
         'confessionnel' => 'Confessionnel',
-        'independent'   => 'Independent',
+        'independent'   => 'Indépendant',
         'ngo'           => 'NGO / ASBL',
-        'internat_orgs' => 'International organisation',
-        'private'       => 'Private',
-        'project'       => 'Project / Program',
-        'public'        => 'Public (state)',
-        'other'         => 'Other'
+        'internat_orgs' => 'Organisation internationale',
+        'private'       => 'Privé',
+        'project'       => 'Projet / Programme',
+        'public'        => 'Public (état)',
+        'other'         => 'Autre'
     ],
 
     'ManagementUnique' => [
-        'unique'        => 'A specified entity',
-        'multiple'      => 'An agreed upon combination of entities'
+        'unique'        => 'Une entité spécifiée',
+        'multiple'      => 'Une combinaison convenue d’entités'
     ],
 
     'ManagementType'=> [
         'association'   => 'Association',
-        'community'     => 'Community and indigenous group',
-        'private'       => 'Private',
-        'faith_based'   => 'Faith-based organization',
-        'ngo'           => 'NGO',
-        'public'        => 'public organization',
-        'other'         => 'other'
+        'community'     => 'Communauté et groupe autochtone',
+        'private'       => 'Privé',
+        'faith_based'   => 'Organisation confessionnelle',
+        'ngo'           => 'ONG',
+        'public'        => 'Organisation publique',
+        'other'         => 'Autre'
     ],
 
     'DateOfCreation'=> [
-        'always_existed'    => 'Has always existed',
-        'not_known'         => 'Not known'
+        'always_existed'    => 'A toujours existé',
+        'not_known'         => 'Non connu'
     ],
 
     'PaType' => [
-        'terrestrial'           => 'Terrestrial and/or freshwater',
+        'terrestrial'           => 'Terrestre et/ou eau douce',
         'marine_and_coastal'    => 'Marine',
-        'mixed'                 => 'Partially marine and terrestrial (or freshwater)',
+        'mixed'                 => 'Partiellement marin et terrestre (ou d’eau douce)',
     ],
 
     'Ownership' => [
-        'state'         => 'State',
+        'state'         => 'Etat',
         'communal'      => 'Communal',
-        'landowners'    => 'Individual landowners',
-        'for_profit'    => 'For-profit organisations',
-        'non_profit'    => 'Non-profit organisations',
-        'joint'         => 'Joint ownership',
+        'landowners'    => 'Propriétaires fonciers individuels',
+        'for_profit'    => 'Organisations à but lucratif',
+        'non_profit'    => 'Organisations à but non lucratif',
+        'joint'         => 'Propriété commune',
         'multiple'      => 'Multiple ownership',
-        'contested'     => 'Contested',
-        'not_reported'  => 'Not Reported'
+        'contested'     => 'Contesté',
+        'not_reported'  => 'Non signalé'
     ],
 
     'Habitats' => [
-        'agriculture'   => 'Agricultural land (farmland and crop fields)',
+        'agriculture'   => 'Terres agricoles (terres cultivées et champs de culture)',
         'caves'         => 'Caves',
-        'coasts'        =>   'Coastal regions (beaches, cliffs, and dunes)',
-        'coral_reefs'   =>   'Coral Reefs',
-        'desert'        =>   'Deserts (hot and cold)',
-        'estuaries'     =>   'Estuaries',
-        'forests'       =>   'Forests (tropical, temperate, and boreal, natural and plantation)',
-        'freshwater'    =>   'Freshwater (sources, rivers, lakes, and ponds)',
-        'grasslands'    =>   'Grasslands (savannah, prairie, and steppe)',
-        'intertidal'    =>   'Intertidal zones (littoral zone)',
-        'mangroves'     =>   'Mangroves forests',
-        'marine'        =>   'Marine (oceans and seas)',
-        'mountains'     =>   'Mountains (highlands, alpine and subalpine)',
-        'scrublands'    =>   'Scrublands',
-        'seagrass'      =>   'Seagrass beds',
+        'coasts'        =>   'Régions côtières (plages, falaises et dunes)',
+        'coral_reefs'   =>   'Récifs coralliens',
+        'desert'        =>   'Déserts (chauds et froids)',
+        'estuaries'     =>   'Estuaires',
+        'forests'       =>   'Forêts (tropicales, tempérées et boréales, naturelles et de plantation)',
+        'freshwater'    =>   'Eau douce (sources, rivières, lacs et étangs)',
+        'grasslands'    =>   'Prairies (savanes, prairie et steppe)',
+        'intertidal'    =>   'Zones intertidales (zone littorale)',
+        'mangroves'     =>   'Forêts de mangroves',
+        'marine'        =>   'Marine (océans et mers)',
+        'mountains'     =>   'Montagnes (hautes, alpines et subalpines)',
+        'scrublands'    =>   'Broussailles',
+        'seagrass'      =>   'Herbiers marins',
         'tundra'        =>   'Tundra',
-        'villages'      =>   'Villages -Urban areas',
-        'wetlands'      =>   'Wetlands (marshes, swamps, and bogs)',
-        'woodlands'     =>   'Woodlands (miombo)',
-        'other'         =>   'Other habitat',
+        'villages'      =>   'Villages - Zones urbaines',
+        'wetlands'      =>   'Zones humides (marais, marécages et tourbières)',
+        'woodlands'     =>   'Forêts type miombo',
+        'other'         =>   'Autre habitat',
     ],
 
     'Engagement' => [
-        'provisioning'  => 'a. Provisioning and subsistence economy (food, energy, material, pharmacopeia)',
-        'regulation'    => 'b. Protection and restoration (fight against degradation, tree planting, erosion control, etc)',
-        'cultural'      => 'c. Cultural and spiritual',
-        'educartion'    => 'd. Education and Tourism',
-        'enforcement'   => 'e. Enforcement and Regulation (patrolling and managing the use of natural resources, cultural and other values)',
-        'market_economy' => 'f. Market economy'
+        'provisioning'  => 'a. Économie d’approvisionnement et de subsistance (nourriture, énergie, matériel, pharmacopée)',
+        'regulation'    => 'b. Protection et restauration (lutte contre la dégradation, plantation d’arbres, contrôle de l’érosion, etc.)',
+        'cultural'      => 'c. Culturel et spirituel',
+        'educartion'    => 'd. Éducation et tourisme',
+        'enforcement'   => 'e. Application de la loi et réglementation (patrouille et gestion de l’utilisation des ressources naturelles, des valeurs culturelles et autres)',
+        'market_economy' => 'f. Économie de marché'
     ],
 
     'PopulationStatus' => [
         'scarce'            => 'Scarse',
-        'below_optimum'     => 'Below optimum',
+        'below_optimum'     => 'En dessous de l’optimum',
         'optimum'           => 'Optimum',
-        'exceeding_optimum' => 'Exceeding optimum'
+        'exceeding_optimum' => 'Dépassement de l’optimum'
     ],
 
     'Access' => [
-        'no_access' => 'No access',
-        'limited' => 'Limited access (existence of criteria or rules for use)',
-        'open'      => 'Open access (no criteria or rules for use) '
+        'no_access' => 'Pas d’accès',
+        'limited' => 'Accès limité (existence de critères ou de règles d’utilisation)',
+        'open'      => 'Accès libre (pas de critères ou de règles d’utilisation)'
     ],
 
     'MainThreat' => [
-        'commercial_residential'    => 'Commercial and residential',
-        'agriculture_aquaculture'   => 'Agriculture and aquaculture',
-        'energy_mining'              => 'Energy and mining',
-        'transport_infrastructure'  => 'Transport and infrastructure',
-        'extraction'                => 'Extraction of biological resources',
-        'human_disturbance'         => 'Human disturbance / intrusion',
-        'changes_natural_system'    => 'Changes in the natural system',
-        'invasive_species'          => 'Invasive / challenging species',
+        'commercial_residential'    => 'Commercial et résidentiel',
+        'agriculture_aquaculture'   => 'Agriculture et aquaculture',
+        'energy_mining'              => 'Énergie et exploitation minière',
+        'transport_infrastructure'  => 'Transport et infrastructures',
+        'extraction'                => 'Extraction de ressources biologiques',
+        'human_disturbance'         => 'Perturbations / intrusions humaines',
+        'changes_natural_system'    => 'Changements dans le système naturel',
+        'invasive_species'          => 'Espèces envahissantes / difficiles',
         'pollution'                 => 'Pollution',
-        'geological'                => 'Geological phenomena',
-        'climate_change'            => 'Climate change and effects',
-        'other'                     => 'Other pressures and threats',
+        'geological'                => 'Phénomènes géologiques',
+        'climate_change'            => 'Changement climatique et effets',
+        'other'                     => 'Autres pressions et menaces',
     ]
 ];
