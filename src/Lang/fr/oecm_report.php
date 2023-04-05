@@ -22,7 +22,7 @@ return [
     'characteristics_elements' => 'Éléments caractéristiques de l’AMCE sous la forme d’un exercice SWOT',
     'strengths' => 'Forces',
     'weaknesses' => 'Faiblesses',
-    'opportunities' => 'Opportunities',
+    'opportunities' => 'Opportunités',
     'key_questions' => 'Questions clé',
     'management_priorities' => 'Quelles sont vos priorités en matière de gestion/gouvernance ?',
     'operating_budget' => 'Quel est votre budget de fonctionnement minimum pour assurer la préservation des valeurs et de l’importance de votre AMCE ?',

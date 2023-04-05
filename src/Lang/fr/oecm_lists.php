@@ -48,7 +48,7 @@ return [
 
     'PaType' => [
         'terrestrial'           => 'Terrestre et/ou eau douce',
-        'marine_and_coastal'    => 'Marine',
+        'marine_and_coastal'    => 'Marine et côtiere ',
         'mixed'                 => 'Partiellement marin et terrestre (ou d’eau douce)',
     ],
 
@@ -59,7 +59,7 @@ return [
         'for_profit'    => 'Organisations à but lucratif',
         'non_profit'    => 'Organisations à but non lucratif',
         'joint'         => 'Propriété commune',
-        'multiple'      => 'Multiple ownership',
+        'multiple'      => 'Multipropriété',
         'contested'     => 'Contesté',
         'not_reported'  => 'Non signalé'
     ],
@@ -91,7 +91,7 @@ return [
         'provisioning'  => 'a. Économie d’approvisionnement et de subsistance (nourriture, énergie, matériel, pharmacopée)',
         'regulation'    => 'b. Protection et restauration (lutte contre la dégradation, plantation d’arbres, contrôle de l’érosion, etc.)',
         'cultural'      => 'c. Culturel et spirituel',
-        'educartion'    => 'd. Éducation et tourisme',
+        'education'    => 'd. Éducation et tourisme',
         'enforcement'   => 'e. Application de la loi et réglementation (patrouille et gestion de l’utilisation des ressources naturelles, des valeurs culturelles et autres)',
         'market_economy' => 'f. Économie de marché'
     ],
@@ -120,7 +120,7 @@ return [
         'invasive_species'          => 'Espèces envahissantes / difficiles',
         'pollution'                 => 'Pollution',
         'geological'                => 'Phénomènes géologiques',
-        'climate_change'            => 'Changement climatique et effets',
+        'climate_change'            => 'Changement climatique',
         'other'                     => 'Autres pressions et menaces',
     ]
 ];
