@@ -147,17 +147,17 @@ $url        = URL::route('index');
                                 ])
                             </span>
 
-                    @endcan
+                        {{-- Export --}}
+                        @include('modular-forms::buttons._generic', [
+                            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
+                            'action' =>'export',
+                            'item' => 'item.FormID',
+                            'tooltip' => ucfirst(trans('modular-forms::common.export')),
+                            'icon' => 'cloud-download-alt',
+                            'class' => 'btn-primary'
+                        ])
 
-                    {{-- Export --}}
-                    @include('modular-forms::buttons._generic', [
-                        'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                        'action' =>'export',
-                        'item' => 'item.FormID',
-                        'tooltip' => ucfirst(trans('modular-forms::common.export')),
-                        'icon' => 'cloud-download-alt',
-                        'class' => 'btn-primary'
-                    ])
+                    @endcan
 
                     {{-- Print --}}
                     <span v-if="item.version==='v2'">
