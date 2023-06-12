@@ -82,6 +82,8 @@ return [
             'DateOfCreation' => 'Date de création',
             'OfficialRecognition' => 'Reconnaissance officielle : L’organe de gestion a-t-il reçu une reconnaissance officielle de la part des autorités nationales ou régionales ?',
             'SupervisoryInstitution' => 'Institution de contrôle (le cas échéant)',
+            'MemberRepresentativenessLevel' => 'Niveau de représentativité des membres',
+            'AdditionalInformation' => 'Informations supplémentaires sur l\'entité de gestion (si nécessaire)',
         ],
         'governance' => 'Governance',
         'stakeholders' => 'Parties prenantes',

@@ -87,10 +87,20 @@ return [
             'DateOfCreation' => 'Date of creation',
             'OfficialRecognition' => 'Official Recognition: Has the Management Entity received an official recognition from the national or regional authorities?',
             'SupervisoryInstitution' => 'Supervisory Institution (if any)',
+            'MemberRepresentativenessLevel' => 'Level of members’ representativeness',
+            'AdditionalInformation' => 'Additional information on Management Entity (if needed)',
         ],
         'governance' => 'Governance',
         'stakeholders' => 'Stakeholders',
         'management' => 'Management Entity',
+        'ratingLegend' => [
+            'MemberRepresentativenessLevel' => [
+                '0' => 'Less than 30% of the total population of the OECM area',
+                '1' => '30–50% total population of the OECM area',
+                '2' => '51–75% total population of the OECM area',
+                '3' => 'More than 75% of the total population of the OECM area',
+            ]
+        ]
     ],
 
     'SpecialStatus' => [
