@@ -328,6 +328,7 @@ return [
         'title' => 'Habitats sélectionnés comme indicateurs pour l’AMCE et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Types d’habitats',
+            'EcosystemDescription' => 'Description pour l\'AMCE spécifique',
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
@@ -335,7 +336,12 @@ return [
             'DescribeEstimation' => 'Décrire l’état optimal',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => '<b>Species types</b><ul>
+        'module_info' =>
+            'Les types d\'habitats énumérés ci-dessous sont des termes standard utilisés pour décrire le ou les principaux habitats
+            (<a href="https://www.iucnredlist.org/resources/habitat-classification-scheme">https://www.iucnredlist.org/resources/habitat-classification-scheme</a>).
+                 Identifiez la catégorie principale dans la liste suggérée d\'habitats, puis ajoutez un deuxième niveau de description qui
+                 prend en compte votre domaine spécifique.<br />
+                <b>Species types</b><ul>
                 <li><b>EXP</b>: Exploité</li>
                 <li><b>PRT</b>: Protégé</li>
                 <li><b>DSG</b>: En voie de disparition</li></ul>',

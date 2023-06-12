@@ -341,6 +341,7 @@ return [
         'title' => 'Habitats selected as indicators for the OECM and that will need to be monitored over time',
         'fields' => [
             'EcosystemType' => 'Habitats types',
+            'EcosystemDescription' => 'Description for the specific OECM',
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
@@ -348,7 +349,12 @@ return [
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => '<b>Species types</b><ul>
+        'module_info' =>
+            'The habitat types listed below are standard terms used to describe the main habitat(s) 
+                (<a href="https://www.iucnredlist.org/resources/habitat-classification-scheme">https://www.iucnredlist.org/resources/habitat-classification-scheme</a>). 
+                Identify the main category in the suggested list of habitats, then add a second level of description that 
+                takes into account your specific area.<br />
+                <b>Species types</b><ul>
                 <li><b>EXP</b>: Exploited</li>
                 <li><b>PRT</b>: Protected</li>
                 <li><b>DSG</b>: Disappearing</li></ul>',

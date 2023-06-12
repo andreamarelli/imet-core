@@ -8,4 +8,7 @@ ALTER TABLE imet_oecm.context_governance ADD COLUMN IF NOT EXISTS "AdditionalInf
 -- Areas
 ALTER TABLE imet_oecm.context_areas ADD COLUMN IF NOT EXISTS "StrictConservationArea" numeric;
 
+-- Habitats
+ALTER TABLE imet_oecm.context_habitats ADD COLUMN IF NOT EXISTS "EcosystemDescription" text;
+
 COMMIT;
