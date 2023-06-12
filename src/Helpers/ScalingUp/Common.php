@@ -38,7 +38,7 @@ class Common
             return 0;
         }
 
-        return number_format(round($val, $round), 1);
+        return (float)number_format(round($val, $round), 1);
     }
 
     /**
@@ -319,6 +319,7 @@ class Common
             $assessments[$k]['color'] = $name->color;
             $assessments[$k]['wdpa_id'] = $name->wdpa_id;
             $assessments[$k]['formid'] = (int)$form_id;
+            $assessments[$k]['year'] = (int)$name->Year;
 
             $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
             foreach ($indicators as $key => $indicator) {
