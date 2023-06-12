@@ -203,6 +203,7 @@ return [
             'AdministrativeArea' => 'Administrative surface',
             'WDPAArea' => 'Surface according to WDPA',
             'GISArea' => 'Actual surface (GIS for the park or the authority responsible for OECMs) corresponding to the uploaded file',
+            'StrictConservationArea' => 'Surface of strict conservation area (no-take zone, core zone) (if any) ',
             'TerrestrialArea' => 'Surface of Terrestrial OECM, Community Forest, ICCAs, Other',
             'MarineArea' => 'Surface of Marine and coastal OECM, ICCAs, LMMA, Other'
         ]

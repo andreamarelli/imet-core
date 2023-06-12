@@ -190,6 +190,7 @@ return [
             'AdministrativeArea' => 'Surface administrative',
             'WDPAArea' => 'Surface selon WDPA',
             'GISArea' => 'Surface réelle (SIG du parc ou de l’autorité responsable des AMCE) correspondant au fichier téléchargé',
+            'StrictConservationArea' => 'Superficie de la zone de conservation stricte (zone de non-prélèvement, zone centrale) (le cas échéant)',
             'TerrestrialArea' => 'Surface de l’AMCE terrestre, de la forêt communautaire, des ICCA, autre',
             'MarineArea' => 'Surface de l’AMCE marine et côtière, des ICCA, des LMMA, autres'
         ]
