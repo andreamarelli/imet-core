@@ -73,6 +73,7 @@ return [
             'Stakeholder' => 'Parties prenantes',
             'StakeholderType' => 'Type d’institution',
             'GovernanceModel' => 'Modèle de gouvernance',
+            'SubGovernanceModel' => 'Sous-modèle de gouvernance',
             'AdditionalInfo' => 'Informations complémentaires sur le modèle de gouvernance (si nécessaire)',
             'ManagementUnique' => 'Déterminer l’entité en charge de la gestion et de la gouvernance de l’AMCE',
             'ManagementName' => 'Name',

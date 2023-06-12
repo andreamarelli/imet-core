@@ -14,6 +14,32 @@ return [
         'not_reported'  => 'Not Reported'
     ],
 
+    'SubGovernanceModel' => [
+        'government' => [
+            'national' => 'Federal or national ministry or agency',
+            'sub_national' => 'Sub-national ministry or agency',
+            'delegated' => 'Government-delegated management',
+            'other' => 'Other'
+        ],
+        'shared' =>  [
+            'transboundary' => 'Transboundary governance',
+            'collaborative' => 'Collaborative governance',
+            'joint' => 'Joint governance',
+            'other' => 'Other',
+        ],
+        'private' =>  [
+            'individual' => 'Individual landowners',
+            'non_profit' => 'Non-profit organisation',
+            'for_profit' => 'For-profit organisations',
+            'other' => 'Other'
+        ],
+        'indigenous' =>  [
+            'indigenous' => 'Indigenous peoples',
+            'local_communities' => 'Local communities',
+            'other' => 'Other'
+        ]
+    ],
+
     'StakeholderType' => [
         'academic'      => 'Academic',
         'confessionnel' => 'Confessionnel',

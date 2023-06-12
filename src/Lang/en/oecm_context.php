@@ -78,6 +78,7 @@ return [
             'Stakeholder' => 'Stakeholder',
             'StakeholderType' => 'Kind of institution',
             'GovernanceModel' => 'Governance model',
+            'SubGovernanceModel' => 'Sub-governance model',
             'AdditionalInfo' => 'Additional information on governance model (if needed)',
             'ManagementUnique' => 'Determine the entity in charge of the management and governance of the OECM',
             'ManagementName' => 'Name',

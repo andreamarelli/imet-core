@@ -19,6 +19,7 @@ class Governance extends Modules\Component\ImetModule
 
         $this->module_fields = [
             ['name' => 'GovernanceModel',   'type' => 'dropdown-ImetOECM_GovernanceModel',   'label' => trans('imet-core::oecm_context.Governance.fields.GovernanceModel')],
+            ['name' => 'SubGovernanceModel',   'type' => 'blade-imet-core::oecm.context.fields.SubGovernanceModel',   'label' => trans('imet-core::oecm_context.Governance.fields.SubGovernanceModel')],
             ['name' => 'AdditionalInfo',    'type' => 'text',   'label' => trans('imet-core::oecm_context.Governance.fields.AdditionalInfo')],
 
             ['name' => 'ManagementUnique',  'type' => 'toggle-ImetOECM_ManagementUnique',         'label' => trans('imet-core::oecm_context.Governance.fields.ManagementUnique')],
