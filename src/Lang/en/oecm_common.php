@@ -8,7 +8,8 @@ return [
         'areas'                 => 'Areas',
         'resources'             => 'Human, financial and material resources',
         'key_elements'          => 'Key animals and plants species',
-        'stakeholder_analysis' => 'Stakeholder analysis',
+        'stakeholders'          => 'Stakeholders',
+        'stakeholder_analysis'  => 'Stakeholder analysis',
     ],
 
 

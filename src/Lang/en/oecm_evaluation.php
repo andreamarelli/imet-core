@@ -162,7 +162,7 @@ return [
             'Has the OECM clearly identified and integrated the threats that could affect the area’s biodiversity, cultural heritage, or ecosystem services in its management?'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point CTX 5 and automatically reported below . Threats evaluation (automatically reported from CTX 5) To prioritise in management Comments/Explanation'
+            'Evaluate the level of integration of most important threats in the management of the OECM based on the analysis of the threats calculator at Context of intervention point SA 2 and automatically reported below . Threats evaluation (automatically reported from SA 2) To prioritise in management Comments/Explanation'
         ],
         'stakeholders' => 'indicated by :num stakeholder(s)'
     ],
@@ -564,7 +564,7 @@ return [
             'Qualified, competent and committed workforce central to the success of OECMs.'
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.1 and CTX 3.1.3)'
+            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in SA 1 and CTX 3.1.2)'
         ]
 
     ],
@@ -602,7 +602,7 @@ return [
             'Evaluate the adequacy of the provisions of the human resource management policies',
             'Adequacy of the human resource management policies:'
         ],
-        'module_info' => 'Provisions of the human resource management policies of the OECM Management and Governance specific entity or combination of entities (identified in CTX 3.1.1 or CTX 3.1.2):',
+        'module_info' => 'Provisions of the human resource management policies of the OECM Management and Governance specific entity or combination of entities (identified in SA 1 or CTX 3.1.1):',
     ],
 
     'AdministrativeManagement' => [
@@ -689,7 +689,7 @@ return [
             'To ensure a sustainability management of the key elements of the OECM, stakeholder(s)/management association(s) should evaluate the practices and actions can include conservation/restoration of animal (e.g., bees) and plant species (e.g., pharmacopoeia), managing fire, revegetation work, controlling invasive species, management of cultural resources, threat containment, etc.'
         ],
         'module_info_Rating' => [
-            'Based on the list of the key elements identified in the Intervention context CTX 5 and prioritise in Management analysis C2, evaluate adequacy of related management practices and actions.'
+            'Based on the list of the key elements identified in the Intervention context SA 2 and prioritise in Management analysis C2, evaluate adequacy of related management practices and actions.'
         ]
     ],
 

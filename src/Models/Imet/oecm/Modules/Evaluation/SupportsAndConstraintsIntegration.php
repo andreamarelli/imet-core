@@ -41,7 +41,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     }
 
     /**
-     * Preload data from CTX 3.1.2
+     * Preload data
      *
      * @param $form_id
      * @param null $collection

@@ -27,7 +27,7 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 3.1.1';
+        $this->module_code = 'CTX 5';
         $this->module_title = trans('imet-core::oecm_context.StakeholdersNaturalResources.title');
         $this->module_fields = [
             ['name' => 'Element',                'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Element'), 'other' => 'rows="3"'],

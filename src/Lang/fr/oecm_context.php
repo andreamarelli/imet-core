@@ -302,7 +302,7 @@ return [
             <li><b>PRT</b>: Espèces protégées</li>
             <li><b>DSG</b>: Espèces en voie de disparition</li>
             <li><b>INV</b>: Espèces envahissantes</li></ul>',
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>CTX 5</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2</i>'
     ],
 
     'VegetalSpecies' => [
@@ -322,7 +322,7 @@ return [
             <li><b>PRT</b>: Espèces protégées</li>
             <li><b>DSG</b>: Espèces en voie de disparition</li>
             <li><b>INV</b>: Espèces envahissantes</li></ul>',
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés): <i>CTX 5</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés): <i>SA 2</i>'
     ],
 
     'Habitats' => [
@@ -340,7 +340,7 @@ return [
                 <li><b>EXP</b>: Exploité</li>
                 <li><b>PRT</b>: Protégé</li>
                 <li><b>DSG</b>: En voie de disparition</li></ul>',
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>CTX 5</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>SA 2</i>'
     ],
 
     'StakeholdersNaturalResources' => [
@@ -388,7 +388,7 @@ return [
                 '3' => 'Rôle élevé (conseil + analyse + planification + mise en œuvre + suivi)',
             ]
         ],
-        'warning_on_save' => 'AVERTISSEMENT !! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>CTX 5, CTX6, C1.2, C2.2, I2, PR1, PR8</i>'
+        'warning_on_save' => 'AVERTISSEMENT !! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [
@@ -545,7 +545,7 @@ return [
                 '3' => 'Elevée',
             ],
         ],
-        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>CTX 6, C4</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2, C4</i>',
         'summary' => 'Importance des éléments et implication des parties prenantes',
         'elements_importance' => 'Importance des éléments pour les parties prenantes',
         'involvement_ranking' => 'Implication des parties prenantes',

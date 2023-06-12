@@ -8,7 +8,8 @@ return [
         'areas'                 => 'Areas',
         'resources'             => 'Ressources humaines, financières et matérielles',
         'key_elements'          => 'Espèces animales et végétales clés',
-        'stakeholder_analysis' => 'Analyse des parties prenantes',
+        'stakeholders'          => 'Parties prenantes',
+        'stakeholder_analysis'  => 'Analyse des parties prenantes',
     ],
 
 

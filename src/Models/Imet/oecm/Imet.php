@@ -42,7 +42,6 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives2::class,
         ],
         'resources' => [
-            Modules\Context\StakeholdersNaturalResources::class,
             Modules\Context\ManagementRelativeImportance::class,
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
@@ -55,9 +54,12 @@ class Imet extends BaseImetForm
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
         ],
+        'stakeholders' => [
+            Modules\Context\StakeholdersNaturalResources::class,
+        ],
         'stakeholder_analysis' => [
-            Modules\Context\AnalysisStakeholderAccessGovernance::class,
-            Modules\Context\AnalysisStakeholderTrendsThreats::class
+//            Modules\Context\AnalysisStakeholderAccessGovernance::class,
+//            Modules\Context\AnalysisStakeholderTrendsThreats::class
         ],
     ];
 

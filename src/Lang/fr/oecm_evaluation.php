@@ -162,7 +162,7 @@ return [
             'L’AMCE a-t-elle clairement identifié et intégré dans sa gestion les menaces susceptibles d’affecter la biodiversité, le patrimoine culturel ou les services écosystémiques de l’aire ?'
         ],
         'module_info_Rating' => [
-            'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’AMCE sur la base de l’analyse du calculateur de menaces au point CTX 5 du contexte d’intervention et automatiquement rapporté ci-dessous. Évaluation des menaces (rapportée automatiquement à partir du CTX 5) Priorité dans la gestion Commentaires/explications'
+            'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’AMCE sur la base de l’analyse du calculateur de menaces au point SA 2 du contexte d’intervention et automatiquement rapporté ci-dessous. Évaluation des menaces (rapportée automatiquement à partir du SA 2) Priorité dans la gestion Commentaires/explications'
         ],
         'stakeholders' => 'Indiqué par :num  Partie prenante(s)'
     ],
@@ -564,7 +564,7 @@ return [
             'Une main-d’œuvre qualifiée, compétente et engagée est essentielle au succès des AMCE'
         ],
         'module_info_Rating' => [
-            'Évaluer l’adéquation des activités de renforcement des capacités pour l’entité spécifique ou la combinaison d’entités membres de la gestion et de la gouvernance de l’AMCE (identifiées dans les CTX 3.1.1 et CTX 3.1.3)'
+            'Évaluer l’adéquation des activités de renforcement des capacités pour l’entité spécifique ou la combinaison d’entités membres de la gestion et de la gouvernance de l’AMCE (identifiées dans les SA 1 et CTX 3.1.2)'
         ]
     ],
 
@@ -601,7 +601,7 @@ return [
             'Évaluer l’adéquation des dispositions des politiques de gestion des ressources humaines',
             'Adéquation des politiques de gestion des ressources humaines'
         ],
-        'module_info' => 'Dispositions des politiques de gestion des ressources humaines de l’entité ou de la combinaison d’entités spécifiques de l’AMCE en matière de gestion et de gouvernance (identifiées dans CTX 3.1.1 ou CTX 3.1.2) :',
+        'module_info' => 'Dispositions des politiques de gestion des ressources humaines de l’entité ou de la combinaison d’entités spécifiques de l’AMCE en matière de gestion et de gouvernance (identifiées dans SA 1 ou CTX 3.1.1) :',
     ],
 
     'AdministrativeManagement' => [
@@ -688,7 +688,7 @@ return [
             'Pour garantir une gestion durable des éléments clés de l’AMCE, les parties prenantes/associations de gestion doivent évaluer les pratiques et les actions qui peuvent inclure la conservation/restauration des espèces animales (par exemple, les abeilles) et végétales (par exemple, la pharmacopée), la gestion des incendies, les travaux de re-végétalisation, le contrôle des espèces envahissantes, la gestion des ressources culturelles, l’endiguement des menaces, etc.'
         ],
         'module_info_Rating' => [
-            'Sur la base de la liste des éléments clés identifiés dans le contexte d’intervention CTX 5 et classés par ordre de priorité dans l’analyse de gestion C2, évaluer l’adéquation des pratiques et actions de gestion correspondantes'
+            'Sur la base de la liste des éléments clés identifiés dans le contexte d’intervention SA 2 et classés par ordre de priorité dans l’analyse de gestion C2, évaluer l’adéquation des pratiques et actions de gestion correspondantes'
         ]
     ],
 

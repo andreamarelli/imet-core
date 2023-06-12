@@ -315,7 +315,7 @@ return [
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
             <li><b>INV</b>: Invasive species</li></ul>',
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>'
     ],
 
     'VegetalSpecies' => [
@@ -335,7 +335,7 @@ return [
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
             <li><b>INV</b>: Invasive species</li></ul>',
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>'
     ],
 
     'Habitats' => [
@@ -353,7 +353,7 @@ return [
                 <li><b>EXP</b>: Exploited</li>
                 <li><b>PRT</b>: Protected</li>
                 <li><b>DSG</b>: Disappearing</li></ul>',
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>'
     ],
 
     'StakeholdersNaturalResources' => [
@@ -401,7 +401,7 @@ return [
                 '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
             ]
         ],
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 5, CTX6, C1.2, C2.2, I2, PR1, PR8</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [
@@ -597,7 +597,7 @@ return [
                 '3' => 'High',
             ],
         ],
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>CTX 6, C4</i>',
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2, C4</i>',
         'summary' => 'Importance of elements & Involvement of stakeholders',
         'elements_importance' => 'Importance of elements by the stakeholders',
         'involvement_ranking' => 'Involvement of stakeholders',
