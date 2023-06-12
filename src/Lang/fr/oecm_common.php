@@ -8,8 +8,7 @@ return [
         'areas'                 => 'Areas',
         'resources'             => 'Ressources humaines, financières et matérielles',
         'key_elements'          => 'Espèces animales et végétales clés',
-        'access_and_governance' => 'Accès et gouvernance des éléments clés - Une analyse des parties prenantes',
-        'trends_and_threats' => 'Tendances et menaces sur les éléments clés - Une analyse des parties prenantes'
+        'stakeholder_analysis' => 'Analyse des parties prenantes',
     ],
 
 

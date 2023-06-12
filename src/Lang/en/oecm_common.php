@@ -8,8 +8,7 @@ return [
         'areas'                 => 'Areas',
         'resources'             => 'Human, financial and material resources',
         'key_elements'          => 'Key animals and plants species',
-        'access_and_governance' => 'Access and Governance of key elements – A stakeholder analysis',
-        'trends_and_threats' => 'Trends and threats on key elements – A stakeholder analysis'
+        'stakeholder_analysis' => 'Stakeholder analysis',
     ],
 
 

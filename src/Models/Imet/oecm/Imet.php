@@ -55,10 +55,8 @@ class Imet extends BaseImetForm
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
         ],
-        'access_and_governance' => [
-            Modules\Context\AnalysisStakeholderAccessGovernance::class
-        ],
-        'trends_and_threats' => [
+        'stakeholder_analysis' => [
+            Modules\Context\AnalysisStakeholderAccessGovernance::class,
             Modules\Context\AnalysisStakeholderTrendsThreats::class
         ],
     ];
