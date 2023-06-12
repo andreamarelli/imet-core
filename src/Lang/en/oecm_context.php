@@ -210,7 +210,7 @@ return [
     ],
 
     'ManagementStaff' => [
-        'title' => 'Composition and staff or members of the OECM Management and Governance Specified Entity or Combination of entities (identified in CTX 1.2).',
+        'title' => 'Composition and staff of Management Entity(s) (identified in CTX 1.2).',
         'fields' => [
             'Function' => 'Functions',
             'Number' => 'Number',
@@ -224,7 +224,7 @@ return [
     ],
 
     'ManagementStaffPartners' => [
-        'title' => 'Size and composition of staff: Staff from partner organisations',
+        'title' => 'Composition and staff from partner organisations',
         'fields' => [
             'Partner' => 'Partners',
             'Function' => 'Function',
@@ -243,7 +243,6 @@ return [
         'stakeholders' => 'stakeholders',
         'equal' =>  'Equal involvement between Staff and stakeholders',
         'majority_by' =>  'Involvement majority by',
-        'most_by' =>  'Involvement most by',
         'all_by' =>  'Involvement all by',
     ],
 

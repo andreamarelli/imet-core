@@ -197,7 +197,7 @@ return [
     ],
 
     'ManagementStaff' => [
-        'title' => 'Composition et personnel ou membres de l’entité spécifiée de gestion et de gouvernance de l’AMCE ou d’une combinaison d’entités (identifé in CTX 1.2).',
+        'title' => 'Composition et personnel de l’entité(s) de gestion (identifé in CTX 1.2).',
         'fields' => [
             'Function' => 'Functions',
             'Number' => 'Nombre',
@@ -211,7 +211,7 @@ return [
     ],
 
     'ManagementStaffPartners' => [
-        'title' => 'Taille et composition du personnel : Personnel des organisations partenaires',
+        'title' => 'Composition et personnel des organisations partenaires',
         'fields' => [
             'Partner' => 'Partenaitres',
             'Function' => 'Fonction',
@@ -230,7 +230,6 @@ return [
         'stakeholders' => 'Parties prenantes',
         'equal' =>  'Implication égale entre le personnel et les parties prenantes',
         'majority_by' =>  'Implication majoritaire par',
-        'most_by' =>  'Implication la plus importante par',
         'all_by' =>  'Implication de tous',
     ],
 
