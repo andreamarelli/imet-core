@@ -14,13 +14,14 @@
                 </th>
             </tr>
             <tr v-for="(value, index) in items">
-                <td v-for="(column, idx) in columns" v-html="get_value(value[column.field])"
+                <td v-if="value['name'] !== 'Average'" v-for="(column, idx) in columns" v-html="get_value(value[column.field])"
                     :class="idx === 0 ?'': score_class(value[column.field])"></td>
+                <td v-else v-for="(column, idx) in columns" v-html="get_value(value[column.field])"></td>
             </tr>
-            <tr v-if="average.length > 0">
-                <td v-for="(column, idx) in columns" v-html="itemLabel(average[0][column.field])"
-                    :class="idx === 0 ?'': score_class(average[0][column.field])"></td>
-            </tr>
+<!--            <tr v-if="average.length > 0">-->
+<!--                <td v-for="(column, idx) in columns" v-html="itemLabel(average[0][column.field])"-->
+<!--                    :class="idx === 0 ?'': score_class(average[0][column.field])"></td>-->
+<!--            </tr>-->
         </table>
         <div class="row" style="font-size: 12px">
             <div class="col-3 text-right">
@@ -90,19 +91,7 @@ export default {
     computed: {
         items() {
             let items = this.list;
-            if (this.average.length === 0 && items.length > 0) {
-                this.average = items.filter(item => {
-                    return item.name === "Average";
-                })
 
-                const averageIndex = items.findIndex((item) => {
-                    return item.name === "Average";
-                });
-
-                if (averageIndex > -1) {
-                    items.splice(averageIndex, 1);
-                }
-            }
             items = this.filterList(items);     // from filter mixin
             items = this.sortList(items);       // from sorter mixin
             items = this.paginateList(items);   // from paginate mixin

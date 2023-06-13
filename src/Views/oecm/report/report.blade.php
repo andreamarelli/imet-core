@@ -52,15 +52,39 @@ if ($item->language != App::getLocale()) {
                         @endif
                         <div>
                             <div>
+                                <div class="strong">@lang('imet-core::oecm_report.definition'):</div>
+                                @lang('imet-core::oecm_report.meets_cbd_definition')
+                            </div>
+                            <div>
                                 <div class="strong">@lang('imet-core::oecm_report.country'):</div>
                                 {{ $general_info['Country'] ?? '-' }}
                             </div>
                             <div>
-                                <div class="strong">@lang('imet-core::oecm_report.name'):</div>
+                                <div class="strong">@lang('imet-core::oecm_report.name_by_operator'):</div>
                                 {{ $general_info['CompleteName'] ?? '-' }}
                             </div>
                             <div>
-                                <div class="strong">@lang('imet-core::oecm_report.gazetting'):</div>
+                                <div class="strong">@lang('imet-core::oecm_report.name_original'):</div>
+                                {{ $general_info['CompleteNameWDPA'] ?? '-' }}
+                            </div>
+                            <div>
+                                <div class="strong">@lang('imet-core::oecm_report.designation_name'):</div>
+                                {{ $general_info['CompleteName'] ?? '-' }}
+                            </div>
+                            <div>
+                                <div class="strong">@lang('imet-core::oecm_report.designation_english'):</div>
+                                {{ $general_info['CompleteName'] ?? '-' }}
+                            </div>
+                            <div>
+                                <div class="strong">@lang('imet-core::oecm_report.designation_type'):</div>
+                                {{ $general_info['CompleteName'] ?? '-' }}
+                            </div>
+                            <div>
+                                <div class="strong">@lang('imet-core::oecm_report.typology'):</div>
+                                {{ $general_info['Type'] ?? '-' }}
+                            </div>
+                            <div>
+                                <div class="strong">@lang('imet-core::oecm_report.year_of_enactment'):</div>
                                 {{ $general_info['CreationYear'] ?? '-' }}
                             </div>
                             <div>
@@ -68,7 +92,11 @@ if ($item->language != App::getLocale()) {
                                 {{ $area }} [km2]
                             </div>
                             <div>
-                                <div class="strong">@lang('imet-core::oecm_report.agency'):</div>
+                                <div class="strong">@lang('imet-core::oecm_report.surface_marine'):</div>
+                                {{ $area }} [km2]
+                            </div>
+                            <div>
+                                <div class="strong">@lang('imet-core::oecm_report.status'):</div>
                                 {{ $general_info['Institution'] ?? '-' }}
                             </div>
                             <div>

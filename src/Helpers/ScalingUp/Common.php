@@ -38,7 +38,7 @@ class Common
             return 0;
         }
 
-        return number_format(round($val, $round), 1);
+        return (float)(number_format(round($val, $round), 1));
     }
 
     /**
