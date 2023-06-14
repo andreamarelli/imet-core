@@ -88,6 +88,14 @@ return [
         'governance' => 'Governance',
         'stakeholders' => 'Parties prenantes',
         'management' => 'Entité de gestion',
+        'ratingLegend' => [
+            'MemberRepresentativenessLevel' => [
+                '0' => 'Less than 30% of the total population of the OECM area',
+                '1' => '30–50% total population of the OECM area',
+                '2' => '51–75% total population of the OECM area',
+                '3' => 'More than 75% of the total population of the OECM area',
+            ]
+        ]
     ],
 
     'SpecialStatus' => [
@@ -428,19 +436,7 @@ return [
              pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'ACME.'
     ],
 
-    'AnalysisStakeholderDirectUsers' => [
-        'title' => 'Analyse par partie prenante',
-        'fields' => [
-            'Element' => 'Critères',
-            'Description' => 'Élément spécifique évalué',
-            'Dependence' => 'Dépendance',
-            'Access' => 'Accès',
-            'Rivalry' => 'Rivalité',
-            'Quality' => 'Qualité',
-            'Quantity' => 'Quantité',
-            'Threats' => 'Menaces',
-            'Comments' => 'Note',
-        ],
+    'AnalysisStakeholders' => [
         'titles' => [
             'title0' => 'Espèces animales et végétales clés de l’AMCE',
             'title1' => 'Principaux services d’approvisionnement',
@@ -566,23 +562,6 @@ return [
             'group12' => ['Fourniture de fertilité', 'Fourniture d’eau', 'Fourniture de lutte contre les maladies'],
             'group13' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation']
         ],
-        'module_info' =>
-            '<p>Identifiez les éléments clés de votre groupe et évaluez son importance et sa gestion/gouvernance de votre propre point de vue</p>' .
-            '<b>Dependence</b>: La dépendance d’une partie prenante à l’égard des services écosystémiques fait référence à la mesure dans laquelle la subsistance, les revenus et l’identité culturelle dépendent des ressources naturelles et des processus écologiques. Il est donc essentiel de comprendre et de gérer la dépendance des parties prenantes vis-à-vis des services écosystémiques pour atteindre les objectifs de développement durable et de conservation.</br >' .
-            '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles et des services fournis par les écosystèmes. Si une partie prenante n’a pas accès à ces services, ses moyens de subsistance et son bien-être sont menacés et elle peut être confrontée à la pauvreté, à l’insécurité alimentaire et à des problèmes de santé.</br >' .
-            '<b>Rivalry</b>: La rivalité des parties prenantes dans les services écosystémiques fait référence à la concurrence ou au conflit entre les individus ou les parties prenantes pour l’accès ou les intérêts et les priorités dans la gestion et l’utilisation de ces services. La rivalité peut conduire à la surutilisation ou à l’épuisement des ressources, exacerber la dégradation de l’environnement et compromettre la disponibilité à long terme de ces services pour la ou les communautés.</br >' .
-            '<b>Involvement</b>: L’implication des parties prenantes dans la gestion des services écosystémiques fait référence à la participation et à l’engagement de chaque partie prenante dans la planification, la prise de décision et la mise en œuvre afin de s’assurer qu’elles ont leur mot à dire dans les décisions qui affectent leurs moyens de subsistance, ainsi que pour promouvoir la durabilité à long terme des services écosystémiques dont elles dépendent.</br >' .
-            '<b>Accountability</b>: La responsabilité des parties prenantes fait référence à la responsabilité des individus ou des parties prenantes pour leurs actions et leurs décisions afin de s’assurer qu’ils gèrent les services écosystémiques de manière durable et équitable et sans impact négatif sur les autres parties prenantes et sur l’environnement.</br >' .
-            '<b>Orientation</b>: L’orientation des parties prenantes en matière de gestion des services écosystémiques fait référence au processus consistant à fournir des conseils, une éducation et une formation aux autres parties prenantes sur la manière de gérer et d’utiliser durablement les services écosystémiques, ainsi que sur l’identification des menaces potentielles pesant sur ces services et sur la manière de les atténuer dans leur environnement local. L’objectif de cette orientation est de renforcer la capacité des communautés rurales à gérer leurs ressources naturelles de manière à promouvoir leur viabilité à long terme et à améliorer leur qualité de vie.</br >',
-        'ratingLegend' => [
-            'Dependence' => [
-                '0' => 'Très faible',
-                '1' => 'Faible',
-                '2' => 'Moyenne',
-                '3' => 'Elevée',
-            ],
-        ],
-        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2, C4</i>',
         'summary' => 'Importance des éléments et implication des parties prenantes',
         'elements_importance' => 'Importance des éléments pour les parties prenantes',
         'involvement_ranking' => 'Implication des parties prenantes',
@@ -590,21 +569,113 @@ return [
         'involvement' => 'Implication de la partie prenante (0-100)'
     ],
 
-    'AnalysisStakeholderTrendsThreats' => [
-        'title' => 'Tendances et menaces sur les éléments clés - Une analyse des parties prenantes',
+    'AnalysisStakeholderDirectUsers' => [
+        'title' => 'Analyse par partie prenante - utilisateurs directs',
         'fields' => [
             'Element' => 'Critères',
-            'Status' => 'Status',
-            'Trend' => 'Tendence',
-            'MainThreat' => 'Principales menaces',
-            'ClimateChangeEffect' => 'Effets du changement climatique',
-            'Comments' => 'Note/Description',
+            'Description' => 'Élément spécifique évalué',
+            'Dependence' => 'Dépendance',
+            'Access' => 'Accès',
+            'Rivalry' => 'Rivalité',
+            'Quality' => 'Qualité',
+            'Quantity' => 'Quantité',
+            'Threats' => 'Menaces',
+            'Comments' => 'Note',
         ],
         'module_info' =>
-            '<b>Status</b>: Estimation de l’état actuel</br >' .
-            '<b>Trend</b>: Tendance de la quantité ou de la qualité</br >' .
-            '<b>Effets du changement climatique</b>: Modification de la qualité, de la quantité et de la production des écosystèmes en raison de facteurs climatiques (précipitations, température, événements extrêmes)</br >',
+            '<p>Identifiez les éléments clés de votre groupe et évaluez son importance et sa gestion/gouvernance de votre propre point de vue</p>' .
+            '<b>Dependence</b>: La dépendance d’une partie prenante à l’égard des services écosystémiques fait référence à la mesure dans laquelle la subsistance, les revenus et l’identité culturelle dépendent des ressources naturelles et des processus écologiques. Il est donc essentiel de comprendre et de gérer la dépendance des parties prenantes vis-à-vis des services écosystémiques pour atteindre les objectifs de développement durable et de conservation.</br >' .
+            '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles et des services fournis par les écosystèmes. Si une partie prenante n’a pas accès à ces services, ses moyens de subsistance et son bien-être sont menacés et elle peut être confrontée à la pauvreté, à l’insécurité alimentaire et à des problèmes de santé.</br >' .
+            '<b>Rivalry</b>: La rivalité des parties prenantes dans les services écosystémiques fait référence à la concurrence ou au conflit entre les individus ou les parties prenantes pour l’accès ou les intérêts et les priorités dans la gestion et l’utilisation de ces services. La rivalité peut conduire à la surutilisation ou à l’épuisement des ressources, exacerber la dégradation de l’environnement et compromettre la disponibilité à long terme de ces services pour la ou les communautés.</br >' .
+
+            '<b>Dependence</b>: La dépendance d\'une partie prenante vis-à-vis des services écosystémiques fait référence à la mesure dans laquelle la subsistance, les revenus,
+                 et l\'identité culturelle dépendent des ressources naturelles et des processus écologiques. Une faible dépendance signifie que l\'écosystème
+                 les services peuvent être remplacés sans difficulté ni coût significatifs. Une dépendance élevée fait référence à un degré plus élevé de
+                 caractère irremplaçable de l\'élément clé. Ainsi, comprendre et gérer la dépendance des parties prenantes vis-à-vis
+                 les services écosystémiques sont essentiels pour atteindre les objectifs de développement durable et de conservation.</br >'.
+            '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles
+                 et les services fournis par les écosystèmes. Si une partie prenante n\'a pas accès à ces services, ses moyens de subsistance et
+                 leur bien-être sont menacés et ils peuvent être confrontés à la pauvreté, à l\'insécurité alimentaire et à des problèmes de santé..</br >',
+            '<b>Rivalry</b>: La rivalité des acteurs dans les services écosystémiques renvoie à la compétition ou au conflit entre individus
+                  ou les parties prenantes sur l\'accès et l\'utilisation de ces services. La rivalité peut entraîner une surexploitation ou un épuisement des ressources,
+                  exacerbant la dégradation de l\'environnement et compromettant la disponibilité à long terme de ces services pour la communauté
+                  ou communautés.</br >'.
+            '<b>Qualité des services écosystémiques</b> facteurs physiques, biologiques et écologiques qui permettent à l\'écosystème de perdurer
+                  pour fournir le service souhaité, ou pour que l\espèce continue d\'être viable. (Exemple : pas de pollution, présence de juvéniles,
+                  biodiversité, etc.)'.
+            '<b>Quantité des services écosystémiques</b>: quantité, volume ou taille des services écosystémiques ou des espèces (Exemple:
+                  surface d\'une forêt, population d\'espèces, volume de cours d\'eau, etc.).</br >'.
+            '<b>Threads</b>: Human activities or processes that have impacted, are impacting or may impact the OECM’s key element being assessed.</br >',
         'ratingLegend' => [
+            'Dependence' => [
+                '0' => 'Très faible',
+                '1' => 'Faible',
+                '2' => 'Moyenne',
+                '3' => 'Elevée',
+            ],
+            'Quality' => [
+                '-2' => 'Très médiocre',
+                '-1' => 'Médiocre',
+                ' 0' => 'Moyen',
+                '+1' => 'Bon',
+                '+2' => 'Excellent',
+            ],
+            'Quantity' => [
+                '-2' => 'Très médiocre',
+                '-1' => 'Médiocre',
+                ' 0' => 'Moyen',
+                '+1' => 'Bon',
+                '+2' => 'Excellent',
+            ],
+        ],
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2, C4</i>',
+    ],
+
+    'AnalysisStakeholderIndirectUsers' => [
+        'title' => 'Analyse des parties prenantes - utilisateurs indirects',
+        'fields' => [
+            'Element' => 'Critères',
+            'Description' => 'Élément spécifique évalué',
+            'Support' => 'Soutien ou contribution',
+            'Guidelines' => 'Lignes directrices et procédures',
+            'LackOfCollaboration' => 'Manque de collaboration entre les utilisateurs indirects et directs',
+            'Status' => 'Statut des éléments clés de l\'ACME',
+            'Trend' => 'Tendance des éléments clés de l\'ACME',
+            'Threats' => 'Menaces',
+            'Comments' => 'Note',
+        ],
+        'module_info' =>
+            '<b>Soutien ou contribution</b>: Actions et efforts déployés par la partie prenante pour gérer et protéger 
+                durablement les écosystèmes ou les espèces. Les domaines de soutien ou de contribution peuvent être l\'un des 
+                suivants: financement, renforcement des capacités et assistance technique, recherche et suivi, application 
+                de la loi, politique et plaidoyer, et engagement à long terme.</br >' .
+            '<b>Lignes directrices et procédures</b>: Existence ou développement de lignes directrices et de procédures 
+                claires élaborées par la partie prenante pour assurer une gestion et une gouvernance à long terme et durables 
+                de l\'élément clé</br >' .
+            '<b>Manque de collaboration entre les utilisateurs indirects et directs</b>: Absence ou insuffisance de coordination 
+                entre les différents acteurs qui utilisent et bénéficient des services écosystémiques, ce qui pourrait conduire 
+                à des conflits et à des pratiques non durables</br >' .
+            '<b>Statut des éléments clés de l\'ACME</b>: L\'état des éléments clés indique l\'état de la fourniture des services 
+                écosystémiques ou de l\'élément clé de la biodiversité en termes de qualité. Un état très mauvais indique que 
+                le service écosystémique fourni est de mauvaise qualité ou que l\'élément clé de la biodiversité risque sérieusement 
+                de disparaître dans la zone de l\'ACME. Un très bon état indique que l\'élément clé est de bonne qualité ou 
+                en expansion. Divers facteurs environnementaux tels que le climat et les conditions météorologiques, le 
+                changement d\'utilisation des terres, la pollution et la surexploitation des ressources, la surexploitation 
+                peuvent affecter l\'état des éléments clés de l\'ACME.</br >' .
+            '<b>Tendance des éléments clés de l\'ACME</b>: Les tendances actuelles des éléments clés indiquent le changement 
+                dans la quantité de services écosystémiques fournis ou dans la taille-surface des éléments clés de la biodiversité. 
+                Pour les services écosystémiques, il peut s\'agir de la quantité de services fournis, pour l\'élément clé 
+                de la biodiversité, il peut s\'agir de la taille de la population (espèce), de la superficie (habitats, 
+                couverture terrestre) ou de la quantité de production écologique.</br >' .
+            '<b>Menaces</b>: Activités ou processus humains qui ont impacté, impactent ou peuvent impacter l’élément clé 
+                de l\'ACME évalué.</br >',
+        'ratingLegend' => [
+            'Support' => [
+                '0' => 'Pas ou très peu d\'appui : La partie prenante n\'apporte pas ou très peu d\'appui dans la gestion et la gouvernance de l\'espèce ou des services écosystémiques.',
+                '1' => 'Faible soutien: La partie prenante apporte peu de soutien dans la gestion et la gouvernance de l\'espèce ou des services écosystémiques.',
+                '2' => 'Soutien modéré : La partie prenante apporte un certain soutien dans la gestion et la gouvernance de l\'espèce ou des services écosystémiques',
+                '3' => 'Soutien élevé : La partie prenante apporte un soutien significatif dans la gestion et la gouvernance de l\'espèce ou des services écosystémiques',
+            ],
             'Status' => [
                 '-2' => 'Très mauvais',
                 '-1' => 'Mauvais',
@@ -612,7 +683,7 @@ return [
                 '1' => 'Bon',
                 '2' => 'Très bon',
             ],
-            'Tendence' => [
+            'Trend' => [
                 '-2' => 'Fortement en baisse',
                 '-1' => 'Décroissante',
                 '0' => 'Pas de changement',
@@ -621,11 +692,6 @@ return [
             ]
         ],
         'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>C4</i>',
-        'summary' => 'Agrégé',
-        'average' => 'Moyenne',
-        'elements_importance' => 'Conditions des éléments',
-        'involvement_ranking' => 'Implication des parties prenantes',
-        'involvement' => 'Implication de la partie prenante (0-100)'
     ],
 
 ];

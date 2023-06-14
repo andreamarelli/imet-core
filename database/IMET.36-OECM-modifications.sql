@@ -55,5 +55,24 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_direct_users
     group_key        character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
+CREATE TABLE imet_oecm.context_analysis_stakeholders_indirect_users
+(
+    id               serial PRIMARY KEY,
+    "FormID"         integer,
+    "UpdateBy"       integer,
+    "UpdateDate"     character varying(30),
+    "Stakeholder"    text,
+    "Element"        text,
+    "Description"    text,
+    "Support"        numeric,
+    "Guidelines"     character varying(100),
+    "LackOfCollaboration"   boolean,
+    "Status"         numeric,
+    "Trend"          numeric,
+    "Threats"        text,
+    "Comments"       text,
+    group_key        character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 COMMIT;

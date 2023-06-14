@@ -132,6 +132,12 @@ return [
         'open'      => 'Open access (no criteria or rules for use) '
     ],
 
+    'Guidelines' => [
+        'poorly_developed'      => 'Poorly developed guidelines and procedures',
+        'moderately_developed'  => 'Moderately developed guidelines and procedures',
+        'well_developed'        => 'Well-developed guidelines and procedures'
+    ],
+
     'MainThreat' => [
         'commercial_residential'    => 'Commercial and residential',
         'agriculture_aquaculture'   => 'Agriculture and aquaculture',

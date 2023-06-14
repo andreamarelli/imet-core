@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 /**
  * @property $titles
  */
-class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
+class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 {
-    protected $table = 'imet_oecm.context_analysis_stakeholders_direct_users';
+    protected $table = 'imet_oecm.context_analysis_stakeholders_indirect_users';
     public $titles = [];
     protected $fixed_rows = true;
 
@@ -21,23 +21,23 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\KeyElements::class, 'Element']
     ];
-    protected static $USER_MODE = Stakeholders::ONLY_DIRECT;
+    protected static $USER_MODE = Stakeholders::ONLY_INDIRECT;
 
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'SA 2.1';
-        $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.title');
+        $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.title');
         $this->module_fields = [
-            ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
-            ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Description')],
-            ['name' => 'Dependence',    'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Dependence')],
-            ['name' => 'Access',        'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Access')],
-            ['name' => 'Rivalry',       'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Rivalry')],
-            ['name' => 'Quality',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quality')],
-            ['name' => 'Quantity',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quantity')],
-            ['name' => 'Threats',      'type' => 'dropdown_multiple-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Threats')],
-            ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Comments')],
+            ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Description',   'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Description')],
+            ['name' => 'Support',       'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Support')],
+            ['name' => 'Guidelines',    'type' => 'suggestion-ImetOECM_Guidelines', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Guidelines')],
+            ['name' => 'LackOfCollaboration',  'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.LackOfCollaboration')],
+            ['name' => 'Status',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Status')],
+            ['name' => 'Trend',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Trend')],
+            ['name' => 'Threats',      'type' => 'dropdown_multiple-ImetOECM_MainThreat', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Threats')],
+            ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Comments')],
             ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
 
@@ -47,8 +47,8 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
             'values' => trans('imet-core::oecm_context.AnalysisStakeholders.predefined_values')
         ];
 
-        $this->module_info = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.module_info');
-        $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.ratingLegend');
+        $this->module_info = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.module_info');
+        $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -103,8 +103,9 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 //                ) * 100 / 8;
 //            return $item['__importance'] * $item['__stakeholder_weight'];
 //        } else {
-            return null;
+        return null;
 //        }
     }
+
 
 }

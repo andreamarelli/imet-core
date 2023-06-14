@@ -5,6 +5,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
@@ -61,9 +62,8 @@ class Imet extends BaseImetForm
             StakeholdersObjectives::class,
         ],
         'stakeholder_analysis' => [
-            AnalysisStakeholderDirectUsers::class
-//            Modules\Context\AnalysisStakeholderAccessGovernance::class,
-//            Modules\Context\AnalysisStakeholderTrendsThreats::class
+            AnalysisStakeholderDirectUsers::class,
+            AnalysisStakeholderIndirectUsers::class
         ],
     ];
 

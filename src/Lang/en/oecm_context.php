@@ -441,19 +441,7 @@ return [
             for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
-    'AnalysisStakeholderDirectUsers' => [
-        'title' => 'Analysis per stakeholder - Direct Users',
-        'fields' => [
-            'Element' => 'Criteria',
-            'Description' => 'Specific element assessed',
-            'Dependence' => 'Dependence',
-            'Access' => 'Access',
-            'Rivalry' => 'Rivalry',
-            'Quality' => 'Quality',
-            'Quantity' => 'Quantity',
-            'Threats' => 'Threats',
-            'Comments' => 'Note',
-        ],
+    'AnalysisStakeholders' => [
         'titles' => [
             'title0' => 'Key animals and plants species in the OECM',
             'title1' => 'Key Provisioning services',
@@ -618,6 +606,27 @@ return [
             'group12' => ['Provisioning fertility', 'Provisioning water', 'Provisioning disease control'],
             'group13' => ['Nursery and nesting habitats', 'Habitats for pollination']
         ],
+        'summary' => 'Importance of elements & Involvement of stakeholders',
+        'element' => 'Criteria',
+        'elements_importance' => 'Importance of elements by the stakeholders',
+        'involvement_ranking' => 'Involvement of stakeholders',
+        'importance' => 'Importance (0-100)',
+        'involvement' => 'Involvement of the stakeholder (0-100)'
+    ],
+
+    'AnalysisStakeholderDirectUsers' => [
+        'title' => 'Analysis per stakeholder - Direct Users',
+        'fields' => [
+            'Element' => 'Criteria',
+            'Description' => 'Specific element assessed',
+            'Dependence' => 'Dependence',
+            'Access' => 'Access',
+            'Rivalry' => 'Rivalry',
+            'Quality' => 'Quality',
+            'Quantity' => 'Quantity',
+            'Threats' => 'Threats',
+            'Comments' => 'Note',
+        ],
         'module_info' =>
             '<p>Identify key elements for your group, and assess its importance and its management/governance from your own perspective</p>' .
             '<b>Dependence</b>: A stakeholder’s dependence on ecosystem services refers to the extent to which subsistence, income, 
@@ -662,28 +671,49 @@ return [
             ],
         ],
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>C4</i>',
-        'summary' => 'Importance of elements & Involvement of stakeholders',
-        'elements_importance' => 'Importance of elements by the stakeholders',
-        'involvement_ranking' => 'Involvement of stakeholders',
-        'importance' => 'Importance (0-100)',
-        'involvement' => 'Involvement of the stakeholder (0-100)'
     ],
 
-    'AnalysisStakeholderTrendsThreats' => [
-        'title' => 'Trends and threats on key elements – A stakeholder analysis',
+    'AnalysisStakeholderIndirectUsers' => [
+        'title' => 'Analysis per stakeholder - Indirect Users',
         'fields' => [
             'Element' => 'Criteria',
-            'Status' => 'Status',
-            'Trend' => 'Trend',
-            'MainThreat' => 'Main threats',
-            'ClimateChangeEffect' => 'Effects of climate change',
-            'Comments' => 'Note/Description',
+            'Description' => 'Specific element assessed',
+            'Support' => 'Support or Contribution',
+            'Guidelines' => 'Guidelines and procedures',
+            'LackOfCollaboration' => 'Lack of collaboration between non-direct and direct users',
+            'Status' => 'Status of OECM’s key elements',
+            'Trend' => 'Trend of OECM’s key elements',
+            'Threats' => 'Threats',
+            'Comments' => 'Note',
         ],
         'module_info' =>
-            '<b>Status</b>: Estimation of current status</br >' .
-            '<b>Trend</b>: Trend in the quantity or quality</br >' .
-            '<b>Effects of climate change</b>: Change in quality, quantity and ecosystem production due to climate factors (precipitation, temperature, extreme events)</br >',
+            '<b>Support or Contribution</b>: Actions and efforts taken by the stakeholder to sustainably manage and protect 
+                ecosystems or species. Areas for support or contribution can be one of the following: financing, capacity-building 
+                and technical assistance, research and monitoring, law enforcement, policy and advocacy, and long-term commitment.</br >' .
+            '<b>Guidelines and procedures</b>: Existence or development of clear guidelines and procedures developed by the 
+                stakeholder to ensure long-term and sustainable management and governance of the key element </br >' .
+            '<b>Lack of collaboration between non-direct and direct users</b>: Absence or insufficient coordination among 
+                various stakeholders who use and benefit from ecosystem services, which could lead to conflicts and unsustainable 
+                practices</br >' .
+            '<b>Status of OECM’s key elements</b>: Status of the key elements indicates the status of the provision of ecosystem 
+                services or key biodiversity element in terms of quality. Very poor status indicates that the ecosystem service 
+                being provided is of poor quality or that the key biodiversity element is at serious risk of disappearing 
+                in the OECM area. Very good status indicates that the key element is of good quality or expanding. Various 
+                environmental factors such as climate and weather, land use change, pollution, and overexploitation of resources, 
+                overexploitation can affect the status of OECM’s key elements.</br >' .
+            '<b>Trend of OECM’s key elements</b>: Current trends of the key elements indicate the change in the quantity of 
+                ecosystem services provision or in the size-surface of key biodiversity elements. For ecosystem services this
+                 can be the quantity of services provided, for the key biodiversity element it can be the size of the 
+                 population (species), the area (habitats, land cover) or the quantity of ecological production.</br >' .
+            '<b>Threats</b>: Human activities or processes that have impacted, are impacting or may impact the OECM’s 
+                 key element being assessed. </br >',
         'ratingLegend' => [
+            'Support' => [
+                '0' => 'No or very low support: The stakeholder provides no or very little support in the management and governance of the species or ecosystem service ',
+                '1' => 'Low support: The stakeholder provides little support in the management and governance of the species or ecosystem services.',
+                '2' => 'Moderate support: The stakeholder provides some support in the management and governance of the species or ecosystem services ',
+                '3' => 'High support: The stakeholders provide significant support in the management and governance of the species or ecosystem services.',
+            ],
             'Status' => [
                 '-2' => 'Very bad',
                 '-1' => 'Bad',
@@ -700,11 +730,6 @@ return [
             ]
         ],
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>C4</i>',
-        'summary' => 'Aggregated',
-        'average' => 'Average',
-        'elements_importance' => 'Conditions of elements',
-        'involvement_ranking' => 'Involvement of stakeholders',
-        'involvement' => 'Involvement of the stakeholder (0-100)'
     ],
 
 ];

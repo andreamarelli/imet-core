@@ -133,6 +133,12 @@ return [
         'open'      => 'Accès libre (pas de critères ou de règles d’utilisation)'
     ],
 
+    'Guidelines' => [
+        'poorly_developed'      => 'Lignes directrices et procédures mal développées',
+        'moderately_developed'  => 'Lignes directrices et procédures modérément développées',
+        'well_developed'        => 'Lignes directrices et procédures bien développées'
+    ],
+
     'MainThreat' => [
         'commercial_residential'    => 'Commercial et résidentiel',
         'agriculture_aquaculture'   => 'Agriculture et aquaculture',

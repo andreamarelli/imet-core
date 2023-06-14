@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use Illuminate\Support\Str;
 
-abstract class AnalysisStakeholders extends Modules\Component\ImetModule
+abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 {
     protected static $USER_MODE;
 
@@ -112,6 +112,8 @@ abstract class AnalysisStakeholders extends Modules\Component\ImetModule
         return $new_records;
     }
 
+    abstract static function calculateKeyElementImportance($item): ?float;
+
     public static function calculateKeyElementsImportances($form_id, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
@@ -131,27 +133,7 @@ abstract class AnalysisStakeholders extends Modules\Component\ImetModule
 
         return collect($records)
             ->map(function($item){
-                if($item['Dependence']!==null
-                    || $item['Access']!==null
-                    || $item['Rivalry']!==null
-//                    || $item['Involvement']!==null
-//                    || $item['Accountability']!==null
-//                    || $item['Orientation']!==null
-                ){
-
-//                    $item['__importance'] = (
-//                            3
-//                            + ($item['Dependence'] ?? 0)
-//                            + ($item['Rivalry'] ? 1 : 0)*2
-//                            - ($item['Involvement'] ? 1 : 0)
-//                            - ($item['Accountability'] ? 1 : 0)
-//                            - ($item['Orientation'] ? 1 : 0)
-//                        ) * 100 / 8;
-                    $item['__weighted_importance'] = $item['__importance'] * $item['__stakeholder_weight'];
-
-                } else {
-                    $item['__weighted_importance'] = null;
-                }
+                $item['__weighted_importance'] = static::calculateKeyElementImportance($item);
                 return $item;
             })
             ->filter(function ($item){
@@ -172,7 +154,7 @@ abstract class AnalysisStakeholders extends Modules\Component\ImetModule
                     'element' => $group_values[0]['Element'],
                     'importance' => round($importance, 1),
                     'stakeholder_percentage' => $stakeholder_count,
-                    'group' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.groups.'.$group_values[0]['group_key'])
+                    'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.'.$group_values[0]['group_key'])
                 ];
             })
             ->sortByDesc('importance')
