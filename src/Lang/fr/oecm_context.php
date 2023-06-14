@@ -694,4 +694,11 @@ return [
         'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>C4</i>',
     ],
 
+    'AnalysisStakeholdersObjectives' => [
+        'module_info' =>
+            'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'ACME.
+            Les objectifs inscrits ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, 
+            la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'ACME.'
+    ],
+
 ];

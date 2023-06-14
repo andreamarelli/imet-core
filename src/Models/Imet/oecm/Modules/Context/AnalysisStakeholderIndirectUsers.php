@@ -26,7 +26,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'SA 2.1';
+        $this->module_code = 'SA 2.2';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.title');
         $this->module_fields = [
             ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Element'), 'other' => 'rows="3"'],

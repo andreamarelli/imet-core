@@ -732,4 +732,11 @@ return [
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>C4</i>',
     ],
 
+    'AnalysisStakeholdersObjectives' => [
+        'module_info' =>
+            'Establish and describe conservation objectives for the stakeholders analysis of the key elements of the OECM. 
+            The objectives entered below will be used for improving management, and more specifically for the planning, 
+            resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
+    ],
+
 ];

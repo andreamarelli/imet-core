@@ -75,4 +75,19 @@ CREATE TABLE imet_oecm.context_analysis_stakeholders_indirect_users
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+
+-- AnalysisStakeholdersObjectives
+CREATE TABLE imet_oecm.context_stakeholders_analysis_objectives
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Status"     text,
+    "ShortOrLongTerm" varchar(50),
+    "Comments"   text,
+    "Element"    text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 COMMIT;
