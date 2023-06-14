@@ -27,18 +27,21 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
-        $this->module_code = 'CTX 5';
+        $this->module_code = 'SA 1';
         $this->module_title = trans('imet-core::oecm_context.StakeholdersNaturalResources.title');
         $this->module_fields = [
-            ['name' => 'Element',                'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Element'), 'other' => 'rows="3"'],
-            ['name' => 'GeographicalProximity',  'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.GeographicalProximity')],
-            ['name' => 'Engagement',             'type' => 'dropdown_multiple-ImetOECM_Engagement', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Engagement')],
-            ['name' => 'Role',                   'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Role')],
-            ['name' => 'Impact',                 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Impact')],
-            ['name' => 'Comments',               'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Comments')],
+            ['name' => 'Element',               'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'GeographicalProximity', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.GeographicalProximity')],
+            ['name' => 'UsesCategories',        'type' => 'dropdown_multiple-ImetOECM_UsesCategories', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.UsesCategories')],
+            ['name' => 'DirectUser',            'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.DirectUser')],
+            ['name' => 'LevelEngagement',       'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.LevelEngagement')],
+            ['name' => 'LevelInterest',         'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.LevelInterest')],
+            ['name' => 'LevelExpertise',        'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.LevelExpertise')],
+            ['name' => 'Comments',              'type' => 'text-area', 'label' => trans('imet-core::oecm_context.StakeholdersNaturalResources.fields.Comments')],
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.StakeholdersNaturalResources.groups');
+        $this->module_info = trans('imet-core::oecm_context.StakeholdersNaturalResources.module_info');
         $this->ratingLegend = trans('imet-core::oecm_context.StakeholdersNaturalResources.ratingLegend');
 
         parent::__construct($attributes);
@@ -100,26 +103,30 @@ class StakeholdersNaturalResources extends Modules\Component\ImetModule
     {
         $records = static::getModuleRecords($form_id)['records'];
 
-        return collect($records)
-            ->filter(function($item){
-                return !empty($item['Element']);
-            })
-            ->map(function($item){
-                $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
-                $Engagement = is_array($Engagement) ? count($Engagement) : null;
+        return [];
 
-                $sum = $item['Impact']!==null ? $item['Impact'] : 0;
-                $sum += $item['Role']!==null ? $item['Role'] : 0;
-                $sum += $Engagement ?? 0;
-                $sum += $item['GeographicalProximity'] ? 4 : 0;
+        // TODO: to be reviewed
 
-                $item['__weight'] = round($sum * 100 / 16, 0);
-
-                $item['Element'] = Str::replace("\n", '', $item['Element']);
-
-                return $item;
-            })
-            ->pluck('__weight', 'Element')
-            ->toArray();
+//        return collect($records)
+//            ->filter(function($item){
+//                return !empty($item['Element']);
+//            })
+//            ->map(function($item){
+//                $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
+//                $Engagement = is_array($Engagement) ? count($Engagement) : null;
+//
+//                $sum = $item['Impact']!==null ? $item['Impact'] : 0;
+//                $sum += $item['Role']!==null ? $item['Role'] : 0;
+//                $sum += $Engagement ?? 0;
+//                $sum += $item['GeographicalProximity'] ? 4 : 0;
+//
+//                $item['__weight'] = round($sum * 100 / 16, 0);
+//
+//                $item['Element'] = Str::replace("\n", '', $item['Element']);
+//
+//                return $item;
+//            })
+//            ->pluck('__weight', 'Element')
+//            ->toArray();
     }
 }

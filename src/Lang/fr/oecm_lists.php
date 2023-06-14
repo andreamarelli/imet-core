@@ -111,14 +111,14 @@ return [
         'unknown'           => 'Inconnu',
     ],
 
-    'Engagement' => [
-        'provisioning'  => 'a. Économie d’approvisionnement et de subsistance (nourriture, énergie, matériel, pharmacopée)',
-        'regulation'    => 'b. Protection et restauration (lutte contre la dégradation, plantation d’arbres, contrôle de l’érosion, etc.)',
-        'cultural'      => 'c. Culturel et spirituel',
-        'education'    => 'd. Éducation et tourisme',
-        'enforcement'   => 'e. Application de la loi et réglementation (patrouille et gestion de l’utilisation des ressources naturelles, des valeurs culturelles et autres)',
-        'market_economy' => 'f. Économie de marché'
+    'UsesCategories' => [
+        'provisioning'  => 'Approvisionnement',
+        'cultural'      => 'Culturel',
+        'regulating'    => 'Régulateur',
+        'supporting'    => 'Porteur',
+        'biodiversity'  => 'Biodiversité',
     ],
+
 
     'PopulationStatus' => [
         'scarce'            => 'Scarse',

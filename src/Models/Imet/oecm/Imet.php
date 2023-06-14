@@ -7,6 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersObjectives;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
@@ -55,7 +56,8 @@ class Imet extends BaseImetForm
             Modules\Context\Habitats::class,
         ],
         'stakeholders' => [
-            Modules\Context\StakeholdersNaturalResources::class,
+            Modules\Context\StakeholdersNaturalResources::class,        // weight to be reviewed
+            StakeholdersObjectives::class,
         ],
         'stakeholder_analysis' => [
 //            Modules\Context\AnalysisStakeholderAccessGovernance::class,

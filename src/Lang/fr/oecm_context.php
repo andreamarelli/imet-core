@@ -352,10 +352,13 @@ return [
         'title' => 'Parties prenantes impliquées dans la gestion ou ayant un impact sur l’utilisation des ressources naturelles de l’AMCE',
         'fields' => [
             'Element' => 'Partie prenante',
-            'GeographicalProximity' => 'Vivant à l’intérieur ou à proximité de l’AMCE (moins d’une journée de marche)',
-            'Engagement' => 'Typologie de la gestion / de l’utilisation des RN de l’AMCE',
-            'Role' => 'Niveau d’engagement dans la gestion des RN',
-            'Impact' => 'Niveau d’impact sur les RN',
+            'GeographicalProximity' => 'Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)',
+            'UsesCategories' => 'Catégories d\'usages ou de gestion des éléments clés de l\'ACME',
+            'DirectUser' => 'Utilisateurs directs des éléments clés de l\'ACME',
+            'LevelEngagement' => 'Niveau d\'engagement dans la gestion des éléments clés de l\'ACME',
+            'LevelInterest' => 'Niveau d\'intérêt pour la préservation des éléments clés de l\'ACME',
+            'LevelExpertise' => 'Niveau d\'expertise dans la gestion des éléments clés de l\'ACME (y compris les connaissances traditionnelles ou autochtones)',
+
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -379,21 +382,50 @@ return [
             'group11' =>'Donateurs (identifier les donateurs privés et publics, etc.)',
 
         ],
+        'module_info' =>
+            'Identifier les acteurs impliqués dans la gestion ou impactant dans l\'utilisation des ressources naturelles de l\'ACME<br />
+             <b>Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)</b>: Vivre dans ou à proximité d\'une zone conservée peut donner accès à des
+             services écosystémiques, mais peut également nécessiter des restrictions et des réglementations.<br />
+             <b>Catégories d\'usages ou de gestion des éléments clés de l\'ACME</b>: différentes manières dont les parties prenantes interagissent avec
+             animaux, végétaux ou habitats (Biodiversité) et bénéficier de services écosystémiques (Approvisionnement, Culturel, Régulateur,
+                Accompagnement) fourni par l\'ACME.<br />
+             <b>Utilisateurs directs des éléments clés de l\'ACME</b>: les utilisateurs directs sont ceux qui bénéficient directement des biens et services
+             fourni par l\'aire conservée.<br />
+             <b>Niveau d\'intérêt pour la préservation des éléments clés de l\'ACME</b>: Degré d\'intérêt des parties prenantes pour les éléments clés de l\'ACME
+             la conservation et la protection à long terme, telles que l\'établissement de réglementations d\'utilisation et d\'accès, car elles peuvent influencer
+             leur niveau d\'implication et d\'engagement<br />
+             <b>Niveau d\'expertise dans la gestion des éléments clés de l\'ACME (y compris les connaissances traditionnelles ou autochtones)</b>: Degré à
+             laquelle une partie prenante possède les connaissances, les compétences et l\'expérience nécessaires pour gérer et conserver efficacement certains éléments clés
+             de l\'ACME. L\'expertise peut provenir de connaissances traditionnelles et indigènes, de pratiques historiques, d\'observations à long terme,
+             formations formelles et professionnelles. <br />',
         'ratingLegend' => [
-            'Impact' => [
-                '0' => 'Pas d’impact',
-                '1' => 'Faible impact',
-                '2' => 'Impact moyen',
-                '3' => 'Impact important',
+            'LevelEngagement' => [
+                '0' => 'Aucun engagement',
+                '1' => 'Faible engagement',
+                '2' => 'Engagement modéré',
+                '3' => 'Engagement important',
             ],
-            'Role' => [
-                '0' => 'Pas de rôle',
-                '1' => 'Peu de rôle (par exemple, uniquement des conseils)',
-                '2' => 'Rôle moyen (mélange de conseil, d’analyse, de planification, de mise en œuvre et de suivi)',
-                '3' => 'Rôle élevé (conseil + analyse + planification + mise en œuvre + suivi)',
+            'LevelInterest' => [
+                '0' => 'Pas d\'intérêt pour la conservation de l\'ACME',
+                '1' => 'Faible intérêt pour la conservation de l\'ACME',
+                '2' => 'Intérêt modéré pour la conservation de l\'ACME',
+                '3' => 'Intérêt important pour la conservation de l\'ACME',
+            ],
+            'LevelExpertise' => [
+                '0' => 'Aucune expertise dans la gestion des terres et des ressources naturelles',
+                '1' => 'Faible expertise dans la gestion des terres et des ressources naturelles',
+                '2' => 'Expertise modérée dans la gestion des terres et des ressources naturelles',
+                '3' => 'Expertise important dans la gestion des terres et des ressources naturelles',
             ]
         ],
         'warning_on_save' => 'AVERTISSEMENT !! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>'
+    ],
+
+    'StakeholdersObjectives' => [
+        'module_info' =>
+            'Établir et décrire des objectifs de conservation pour les parties prenantes impliquées dans la gestion ou ayant un impact sur l\'utilisation des
+             ressources naturelles de l\'ACME. Les objectifs inscrits ci-dessous serviront à améliorer la gestion, et plus particulièrement
+             pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'ACME.'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [

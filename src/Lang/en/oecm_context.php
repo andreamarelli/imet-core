@@ -365,10 +365,12 @@ return [
         'title' => 'Stakeholders involved in management or impacting in the use of natural resources of the OECM',
         'fields' => [
             'Element' => 'Stakeholder',
-            'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than a day\'s walk)',
-            'Engagement' => 'Typology of management / use of OECM\'s NR',
-            'Role' => 'Level of engagement in NR management',
-            'Impact' => 'Level of impact on NR',
+            'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than one hour\'s walk)',
+            'UsesCategories' => 'Categories of uses or management of OECM’s key elements',
+            'DirectUser' => 'Direct users of OECM’s key elements',
+            'LevelEngagement' => 'Level of engagement in OECM’s key elements management',
+            'LevelInterest' => 'Level of interest in preserving the OECM’s key elements',
+            'LevelExpertise' => 'Level of expertise in management of the OECM’s key elements (including traditional or indigenous knowledge)',
             'Comments' => 'Note',
         ],
         'titles' => [
@@ -392,21 +394,51 @@ return [
             'group11' => 'Donors (Identify private and public donors, etc.)',
 
         ],
+        'module_info' =>
+            'Identify the stakeholders involved in management or impacting in the use of the natural resources of the OECM<br />
+            <b>Living inside or in proximity to the OECM</b>: Living in or near a conserved area can provide access to important 
+            ecosystem services but might also require restrictions and regulations.<br />
+            <b>Categories of uses or management of OECM’s key elements</b>: Various ways in which stakeholders interact with 
+            animals, plants or habitats (Biodiversity) and benefit from ecosystem services (Provisioning, Cultural, Regulating, 
+            Supporting) provided by the OECM.<br />
+            <b>Direct users of OECM’s key elements</b>: Direct Users are those who directly benefit from the goods and services 
+            provided by the conserved area.<br />
+            <b>Level of interest in preserving the OECM’s key elements</b>: Degree to which stakeholder is interested in the OECM’s 
+            long-term conservation and protection, such as the establishment of regulations for use and access, as it can influence 
+            their level of involvement and commitment<br />
+            <b>Level of expertise in management of the OECM’s key elements (including traditional or indigenous knowledge)</b>: Degree to 
+            which a stakeholder has necessary knowledge, skills, and experience to effectively manage and conserve some key elements 
+            of the OECM. Expertise can be from traditional and indigenous knowledge, historical practices, long-term observations, 
+            formal and professional trainings. <br />
+            ',
         'ratingLegend' => [
-            'Impact' => [
-                '0' => 'No impact',
-                '1' => 'Low impact',
-                '2' => 'Medium impact',
-                '3' => 'High impact',
+            'LevelEngagement' => [
+                '0' => 'No engagement',
+                '1' => 'Low engagement',
+                '2' => 'Moderate engagement',
+                '3' => 'High engagement',
             ],
-            'Role' => [
-                '0' => 'No role',
-                '1' => 'Little role (e.g., only advice)',
-                '2' => 'Medium role (some mix of advice, analysis, planning, implementation and monitoring)',
-                '3' => 'High role (advise +analysis + planning + implementation + monitoring)',
+            'LevelInterest' => [
+                '0' => 'No interest in OECM conservation',
+                '1' => 'Low interest in OECM conservation',
+                '2' => 'Moderate interest in OECM conservation',
+                '3' => 'High interest in OECM conservation',
+            ],
+            'LevelExpertise' => [
+                '0' => 'No expertise in managing land and natural resources',
+                '1' => 'Low expertise in managing land and natural resources',
+                '2' => 'Moderate expertise in managing land and natural resources',
+                '3' => 'HIgh expertise in managing land and natural resources',
             ]
         ],
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>'
+    ],
+
+    'StakeholdersObjectives' => [
+        'module_info' =>
+            'Establish and describe conservation objectives for stakeholders involved in management or impacting in the use of 
+            natural resources of the OECM. The objectives entered below will be used for improving management, and more specifically 
+            for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'AnalysisStakeholderAccessGovernance' => [

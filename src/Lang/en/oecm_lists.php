@@ -111,13 +111,12 @@ return [
         'unknown'           => 'Unknown',
     ],
 
-    'Engagement' => [
-        'provisioning'  => 'a. Provisioning and subsistence economy (food, energy, material, pharmacopeia)',
-        'regulation'    => 'b. Protection and restoration (fight against degradation, tree planting, erosion control, etc)',
-        'cultural'      => 'c. Cultural and spiritual',
-        'educartion'    => 'd. Education and Tourism',
-        'enforcement'   => 'e. Enforcement and Regulation (patrolling and managing the use of natural resources, cultural and other values)',
-        'market_economy' => 'f. Market economy'
+    'UsesCategories' => [
+        'provisioning'  => 'Provisioning',
+        'cultural'      => 'Cultural',
+        'regulating'    => 'Regulating',
+        'supporting'    => 'Supporting',
+        'biodiversity'  => 'Biodiversity',
     ],
 
     'PopulationStatus' => [
