@@ -428,7 +428,7 @@ return [
              pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'ACME.'
     ],
 
-    'AnalysisStakeholderAccessGovernance' => [
+    'AnalysisStakeholderDirectUsers' => [
         'title' => 'Analyse par partie prenante',
         'fields' => [
             'Element' => 'Critères',
@@ -436,9 +436,9 @@ return [
             'Dependence' => 'Dépendance',
             'Access' => 'Accès',
             'Rivalry' => 'Rivalité',
-            'Involvement' => 'Implication',
-            'Accountability' => 'Responsabilité',
-            'Orientation' => 'Orientation',
+            'Quality' => 'Qualité',
+            'Quantity' => 'Quantité',
+            'Threats' => 'Menaces',
             'Comments' => 'Note',
         ],
         'titles' => [
