@@ -348,7 +348,7 @@ return [
         'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>SA 2</i>'
     ],
 
-    'StakeholdersNaturalResources' => [
+    'Stakeholders' => [
         'title' => 'Parties prenantes impliquées dans la gestion ou ayant un impact sur l’utilisation des ressources naturelles de l’AMCE',
         'fields' => [
             'Element' => 'Partie prenante',

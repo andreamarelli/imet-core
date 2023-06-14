@@ -11,7 +11,7 @@ ALTER TABLE imet_oecm.context_areas ADD COLUMN IF NOT EXISTS "StrictConservation
 -- Habitats
 ALTER TABLE imet_oecm.context_habitats ADD COLUMN IF NOT EXISTS "EcosystemDescription" text;
 
--- StakeholdersNaturalResources
+-- Stakeholders
 ALTER TABLE imet_oecm.context_stakeholders_natural_resources DROP COLUMN IF EXISTS "Engagement";
 ALTER TABLE imet_oecm.context_stakeholders_natural_resources DROP COLUMN IF EXISTS "Impact";
 ALTER TABLE imet_oecm.context_stakeholders_natural_resources DROP COLUMN IF EXISTS "Role";
@@ -32,6 +32,27 @@ CREATE TABLE imet_oecm.context_stakeholders_objectives
     "ShortOrLongTerm" varchar(50),
     "Comments"   text,
     "Element"    text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- AnalysisStakeholder
+CREATE TABLE imet_oecm.context_analysis_stakeholders_direct_users
+(
+    id               serial PRIMARY KEY,
+    "FormID"         integer,
+    "UpdateBy"       integer,
+    "UpdateDate"     character varying(30),
+    "Stakeholder"    text,
+    "Element"        text,
+    "Description"    text,
+    "Dependence"     numeric,
+    "Access"         character varying(50),
+    "Rivalry"        boolean,
+    "Quality"     numeric,
+    "Quantity"     numeric,
+    "Threats"       text,
+    "Comments"       text,
+    group_key        character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 

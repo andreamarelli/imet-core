@@ -107,7 +107,7 @@ class AnalysisStakeholderTrendsThreats extends Modules\Component\ImetModule
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
-        $weights = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weights = Modules\Context\Stakeholders::calculateWeights($form_id);
         $num_stakeholders = count($weights);
         $weights_sum = collect($weights)->sum();
         $weights_div = $weights_sum>0 ?

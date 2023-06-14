@@ -5,10 +5,10 @@
 /** @var Mixed $vue_data */
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Support\Str;
 
-$stakeholders = StakeholdersNaturalResources::calculateWeights($vue_data['form_id']);
+$stakeholders = Stakeholders::calculateWeights($vue_data['form_id']);
 arsort($stakeholders);
 
 $vue_data['current_stakeholder'] = 'summary';
@@ -49,10 +49,10 @@ $num_cols = count($definitions['fields']);
                 <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement_ranking')</h4>
                 <table class="table module-table">
                     <thead>
-                        <tr>
-                            <th></th>
-                            <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement')</th>
-                        </tr>
+                    <tr>
+                        <th></th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement')</th>
+                    </tr>
                     </thead>
                     <tbody>
                     @foreach($stakeholders as $stakeholder => $ranking)
@@ -74,7 +74,8 @@ $num_cols = count($definitions['fields']);
 @foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title" role="button" @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
+            <h4 class="card-title" role="button"
+                @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
                 {{ $index + 1 }} -
                 {{ $stakeholder }}
             </h4>

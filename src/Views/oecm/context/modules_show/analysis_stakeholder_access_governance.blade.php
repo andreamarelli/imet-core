@@ -6,10 +6,10 @@
 
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 
 $form_id = $collection[0]['FormID'];
-$stakeholders = StakeholdersNaturalResources::calculateWeights($form_id);
+$stakeholders = Stakeholders::calculateWeights($form_id);
 arsort($stakeholders);
 $key_elements_importance = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($form_id, $records);
 
@@ -34,7 +34,7 @@ $stakeholders_records = collect($records)
         </h4>
     </div>
     <div>
-        <div class="card-body"style="display: flex; column-gap: 40px;">
+        <div class="card-body" style="display: flex; column-gap: 40px;">
 
             <div>
                 <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>

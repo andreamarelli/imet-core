@@ -49,12 +49,12 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
         $preLoaded = [
             'field' => 'Element',
-            'values' => Modules\Context\StakeholdersNaturalResources::getStakeholders($form_id)
+            'values' => Modules\Context\Stakeholders::getStakeholders($form_id)
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $records, $empty_record);
 
-        $weight = Modules\Context\StakeholdersNaturalResources::calculateWeights($form_id);
+        $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
 
         foreach($module_records['records'] as $idx => $module_record){
             if(array_key_exists($module_record['Element'], $weight)){

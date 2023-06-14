@@ -5,10 +5,10 @@
 /** @var Mixed $records */
 
 use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderTrendsThreats;
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
+use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 
 $form_id = $collection[0]['FormID'];
-$stakeholders = StakeholdersNaturalResources::calculateWeights($form_id);
+$stakeholders = Stakeholders::calculateWeights($form_id);
 arsort($stakeholders);
 $key_elements_importance = AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($form_id, $records);
 
@@ -34,7 +34,7 @@ $stakeholders_records = collect($records)
         </h4>
     </div>
     <div>
-        <div class="card-body"style="display: flex; column-gap: 40px;">
+        <div class="card-body" style="display: flex; column-gap: 40px;">
 
             <div>
                 <table class="table module-table">
