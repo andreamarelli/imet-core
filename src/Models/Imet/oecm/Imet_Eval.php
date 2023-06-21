@@ -47,7 +47,7 @@ class Imet_Eval extends Imet
             Designation::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
-            Threats::class,
+            Threats::class,             // getModuleRecords to be reviewed
             ThreatsIntegration::class,
             KeyElements::class,         // getKeyElementsFromCTX to be reviewed
         ],
