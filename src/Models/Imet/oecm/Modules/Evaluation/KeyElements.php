@@ -82,32 +82,34 @@ class KeyElements extends Modules\Component\ImetModule_Eval
 
     public static function getKeyElementsFromCTX($form_id): array
     {
-        $ctx5_key_elements = Modules\Context\AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances( $form_id);
-        $ctx6_key_elements = Modules\Context\AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($form_id);
+        return [];
 
-        $ctx5_key_elements = collect($ctx5_key_elements)->keyBy('element')->toArray();
-        $ctx6_key_elements = collect($ctx6_key_elements)->keyBy('element')->toArray();
-
-        $key_elements = collect();
-        foreach ($ctx5_key_elements as $key => $ctx5_key_element){
-            if(array_key_exists($key, $ctx6_key_elements)){
-                $importance = ($ctx5_key_element['importance'] + (100 - $ctx6_key_elements[$key]['importance'])) / 2;
-                $stakeholder_count = $ctx6_key_elements[$key]['stakeholder_count'];
-            }
-            $key_elements->push([
-                'element' => $key,
-                'importance' => isset($importance) ? round($importance, 2): null,
-                'stakeholder_count' => $stakeholder_count ?? null,
-                'group' => $ctx5_key_element['group'] ?? null,
-            ]);
-        }
-
-        return $key_elements
-            ->sortByDesc('importance')
-            ->filter(function ($item){
-                return $item['importance']!==null;
-            })
-            ->toArray();
+//        $ctx5_key_elements = Modules\Context\AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances( $form_id);
+//        $ctx6_key_elements = Modules\Context\AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($form_id);
+//
+//        $ctx5_key_elements = collect($ctx5_key_elements)->keyBy('element')->toArray();
+//        $ctx6_key_elements = collect($ctx6_key_elements)->keyBy('element')->toArray();
+//
+//        $key_elements = collect();
+//        foreach ($ctx5_key_elements as $key => $ctx5_key_element){
+//            if(array_key_exists($key, $ctx6_key_elements)){
+//                $importance = ($ctx5_key_element['importance'] + (100 - $ctx6_key_elements[$key]['importance'])) / 2;
+//                $stakeholder_count = $ctx6_key_elements[$key]['stakeholder_count'];
+//            }
+//            $key_elements->push([
+//                'element' => $key,
+//                'importance' => isset($importance) ? round($importance, 2): null,
+//                'stakeholder_count' => $stakeholder_count ?? null,
+//                'group' => $ctx5_key_element['group'] ?? null,
+//            ]);
+//        }
+//
+//        return $key_elements
+//            ->sortByDesc('importance')
+//            ->filter(function ($item){
+//                return $item['importance']!==null;
+//            })
+//            ->toArray();
     }
 
 }

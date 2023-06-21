@@ -15,8 +15,8 @@ class Stakeholders extends Modules\Component\ImetModule
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
-        [Modules\Context\AnalysisStakeholderAccessGovernance::class, 'Element'],
-        [Modules\Context\AnalysisStakeholderTrendsThreats::class, 'Element'],
+        [Modules\Context\AnalysisStakeholderDirectUsers::class, 'Element'],
+        [Modules\Context\AnalysisStakeholderIndirectUsers::class, 'Element'],
         [Modules\Evaluation\SupportsAndConstraints::class, 'Element'],
         [Modules\Evaluation\SupportsAndConstraintsIntegration::class, 'Element'],
         [Modules\Evaluation\CapacityAdequacy::class, 'Element'],
@@ -59,8 +59,12 @@ class Stakeholders extends Modules\Component\ImetModule
     {
 
         foreach ($records as $index => $record){
-            // Ensure no "newline" are saved
+            // Ensure no "newline" (or other not allowed entities) are saved
             $record['Element'] = Str::replace("\n", '', $record['Element']);
+            $record['Element'] = Str::replace("\r", '', $record['Element']);
+            $record['Element'] = Str::replace("\t", '', $record['Element']);
+            $record['Element'] = Str::replace("&nbsp;", '', $record['Element']);
+            $record['Element'] = trim($record['Element']);
             // Remove all empty records: where "Element" is empty
             if($record['Element']===null || trim($record['Element'])===''){
                 unset($records[$index]);

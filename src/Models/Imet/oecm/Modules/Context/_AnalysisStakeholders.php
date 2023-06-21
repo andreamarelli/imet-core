@@ -23,10 +23,12 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
     {
         $form_id = $empty_record['FormID'];
 
-        // inject additional predefined values (first 3 groups) retrieved from CTX
+        // retrieve stakeholders
+        $stakeholders = Stakeholders::getStakeholders($form_id, static::$USER_MODE);
 
+        // Inject additional predefined values (last 3 groups) retrieved from CTX
         $predefined_values = (new static())->predefined_values;
-        $predefined_values['values']['group0'] =
+        $predefined_values['values']['group11'] =
             Modules\Context\AnimalSpecies::getModule($form_id)
                 ->filter(function($item){
                     return !empty($item['species']);
@@ -38,14 +40,14 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                         : $item;
                 })
                 ->toArray();
-        $predefined_values['values']['group1'] =
+        $predefined_values['values']['group12'] =
             Modules\Context\VegetalSpecies::getModule($form_id)
                 ->filter(function($item){
                     return !empty($item['species']);
                 })
                 ->pluck('species')
                 ->toArray();
-        $predefined_values['values']['group2'] =
+        $predefined_values['values']['group13'] =
             Modules\Context\Habitats::getModule($form_id)
                 ->filter(function($item){
                     return !empty($item['EcosystemType']);
@@ -59,6 +61,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 })
                 ->toArray();
 
+        // Clean records (if nothing from DB)
         if(!empty($records)) {
             // ensure first record has id field (set to null if doesn't)
             if (!array_key_exists((new static())->primaryKey, $records[0])) {
@@ -72,9 +75,6 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 $records = [];
             }
         }
-
-        // retrieve stakeholders
-        $stakeholders = Stakeholders::getStakeholders($form_id, static::$USER_MODE);
 
         // inject predefined values and replicate for each stakeholder
         $new_records = [];
@@ -106,6 +106,27 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 $new_record = $record;
                 $new_record['__predefined'] = false;
                 $new_records[] = $record;
+            }
+        }
+
+        // Add at least a record (empty) for each group per stakeholder
+        $groups = array_keys(trans('imet-core::oecm_context.AnalysisStakeholders.groups'));
+        foreach($stakeholders as $stakeholder) {
+            foreach ($groups as $group) {
+                $found = false;
+                foreach ($new_records as $record) {
+                    if($record['group_key'] === $group
+                        && $record['Stakeholder'] === $stakeholder){
+                        $found = true;
+                    }
+                }
+                if(!$found){
+                    $new_record = $empty_record;
+                    $new_record['__predefined'] = false;
+                    $new_record['group_key'] = $group;
+                    $new_record['Stakeholder'] = $stakeholder;
+                    $new_records[] = $new_record;
+                }
             }
         }
 

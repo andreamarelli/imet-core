@@ -13,7 +13,6 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 {
     protected $table = 'imet_oecm.context_analysis_stakeholders_indirect_users';
     public $titles = [];
-    protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -29,7 +28,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
         $this->module_code = 'SA 2.2';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.title');
         $this->module_fields = [
-            ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.AnalysisStakeholdersElement', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Description',   'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Description')],
             ['name' => 'Support',       'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Support')],
             ['name' => 'Guidelines',    'type' => 'suggestion-ImetOECM_Guidelines', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Guidelines')],
@@ -42,10 +41,6 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholders.groups');
-        $this->predefined_values = [
-            'field' => 'Element',
-            'values' => trans('imet-core::oecm_context.AnalysisStakeholders.predefined_values')
-        ];
 
         $this->module_info = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.module_info');
         $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.ratingLegend');
@@ -70,11 +65,12 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     {
         $isEmpty = true;
 
-        if($record['Dependence']!==null
-            || $record['Access']!==null
-            || $record['Rivalry']===true
-            || $record['Quality']===true
-            || $record['Quantity']===true
+        if($record['Description']!==null
+            || $record['Support']!==null
+            || $record['Guidelines']!==null
+            || $record['LackOfCollaboration']===true
+            || $record['Status']===true
+            || $record['Trend']===true
             || $record['Threats']===true
             || $record['Comments']!==null
         ){

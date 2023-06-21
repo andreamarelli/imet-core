@@ -13,7 +13,6 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 {
     protected $table = 'imet_oecm.context_analysis_stakeholders_direct_users';
     public $titles = [];
-    protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -29,7 +28,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
         $this->module_code = 'SA 2.1';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.title');
         $this->module_fields = [
-            ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.ctx51_element', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.AnalysisStakeholdersElement', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Description')],
             ['name' => 'Dependence',    'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Dependence')],
             ['name' => 'Access',        'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Access')],
@@ -42,10 +41,6 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
         ];
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholders.groups');
-        $this->predefined_values = [
-            'field' => 'Element',
-            'values' => trans('imet-core::oecm_context.AnalysisStakeholders.predefined_values')
-        ];
 
         $this->module_info = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.module_info');
         $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.ratingLegend');
@@ -70,7 +65,8 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
     {
         $isEmpty = true;
 
-        if($record['Dependence']!==null
+        if($record['Description']!==null
+            || $record['Dependence']!==null
             || $record['Access']!==null
             || $record['Rivalry']===true
             || $record['Quality']===true

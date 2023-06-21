@@ -49,7 +49,7 @@ class Imet_Eval extends Imet
             SupportsAndConstraintsIntegration::class,
             Threats::class,
             ThreatsIntegration::class,
-            KeyElements::class,
+            KeyElements::class,         // getKeyElementsFromCTX to be reviewed
         ],
         'planning' => [
             RegulationsAdequacy::class,

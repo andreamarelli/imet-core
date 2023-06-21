@@ -443,35 +443,30 @@ return [
 
     'AnalysisStakeholders' => [
         'titles' => [
-            'title0' => 'Key animals and plants species in the OECM',
-            'title1' => 'Key Provisioning services',
-            'title2' => 'Key Cultural services',
-            'title3' => 'Key Regulating services',
-            'title4' => 'Key supporting services (services which enable other services)',
+            'title0' => 'Key Provisioning services',
+            'title1' => 'Key Cultural services',
+            'title2' => 'Key Regulating services',
+            'title3' => 'Key Supporting services (services which enable other services)',
+            'title4' => 'Key Biodiversity elements',
         ],
-        'biodiversity' => 'Biodiversity',
-        'ecosystem_services' => 'Ecosystem Services',
         'groups' => [
-            'group0' => 'Animals',
-            'group1' => 'Plants',
-            'group2' => 'Habitats',
-            'group3' => 'Provisioning-Nutrition',
-            'group4' => 'Provisioning-Water',
-            'group5' => 'Provisioning-Materials',
-            'group6' => 'Provisioning-Energy',
-            'group7' => 'Aesthetic appreciation, recreation, and tourism',
-            'group8' => 'Intellectual interactions and performances',
-            'group9' => 'Spiritual and/or emblematic',
-            'group10' => 'Remediation of air and water pollutants',
-            'group11' => 'Erosion prevention and maintenance of soil fertility',
-            'group12' => 'Provisioning lands (agriculture, livestock, forests)',
-            'group13' => 'Habitats for animals and plants',
+            'group0'  => 'Provisioning-Nutrition',
+            'group1'  => 'Provisioning-Water',
+            'group2'  => 'Provisioning-Materials',
+            'group3'  => 'Provisioning-Energy',
+            'group4'  => 'Tourism (aesthetic appreciation, recreation, etc.)',
+            'group5'  => 'Intellectual (educational, traditional knowledge, etc.)',
+            'group6'  => 'Spiritual and/or emblematic',
+            'group7'  => 'Remediation of air and water pollutants',
+            'group8'  => 'Erosion prevention and maintenance of soil fertility',
+            'group9'  => 'Lands (agriculture, livestock, forests)',
+            'group10' => 'Habitats for animals and plants',
+            'group11' => 'Animals',
+            'group12' => 'Plants',
+            'group13' => 'Habitats',
         ],
         'groups_descriptions' => [
-            'group0' => '',
-            'group1' => '',
-            'group2' => '',
-            'group3' =>
+            'group0' =>
                 '<p>The provision of ecosystem services - nutrition refers to the provision of food that is essential for human health and well-being. 
                     It is important to understand and manage the provision of food by maintaining the health of ecosystems through the conservation of soil and water, 
                     forests, biodiversity, etc. Example of ecosystem services provisioning – nutrition</p>
@@ -480,7 +475,7 @@ return [
                         <li>Human food animal as wild/farmed meat, eggs, insects, fish/livestock feed (wild, farmed, bait), etc.</li>
                         <li>Medicines (quinine against malaria, herbal supplements, aromatic oils, anti-venoms, etc.) and blue biotechnology (fish oil)</li>
                     </ul>',
-            'group4' =>
+            'group1' =>
                 '<p>The provision of ecosystem services - water includes the provision of clean water for drinking, human use and irrigation. Managing water supply involves 
                     protecting watersheds, wetlands and other aquatic ecosystems, promoting sustainable water use practices and reducing water pollution and degradation. 
                     Example of ecosystem services provisioning - water</p>
@@ -489,7 +484,7 @@ return [
                         <li>Water for irrigation for crops or other agricultural activities and for fish/livestock consumption</li>
                         <li>Water storage which can be accessed during periods of drought or low water availability</li>
                      </ul>',
-            'group5' =>
+            'group2' =>
                 '<p>The provision of ecosystem services - materials includes the provision of wood, fibres, and other materials that 
                     are used for construction, and manufacturing. Managing ecosystem involves promoting sustainable harvesting practices 
                     and exploring alternative materials and technologies. Example of ecosystem services provisioning – materials</p>
@@ -499,7 +494,7 @@ return [
                         <li>Ornamental in general and aquarian resources (seeds, shells and fish collection), </li>
                         <li>Minerals as gold, silver, copper, sand (building), etc.</li>
                      </ul>',
-            'group6' =>
+            'group3' =>
                 '<p>The provision of ecosystem services-energy includes the use of biomass, such as firewood or crop residues, and solar or 
                     wind energy and other energy needs as fertiliser helps to provide essential services such as cooking, heating, lighting 
                     and for agriculture productivity in rural communities that may lack access to modern energy sources. The sustainable management 
@@ -510,7 +505,7 @@ return [
                         <li>Biomass to convert in fertiliser</li>
                         <li>Other green electricity sources: Flowing water, wind, solar or geothermal that can be harnessed to generate electricity.</li>
                      </ul>',
-            'group7' =>
+            'group4' =>
                 '<p>The provision of ecosystem services – cultural services refers to the benefits that natural systems provide for the enjoyment and well-being of people. 
                     These benefits can include opportunities for outdoor recreation, such as hiking, camping and wildlife viewing, as well as the aesthetic beauty of 
                     natural landscapes, such as mountains, forests and beaches. Ecosystem services for aesthetic appreciation, recreation, and tourism can contribute 
@@ -522,7 +517,7 @@ return [
                         <li>Cultural tourism which involves visiting historical sites, landmarks, and cultural attractions that are located within natural areas.</li>
                         <li>Traditional hunting or fishing, conserved areas for specified traditional hunting or fishing practices</li>
                      </ul>',
-            'group8' =>
+            'group5' =>
                 '<p>The provision of ecosystem services – cultural services refer to the benefits that natural systems provide for education, research, and 
                     artistic expression. These benefits can include opportunities for scientific research, environmental education, and cultural activities 
                     that are inspired by or conducted in natural settings. These services can contribute to the development of human knowledge, cultural 
@@ -533,7 +528,7 @@ return [
                         <li>Traditional practices and ecological knowledge that are important part of the community\'s identity and heritage related to nature and the environment such as traditional pharmacopeia, medicines</li>
                         <li>Inspiration and creativity for artists, writers, photographers and other creatives to develop new ideas and works.</li>
                      </ul>',
-            'group9' =>
+            'group6' =>
                 '<p>The provision of ecosystem services – cultural services for spiritual and emblematic are those that provide cultural and symbolic 
                     value to human societies. Spiritual ecosystem services may include the aesthetic and emotional experiences that people derive from 
                     nature. Emblematic ecosystem services are those that are associated with a particular cultural identity or icon. These services 
@@ -543,7 +538,7 @@ return [
                         <li>Cultural icons and symbols as animal or plant species as Lion (in Kenya which is a symbol of courage and strength), Elephants, Crested Crane (in Uganda a bird which represents the country\'s natural beauty and grace) or Baobab tree, etc.</li>
                         <li>Landscapes that have spiritual or cultural significance for communal identity.</li>
                      </ul>',
-            'group10' =>
+            'group7' =>
                 '<p>The provision of ecosystem services - remediation of air and water pollutants involves the protection of ecosystems to reduce 
                     pollution and degradation, and the purification of water and air through natural processes. Examples of how habitats provide 
                     those ecosystem services</p>
@@ -552,7 +547,7 @@ return [
                         <li>Forests can help to reduce air pollution by absorbing and filtering airborne pollutants and producing oxygen helping to mitigate climate change.</li>
                         <li>Vegetation zones can help to filter and contribute to water purification, waste removal/neutralisation, waste regulation, etc.</li>
                      </ul>',
-            'group11' =>
+            'group8' =>
                 '<p>The provision of ecosystem services – erosion prevention and maintenance of soil fertility refers to the protection of soil by 
                     the vegetation from the physical forces of wind and water, which can lead to the loss of topsoil and nutrients. Maintenance 
                     of soil fertility refers to the processes that maintain the nutrient content and structure of soil. These services are important 
@@ -567,7 +562,7 @@ return [
                         <li>Storm control: Trees and help to reduce the impact of storms, natural barriers as mountains or islands can act as barriers to 
                         storms or absorbing some of the energy from waves, bodies of water help to moderate temperatures, which can reduce the severity of storms.</li>
                      </ul>',
-            'group12' =>
+            'group9' =>
                 '<p>Ecosystem services of provisioning productivity for agriculture, livestock, and forests refer to the benefits that natural ecosystems 
                     provide to support the production and productivity of these systems. These services include the maintenance of soil fertility, 
                     nutrient cycling, water availability and regulation, and pest and disease control. These provisioning services are essential 
@@ -578,7 +573,7 @@ return [
                         <li>Water availability and regulation</li>
                         <li>Pest and disease control</li>
                      </ul>',
-            'group13' =>
+            'group10' =>
                 '<p>Ecosystem services of habitats for animals and plants refer to the benefits that natural ecosystems provide to support the 
                     survival and reproduction of wildlife species and plant communities. These services include the provision of suitable habitat 
                     for various species, such as food, shelter, and breeding sites. Protecting and conserving natural habitats is therefore essential 
@@ -592,19 +587,22 @@ return [
                         hummingbirds which provide an important ecosystem service for agriculture as they help plants to produce fruit, seeds and 
                         other reproductive structures. </li>
                      </ul>',
+            'group11' => '',
+            'group12' => '',
+            'group13' => '',
         ],
-        'predefined_values' => [
-            'group3' => ['Human food vegetal', 'Human food animal', 'Medicines'],
-            'group4' => ['Water supply and quality for human use', 'Water for irrigation', 'Water storage'],
-            'group5' => ['Timber', 'Fibres', 'Ornamental and aquarian resources', 'Minerals'],
-            'group6' => ['Biomass for energy', 'Biomass for fertilization', 'Other green electricity sources'],
-            'group7' => ['Ecotourism and nature watching', 'Cultural tourism', 'Traditional hunting or fishing'],
-            'group8' => ['Educational opportunities and scientific research', 'Traditional practices and ecological knowledge', 'Inspiration and creativity'],
-            'group9' => ['Sacred, historical or religious sites', 'Cultural icons and symbols', 'Landscapes with spiritual value'],
-            'group10' => ['Water and air purification', 'Waste regulation and removal'],
-            'group11' => ['Flood control', 'Erosion control', 'Drought control', 'Storm control'],
-            'group12' => ['Provisioning fertility', 'Provisioning water', 'Provisioning disease control'],
-            'group13' => ['Nursery and nesting habitats', 'Habitats for pollination']
+        'lists' => [
+            'group0' => ['Human food vegetal', 'Human food animal', 'Medicines'],
+            'group1' => ['Water supply and quality for human use', 'Water for irrigation', 'Water storage'],
+            'group2' => ['Timber', 'Fibres', 'Ornamental and aquarian resources', 'Minerals'],
+            'group3' => ['Biomass for energy', 'Biomass for fertilization', 'Other green electricity sources'],
+            'group4' => ['Ecotourism and nature watching', 'Cultural tourism', 'Traditional hunting or fishing'],
+            'group5' => ['Educational opportunities and scientific research', 'Traditional practices and ecological knowledge', 'Inspiration and creativity'],
+            'group6' => ['Sacred, historical or religious sites', 'Cultural icons and symbols', 'Landscapes with spiritual value'],
+            'group7' => ['Water and air purification', 'Waste regulation and removal'],
+            'group8' => ['Flood control', 'Erosion control', 'Drought control', 'Storm control'],
+            'group9' => ['Provisioning fertility', 'Provisioning water', 'Provisioning disease control'],
+            'group10' => ['Nursery and nesting habitats', 'Habitats for pollination']
         ],
         'summary' => 'Importance of elements & Involvement of stakeholders',
         'element' => 'Criteria',
