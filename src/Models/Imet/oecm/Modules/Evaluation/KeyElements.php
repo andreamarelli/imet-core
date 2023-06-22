@@ -38,6 +38,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
 
         $this->module_subTitle = trans('imet-core::oecm_evaluation.KeyElements.module_subTitle');
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.KeyElements.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.KeyElements.module_info_EvaluationQuestion');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.KeyElements.ratingLegend');
 
         parent::__construct($attributes);

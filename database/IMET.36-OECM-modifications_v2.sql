@@ -90,4 +90,27 @@ CREATE TABLE imet_oecm.context_stakeholders_analysis_objectives
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- ObjectivesContext
+CREATE TABLE imet_oecm.eval_objectives_context
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "Element"    text,
+    "ShortOrLongTerm" varchar(50),
+    "Objective"  text,
+    "Comments"   text,
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN "PrintedCopy" boolean;
+ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN "ExplainedToMembers" boolean;
+ALTER TABLE imet_oecm.eval_management_plan ADD COLUMN "KnowledgePercentage" numeric;
+
+ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "PrintedCopy" boolean;
+ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "ExplainedToMembers" boolean;
+ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "KnowledgePercentage" numeric;
+
+
 COMMIT;

@@ -58,10 +58,11 @@ return [
         ],
         'module_subTitle' => 'Éléments clés animaux, plantes, habitats (protégés, exploités, en voie de disparition, envahissants, etc.) et services (services d’approvisionnement, de contrôle, culturels, de soutien)',
         'module_info_EvaluationQuestion' => [
-            'L’AMCE a-t-elle donné la priorité aux éléments clés de sa gestion ?'
+            'L\'AMCE a-t-elle priorisé les éléments clés dans sa gestion ? L\'évaluation doit évaluer la nécessité de
+             prioriser les éléments clés dans la gestion de l\'AMCE. L\'évaluation utilise une liste classée basée sur les analyses de SA1 et SA2.'
         ],
         'module_info_Rating' => [
-            'Evaluer le niveau d’intégration de 3 à 10 éléments clés pour la gestion de l’AMCE (automatiquement rapportés à partir du contexte d’intervention parce que (i) c’est un élément clé important de l’AMCE ; (ii) il fournit un service important aux parties prenantes ; (iii) il est rare ou en danger d’extinction)'
+            'Évaluer la nécessité de prioriser les éléments clés dans la gestion de l\'AMCE'
         ],
         'from_group' => 'De la catégorie : ',
         'num_stakeholders' => 'Indiqué par :num partie(s) prenante(s)',
@@ -95,7 +96,7 @@ return [
         ]
     ],
 
-    'SupportsAndConstraintsIntégration' => [
+    'SupportsAndConstraintsIntegration' => [
         'title' => 'Intégration of Partie prenantes\' constraints or supports in management and governance',
         'fields' => [
             'Partie prenante'       => 'Partie prenante',
@@ -110,6 +111,15 @@ return [
                 '2' => 'intégration modérée',
                 '3' => 'haute intégration',
             ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'L\'évaluation évalue la nécessité de prioriser la minimisation des contraintes de gestion ou la maximisation
+             de l\'accompagnement des acteurs dans la gestion de l\'OECM. L\'évaluation utilise la liste de classement basée sur l\'intégration
+             de la contrainte/du conflit des parties prenantes (C2.1) ou des scores de soutien/conformité avec l\'implication des parties prenantes
+             dans la gestion des valeurs OECM (SA1 du contexte d\'intervention).'
+        ],
+        'module_info_Rating' => [
+            'Évaluer l\'intégration actuelle dans la gestion des contraintes ou de l\'accompagnement des parties prenantes'
         ],
         'ranking' => 'Notation (C2.1)',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
@@ -167,7 +177,7 @@ return [
         'stakeholders' => 'Indiqué par :num  Partie prenante(s)'
     ],
 
-    'ThreatsIntégration' => [
+    'ThreatsIntegration' => [
         'title' => 'Intégration des menaces',
         'fields' => [
             'Threat'       => 'Menace',
@@ -182,6 +192,13 @@ return [
                 '2' => 'intégration modérée',
                 '3' => 'haute intégration',
             ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'L\'évaluation évalue la nécessité de hiérarchiser les menaces afin de minimiser leurs effets et leur impact sur l\'AMCE
+             gestion. L\'évaluation utilise la liste de classement basée sur l\'analyse des menaces dans SA2 et C3.1.'
+        ],
+        'module_info_Rating' => [
+            'Évaluer l\'intégration actuelle des menaces à la gestion de l\'AMCE'
         ],
         'ranking' => 'Notation (C3.1)',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :<i>I1, PR6</i>',
@@ -307,6 +324,9 @@ return [
         'title' => 'Management plan',
         'fields' => [
             'PlanExistence' => 'A) Existe-t-il un plan de gestion ?',
+            'PrintedCopy' => 'L\'entité de gestion dispose-t-elle d\'un exemplaire imprimé ?',
+            'ExplainedToMembers' => 'Le plan de gestion a-t-il été expliqué aux membres ?',
+            'KnowledgePercentage' => 'Pourcentage de membres ou d\'employés connaissant le contenu',
             'PlanUptoDate' => 'Le plan de gestion est-il à jour ?',
             'PlanApproved' => 'Le plan de gestion a-t-il été approuvé ?',
             'PlanImplemented' => 'Le plan de gestion a-t-il été mis en œuvre ?',
@@ -314,6 +334,12 @@ return [
             'Comments' => 'Comments / Explanation',
         ],
         'ratingLegend' => [
+            'KnowledgePercentage' => [
+                '0' => 'moin de 10%',
+                '1' => '10–50%',
+                '2' => '50%-80%',
+                '3' => 'plus que 80%',
+            ],
             'PlanAdequacyScore' => [
                 '0' => 'La clarté et l’applicabilité de la vision, de la mission et des objectifs sont totalement inadéquates (0-30% des besoins)',
                 '1' => 'La clarté et l’applicabilité de la vision, de la mission et des objectifs sont quelque peu inadéquates (31-60% des besoins)',
@@ -334,6 +360,9 @@ return [
         'title' => 'Plan de travail',
         'fields' => [
             'PlanExistence' => 'A) Existe-t-il un plan de travail ? Oui/Non',
+            'PrintedCopy' => 'L\'entité de gestion dispose-t-elle d\'un exemplaire imprimé ?',
+            'ExplainedToMembers' => 'Le plan de gestion a-t-il été expliqué aux membres ?',
+            'KnowledgePercentage' => 'Pourcentage de membres ou d\'employés connaissant le contenu',
             'PlanUptoDate' => 'Le plan de travail est-il à jour (couvrant la période actuelle) ? Oui/Non',
             'PlanApproved' => 'Le plan de travail a-t-il été officiellement approuvé ? Oui/Non',
             'PlanImplemented' => 'Le plan de travail ou de suivi a-t-il été mis en œuvre ? Oui/Non',
@@ -341,6 +370,12 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
+            'KnowledgePercentage' => [
+                '0' => 'moin de 10%',
+                '1' => '10–50%',
+                '2' => '50%-80%',
+                '3' => 'plus que 80%',
+            ],
             'PlanAdequacyScore' => [
                 '0' => 'La clarté et l’applicabilité des activités et des résultats attendus sont totalement inadéquates',
                 '1' => 'La clarté et l’applicabilité des activités et des résultats attendus sont quelque peu inadéquates',
@@ -365,8 +400,8 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Objectifs existants du plan de gestionn',
-            'group1' => 'Objectifs potentiels du C1, C2.2, C3.2 & C4',
+            'group0' => 'Adéquation des objectifs du plan de gestion pour les éléments clés',
+            'group1' => 'Objectifs prospectifs pour les éléments clés priorisés dans la gestion, automatiquement signalés à partir du contexte de gestion',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -382,9 +417,16 @@ return [
             'Les buts et objectifs de l’AMCE doivent être clairement compris. Ils doivent être bien définis et formulés de manière à faciliter le suivi, mais aussi se rapporter aux valeurs clés de l’AMCE (c’est-à-dire les espèces ou les écosystèmes importants) ou aux principaux domaines d’activité de la gestion (par exemple, le tourisme, l’éducation)'
         ],
         'module_info_Rating' => [
-            'Évaluer l’adéquation des objectifs du plan de gestion pour les éléments clés de l’AMCE, sur la base de l’analyse du contexte de gestion, points C1, C2.2, C3.2 & C4)'
+            'Évaluer la pertinence des objectifs du plan de gestion pour les éléments clés de l\'AMCE, en fonction des objectifs existants du plan de gestion et du contexte de gestion'
         ],
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>O/C1</i>',
+    ],
+
+    'ObjectivesContext' => [
+        'module_info' =>
+            'Établir et décrire les objectifs de conservation pour le contexte de gestion de l\'AMCE. Les objectifs listés ci-dessous
+            seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants),
+            phases du processus et pour le suivi des activités de gestion de l\'AMCE.'
     ],
 
     'ObjectivesPlanification' => [

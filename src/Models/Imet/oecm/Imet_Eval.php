@@ -24,6 +24,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGoverna
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesContext;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesIntrants;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesPlanification;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesProcessus;
@@ -47,16 +48,17 @@ class Imet_Eval extends Imet
             Designation::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
-            Threats::class,             // getModuleRecords to be reviewed
-            ThreatsIntegration::class,
-            KeyElements::class,         // getKeyElementsFromCTX to be reviewed
+            Threats::class,             // getModuleRecords to be reviewed + histogram
+            ThreatsIntegration::class,  // check ranking
+            KeyElements::class,         // getKeyElementsFromCTX to be reviewed, and check ranking scale
+            ObjectivesContext::class
         ],
         'planning' => [
             RegulationsAdequacy::class,
             DesignAdequacy::class,
             BoundaryLevel::class,
-            ManagementPlan::class,
-            WorkPlan::class,
+            ManagementPlan::class,      // Review formulas
+            WorkPlan::class,          // Review formulas
             Objectives::class,
             ObjectivesPlanification::class
         ],

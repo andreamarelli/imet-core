@@ -58,10 +58,11 @@ return [
         ],
         'module_subTitle' => 'Key elements animals, plants, habitats (protected, exploited, disappearing, invasive, etc.) and services (provisioning, control, cultural, supporting services)',
         'module_info_EvaluationQuestion' => [
-            'Has the OECM prioritised the key elements its management?'
+            'Has the OECM prioritised the key elements in its management? The assessment should evaluate the need to 
+            prioritise the key elements in the management of the OECM. The assessment uses a ranked list based on analyses from SA1 and SA2.'
         ],
         'module_info_Rating' => [
-            'Evaluate the level of integration of 3 to 10 key elements for the management of the OECM (automatically reported from the Context of Intervention because (i) is an important key element of the OECM; (ii) provide an important service to stakeholders; (iii) is rare or in danger of extinction)'
+            'Evaluate the need to prioritise the key elements in the management of the OECM'
         ],
         'from_group' => 'From category: ',
         'num_stakeholders' => 'Indicated by :num stakeholder(s)',
@@ -110,6 +111,15 @@ return [
                 '2' => 'moderate integration',
                 '3' => 'high integration',
             ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'The assessment evaluates the need to prioritise the minimisation of management constraints or the maximisation 
+            of stakeholder support in the management of the OECM. The assessment uses the ranking list based on the integration 
+            of the stakeholder constraint/conflict (C2.1) or support/compliance scores with the stakeholder involvement 
+            in the management of the OECM values (SA1 of the intervention context).'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the current integration in the management of the stakeholder constraints or support'
         ],
         'ranking' => 'Ranking (C2.1)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
@@ -182,6 +192,13 @@ return [
                 '2' => 'moderate integration',
                 '3' => 'high integration',
             ]
+        ],
+        'module_info_EvaluationQuestion' => [
+            'The assessment evaluates the need to prioritise the threats to minimise their effects and impact on the OECM 
+            management. The assessment uses the ranking list based on the threats analysis in SA2 and C3.1.'
+        ],
+        'module_info_Rating' => [
+            'Evaluate the current integration of the threats to the management of the OECM'
         ],
         'ranking' => 'Ranking (C3.1)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
@@ -307,6 +324,9 @@ return [
         'title' => 'Management plan',
         'fields' => [
             'PlanExistence' => 'A) Is there a management plan?',
+            'PrintedCopy' => 'Does the management entity have a printed copy?',
+            'ExplainedToMembers' => 'Has the management plan been explained to members?',
+            'KnowledgePercentage' => 'Percentage of members or employees who know the content',
             'PlanUptoDate' => 'Is the management plan up to date?',
             'PlanApproved' => 'Has the management plan been approved?',
             'PlanImplemented' => 'Has the management plan been implemented?',
@@ -314,6 +334,12 @@ return [
             'Comments' => 'Comments / Explanation',
         ],
         'ratingLegend' => [
+            'KnowledgePercentage' => [
+                '0' => 'less than 10%',
+                '1' => '10–50%',
+                '2' => '50%-80%',
+                '3' => 'more than 80%',
+            ],
             'PlanAdequacyScore' => [
                 '0' => 'The clarity and applicability of the vision, mission and objectives are completely inadequate (0-30% of needs)',
                 '1' => 'The clarity and applicability of the vision, mission and objectives are somewhat inadequate (31-60% of needs)',
@@ -334,6 +360,9 @@ return [
         'title' => 'Work plan',
         'fields' => [
             'PlanExistence' => 'A) Is there a workplan? Yes/no',
+            'PrintedCopy' => 'Does the management entity have a printed copy?',
+            'ExplainedToMembers' => 'Has the management plan been explained to members?',
+            'KnowledgePercentage' => 'Percentage of members or employees who know the content',
             'PlanUptoDate' => 'Is the workplan up to date (covering current period)? Yes/no',
             'PlanApproved' => 'Has the workplan been officially approved? Yes/no',
             'PlanImplemented' => 'Has the workplan or monitoring plan being implemented? Yes/no',
@@ -341,6 +370,12 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
+            'KnowledgePercentage' => [
+                '0' => 'less than 10%',
+                '1' => '10–50%',
+                '2' => '50%-80%',
+                '3' => 'more than 80%',
+            ],
             'PlanAdequacyScore' => [
                 '0' => 'The clarity and applicability of activities and expected results are fully inadequate',
                 '1' => 'The clarity and applicability of activities and expected results are somewhat inadequate ',
@@ -365,8 +400,8 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Existing objectives from management plan',
-            'group1' => 'Prospective objectives from C1, C2.2, C3.2 & C4',
+            'group0' => 'Adequacy of management plan objectives for the key elements',
+            'group1' => 'Prospective objectives for key elements prioritised in management, automatically reported from Management Context',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -382,9 +417,16 @@ return [
             'The goals and objectives of the OECM must be clearly understood. They should be well -defined and worded to facilitate monitoring but also should relate to the key values of OECM (i.e. important species or ecosystems) or to major areas of management activity (e.g. tourism, education).'
         ],
         'module_info_Rating' => [
-            'Evaluate adequacy of the management plan objectives for the key elements of the OECM, based on the analysis of the intervention context, points: CTX1.5, CTX 4, 5, 6, 7 and context of management, points from C 1.1 to C 1.5)'
+            'Evaluate the adequacy of the management plan objectives for the OECM key elements , based on existing objectives from the management plan and Management Context'
         ],
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>O/C1</i>',
+    ],
+
+    'ObjectivesContext' => [
+        'module_info' =>
+            'Establish and describe conservation objectives for Management context of the OECM. The objectives listed below 
+            will be used for improving management, and more specifically for the planning, resource (input) mobilisation, 
+            process phases, and for monitoring management activities of the OECM.'
     ],
 
     'ObjectivesPlanification' => [

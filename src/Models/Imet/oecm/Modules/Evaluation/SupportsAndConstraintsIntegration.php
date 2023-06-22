@@ -35,6 +35,8 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Comments')],
         ];
 
+        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.ratingLegend');
 
         parent::__construct($attributes);
