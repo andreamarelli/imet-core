@@ -583,7 +583,7 @@ return [
     ],
 
     'StaffCompetence' => [
-        'title' => 'Adéquation du ou des programmes de formation et de renforcement des capacités des représentants de la direction et de la gouvernance de l\'AMCE',
+        'title' => 'Compétences/formation du personnel',
         'fields' => [
             'Member' => 'Critères - Concept mesuré - Variable',
             'Weight' => 'Implication',
@@ -614,7 +614,7 @@ return [
     ],
 
     'HRmanagementPolitics' => [
-        'title' => 'Politiques et procédures de gestion des ressources humaines',
+        'title' => 'Politiques et procédures RH',
         'fields' => [
             'Conditions' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation des politiques et procédures de gestion des ressources humaines',
@@ -650,7 +650,7 @@ return [
     ],
 
     'AdministrativeManagement' => [
-        'title' => 'Budget et gestion financière',
+        'title' => 'Budget et finances',
         'fields' => [
             'Aspect' => 'Critères - Concept mesuré - Variables',
             'EvaluationScore' => 'Rating: Mise en place des éléments de base de la gestion budgétaire et financière',
@@ -683,7 +683,7 @@ return [
     ],
 
     'EquipmentMaintenance' => [
-        'title' => 'Maintenance des infrastructures, des équipements et des installations',
+        'title' => 'Entretien des infrastructures',
         'fields' => [
             'Equipment' => 'Critères - Concept mesuré - Variables',
             'EvaluationScore' => 'Notation: Adéquation de la maintenance',
@@ -709,7 +709,7 @@ return [
     ],
 
     'ManagementActivities' => [
-        'title' => 'Gestion des éléments clés de l’AMCE avec des actions spécifiques',
+        'title' => 'Gestion des éléments clés',
         'fields' => [
             'Activity' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation of management actions',
@@ -738,7 +738,7 @@ return [
     ],
 
     'LawEnforcementImplementation' => [
-        'title' => 'Actions en réponse à des activités illégales ou à la résolution de questions litigieuses',
+        'title' => 'Résolution des problèmes litigieux',
         'fields' => [
             'Element' => 'Critères - Concept mesuré - Variable',
             'Adequacy' => 'Adéquation',
@@ -788,8 +788,8 @@ return [
         ]
     ],
 
-    'Partie prenanteCooperation' => [
-        'title' => 'Coopération entre les parties prenantes',
+    'StakeholderCooperation' => [
+        'title' => 'Collaboration des parties prenantes',
         'fields' => [
             'Element' => 'Critères - Concept mesuré - Variable',
             'Weight' => 'Implication de la partie prenante (0-100)',
@@ -832,7 +832,7 @@ return [
     ],
 
     'AssistanceActivities' => [
-        'title' => 'Bénéfices pour les communautés locales',
+        'title' => 'Avantages pour les communautés locales',
         'fields' => [
             'Activity' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation des services ou des activités d’assistance',
@@ -888,7 +888,7 @@ return [
     ],
 
     'EnvironmentalEducation' => [
-        'title' => 'Éducation à l’environnement et sensibilisation du public',
+        'title' => 'Éducation environnementale',
         'fields' => [
             'Activity' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation des activités d’éducation à l’environnement et de sensibilisation du public',
@@ -924,7 +924,7 @@ return [
     ],
 
     'VisitorsManagement' => [
-        'title' => 'Gestion des installations et des services destinés aux visiteurs',
+        'title' => 'La gestion du tourisme',
         'fields' => [
             'Aspect' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation of visitor facilities and services',
@@ -960,7 +960,7 @@ return [
     ],
 
     'NaturalResourcesMonitoring' => [
-        'title' => 'Systèmes de suivi et de recherche des éléments clés de l’AMCE',
+        'title' => 'Veille et recherche',
         'fields' => [
             'Aspect' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation du suivi',
@@ -1070,7 +1070,7 @@ return [
     ],
 
     'LifeQualityImpact' => [
-        'title' => 'Effets sur la qualité de vie des acteurs locaux',
+        'title' => 'Impacts sur les communautés locales',
         'fields' => [
             'Element' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Effets',
@@ -1120,7 +1120,7 @@ return [
     ],
 
     'EmpowermentGovernance' => [
-        'title' => 'Autonomisation des parties prenantes dans la gouvernance des éléments clés de l’AMCE',
+        'title' => 'Parties prenantes, responsabilisation',
         'fields' => [
             'Conditions' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation de l’autonomisation des parties prenantes',

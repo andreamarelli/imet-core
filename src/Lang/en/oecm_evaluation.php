@@ -582,7 +582,7 @@ return [
     ],
 
     'StaffCompetence' => [
-        'title' => 'Adequacy of training and capacity-building programme(s) for the OECM management and governance representatives',
+        'title' => 'Staff skills/training',
         'fields' => [
             'Member' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement',
@@ -613,7 +613,7 @@ return [
     ],
 
     'HRmanagementPolitics' => [
-        'title' => 'Human resource management policies and procedures',
+        'title' => 'HR policies and procedures',
         'fields' => [
             'Conditions' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of the human resource management policies and procedures ',
@@ -649,7 +649,7 @@ return [
     ],
 
     'AdministrativeManagement' => [
-        'title' => 'Budget and financial management',
+        'title' => 'Budget and finance',
         'fields' => [
             'Aspect' => 'Criteria - Measured concept – Variables',
             'EvaluationScore' => 'Rating: Set-up of the basic elements of budgetary and financial management',
@@ -682,7 +682,7 @@ return [
     ],
 
     'EquipmentMaintenance' => [
-        'title' => 'Maintenance of infrastructure, equipment and facilities',
+        'title' => 'Maintenance of infrastructure',
         'fields' => [
             'Equipment' => 'Criteria - Measured concept – Variables',
             'EvaluationScore' => 'Rating: Adequacy of maintenance',
@@ -708,7 +708,7 @@ return [
     ],
 
     'ManagementActivities' => [
-        'title' => 'Managing the key elements of the OECM with specific actions',
+        'title' => 'Managing key elements',
         'fields' => [
             'Activity' => 'Criteria - Measured concept – Variable',
             'EvaluationScore' => 'Adequacy of management actions',
@@ -737,7 +737,7 @@ return [
     ],
 
     'LawEnforcementImplementation' => [
-        'title' => 'Actions in response to illegal activities or resolution of contentious issues',
+        'title' => 'Resolving contentious issues',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Adequacy' => 'Adequacy',
@@ -788,7 +788,7 @@ return [
     ],
 
     'StakeholderCooperation' => [
-        'title' => 'Cooperation between stakeholders',
+        'title' => 'Stakeholders’ collaboration',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement of the stakeholder (0-100)',
@@ -831,7 +831,7 @@ return [
     ],
 
     'AssistanceActivities' => [
-        'title' => 'Benefits for local communities',
+        'title' => 'Benefits to local communities',
         'fields' => [
             'Activity' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of activities to provide benefits/assistance',
@@ -887,7 +887,7 @@ return [
     ],
 
     'EnvironmentalEducation' => [
-        'title' => 'Environmental education and public awareness',
+        'title' => 'Environmental education',
         'fields' => [
             'Activity' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of the activities of environmental education and public awareness',
@@ -923,7 +923,7 @@ return [
     ],
 
     'VisitorsManagement' => [
-        'title' => 'Management of visitor facilities and services',
+        'title' => 'Tourism management',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of visitor facilities and services',
@@ -959,7 +959,7 @@ return [
     ],
 
     'NaturalResourcesMonitoring' => [
-        'title' => 'Systems for monitoring and research of the key elements of the OECM',
+        'title' => 'Monitoring and research',
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of monitoring',
@@ -1068,8 +1068,54 @@ return [
         ]
     ],
 
+    'KeyElementsImpact' => [
+        'title' => 'Effects on key conservation elements',
+        'fields' => [
+            'KeyElement' => 'Key conservation element',
+            'StatusSH' =>   'Status',
+            'TrendSH' =>    'Trend',
+            'EffectSH' =>   'Effect',
+            'ReliabilitySH' =>  'Reliability of information',
+            'CommentsSH' =>     'Comments/Explanation',
+            'StatusER' =>   'Status',
+            'TrendER' =>    'Trend',
+            'EffectER' =>   'Effect',
+            'ReliabilityER' =>  'Reliability of information',
+            'CommentsER' =>     'Comments/Explanation',
+        ],
+        'from_sa' => 'From SA2',
+        'from_external_source' => 'From external source',
+        'groups' => [
+            'group0' => 'Key animal species',
+            'group1' => 'Key plants species',
+            'group2' => 'Key habitats',
+        ],
+        'module_info_EvaluationQuestion' => [
+            'Does the management and governance exert positive or negative effects on the key conservation elements of the OECM?',
+            'One of the main objectives of the OECM is to deliver positive and sustained outcomes for the in-situ conservation 
+            of biodiversity. By comparing the internal assessment of key conservation elements of SA2 with corresponding technical 
+            data of the same landscape or region, allows for a detailed analysis and interpretation of the findings, highlighting 
+            specific observations, discrepancies, areas of alignment, and potential recommendations for modifications or adopting 
+            best practices. The results of the comparison between the internal evaluation and external data on the same key 
+            conservation elements can be provided in the comments section.'
+        ],
+        'module_info_Rating' => [
+            'Report the external data of A) the conditions and B) the trends of the key conservation elements from technical and 
+            scientific studies and monitoring in the same landscape or region.'
+        ],
+        'ratingLegend' => [
+            'Effect' => [
+                '-2' => 'Decreasing',
+                '-1' => 'Slightly decreasing',
+                '0' => 'No change',
+                '+1' => 'Slightly increasing',
+                '+2' => 'Increasing',
+            ]
+        ]
+    ],
+
     'LifeQualityImpact' => [
-        'title' => 'Effects on the quality of life of local stakeholders',
+        'title' => 'Impacts on local communities',
         'fields' => [
             'Element' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Effects',
@@ -1119,7 +1165,7 @@ return [
     ],
 
     'EmpowermentGovernance' => [
-        'title' => 'Empowerment of the stakeholders in the governance of key elements of the OECM',
+        'title' => 'Stakeholders, empowerment',
         'fields' => [
             'Conditions' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of stakeholders empowerment',

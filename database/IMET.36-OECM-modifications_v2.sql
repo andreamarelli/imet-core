@@ -112,5 +112,27 @@ ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "PrintedCopy" boolean;
 ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "ExplainedToMembers" boolean;
 ALTER TABLE imet_oecm.eval_work_plan ADD COLUMN "KnowledgePercentage" numeric;
 
+-- KeyElementsImpact
+CREATE TABLE imet_oecm.eval_key_elements_impact
+(
+    id           serial PRIMARY KEY,
+    "FormID"     integer,
+    "UpdateBy"   integer,
+    "UpdateDate" character varying(30),
+    "KeyElement"    text,
+    "StatusSH"      numeric,
+    "TrendSH"       numeric,
+    "StatusER"      numeric,
+    "TrendER"       numeric,
+    "EffectSH"      numeric,
+    "EffectER"      numeric,
+    "ReliabilitySH" character varying(30),
+    "ReliabilityER" character varying(30),
+    "CommentsSH"    text,
+    "CommentsER"    text,
+    group_key        character varying(50),
+    CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 
 COMMIT;

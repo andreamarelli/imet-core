@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElementsImpact;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
@@ -77,12 +78,12 @@ class Imet_Eval extends Imet
             AdministrativeManagement::class,
             EquipmentMaintenance::class,
             ManagementActivities::class,
+            NaturalResourcesMonitoring::class,
             LawEnforcementImplementation::class,
             StakeholderCooperation::class,
             AssistanceActivities::class,
             EnvironmentalEducation::class,
             VisitorsManagement::class,
-            NaturalResourcesMonitoring::class,
             ObjectivesProcessus::class,
 
         ],
@@ -92,6 +93,7 @@ class Imet_Eval extends Imet
         ],
         'outcomes' => [
             AchievedObjectives::class,
+            KeyElementsImpact::class,
             LifeQualityImpact::class,
         ],
         'management_effectiveness' => [],

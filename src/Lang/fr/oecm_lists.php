@@ -152,5 +152,11 @@ return [
         'geological'                => 'Phénomènes géologiques',
         'climate_change'            => 'Changement climatique',
         'other'                     => 'Autres pressions et menaces',
+    ],
+
+    'Reliability' => [
+        'high' => 'Élevé',
+        'medium' => 'Moyen',
+        'poor' => 'Faible',
     ]
 ];

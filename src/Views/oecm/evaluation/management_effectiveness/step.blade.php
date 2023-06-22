@@ -155,7 +155,7 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
                         _this.step_color = '#92D050';
                         break;
                     case 'outcomes':
-                        _this.step_indexes = ['oc1', 'oc2'];
+                        _this.step_indexes = ['oc1', 'oc2', 'oc3'];
                         _this.step_color = '#00B050';
                         break;
                 }

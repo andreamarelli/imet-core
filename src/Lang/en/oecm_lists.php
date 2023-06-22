@@ -151,5 +151,12 @@ return [
         'geological'                => 'Geological phenomena',
         'climate_change'            => 'Climate change and effects',
         'other'                     => 'Other pressures and threats',
+    ],
+
+    'Reliability' => [
+        'high' => 'High',
+        'medium' => 'Medium',
+        'poor' => 'Poor',
     ]
+
 ];
