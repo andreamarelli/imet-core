@@ -80,7 +80,7 @@ return [
 
     'Ownership' => [
         'state'         => 'State',
-        'communal'      => 'Communal',
+        'communal'      => 'Community',
         'landowners'    => 'Individual landowners',
         'for_profit'    => 'For-profit organisations',
         'non_profit'    => 'Non-profit organisations',

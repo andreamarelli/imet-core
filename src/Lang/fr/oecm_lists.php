@@ -80,7 +80,7 @@ return [
 
     'Ownership' => [
         'state'         => 'Etat',
-        'communal'      => 'Communal',
+        'communal'      => 'Communauté',
         'landowners'    => 'Propriétaires fonciers individuels',
         'for_profit'    => 'Organisations à but lucratif',
         'non_profit'    => 'Organisations à but non lucratif',
