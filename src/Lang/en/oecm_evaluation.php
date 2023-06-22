@@ -1104,7 +1104,14 @@ return [
             scientific studies and monitoring in the same landscape or region.'
         ],
         'ratingLegend' => [
-            'Effect' => [
+            'StatusSH' => [
+                '-2' => 'Decreasing',
+                '-1' => 'Slightly decreasing',
+                '0' => 'No change',
+                '+1' => 'Slightly increasing',
+                '+2' => 'Increasing',
+            ],
+            'TrendSH' => [
                 '-2' => 'Decreasing',
                 '-1' => 'Slightly decreasing',
                 '0' => 'No change',

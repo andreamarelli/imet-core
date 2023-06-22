@@ -1069,6 +1069,59 @@ return [
         ]
     ],
 
+    'KeyElementsImpact' => [
+        'title' => 'Effets sur les éléments clés de la conservation',
+        'fields' => [
+            'KeyElement' => 'Élément clé de conservation',
+            'StatusSH' =>   'Statut',
+            'TrendSH' =>    'Tendance',
+            'EffectSH' =>   'Effet',
+            'ReliabilitySH' =>  'Fiabilité des informations',
+            'CommentsSH' =>     'Commentaires/explications',
+            'StatusER' =>   'Statut',
+            'TrendER' =>    'Tendance',
+            'EffectER' =>   'Effet',
+            'ReliabilityER' =>  'Fiabilité des informations',
+            'CommentsER' =>     'Commentaires/explications',
+        ],
+        'from_sa' => 'De SA2',
+        'from_external_source' => 'De source externe',
+        'groups' => [
+            'group0' => 'Principales espèces animales',
+            'group1' => 'Principales espèces végétales',
+            'group2' => 'Habitats clés',
+        ],
+        'module_info_EvaluationQuestion' => [
+            'La gestion et la gouvernance exercent-elles des effets positifs ou négatifs sur les éléments clés de conservation de l\'AMCE ?',
+            'L\'un des principaux objectifs de l\'AMCE est de fournir des résultats positifs et durables pour la conservation in situ
+             de la biodiversité. En comparant l\'évaluation interne des éléments clés de conservation de SA2 avec les données techniques correspondantes
+             données du même paysage ou de la même région, permet une analyse détaillée et une interprétation des résultats, en mettant en évidence
+             observations spécifiques, divergences, domaines d\'alignement et recommandations potentielles de modifications ou d\'adoption
+             les meilleures pratiques. Les résultats de la comparaison entre l\'évaluation interne et les données externes sur la même clé
+             des éléments de conservation peuvent être fournis dans la section des commentaires.'
+        ],
+        'module_info_Rating' => [
+            'Rapporter les données externes de A) les conditions et B) les tendances des éléments clés de conservation d\'après les
+             études scientifiques et suivi dans le même paysage ou la même région.'
+        ],
+        'ratingLegend' => [
+            'StatusSH' => [
+                '-2' => 'En diminution',
+                '-1' => 'En légère diminution',
+                '0' => 'No change',
+                '+1' => 'En légère augmentation',
+                '+2' => 'En augmentation'
+            ],
+            'TrendSH' => [
+                '-2' => 'En diminution',
+                '-1' => 'En légère diminution',
+                '0' => 'No change',
+                '+1' => 'En légère augmentation',
+                '+2' => 'En augmentation'
+            ]
+        ]
+    ],
+
     'LifeQualityImpact' => [
         'title' => 'Impacts sur les communautés locales',
         'fields' => [

@@ -156,10 +156,10 @@ return [
         ],
         'oc2' => [
             'O/C2',
-            'xxxxx'
+            'Effects on key conservation elements'
         ],
         'oc3' => [
-            'O/C2',
+            'O/C3',
             'Impacts on local communities'
         ],
     ]
