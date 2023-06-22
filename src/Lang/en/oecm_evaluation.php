@@ -449,16 +449,16 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Do you have sufficient and relevant information supporting your decision -making in managing the OECM?',
+            'Do you have sufficient and relevant information to support the decision–making process of the OECM?',
             'Effective OECM management requires sufficient knowledge and information to inform decision- making. Without information good management is highly unlikely.'
         ],
         'module_info_Rating' => [
-            'Analyse the availability of information to support the management of the key elements of the OECM, based on the analysis of the context of intervention, points CTX 4; 5; 6'
+            'Assess the availability of information necessary to support the management of the OECM key elements , prioritised in management, automatically reported from Management Context'
         ]
     ],
 
     'CapacityAdequacy' => [
-        'title' => 'Capacities of specific or combination of entities/stakeholders in the management and governance',
+        'title' => 'Capacities for management and governance',
         'fields' => [
             'Member' => 'Member',
             'Weight' => 'Involvement',
@@ -466,8 +466,8 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Composition and staff or members of the OECM',
-            'group1' => 'Stakeholders involved or impacting the use of natural resources'
+            'group0' => 'Composition and staff or members of the Management Entity (automatically reported by CTX 3.1.2)',
+            'group1' => 'Stakeholders involved or impacting the use of natural resources (automatically reported by CTX 5 – Direct users).'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -478,7 +478,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the management and governance specific entity or combination of entities have enough capacity to fulfil the management and governance requirements of the OECM?'
+            'Does the entity/entities in charge of management and governance have enough capacity to manage and govern the OECM?'
         ],
         'module_info_Rating' => [
             'Qualified, competent, committed and adequate human resources are central to the success of OECMs.'
@@ -582,7 +582,7 @@ return [
     ],
 
     'StaffCompetence' => [
-        'title' => 'Training and capacity-building programme for the OECM management and governance“ or “Training and capacity building programme',
+        'title' => 'Adequacy of training and capacity-building programme(s) for the OECM management and governance representatives',
         'fields' => [
             'Member' => 'Criteria – Concept measured – Variable',
             'Weight' => 'Involvement',
@@ -602,11 +602,12 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Are the OECM Management and Governance specific entity or combination of entities implementing an adequate training and capacity-building programme that responds to its/theirs members needs in achieving OECM objectives?',
-            'Qualified, competent and committed workforce central to the success of OECMs.'
+            'Are the OECM Management and Governance specific entity or combination of entities implementing adequate 
+            training and capacity-building programme(s) that responds to their members’ needs in achieving OECM objectives?',
+            'Qualified, competent and committed workforce is central to the success of OECMs'
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in SA 1 and CTX 3.1.2)'
+            'Evaluate the adequacy of capacity-building activities for the OECM Management and Governance specific entity or combination of entities members (identified in CTX 3.1.2 and CTX 5 – Direct users)'
         ]
 
     ],
@@ -1059,7 +1060,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'To what extent has the OECM achieved the main objectives of their plan of management and governance?',
-            '(Based on the analysis of the context of intervention, point CTX1.5 Vision –Objectives or element Planning, point P6 - Objectives of the OECM)',
+            '(Based on the analysis of the context of intervention, point CTX1.5 Vision – Objectives or elements of Planning, point P6 – Existing objectives of the management plan).',
             'The goals and objectives of an OECM must be clearly understood if management is to be successful based on measurable achievements. '
         ],
         'module_info_Rating' => [

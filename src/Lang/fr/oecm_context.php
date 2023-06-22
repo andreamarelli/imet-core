@@ -361,11 +361,11 @@ return [
         'fields' => [
             'Element' => 'Partie prenante',
             'GeographicalProximity' => 'Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)',
-            'UsesCategories' => 'Catégories d\'usages ou de gestion des éléments clés de l\'ACME',
-            'DirectUser' => 'Utilisateurs directs des éléments clés de l\'ACME',
-            'LevelEngagement' => 'Niveau d\'engagement dans la gestion des éléments clés de l\'ACME',
-            'LevelInterest' => 'Niveau d\'intérêt pour la préservation des éléments clés de l\'ACME',
-            'LevelExpertise' => 'Niveau d\'expertise dans la gestion des éléments clés de l\'ACME (y compris les connaissances traditionnelles ou autochtones)',
+            'UsesCategories' => 'Catégories d\'usages ou de gestion des éléments clés de l\'AMCE',
+            'DirectUser' => 'Utilisateurs directs des éléments clés de l\'AMCE',
+            'LevelEngagement' => 'Niveau d\'engagement dans la gestion des éléments clés de l\'AMCE',
+            'LevelInterest' => 'Niveau d\'intérêt pour la préservation des éléments clés de l\'AMCE',
+            'LevelExpertise' => 'Niveau d\'expertise dans la gestion des éléments clés de l\'AMCE (y compris les connaissances traditionnelles ou autochtones)',
 
             'Comments' => 'Note',
         ],
@@ -391,20 +391,20 @@ return [
 
         ],
         'module_info' =>
-            'Identifier les acteurs impliqués dans la gestion ou impactant dans l\'utilisation des ressources naturelles de l\'ACME<br />
+            'Identifier les acteurs impliqués dans la gestion ou impactant dans l\'utilisation des ressources naturelles de l\'AMCE<br />
              <b>Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)</b>: Vivre dans ou à proximité d\'une zone conservée peut donner accès à des
              services écosystémiques, mais peut également nécessiter des restrictions et des réglementations.<br />
-             <b>Catégories d\'usages ou de gestion des éléments clés de l\'ACME</b>: différentes manières dont les parties prenantes interagissent avec
+             <b>Catégories d\'usages ou de gestion des éléments clés de l\'AMCE</b>: différentes manières dont les parties prenantes interagissent avec
              animaux, végétaux ou habitats (Biodiversité) et bénéficier de services écosystémiques (Approvisionnement, Culturel, Régulateur,
-                Accompagnement) fourni par l\'ACME.<br />
-             <b>Utilisateurs directs des éléments clés de l\'ACME</b>: les utilisateurs directs sont ceux qui bénéficient directement des biens et services
+                Accompagnement) fourni par l\'AMCE.<br />
+             <b>Utilisateurs directs des éléments clés de l\'AMCE</b>: les utilisateurs directs sont ceux qui bénéficient directement des biens et services
              fourni par l\'aire conservée.<br />
-             <b>Niveau d\'intérêt pour la préservation des éléments clés de l\'ACME</b>: Degré d\'intérêt des parties prenantes pour les éléments clés de l\'ACME
+             <b>Niveau d\'intérêt pour la préservation des éléments clés de l\'AMCE</b>: Degré d\'intérêt des parties prenantes pour les éléments clés de l\'AMCE
              la conservation et la protection à long terme, telles que l\'établissement de réglementations d\'utilisation et d\'accès, car elles peuvent influencer
              leur niveau d\'implication et d\'engagement<br />
-             <b>Niveau d\'expertise dans la gestion des éléments clés de l\'ACME (y compris les connaissances traditionnelles ou autochtones)</b>: Degré à
+             <b>Niveau d\'expertise dans la gestion des éléments clés de l\'AMCE (y compris les connaissances traditionnelles ou autochtones)</b>: Degré à
              laquelle une partie prenante possède les connaissances, les compétences et l\'expérience nécessaires pour gérer et conserver efficacement certains éléments clés
-             de l\'ACME. L\'expertise peut provenir de connaissances traditionnelles et indigènes, de pratiques historiques, d\'observations à long terme,
+             de l\'AMCE. L\'expertise peut provenir de connaissances traditionnelles et indigènes, de pratiques historiques, d\'observations à long terme,
              formations formelles et professionnelles. <br />',
         'ratingLegend' => [
             'LevelEngagement' => [
@@ -414,10 +414,10 @@ return [
                 '3' => 'Engagement important',
             ],
             'LevelInterest' => [
-                '0' => 'Pas d\'intérêt pour la conservation de l\'ACME',
-                '1' => 'Faible intérêt pour la conservation de l\'ACME',
-                '2' => 'Intérêt modéré pour la conservation de l\'ACME',
-                '3' => 'Intérêt important pour la conservation de l\'ACME',
+                '0' => 'Pas d\'intérêt pour la conservation de l\'AMCE',
+                '1' => 'Faible intérêt pour la conservation de l\'AMCE',
+                '2' => 'Intérêt modéré pour la conservation de l\'AMCE',
+                '3' => 'Intérêt important pour la conservation de l\'AMCE',
             ],
             'LevelExpertise' => [
                 '0' => 'Aucune expertise dans la gestion des terres et des ressources naturelles',
@@ -432,8 +432,8 @@ return [
     'StakeholdersObjectives' => [
         'module_info' =>
             'Établir et décrire des objectifs de conservation pour les parties prenantes impliquées dans la gestion ou ayant un impact sur l\'utilisation des
-             ressources naturelles de l\'ACME. Les objectifs inscrits ci-dessous serviront à améliorer la gestion, et plus particulièrement
-             pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'ACME.'
+             ressources naturelles de l\'AMCE. Les objectifs inscrits ci-dessous serviront à améliorer la gestion, et plus particulièrement
+             pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'AMCE.'
     ],
 
     'AnalysisStakeholders' => [
@@ -637,8 +637,8 @@ return [
             'Support' => 'Soutien ou contribution',
             'Guidelines' => 'Lignes directrices et procédures',
             'LackOfCollaboration' => 'Manque de collaboration entre les utilisateurs indirects et directs',
-            'Status' => 'Statut des éléments clés de l\'ACME',
-            'Trend' => 'Tendance des éléments clés de l\'ACME',
+            'Status' => 'Statut des éléments clés de l\'AMCE',
+            'Trend' => 'Tendance des éléments clés de l\'AMCE',
             'Threats' => 'Menaces',
             'Comments' => 'Note',
         ],
@@ -653,20 +653,20 @@ return [
             '<b>Manque de collaboration entre les utilisateurs indirects et directs</b>: Absence ou insuffisance de coordination 
                 entre les différents acteurs qui utilisent et bénéficient des services écosystémiques, ce qui pourrait conduire 
                 à des conflits et à des pratiques non durables</br >' .
-            '<b>Statut des éléments clés de l\'ACME</b>: L\'état des éléments clés indique l\'état de la fourniture des services 
+            '<b>Statut des éléments clés de l\'AMCE</b>: L\'état des éléments clés indique l\'état de la fourniture des services 
                 écosystémiques ou de l\'élément clé de la biodiversité en termes de qualité. Un état très mauvais indique que 
                 le service écosystémique fourni est de mauvaise qualité ou que l\'élément clé de la biodiversité risque sérieusement 
-                de disparaître dans la zone de l\'ACME. Un très bon état indique que l\'élément clé est de bonne qualité ou 
+                de disparaître dans la zone de l\'AMCE. Un très bon état indique que l\'élément clé est de bonne qualité ou 
                 en expansion. Divers facteurs environnementaux tels que le climat et les conditions météorologiques, le 
                 changement d\'utilisation des terres, la pollution et la surexploitation des ressources, la surexploitation 
-                peuvent affecter l\'état des éléments clés de l\'ACME.</br >' .
-            '<b>Tendance des éléments clés de l\'ACME</b>: Les tendances actuelles des éléments clés indiquent le changement 
+                peuvent affecter l\'état des éléments clés de l\'AMCE.</br >' .
+            '<b>Tendance des éléments clés de l\'AMCE</b>: Les tendances actuelles des éléments clés indiquent le changement 
                 dans la quantité de services écosystémiques fournis ou dans la taille-surface des éléments clés de la biodiversité. 
                 Pour les services écosystémiques, il peut s\'agir de la quantité de services fournis, pour l\'élément clé 
                 de la biodiversité, il peut s\'agir de la taille de la population (espèce), de la superficie (habitats, 
                 couverture terrestre) ou de la quantité de production écologique.</br >' .
             '<b>Menaces</b>: Activités ou processus humains qui ont impacté, impactent ou peuvent impacter l’élément clé 
-                de l\'ACME évalué.</br >',
+                de l\'AMCE évalué.</br >',
         'ratingLegend' => [
             'Support' => [
                 '0' => 'Pas ou très peu d\'appui : La partie prenante n\'apporte pas ou très peu d\'appui dans la gestion et la gouvernance de l\'espèce ou des services écosystémiques.',
@@ -694,9 +694,9 @@ return [
 
     'AnalysisStakeholdersObjectives' => [
         'module_info' =>
-            'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'ACME.
+            'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'AMCE.
             Les objectifs inscrits ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, 
-            la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'ACME.'
+            la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'AMCE.'
     ],
 
 ];

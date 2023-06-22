@@ -449,16 +449,17 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Disposez-vous d’informations suffisantes et pertinentes pour étayer votre prise de décision dans le cadre de la gestion de l’AMCE ?',
+            'Disposez-vous d\'informations suffisantes et pertinentes pour appuyer le processus décisionnel de l’AMCE ?',
             'Une gestion efficace de l’AMCE nécessite des connaissances et des informations suffisantes pour éclairer la prise de décision. Sans information, une bonne gestion est hautement improbable'
         ],
         'module_info_Rating' => [
-            'Analyser la disponibilité des informations pour soutenir la gestion des éléments clés de l’AMCE, sur la base de l’analyse du contexte d’intervention, points CTX 4 ; 5 ; 6'
+            'Évaluer la disponibilité des informations nécessaires pour soutenir la gestion des éléments clés de l\'OECM, 
+            hiérarchisés dans la gestion, automatiquement signalés à partir du contexte de gestion'
         ]
     ],
 
     'CapacityAdequacy' => [
-        'title' => 'Capacités de gestion et de gouvernance d’entités/parties prenantes spécifiques ou d’une combinaison d’entités/parties prenantes',
+        'title' => 'Capacités de gestion et de gouvernance',
         'fields' => [
             'Member' => 'Membre',
             'Weight' => 'Implication',
@@ -466,8 +467,8 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Composition et personnel ou membres de l’AMCEM',
-            'group1' => 'Parties prenantes impliquées ou ayant un impact sur l’utilisation des ressources naturelles'
+            'group0' => 'Composition et personnel ou membres de l\'Entité de Gestion (rapporté automatiquement par CTX 3.1.2)',
+            'group1' => 'Parties prenantes impliquées ou ayant un impact sur l\'utilisation des ressources naturelles (signalées automatiquement par CTX 5 - Utilisateurs directs)'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -478,7 +479,7 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'L’entité ou la combinaison d’entités spécifique à la gestion et à la gouvernance a-t-elle les capacités suffisantes pour répondre aux exigences de l’AMCE en matière de gestion et de gouvernance ?'
+            'L\'entité ou les entités en charge de la gestion et de la gouvernance ont-elles une capacité suffisante pour gérer et gouverner l\'AMCE'
         ],
         'module_info_Rating' => [
             'Des ressources humaines qualifiées, compétentes, engagées et adéquates sont essentielles au succès des AMCE'
@@ -582,7 +583,7 @@ return [
     ],
 
     'StaffCompetence' => [
-        'title' => 'Programme de formation et de renforcement des capacités pour la gestion et la gouvernance de l’AMCE" ou "Programme de formation et de renforcement des capacités',
+        'title' => 'Adéquation du ou des programmes de formation et de renforcement des capacités des représentants de la direction et de la gouvernance de l\'AMCE',
         'fields' => [
             'Member' => 'Critères - Concept mesuré - Variable',
             'Weight' => 'Implication',
@@ -602,11 +603,13 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'L’entité spécifique ou la combinaison d’entités chargée de la gestion et de la gouvernance de l’AMCE met-elle en œuvre un programme adéquat de formation et de renforcement des capacités qui réponde aux besoins de ses/leurs membres pour atteindre les objectifs de l’AMCE ?',
-            'Une main-d’œuvre qualifiée, compétente et engagée est essentielle au succès des AMCE'
+            'L\'entité spécifique de gestion et de gouvernance de l\'AMCE ou la combinaison d\'entités mettent-elles en œuvre des
+             programme(s) de formation et de renforcement des capacités répondant aux besoins de leurs membres pour atteindre les objectifs de l\'AMCE?',
+            'Une main-d\'œuvre qualifiée, compétente et engagée est essentielle au succès des AMCE'
         ],
         'module_info_Rating' => [
-            'Évaluer l’adéquation des activités de renforcement des capacités pour l’entité spécifique ou la combinaison d’entités membres de la gestion et de la gouvernance de l’AMCE (identifiées dans les SA 1 et CTX 3.1.2)'
+            'Évaluer l\'adéquation des activités de renforcement des capacités pour l\'entité spécifique de gestion et de gouvernance de l\'AMCE 
+            ou la combinaison d\'entités membres (identifiées dans CTX 3.1.2 et CTX 5 - Utilisateurs directs)'
         ]
     ],
 
@@ -1058,7 +1061,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Dans quelle mesure l’AMCE a-t-elle atteint les principaux objectifs de son plan de gestion et de gouvernance ?',
-            '(Sur la base de l’analyse du contexte d’intervention, point CTX1.5 Vision -Objectifs ou élément Planification, point P6 - Objectifs de l’AMCE)',
+            '(Sur la base de l\'analyse du contexte d\'intervention, point CTX1.5 Vision – Objectifs ou éléments de planification, point P6 – Objectifs existants du plan de gestion).',
             'Les buts et objectifs d’une AMCE doivent être clairement compris si l’on veut que la gestion soit réussie sur la base de résultats mesurables'
         ],
         'module_info_Rating' => [
