@@ -15,7 +15,7 @@ $group = $matches[1][0];
 
 ?>
 
-@if(intval(str_replace('group', '', $group))<=0)
+@if(intval(str_replace('group', '', $group))<=10)
     @php
         $list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group);
         $list = array_combine($list, $list);
