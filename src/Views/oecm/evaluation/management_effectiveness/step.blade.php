@@ -30,7 +30,8 @@ $assessment_step = OEMCStatisticsService::get_assessment($item_id, $step);
         {{-- Step related statistics --}}
         <div style="margin-bottom: 20px;">
             <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'oc1'])</div>
-            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc2'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => '0_to_100', 'values' => 'values', 'index' => 'oc2'])</div>
+            <div>@include('imet-core::components.management_effectiveness.histogram_row', ['row_type' => 'minus100_to_100', 'values' => 'values', 'index' => 'oc3'])</div>
         </div>
 
     @else

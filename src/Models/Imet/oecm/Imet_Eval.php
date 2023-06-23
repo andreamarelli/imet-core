@@ -93,7 +93,7 @@ class Imet_Eval extends Imet
         ],
         'outcomes' => [
             AchievedObjectives::class,
-            KeyElementsImpact::class,
+            KeyElementsImpact::class,       // No formulas
             LifeQualityImpact::class,
         ],
         'management_effectiveness' => [],
