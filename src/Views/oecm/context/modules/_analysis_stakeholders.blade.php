@@ -1,18 +1,13 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
 
-/** @var Mixed $vue_data */
-
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
-$stakeholders = StakeholdersNaturalResources::calculateWeights($vue_data['form_id']);
-arsort($stakeholders);
+/** @var Collection $collection */
+/** @var Mixed $definitions */
+/** @var Mixed $vue_data */
 
-$vue_data['current_stakeholder'] = 'summary';
-$vue_data['key_elements_importance'] = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($vue_data['form_id'], $vue_data['records']);
+/** @var Array $stakeholders */
 $num_cols = count($definitions['fields']);
 
 ?>
@@ -21,19 +16,19 @@ $num_cols = count($definitions['fields']);
 <div class="card">
     <div class="card-header">
         <h4 class="card-title" role="button" @click="switchStakeholder('summary')">
-            @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.summary')
+            @lang('imet-core::oecm_context.AnalysisStakeholders.summary')
         </h4>
     </div>
     <div>
         <div class="card-body" v-if="isCurrentStakeholder('summary')" style="display: flex; column-gap: 40px;">
 
             <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.elements_importance')</h4>
                 <table class="table module-table">
                     <thead>
                     <tr>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.element')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.importance')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,13 +41,13 @@ $num_cols = count($definitions['fields']);
             </div>
 
             <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement_ranking')</h4>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement_ranking')</h4>
                 <table class="table module-table">
                     <thead>
-                        <tr>
-                            <th></th>
-                            <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.involvement')</th>
-                        </tr>
+                    <tr>
+                        <th></th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement')</th>
+                    </tr>
                     </thead>
                     <tbody>
                     @foreach($stakeholders as $stakeholder => $ranking)
@@ -74,7 +69,8 @@ $num_cols = count($definitions['fields']);
 @foreach(array_keys($stakeholders) as $index => $stakeholder)
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title" role="button" @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
+            <h4 class="card-title" role="button"
+                @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
                 {{ $index + 1 }} -
                 {{ $stakeholder }}
             </h4>
@@ -86,10 +82,10 @@ $num_cols = count($definitions['fields']);
                 @foreach($definitions['groups'] as $group_key => $group_label)
 
                     @php
-                        if(in_array($group_key, ['group0', 'group1', 'group2'])){
-                            $definitions['fixed_rows'] = false;
+                        if(in_array($group_key, ['group11', 'group12', 'group13'])){
+                            $definitions['max_rows'] = 9999;
                         } else {
-                            $definitions['fixed_rows'] = true;
+                            $definitions['max_rows'] = 3;
                         }
 
                         $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
@@ -98,21 +94,19 @@ $num_cols = count($definitions['fields']);
 
                     {{-- titles --}}
                     @if($group_key === 'group0')
-                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.biodiversity')</h2>
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title0')</h4>
-                    @elseif($group_key === 'group3')
-                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.ecosystem_services')</h2>
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title1')</h4>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title0')</h4>
+                    @elseif($group_key === 'group4')
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title1')</h4>
                     @elseif($group_key === 'group7')
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title2')</h4>
-                    @elseif($group_key === 'group10')
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title3')</h4>
-                    @elseif($group_key === 'group12')
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title4')</h4>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title2')</h4>
+                    @elseif($group_key === 'group9')
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title3')</h4>
+                    @elseif($group_key === 'group11')
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title4')</h4>
                     @endif
 
                     <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
-                    @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups_descriptions.' . $group_key)
+                    @lang('imet-core::oecm_context.AnalysisStakeholders.groups_descriptions.' . $group_key)
 
                     <table id="{{ $table_id }}" class="table module-table">
 
@@ -120,7 +114,7 @@ $num_cols = count($definitions['fields']);
                         <thead>
                         <tr>
                             @foreach($definitions['fields'] as $index => $field)
-                                @if(!($index==1 && in_array($group_key, ['group0', 'group1', 'group2'])))
+                                @if(!($index==1 && in_array($group_key, ['group11', 'group12', 'group13'])))
                                     <th class="text-center">
                                         @if($field['type']!=='hidden')
                                             {{ ucfirst($field['label'] ?? '') }}
@@ -134,7 +128,7 @@ $num_cols = count($definitions['fields']);
 
                         {{-- nothing to evaluate --}}
                         <tbody class="{{ $group_key }}"
-                               v-if="records['{{ $group_key }}'][0].Element===null">
+                               v-if="records['{{ $group_key }}'][0].Element===null && ['group11', 'group12', 'group13'].includes('{{ $group_key }}')">
                         @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
                         </tbody>
 
@@ -145,7 +139,7 @@ $num_cols = count($definitions['fields']);
                             v-if="isCurrentStakeholder(item['Stakeholder'])">
                             {{--  fields  --}}
                             @foreach($definitions['fields'] as $index => $field)
-                                @if(!($index==1 && in_array($group_key, ['group0', 'group1', 'group2'])))
+                                @if(!($index==1 && in_array($group_key, ['group11', 'group12', 'group13'])))
                                     <td>
                                         @include('modular-forms::module.edit.field.module-to-vue', [
                                            'definitions' => $definitions,
@@ -162,19 +156,16 @@ $num_cols = count($definitions['fields']);
                                     'type' => 'hidden',
                                     'v_value' => 'item.'.$definitions['primary_key']
                                 ])
-                                @if(!$definitions['fixed_rows'])
-                                    <span v-if="typeof item.__predefined === 'undefined'">
-                                            @include('modular-forms::buttons.delete_item')
-                                        </span>
-                                @endif
+                                <span v-if="typeof item.__predefined === 'undefined'">
+                                    @include('modular-forms::buttons.delete_item')
+                                </span>
                             </td>
                         </tr>
 
                         </tbody>
 
                         {{-- add button --}}
-                        @if(!$definitions['fixed_rows'])
-                            <tfoot>
+                        <tfoot v-if="numItemPerGroupAndStakeholder('{{ $group_key }}', '{{ $stakeholder }}') < {{ $definitions['max_rows'] }}">
                             <tr>
                                 <td colspan="{{ count($definitions['fields']) + 1 }}">
                                     @include('modular-forms::buttons.add_item', [
@@ -182,8 +173,7 @@ $num_cols = count($definitions['fields']);
                                     ])
                                 </td>
                             </tr>
-                            </tfoot>
-                        @endif
+                        </tfoot>
 
                     </table>
 
@@ -218,6 +208,28 @@ $num_cols = count($definitions['fields']);
                         this.current_stakeholder = null;
                     }
                     this.resetModule();
+                },
+
+                showAddButton(group_key, stakeholder){
+                    let count = 0;
+                    if(['group11', 'group12', 'group13'].includes(group_key)){
+                        return false;
+                    }
+                    this.records[group_key].forEach(function (item, index) {
+                        if (item['Stakeholder'] === stakeholder){
+                            count++;
+                        }
+                    });
+                },
+
+                numItemPerGroupAndStakeholder: function (group_key, stakeholder) {
+                    let count = 0;
+                    this.records[group_key].forEach(function (item, index) {
+                        if (item['Stakeholder'] === stakeholder){
+                            count++;
+                        }
+                    });
+                    return count;
                 },
 
                 addItem: function (group_key, stakeholder) {

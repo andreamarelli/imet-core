@@ -1,17 +1,13 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+use \Illuminate\Database\Eloquent\Collection;
+/** @var Collection $collection */
 /** @var Mixed $definitions */
-
 /** @var Mixed $records */
-
-
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderAccessGovernance;
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\StakeholdersNaturalResources;
+/** @var Array $stakeholders */
+/** @var Array $key_elements_importance */
+/** @var String $current_stakeholder */
 
 $form_id = $collection[0]['FormID'];
-$stakeholders = StakeholdersNaturalResources::calculateWeights($form_id);
-arsort($stakeholders);
-$key_elements_importance = AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances($form_id, $records);
 
 $num_cols = count($definitions['fields']);
 
@@ -30,19 +26,19 @@ $stakeholders_records = collect($records)
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">
-            @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.summary')
+            @lang('imet-core::oecm_context.AnalysisStakeholders.summary')
         </h4>
     </div>
     <div>
-        <div class="card-body"style="display: flex; column-gap: 40px;">
+        <div class="card-body" style="display: flex; column-gap: 40px;">
 
             <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.elements_importance')</h4>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.elements_importance')</h4>
                 <table class="table module-table">
                     <thead>
                     <tr>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.fields.Element')</th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.importance')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.element')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.importance')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -57,12 +53,12 @@ $stakeholders_records = collect($records)
             </div>
 
             <div>
-                <h4>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.involvement_ranking')</h4>
+                <h4>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement_ranking')</h4>
                 <table class="table module-table">
                     <thead>
                     <tr>
                         <th></th>
-                        <th>@lang('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.involvement')</th>
+                        <th>@lang('imet-core::oecm_context.AnalysisStakeholders.involvement')</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -98,23 +94,20 @@ $stakeholders_records = collect($records)
                 @foreach($definitions['groups'] as $group_key => $group_label)
 
                     {{-- titles --}}
-                    {{-- titles --}}
                     @if($group_key === 'group0')
-                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.biodiversity')</h2>
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title0')</h4>
-                    @elseif($group_key === 'group3')
-                        <h2 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.ecosystem_services')</h2>
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title1')</h4>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title0')</h4>
+                    @elseif($group_key === 'group4')
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title1')</h4>
                     @elseif($group_key === 'group7')
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title2')</h4>
-                    @elseif($group_key === 'group10')
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title3')</h4>
-                    @elseif($group_key === 'group12')
-                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.titles.title4')</h4>
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title2')</h4>
+                    @elseif($group_key === 'group9')
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title3')</h4>
+                    @elseif($group_key === 'group11')
+                        <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title4')</h4>
                     @endif
 
                     <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
-                    @lang('imet-core::oecm_context.AnalysisStakeholderAccessGovernance.groups_descriptions.' . $group_key)
+                    @lang('imet-core::oecm_context.AnalysisStakeholders.groups_descriptions.' . $group_key)
 
                     <table class="table module-table">
 
@@ -129,6 +122,7 @@ $stakeholders_records = collect($records)
                                 </th>
                             @endforeach
                             <th></th>
+                        </tr>
                         </tr>
                         </thead>
 
