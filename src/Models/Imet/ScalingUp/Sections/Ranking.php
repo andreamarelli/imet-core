@@ -21,7 +21,6 @@ class Ranking
         $items_to_calculate = $percent_values = $sum_values = $separated_values_by_pa = [];
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => [], 'actual_value' => []];
 
-
         // only for process sub-indicators average
         if (isset($indicators['pr15_16'])) {
             $result = static::process_subindicators_for_ranking_protected_areas($form_ids, $type);
