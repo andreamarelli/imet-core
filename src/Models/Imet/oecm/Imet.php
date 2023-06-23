@@ -45,7 +45,7 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives2::class,
         ],
         'resources' => [
-            Modules\Context\ManagementRelativeImportance::class,        // Formulas to be reviewed
+            Modules\Context\ManagementRelativeImportance::class,        // Scale to be reviewed (in module custom view)
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\FinancialResources::class,
@@ -58,12 +58,12 @@ class Imet extends BaseImetForm
             Modules\Context\Habitats::class,
         ],
         'stakeholders' => [
-            Modules\Context\Stakeholders::class,        // weight to be reviewed
+            Modules\Context\Stakeholders::class,        // Formula: DONE
             StakeholdersObjectives::class,
         ],
         'stakeholder_analysis' => [
-            AnalysisStakeholderDirectUsers::class,
-            AnalysisStakeholderIndirectUsers::class,
+            AnalysisStakeholderDirectUsers::class,      // Formula: DONE
+            AnalysisStakeholderIndirectUsers::class,    // Formula: DONE
             AnalysisStakeholdersObjectives::class
         ],
     ];

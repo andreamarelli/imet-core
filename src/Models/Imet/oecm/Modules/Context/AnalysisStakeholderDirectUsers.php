@@ -82,25 +82,41 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 
     public static function calculateKeyElementImportance($item): ?float
     {
-//        if($item['Dependence']!==null
-//            || $item['Access']!==null
-//            || $item['Rivalry']!==null
-//                    || $item['Involvement']!==null
-//                    || $item['Accountability']!==null
-//                    || $item['Orientation']!==null
-//        ){
-//            $item['__importance'] = (
-//                    3
-//                    + ($item['Dependence'] ?? 0)
-//                    + ($item['Rivalry'] ? 1 : 0) * 2
-//                    - ($item['Involvement'] ? 1 : 0)
-//                    - ($item['Accountability'] ? 1 : 0)
-//                    - ($item['Orientation'] ? 1 : 0)
-//                ) * 100 / 8;
-//            return $item['__importance'] * $item['__stakeholder_weight'];
-//        } else {
+        if($item['Description']!==null
+            || $item['Dependence']!==null
+            || $item['Access']!==null
+            || $item['Rivalry']===true
+            || $item['Quality']!==null
+            || $item['Quantity']!==null
+            || $item['Threats']!==null
+        ){
+
+            if($item['Access']==='open'){
+                $access = 2;
+            } else if($item['Access']==='no_access'){
+                $access = 1;
+            } else {
+                $access = 0;
+            }
+
+            $Threats = !empty($item['Threats']) ? json_decode($item['Threats']) : null;
+            $Threats = is_array($Threats) ? count($Threats) : null;
+
+
+            $item['__importance'] = (
+                4 +
+                ($item['Dependence'] ?? 0) +
+                $access +
+                ($item['Rivalry'] ? 3 : 0) -
+                ($item['Quality'] ?? 0) -
+                ($item['Quantity'] ?? 0) +
+                ($Threats/3)
+            ) * 100 / 25;
+
+            return $item['__importance'] * $item['__stakeholder_weight'];
+        } else {
             return null;
-//        }
+        }
     }
 
 }

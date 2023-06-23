@@ -82,26 +82,40 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 
     public static function calculateKeyElementImportance($item): ?float
     {
-//        if($item['Dependence']!==null
-//            || $item['Access']!==null
-//            || $item['Rivalry']!==null
-//                    || $item['Involvement']!==null
-//                    || $item['Accountability']!==null
-//                    || $item['Orientation']!==null
-//        ){
-//            $item['__importance'] = (
-//                    3
-//                    + ($item['Dependence'] ?? 0)
-//                    + ($item['Rivalry'] ? 1 : 0) * 2
-//                    - ($item['Involvement'] ? 1 : 0)
-//                    - ($item['Accountability'] ? 1 : 0)
-//                    - ($item['Orientation'] ? 1 : 0)
-//                ) * 100 / 8;
-//            return $item['__importance'] * $item['__stakeholder_weight'];
-//        } else {
-        return null;
-//        }
-    }
+        if($item['Description']!==null
+            || $item['Support']!==null
+            || $item['Guidelines']!==null
+            || $item['LackOfCollaboration']===true
+            || $item['Status']!==null
+            || $item['Trend']!==null
+            || $item['Threats']!==null
+        ){
 
+            if($item['Guidelines']==='poorly_developed'){
+                $guidelines = 2;
+            } else if($item['Guidelines']==='moderately_developed'){
+                $guidelines = 1;
+            } else{
+                $guidelines = 0;
+            }
+
+            $Threats = !empty($item['Threats']) ? json_decode($item['Threats']) : null;
+            $Threats = is_array($Threats) ? count($Threats) : null;
+
+            $item['__importance'] = (
+                4 +
+                ($item['Support'] ?? 0) +
+                $guidelines +
+                ($item['LackOfCollaboration'] ? 2 : 0) -
+                ($item['Status'] ?? 0) -
+                ($item['Trend'] ?? 0) +
+                ($Threats/3)
+            ) * 100 / 25;
+
+            return $item['__importance'] * $item['__stakeholder_weight'];
+        } else {
+            return null;
+        }
+    }
 
 }

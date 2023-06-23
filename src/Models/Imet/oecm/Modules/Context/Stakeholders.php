@@ -124,15 +124,18 @@ class Stakeholders extends Modules\Component\ImetModule
                 return !empty($item['Element']);
             })
             ->map(function($item){
-//                $Engagement = !empty($item['Engagement']) ? json_decode($item['Engagement']) : null;
-//                $Engagement = is_array($Engagement) ? count($Engagement) : null;
-//
-//                $sum = $item['Impact']!==null ? $item['Impact'] : 0;
-//                $sum += $item['Role']!==null ? $item['Role'] : 0;
-//                $sum += $Engagement ?? 0;
-//                $sum += $item['GeographicalProximity'] ? 4 : 0;
 
-//                $item['__weight'] = round($sum * 100 / 16, 0);
+                $UsesCategories = !empty($item['UsesCategories']) ? json_decode($item['UsesCategories']) : null;
+                $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;
+
+                $sum = $item['GeographicalProximity'] ? 4 : 0;
+                $sum += $UsesCategories ?? 0; // max 5
+                $sum += $item['DirectUser'] ? 7 : 0;
+                $sum += $item['LevelEngagement']!==null ? $item['LevelEngagement'] : 0;
+                $sum += $item['LevelInterest']!==null ? $item['LevelInterest'] : 0;
+                $sum += $item['LevelExpertise']!==null ? $item['LevelExpertise'] : 0;
+
+                $item['__weight'] = round($sum * 100 / 25, 0);
 
                 $item['Element'] = Str::replace("\n", '', $item['Element']);
 
