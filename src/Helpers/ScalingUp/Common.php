@@ -46,15 +46,15 @@ class Common
      * @param int $items_number
      * @return float|int
      */
-    public static function get_average(array $array, int $items_number = 0): float
+    public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) {
+        array_walk($array, function (&$item, $key) use (&$items_number){
             if ((string)$item === "-") {
                 $item = 0;
             }
         });
 
-        return $items_number ? array_sum($array) / $items_number : 0;
+        return $items_number ? array_sum($array) / $items_number : null;
     }
 
     /**
@@ -151,7 +151,7 @@ class Common
      * @param string|null $indicator
      * @return float
      */
-    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], string $indicator = null): float
+    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], string $indicator = null)
     {
         if ($value === 0) {
             return 0;
@@ -188,6 +188,8 @@ class Common
                 ? V1ToV2StatisticsService::get_scores($form_id, $type)
                 : V2StatisticsService::get_scores($form_id, $type);
 
+            //print_r($results);
+            //print_r($indicators);
             if (count($indicators)) {
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
@@ -210,7 +212,12 @@ class Common
 
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed
-            $filtered[$form_id]['avg'] = static::round_number(static::get_average($filtered[$form_id], $number_of_indicators));
+            $average = static::get_average($filtered[$form_id], $number_of_indicators);
+            if($average !== null){
+                $filtered[$form_id]['avg'] = static::round_number($average);
+            } else {
+                $filtered[$form_id]['avg'] = "-";
+            }
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
 
@@ -310,6 +317,7 @@ class Common
             $assessments[$k]['color'] = $name->color;
             $assessments[$k]['wdpa_id'] = $name->wdpa_id;
             $assessments[$k]['formid'] = (int)$form_id;
+            $assessments[$k]['year'] = (int)$name->Year;
 
             $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
             foreach ($indicators as $key => $indicator) {

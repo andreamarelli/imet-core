@@ -5,11 +5,13 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\AssignOp\Mod;
 
 class ReportController extends BaseReportController
 {
@@ -41,12 +43,12 @@ class ReportController extends BaseReportController
             $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
         }
 
+        $governance = Modules\Context\Governance::getModuleRecords($form_id);
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
         $scores = OEMCStatisticsService::get_scores($form_id, 'ALL');
 
         $main_threats = [];
-        $status = [];
         $planning_objectives_list = ['long' => [], 'short' => []];
 
         $planning_objectives = Modules\Evaluation\ObjectivesPlanification::getModule($form_id)->toArray();
@@ -57,23 +59,29 @@ class ReportController extends BaseReportController
 
         $trend_and_threats = Modules\Context\AnalysisStakeholderTrendsThreats::getModule($form_id)->toArray();
         foreach ($trend_and_threats as $record) {
-            if ($record['Status']) {
-                $status[$record['Status']] = trans('imet-core::oecm_context.AnalysisStakeholderTrendsThreats.ratingLegend.Status')[$record['Status']];
-            }
             if ($record['MainThreat']) {
                 $label =  str_replace('"]','', str_replace('["','', $record['MainThreat']));
                 $main_threats[$record['MainThreat']] = trans('imet-core::oecm_lists.MainThreat')[$label] ?? null;
             }
         }
 
+        $key_elements = collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->toArray();
+        uasort($key_elements, function($a, $b) {
+                    if ($a['Importance'] == $b['Importance']) {
+                        return 0;
+                    }
+                    return ($a['Importance'] > $b['Importance']) ? -1 : 1;
+        });
+
         return [
             'item' => $item,
             'planning_objectives' => $planning_objectives_list,
             'main_threats' => $main_threats,
-            'status' => $status,
-            'key_elements' => Modules\Evaluation\KeyElements::getModule($form_id)->filter(function ($item) {
-                return $item['IncludeInStatistics'];
-            })->pluck('Aspect')->toArray(),
+            'key_elements' => array_values($key_elements),
             'assessment' => array_merge(
                 $scores,
                 [
@@ -89,6 +97,7 @@ class ReportController extends BaseReportController
             'non_wdpa' => $non_wdpa ?? null,
             'general_info' => $general_info['records'][0] ?? null,
             'vision' => $vision['records'][0] ?? null,
+            'governance' => $governance['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id)
         ];
     }

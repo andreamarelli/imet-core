@@ -44,5 +44,15 @@ return [
     'year' => 'Y',
     'proposed_long_objectives' => 'Objectifs à long terme proposés',
     'proposed_short_objectives' => 'Objectifs à court terme proposés',
-    'general_planning' => 'Planification générale',
+    'pr1_5' => 'Internal management systems and processes',
+    'pr6_7' => 'Management / Protection of the values',
+    'pr8_10' => 'Stakeholder relations',
+    'pr11_12' => 'Tourism / Monitoring - Research',
+    'general_planning' => [
+        'name' => 'Planification générale',
+        'priority' => 'Priority',
+        'category' => 'Category',
+        'key_elements_service' => 'Key element/service',
+        'comments' => 'Comments/Explanation'
+    ]
 ];
