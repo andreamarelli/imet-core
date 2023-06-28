@@ -140,75 +140,67 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
         $weights = Modules\Context\Stakeholders::calculateWeights($form_id, static::$USER_MODE);
-        $weights_sum = collect($weights)->sum();
+        $weights_sum = array_sum($weights);
         $weights_div = $weights_sum>0 ?
-            collect($weights)->map(function($item) use($weights_sum){
-                return $item / $weights_sum;
-            })->toArray()
+            collect($weights)
+                ->map(function($item) use($weights_sum){
+                    return $item / $weights_sum;
+                })
+                ->toArray()
             : null;
 
-        foreach($records as $idx => $record){
-            $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']] ?? null;
-        }
-
-        $importance_by_stakeholder = collect($records)
-            ->map(function($item){
+        return collect($records)
+            ->map(function($item) use ($weights_div){
+                // Retrieve Stakeholders weights
+                $item['__stakeholder_weight'] = $weights_div[$item['Stakeholder']] ?? null;
+                // Retrieve weighted importance per each record
                 $item['__weighted_importance'] = static::calculateKeyElementImportance($item);
                 return $item;
             })
             ->filter(function ($item){
                 return $item['__weighted_importance'] != null;
             })
-            ->groupBy('Stakeholder')
-            ->map(function($group_stakeholder){
+            ->groupBy('Element')
+            ->map(function($group_element){
 
-                return $group_stakeholder
-                    ->groupBy('Element')
-                    ->map(function($group_element){
-
-                        $importance = $group_element
+                // Average importance if same stakeholder encode same element multiple times
+                $group_element = $group_element
+                    ->groupBy('Stakeholder')
+                    ->map(function($group_stakeholder){
+                        $importance = $group_stakeholder
                             ->map(function($item){
                                 return $item['__weighted_importance'];
                             })
                             ->average();
-
                         return [
-                            'Element' => $group_element[0]['Element'],
-                            'Stakeholder' => $group_element[0]['Stakeholder'],
-                            'group_key' => $group_element[0]['group_key'],
-                            'FormID' => $group_element[0]['FormID'],
-                            '__stakeholder_weight' => $group_element[0]['__stakeholder_weight'],
+                            'Element' => $group_stakeholder[0]['Element'],
+                            'Stakeholder' => $group_stakeholder[0]['Stakeholder'],
+                            'group_key' => $group_stakeholder[0]['group_key'],
+                            'FormID' => $group_stakeholder[0]['FormID'],
+                            '__stakeholder_weight' => $group_stakeholder[0]['__stakeholder_weight'],
                             '__weighted_importance' => $importance
                         ];
                     });
 
-            })
-            ->flatten(1);
-
-        $weighted_importance = $importance_by_stakeholder
-            ->groupBy('Element')
-            ->map(function($group_element){
-
+                // Aggregate importance on element
                 $importance = $group_element
                     ->map(function($item){
                         return $item['__weighted_importance'];
                     })
                     ->sum();
 
+                // Count how many stakeholders encoded the element
                 $stakeholder_count = $group_element->count();
 
                 return [
-                    'element' => $group_element[0]['Element'],
+                    'element' => $group_element->first()['Element'],
                     'importance' => round($importance, 1),
                     'stakeholder_count' => $stakeholder_count,
-                    'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.'.$group_element[0]['group_key'])
+                    'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.'.$group_element->first()['group_key'])
                 ];
             })
             ->sortByDesc('importance')
             ->values()
-            ->toArray()
-        ;
-
-        return $weighted_importance;
+            ->toArray();
     }
 }

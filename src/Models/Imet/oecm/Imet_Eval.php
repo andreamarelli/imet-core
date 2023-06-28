@@ -51,7 +51,7 @@ class Imet_Eval extends Imet
             SupportsAndConstraintsIntegration::class,
             Threats::class,             // getModuleRecords to be reviewed + histogram
             ThreatsIntegration::class,  // check ranking
-            KeyElements::class,         // getKeyElementsFromCTX to be reviewed, and check ranking scale
+            KeyElements::class,         // Formula: DONE
             ObjectivesContext::class
         ],
         'planning' => [
