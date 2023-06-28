@@ -140,7 +140,6 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
         $weights = Modules\Context\Stakeholders::calculateWeights($form_id, static::$USER_MODE);
-        $num_stakeholders = count($weights);
         $weights_sum = collect($weights)->sum();
         $weights_div = $weights_sum>0 ?
             collect($weights)->map(function($item) use($weights_sum){
@@ -152,7 +151,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             $records[$idx]['__stakeholder_weight'] = $weights_div[$record['Stakeholder']] ?? null;
         }
 
-        return collect($records)
+        $importance_by_stakeholder = collect($records)
             ->map(function($item){
                 $item['__weighted_importance'] = static::calculateKeyElementImportance($item);
                 return $item;
@@ -160,26 +159,56 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             ->filter(function ($item){
                 return $item['__weighted_importance'] != null;
             })
-            ->groupBy('Element')
-            ->map(function($group_values) use ($num_stakeholders){
+            ->groupBy('Stakeholder')
+            ->map(function($group_stakeholder){
 
-                $importance = $group_values
+                return $group_stakeholder
+                    ->groupBy('Element')
+                    ->map(function($group_element){
+
+                        $importance = $group_element
+                            ->map(function($item){
+                                return $item['__weighted_importance'];
+                            })
+                            ->average();
+
+                        return [
+                            'Element' => $group_element[0]['Element'],
+                            'Stakeholder' => $group_element[0]['Stakeholder'],
+                            'group_key' => $group_element[0]['group_key'],
+                            'FormID' => $group_element[0]['FormID'],
+                            '__stakeholder_weight' => $group_element[0]['__stakeholder_weight'],
+                            '__weighted_importance' => $importance
+                        ];
+                    });
+
+            })
+            ->flatten(1);
+
+        $weighted_importance = $importance_by_stakeholder
+            ->groupBy('Element')
+            ->map(function($group_element){
+
+                $importance = $group_element
                     ->map(function($item){
                         return $item['__weighted_importance'];
                     })
                     ->sum();
 
-                $stakeholder_count = $group_values->count();
+                $stakeholder_count = $group_element->count();
 
                 return [
-                    'element' => $group_values[0]['Element'],
+                    'element' => $group_element[0]['Element'],
                     'importance' => round($importance, 1),
-                    'stakeholder_percentage' => $stakeholder_count,
-                    'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.'.$group_values[0]['group_key'])
+                    'stakeholder_count' => $stakeholder_count,
+                    'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.'.$group_element[0]['group_key'])
                 ];
             })
             ->sortByDesc('importance')
             ->values()
-            ->toArray();
+            ->toArray()
+        ;
+
+        return $weighted_importance;
     }
 }
