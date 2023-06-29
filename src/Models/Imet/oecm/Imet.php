@@ -58,12 +58,12 @@ class Imet extends BaseImetForm
             Modules\Context\Habitats::class,
         ],
         'stakeholders' => [
-            Modules\Context\Stakeholders::class,        // Formula: DONE
+            Modules\Context\Stakeholders::class,
             StakeholdersObjectives::class,
         ],
         'stakeholder_analysis' => [
-            AnalysisStakeholderDirectUsers::class,      // Formula: DONE
-            AnalysisStakeholderIndirectUsers::class,    // Formula: DONE
+            AnalysisStakeholderDirectUsers::class,
+            AnalysisStakeholderIndirectUsers::class,
             AnalysisStakeholdersObjectives::class
         ],
     ];

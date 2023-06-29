@@ -49,9 +49,7 @@ class Imet_Eval extends Imet
             Designation::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
-            Threats::class,             // missing num stakeholders per threat
-                                        //   + list of "specific element assessed"
-                                        //   + histogram
+            Threats::class,             // histogram
                                         //   + score scale from -100 to 0
             ThreatsIntegration::class,  // sort ranking
             KeyElements::class,         // Formula: DONE
@@ -96,7 +94,7 @@ class Imet_Eval extends Imet
         ],
         'outcomes' => [
             AchievedObjectives::class,
-            KeyElementsImpact::class,       // No formulas
+            KeyElementsImpact::class,       // No formula yet
             LifeQualityImpact::class,
         ],
         'management_effectiveness' => [],

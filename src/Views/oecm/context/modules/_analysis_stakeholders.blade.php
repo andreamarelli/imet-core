@@ -112,7 +112,7 @@ $num_cols = count($definitions['fields']);
                         if(in_array($group_key, ['group11', 'group12', 'group13'])){
                             $definitions['max_rows'] = 9999;
                         } else {
-                            $definitions['max_rows'] = 3;
+                            $definitions['max_rows'] = 5;
                         }
 
                         $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
@@ -141,7 +141,7 @@ $num_cols = count($definitions['fields']);
                         <thead>
                         <tr>
                             @foreach($definitions['fields'] as $index => $field)
-                                @if(!($index==1 && in_array($group_key, ['group11', 'group12', 'group13'])))
+                                @if(!(($index==1 || $index==2) && in_array($group_key, ['group11', 'group12', 'group13'])))
                                     <th class="text-center">
                                         @if($field['type']!=='hidden')
                                             {{ ucfirst($field['label'] ?? '') }}
@@ -166,7 +166,7 @@ $num_cols = count($definitions['fields']);
                             v-if="isCurrentStakeholder(item['Stakeholder'])">
                             {{--  fields  --}}
                             @foreach($definitions['fields'] as $index => $field)
-                                @if(!($index==1 && in_array($group_key, ['group11', 'group12', 'group13'])))
+                                @if(!(($index==1 || $index==2) && in_array($group_key, ['group11', 'group12', 'group13'])))
                                     <td>
                                         @include('modular-forms::module.edit.field.module-to-vue', [
                                            'definitions' => $definitions,

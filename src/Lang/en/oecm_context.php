@@ -617,6 +617,7 @@ return [
         'fields' => [
             'Element' => 'Criteria',
             'Description' => 'Specific element assessed',
+            'Illegal' => 'Illegal',
             'Dependence' => 'Dependence',
             'Access' => 'Access',
             'Rivalry' => 'Rivalry',
@@ -676,6 +677,7 @@ return [
         'fields' => [
             'Element' => 'Criteria',
             'Description' => 'Specific element assessed',
+            'Illegal' => 'Illegal',
             'Support' => 'Support or Contribution',
             'Guidelines' => 'Guidelines and procedures',
             'LackOfCollaboration' => 'Lack of collaboration between non-direct and direct users',

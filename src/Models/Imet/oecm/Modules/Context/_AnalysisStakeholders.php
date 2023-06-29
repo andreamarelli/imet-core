@@ -203,4 +203,43 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             ->values()
             ->toArray();
     }
+
+    public static function getNumStakeholdersElementsByThreat($form_id): array
+    {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+
+        $threats = [];
+        foreach($records as $record){
+            if($record['Element']!==null && $record['Threats']!==null){
+                foreach (json_decode($record['Threats']) as $threat){
+                    if(!array_key_exists($threat, $threats)){
+                        $threats[$threat] = [
+                            'stakeholders' => [],
+                            'elements' => [],
+                            'elements_illegal' => [],
+                        ];
+                    }
+                    $threats[$threat]['stakeholders'][] = $record['Stakeholder'];
+
+                    if(!array_key_exists($record['group_key'], $threats[$threat]['elements'])){
+                        $threats[$threat]['elements'][$record['group_key']] = [];
+                    }
+                    if(!array_key_exists($record['group_key'], $threats[$threat]['elements_illegal'])){
+                        $threats[$threat]['elements_illegal'][$record['group_key']] = [];
+                    }
+
+                    if(in_array($record['group_key'], ['group11', 'group12', 'group13'])){
+                        $threats[$threat]['elements'][$record['group_key']][] = $record['Element'];
+                    } else {
+                        if($record['Illegal']){
+                            $threats[$threat]['elements_illegal'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
+                        } else {
+                            $threats[$threat]['elements'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
+                        }
+                    }
+                }
+            }
+        }
+        return $threats;
+    }
 }
