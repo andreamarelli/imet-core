@@ -49,8 +49,11 @@ class Imet_Eval extends Imet
             Designation::class,
             SupportsAndConstraints::class,
             SupportsAndConstraintsIntegration::class,
-            Threats::class,             // getModuleRecords to be reviewed + histogram
-            ThreatsIntegration::class,  // check ranking
+            Threats::class,             // missing num stakeholders per threat
+                                        //   + list of "specific element assessed"
+                                        //   + histogram
+                                        //   + score scale from -100 to 0
+            ThreatsIntegration::class,  // sort ranking
             KeyElements::class,         // Formula: DONE
             ObjectivesContext::class
         ],
@@ -58,8 +61,8 @@ class Imet_Eval extends Imet
             RegulationsAdequacy::class,
             DesignAdequacy::class,
             BoundaryLevel::class,
-            ManagementPlan::class,      // Review formulas
-            WorkPlan::class,          // Review formulas
+            ManagementPlan::class,
+            WorkPlan::class,
             Objectives::class,
             ObjectivesPlanification::class
         ],

@@ -85,12 +85,19 @@ class Threats extends Modules\Component\ImetModule_Eval {
                     + ($item['Trend']!=null ? 1 : 0)
                     + ($item['Probability']!=null ? 1 : 0);
 
-                $item['__score'] = $count>0
+                $score = $count>0
                     ? (4 - round(pow($prod, 1/($count)),2))
                     : null;
 
+                $score = $score!==null
+                    ? (0 - $score) * 100 / 3
+                    : null;
+
+                $item['__score'] = $score;
+
                 return $item;
             })
+            ->sortBy('__score')
             ->toArray();
     }
 

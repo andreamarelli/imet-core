@@ -90,10 +90,6 @@ trait Context {
 
         $score = static::average($values, null);
 
-        $score = $score!== null ?
-            ($score * 100 / 3) -100
-            : null;
-
         return $score!== null ?
             round($score, 2)
             : null;

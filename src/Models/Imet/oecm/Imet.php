@@ -45,7 +45,7 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives2::class,
         ],
         'resources' => [
-            Modules\Context\ManagementRelativeImportance::class,        // Scale to be reviewed (in module custom view)
+            Modules\Context\ManagementRelativeImportance::class,
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\FinancialResources::class,
