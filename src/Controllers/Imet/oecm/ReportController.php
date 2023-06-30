@@ -43,38 +43,46 @@ class ReportController extends BaseReportController
             $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
         }
 
+        $stake_holders = ['direct' => [], 'indirect' => []];
+
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
+        $key_elements_impacts = Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id);
         $scores = OEMCStatisticsService::get_scores($form_id, 'ALL');
+        $stake_holders['direct'] = array_count_values(array_map('strtolower', Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT)));
+        $stake_holders['indirect'] = array_count_values(array_map('strtolower', Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT)));
 
         $main_threats = [];
         $planning_objectives_list = ['long' => [], 'short' => []];
 
         $planning_objectives = Modules\Evaluation\ObjectivesPlanification::getModule($form_id)->toArray();
 
-        foreach ($planning_objectives as $record){
+        foreach ($planning_objectives as $record) {
             $planning_objectives_list[$record['ShortOrLongTerm']][] = $record['Element'];
         }
 
-        $trend_and_threats = Modules\Context\AnalysisStakeholderTrendsThreats::getModule($form_id)->toArray();
+        // TODO: to be reviewed
+//        $trend_and_threats = Modules\Context\AnalysisStakeholderTrendsThreats::getModule($form_id)->toArray();
+        $trend_and_threats = [];
+
         foreach ($trend_and_threats as $record) {
             if ($record['MainThreat']) {
-                $label =  str_replace('"]','', str_replace('["','', $record['MainThreat']));
+                $label = str_replace('"]', '', str_replace('["', '', $record['MainThreat']));
                 $main_threats[$record['MainThreat']] = trans('imet-core::oecm_lists.MainThreat')[$label] ?? null;
             }
         }
 
         $key_elements = collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
-            ->filter(function($item){
+            ->filter(function ($item) {
                 return $item['IncludeInStatistics'];
             })
             ->toArray();
-        uasort($key_elements, function($a, $b) {
-                    if ($a['Importance'] == $b['Importance']) {
-                        return 0;
-                    }
-                    return ($a['Importance'] > $b['Importance']) ? -1 : 1;
+        uasort($key_elements, function ($a, $b) {
+            if ($a['Importance'] == $b['Importance']) {
+                return 0;
+            }
+            return ($a['Importance'] > $b['Importance']) ? -1 : 1;
         });
 
         return [
@@ -82,6 +90,8 @@ class ReportController extends BaseReportController
             'planning_objectives' => $planning_objectives_list,
             'main_threats' => $main_threats,
             'key_elements' => array_values($key_elements),
+            'key_elements_impacts' => $key_elements_impacts['records'],
+            'stake_holders' => $stake_holders,
             'assessment' => array_merge(
                 $scores,
                 [

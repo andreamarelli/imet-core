@@ -38,7 +38,7 @@ class Common
             return 0;
         }
 
-        return (float)(number_format(round($val, $round), 1));
+        return (float)number_format(round($val, $round), 1);
     }
 
     /**
@@ -48,7 +48,7 @@ class Common
      */
     public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) use (&$items_number){
+        array_walk($array, function (&$item, $key) {
             if ((string)$item === "-") {
                 $item = 0;
             }
@@ -188,8 +188,6 @@ class Common
                 ? V1ToV2StatisticsService::get_scores($form_id, $type)
                 : V2StatisticsService::get_scores($form_id, $type);
 
-            //print_r($results);
-            //print_r($indicators);
             if (count($indicators)) {
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }

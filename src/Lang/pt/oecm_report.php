@@ -53,5 +53,8 @@ return [
         'category' => 'Category',
         'key_elements_service' => 'Key element/service',
         'comments' => 'Comments/Explanation'
-    ]
+    ],
+    'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the OECM',
+    'stakeholder_direct_users' => 'Stakeholders Direct users',
+    'stakeholder_indirect_users' => 'Stakeholders Indirect users'
 ];
