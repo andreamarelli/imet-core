@@ -38,6 +38,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
 
         $this->module_subTitle = trans('imet-core::oecm_evaluation.KeyElements.module_subTitle');
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.KeyElements.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.KeyElements.module_info_EvaluationQuestion');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.KeyElements.ratingLegend');
 
         parent::__construct($attributes);
@@ -66,6 +67,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             'values' => $key_elements->pluck('element')->toArray()
         ];
         $module_records['records'] = static::arrange_records($predefined, $records, $empty_record);
+
         // Inject also importance
         foreach ($module_records['records'] as $index => $record){
             if(array_key_exists($record['Aspect'], $key_elements->toArray())){
@@ -75,13 +77,64 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             }
         }
 
-
         return $module_records;
     }
 
     public static function getKeyElementsFromCTX($form_id): array
     {
-        return [];
+        $direct_users_key_elements = Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
+        $indirect_users_key_elements = Modules\Context\AnalysisStakeholderInDirectUsers::calculateKeyElementsImportances($form_id);
+
+        $direct_users_weights = collect(Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_DIRECT))
+            ->sum();
+        $indirect_users_weights = collect(Modules\Context\Stakeholders::calculateWeights($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT))
+            ->sum();
+        $users_weight = $direct_users_weights + $indirect_users_weights;
+
+        $direct_users_key_elements = collect($direct_users_key_elements)
+            ->map(function($item) use ($direct_users_weights){
+               $item['importance'] = $item['importance'] * $direct_users_weights;
+               return $item;
+            });
+
+        $indirect_users_key_elements = collect($indirect_users_key_elements)
+            ->map(function($item) use ($indirect_users_weights){
+               $item['importance'] = $item['importance'] * $indirect_users_weights;
+                return $item;
+            });
+
+        $all_elements = $direct_users_key_elements->merge($indirect_users_key_elements);
+        $importances = collect($all_elements)
+            ->groupBy('element')
+            ->map(function($group_element) use ($users_weight){
+
+                $importance = $group_element
+                        ->map(function($item){
+                            return $item['importance'];
+                        })
+                        ->sum() / $users_weight;
+                $importance = round($importance, 1);
+
+                $stakeholder_count = $group_element
+                    ->map(function($item){
+                        return $item['stakeholder_count'];
+                    })
+                    ->sum();
+
+                return [
+                    'element' => $group_element[0]['element'],
+                    'importance' => $importance,
+                    'stakeholder_count' => $stakeholder_count,
+                    'group' => $group_element[0]['group']
+                ];
+            })
+            ->sortByDesc('importance')
+            ->filter(function ($item){
+                return $item['importance']!==null;
+            })
+            ->toArray();
+
+        return $importances;
 
 //        $ctx5_key_elements = Modules\Context\AnalysisStakeholderAccessGovernance::calculateKeyElementsImportances( $form_id);
 //        $ctx6_key_elements = Modules\Context\AnalysisStakeholderTrendsThreats::calculateKeyElementsImportances2($form_id);

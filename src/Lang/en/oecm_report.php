@@ -57,5 +57,6 @@ return [
     ],
     'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the OECM',
     'stakeholder_direct_users' => 'Stakeholders Direct users',
-    'stakeholder_indirect_users' => 'Stakeholders Indirect users'
+    'stakeholder_indirect_users' => 'Stakeholders Indirect users',
+    'key_biodiversity_elements' => 'Key biodiversity elements of OECM'
 ];

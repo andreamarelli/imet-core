@@ -48,7 +48,7 @@ class Common
      */
     public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) {
+        array_walk($array, function (&$item, $key) use (&$items_number){
             if ((string)$item === "-") {
                 $item = 0;
             }
@@ -158,12 +158,16 @@ class Common
         }
 
         if ((string)$value === "-") {
+
             return $value;
         }
 
         //use it only for process indicators
         if ($indicator && isset($process_indicators[$indicator])) {
             $length_to_divide = array_sum($process_indicators);
+            // dd($length_to_divide, $process_indicators, $value, $indicator);
+           // print_r($process_indicators);
+           // echo $value."_".$length_to_divide."x".static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2)."-\n";
             return static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2);
         }
         //echo $value ."\n";

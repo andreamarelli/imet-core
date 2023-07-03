@@ -1,4 +1,5 @@
 <?php
+
 return [
     'general_elements' => 'General elements of the OECM',
     'country' => 'Country',
@@ -27,12 +28,12 @@ return [
     'operating_budget' => 'What is your minimum operating budget to ensure the preservation of the values and importance of your OECM?',
     'additional_funding' => 'In the case of additional funding for the management of the OECM what actions would you like to take and for how much time?',
     'table_of_planning' => 'Table of planning',
-    'previous_state' => 'Previous state (Before -year)',
-    'impacts' => 'Impacts',
-    'responses' => 'Responses',
     'driving_forces' => 'Driving forces /Pressures',
-    'current_state' => 'Current state',
-    'expected_conditions' => 'Expected conditions',
+    'previous_state' => 'Previous state (Before -year) and Driving forces /Pressures',
+    'impacts' => 'Impacts and Current state',
+    'responses' => 'Responses and Expected conditions',
+    'proposed_short' => 'Proposed short term objectives',
+    'proposed_long' => 'Proposed long term objectives',
     'possible_roadmap' => 'Possible road map - Management plan midterm and long term',
     'long_term_objectives' => 'Long term Objective – Goals',
     'outcome' => 'Outcome 1',
@@ -56,5 +57,6 @@ return [
     ],
     'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the OECM',
     'stakeholder_direct_users' => 'Stakeholders Direct users',
-    'stakeholder_indirect_users' => 'Stakeholders Indirect users'
+    'stakeholder_indirect_users' => 'Stakeholders Indirect users',
+    'key_biodiversity_elements' => 'Key biodiversity elements of OECM '
 ];
