@@ -134,7 +134,4 @@ CREATE TABLE imet_oecm.eval_key_elements_impact
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-ALTER TABLE imet_oecm.imet_report RENAME  "current_state"  to "proposed_short";
-ALTER TABLE imet_oecm.imet_report RENAME  "expected_conditions"  to "proposed_long";
-
 COMMIT;

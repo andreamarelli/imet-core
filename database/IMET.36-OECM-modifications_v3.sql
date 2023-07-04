@@ -142,4 +142,8 @@ CREATE TABLE IF NOT EXISTS imet_oecm.eval_key_elements_impact
 DROP TABLE IF EXISTS imet_oecm.context_analysis_stakeholders_access_governance;
 DROP TABLE IF EXISTS imet_oecm.context_analysis_stakeholders_trends_threats;
 
+
+ALTER TABLE imet_oecm.imet_report RENAME  "current_state"  to "proposed_short";
+ALTER TABLE imet_oecm.imet_report RENAME  "expected_conditions"  to "proposed_long";
+
 COMMIT;
