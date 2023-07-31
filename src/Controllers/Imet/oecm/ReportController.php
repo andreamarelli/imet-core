@@ -26,7 +26,6 @@ class ReportController extends BaseReportController
     {
         $form_id = $item->getKey();
         $show_non_wdpa = false;
-        $planning_objectives_list = ['long' => [], 'short' => []];
 
         if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
             $show_non_wdpa = true;
@@ -35,17 +34,10 @@ class ReportController extends BaseReportController
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
-        $vision = Modules\Context\Missions::getModuleRecords($form_id);
         $scores = OEMCStatisticsService::get_scores($form_id, 'ALL');
-        $planning_objectives = Modules\Evaluation\ObjectivesPlanification::getModule($form_id)->toArray();
-
-        foreach ($planning_objectives as $record) {
-            $planning_objectives_list[$record['ShortOrLongTerm']][] = $record['Element'];
-        }
 
         return [
             'item' => $item,
-            'planning_objectives' => $planning_objectives_list,
             'main_threats' => $this->getThreats($form_id),
             'key_elements_biodiversity' => array_values($this->getKeyElements($form_id)),
             'key_elements_ecosystem' => array_values($this->getKeyElements($form_id, true)),
@@ -62,8 +54,6 @@ class ReportController extends BaseReportController
             'report_schema' => Report::getSchema(),
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
-            'general_info' => $general_info['records'][0] ?? null,
-            'vision' => $vision['records'][0] ?? null,
             'governance' => $governance['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id)
         ];

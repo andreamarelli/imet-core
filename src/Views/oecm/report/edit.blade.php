@@ -5,8 +5,6 @@
 /** @var array $key_elements_ecosystem */
 /** @var array $report */
 /** @var array $wdpa_extent */
-/** @var array $general_info */
-/** @var array $vision */
 /** @var array $area */
 /** @var bool  $show_api */
 /** @var bool $show_non_wdpa */
@@ -20,8 +18,6 @@
     'key_elements_ecosystem' => $key_elements_ecosystem,
     'report' => $report,
     'report_schema' => $report_schema,
-    'general_info' => $general_info,
-    'vision' => $vision,
     'area' => $area,
     'show_non_wdpa' => $show_non_wdpa,
     'non_wdpa' => $non_wdpa,
