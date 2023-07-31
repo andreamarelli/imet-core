@@ -67,10 +67,12 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             'values' => $key_elements->pluck('element')->toArray()
         ];
         $module_records['records'] = static::arrange_records($predefined, $records, $empty_record);
-
+//dd($module_records['records'],  $key_elements->toArray());
         // Inject also importance
         foreach ($module_records['records'] as $index => $record){
+
             if(array_key_exists($record['Aspect'], $key_elements->toArray())){
+
                 $module_records['records'][$index]['Importance'] = $key_elements[$record['Aspect']]['importance'];
                 $module_records['records'][$index]['__num_stakeholders'] = $key_elements[$record['Aspect']]['stakeholder_count'];
                 $module_records['records'][$index]['__group_stakeholders'] = $key_elements[$record['Aspect']]['group'];;

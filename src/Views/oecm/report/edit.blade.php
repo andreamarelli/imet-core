@@ -1,7 +1,8 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
-/** @var array $key_elements */
+/** @var array $key_elements_biodiversity */
+/** @var array $key_elements_ecosystem */
 /** @var array $report */
 /** @var array $wdpa_extent */
 /** @var array $general_info */
@@ -15,7 +16,8 @@
 @include('imet-core::oecm.report.report', [
     'action' => 'edit',
     'assessment' => $assessment,
-    'key_elements' => $key_elements,
+    'key_elements_biodiversity' => $key_elements_biodiversity,
+    'key_elements_ecosystem' => $key_elements_ecosystem,
     'report' => $report,
     'report_schema' => $report_schema,
     'general_info' => $general_info,
