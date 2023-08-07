@@ -54,7 +54,7 @@ return [
 
     'ManagementUnique' => [
         'unique'        => 'A specified entity',
-        'multiple'      => 'An agreed upon combination of entities'
+        'multiple'      => 'An agreed upon combination of stakeholders'
     ],
 
     'ManagementType'=> [
@@ -76,18 +76,6 @@ return [
         'terrestrial'           => 'Terrestrial and/or freshwater',
         'marine_and_coastal'    => 'Marine',
         'mixed'                 => 'Partially marine and terrestrial (or freshwater)',
-    ],
-
-    'Ownership' => [
-        'state'         => 'State',
-        'communal'      => 'Community',
-        'landowners'    => 'Individual landowners',
-        'for_profit'    => 'For-profit organisations',
-        'non_profit'    => 'Non-profit organisations',
-        'joint'         => 'Joint ownership',
-        'multiple'      => 'Multiple ownership',
-        'contested'     => 'Contested',
-        'not_reported'  => 'Not Reported'
     ],
 
     'Habitats' => [

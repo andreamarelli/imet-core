@@ -82,7 +82,6 @@ return [
             'AdditionalInfo' => 'Additional information on governance model (if needed)',
             'ManagementUnique' => 'Determine the entity in charge of the management and governance of the OECM',
             'ManagementName' => 'Name',
-            'ManagementList' => 'List of entities involved in the daily management and governance (do not list partners)',
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date of creation',
             'OfficialRecognition' => 'Official Recognition: Has the Management Entity received an official recognition from the national or regional authorities?',
@@ -210,7 +209,7 @@ return [
     ],
 
     'ManagementStaff' => [
-        'title' => 'Composition and staff of Management Entity(s) (identified in CTX 1.2).',
+        'title' => 'Composition and staff of Management Entity  (identified in CTX 1.2).',
         'fields' => [
             'Function' => 'Functions',
             'Number' => 'Number',
@@ -218,6 +217,7 @@ return [
             'Female' => 'Female',
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Adequate number',
+            'Difference' => 'Difference'
         ],
         'module_info' => 'Number and categories of members of the OECM Management Entity',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>'

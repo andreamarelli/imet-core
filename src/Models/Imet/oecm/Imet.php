@@ -66,6 +66,13 @@ class Imet extends BaseImetForm
             AnalysisStakeholderIndirectUsers::class,
             AnalysisStakeholdersObjectives::class
         ],
+        'objectives'            => [
+            Modules\Context\Objectives1::class,
+            Modules\Context\Objectives2::class,
+            Modules\Context\Objectives3::class,
+            StakeholdersObjectives::class,
+            AnalysisStakeholdersObjectives::class
+        ]
     ];
 
 
