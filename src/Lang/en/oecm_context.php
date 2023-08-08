@@ -610,7 +610,6 @@ return [
         'title' => 'Analysis per stakeholder - Direct Users',
         'fields' => [
             'Element' => 'Criteria',
-            'Description' => 'Specific element assessed',
             'Illegal' => 'Illegal',
             'Dependence' => 'Dependence',
             'Access' => 'Access',
@@ -670,7 +669,6 @@ return [
         'title' => 'Analysis per stakeholder - Indirect Users',
         'fields' => [
             'Element' => 'Criteria',
-            'Description' => 'Specific element assessed',
             'Illegal' => 'Illegal',
             'Support' => 'Support or Contribution',
             'Guidelines' => 'Guidelines and procedures',

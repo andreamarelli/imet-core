@@ -20,7 +20,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 ?>
 
 {{-- Stakeholder's summary--}}
-<div class="card">
+<div class="card" id="module_{{ $definitions['module_key'] }}_summary">
     <div class="card-header">
         <h4 class="card-title" role="button" @click="switchStakeholder('summary')">
             @lang('imet-core::oecm_context.AnalysisStakeholders.summary')
@@ -90,7 +90,6 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                         ? json_decode($stakeholders_categories[$stakeholder])
                         : [];
                     $categories = $categories!==null ? $categories : [];
-//                    dd($stakeholders_categories, $stakeholder, $categories)
                 @endphp
 
                 @if($categories === [])
@@ -273,6 +272,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                 saveModuleDoneCallback(data) {
                     this.key_elements_importance = data.key_elements_importance;
                     this.current_stakeholder = '{{ $vue_data['current_stakeholder'] }}';
+                    window.ModularForms.Mixins.Animation.scrollPageToAnchor('module_{{ $definitions['module_key'] }}_summary');
                 },
 
             }
