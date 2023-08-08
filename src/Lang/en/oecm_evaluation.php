@@ -77,6 +77,10 @@ return [
             'ConstraintLevel'   => 'Level of the constraint/conflict or support/compliance',
             'Comments'          => 'Comments/Explanation',
         ],
+        'groups' => [
+            'group0' => 'Direct users',
+            'group1' => 'Indirect users',
+        ],
         'ratingLegend' => [
             'ConstraintLevel' => [
                 '-3' => 'Severe constraints/conflicts',
@@ -103,6 +107,10 @@ return [
             'Integration'       => 'Integration',
             'IncludeInStatistics' => 'To prioritise in management',
             'Comments'          => 'Comments/Explanation',
+        ],
+        'groups' => [
+            'group0' => 'Direct users',
+            'group1' => 'Indirect users',
         ],
         'ratingLegend' => [
             'Integration' => [

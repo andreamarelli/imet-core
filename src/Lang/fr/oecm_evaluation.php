@@ -77,6 +77,10 @@ return [
             'ConstraintLevel'   => 'Niveau de la contrainte/du conflit ou du soutien/de la conformité',
             'Comments'          => 'Commentaires/Explication',
         ],
+        'groups' => [
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
+        ],
         'ratingLegend' => [
             'ConstraintLevel' => [
                 '-3' => 'Contraintes/conflits sévères',
@@ -103,6 +107,10 @@ return [
             'Intégration'       => 'Intégration',
             'IncludeInStatistics' => 'À prioriser dans la gestion',
             'Comments'          => 'Commentaires/Explication',
+        ],
+        'groups' => [
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
             'Intégration' => [

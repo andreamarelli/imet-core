@@ -20,7 +20,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C2.1';
         $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraints.title');
         $this->module_fields = [
@@ -30,6 +30,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
             ['name' => 'Comments',           'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraints.fields.Comments')],
         ];
 
+        $this->module_groups = trans('imet-core::oecm_evaluation.SupportsAndConstraints.groups');
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.SupportsAndConstraints.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::oecm_evaluation.SupportsAndConstraints.module_info_Rating');
         $this->ratingLegend = trans('imet-core::oecm_evaluation.SupportsAndConstraints.ratingLegend');
@@ -51,8 +52,12 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
         $preLoaded = [
             'field' => 'Stakeholder',
-            'values' => Modules\Context\Stakeholders::getStakeholders($form_id)
+            'values' => [
+                'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
+                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
+            ]
         ];
+
         $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
