@@ -133,8 +133,23 @@ return [
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I1, PR6</i>',
     ],
 
+    'ThreatsBiodiversity' => [
+        'title' => 'Analysis of Biodiversity key elements',
+        'fields' => [
+            'Criteria' => 'Criteria',
+            'Threats' => 'Threats',
+            'Note' => 'Note',
+        ],
+        'groups' => [
+            'group0' => 'Animals',
+            'group1' => 'Plants',
+            'group2' => 'Habitats',
+        ],
+        'module_info' => 'Identify the threats categories affecting the Biodiversity key element identified in CTX4.1'
+    ],
+
     'Threats' => [
-        'title' => 'OECM threat calculator',
+        'title' => 'Analysis of OECM threats',
         'fields' => [
             'Value' => 'Values',
             'Impact' => 'Impact/ Severity',

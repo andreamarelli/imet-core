@@ -133,8 +133,24 @@ return [
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
     ],
 
+
+    'ThreatsBiodiversity' => [
+        'title' => 'Analyse des éléments clés de la biodiversité',
+        'fields' => [
+            'Criteria' => 'Critère',
+            'Threats' => 'Menaces',
+            'Note' => 'Note',
+        ],
+        'groups' => [
+            'group0' => 'Animaux',
+            'group1' => 'Végétaux',
+            'group2' => 'Habitats',
+        ],
+        'module_info' => 'Identifier les catégories de menaces affectant l\'élément clé de la biodiversité identifié dans CTX4.1'
+    ],
+
     'Threats' => [
-        'title' => 'Calculateur de menaces AMCE',
+        'title' => 'Analyse des menaces AMCE',
         'fields' => [
             'Value' => 'Valeurs',
             'Impact' => 'Impact/ Gravité',

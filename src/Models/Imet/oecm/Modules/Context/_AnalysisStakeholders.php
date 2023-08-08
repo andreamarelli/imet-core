@@ -149,6 +149,12 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                         $threats[$threat]['elements_illegal'][$record['group_key']] = [];
                     }
 
+                    if ($record['Illegal']) {
+                        $threats[$threat]['elements_illegal'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
+                    } else {
+                        $threats[$threat]['elements'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
+                    }
+
                 }
             }
         }

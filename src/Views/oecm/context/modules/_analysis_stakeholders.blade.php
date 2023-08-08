@@ -132,13 +132,11 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                 <thead>
                                 <tr>
                                     @foreach($definitions['fields'] as $index => $field)
-                                        @if(!($index==1 || $index==2 ))
-                                            <th class="text-center">
-                                                @if($field['type']!=='hidden')
-                                                    {{ ucfirst($field['label'] ?? '') }}
-                                                @endif
-                                            </th>
-                                        @endif
+                                        <th class="text-center">
+                                            @if($field['type']!=='hidden')
+                                                {{ ucfirst($field['label'] ?? '') }}
+                                            @endif
+                                        </th>
                                     @endforeach
                                     <th></th>
                                 </tr>
@@ -151,16 +149,14 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                     v-if="isCurrentStakeholder(item['Stakeholder'])">
                                     {{--  fields  --}}
                                     @foreach($definitions['fields'] as $index => $field)
-                                        @if(!($index==1 || $index==2))
-                                            <td>
-                                                @include('modular-forms::module.edit.field.module-to-vue', [
-                                                   'definitions' => $definitions,
-                                                   'field' => $field,
-                                                   'vue_record_index' => 'index',
-                                                   'group_key' => $group_key
-                                               ])
+                                        <td>
+                                            @include('modular-forms::module.edit.field.module-to-vue', [
+                                               'definitions' => $definitions,
+                                               'field' => $field,
+                                               'vue_record_index' => 'index',
+                                               'group_key' => $group_key
+                                           ])
                                             </td>
-                                        @endif
                                     @endforeach
                                     <td>
                                         {{-- record id  --}}

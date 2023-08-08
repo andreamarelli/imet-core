@@ -123,7 +123,6 @@ $stakeholders_records = collect($records)
                             @endforeach
                             <th></th>
                         </tr>
-                        </tr>
                         </thead>
 
                         <tbody class="{{ $group_key }}">

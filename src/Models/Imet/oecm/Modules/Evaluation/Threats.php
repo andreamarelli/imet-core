@@ -15,7 +15,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C3.1';
+        $this->module_code = 'C3.1.2';
         $this->module_title = trans('imet-core::oecm_evaluation.Threats.title');
         $this->module_fields = [
             ['name' => 'Value',         'type' => 'blade-imet-core::oecm.evaluation.fields.threat', 'label' => trans('imet-core::oecm_evaluation.Threats.fields.Value')],
@@ -47,7 +47,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
         $threats_indirect_users = Modules\Context\AnalysisStakeholderIndirectUsers::getNumStakeholdersElementsByThreat($form_id);
         $threats = collect($threats_direct_users)
             ->mergeRecursive(collect($threats_indirect_users))
-            ->toArray();;
+            ->toArray();
 
         foreach($threats as $idx => $threat) {
             $threats[$idx]['num_stakeholders'] = count(array_unique($threat['stakeholders']));
@@ -66,6 +66,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
                 $module_records['records'][$index]['__elements'] = null;
                 $module_records['records'][$index]['__elements_illegal'] = null;
             }
+            $module_records['records'][$index]['__threat_key'] = $threat_key;
         }
 
         return $module_records;
