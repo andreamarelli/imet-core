@@ -129,7 +129,7 @@ return [
     'Threats' => [
         'commercial_residential'    => 'Commercial and residential',
         'agriculture_aquaculture'   => 'Agriculture and aquaculture',
-        'energy_mining'              => 'Energy and mining',
+        'energy_mining'             => 'Energy and mining',
         'transport_infrastructure'  => 'Transport and infrastructure',
         'extraction'                => 'Extraction of biological resources',
         'human_disturbance'         => 'Human disturbance / intrusion',

@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 {
-    protected static $USER_MODE;
+    public static $USER_MODE;
 
     /**
      * Override: Inject predefined values and replicate for each stakeholder
@@ -19,7 +19,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
      * @param $empty_record
      * @return array
      */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function OLD_arrange_records($predefined_values, $records, $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
@@ -131,6 +131,49 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         }
 
         return $new_records;
+    }
+
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
+        $form_id = $empty_record['FormID'];
+
+        // retrieve stakeholders
+        $stakeholders = Stakeholders::getStakeholders($form_id, static::$USER_MODE, true);
+
+        // Add at least a record (empty) for each group (related to selected categories) per stakeholder
+        $groups = array_keys(trans('imet-core::oecm_context.AnalysisStakeholders.groups'));
+        foreach ($stakeholders as $stakeholder => $stakeholder_categories) {
+            $stakeholder_categories = json_decode($stakeholder_categories);
+            $stakeholder_categories = $stakeholder_categories!==null ? $stakeholder_categories : [];
+            foreach ($groups as $group) {
+
+                if(
+                    in_array('provisioning', $stakeholder_categories) && in_array($group, ['group0', 'group1', 'group2', 'group3']) ||
+                    in_array('cultural', $stakeholder_categories) && in_array($group, ['group4', 'group5', 'group6' ]) ||
+                    in_array('regulating', $stakeholder_categories) && in_array($group, ['group7', 'group8']) ||
+                    in_array('supporting', $stakeholder_categories) && in_array($group, ['group9', 'group10'])
+                ){
+
+                    // Find a record for the given stakeholder/group
+                    $found = false;
+                    foreach ($records as $record) {
+                        if ($record['group_key'] === $group
+                            && $record['Stakeholder'] === $stakeholder) {
+                            $found = true;
+                        }
+                    }
+                    // if record not found force an empty one
+                    if (!$found) {
+                        $record = $empty_record;
+                        $record['__predefined'] = false;
+                        $record['group_key'] = $group;
+                        $record['Stakeholder'] = $stakeholder;
+                        $records[] = $record;
+                    }
+                }
+            }
+        }
+        return $records;
     }
 
     abstract static function calculateKeyElementImportance($item): ?float;

@@ -461,9 +461,6 @@ return [
             'group8'  => 'Erosion prevention and maintenance of soil fertility',
             'group9'  => 'Lands (agriculture, livestock, forests)',
             'group10' => 'Habitats for animals and plants',
-            'group11' => 'Animals',
-            'group12' => 'Plants',
-            'group13' => 'Habitats',
         ],
         'groups_descriptions' => [
             'group0' =>
@@ -586,10 +583,7 @@ return [
                         <li>Habitats for pollination: Woodland and vegetation areas provide support for pollinators such as bees, butterflies and
                         hummingbirds which provide an important ecosystem service for agriculture as they help plants to produce fruit, seeds and
                         other reproductive structures. </li>
-                     </ul>',
-            'group11' => '',
-            'group12' => '',
-            'group13' => '',
+                     </ul>'
         ],
         'lists' => [
             'group0' => ['Human food vegetal', 'Human food animal', 'Medicines'],

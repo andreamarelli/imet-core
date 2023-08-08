@@ -20,7 +20,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\KeyElements::class, 'Element']
     ];
-    protected static $USER_MODE = Stakeholders::ONLY_INDIRECT;
+    public static $USER_MODE = Stakeholders::ONLY_INDIRECT;
 
     public function __construct(array $attributes = [])
     {
@@ -40,6 +40,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Comments')],
             ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
+        $this->max_rows = 5;
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholders.groups');
 

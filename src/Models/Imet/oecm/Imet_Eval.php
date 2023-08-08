@@ -97,6 +97,13 @@ class Imet_Eval extends Imet
             KeyElementsImpact::class,       // No formula yet
             LifeQualityImpact::class,
         ],
+        'objectives' => [
+            ObjectivesContext::class,
+            ObjectivesPlanification::class,
+            ObjectivesIntrants::class,
+            ObjectivesProcessus::class,
+
+        ],
         'management_effectiveness' => [],
     ];
 
