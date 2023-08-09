@@ -45,8 +45,8 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Identify the animal species (flagship, endangered, endemic, …) chosen as key species',
-            'group1' => 'Identify the plant species (flagship, endangered, endemic, …) chosen as key species',
+            'group0' => 'Ecosystem services ',
+            'group1' => 'Key elements of biodiversity',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -64,7 +64,7 @@ return [
         'module_info_Rating' => [
             'Evaluate the need to prioritise the key elements in the management of the OECM'
         ],
-        'from_group' => 'From category: ',
+        'from_group' => 'From category',
         'num_stakeholders' => 'Indicated by :num stakeholder(s)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>P6, I1, PR6</i>',
     ],
@@ -145,7 +145,7 @@ return [
             'group1' => 'Plants',
             'group2' => 'Habitats',
         ],
-        'module_info' => 'Identify the threats categories affecting the Biodiversity key element identified in CTX4.1'
+        'module_info' => 'Identify the threats categories affecting the Biodiversity key element identified in CTX4.1, CTX4.2, CTX4.3'
     ],
 
     'Threats' => [

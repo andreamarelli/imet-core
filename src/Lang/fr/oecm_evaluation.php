@@ -64,7 +64,7 @@ return [
         'module_info_Rating' => [
             'Évaluer la nécessité de prioriser les éléments clés dans la gestion de l\'AMCE'
         ],
-        'from_group' => 'De la catégorie : ',
+        'from_group' => 'De la catégorie',
         'num_stakeholders' => 'Indiqué par :num partie(s) prenante(s)',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
@@ -146,7 +146,7 @@ return [
             'group1' => 'Végétaux',
             'group2' => 'Habitats',
         ],
-        'module_info' => 'Identifier les catégories de menaces affectant l\'élément clé de la biodiversité identifié dans CTX4.1'
+        'module_info' => 'Identifier les catégories de menaces affectant l\'élément clé de la biodiversité identifié dans CTX4.1, CTX4.2, CTX4.3'
     ],
 
     'Threats' => [
