@@ -38,9 +38,11 @@ class Threats extends Modules\Component\ImetModule_Eval {
         parent::__construct($attributes);
     }
 
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
+        $form_id = $empty_record['FormID'];
+
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
         // Retrieve num stakeholder by element by threat
         $threats_direct_users = Modules\Context\AnalysisStakeholderDirectUsers::getNumStakeholdersElementsByThreat($form_id);
@@ -55,21 +57,21 @@ class Threats extends Modules\Component\ImetModule_Eval {
         }
 
         // Inject num stakeholders and elements
-        foreach ($module_records['records'] as $index => $record){
+        foreach ($records as $index => $record){
             $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'));
             if(array_key_exists($threat_key, $threats)){
-                $module_records['records'][$index]['__num_stakeholders'] = $threats[$threat_key]['num_stakeholders'];
-                $module_records['records'][$index]['__elements'] = $threats[$threat_key]['elements'];
-                $module_records['records'][$index]['__elements_illegal'] = $threats[$threat_key]['elements_illegal'];
+                $records[$index]['__num_stakeholders'] = $threats[$threat_key]['num_stakeholders'];
+                $records[$index]['__elements'] = $threats[$threat_key]['elements'];
+                $records[$index]['__elements_illegal'] = $threats[$threat_key]['elements_illegal'];
             } else {
-                $module_records['records'][$index]['__num_stakeholders'] = null;
-                $module_records['records'][$index]['__elements'] = null;
-                $module_records['records'][$index]['__elements_illegal'] = null;
+                $records[$index]['__num_stakeholders'] = null;
+                $records[$index]['__elements'] = null;
+                $records[$index]['__elements_illegal'] = null;
             }
-            $module_records['records'][$index]['__threat_key'] = $threat_key;
+            $records[$index]['__threat_key'] = $threat_key;
         }
 
-        return $module_records;
+        return $records;
     }
 
     /**
