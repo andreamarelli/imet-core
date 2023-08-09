@@ -52,7 +52,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
 
     /**
-     * Preload data from C1, C2.2, C3.2 & C4
+     * Preload data from C4
      *
      * @param $form_id
      * @param null $collection
@@ -65,7 +65,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
 
         $preLoaded = [
             'field' => 'Activity',
-            'values' => static::valuesFromContext($form_id)
+            'values' => KeyElements::getPrioritizedElements($form_id)
         ];
 
         $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);

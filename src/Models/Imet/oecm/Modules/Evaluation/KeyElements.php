@@ -189,4 +189,18 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         return array_merge($animals, $plants, $habitats);
     }
 
+    /**
+     * Provide the list of prioritized key elements
+     * @param $form_id
+     * @return array
+     */
+    public static function getPrioritizedElements($form_id): array {
+        return collect(static::getModuleRecords($form_id)['records'])
+            ->filter(function($item){
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Aspect')
+            ->toArray();
+    }
+
 }

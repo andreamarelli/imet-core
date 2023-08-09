@@ -55,7 +55,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
             'field' => 'Objective',
             'values' => [
                 'group0' => [],
-                'group1' => static::valuesFromContext($form_id)
+                'group1' => KeyElements::getPrioritizedElements($form_id)
             ]
         ];
 

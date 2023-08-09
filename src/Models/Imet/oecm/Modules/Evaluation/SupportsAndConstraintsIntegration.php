@@ -44,40 +44,13 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     }
 
     /**
-     * Preload data
+     * Preload data + scores
      *
-     * @param $form_id
-     * @param null $collection
+     * @param $predefined_values
+     * @param $records
+     * @param $empty_record
      * @return array
      */
-//    public static function getModuleRecords($form_id, $collection = null): array
-//    {
-//        $module_records = parent::getModuleRecords($form_id, $collection);
-//        $empty_record = static::getEmptyRecord($form_id);
-//
-//        $preLoaded = [
-//            'field' => 'Stakeholder',
-//            'values' => [
-//                'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
-//                'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
-//            ]
-//        ];
-//
-//        $module_records['records'] = static::arrange_records($preLoaded, $module_records['records'], $empty_record);
-//
-//        $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
-//        $ranking = collect(SupportsAndConstraints::calculateRanking($form_id))
-//            ->pluck('__score', 'Stakeholder')
-//            ->toArray();
-//
-//        foreach($module_records['records'] as $idx => $module_record){
-//            $module_records['records'][$idx]['__weight'] = $weight[$module_record['Stakeholder']] ?? null;
-//            $module_records['records'][$idx]['__score'] = $ranking[$module_record['Stakeholder']] ?? null;
-//        }
-//
-//        return $module_records;
-//    }
-
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
         $form_id = $empty_record['FormID'];
@@ -101,7 +74,10 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             $records[$idx]['__score'] = $ranking[$record['Stakeholder']] ?? null;
         }
 
-        return $records;
+        return collect($records)
+            ->sortBy('__score')
+            ->values()
+            ->toArray();
     }
 
 }
