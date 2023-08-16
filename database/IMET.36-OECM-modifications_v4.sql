@@ -49,7 +49,9 @@ CREATE TABLE IF NOT EXISTS imet_oecm.context_analysis_stakeholders_direct_users
     "Access"         character varying(50),
     "Rivalry"        boolean,
     "Quality"     numeric,
-    "Quantity"     numeric,\
+    "Quantity"     numeric,
+    "Threats"       text,
+    "Comments"       text,
     group_key        character varying(50),
     CONSTRAINT "FormID_fk" FOREIGN KEY ("FormID") REFERENCES imet_oecm.imet_form ("FormID") MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
