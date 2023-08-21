@@ -45,8 +45,9 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Identifiez les espèces animales (phares, menacées, endémiques, ...) choisies comme espèces clés',
-            'group1' => 'Identifier les espèces végétales (phares, en danger, endémiques, ...) choisies comme espèces clés',
+            'group0' => 'Services écosystémiques (utilisateurs directs)',
+            'group1' => 'Services écosystémiques (utilisateurs indirects)',
+            'group2' => 'Éléments clés de la biodiversité',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -819,24 +820,8 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Communauté/groupe ou autre',
-            'group1' => 'Gouvernement',
-            'group2' => 'ONG, scientifiques et donateurs',
-            'group3' => 'Opérateurs économiques',
-        ],
-        'predefined_values' => [
-            'group0' => [
-                ''
-            ],
-            'group1' => [
-                ''
-            ],
-            'group2' => [
-                ''
-            ],
-            'group3' => [
-                ''
-            ]
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
             'Cooperation' => [

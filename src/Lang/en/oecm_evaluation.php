@@ -45,8 +45,9 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Ecosystem services ',
-            'group1' => 'Key elements of biodiversity',
+            'group0' => 'Ecosystem services (direct users)',
+            'group1' => 'Ecosystem services (indirect users)',
+            'group2' => 'Key elements of biodiversity',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -817,24 +818,8 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Community/group or other',
-            'group1' => 'Government',
-            'group2' => 'NGOs, Scientists and Donors',
-            'group3' => 'Economic operators',
-        ],
-        'predefined_values' => [
-            'group0' => [
-                ''
-            ],
-            'group1' => [
-                ''
-            ],
-            'group2' => [
-                ''
-            ],
-            'group3' => [
-                ''
-            ]
+            'group0' => 'Direct users',
+            'group1' => 'Indirect users',
         ],
         'ratingLegend' => [
             'Cooperation' => [
@@ -1080,8 +1065,8 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'To what extent has the OECM achieved the main objectives of their plan of management and governance? 
-                (Based on the analysis of the context of intervention, point CTX1.5 Vision – Objectives or elements of 
+            'To what extent has the OECM achieved the main objectives of their plan of management and governance?
+                (Based on the analysis of the context of intervention, point CTX1.5 Vision – Objectives or elements of
                 Planning, point P6 – Existing objectives of the management plan).',
             'The goals and objectives of an OECM must be clearly understood if management is to be successful based on measurable achievements. '
         ],
