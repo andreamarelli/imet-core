@@ -45,9 +45,8 @@ return [
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
-            'group0' => 'Ecosystem services (direct users)',
-            'group1' => 'Ecosystem services (indirect users)',
-            'group2' => 'Key elements of biodiversity',
+            'group0' => 'Ecosystem services',
+            'group1' => 'Key elements of biodiversity',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -66,7 +65,7 @@ return [
             'Evaluate the need to prioritise the key elements in the management of the OECM'
         ],
         'from_group' => 'From category',
-        'num_stakeholders' => 'Indicated by :num stakeholder(s)',
+        'num_stakeholders' => 'Indicated by :num_dir direct stakeholder(s) and :num_ind indirect stakeholder(s)',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>P6, I1, PR6</i>',
     ],
 

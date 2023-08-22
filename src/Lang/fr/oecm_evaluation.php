@@ -45,9 +45,8 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Services écosystémiques (utilisateurs directs)',
-            'group1' => 'Services écosystémiques (utilisateurs indirects)',
-            'group2' => 'Éléments clés de la biodiversité',
+            'group0' => 'Services écosystémiques',
+            'group1' => 'Éléments clés de la biodiversité',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -66,7 +65,7 @@ return [
             'Évaluer la nécessité de prioriser les éléments clés dans la gestion de l\'AMCE'
         ],
         'from_group' => 'De la catégorie',
-        'num_stakeholders' => 'Indiqué par :num partie(s) prenante(s)',
+        'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
 
