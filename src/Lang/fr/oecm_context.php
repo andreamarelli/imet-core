@@ -172,11 +172,15 @@ return [
     ],
 
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour  <b>l’aire de l’AMCE</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>l’aire de l’AMCE</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’AMCE'
     ],
 
     'Objectives3' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour<b> les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
+    ],
+
+    'Objectives4' => [
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>espèces animales et végétales clés</b> de l’AMCE<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’AMCE'
     ],
 
     'GeographicalLocation' => [

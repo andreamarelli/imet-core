@@ -86,8 +86,9 @@ class OEMCStatisticsService extends StatisticsService
             ? $numerator / $denominator
             : null;
 
+        // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 2)
+            ? round($scores['avg_indicator'], 1)
             : null;
 
         return $scores;
@@ -116,6 +117,11 @@ class OEMCStatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 1);
 
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
+
         return $scores;
     }
 
@@ -140,6 +146,11 @@ class OEMCStatisticsService extends StatisticsService
 
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 1);
+
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
 
         return $scores;
     }
@@ -180,6 +191,11 @@ class OEMCStatisticsService extends StatisticsService
         $scores['pr8_10'] = static::average([$scores['pr8'], $scores['pr9'], $scores['pr10'], $scores['pr11'], $scores['pr12']]);
         $scores['pr11_12'] = static::average([$scores['pr11'], $scores['pr12']]);
 
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
+
         return $scores;
     }
 
@@ -201,6 +217,11 @@ class OEMCStatisticsService extends StatisticsService
 
         // aggregate step score
         $scores['avg_indicator'] = static::average($scores, 2);
+
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
+            : null;
 
         return $scores;
     }
@@ -236,6 +257,11 @@ class OEMCStatisticsService extends StatisticsService
         // aggregate step score
         $scores['avg_indicator'] = $denominator > 0
             ? $numerator / $denominator
+            : null;
+
+        // round to 1 decimal
+        $scores['avg_indicator'] = $scores['avg_indicator'] !== null
+            ? round($scores['avg_indicator'], 1)
             : null;
 
         return $scores;

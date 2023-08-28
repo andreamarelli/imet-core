@@ -173,7 +173,7 @@ return [
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the OECM</b><br /> The objectives provided below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring of management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the OECM</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
     ],
 
     'Objectives2' => [
@@ -181,7 +181,11 @@ return [
     ],
 
     'Objectives3' => [
-        'module_info' => 'Establish and describe conservation objectives for<b> human and financial resources/support from partnerships in managing </b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing </b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+    ],
+
+    'Objectives4' => [
+        'module_info' => 'Establish and describe conservation objectives for <b>key animals and plant species</b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
     ],
 
     'GeographicalLocation' => [
