@@ -2,10 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use Illuminate\Support\Str;
 
 abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 {
@@ -56,24 +53,14 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
     abstract static function calculateKeyElementImportance($item): ?float;
 
-    public static function calculateKeyElementsImportances($form_id, $records = null): array
+    public static function calculateKeyElementsImportancesByUserMode($form_id, $weights, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
-        $weights = Modules\Context\Stakeholders::calculateWeights($form_id, static::$USER_MODE);
-        $weights_sum = array_sum($weights);
-        $weights_div = $weights_sum > 0 ?
-            collect($weights)
-                ->map(function ($item) use ($weights_sum) {
-                    return $item / $weights_sum;
-                })
-                ->toArray()
-            : null;
-
         return collect($records)
-            ->map(function ($item) use ($weights_div) {
+            ->map(function ($item) use ($weights) {
                 // Retrieve Stakeholders weights
-                $item['__stakeholder_weight'] = $weights_div[$item['Stakeholder']] ?? null;
+                $item['__stakeholder_weight'] = $weights[$item['Stakeholder']] ?? null;
                 // Retrieve weighted importance per each record
                 $item['__weighted_importance'] = static::calculateKeyElementImportance($item);
                 return $item;
@@ -120,6 +107,88 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                     'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.' . $group_element->first()['group_key'])
                 ];
             })
+            ->sortByDesc('importance')
+            ->values()
+            ->toArray();
+    }
+
+    private static function retrieveStakeholdersWeights($form_id): ?array
+    {
+        $weights = Modules\Context\Stakeholders::calculateWeights($form_id, Stakeholders::ALL_USERS);
+        $weights_sum = array_sum($weights);
+        return $weights_sum > 0 ?
+            collect($weights)
+                ->map(function ($item) use ($weights_sum) {
+                    return $item / $weights_sum;
+                })
+                ->toArray()
+            : null;
+    }
+
+    public static function calculateKeyElementsImportances($form_id, $records = null): array
+    {
+        $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $weights = static::retrieveStakeholdersWeights($form_id);
+
+        if(static::$USER_MODE === Stakeholders::ONLY_DIRECT){
+            $key_elements_importance_direct = static::calculateKeyElementsImportancesByUserMode($form_id, $weights, $records);
+            $key_elements_importance_indirect = AnalysisStakeholderIndirectUsers::calculateKeyElementsImportancesByUserMode($form_id, $weights);
+        } else {
+            $key_elements_importance_direct = AnalysisStakeholderDirectUsers::calculateKeyElementsImportancesByUserMode($form_id, $weights);
+            $key_elements_importance_indirect = static::calculateKeyElementsImportancesByUserMode($form_id, $weights, $records);
+        }
+
+        $key_elements_importance_direct = collect($key_elements_importance_direct)
+            ->map(function ($item){
+                $item['importance_direct'] = $item['importance'];
+                $item['stakeholder_direct_count'] = $item['stakeholder_count'];
+                unset($item['importance'], $item['stakeholder_count']);
+               return $item;
+            })
+            ->mapWithKeys(function ($item) {
+                return [$item['element'] => $item];
+            });;
+        $key_elements_importance_indirect = collect($key_elements_importance_indirect)
+            ->map(function ($item){
+                $item['importance_indirect'] = $item['importance'];
+                $item['stakeholder_indirect_count'] = $item['stakeholder_count'];
+                unset($item['importance'], $item['stakeholder_count']);
+               return $item;
+            })
+            ->mapWithKeys(function ($item) {
+                return [$item['element'] => $item];
+            });
+
+        // merge
+        $key_elements_importances = $key_elements_importance_direct;
+        $key_elements_importance_indirect->each(function($item, $key) use($key_elements_importances){
+            $key_elements_importances[$key] = $key_elements_importances->has($key)
+                ? array_merge($key_elements_importances[$key], $item)
+                : $item;
+        });
+
+        // Sum importances & counts
+        $key_elements_importances = $key_elements_importances->map(function ($item){
+            $item['importance_direct'] = $item['importance_direct'] ?? 0;
+            $item['importance_indirect'] = $item['importance_indirect'] ?? 0;
+            $item['stakeholder_direct_count'] = $item['stakeholder_direct_count'] ?? 0;
+            $item['stakeholder_indirect_count'] = $item['stakeholder_indirect_count'] ?? 0;
+
+            $item['importance'] = $item['importance_direct'] + $item['importance_indirect'];
+            $item['stakeholder_count'] = $item['stakeholder_direct_count'] + $item['stakeholder_indirect_count'];
+            return $item;
+        });
+
+        // rescale to 0-100
+        $max_importance = $key_elements_importances->max('importance');
+        $key_elements_importances = $key_elements_importances->map(function ($item) use($max_importance){
+            $item['importance_direct'] = round($item['importance_direct']*100/$max_importance, 1);
+            $item['importance_indirect'] = round($item['importance_indirect']*100/$max_importance, 1);
+            $item['importance'] = round($item['importance']*100/$max_importance, 1);
+            return $item;
+        });
+
+        return collect($key_elements_importances)
             ->sortByDesc('importance')
             ->values()
             ->toArray();

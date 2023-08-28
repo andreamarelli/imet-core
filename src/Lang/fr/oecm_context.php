@@ -564,8 +564,7 @@ return [
             'group9' => ['Fourniture de fertilité', 'Fourniture d’eau', 'Fourniture de lutte contre les maladies'],
             'group10' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation']
         ],
-        'summary_direct' => 'Importance des éléments et implication des parties prenantes (utilisateurs directs)',
-        'summary_indirect' => 'Importance des éléments et implication des parties prenantes (utilisateurs indirects)',
+        'summary' => 'Importance des éléments et implication des parties prenantes',
         'involvement_ranking' => 'Implication des parties prenantes',
         'importance' => 'Importance (0-100)',
         'involvement' => 'Implication de la partie prenante (0-100)'

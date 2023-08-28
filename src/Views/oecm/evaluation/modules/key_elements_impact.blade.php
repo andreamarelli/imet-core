@@ -90,6 +90,25 @@
             align-self: center;
         }
     </style>
-@endpush
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
+    <script>
+        // ## Initialize Module controller ##
+        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
+            el: '#module_{{ $definitions['module_key'] }}',
+            data: @json($vue_data),
+
+
+            methods:{
+
+                recordChangedCallback(){
+                    console.log('changes', this.records);
+
+                    // average between status and trend
+                    // rescale  to -100 -> 100
+                }
+
+            }
+
+        });
+    </script>
+@endpush

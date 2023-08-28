@@ -602,8 +602,7 @@ return [
             'group9' => ['Provisioning fertility', 'Provisioning water', 'Provisioning disease control'],
             'group10' => ['Nursery and nesting habitats', 'Habitats for pollination']
         ],
-        'summary_direct' => 'Importance of elements & Involvement of stakeholders (direct users)',
-        'summary_indirect' => 'Importance of elements & Involvement of stakeholders (indirect indirect users)',
+        'summary' => 'Importance of elements & Involvement of stakeholders',
         'element' => 'Criteria',
         'elements_importance' => 'Importance of elements by the stakeholders',
         'involvement_ranking' => 'Involvement of stakeholders',
