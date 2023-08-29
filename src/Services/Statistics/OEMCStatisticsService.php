@@ -35,6 +35,7 @@ class OEMCStatisticsService extends StatisticsService
     use CustomFunctions\oecm\Inputs;
     use CustomFunctions\oecm\Process;
     use CustomFunctions\oecm\Outputs;
+    use CustomFunctions\oecm\Outcomes;
     use Math;
 
     /**
@@ -239,7 +240,7 @@ class OEMCStatisticsService extends StatisticsService
 
         $scores = [
             'oc1' => static::score_table($imet_id, AchievedObjectives::class, 'EvaluationScore'),
-            'oc2' => null,
+            'oc2' => self::score_oc2($imet_id),
             'oc3' => static::score_group($imet_id, LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
         ];
 
