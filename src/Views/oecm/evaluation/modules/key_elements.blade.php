@@ -14,7 +14,7 @@ $original_definitions = $definitions;
 $definitions['groups'] = array_slice($original_definitions['groups'], 0, 1);
 $first_group = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
 
-// Second groups: hidden importande rows
+// Second groups: hidden importance rows
 $definitions['groups'] = array_slice($original_definitions['groups'], 1);
 $definitions['fields'][1]['type'] = 'hidden';
 $second_group = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
