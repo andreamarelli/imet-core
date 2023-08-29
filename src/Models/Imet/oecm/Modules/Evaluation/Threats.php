@@ -52,13 +52,15 @@ class Threats extends Modules\Component\ImetModule_Eval {
         foreach ($records as $index => $record){
             $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'));
 
-            $records[$index]['__count_stakeholders'] = null;
+            $records[$index]['__count_stakeholders_direct'] = null;
+            $records[$index]['__count_stakeholders_indirect'] = null;
             $records[$index]['__elements_legal_list'] = null;
             $records[$index]['__elements_illegal_list'] = null;
             $records[$index]['__threat_key'] = $threat_key;
 
             if(array_key_exists($threat_key, $threats)){
-                $records[$index]['__count_stakeholders'] = $threats[$threat_key]['count_stakeholders'];
+                $records[$index]['__count_stakeholders_direct'] = $threats[$threat_key]['count_stakeholders_direct'];
+                $records[$index]['__count_stakeholders_indirect'] = $threats[$threat_key]['count_stakeholders_indirect'];
                 $records[$index]['__elements_legal_list'] = $threats[$threat_key]['elements_legal_list'];
                 $records[$index]['__elements_illegal_list'] = $threats[$threat_key]['elements_illegal_list'];
             }

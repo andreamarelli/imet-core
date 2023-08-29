@@ -80,4 +80,19 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             ->toArray();
     }
 
+    /**
+     * Provide the list of prioritized key elements
+     * @param $form_id
+     * @return array
+     */
+    public static function getPrioritizedElements($form_id): array
+    {
+        return collect(static::getModuleRecords($form_id)['records'])
+            ->filter(function ($item) {
+                return $item['IncludeInStatistics'];
+            })
+            ->pluck('Stakeholder')
+            ->toArray();
+    }
+
 }

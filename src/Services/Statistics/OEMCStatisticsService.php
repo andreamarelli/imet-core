@@ -174,12 +174,13 @@ class OEMCStatisticsService extends StatisticsService
             'pr4' => static::score_table($imet_id, AdministrativeManagement::class, 'EvaluationScore', 4),
             'pr5' => static::score_pr5($imet_id),
             'pr6' => static::score_group($imet_id, ManagementActivities::class, 'EvaluationScore', 'group_key'),
-            'pr7' => static::score_group($imet_id, LawEnforcementImplementation::class, 'Adequacy', 'group_key'),
-            'pr8' => static::score_pr8($imet_id),
-            'pr9' => static::score_group($imet_id, AssistanceActivities::class, 'EvaluationScore', 'group_key'),
-            'pr10' => static::score_table($imet_id, EnvironmentalEducation::class, 'EvaluationScore'),
-            'pr11' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore'),
-            'pr12' => static::score_table($imet_id, NaturalResourcesMonitoring::class, 'EvaluationScore'),
+            'pr7' => static::score_table($imet_id, NaturalResourcesMonitoring::class, 'EvaluationScore'),
+            'pr8' => static::score_group($imet_id, LawEnforcementImplementation::class, 'Adequacy', 'group_key'),
+            'pr9' => static::score_pr9($imet_id),
+            'pr10' => static::score_group($imet_id, AssistanceActivities::class, 'EvaluationScore', 'group_key'),
+            'pr11' => static::score_table($imet_id, EnvironmentalEducation::class, 'EvaluationScore'),
+            'pr12' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore'),
+
 
         ];
 

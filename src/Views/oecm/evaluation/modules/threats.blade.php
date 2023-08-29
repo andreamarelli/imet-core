@@ -93,12 +93,13 @@ $vue_data['threats'] = $threats;
                 threats_elements(element_id){
                     let index =  this.__get_index(element_id);
 
-                    let num_stakeholders = this.records[index]['__count_stakeholders'];
+                    let count_stakeholders_direct = this.records[index]['__count_stakeholders_direct'];
+                    let count_stakeholders_indirect = this.records[index]['__count_stakeholders_indirect'];
                     let elements_legal = this.records[index]['__elements_legal_list'];
                     let elements_illegal = this.records[index]['__elements_illegal_list'];
 
                     let label = '';
-                    if(num_stakeholders!==null){
+                    if(count_stakeholders_direct!==null || count_stakeholders_indirect!==null){
                         let list = '';
                         if(elements_illegal.length>0){
                             list += '<li><b style="color: red;">' + elements_illegal + '</b></li>';
@@ -108,7 +109,10 @@ $vue_data['threats'] = $threats;
                         }
 
                         label =
-                            Locale.getLabel('imet-core::oecm_evaluation.Threats.stakeholders', {'num': '<b>' + num_stakeholders + '</b>'})
+                            Locale.getLabel('imet-core::oecm_evaluation.Threats.num_stakeholders', {
+                                'num_dir': '<b>' + count_stakeholders_direct + '</b>',
+                                'num_ind': '<b>' + count_stakeholders_indirect + '</b>',
+                            })
                             + '<br />'
                             + 'Listed elements: <ul style="padding-inline-start: 20px;">' + list + '</ul>';
                     }
