@@ -574,6 +574,7 @@ return [
         'title' => 'Analyse par partie prenante - utilisateurs directs',
         'fields' => [
             'Element' => 'Critères',
+            'Description' => 'Élément spécifique évalué',
             'Illegal' => 'Illégale',
             'Dependence' => 'Dépendance',
             'Access' => 'Accès',
@@ -636,6 +637,7 @@ return [
         'title' => 'Analyse des parties prenantes - utilisateurs indirects',
         'fields' => [
             'Element' => 'Critères',
+            'Description' => 'Élément spécifique évalué',
             'Illegal' => 'Illégale',
             'Support' => 'Soutien ou contribution',
             'Guidelines' => 'Lignes directrices et procédures',
