@@ -11,6 +11,7 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
 
 ?>
 
+
 <div class="module-container" id="module_analysis_stakeholder_summary">
     <div class="module-header">
         <div class="module-title">
@@ -29,15 +30,22 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="module-table-item" v-for="element in key_elements_importance">
-                    <td style="text-align: left;">
-                        @{{ element.element }}
-                        <div class="text-left text-xs" style="padding: 4px 4px 0 4px;">
-                            <div v-html="key_elements_importance_composition(element)"></div>
-                        </div>
-                    </td>
-                    <td style="text-align: left;">@{{ element.importance }}</td>
-                </tr>
+                @foreach($key_elements_importance as $element)
+                    <tr class="module-table-item">
+                        <td style="text-align: left;">
+                            {{ $element['element'] }}
+                            <div class="text-left text-xs" style="padding: 4px 4px 0 4px;">
+                                @lang('imet-core::oecm_evaluation.KeyElements.key_elements_importance_composition', [
+                                    'imp_dir' => "<b>" . $element['importance_direct'] . "</b>",
+                                    'imp_ind' => "<b>" . $element['importance_indirect'] . "</b>",
+                                    'num_dir' => "<b>" . $element['stakeholder_direct_count'] . "</b>",
+                                    'num_ind' => "<b>" . $element['stakeholder_indirect_count'] . "</b>",
+                                ])
+                            </div>
+                        </td>
+                        <td style="text-align: left;">{{ $element['importance'] }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
@@ -58,6 +66,7 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
                         <td style="text-align: left;">{{ $ranking }}</td>
                     </tr>
                 @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -65,34 +74,3 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
     </div>
 </div>
 
-
-
-@push('scripts')
-    <script>
-
-        let module_analysis_stakeholder_summary = new Vue({
-            el: '#module_analysis_stakeholder_summary',
-            data: {
-                key_elements_importance: @json($key_elements_importance),
-            },
-
-            methods: {
-
-                refresh_importances(key_elements_importance) {
-                    this.key_elements_importance = key_elements_importance;
-                },
-
-                key_elements_importance_composition(element){
-                    return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.key_elements_importance_composition', {
-                        'imp_dir': '<b>' + element['importance_direct'] + '</b>',
-                        'imp_ind': '<b>' + element['importance_indirect'] + '</b>',
-                        'num_dir': '<b>' + element['stakeholder_direct_count'] + '</b>',
-                        'num_ind': '<b>' + element['stakeholder_indirect_count'] + '</b>',
-                    })
-                }
-
-            }
-        });
-
-    </script>
-@endpush
