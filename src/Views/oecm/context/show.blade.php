@@ -29,6 +29,13 @@ if ($item->language != App::getLocale()) {
 
     {{--  Modules (by step) --}}
     <div class="imet_modules">
+
+        @if($step === 'stakeholder_analysis')
+            @include('imet-core::oecm.context.modules_show.analysis_stakeholder_summary', [
+                'form_id' => $item->getKey()
+            ])
+        @endif
+
         @foreach($item::modules()[$step] as $module)
             @if(Role::hasRequiredAccessLevel($module))
                 @include('modular-forms::module.show.container', [
