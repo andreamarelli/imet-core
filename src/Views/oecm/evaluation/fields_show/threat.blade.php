@@ -4,7 +4,7 @@
 /** @var bool $only_label */
 
 $num_stakeholders = $record['__num_stakeholders'];
-$elements = $record['__elements'];
+$elements_legal = $record['__elements_legal'];
 $elements_illegal = $record['__elements_illegal'];
 
 //dd($elements, $elements_illegal);
@@ -16,7 +16,7 @@ if($num_stakeholders!==null){
             $list .= '<b style="color: red;">'.implode(', ', $e).'</b>';
         }
     }
-    foreach ($elements as $e){
+    foreach ($elements_legal as $e){
         $list = $list !== '' ? $list.', ': '';
         if(count($e)>0){
             $list .= implode(', ', $e);

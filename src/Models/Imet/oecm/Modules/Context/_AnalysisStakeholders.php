@@ -194,7 +194,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             ->toArray();
     }
 
-    public static function getNumStakeholdersElementsByThreat($form_id): array
+    public static function getStakeholdersElementsByThreat($form_id, $records): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
@@ -202,31 +202,27 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         foreach ($records as $record) {
             if ($record['Element'] !== null && $record['Threats'] !== null) {
                 foreach (json_decode($record['Threats']) as $threat) {
-                    if (!array_key_exists($threat, $threats)) {
-                        $threats[$threat] = [
-                            'stakeholders' => [],
-                            'elements' => [],
-                            'elements_illegal' => [],
-                        ];
-                    }
+                    $threats[$threat] = $threats[$threat] ?? [
+                        'stakeholders' => [],
+                        'elements_legal' => [],
+                        'elements_illegal' => [],
+                    ];
                     $threats[$threat]['stakeholders'][] = $record['Stakeholder'];
-
-                    if (!array_key_exists($record['group_key'], $threats[$threat]['elements'])) {
-                        $threats[$threat]['elements'][$record['group_key']] = [];
-                    }
-                    if (!array_key_exists($record['group_key'], $threats[$threat]['elements_illegal'])) {
-                        $threats[$threat]['elements_illegal'][$record['group_key']] = [];
-                    }
-
                     if ($record['Illegal']) {
-                        $threats[$threat]['elements_illegal'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
+                        $threats[$threat]['elements_illegal'][$record['Element']] = $threats[$threat]['elements_illegal'][$record['Element']] ?? [];
+                        $threats[$threat]['elements_illegal'][$record['Element']][] = $record['Description'];
                     } else {
-                        $threats[$threat]['elements'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
+                        $threats[$threat]['elements_legal'][$record['Element']] = $threats[$threat]['elements_legal'][$record['Element']] ?? [];
+                        $threats[$threat]['elements_legal'][$record['Element']][] = $record['Description'];
                     }
-
                 }
             }
         }
+        foreach($threats as $idx => $threat){
+            $threats[$idx]['count_stakeholders'] = count($threat['stakeholders']);
+            unset($threats[$idx]['stakeholders']);
+        }
+
         return $threats;
     }
 
