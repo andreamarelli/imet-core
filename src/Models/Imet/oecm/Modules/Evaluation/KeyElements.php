@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -64,7 +65,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         $form_id = $empty_record['FormID'];
 
         // Retrieve key elements (and importance calculation) form CTX
-        $key_elements = collect(static::getKeyElementsFromSA($form_id))->keyBy('element');
+        $key_elements = static::getKeyElementsFromSA($form_id);
         $biodiversity_key_elements =  static::getBiodiversityKeyElementsFromCTX($form_id);
 
         // Set predefines values (key elements)
@@ -96,9 +97,11 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-    public static function getKeyElementsFromSA($form_id): array
+    public static function getKeyElementsFromSA($form_id): \Illuminate\Support\Collection
     {
-        return Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
+        $keyElementsFromSA = Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
+        return collect($keyElementsFromSA)
+            ->keyBy('element');
     }
 
     public static function getBiodiversityKeyElementsFromCTX($form_id): array

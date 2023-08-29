@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\StakeholdersService;
 
 class Threats extends Modules\Component\ImetModule_Eval {
 
@@ -44,38 +45,22 @@ class Threats extends Modules\Component\ImetModule_Eval {
 
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
-        $threats = Modules\Context\AnalysisStakeholderDirectUsers::getStakeholdersElementsByThreat($form_id,
-            array_merge(
-                Modules\Context\AnalysisStakeholderDirectUsers::getModuleRecords($form_id)['records'],
-                Modules\Context\AnalysisStakeholderIndirectUsers::getModuleRecords($form_id)['records']
-            ));
+        $stakeholder_records = StakeholdersService::getAllRecords($form_id);
+        $threats = StakeholdersService::keyElementsByThreat($stakeholder_records);
 
         // Inject num stakeholders and elements
         foreach ($records as $index => $record){
             $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'));
 
-            $records[$index]['__num_stakeholders'] = null;
+            $records[$index]['__count_stakeholders'] = null;
             $records[$index]['__elements_legal_list'] = null;
             $records[$index]['__elements_illegal_list'] = null;
             $records[$index]['__threat_key'] = $threat_key;
 
             if(array_key_exists($threat_key, $threats)){
                 $records[$index]['__count_stakeholders'] = $threats[$threat_key]['count_stakeholders'];
-
-                $render_list = function ($elements) {
-                    $list = '';
-                    foreach ($elements as $elem_key => $spec_elements) {
-                        $list .= ''.$elem_key;
-                        if(count($spec_elements) > 0){
-                            $list .= ' ('.implode(', ', $spec_elements).')';
-                        }
-                        $list .= ', ';
-                    }
-                    return rtrim($list, ', ');
-                };
-
-                $records[$index]['__elements_legal_list'] = $render_list($threats[$threat_key]['elements_legal']);
-                $records[$index]['__elements_illegal_list'] = $render_list($threats[$threat_key]['elements_illegal']);
+                $records[$index]['__elements_legal_list'] = $threats[$threat_key]['elements_legal_list'];
+                $records[$index]['__elements_illegal_list'] = $threats[$threat_key]['elements_illegal_list'];
             }
 
         }

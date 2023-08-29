@@ -71,6 +71,21 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             ->groupBy('Element')
             ->map(function ($group_element) {
 
+//                // Retrieve lists of legal & illegal specific elements
+//                $specific_elements_legal = $group_element
+//                    ->filter(function($item){
+//                        return $item['Illegal'] == false;
+//                    })
+//                    ->pluck('Description')
+//                    ->toArray();
+//
+//                $specific_elements_illegal = $group_element
+//                    ->filter(function($item){
+//                        return $item['Illegal'] == true;
+//                    })
+//                    ->pluck('Description')
+//                    ->toArray();
+
                 // Average importance if same stakeholder encode same element multiple times
                 $group_element = $group_element
                     ->groupBy('Stakeholder')
@@ -102,6 +117,8 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 return [
                     'element' => $group_element->first()['Element'],
+//                    'specific_elements_legal' => $specific_elements_legal,
+//                    'specific_elements_illegal' => $specific_elements_illegal,
                     'importance' => round($importance, 1),
                     'stakeholder_count' => $stakeholder_count,
                     'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.' . $group_element->first()['group_key'])
@@ -192,38 +209,6 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             ->sortByDesc('importance')
             ->values()
             ->toArray();
-    }
-
-    public static function getStakeholdersElementsByThreat($form_id, $records): array
-    {
-        $records = $records ?? static::getModuleRecords($form_id)['records'];
-
-        $threats = [];
-        foreach ($records as $record) {
-            if ($record['Element'] !== null && $record['Threats'] !== null) {
-                foreach (json_decode($record['Threats']) as $threat) {
-                    $threats[$threat] = $threats[$threat] ?? [
-                        'stakeholders' => [],
-                        'elements_legal' => [],
-                        'elements_illegal' => [],
-                    ];
-                    $threats[$threat]['stakeholders'][] = $record['Stakeholder'];
-                    if ($record['Illegal']) {
-                        $threats[$threat]['elements_illegal'][$record['Element']] = $threats[$threat]['elements_illegal'][$record['Element']] ?? [];
-                        $threats[$threat]['elements_illegal'][$record['Element']][] = $record['Description'];
-                    } else {
-                        $threats[$threat]['elements_legal'][$record['Element']] = $threats[$threat]['elements_legal'][$record['Element']] ?? [];
-                        $threats[$threat]['elements_legal'][$record['Element']][] = $record['Description'];
-                    }
-                }
-            }
-        }
-        foreach($threats as $idx => $threat){
-            $threats[$idx]['count_stakeholders'] = count($threat['stakeholders']);
-            unset($threats[$idx]['stakeholders']);
-        }
-
-        return $threats;
     }
 
     public static function getAnalysisElements($form_id): array
