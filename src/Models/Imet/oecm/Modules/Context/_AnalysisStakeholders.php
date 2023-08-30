@@ -3,9 +3,19 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 {
+    public $titles = [];
+
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\KeyElements::class, 'Element']
+    ];
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
     public static $USER_MODE;
 
     protected static function arrange_records($predefined_values, $records, $empty_record): array

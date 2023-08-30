@@ -441,6 +441,7 @@ return [
     ],
 
     'AnalysisStakeholders' => [
+        'analysis' => 'AAnalyse par partie prenante',
         'titles' => [
             'title0' => 'Principaux services d’approvisionnement',
             'title1' => 'Principaux services culturels',
