@@ -24,10 +24,10 @@
             </tr>
             @foreach($elem as $key => $elem)
                 <tr class="module-table-item">
-                    <td>
+                    <td style="width:50%">
                         {{ $key }}
                     </td>
-                    <td>
+                    <td style="width:50%">
                         @if($elem !== null)
                             {{ join(', ',$elem['elements'])}}
                         @endif

@@ -53,7 +53,11 @@ return [
         'priority' => 'Prioridade',
         'category' => 'Categoria',
         'key_elements_service' => 'Elemento-chave/serviço',
-        'comments' => 'Comentários/Explicações'
+        'comments' => 'Comentários/Explicações',
+        'status_from_stakeholders' => 'Status dos stakeholders',
+        'trend_from_stakeholders' => 'Tendência dos stakeholders',
+        'status_from_external_source' => 'Status de fonte externa',
+        'trend_from_external_source' => 'Tendência de fonte externa'
     ],
     'stakeholder_users_managing_oecm' => 'Usuários e gestores das partes interessadas do OECM',
     'stakeholder_direct_users' => 'Usuários diretos das partes interessadas',

@@ -64,7 +64,11 @@ return [
         'effect_estimated_direct_users' => 'Effect estimated by the stakeholders direct users',
         'effect_estimated_indirect_users' => 'Effect estimated by the management entity or monitoring',
         'average' => 'Average',
-        'comments' => 'Comments'
+        'comments' => 'Comments',
+        'status_from_stakeholders' => 'Status from stakeholders',
+        'trend_from_stakeholders' => 'Trend from stakeholders',
+        'status_from_external_source' => 'Status from external source',
+        'trend_from_external_source' => 'Trend from external source'
     ],
     'ecosystem_services' => 'Ecosystem services',
     'key_biodiversity_elements' => 'Biodiversity key elements',
