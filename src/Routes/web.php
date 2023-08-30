@@ -28,12 +28,10 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     */
     Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function (){
 
-         // ####  common routes (v1 & v2 & oecm) ####
+        // ####  common routes (v1 & v2) ####
         Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
         Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
         Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
-
-        // ####  common routes (v1 & v2) ####
         Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
 
         // #### IMET Version 1 ####
@@ -163,6 +161,9 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::post('export_batch',        [oecm\Controller::class, 'export_batch'])->name(OECM_ROUTE_PREFIX.'export_batch');
         Route::get('{item}/merge',  [oecm\Controller::class, 'merge_view'])->name(OECM_ROUTE_PREFIX.'merge_view');
         Route::post('merge',      [oecm\Controller::class, 'merge'])->name(OECM_ROUTE_PREFIX.'merge');
+        Route::get('import',        [oecm\Controller::class, 'import_view'])->name(OECM_ROUTE_PREFIX.'import_view');
+        Route::post('import',      [oecm\Controller::class, 'import'])->name(OECM_ROUTE_PREFIX.'import');
+        Route::post('ajax/upload', [oecm\Controller::class, 'upload'])->name(OECM_ROUTE_PREFIX.'upload_json');
 
         Route::get('create',            [oecm\Controller::class, 'create'])->name(OECM_ROUTE_PREFIX.'create');
         Route::get('create_non_wdpa',   [oecm\Controller::class, 'create_non_wdpa'])->name(OECM_ROUTE_PREFIX.'create_non_wdpa');
