@@ -227,6 +227,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 if (!isset($items[$category][$element])) {
                     $items[$category][$element] = ['elements' => []];
                 }
+
                 if ($record['Description'] !== null) {
                     $items[$category][$element]['elements'][] = $record['Description'];
                 }
