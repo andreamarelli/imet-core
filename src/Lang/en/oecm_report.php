@@ -68,6 +68,6 @@ return [
     ],
     'ecosystem_services' => 'Ecosystem services',
     'key_biodiversity_elements' => 'Biodiversity key elements',
-    'stakeholders' => 'Ecosystem services and Biodiversity key element identified by the stakeholder for their governance and management',
+    'stakeholders' => 'Ecosystem services identified by the stakeholder for their governance and management',
     'score' => 'value'
 ];

@@ -93,17 +93,12 @@ class ReportController extends BaseReportController
         $direct = Modules\Context\AnalysisStakeholderDirectUsers::getAnalysisElements($form_id);
         $indirect = Modules\Context\AnalysisStakeholderIndirectUsers::getAnalysisElements($form_id);
         $items = array_merge($direct, $indirect);
-        $biodiversity = [];
         $ecosystem = [];
         foreach ($items as $key => $value) {
-            if (in_array($key, ['group11', 'group12', 'group13'])) {
-                $biodiversity[$key] = $value;
-            } else {
-                $ecosystem[$key] = $value;
-            }
+            $ecosystem[$key] = $value;
         }
 
-        return ['key_biodiversity_elements' => $biodiversity, 'ecosystem_services' => $ecosystem];
+        return ['ecosystem_services' => $ecosystem];
     }
 
     /**
@@ -113,7 +108,6 @@ class ReportController extends BaseReportController
     private function getThreats(int $form_id): array
     {
         $fields = [];
-        $colors = [];
         $trend_and_threats = collect(Modules\Evaluation\ThreatsIntegration::getModuleRecords($form_id)['records'])
             ->toArray();
 
@@ -128,12 +122,12 @@ class ReportController extends BaseReportController
         foreach ($trend_and_threats as $k => $value) {
             if ($value['__score'] !== null && !isset($fields[$value['Threat']])) {
                 $fields[$value['Threat']] = round($value['__score'], 2);
-                $colors['#C23531'] = [];
+            } else {
+                $fields[$value['Threat']] = "-";
             }
         }
 
-        return ['values' => $trend_and_threats, 'chart' => ['fields' => json_encode(array_keys($fields)),
-            'values' => json_encode(array_values($fields)), 'colors' => json_encode(array_keys($colors))]];
+        return ['values' => $trend_and_threats, 'chart' => [ 'values' => (($fields)) ]];
     }
 
     /**
@@ -148,19 +142,16 @@ class ReportController extends BaseReportController
                 return $item['IncludeInStatistics'];
             })
             ->toArray();
+//dd($key_elements);
 
-
-        return array_filter($key_elements, function ($item) use ($ecosystem) {
-            $where_to_search = [
-                trans('imet-core::oecm_context.AnalysisStakeholders.groups.group11'),
-                trans('imet-core::oecm_context.AnalysisStakeholders.groups.group12'),
-                trans('imet-core::oecm_context.AnalysisStakeholders.groups.group13')
-            ];
-            if (!isset($item['__group_stakeholders'])) {
-                return false;
-            }
-            return !$ecosystem ? in_array($item['__group_stakeholders'], $where_to_search) : !in_array($item['__group_stakeholders'], $where_to_search);
-        });
+        return $key_elements;
+//        array_filter($key_elements, function ($item) use ($ecosystem) {
+//
+//            if (!isset($item['__group_stakeholders'])) {
+//                return false;
+//            }
+//            return !$ecosystem ? $item['__group_stakeholders'] !== null : !in_array($item['__group_stakeholders'], $where_to_search);
+//        });
 
     }
 

@@ -4,11 +4,7 @@
 
 <h3>3. @lang('imet-core::oecm_report.stakeholders')</h3>
 @foreach($stake_analysis as $key => $children)
-    <div class="row ">
-        <div class="col text-center mt-4">
-            <h4>@lang('imet-core::oecm_report.'.$key)</h4>
-        </div>
-    </div>
+
 
     @foreach($children as $category => $elem)
 
