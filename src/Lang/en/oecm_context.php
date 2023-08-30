@@ -446,6 +446,7 @@ return [
     ],
 
     'AnalysisStakeholders' => [
+        'analysis' => 'Analysis per stakeholder',
         'titles' => [
             'title0' => 'Key Provisioning services',
             'title1' => 'Key Cultural services',

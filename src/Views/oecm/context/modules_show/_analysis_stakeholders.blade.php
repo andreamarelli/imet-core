@@ -84,16 +84,16 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
                                 {{-- labels  --}}
                                 <thead>
-                                <tr>
-                                    @foreach($definitions['fields'] as $field)
-                                        <th class="text-center">
-                                            @if($field['type']!=='hidden')
-                                                {{ ucfirst($field['label'] ?? '') }}
-                                            @endif
-                                        </th>
-                                    @endforeach
-                                    <th></th>
-                                </tr>
+                                    <tr>
+                                        @foreach($definitions['fields'] as $field)
+                                            <th class="text-center">
+                                                @if($field['type']!=='hidden')
+                                                    {{ ucfirst($field['label'] ?? '') }}
+                                                @endif
+                                            </th>
+                                        @endforeach
+                                        <th></th>
+                                    </tr>
                                 </thead>
 
                                 <tbody class="{{ $group_key }}">
@@ -102,6 +102,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                 @if(!array_key_exists($group_key, $grouped_records))
                                     @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
 
+                                {{-- body  --}}
                                 @else
                                     @foreach($stakeholders_records[$stakeholder][$group_key] as $record)
                                         <tr class="module-table-item">

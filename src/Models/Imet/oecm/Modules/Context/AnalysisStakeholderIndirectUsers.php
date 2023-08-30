@@ -12,14 +12,7 @@ use Illuminate\Http\Request;
 class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 {
     protected $table = 'imet_oecm.context_analysis_stakeholders_indirect_users';
-    public $titles = [];
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
-
-    protected static $DEPENDENCY_ON = 'Stakeholder';
-    protected static $DEPENDENCIES = [
-        [Modules\Evaluation\KeyElements::class, 'Element']
-    ];
     public static $USER_MODE = Stakeholders::ONLY_INDIRECT;
 
     public function __construct(array $attributes = [])

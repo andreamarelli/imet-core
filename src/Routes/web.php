@@ -174,6 +174,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('{item}/edit/{step?}',[oecm\ContextController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'context_edit');
             Route::get('{item}/show/{step?}',[oecm\ContextController::class, 'show'])->name(OECM_ROUTE_PREFIX.'context_show');
             Route::patch('{item}',           [oecm\ContextController::class, 'update']);
+            Route::get('{item}/print_sa',           [oecm\ContextController::class, 'print_sa'])->name(OECM_ROUTE_PREFIX.'print_sa');
         });
         Route::group(['prefix' => 'evaluation'], function () {
             Route::get('{item}/edit/{step?}',   [oecm\EvalController::class, 'edit'])->name(OECM_ROUTE_PREFIX.'eval_edit');
