@@ -103,14 +103,17 @@ class Stakeholders extends Modules\Component\ImetModule
             $query = $query->where('DirectUser', '!=', true);
         }
 
-        if($with_categories){
-            $query = $query->pluck('UsesCategories', 'Element');
-        } else {
-            $query = $query->pluck('Element');
-        }
+        $query = $query
+            ->groupBy('Element')
+            ->map(function($group) {
+                $categories = [];
+                $group->map(function($item) use(&$categories){
+                    $categories = array_merge($categories, json_decode($item['UsesCategories']));
+                });
+                return json_encode($categories);
+            });
 
         return $query
-            ->unique()
             ->toArray();
     }
 
