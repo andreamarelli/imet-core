@@ -337,7 +337,7 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Habitats sélectionnés comme indicateurs pour l’AMCE et qui devront faire l’objet d’un suivi dans le temps',
+        'title' => 'Principales catégories d’habitats de l’AMCE',
         'fields' => [
             'EcosystemType' => 'Types d’habitats',
             'EcosystemDescription' => 'Description pour l\'AMCE spécifique',
