@@ -2,157 +2,75 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use Illuminate\Support\Str;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 {
-    protected static $USER_MODE;
+    public $titles = [];
 
-    /**
-     * Override: Inject predefined values and replicate for each stakeholder
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
+    protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\KeyElements::class, 'Element']
+    ];
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    public static $USER_MODE;
+
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
         // retrieve stakeholders
-        $stakeholders = Stakeholders::getStakeholders($form_id, static::$USER_MODE);
+        $stakeholders = Stakeholders::getStakeholders($form_id, static::$USER_MODE, true);
 
-        // Inject additional predefined values (last 3 groups) retrieved from CTX
-        $predefined_values = (new static())->predefined_values;
-        $predefined_values['values']['group11'] =
-            Modules\Context\AnimalSpecies::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['species']);
-                })
-                ->pluck('species')
-                ->map(function ($item) {
-                    return Str::contains($item, '|')
-                        ? Animal::getScientificName($item)
-                        : $item;
-                })
-                ->toArray();
-        $predefined_values['values']['group12'] =
-            Modules\Context\VegetalSpecies::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['species']);
-                })
-                ->pluck('species')
-                ->toArray();
-        $predefined_values['values']['group13'] =
-            Modules\Context\Habitats::getModule($form_id)
-                ->filter(function ($item) {
-                    return !empty($item['EcosystemType']);
-                })
-                ->pluck('EcosystemType')
-                ->map(function ($item) {
-                    $labels = SelectionList::getList('ImetOECM_Habitats');
-                    return array_key_exists($item, $labels) ?
-                        $labels[$item]
-                        : null;
-                })
-                ->toArray();
+        // Add at least a record (empty) for each group (related to selected categories) per stakeholder
+        $groups = array_keys(trans('imet-core::oecm_context.AnalysisStakeholders.groups'));
+        foreach ($stakeholders as $stakeholder => $stakeholder_categories) {
+            $stakeholder_categories = json_decode($stakeholder_categories);
+            $stakeholder_categories = $stakeholder_categories!==null ? $stakeholder_categories : [];
+            foreach ($groups as $group) {
 
-        // Clean records (if nothing from DB)
-        if (!empty($records)) {
-            // ensure first record has id field (set to null if doesn't)
-            if (!array_key_exists((new static())->primaryKey, $records[0])) {
-                $records[0][(new static())->primaryKey] = null;
-            }
-            // ensure records are empty if the first record is empty (no id)
-            if (count($predefined_values['values']) >= 1
-                && count($records) == 1
-                && $records[0][(new static())->primaryKey] == null
-            ) {
-                $records = [];
-            }
-        }
+                if(
+                    in_array('provisioning', $stakeholder_categories) && in_array($group, ['group0', 'group1', 'group2', 'group3']) ||
+                    in_array('cultural', $stakeholder_categories) && in_array($group, ['group4', 'group5', 'group6' ]) ||
+                    in_array('regulating', $stakeholder_categories) && in_array($group, ['group7', 'group8']) ||
+                    in_array('supporting', $stakeholder_categories) && in_array($group, ['group9', 'group10'])
+                ){
 
-        // inject predefined values and replicate for each stakeholder
-        $new_records = [];
-        foreach ($stakeholders as $stakeholder) {
-            foreach ($predefined_values['values'] as $g => $group) {
-                foreach ($group as $predefined_value) {
-                    $new_record = $empty_record;
-                    foreach ($records as $r => $record) {
-                        if ($record['Element'] == $predefined_value
-                            && $record['group_key'] == $g
-                            && $record['Stakeholder'] == $stakeholder) {
-                            $new_record = $record;
-                            unset($records[$r]);
-                            break;
+                    // Find a record for the given stakeholder/group
+                    $found = false;
+                    foreach ($records as $record) {
+                        if ($record['group_key'] === $group
+                            && $record['Stakeholder'] === $stakeholder) {
+                            $found = true;
                         }
                     }
-                    $new_record['Element'] = $predefined_value;
-                    $new_record['group_key'] = $g;
-                    $new_record['Stakeholder'] = $stakeholder;
-                    $new_record['__predefined'] = true;
-                    $new_records[] = $new_record;
-                }
-            }
-        }
-
-        // Add remaining records (without predefined)
-        if (count($records) > 0) {
-            foreach ($records as $r => $record) {
-                $new_record = $record;
-                $new_record['__predefined'] = false;
-                $new_records[] = $record;
-            }
-        }
-
-        // Add at least a record (empty) for each group per stakeholder
-        $groups = array_keys(trans('imet-core::oecm_context.AnalysisStakeholders.groups'));
-        foreach ($stakeholders as $stakeholder) {
-            foreach ($groups as $group) {
-                $found = false;
-                foreach ($new_records as $record) {
-                    if ($record['group_key'] === $group
-                        && $record['Stakeholder'] === $stakeholder) {
-                        $found = true;
+                    // if record not found force an empty one
+                    if (!$found) {
+                        $record = $empty_record;
+                        $record['__predefined'] = false;
+                        $record['group_key'] = $group;
+                        $record['Stakeholder'] = $stakeholder;
+                        $records[] = $record;
                     }
                 }
-                if (!$found) {
-                    $new_record = $empty_record;
-                    $new_record['__predefined'] = false;
-                    $new_record['group_key'] = $group;
-                    $new_record['Stakeholder'] = $stakeholder;
-                    $new_records[] = $new_record;
-                }
             }
         }
-
-        return $new_records;
+        return $records;
     }
 
     abstract static function calculateKeyElementImportance($item): ?float;
 
-    public static function calculateKeyElementsImportances($form_id, $records = null): array
+    public static function calculateKeyElementsImportancesByUserMode($form_id, $weights, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
-        $weights = Modules\Context\Stakeholders::calculateWeights($form_id, static::$USER_MODE);
-        $weights_sum = array_sum($weights);
-        $weights_div = $weights_sum > 0 ?
-            collect($weights)
-                ->map(function ($item) use ($weights_sum) {
-                    return $item / $weights_sum;
-                })
-                ->toArray()
-            : null;
-
         return collect($records)
-            ->map(function ($item) use ($weights_div) {
+            ->map(function ($item) use ($weights) {
                 // Retrieve Stakeholders weights
-                $item['__stakeholder_weight'] = $weights_div[$item['Stakeholder']] ?? null;
+                $item['__stakeholder_weight'] = $weights[$item['Stakeholder']] ?? null;
                 // Retrieve weighted importance per each record
                 $item['__weighted_importance'] = static::calculateKeyElementImportance($item);
                 return $item;
@@ -162,6 +80,21 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             })
             ->groupBy('Element')
             ->map(function ($group_element) {
+
+//                // Retrieve lists of legal & illegal specific elements
+//                $specific_elements_legal = $group_element
+//                    ->filter(function($item){
+//                        return $item['Illegal'] == false;
+//                    })
+//                    ->pluck('Description')
+//                    ->toArray();
+//
+//                $specific_elements_illegal = $group_element
+//                    ->filter(function($item){
+//                        return $item['Illegal'] == true;
+//                    })
+//                    ->pluck('Description')
+//                    ->toArray();
 
                 // Average importance if same stakeholder encode same element multiple times
                 $group_element = $group_element
@@ -194,6 +127,8 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 return [
                     'element' => $group_element->first()['Element'],
+//                    'specific_elements_legal' => $specific_elements_legal,
+//                    'specific_elements_illegal' => $specific_elements_illegal,
                     'importance' => round($importance, 1),
                     'stakeholder_count' => $stakeholder_count,
                     'group' => trans('imet-core::oecm_context.AnalysisStakeholders.groups.' . $group_element->first()['group_key'])
@@ -204,43 +139,86 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             ->toArray();
     }
 
-    public static function getNumStakeholdersElementsByThreat($form_id): array
+    private static function retrieveStakeholdersWeights($form_id): ?array
+    {
+        $weights = Modules\Context\Stakeholders::calculateWeights($form_id, Stakeholders::ALL_USERS);
+        $weights_sum = array_sum($weights);
+        return $weights_sum > 0 ?
+            collect($weights)
+                ->map(function ($item) use ($weights_sum) {
+                    return $item / $weights_sum;
+                })
+                ->toArray()
+            : null;
+    }
+
+    public static function calculateKeyElementsImportances($form_id, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $weights = static::retrieveStakeholdersWeights($form_id);
 
-        $threats = [];
-        foreach ($records as $record) {
-            if ($record['Element'] !== null && $record['Threats'] !== null) {
-                foreach (json_decode($record['Threats']) as $threat) {
-                    if (!array_key_exists($threat, $threats)) {
-                        $threats[$threat] = [
-                            'stakeholders' => [],
-                            'elements' => [],
-                            'elements_illegal' => [],
-                        ];
-                    }
-                    $threats[$threat]['stakeholders'][] = $record['Stakeholder'];
-
-                    if (!array_key_exists($record['group_key'], $threats[$threat]['elements'])) {
-                        $threats[$threat]['elements'][$record['group_key']] = [];
-                    }
-                    if (!array_key_exists($record['group_key'], $threats[$threat]['elements_illegal'])) {
-                        $threats[$threat]['elements_illegal'][$record['group_key']] = [];
-                    }
-
-                    if (in_array($record['group_key'], ['group11', 'group12', 'group13'])) {
-                        $threats[$threat]['elements'][$record['group_key']][] = $record['Element'];
-                    } else {
-                        if ($record['Illegal']) {
-                            $threats[$threat]['elements_illegal'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
-                        } else {
-                            $threats[$threat]['elements'][$record['group_key']][] = $record['Description'] ?? $record['Element'];
-                        }
-                    }
-                }
-            }
+        if(static::$USER_MODE === Stakeholders::ONLY_DIRECT){
+            $key_elements_importance_direct = static::calculateKeyElementsImportancesByUserMode($form_id, $weights, $records);
+            $key_elements_importance_indirect = AnalysisStakeholderIndirectUsers::calculateKeyElementsImportancesByUserMode($form_id, $weights);
+        } else {
+            $key_elements_importance_direct = AnalysisStakeholderDirectUsers::calculateKeyElementsImportancesByUserMode($form_id, $weights);
+            $key_elements_importance_indirect = static::calculateKeyElementsImportancesByUserMode($form_id, $weights, $records);
         }
-        return $threats;
+
+        $key_elements_importance_direct = collect($key_elements_importance_direct)
+            ->map(function ($item){
+                $item['importance_direct'] = $item['importance'];
+                $item['stakeholder_direct_count'] = $item['stakeholder_count'];
+                unset($item['importance'], $item['stakeholder_count']);
+               return $item;
+            })
+            ->mapWithKeys(function ($item) {
+                return [$item['element'] => $item];
+            });;
+        $key_elements_importance_indirect = collect($key_elements_importance_indirect)
+            ->map(function ($item){
+                $item['importance_indirect'] = $item['importance'];
+                $item['stakeholder_indirect_count'] = $item['stakeholder_count'];
+                unset($item['importance'], $item['stakeholder_count']);
+               return $item;
+            })
+            ->mapWithKeys(function ($item) {
+                return [$item['element'] => $item];
+            });
+
+        // merge
+        $key_elements_importances = $key_elements_importance_direct;
+        $key_elements_importance_indirect->each(function($item, $key) use($key_elements_importances){
+            $key_elements_importances[$key] = $key_elements_importances->has($key)
+                ? array_merge($key_elements_importances[$key], $item)
+                : $item;
+        });
+
+        // Sum importances & counts
+        $key_elements_importances = $key_elements_importances->map(function ($item){
+            $item['importance_direct'] = $item['importance_direct'] ?? 0;
+            $item['importance_indirect'] = $item['importance_indirect'] ?? 0;
+            $item['stakeholder_direct_count'] = $item['stakeholder_direct_count'] ?? 0;
+            $item['stakeholder_indirect_count'] = $item['stakeholder_indirect_count'] ?? 0;
+
+            $item['importance'] = $item['importance_direct'] + $item['importance_indirect'];
+            $item['stakeholder_count'] = $item['stakeholder_direct_count'] + $item['stakeholder_indirect_count'];
+            return $item;
+        });
+
+        // rescale to 0-100
+        $max_importance = $key_elements_importances->max('importance');
+        $key_elements_importances = $key_elements_importances->map(function ($item) use($max_importance){
+            $item['importance_direct'] = round($item['importance_direct']*100/$max_importance, 1);
+            $item['importance_indirect'] = round($item['importance_indirect']*100/$max_importance, 1);
+            $item['importance'] = round($item['importance']*100/$max_importance, 1);
+            return $item;
+        });
+
+        return collect($key_elements_importances)
+            ->sortByDesc('importance')
+            ->values()
+            ->toArray();
     }
 
     public static function getAnalysisElements($form_id): array
@@ -249,16 +227,23 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
         $items = [];
         foreach ($records as $record) {
+
             if ($record['Element'] !== null) {
-                $element = $record['Element'];
-                if (!isset($items[$element])) {
-                    $items[$element] = [];
+                $category = $record['group_key'];
+                if(!isset($items[$category])){
+                    $items[$category] = [];
                 }
+                $element = $record['Element'];
+                if (!isset($items[$category][$element])) {
+                    $items[$category][$element] = ['elements' => []];
+                }
+
                 if ($record['Description'] !== null) {
-                    $items[$element][] = $record['Description'];
+                    $items[$category][$element]['elements'][] = $record['Description'];
                 }
             }
         }
+
         return $items;
     }
 }

@@ -36,7 +36,7 @@ return [
     'proposed_long' => 'Objectifs à long terme proposés',
     'possible_roadmap' => 'Feuille de route possible - Plan de gestion à moyen et long terme',
     'long_term_objectives' => 'Objectifs à long terme - Objectifs',
-    'outcome' => 'Résultat 1',
+    'outcome' => 'Résultat',
     'annual_multi_annual_targets' => 'Cibles annuelles ou pluriannuelles',
     'intervention' => 'Intervention',
     'activity' => 'Activité',
@@ -53,10 +53,26 @@ return [
         'priority' => 'Priorité',
         'category' => 'Catégorie',
         'key_elements_service' => 'Élément clé/service',
-        'comments' => 'Commentaires/Explications'
+        'comments' => 'Commentaires/Explications',
+        'status_from_stakeholders' => 'Status dos stakeholders',
+        'trend_from_stakeholders' => 'Tendência dos stakeholders',
+        'status_from_external_source' => 'Status de fonte externa',
+        'trend_from_external_source' => 'Tendência de fonte externa'
     ],
     'stakeholder_users_managing_oecm' => 'Utilisateurs et gestionnaires des parties prenantes de l\'OECM',
     'stakeholder_direct_users' => 'Utilisateurs directs des parties prenantes',
     'stakeholder_indirect_users' => 'Utilisateurs indirects des parties prenantes',
-    'key_biodiversity_elements' => 'Éléments clés de la biodiversité de l\'OECM'
-];
+    'biodiversity_elements' => [
+        'title' => 'Éléments clés de la biodiversité de l\'OECM',
+        'key_conservation_element' => 'Élément clé de conservation',
+        'effect_estimated_direct_users' => 'Effet estimé par les utilisateurs directs des parties prenantes',
+        'effect_estimated_indirect_users' => 'Effet estimé par l\'entité de gestion ou le suivi',
+        'average' => 'Moyenne',
+        'comments' => 'Commentaires'
+    ],
+    'ecosystem_services' => 'Services écosystémiques',
+    'key_biodiversity_elements' => 'Éléments clés de la biodiversité',
+    'stakeholders' => 'Services écosystémiques et élément clé de la biodiversité identifié par les parties prenantes pour leur gouvernance et leur gestion',
+    'score' => 'valeur'
+]
+;

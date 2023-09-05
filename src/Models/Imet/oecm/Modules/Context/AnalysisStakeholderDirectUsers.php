@@ -12,15 +12,8 @@ use Illuminate\Http\Request;
 class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 {
     protected $table = 'imet_oecm.context_analysis_stakeholders_direct_users';
-    public $titles = [];
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
-
-    protected static $DEPENDENCY_ON = 'Stakeholder';
-    protected static $DEPENDENCIES = [
-        [Modules\Evaluation\KeyElements::class, 'Element']
-    ];
-    protected static $USER_MODE = Stakeholders::ONLY_DIRECT;
+    public static $USER_MODE = Stakeholders::ONLY_DIRECT;
 
     public function __construct(array $attributes = [])
     {
@@ -40,6 +33,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Comments')],
             ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],
         ];
+        $this->max_rows = 5;
 
         $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholders.groups');
 
@@ -83,8 +77,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 
     public static function calculateKeyElementImportance($item): ?float
     {
-        if($item['Description']!==null
-            || $item['Dependence']!==null
+        if($item['Dependence']!==null
             || $item['Access']!==null
             || $item['Rivalry']===true
             || $item['Quality']!==null

@@ -82,7 +82,6 @@ return [
             'AdditionalInfo' => 'Additional information on governance model (if needed)',
             'ManagementUnique' => 'Determine the entity in charge of the management and governance of the OECM',
             'ManagementName' => 'Name',
-            'ManagementList' => 'List of entities involved in the daily management and governance (do not list partners)',
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date of creation',
             'OfficialRecognition' => 'Official Recognition: Has the Management Entity received an official recognition from the national or regional authorities?',
@@ -174,7 +173,7 @@ return [
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the OECM</b><br /> The objectives provided below will be used for improving management, and more specifically for planning, resource (input) mobilisation, process phases, and for monitoring of management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the OECM</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
     ],
 
     'Objectives2' => [
@@ -182,7 +181,11 @@ return [
     ],
 
     'Objectives3' => [
-        'module_info' => 'Establish and describe conservation objectives for<b> human and financial resources/support from partnerships in managing </b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing </b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
+    ],
+
+    'Objectives4' => [
+        'module_info' => 'Establish and describe conservation objectives for <b>key animals and plant species</b>of the OECM<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM'
     ],
 
     'GeographicalLocation' => [
@@ -210,7 +213,7 @@ return [
     ],
 
     'ManagementStaff' => [
-        'title' => 'Composition and staff of Management Entity(s) (identified in CTX 1.2).',
+        'title' => 'Composition and staff of Management Entity  (identified in CTX 1.2).',
         'fields' => [
             'Function' => 'Functions',
             'Number' => 'Number',
@@ -218,6 +221,7 @@ return [
             'Female' => 'Female',
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Adequate number',
+            'Difference' => 'Difference'
         ],
         'module_info' => 'Number and categories of members of the OECM Management Entity',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>'
@@ -338,7 +342,7 @@ return [
     ],
 
     'Habitats' => [
-        'title' => 'Habitats selected as indicators for the OECM and that will need to be monitored over time',
+        'title' => 'Habitats main categories in the OECM',
         'fields' => [
             'EcosystemType' => 'Habitats types',
             'EcosystemDescription' => 'Description for the specific OECM',
@@ -362,7 +366,7 @@ return [
     ],
 
     'Stakeholders' => [
-        'title' => 'Stakeholders involved in management or impacting in the use of natural resources of the OECM',
+        'title' => 'Stakeholders involved in the management or use of natural resources',
         'fields' => [
             'Element' => 'Stakeholder',
             'GeographicalProximity' => 'Living inside or in proximity to the OECM (less than one hour\'s walk)',
@@ -395,7 +399,7 @@ return [
 
         ],
         'module_info' =>
-            'Identify the stakeholders involved in management or impacting in the use of the natural resources of the OECM<br />
+            'Identify the stakeholders involved in the management or use of the natural resources of the OECM<br />
             <b>Living inside or in proximity to the OECM</b>: Living in or near a conserved area can provide access to important
             ecosystem services but might also require restrictions and regulations.<br />
             <b>Categories of uses or management of OECM’s key elements</b>: Various ways in which stakeholders interact with
@@ -436,12 +440,13 @@ return [
 
     'StakeholdersObjectives' => [
         'module_info' =>
-            'Establish and describe conservation objectives for stakeholders involved in management or impacting in the use of
+            'Establish and describe conservation objectives for stakeholders involved in the management or use of
             natural resources of the OECM. The objectives entered below will be used for improving management, and more specifically
             for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the OECM.'
     ],
 
     'AnalysisStakeholders' => [
+        'analysis' => 'Stakeholder analysis of ecosystem services',
         'titles' => [
             'title0' => 'Key Provisioning services',
             'title1' => 'Key Cultural services',
@@ -461,9 +466,6 @@ return [
             'group8'  => 'Erosion prevention and maintenance of soil fertility',
             'group9'  => 'Lands (agriculture, livestock, forests)',
             'group10' => 'Habitats for animals and plants',
-            'group11' => 'Animals',
-            'group12' => 'Plants',
-            'group13' => 'Habitats',
         ],
         'groups_descriptions' => [
             'group0' =>
@@ -586,10 +588,7 @@ return [
                         <li>Habitats for pollination: Woodland and vegetation areas provide support for pollinators such as bees, butterflies and
                         hummingbirds which provide an important ecosystem service for agriculture as they help plants to produce fruit, seeds and
                         other reproductive structures. </li>
-                     </ul>',
-            'group11' => '',
-            'group12' => '',
-            'group13' => '',
+                     </ul>'
         ],
         'lists' => [
             'group0' => ['Human food vegetal', 'Human food animal', 'Medicines'],
@@ -613,7 +612,7 @@ return [
     ],
 
     'AnalysisStakeholderDirectUsers' => [
-        'title' => 'Analysis per stakeholder - Direct Users',
+        'title' => 'Stakeholder analysis of ecosystem services - Direct Users',
         'fields' => [
             'Element' => 'Criteria',
             'Description' => 'Specific element assessed',
@@ -673,7 +672,7 @@ return [
     ],
 
     'AnalysisStakeholderIndirectUsers' => [
-        'title' => 'Analysis per stakeholder - Indirect Users',
+        'title' => 'Stakeholder analysis of ecosystem services - Indirect Users',
         'fields' => [
             'Element' => 'Criteria',
             'Description' => 'Specific element assessed',

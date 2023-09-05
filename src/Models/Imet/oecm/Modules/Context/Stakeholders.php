@@ -24,6 +24,14 @@ class Stakeholders extends Modules\Component\ImetModule
         [Modules\Evaluation\StakeholderCooperation::class, 'Element'],
     ];
 
+    public static $rules = [
+        'Element' => 'required',
+        'UsesCategories' => 'required_with:Element',
+        'LevelEngagement' => 'required_unless:GeographicalProximity,true',
+        'LevelInterest' => 'required_unless:GeographicalProximity,true',
+        'LevelExpertise' => 'required_unless:GeographicalProximity,true'
+    ];
+
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'GROUP_TABLE';
@@ -96,13 +104,24 @@ class Stakeholders extends Modules\Component\ImetModule
         }
 
         if($with_categories){
-            $query = $query->pluck('UsesCategories', 'Element');
+            $query = $query
+                ->groupBy('Element')
+                ->map(function ($group) {
+                    $categories = [];
+                    $group->map(function ($item) use (&$categories) {
+                        if($item['UsesCategories'] !== null){
+                            $categories = array_merge($categories, json_decode($item['UsesCategories']));
+                        }
+                    });
+                    return json_encode($categories);
+                });
         } else {
-            $query = $query->pluck('Element');
+            $query = $query
+                ->pluck('Element')
+                ->unique();
         }
 
         return $query
-            ->unique()
             ->toArray();
     }
 

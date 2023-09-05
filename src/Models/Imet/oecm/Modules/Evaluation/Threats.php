@@ -4,6 +4,8 @@ namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\StakeholdersService;
+use AndreaMarelli\ImetCore\Services\ThreatsService;
 
 class Threats extends Modules\Component\ImetModule_Eval {
 
@@ -15,10 +17,10 @@ class Threats extends Modules\Component\ImetModule_Eval {
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
-        $this->module_code = 'C3.1';
+        $this->module_code = 'C3.1.2';
         $this->module_title = trans('imet-core::oecm_evaluation.Threats.title');
         $this->module_fields = [
-            ['name' => 'Value',         'type' => 'blade-imet-core::oecm.evaluation.fields.threat', 'label' => trans('imet-core::oecm_evaluation.Threats.fields.Value')],
+            ['name' => 'Value',         'type' => 'disabled', 'label' => trans('imet-core::oecm_evaluation.Threats.fields.Value')],
             ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Impact')],
             ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Extension')],
             ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::oecm_evaluation.Threats.fields.Duration')],
@@ -38,37 +40,35 @@ class Threats extends Modules\Component\ImetModule_Eval {
         parent::__construct($attributes);
     }
 
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $module_records = parent::getModuleRecords($form_id, $collection);
+        $form_id = $empty_record['FormID'];
 
-        // Retrieve num stakeholder by element by threat
-        $threats_direct_users = Modules\Context\AnalysisStakeholderDirectUsers::getNumStakeholdersElementsByThreat($form_id);
-        $threats_indirect_users = Modules\Context\AnalysisStakeholderIndirectUsers::getNumStakeholdersElementsByThreat($form_id);
-        $threats = collect($threats_direct_users)
-            ->mergeRecursive(collect($threats_indirect_users))
-            ->toArray();;
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
-        foreach($threats as $idx => $threat) {
-            $threats[$idx]['num_stakeholders'] = count(array_unique($threat['stakeholders']));
-            unset($threats[$idx]['stakeholders']);
-        }
+        $stakeholder_records = StakeholdersService::getAllRecords($form_id);
+        $threats = StakeholdersService::keyElementsByThreat($stakeholder_records);
 
         // Inject num stakeholders and elements
-        foreach ($module_records['records'] as $index => $record){
+        foreach ($records as $index => $record){
             $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'));
+
+            $records[$index]['__count_stakeholders_direct'] = null;
+            $records[$index]['__count_stakeholders_indirect'] = null;
+            $records[$index]['__elements_legal_list'] = null;
+            $records[$index]['__elements_illegal_list'] = null;
+            $records[$index]['__threat_key'] = $threat_key;
+
             if(array_key_exists($threat_key, $threats)){
-                $module_records['records'][$index]['__num_stakeholders'] = $threats[$threat_key]['num_stakeholders'];
-                $module_records['records'][$index]['__elements'] = $threats[$threat_key]['elements'];
-                $module_records['records'][$index]['__elements_illegal'] = $threats[$threat_key]['elements_illegal'];
-            } else {
-                $module_records['records'][$index]['__num_stakeholders'] = null;
-                $module_records['records'][$index]['__elements'] = null;
-                $module_records['records'][$index]['__elements_illegal'] = null;
+                $records[$index]['__count_stakeholders_direct'] = $threats[$threat_key]['count_stakeholders_direct'];
+                $records[$index]['__count_stakeholders_indirect'] = $threats[$threat_key]['count_stakeholders_indirect'];
+                $records[$index]['__elements_legal_list'] = $threats[$threat_key]['elements_legal_list'];
+                $records[$index]['__elements_illegal_list'] = $threats[$threat_key]['elements_illegal_list'];
             }
+
         }
 
-        return $module_records;
+        return $records;
     }
 
     /**
@@ -82,36 +82,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
-        return collect($records)
-            ->map(function($item){
-
-                $prod = 1
-                    * ($item['Impact']!=null ? 4-$item['Impact'] : 1)
-                    * ($item['Extension']!=null ? 4-$item['Extension'] : 1)
-                    * ($item['Duration']!=null ? 4-$item['Duration'] : 1)
-                    * ($item['Trend']!=null ? (5/2 - $item['Trend']*3/4) : 1)
-                    * ($item['Probability']!=null ? 4-$item['Probability'] : 1);
-
-                $count = ($item['Impact']!=null ? 1 : 0)
-                    + ($item['Extension']!=null ? 1 : 0)
-                    + ($item['Duration']!=null ? 1 : 0)
-                    + ($item['Trend']!=null ? 1 : 0)
-                    + ($item['Probability']!=null ? 1 : 0);
-
-                $score = $count>0
-                    ? (4 - round(pow($prod, 1/($count)),2))
-                    : null;
-
-                $score = $score!==null
-                    ? (0 - $score) * 100 / 3
-                    : null;
-
-                $item['__score'] = $score;
-
-                return $item;
-            })
-            ->sortBy('__score')
-            ->toArray();
+        return ThreatsService::calculateRanking($records);
     }
 
 }

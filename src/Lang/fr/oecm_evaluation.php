@@ -45,8 +45,8 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Identifiez les espèces animales (phares, menacées, endémiques, ...) choisies comme espèces clés',
-            'group1' => 'Identifier les espèces végétales (phares, en danger, endémiques, ...) choisies comme espèces clés',
+            'group0' => 'Services écosystémiques',
+            'group1' => 'Éléments clés de la biodiversité',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -59,13 +59,15 @@ return [
         'module_subTitle' => 'Éléments clés animaux, plantes, habitats (protégés, exploités, en voie de disparition, envahissants, etc.) et services (services d’approvisionnement, de contrôle, culturels, de soutien)',
         'module_info_EvaluationQuestion' => [
             'L\'AMCE a-t-elle priorisé les éléments clés dans sa gestion ? L\'évaluation doit évaluer la nécessité de
-             prioriser les éléments clés dans la gestion de l\'AMCE. L\'évaluation utilise une liste classée basée sur les analyses de SA1 et SA2.'
+             prioriser les éléments clés dans la gestion de l\'AMCE. L\'évaluation utilise une liste classée basée sur les analyses de SA1, SA2 et C3.1.1'
         ],
         'module_info_Rating' => [
             'Évaluer la nécessité de prioriser les éléments clés dans la gestion de l\'AMCE'
         ],
-        'from_group' => 'De la catégorie : ',
-        'num_stakeholders' => 'Indiqué par :num partie(s) prenante(s)',
+        'from_group' => 'De la catégorie',
+        'key_elements_importance_composition' => 'Importance composition: :imp_dir (de :num_dir partie(s) prenante(s) direct) + :imp_ind (de :num_ind partie(s) prenante(s) indirect)',
+        'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
+        'ranking' => 'Classement',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
 
@@ -76,6 +78,10 @@ return [
             'Weight'            => 'Implication de la partie prenante (0-100)',
             'ConstraintLevel'   => 'Niveau de la contrainte/du conflit ou du soutien/de la conformité',
             'Comments'          => 'Commentaires/Explication',
+        ],
+        'groups' => [
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
             'ConstraintLevel' => [
@@ -104,6 +110,10 @@ return [
             'IncludeInStatistics' => 'À prioriser dans la gestion',
             'Comments'          => 'Commentaires/Explication',
         ],
+        'groups' => [
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
+        ],
         'ratingLegend' => [
             'Intégration' => [
                 '0' => 'pas d’intégration',
@@ -125,8 +135,61 @@ return [
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
     ],
 
+
+    'ThreatsBiodiversity' => [
+        'title' => 'Analyse des menaces pesant sur les éléments clés de la biodiversité de l’AMCE',
+        'fields' => [
+            'Criteria' => 'Critère',
+            'Impact' => 'Impact/ Gravité',
+            'Extension' => 'Échelle/ Étendue',
+            'Duration' => 'Durée/irréversibilité',
+            'Trend' => 'Tendence',
+            'Probability' => 'Probabilité de la menace à l’avenir',
+            'Note' => 'Note',
+        ],
+        'groups' => [
+            'group0' => 'Animaux',
+            'group1' => 'Végétaux',
+            'group2' => 'Habitats',
+        ],
+        'ratingLegend' => [
+            'Impact' => [
+                '0' => 'Peu sévère',
+                '1' => 'Modéré',
+                '2' => 'Fort',
+                '3' => 'Sévère',
+            ],
+            'Extension' => [
+                '0' => 'Localisée <5%',
+                '1' => 'Eparse 5-15%',
+                '2' => 'Largement dispersé 15-50%',
+                '3' => 'Partout >50%',
+            ],
+            'Duration' => [
+                '0' => 'Récente < 5 years',
+                '1' => 'A durée 5-20 years',
+                '2' => 'Dure de plus 20-100 years',
+                '3' => 'Est permanent  >100 years',
+            ],
+            'Trend' => [
+                '-2' => 'En baisse',
+                '-1' => 'Légèrement en baisse',
+                '0' => 'Aucun changement',
+                '1' => 'Légèrement en hausse',
+                '2' => 'En hausse',
+            ],
+            'Probability' => [
+                '0' => 'Très faible',
+                '1' => 'Faible',
+                '2' => 'Moyenne',
+                '3' => 'Elevée',
+            ],
+        ],
+        'module_info' => 'Evaluez le niveau des menaces qui pèsent sur les éléments clés de la biodiversité identifiés dans CTX4.1, CTX4.2, CTX4.3'
+    ],
+
     'Threats' => [
-        'title' => 'Calculateur de menaces AMCE',
+        'title' => 'Analyse des menaces AMCE',
         'fields' => [
             'Value' => 'Valeurs',
             'Impact' => 'Impact/ Gravité',
@@ -169,12 +232,12 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'L’AMCE a-t-elle clairement identifié et intégré dans sa gestion les menaces susceptibles d’affecter la biodiversité, le patrimoine culturel ou les services écosystémiques de l’aire ?'
+            'L’AMCE a-t-elle clairement identifié les menaces susceptibles d’affecter la biodiversité, le patrimoine culturel ou les services écosystémiques de l’aire ?'
         ],
         'module_info_Rating' => [
-            'Évaluer le niveau d’intégration des menaces les plus importantes dans la gestion de l’AMCE sur la base de l’analyse du calculateur de menaces au point SA 2 du contexte d’intervention et automatiquement rapporté ci-dessous. Évaluation des menaces (rapportée automatiquement à partir du SA 2) Priorité dans la gestion Commentaires/explications'
+            'Évaluer le niveau des menaces les plus importantes dans la gestion de l’AMCE sur la base de l’analyse du calculateur de menaces au point SA 2 du contexte d’intervention et automatiquement rapporté ci-dessous. Évaluation des menaces (rapportée automatiquement à partir du SA 2) Priorité dans la gestion Commentaires/explications'
         ],
-        'stakeholders' => 'Indiqué par :num  Partie prenante(s)'
+        'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
     ],
 
     'ThreatsIntegration' => [
@@ -195,10 +258,10 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'L\'évaluation évalue la nécessité de hiérarchiser les menaces afin de minimiser leurs effets et leur impact sur l\'AMCE
-             gestion. L\'évaluation utilise la liste de classement basée sur l\'analyse des menaces dans SA2 et C3.1.'
+             gestion. L\'évaluation utilise la liste de classement basée sur l\'analyse des menaces in C3.1.1 et C3.1.2'
         ],
         'module_info_Rating' => [
-            'Évaluer l\'intégration actuelle des menaces à la gestion de l\'AMCE'
+            'Évaluer l\'intégration actuelle des menaces dans la gestion de l\'AMCE'
         ],
         'ranking' => 'Notation (C3.1)',
         'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :<i>I1, PR6</i>',
@@ -466,7 +529,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Composition et personnel ou membres de l\'Entité de Gestion (rapporté automatiquement par CTX 3.1.2)',
-            'group1' => 'Parties prenantes impliquées ou ayant un impact sur l\'utilisation des ressources naturelles (signalées automatiquement par CTX 5 - Utilisateurs directs)'
+            'group1' => 'Parties prenantes impliquées dans la gestion et l’utilisation des ressources naturelles (reportées automatiquement par SA.1 et SA.2)'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -590,7 +653,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Composition et personnel ou membres de l’AMCE',
-            'group1' => 'Parties prenantes impliquées dans la gestion et ayant un impact sur l’utilisation des ressources naturelles de l’AMCE'
+            'group1' => 'Parties prenantes impliquées dans la gestion et l’utilisation des ressources naturelles de l’AMCE'
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -731,7 +794,7 @@ return [
             'Pour garantir une gestion durable des éléments clés de l’AMCE, les parties prenantes/associations de gestion doivent évaluer les pratiques et les actions qui peuvent inclure la conservation/restauration des espèces animales (par exemple, les abeilles) et végétales (par exemple, la pharmacopée), la gestion des incendies, les travaux de re-végétalisation, le contrôle des espèces envahissantes, la gestion des ressources culturelles, l’endiguement des menaces, etc.'
         ],
         'module_info_Rating' => [
-            'Sur la base de la liste des éléments clés identifiés dans le contexte d’intervention SA 2 et classés par ordre de priorité dans l’analyse de gestion C2, évaluer l’adéquation des pratiques et actions de gestion correspondantes'
+            'Sur la base de la liste des éléments clés identifiés dans le contexte d’intervention SA 2 et classés par ordre de priorité dans l’analyse de gestion C1, C2, C3.2 et C4 évaluer l’adéquation des pratiques et actions de gestion correspondantes'
         ]
     ],
 
@@ -795,39 +858,26 @@ return [
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
-            'group0' => 'Communauté/groupe ou autre',
-            'group1' => 'Gouvernement',
-            'group2' => 'ONG, scientifiques et donateurs',
-            'group3' => 'Opérateurs économiques',
-        ],
-        'predefined_values' => [
-            'group0' => [
-                ''
-            ],
-            'group1' => [
-                ''
-            ],
-            'group2' => [
-                ''
-            ],
-            'group3' => [
-                ''
-            ]
+            'group0' => 'Utilisateurs directs',
+            'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
             'Cooperation' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’AMCE',
-                '0' => 'Pas de coopération',
-                '1' => 'Très peu de coopération',
-                '2' => 'Coopération modérée',
-                '3' => 'Coopération très élevée'
+                '0' => 'Pas de coopération - Pas de représentation ou de consultation des parties prenantes, pas d’engagement, pas de prise en compte des connaissances et des perspectives locales',
+                '1' => 'Très peu de coopération - Représentation ou consultation sporadique des parties prenantes, engagement minimal, faible prise en compte des connaissances et perspectives locales',
+                '2' => 'Coopération modérée - Représentation ou consultation modérée des parties prenantes, engagement occasionnel, prise en compte des connaissances et perspectives locales',
+                '3' => 'Coopération très élevée - Représentation ou consultation des parties prenantes bien établie, engagement important, prise en compte totale des connaissances et des perspectives locales'
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Existe-t-il des actions visant à améliorer la gouvernance des éléments clés de l’AMCE ?',
-            'Cette étape de l’analyse évalue la manière dont certains ou tous les acteurs concernés sont impliqués dans la gestion de l’AMCE dans quatre domaines : (P) planification ; (PM) planification et gestion (B/A) avantages/assistance (IEC) information, éducation et communication pour la compréhension et l’engagement de la communauté'
-        ]
-    ],
+            'Existe-t-il des mesures pour améliorer la coopération des parties prenantes dans la gouvernance et la gestion de l’AMCE ?',
+            'L’évaluation vise à déterminer le degré de coopération et de participation effective des parties prenantes qui contribue à la légitimité et à l’efficacité de la gouvernance de l’AMCE'
+          ],
+          'module_info_Rating' => [
+            'Évaluer le niveau de l’implication, de la participation, de l’engagement et des connaissances et perspectives locales des parties prenantes dans la gouvernance et la gestion de l’AMCE'
+          ]
+      ],
 
     'AssistanceActivities' => [
         'title' => 'Avantages pour les communautés locales',
@@ -1092,15 +1142,13 @@ return [
         'module_info_EvaluationQuestion' => [
             'La gestion et la gouvernance exercent-elles des effets positifs ou négatifs sur les éléments clés de conservation de l\'AMCE ?',
             'L\'un des principaux objectifs de l\'AMCE est de fournir des résultats positifs et durables pour la conservation in situ
-             de la biodiversité. En comparant l\'évaluation interne des éléments clés de conservation de SA2 avec les données techniques correspondantes
-             données du même paysage ou de la même région, permet une analyse détaillée et une interprétation des résultats, en mettant en évidence
+             de la biodiversité. La comparaison des évaluations des utilisateurs directs et indirects et des données techniques sur le même élément clé, permet une analyse détaillée et une interprétation des résultats, en mettant en évidence
              observations spécifiques, divergences, domaines d\'alignement et recommandations potentielles de modifications ou d\'adoption
              les meilleures pratiques. Les résultats de la comparaison entre l\'évaluation interne et les données externes sur la même clé
              des éléments de conservation peuvent être fournis dans la section des commentaires.'
         ],
         'module_info_Rating' => [
-            'Rapporter les données externes de A) les conditions et B) les tendances des éléments clés de conservation d\'après les
-             études scientifiques et suivi dans le même paysage ou la même région.'
+            'Assurer une double analyse collaborative entre les utilisateurs directs et indirects, les parties prenantes ou leurs représentants sur A) l’état et B) les tendances des éléments clés de la conservation de l’AMCE'
         ],
         'ratingLegend' => [
             'StatusSH' => [
@@ -1171,7 +1219,7 @@ return [
     ],
 
     'EmpowermentGovernance' => [
-        'title' => 'Parties prenantes, responsabilisation',
+        'title' => 'Parties prenantes, autonomisation',
         'fields' => [
             'Conditions' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Adéquation de l’autonomisation des parties prenantes',
@@ -1211,11 +1259,11 @@ return [
             ]
         ],
         'module_info_EvaluationQuestion' => [
-            'Does the management of the OECM use Adéquat measures / approaches / tools for ensuring staff motivation?',
-            'For a OECM, motivated staff is essential to achieve success in conservation. Working conditions and staff motivation strongly influence the ability of staff to carry out their work. Managers and leaders must understand that they need to provide a work environment that creates and maintains motivation in the staff to achieve results on conservation',
+            'La direction de l’AMCE encourage-t-elle activement les initiatives d’autonomisation des parties prenantes afin de garantir une plus grande implication des parties prenantes pour une mise en œuvre plus efficace et plus percutante des mesures de conservation ?',
+            'L’autonomisation des parties prenantes est la pierre angulaire de la gestion et de la gouvernance d’une AMCE, jouant un rôle essentiel dans la promotion d’un engagement significatif, d’une responsabilité partagée et d’une prise de décision collaborative entre les diverses parties prenantes. En responsabilisant les parties prenantes, l’AMCE cherche à exploiter leurs connaissances, leurs perspectives et leurs contributions collectives, ce qui conduit en fin de compte à une mise en œuvre plus complète, plus durable et plus efficace des mesures de conservation',
         ],
         'module_info_Rating' => [
-            'Evaluate the adequacy of staff motivation measures / approaches / tools in the OECM',
+            'Évaluer la promotion des initiatives d’autonomisation des parties prenantes en vue d’une mise en œuvre plus complète, durable et efficace des mesures de conservation',
         ]
     ],
 ];
