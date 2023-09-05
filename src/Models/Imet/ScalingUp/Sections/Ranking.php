@@ -58,7 +58,8 @@ class Ranking
                 }
 
                 if (count($indicators_process_number) > 0) {
-                    $correction_value = Common::ranking_values_correction(Common::values_correction($v, $value), $indicators_divide_length, $indicators_process_number, $v);
+                    $val = Common::values_correction($v, $value);
+                    $correction_value = Common::ranking_values_correction($val, $indicators_divide_length, $indicators_process_number, $v);
                 } else {
                     $correction_value = Common::values_correction($v, $value);
                 }
