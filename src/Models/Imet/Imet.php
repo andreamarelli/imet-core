@@ -83,9 +83,10 @@ class Imet extends Form
      * @param Request $request
      * @param array $relations
      * @param bool $only_allowed_wdpas
+     * @param array $countries
      * @return mixed
      */
-    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false)
+    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = [])
     {
         $allowed_wdpas = $only_allowed_wdpas
             ? Role::allowedWdpas()
@@ -94,9 +95,12 @@ class Imet extends Form
         $list_v1 = v1\Imet
             ::filterList($request)
             ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas) {
+            ->where(function ($query) use ($allowed_wdpas, $countries) {
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
+                }
+                if(count($countries)){
+                    $query->whereIn('Country', $countries);
                 }
             })
             ->get()
@@ -112,9 +116,12 @@ class Imet extends Form
         $list_v2 = v2\Imet
             ::filterList($request)
             ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas) {
+            ->where(function ($query) use ($allowed_wdpas, $countries) {
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
+                }
+                if(count($countries)){
+                    $query->whereIn('Country', $countries);
                 }
             })
             ->get()
