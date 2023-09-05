@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
@@ -36,7 +37,7 @@ class ApiController extends Controller
      * @throws ErrorException
      * @throws \ReflectionException
      */
-    public function get_assessment_report(Request $request, string $lang, int $wdpa_id, int $year = null) : object
+    public function get_assessment_report(Request $request, string $lang, int $wdpa_id, int $year = null): object
     {
         $api = ['data' => [], 'labels' => []];
 
@@ -45,7 +46,6 @@ class ApiController extends Controller
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
-
         if (count($records) > 1) {
             throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
         }
@@ -53,9 +53,9 @@ class ApiController extends Controller
         $form_id = $records[0]['FormID'] ?? null;
         $form = Imet::find($form_id);
 
-        if($form['version'] == Imet::IMET_V1) {
+        if ($form['version'] == Imet::IMET_V1) {
             $data = ReportV1::get_assessment_report($request, $form);
-        }else{
+        } else {
             $data = ReportV2::get_assessment_report($request, $form);
         }
         $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $data['data']];
@@ -65,15 +65,54 @@ class ApiController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function get_global_average_scores(Request $request): object
+    {
+        $result = [];
+        $api = ['data' => [], 'labels' => []];
+
+        $list = Imet::get_assessments_list($request, ['country']);
+        foreach ($list as $key => $imet) {
+            $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+        }
+        $items_for_average = count($result);
+        $sums = array();
+
+        // Loop through the outer array
+        foreach ($result as $innerArray) {
+            // Loop through the inner array
+            foreach ($innerArray as $key => $value) {
+                // If the key doesn't exist in the $sums array, initialize it with 0
+                if (!isset($sums[$key])) {
+                    $sums[$key] = 0;
+                }
+
+                // Add the value to the sum for the current key
+                $sums[$key] += $value;
+            }
+        }
+
+        foreach ($sums as $k => $value) {
+            $sums[$k] = round($value / $items_for_average, 2);
+            $api['labels'][$k] = $k === "imet_index" ? trans('imet-core::common.indexes.imet') :trans('imet-core::common.steps_eval.'.$k);
+        }
+        $api['data'] = $sums;
+        return static::sendAPIResponse($api);
+    }
+
+    /**
      * retrieve imet data for a given wdpa_id
      *
      * @param Request $request
      * @param string $lang
-     * @param string $key
+     * @param string $slug
      * @param int $wdpa_id
      * @param int|null $year
      * @return object
      * @throws ErrorException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, int $year = null): object
     {
@@ -105,7 +144,7 @@ class ApiController extends Controller
                 $accepted_fields[] = $filtered_fields;
             }
         }
-        $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'],  'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $accepted_fields];
+        $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $accepted_fields];
         return static::sendAPIResponse($api);
     }
 
@@ -133,7 +172,7 @@ class ApiController extends Controller
                 'year' => $record['Year'],
                 'version' => $record['version']
             ],
-                $record['version']==Imet::IMET_V2
+                $record['version'] == Imet::IMET_V2
                     ? V2StatisticsService::get_radar_scores($record['FormID'])
                     : V1ToV2StatisticsService::get_radar_scores($record['FormID'])
             );
@@ -160,10 +199,14 @@ class ApiController extends Controller
     {
 
         $api = [];
-        $list = Imet::get_assessments_list($request, ['country']);
+        $countries = [];
+        $region = $request->input("region");
+        if($region){
+            $countries = Country::getByRegion($region);
+        }
+        $list = Imet::get_assessments_list($request, ['country'], false, $countries);
         $hasType = $request->has("type");
         $type = $request->input("type");
-
 
         $list->map(function ($item) {
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
@@ -174,8 +217,16 @@ class ApiController extends Controller
 
         foreach ($list as $item) {
             $country_name = "name_" . $language;
+            $region_name = "name";
+            if($language !== "en"){
+                $region_name .= "_".$language;
+            }
             $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
-            if (!$hasType  || (!$type && $item['Type'] === null) || $type === $item['Type']) {
+            if (!$hasType || (!$type && $item['Type'] === null) || $type === $item['Type']) {
+                $region = [
+                  'id' => $item->country->region->id,
+                  'name' => $item->country->region->$region_name,
+                ];
                 $api[] = [
                     'wdpa_id' => $item['wdpa_id'],
                     'language' => $item['language'],
@@ -183,6 +234,7 @@ class ApiController extends Controller
                     'year' => $item['Year'],
                     'iso3' => $item['Country'],
                     'country' => $item->country->$country_name,
+                    'region' => $region,
                     'type' => $item['Type'],
                     'version' => $item['version']
                 ];
@@ -191,8 +243,6 @@ class ApiController extends Controller
 
         return static::sendAPIResponse(['data' => $api]);
     }
-
-
 
 
 }
