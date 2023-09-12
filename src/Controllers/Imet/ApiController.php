@@ -2,10 +2,11 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet;
 
+use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ImportExportJSON;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
@@ -18,7 +19,10 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Exception\NotFoundException;
+use Illuminate\Support\Facades\Http;
+use Exception;
 
 
 class ApiController extends Controller
@@ -27,6 +31,7 @@ class ApiController extends Controller
     use ScalingUpApi;
     use Assessment;
     use StatisticsApi;
+    use ImportExportJSON;
 
     /**
      * @param Request $request
@@ -73,7 +78,7 @@ class ApiController extends Controller
         $result = [];
         $api = ['data' => [], 'labels' => []];
 
-        $list = Imet::get_assessments_list($request, ['country']);
+        $list = Imet\Imet::get_assessments_list($request, ['country']);
         foreach ($list as $key => $imet) {
             $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
         }
@@ -96,10 +101,144 @@ class ApiController extends Controller
 
         foreach ($sums as $k => $value) {
             $sums[$k] = round($value / $items_for_average, 2);
-            $api['labels'][$k] = $k === "imet_index" ? trans('imet-core::common.indexes.imet') :trans('imet-core::common.steps_eval.'.$k);
+            $api['labels'][$k] = $k === "imet_index" ? trans('imet-core::common.indexes.imet') : trans('imet-core::common.steps_eval.' . $k);
         }
         $api['data'] = $sums;
         return static::sendAPIResponse($api);
+    }
+
+    /**
+     * Export the full IMET form in json
+     * todo: create unique id to match
+     * @param int $imet_id
+     * @return BinaryFileResponse|array
+     * @throws AuthorizationException
+     */
+    public function post_imet_another_server(int $imet_id)
+    {
+        if (!env('SYNC_SERVER_URL')) {
+            return response()->json(['message' => 'Access denied.'], 403);
+        }
+        //$this->authorize('export', $item);
+        $result = $json = [];
+        $imet = Imet\Imet::find($imet_id);
+
+        if ($imet && $imet->synced) {
+            return response()->json(['message' => trans('imet-core::common.synced.already_synced')], 500);
+        }
+        $imet_form = $imet
+            ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id', 'synced'])
+            ->toArray();
+
+        $imet_form['imet_version'] = imet_offline_version();
+
+        // #####  IMET V1  #####
+        if ($imet_form['version'] === Imet\Imet::IMET_V1) {
+            $json = [
+                'Imet' => $imet_form,
+                'Encoders' => Imet\Encoder::exportModule($imet_id),
+                'Context' => Imet\v1\Imet::exportModules($imet_id),
+                'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id),
+                'Report' => Imet\Report::export($imet_id)
+            ];
+        } // #####  IMET V2  #####
+        elseif ($imet_form['version'] === Imet\Imet::IMET_V2) {
+            $json = [
+                'Imet' => $imet_form,
+                'Encoders' => Imet\Encoder::exportModule($imet_id),
+                'Context' => Imet\v2\Imet::exportModules($imet_id),
+                'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id),
+                'Report' => Imet\Report::export($imet_id)
+            ];
+        } // #####  IMET OECM  #####
+        elseif ($imet_form['version'] === Imet\Imet::IMET_OECM) {
+            $json = [
+                'Imet' => $imet_form,
+                'Encoders' => Imet\oecm\Encoder::exportModule($imet_id),
+                'Context' => Imet\oecm\Imet::exportModules($imet_id),
+                'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id),
+                'Report' => Imet\oecm\Report::export($imet_id)
+            ];
+        }
+
+        if (ProtectedAreaNonWdpa::isNonWdpa($imet_form['wdpa_id'])) {
+            $json['NonWdpaProtectedArea'] = ProtectedAreaNonWdpa::export($imet_form['wdpa_id']);
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $imet->update(['synced' => true]);
+
+            $result = Http::withHeaders(
+                [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'
+                ]
+            )->timeout(600)->post(env('SYNC_SERVER_URL'), [
+                'data' => $json
+            ])->throw();
+            DB::commit();
+        } catch (Exception $ex) {
+            report($ex);
+            DB::rollback();
+            return response()->json(["message" => $ex->getMessage()], 500);
+        }
+
+        return $result->json();
+    }
+
+    /**
+     * Import a full IMET from json file
+     *
+     * @param Request|null $request
+     * @throws \Throwable
+     */
+    public function save_imet(Request $request): array
+    {
+        if (env('SYNC_SLAVES_IPS_TO_RECEIVE_SYNC_DATA') && in_array($request->ip(), explode(',', env('SYNC_SLAVES_IPS_TO_RECEIVE_SYNC_DATA')))) {
+            $response = [];
+            try {
+                $request->headers->set('Accept', 'application/json');
+                if ($request->expectsJson()) {
+
+                    $jsonData = $request->json()->all();
+                    $json = $jsonData['data'];
+                    if ($json['Imet']['version'] === Imet\Imet::IMET_V1) {
+                        $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
+                    } else if ($json['Imet']['version'] === Imet\Imet::IMET_V2) {
+                        $imet = (new Imet\v2\Imet($json['Imet']))->fill($json['Imet']);
+                    } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
+                        $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
+                    }
+                    //$this->authorize('view', $imet);
+
+                    $response = ['status' => 'success', 'modules' => []];
+
+                    DB::beginTransaction();
+
+                    // Non-Wdpa protected area
+                    if (array_key_exists('NonWdpaProtectedArea', $json)) {
+                        $wdpa_id = ProtectedAreaNonWdpa::import($json['NonWdpaProtectedArea']);
+                        $json['Imet']['wdpa_id'] = $wdpa_id;
+                    }
+
+                    // Import modules
+                    [$formID, $modules_imported] = static::import_modules($json);
+                    $response['modules'] = $modules_imported;
+                    DB::commit();
+                }
+            } catch
+            (Exception $ex) {
+                DB::rollback();
+                report($ex);
+                $response = ['status' => 'error'];
+            }
+
+        } else {
+            return response()->json(['message' => 'Access denied.'], 403);
+        }
+        return $response;
     }
 
     /**
@@ -172,7 +311,7 @@ class ApiController extends Controller
                 'year' => $record['Year'],
                 'version' => $record['version']
             ],
-                $record['version'] == Imet::IMET_V2
+                $record['version'] == Imet\Imet::IMET_V2
                     ? V2StatisticsService::get_radar_scores($record['FormID'])
                     : V1ToV2StatisticsService::get_radar_scores($record['FormID'])
             );
@@ -201,10 +340,11 @@ class ApiController extends Controller
         $api = [];
         $countries = [];
         $region = $request->input("region");
-        if($region){
+        $region_item = [];
+        if ($region) {
             $countries = Country::getByRegion($region);
         }
-        $list = Imet::get_assessments_list($request, ['country'], false, $countries);
+        $list = Imet\Imet::get_assessments_list($request, ['country'], false, $countries);
         $hasType = $request->has("type");
         $type = $request->input("type");
 
@@ -218,15 +358,17 @@ class ApiController extends Controller
         foreach ($list as $item) {
             $country_name = "name_" . $language;
             $region_name = "name";
-            if($language !== "en"){
-                $region_name .= "_".$language;
+            if ($language !== "en") {
+                $region_name .= "_" . $language;
             }
             $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
             if (!$hasType || (!$type && $item['Type'] === null) || $type === $item['Type']) {
-                $region = [
-                  'id' => $item->country->region->id,
-                  'name' => $item->country->region->$region_name,
-                ];
+                if ($item->country->region) {
+                    $region_item = [
+                        'id' => $item->country->region->id,
+                        'name' => $item->country->region->$region_name,
+                    ];
+                }
                 $api[] = [
                     'wdpa_id' => $item['wdpa_id'],
                     'language' => $item['language'],
@@ -234,7 +376,7 @@ class ApiController extends Controller
                     'year' => $item['Year'],
                     'iso3' => $item['Country'],
                     'country' => $item->country->$country_name,
-                    'region' => $region,
+                    'region' => $region_item,
                     'type' => $item['Type'],
                     'version' => $item['version']
                 ];

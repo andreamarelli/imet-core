@@ -165,5 +165,10 @@ return [
             'EncodingDuration' => 'Durée de l\'évaluation (h)',
         ]
     ],
-
+    'synced' => [
+        'sync_running' => 'sync_running',
+        'confirm_sync' => 'confirm_sync',
+        'already_synced' => 'already_synced',
+        'sync' => 'sync'
+    ]
 ];

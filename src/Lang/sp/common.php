@@ -27,7 +27,7 @@ return [
 
     'terrestrial' => 'terrestre',
     'marine' => 'marítimo y costero',
-    
+
     'dopa_not_available' => 'Servicios DOPA no disponibles',
 
     'languages' => [
@@ -165,4 +165,10 @@ return [
             'EncodingDuration' => 'Tiempo de evaluación (horas)',
         ]
     ],
+    'synced' => [
+        'sync_running' => 'sync_running',
+        'confirm_sync' => 'confirm_sync',
+        'already_synced' => 'already_synced',
+        'sync' => 'sync'
+    ]
 ];

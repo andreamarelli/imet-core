@@ -28,13 +28,15 @@ Route::group(['prefix' => 'api'], function () {
         Route::get('assessments-performed-by-country', [ApiController::class, 'get_assessments_performed_by_country'])->name('imet_core::api::statistics.assessments_performed_by_country');
         Route::get('{lang}/global-statistics/{slug}/{year?}', [ApiController::class, 'get_global_statistics'])->name('imet_core::api::statistics.global');
         Route::get('{lang}/assessment-global-average-scores', [ApiController::class, 'get_global_average_scores']);
-
+        Route::post('/move/{item}', [ApiController::class, 'post_imet_another_server'])->name('imet_core::api::imet_item');
+        Route::post('sync/imet', [ApiController::class, 'save_imet'])->name('imet_core::api::save_imet');
         Route::group(['middleware' => ['apiValidation', 'auth']], function () {
             Route::group(['middleware' => ['throttle:15,1']], function () {
                 Route::get('{lang}/assessment/report/{wdpa_id}/{year?}', [ApiController::class, 'get_assessment_report']);
             });
             Route::get('{lang}/statistics/radar/{wdpa_id}/{year?}', [ApiController::class, 'get_imet_statistics_radar']);
             Route::get('{lang}/details/{key}/{wdpa_id}/{year?}', [ApiController::class, 'get_imet'])->name('imet_core::api::imet_details');
+
 
             Route::group(['prefix' => '{lang}/scaling-up'], function () {
                 Route::get('general-info/{wdpa_id}/{year?}', [ApiController::class, 'get_general_info']);

@@ -14,7 +14,7 @@ use \Illuminate\Http\Request;
 /** @var array $years */
 /** @var boolean $filter_selected */
 
-if($controller === Controllers\Imet\oecm\Controller::class){
+if ($controller === Controllers\Imet\oecm\Controller::class) {
     $form_class = Imet\oecm\Imet::class;
     $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
     $scaling_up_enable = false;
@@ -146,15 +146,15 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 </td>
                 <td class="align-baseline">
                     <imet_encoders_responsibles
-                            :items=item.encoders_responsibles
+                        :items=item.encoders_responsibles
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
                     <imet_radar
-                            style="margin: 0 auto;"
-                            :width=150 :height=150
-                            :values=item.assessment_radar
-                            v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                        style="margin: 0 auto;"
+                        :width=150 :height=150
+                        :values=item.assessment_radar
+                        v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
                     ></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
@@ -198,6 +198,10 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                     {{-- Print --}}
                     @include('imet-core::components.buttons.print', ['form_class' => $form_class])
 
+                    @if(is_imet_synced_enabled())
+                        @include('imet-core::components.buttons.sync', ['form_class' => $form_class])
+                    @endif
+
                     {{-- Delete --}}
                     @can('edit', $form_class)
                         @include('imet-core::components.buttons.delete', [
@@ -210,7 +214,9 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             </tbody>
 
         </table>
-
+        @include('imet-core::components.modals.error', [
+                                    'modal_id' => "error_modal"
+                                ])
     </div>
 
     @push('scripts')
@@ -221,11 +227,39 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 el: '#sortable_list',
                 data: {
                     list: @json($list),
-                    pageSize: 10
+                    pageSize: 10,
+                    sync_loading: 0,
+                    error_message: ''
                 },
-
                 mounted: function () {
                     this.sort('{{ $form_class::$sortBy }}', '{{ $form_class::$sortDirection }}');
+                },
+                methods: {
+                    sync: function (url, modal_id, id, item) {
+                        $('#' + modal_id).modal('hide');
+                        const _this = this;
+                        const send_request = this.sync_loading > 0;
+                        if (!send_request) {
+                            _this.sync_loading = id;
+                            window.axios({
+                                method: 'post',
+                                url: url,
+                                data: {
+                                    _token: window.Laravel.csrfToken,
+                                    _method: 'POST'
+                                }
+                            })
+                                .then(function (response) {
+                                    item.synced = true;
+                                })
+                                .catch(function (error) {
+                                    _this.error_message = 'Something went wrong';
+                                    $('#error_modal').modal('show');
+                                }).finally(function () {
+                                _this.sync_loading = 0;
+                            })
+                        }
+                    }
                 }
 
             });

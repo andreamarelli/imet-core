@@ -3,6 +3,14 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
+/**
+ * check if imets can be synced to the global server
+ * @return mixed
+ */
+function is_imet_synced_enabled()
+{
+    return env('SYNC_SERVER_URL');
+}
 
 /**
  * Check if App::environment is IMET related (ex. imetoffline or imetglobal)

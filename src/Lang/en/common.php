@@ -167,4 +167,11 @@ return [
         ]
     ],
 
+    'synced' => [
+        'sync_running' => 'sync_running',
+        'confirm_sync' => 'confirm_sync',
+        'already_synced' => 'already_synced',
+        'sync' => 'sync'
+    ]
+
 ];
