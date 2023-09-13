@@ -34,6 +34,16 @@ function imet_offline_version()
 }
 
 /**
+ * create a unique id for with wdpa_id and form_id
+ *
+ * @return bool|string
+ */
+function imet_sync_unique_id(int $wdpa_id, int $form_id)
+{
+    return sha1(str_replace('form_id', $form_id, str_replace('wdpa_id', $wdpa_id, env('UNIQUE_ID'))));
+}
+
+/**
  * Imet selection lists
  *
  * @param string $type
@@ -41,7 +51,7 @@ function imet_offline_version()
  */
 function imet_selection_lists(string $type): array
 {
-    $list  = [];
+    $list = [];
 
     if (Str::startsWith($type, 'ImetV1')
         || Str::startsWith($type, 'ImetV2')
@@ -58,7 +68,7 @@ function imet_selection_lists(string $type): array
             $list = \AndreaMarelli\ImetCore\Models\Currency::imetV1List();
         } elseif ($matches[1] != "") {
 
-            $list = trans('imet-core::'.strtolower($matches[1]).'_lists.' . $matches[2]);
+            $list = trans('imet-core::' . strtolower($matches[1]) . '_lists.' . $matches[2]);
         }
 
     }
