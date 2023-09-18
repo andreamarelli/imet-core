@@ -5,7 +5,7 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
 use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
@@ -27,6 +27,7 @@ class ApiController extends Controller
     use ScalingUpApi;
     use Assessment;
     use StatisticsApi;
+
 
     /**
      * @param Request $request
@@ -73,10 +74,16 @@ class ApiController extends Controller
         $result = [];
         $api = ['data' => [], 'labels' => []];
 
-        $list = Imet::get_assessments_list($request, ['country']);
+        $list = Imet\Imet::get_assessments_list($request, ['country']);
+
         foreach ($list as $key => $imet) {
-            $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+            if (Imet\Imet::IMET_V1 === $imet['version']) {
+                $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+            } else {
+                $result[] = V2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+            }
         }
+
         $items_for_average = count($result);
         $sums = array();
 
@@ -96,9 +103,10 @@ class ApiController extends Controller
 
         foreach ($sums as $k => $value) {
             $sums[$k] = round($value / $items_for_average, 2);
-            $api['labels'][$k] = $k === "imet_index" ? trans('imet-core::common.indexes.imet') :trans('imet-core::common.steps_eval.'.$k);
+            $api['labels'][$k] = $k === "imet_index" ? trans('imet-core::common.indexes.imet') : trans('imet-core::common.steps_eval.' . $k);
         }
         $api['data'] = $sums;
+
         return static::sendAPIResponse($api);
     }
 
@@ -172,7 +180,7 @@ class ApiController extends Controller
                 'year' => $record['Year'],
                 'version' => $record['version']
             ],
-                $record['version'] == Imet::IMET_V2
+                $record['version'] == Imet\Imet::IMET_V2
                     ? V2StatisticsService::get_radar_scores($record['FormID'])
                     : V1ToV2StatisticsService::get_radar_scores($record['FormID'])
             );
@@ -201,10 +209,11 @@ class ApiController extends Controller
         $api = [];
         $countries = [];
         $region = $request->input("region");
-        if($region){
+        $region_item = [];
+        if ($region) {
             $countries = Country::getByRegion($region);
         }
-        $list = Imet::get_assessments_list($request, ['country'], false, $countries);
+        $list = Imet\Imet::get_assessments_list($request, ['country'], false, $countries);
         $hasType = $request->has("type");
         $type = $request->input("type");
 
@@ -218,15 +227,17 @@ class ApiController extends Controller
         foreach ($list as $item) {
             $country_name = "name_" . $language;
             $region_name = "name";
-            if($language !== "en"){
-                $region_name .= "_".$language;
+            if ($language !== "en") {
+                $region_name .= "_" . $language;
             }
             $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
             if (!$hasType || (!$type && $item['Type'] === null) || $type === $item['Type']) {
-                $region = [
-                  'id' => $item->country->region->id,
-                  'name' => $item->country->region->$region_name,
-                ];
+                if ($item->country->region) {
+                    $region_item = [
+                        'id' => $item->country->region->id,
+                        'name' => $item->country->region->$region_name,
+                    ];
+                }
                 $api[] = [
                     'wdpa_id' => $item['wdpa_id'],
                     'language' => $item['language'],
@@ -234,7 +245,7 @@ class ApiController extends Controller
                     'year' => $item['Year'],
                     'iso3' => $item['Country'],
                     'country' => $item->country->$country_name,
-                    'region' => $region,
+                    'region' => $region_item,
                     'type' => $item['Type'],
                     'version' => $item['version']
                 ];

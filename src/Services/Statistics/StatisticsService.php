@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 use AndreaMarelli\ModularForms\Helpers\Locale;
@@ -35,6 +36,14 @@ abstract class StatisticsService
     }
 
     /**
+     * @param $imet
+     * @return array
+     */
+    private static function get_cached_scores($imet): array{
+        return ImetScores::where(['FormID' => $imet['FormID']])->pluck('scores')->first() ?? [];
+    }
+
+    /**
      * Retrieve assessment's scores
      *
      * @param Imet|ImetOEMC|int $imet
@@ -44,7 +53,12 @@ abstract class StatisticsService
     public static function get_scores($imet, string $step = self::GLOBAL): array
     {
         $imet = static::get_imet($imet);
-
+        if (is_cache_scores_enabled()) {
+            $scores = static::get_cached_scores($imet);
+            if($scores){
+                return $scores;
+            }
+        }
         switch ($step) {
             case static::GLOBAL:
                 $scores = [
@@ -95,7 +109,14 @@ abstract class StatisticsService
         $imet = static::get_imet($imet);
 
         $labels = static::steps_labels();
-        $scores = static::get_scores($imet);
+        $records = ImetScores::where(['FormID' => $imet['FormID']])->get()->toArray();
+
+        if(!$records) {
+            $scores = static::get_scores($imet);
+        } else {
+            $scores = $records[0]['scores']['global'];
+        }
+
         unset($scores['imet_index']);
 
         return array_combine(
