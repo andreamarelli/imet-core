@@ -50,10 +50,10 @@ abstract class StatisticsService
      * @param string $step
      * @return array
      */
-    public static function get_scores($imet, string $step = self::GLOBAL): array
+    public static function get_scores($imet, string $step = self::GLOBAL, bool $cache = true): array
     {
         $imet = static::get_imet($imet);
-        if (is_cache_scores_enabled()) {
+        if (is_cache_scores_enabled() && $cache) {
             $scores = static::get_cached_scores($imet);
             if($scores){
                 return $scores;
