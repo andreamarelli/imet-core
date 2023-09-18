@@ -32,9 +32,9 @@ class PopulateImetScores implements ShouldQueue
     private function updateRecords($records){
         foreach($records as $record){
             if($record->version ===Imet::IMET_V2) {
-                $assessments = V2StatisticsService::get_scores($record->FormID, 'ALL');
+                $assessments = V2StatisticsService::get_scores($record->FormID, 'ALL', false);
             } else {
-                $assessments = V1ToV2StatisticsService::get_scores($record->FormID, 'ALL');
+                $assessments = V1ToV2StatisticsService::get_scores($record->FormID, 'ALL', false);
             }
             Log::info($this->log_label.' Insert record .'.$record->FormID);
             $imet = ReportController::report_cache_scores($record->FormID, $assessments);
@@ -43,26 +43,25 @@ class PopulateImetScores implements ShouldQueue
         }
     }
 
+    private function updateTimestampFile(){
+        $timestamp = now()->toDateTimeString();
+        Storage::put('job-timestamp.txt', $timestamp);
+        Log::info($this->log_label.' timestamp stored.  '.$timestamp);
+    }
+
     public function handle()
     {
         Log::info($this->log_label.' started.');
-        $timestamp = now()->toDateTimeString();
-
         if (Storage::exists('job-timestamp.txt')) {
             $previousTimestamp = Storage::get('job-timestamp.txt');
             Log::info($this->log_label.' timestamp exist.  '.$previousTimestamp);
             $records = Imet::select(['FormID', 'version'])->where('UpdateDate', '>', $previousTimestamp)->get();
-            $this->updateRecords($records);
-            Storage::put('job-timestamp.txt', $timestamp);
-            Log::info($this->log_label.' timestamp stored.  '.$timestamp);
         } else {
             $records = Imet::select(['FormID', 'version'])->get();
             Log::info('Retrieved records. '.$records->count());
-            $this->updateRecords($records);
-            Storage::put('job-timestamp.txt', $timestamp);
-            Log::info($this->log_label.' timestamp stored  '.$timestamp);
-
         }
+        $this->updateRecords($records);
+        $this->updateTimestampFile();
         Log::info($this->log_label.' Ended.');
     }
 }
