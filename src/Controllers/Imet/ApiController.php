@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Http;
 use Exception;
 
 
+
 class ApiController extends Controller
 {
     public const AUTHORIZE_BY_POLICY = true;
@@ -56,9 +57,9 @@ class ApiController extends Controller
         }
 
         $form_id = $records[0]['FormID'] ?? null;
-        $form = Imet::find($form_id);
+        $form = Imet\Imet::find($form_id);
 
-        if ($form['version'] == Imet::IMET_V1) {
+        if ($form['version'] == Imet\Imet::IMET_V1) {
             $data = ReportV1::get_assessment_report($request, $form);
         } else {
             $data = ReportV2::get_assessment_report($request, $form);
@@ -109,10 +110,9 @@ class ApiController extends Controller
 
     /**
      * Export the full IMET form in json
-     * todo: create unique id to match
      * @param int $imet_id
      * @return BinaryFileResponse|array
-     * @throws AuthorizationException
+     * @throws AuthorizationException|\Throwable
      */
     public function post_imet_another_server(int $imet_id)
     {
@@ -120,7 +120,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Access denied.'], 403);
         }
         //$this->authorize('export', $item);
-        $result = $json = [];
+        $json = [];
         $imet = Imet\Imet::find($imet_id);
 
         if ($imet && $imet->synced) {
@@ -199,7 +199,7 @@ class ApiController extends Controller
     public function save_imet(Request $request): string
     {
 
-        if (env('SYNC_SLAVES_IPS_TO_RECEIVE_SYNC_DATA') && in_array($request->ip(), explode(',', env('SYNC_SLAVES_IPS_TO_RECEIVE_SYNC_DATA')))) {
+        if (in_array($request->ip(), explode(',', env('SYNC_SLAVES_IPS_TO_RECEIVE_SYNC_DATA', '')))) {
             $response = [];
             try {
 
@@ -207,13 +207,7 @@ class ApiController extends Controller
 
                     $jsonData = $request->json()->all();
                     $json = $jsonData['data'];
-                    if ($json['Imet']['version'] === Imet\Imet::IMET_V1) {
-                        $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
-                    } else if ($json['Imet']['version'] === Imet\Imet::IMET_V2) {
-                        $imet = (new Imet\v2\Imet($json['Imet']))->fill($json['Imet']);
-                    } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
-                        $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
-                    }
+
                     //$this->authorize('view', $imet);
                     $imet = Imet\Imet::where(['sync_unique_id' =>$json['Imet']['sync_unique_id']])->count();
                     if($imet > 0){
