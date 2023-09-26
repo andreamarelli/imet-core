@@ -18,7 +18,9 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Exception\NotFoundException;
+use \ImetUser as User;
 
 
 class ApiController extends Controller
@@ -27,6 +29,40 @@ class ApiController extends Controller
     use ScalingUpApi;
     use Assessment;
     use StatisticsApi;
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function login(Request $request): string
+    {
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return static::sendAPIError(401, 'Invalid login details');
+        }
+
+        $user = User::where('email', $request['email'])->firstOrFail();
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        $api = [
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ];
+
+        return static::sendAPIResponse($api);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function logout(Request $request): string
+    {
+        $api = ['ok'];
+
+        $request->user()->currentAccessToken()->delete();
+
+        return static::sendAPIResponse($api);
+    }
 
     /**
      * @param Request $request
@@ -116,11 +152,14 @@ class ApiController extends Controller
      */
     public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, int $year = null): object
     {
+
         $api = ['data' => [], 'labels' => []];
 
         $records = $request->attributes->get('records');
+
         $model = ModuleKey::KeyToClassName($slug);
         $this->authorize('api_details', [$records[0], $model]);
+
         if (count($records) > 1) {
             throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
         }
@@ -132,6 +171,7 @@ class ApiController extends Controller
 
         $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
         $accepted_fields = [];
+
         if (count($items) > 0) {
             foreach ($items as $field) {
                 $filtered_fields = [];
@@ -162,7 +202,7 @@ class ApiController extends Controller
         $labels = [];
         App::setLocale($lang);
         $records = $request->attributes->get('records');
-
+        $this->authorize('api_assessment', $records[0]);
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
