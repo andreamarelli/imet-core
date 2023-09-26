@@ -168,7 +168,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     Route::group(['prefix' => 'admin/oecm', 'middleware' => 'auth'], function () {
 
         Route::match(['get', 'post'],'/',[oecm\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
-        
+
         Route::delete('{item}',         [oecm\Controller::class, 'destroy']);
         Route::get('{item}/print',      [oecm\Controller::class, 'print']);
         Route::get('{item}/export',     [oecm\Controller::class, 'export']);
