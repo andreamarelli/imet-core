@@ -53,7 +53,7 @@ trait Assessment{
                 ? $assessment_schema . ".get_imet_evaluation_stats_step_by_formid_summary('" . $item . "'::text)"
                 : $assessment_schema . "." . $functions[$step] . "('" . $item . "')";
 
-            $stats = (array) DB::select(DB::raw('SELECT row_to_json(' . $function . ');'));
+            $stats = (array) DB::select('SELECT row_to_json(' . $function . ');');
             $stats = $stats === [] ? $stats : json_decode($stats[0]->row_to_json, true);
 
             if (array_key_exists('plans', $stats)) {
@@ -110,8 +110,7 @@ trait Assessment{
      */
     public static function assessment_labels($schema): JsonResponse
     {
-
-        $stats = DB::select(DB::raw('select * from '.$schema.'.get_imet_stat_labels();'));
+        $stats = DB::select('select * from ' . $schema . '.get_imet_stat_labels();');
 
         $labels = [];
         foreach ($stats as $item){
