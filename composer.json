@@ -10,7 +10,7 @@
     "require": {
         "php": ">=8.1",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "dev-update_libs"
+        "andreamarelli/modular-forms": "dev-ofac"
     },
     "require-dev": {
         "orchestra/testbench": "^8.0"
