@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Controllers\Controller;
@@ -29,40 +30,6 @@ class ApiController extends Controller
     use ScalingUpApi;
     use Assessment;
     use StatisticsApi;
-
-    /**
-     * @param Request $request
-     * @return string
-     */
-    public function login(Request $request): string
-    {
-        if (!Auth::attempt($request->only('email', 'password'))) {
-            return static::sendAPIError(401, 'Invalid login details');
-        }
-
-        $user = User::where('email', $request['email'])->firstOrFail();
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        $api = [
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ];
-
-        return static::sendAPIResponse($api);
-    }
-
-    /**
-     * @param Request $request
-     * @return string
-     */
-    public function logout(Request $request): string
-    {
-        $api = ['ok'];
-
-        $request->user()->currentAccessToken()->delete();
-
-        return static::sendAPIResponse($api);
-    }
 
     /**
      * @param Request $request
@@ -132,7 +99,7 @@ class ApiController extends Controller
 
         foreach ($sums as $k => $value) {
             $sums[$k] = round($value / $items_for_average, 2);
-            $api['labels'][$k] = $k === "imet_index" ? trans('imet-core::common.indexes.imet') :trans('imet-core::common.steps_eval.'.$k);
+            $api['labels'][$k] = $k === "imet_index" ? trans('imet-core::common.indexes.imet') : trans('imet-core::common.steps_eval.' . $k);
         }
         $api['data'] = $sums;
         return static::sendAPIResponse($api);
@@ -241,7 +208,7 @@ class ApiController extends Controller
         $api = [];
         $countries = [];
         $region = $request->input("region");
-        if($region){
+        if ($region) {
             $countries = Country::getByRegion($region);
         }
         $list = Imet::get_assessments_list($request, ['country'], false, $countries);
@@ -258,14 +225,14 @@ class ApiController extends Controller
         foreach ($list as $item) {
             $country_name = "name_" . $language;
             $region_name = "name";
-            if($language !== "en"){
-                $region_name .= "_".$language;
+            if ($language !== "en") {
+                $region_name .= "_" . $language;
             }
             $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
             if (!$hasType || (!$type && $item['Type'] === null) || $type === $item['Type']) {
                 $region = [
-                  'id' => $item->country->region->id,
-                  'name' => $item->country->region->$region_name,
+                    'id' => $item->country->region->id,
+                    'name' => $item->country->region->$region_name,
                 ];
                 $api[] = [
                     'wdpa_id' => $item['wdpa_id'],

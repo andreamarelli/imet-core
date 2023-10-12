@@ -34,6 +34,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
         Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
 
+
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {
 
@@ -154,6 +155,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::post('protected_areas', [ProtectedAreaController::class, 'search'])->name('imet-core::search_pas');
             Route::post('protected_areas_labels', [ProtectedAreaController::class, 'get_pairs'])->name('imet-core::labels_pas');
             Route::post('users', [UsersController::class, 'search'])->name('imet-core::search_users');
+
 
         });
 

@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'api'], function () {
-    Route::post('login', [ApiController::class, 'login']);
-    Route::post('logout', [ApiController::class, 'logout'])->middleware('auth:sanctum');
     Route::group(['prefix' => 'imet'], function () {
 
         Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
