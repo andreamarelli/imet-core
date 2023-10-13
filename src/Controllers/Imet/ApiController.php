@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Controllers\Controller;
@@ -18,7 +19,9 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Exception\NotFoundException;
+use \ImetUser as User;
 
 
 class ApiController extends Controller
@@ -124,11 +127,14 @@ class ApiController extends Controller
      */
     public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, int $year = null): object
     {
+
         $api = ['data' => [], 'labels' => []];
 
         $records = $request->attributes->get('records');
+
         $model = ModuleKey::KeyToClassName($slug);
         $this->authorize('api_details', [$records[0], $model]);
+
         if (count($records) > 1) {
             throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
         }
@@ -140,6 +146,7 @@ class ApiController extends Controller
 
         $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
         $accepted_fields = [];
+
         if (count($items) > 0) {
             foreach ($items as $field) {
                 $filtered_fields = [];
@@ -170,7 +177,7 @@ class ApiController extends Controller
         $labels = [];
         App::setLocale($lang);
         $records = $request->attributes->get('records');
-
+        $this->authorize('api_assessment', $records[0]);
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
