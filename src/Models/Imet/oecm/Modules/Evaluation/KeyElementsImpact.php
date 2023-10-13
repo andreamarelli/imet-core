@@ -50,13 +50,13 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
-        $preLoaded = [
+        return [
             'field' => 'KeyElement',
             'values' => [
+
+                // Animals
                 'group0' =>
                     Modules\Context\AnimalSpecies::getModule($form_id)
                         ->filter(function($item){
@@ -69,6 +69,8 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
                                 : $item;
                         })
                         ->toArray(),
+
+                // Plants
                 'group1' =>
                     Modules\Context\VegetalSpecies::getModule($form_id)
                         ->filter(function($item){
@@ -76,6 +78,8 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
                         })
                         ->pluck('species')
                         ->toArray(),
+
+                // Habitats
                 'group2' =>
                     Modules\Context\Habitats::getModule($form_id)
                         ->filter(function($item){
@@ -91,8 +95,6 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
                         ->toArray()
             ]
         ];
-
-        return parent::arrange_records($preLoaded, $records, $empty_record);
     }
     
 }

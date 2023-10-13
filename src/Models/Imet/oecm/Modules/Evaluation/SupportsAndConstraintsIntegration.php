@@ -43,26 +43,20 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         parent::__construct($attributes);
     }
 
-    /**
-     * Preload data + scores
-     *
-     * @param $predefined_values
-     * @param $records
-     * @param $empty_record
-     * @return array
-     */
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
-    {
-        $form_id = $empty_record['FormID'];
-        $predefined_values = [
+    protected static function getPredefined($form_id = null): array {
+        return [
             'field' => 'Stakeholder',
             'values' => [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
             ]
         ];
+    }
 
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    {
         $records  = parent::arrange_records($predefined_values, $records, $empty_record);
+        $form_id = $empty_record['FormID'];
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
         $ranking = collect(SupportsAndConstraints::calculateRanking($form_id))

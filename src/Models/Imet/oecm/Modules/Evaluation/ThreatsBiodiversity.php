@@ -43,12 +43,12 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    /**
+     * Inject additional predefined values (last 3 groups) retrieved from CTX
+     */
+    protected static function getPredefined($form_id = null): array
     {
-        $form_id = $empty_record['FormID'];
-
-        // Inject additional predefined values (last 3 groups) retrieved from CTX
-        $predefined_values = [
+        return [
             'field' => 'Criteria',
             'values' => [
 
@@ -78,18 +78,19 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
                     ->filter(function ($item) {
                         return !empty($item['EcosystemType']);
                     })
-                    ->pluck('EcosystemType')
                     ->map(function ($item) {
                         $labels = SelectionList::getList('ImetOECM_Habitats');
-                        return array_key_exists($item, $labels) ?
-                            $labels[$item]
+                        $item['EcosystemType'] = array_key_exists($item['EcosystemType'], $labels) ?
+                            $labels[$item['EcosystemType']]
                             : null;
+                        return empty($item['EcosystemDescription'])
+                            ? $item['EcosystemType']
+                            : $item['EcosystemType'] . ' - ' . $item['EcosystemDescription'];
                     })
                     ->toArray(),
 
             ],
         ];
-        return parent::arrange_records($predefined_values, $records, $empty_record);
     }
 
 
