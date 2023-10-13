@@ -28,7 +28,6 @@ class GlobalStatistics
         $wdpa_ids = [];
         $imet_index_average = [];
         $list_v2 = v2\Imet::whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
-
         $list_v1 = v1\Imet::whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
 
         $list = $list_v1->merge($list_v2);
@@ -348,7 +347,7 @@ class GlobalStatistics
                 ->pluck('FormID')
                 ->toArray();
         }
-        //dd($form_ids);
+
         return $form_ids;
     }
 
@@ -356,6 +355,7 @@ class GlobalStatistics
      * @param Imet $item
      * @param string $name
      * @param int $i
+     * @param bool $global_scores
      * @return array
      */
     public static function pas_rating_fields(Imet $item, string $name, int $i = 1, bool $global_scores = false): array
