@@ -9,7 +9,14 @@ use Illuminate\Support\Str;
  */
 function is_imet_synced_enabled()
 {
-    return env('SYNC_SERVER_URL');
+    return env('SYNC_SERVER_URL', false);
+}
+
+/**
+ * @return mixed
+ */
+function is_cache_scores_enabled(){
+    return env("CACHED_SCORES", false);
 }
 
 /**
@@ -40,7 +47,7 @@ function imet_offline_version()
  */
 function imet_sync_unique_id(int $wdpa_id, int $form_id)
 {
-    return sha1(str_replace('form_id', $form_id, str_replace('wdpa_id', $wdpa_id, env('UNIQUE_ID'))));
+    return sha1(str_replace('form_id', $form_id, str_replace('wdpa_id', $wdpa_id, env('UNIQUE_ID'))).time());
 }
 
 /**

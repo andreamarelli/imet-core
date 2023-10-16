@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Controllers\Controller;
@@ -20,9 +21,11 @@ use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Exception\NotFoundException;
 use Illuminate\Support\Facades\Http;
 use Exception;
+use \ImetUser as User;
 
 
 
@@ -59,7 +62,7 @@ class ApiController extends Controller
         $form_id = $records[0]['FormID'] ?? null;
         $form = Imet\Imet::find($form_id);
 
-        if ($form['version'] == Imet\Imet::IMET_V1) {
+        if ($form['version'] == Imet::IMET_V1) {
             $data = ReportV1::get_assessment_report($request, $form);
         } else {
             $data = ReportV2::get_assessment_report($request, $form);
@@ -80,9 +83,15 @@ class ApiController extends Controller
         $api = ['data' => [], 'labels' => []];
 
         $list = Imet\Imet::get_assessments_list($request, ['country']);
+
         foreach ($list as $key => $imet) {
-            $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+            if (Imet\Imet::IMET_V1 === $imet['version']) {
+                $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+            } else {
+                $result[] = V2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+            }
         }
+
         $items_for_average = count($result);
         $sums = array();
 
@@ -116,10 +125,10 @@ class ApiController extends Controller
      */
     public function post_imet_another_server(int $imet_id)
     {
-        if (!env('SYNC_SERVER_URL')) {
+        if (!is_imet_synced_enabled()) {
             return response()->json(['message' => 'Access denied.'], 403);
         }
-        //$this->authorize('export', $item);
+        $this->authorize('sync');
         $json = [];
         $imet = Imet\Imet::find($imet_id);
 
@@ -133,7 +142,7 @@ class ApiController extends Controller
         $imet_form['imet_version'] = imet_offline_version();
 
         // #####  IMET V1  #####
-        if ($imet_form['version'] === Imet\Imet::IMET_V1) {
+        if ($imet_form['version'] === Imet::IMET_V1) {
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\Encoder::exportModule($imet_id),
@@ -168,18 +177,18 @@ class ApiController extends Controller
         try {
             DB::beginTransaction();
             $unique_id = imet_sync_unique_id($imet->wdpa_id, $imet->FormID);
-            //dd($unique_id);
-            $imet->update(['synced' => true, 'sync_unique_id' => $unique_id]);
+
             $json['Imet']['sync_unique_id'] = $unique_id;
             $result = Http::withHeaders(
                 [
                     'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Bearer '.env('SYNC_SERVER_TOKEN')
                 ]
             )->timeout(600)->post(env('SYNC_SERVER_URL'), [
                 'data' => $json
             ])->throw();
-
+            $imet->update(['synced' => true, 'sync_unique_id' => $unique_id]);
             DB::commit();
         } catch (Exception $ex) {
             report($ex);
@@ -202,7 +211,7 @@ class ApiController extends Controller
         if (in_array($request->ip(), explode(',', env('SYNC_SLAVES_IPS_TO_RECEIVE_SYNC_DATA', '')))) {
             $response = [];
             try {
-
+                $this->authorize('sync');
                 if ($request->expectsJson()) {
 
                     $jsonData = $request->json()->all();
@@ -271,6 +280,7 @@ class ApiController extends Controller
 
         $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
         $accepted_fields = [];
+
         if (count($items) > 0) {
             foreach ($items as $field) {
                 $filtered_fields = [];
@@ -301,7 +311,7 @@ class ApiController extends Controller
         $labels = [];
         App::setLocale($lang);
         $records = $request->attributes->get('records');
-
+        $this->authorize('api_assessment', $records[0]);
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }

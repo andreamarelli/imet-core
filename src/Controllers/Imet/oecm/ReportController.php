@@ -33,7 +33,10 @@ class ReportController extends BaseReportController
         }
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
-        $scores = OEMCStatisticsService::get_scores($form_id, 'ALL');
+        $scores = OEMCStatisticsService::get_scores($form_id, 'ALL', false);
+        if(is_cache_scores_enabled()) {
+            $this->report_cache_scores($form_id, $scores);
+        }
         $key_elements = $this->getKeyElements($form_id);
 
         return [

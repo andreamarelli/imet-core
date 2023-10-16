@@ -198,9 +198,11 @@ if ($controller === Controllers\Imet\oecm\Controller::class) {
                     {{-- Print --}}
                     @include('imet-core::components.buttons.print', ['form_class' => $form_class])
 
-                    @if(is_imet_synced_enabled())
-                        @include('imet-core::components.buttons.sync', ['form_class' => $form_class])
-                    @endif
+                    @can('sync')
+                        @if(is_imet_synced_enabled())
+                            @include('imet-core::components.buttons.sync', ['form_class' => $form_class])
+                        @endif
+                    @endcan
 
                     {{-- Delete --}}
                     @can('edit', $form_class)

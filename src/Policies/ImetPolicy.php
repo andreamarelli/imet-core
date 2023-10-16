@@ -56,6 +56,10 @@ class ImetPolicy
         }
     }
 
+    public function sync():bool{
+        return false;
+    }
+
     /**
      * Determine whether the user can EDIT
      *
