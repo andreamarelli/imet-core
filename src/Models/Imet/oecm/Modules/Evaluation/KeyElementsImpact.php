@@ -55,44 +55,9 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         return [
             'field' => 'KeyElement',
             'values' => [
-
-                // Animals
-                'group0' =>
-                    Modules\Context\AnimalSpecies::getModule($form_id)
-                        ->filter(function($item){
-                            return !empty($item['species']);
-                        })
-                        ->pluck('species')
-                        ->map(function($item){
-                            return Str::contains($item, '|')
-                                ? Animal::getScientificName($item)
-                                : $item;
-                        })
-                        ->toArray(),
-
-                // Plants
-                'group1' =>
-                    Modules\Context\VegetalSpecies::getModule($form_id)
-                        ->filter(function($item){
-                            return !empty($item['species']);
-                        })
-                        ->pluck('species')
-                        ->toArray(),
-
-                // Habitats
-                'group2' =>
-                    Modules\Context\Habitats::getModule($form_id)
-                        ->filter(function($item){
-                            return !empty($item['EcosystemType']);
-                        })
-                        ->pluck('EcosystemType')
-                        ->map(function($item){
-                            $labels = SelectionList::getList('ImetOECM_Habitats');
-                            return array_key_exists($item, $labels) ?
-                                $labels[$item]
-                                : null;
-                        })
-                        ->toArray()
+                'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),
+                'group1' => Modules\Context\VegetalSpecies::getReferenceList($form_id, 'species'),
+                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType')
             ]
         ];
     }

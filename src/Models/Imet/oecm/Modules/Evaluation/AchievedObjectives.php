@@ -19,7 +19,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
         $this->module_code = 'O/C1';
         $this->module_title = trans('imet-core::oecm_evaluation.AchievedObjectives.title');
         $this->module_fields = [
-            ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Objective')],
+            ['name' => 'Objective',  'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Objective')],
             ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.AchievedObjectives.fields.Comments')],
         ];

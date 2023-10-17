@@ -86,6 +86,25 @@ class Stakeholders extends Modules\Component\ImetModule
     public const ONLY_INDIRECT = 2;
 
     /**
+     * Override: get the list with direct/indirect
+     */
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records and compare
+        $existing_values = static::getModule($form_id)->pluck('DirectUser', 'Element')->toArray();
+        $updated_values = collect($records)->pluck('DirectUser', 'Element')->toArray();
+
+        // Make diff to find out what to drop
+        foreach($updated_values as $elem => $direct){
+            if($direct === $existing_values[$elem]){
+                unset($existing_values[$elem]);
+            }
+        }
+
+        return array_keys($existing_values);
+    }
+
+    /**
      * Retrieve stakeholders' list (grouped or not)
      *
      * @param $form_id

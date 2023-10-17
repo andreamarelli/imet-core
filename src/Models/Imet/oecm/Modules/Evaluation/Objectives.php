@@ -14,7 +14,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     protected static $DEPENDENCY_ON = 'Objective';
     protected static $DEPENDENCIES = [
-        [AchievedObjectives::class, 'Aspect']
+        [AchievedObjectives::class, 'Objective']
     ];
 
     public function __construct(array $attributes = []) {

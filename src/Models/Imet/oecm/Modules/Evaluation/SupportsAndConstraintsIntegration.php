@@ -18,10 +18,6 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
-    protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
-        [Modules\Evaluation\ManagementActivities::class, 'Stakeholder']
-    ];
 
     public function __construct(array $attributes = []) {
 

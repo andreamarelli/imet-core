@@ -16,6 +16,8 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCY_ON = 'Criteria';
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';
@@ -51,44 +53,9 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
         return [
             'field' => 'Criteria',
             'values' => [
-
-                // Animals
-                'group0' => Modules\Context\AnimalSpecies::getModule($form_id)
-                    ->filter(function ($item) {
-                        return !empty($item['species']);
-                    })
-                    ->pluck('species')
-                    ->map(function ($item) {
-                        return Str::contains($item, '|')
-                            ? Animal::getScientificName($item)
-                            : $item;
-                    })
-                    ->toArray(),
-
-                // Plants
-                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)
-                    ->filter(function ($item) {
-                        return !empty($item['species']);
-                    })
-                    ->pluck('species')
-                    ->toArray(),
-
-                // Habitats
-                'group2' => Modules\Context\Habitats::getModule($form_id)
-                    ->filter(function ($item) {
-                        return !empty($item['EcosystemType']);
-                    })
-                    ->map(function ($item) {
-                        $labels = SelectionList::getList('ImetOECM_Habitats');
-                        $item['EcosystemType'] = array_key_exists($item['EcosystemType'], $labels) ?
-                            $labels[$item['EcosystemType']]
-                            : null;
-                        return empty($item['EcosystemDescription'])
-                            ? $item['EcosystemType']
-                            : $item['EcosystemType'] . ' - ' . $item['EcosystemDescription'];
-                    })
-                    ->toArray(),
-
+                'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),
+                'group1' => Modules\Context\VegetalSpecies::getReferenceList($form_id, 'species'),
+                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType')
             ],
         ];
     }
