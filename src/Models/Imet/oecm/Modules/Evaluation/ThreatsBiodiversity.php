@@ -9,26 +9,28 @@ use AndreaMarelli\ImetCore\Services\ThreatsService;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use Illuminate\Support\Str;
 
-class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
+class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
+{
 
     protected $table = 'imet_oecm.eval_threats_biodiversity';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C3.1.1';
         $this->module_title = trans('imet-core::oecm_evaluation.ThreatsBiodiversity.title');
         $this->module_fields = [
-            ['name' => 'Criteria',      'type' => 'disabled',                       'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Criteria')],
-            ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Impact')],
-            ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Extension')],
-            ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Duration')],
-            ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Trend')],
-            ['name' => 'Probability',   'type' => 'imet-core::rating-0to3',         'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Probability')],
-            ['name' => 'Note',          'type' => 'text-area',                      'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Note')],
+            ['name' => 'Criteria', 'type' => 'disabled', 'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Criteria')],
+            ['name' => 'Impact', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Impact')],
+            ['name' => 'Extension', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Extension')],
+            ['name' => 'Duration', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Duration')],
+            ['name' => 'Trend', 'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Trend')],
+            ['name' => 'Probability', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Probability')],
+            ['name' => 'Note', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.ThreatsBiodiversity.fields.Note')],
         ];
 
         $this->module_groups = [
@@ -89,6 +91,8 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
 
             ],
         ];
+
+
         return parent::arrange_records($predefined_values, $records, $empty_record);
     }
 
@@ -103,7 +107,6 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
     public static function calculateRanking($form_id, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
-
         return ThreatsService::calculateRanking($records);
     }
 
