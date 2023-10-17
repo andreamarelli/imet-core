@@ -18,6 +18,11 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
+    protected static $DEPENDENCIES = [
+        [Objectives::class, 'Stakeholder'],
+        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
+        [Modules\Evaluation\ManagementActivities::class, 'Stakeholder']
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -83,6 +88,23 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             })
             ->pluck('Stakeholder')
             ->toArray();
+    }
+
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+        $updated_values = collect($records)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+
+        // Make diff to find out what to drop
+        $to_be_dropped = array_diff($existing_values, $updated_values);
+        return array_values($to_be_dropped);
     }
 
 }

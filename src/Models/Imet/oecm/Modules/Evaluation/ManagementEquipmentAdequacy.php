@@ -72,7 +72,9 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
         $result = [];
         foreach($adequacy as $value){
-            $result[] = $value['count']>0 ? round($value['sum']/$value['count'],2) : null;
+            $result[] = $value['count']>0
+                ? round($value['sum']/$value['count'],2)
+                : null;
         }
 
         return $result;
