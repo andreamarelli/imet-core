@@ -20,8 +20,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     protected static $DEPENDENCY_ON = 'Stakeholder';
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Stakeholder'],
-        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
-        [Modules\Evaluation\ManagementActivities::class, 'Stakeholder']
+        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder']
     ];
 
     public function __construct(array $attributes = []) {

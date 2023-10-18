@@ -16,8 +16,8 @@ class Designation extends Modules\Component\ImetModule_Eval
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
-        [Modules\Evaluation\ManagementActivities::class, 'Aspect']
+        [Objectives::class, 'Aspect'],
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect']
     ];
 
     public function __construct(array $attributes = []) {
@@ -61,6 +61,24 @@ class Designation extends Modules\Component\ImetModule_Eval
             })
             ->pluck('Aspect')
             ->toArray();
+    }
+
+
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+        $updated_values = collect($records)
+            ->where('IncludeInStatistics', true)
+            ->pluck($dependency_on)
+            ->toArray();
+
+        // Make diff to find out what to drop
+        $to_be_dropped = array_diff($existing_values, $updated_values);
+        return array_values($to_be_dropped);
     }
 
 }

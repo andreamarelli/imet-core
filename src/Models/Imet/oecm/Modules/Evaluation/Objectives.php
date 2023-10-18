@@ -57,4 +57,27 @@ class Objectives extends Modules\Component\ImetModule_Eval
         ];
     }
 
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        // Get list of values (of reference field) from DB and from updated records
+        $existing_values = static::getModule($form_id)
+            ->filter(function($item){
+                return $item['group_key']==='group0'
+                    || $item['Existence'];
+            })
+            ->pluck($dependency_on)
+            ->toArray();
+        $updated_values = collect($records)
+            ->filter(function($item){
+                return $item['group_key']==='group0'
+                    || $item['Existence'];
+            })
+            ->pluck($dependency_on)
+            ->toArray();
+
+        // Make diff to find out what to drop
+        $to_be_dropped = array_diff($existing_values, $updated_values);
+        return array_values($to_be_dropped);
+    }
+
 }
