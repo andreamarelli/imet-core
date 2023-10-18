@@ -115,7 +115,7 @@ class Imet extends BaseImetForm
      * @param bool $only_allowed_wdpas
      * @return mixed
      */
-    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false)
+    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = [])
     {
         $allowed_wdpas = $only_allowed_wdpas
             ? Role::allowedWdpas()

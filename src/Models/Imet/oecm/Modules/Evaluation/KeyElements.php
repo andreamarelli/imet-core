@@ -101,6 +101,15 @@ class KeyElements extends Modules\Component\ImetModule_Eval
             }
         }
 
+        $threats_ranking = collect(ThreatsBiodiversity::calculateRanking($form_id))
+            ->pluck('__score','Criteria')
+            ->toArray();
+
+        foreach ($records as $index => $record){
+            if(isset($threats_ranking[$record['Aspect']])) {
+                $records[$index]['__score'] = $threats_ranking[$record['Aspect']];
+            }
+        }
         return $records;
     }
 
