@@ -166,12 +166,10 @@ return [
             'EncodingDuration' => 'Time taken for evaluation (hrs)',
         ]
     ],
-
     'synced' => [
-        'sync_running' => 'sync_running',
-        'confirm_sync' => 'confirm_sync',
-        'already_synced' => 'already_synced',
-        'sync' => 'sync'
+        'sync_running' => 'An IMET uploads is in progress',
+        'confirm_sync' => 'Are you sure you want to proceed with the IMET upload?',
+        'already_synced' => 'IMET is already uploaded',
+        'sync' => 'Upload IMET'
     ]
-
 ];

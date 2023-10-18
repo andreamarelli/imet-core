@@ -120,15 +120,14 @@ class ApiController extends Controller
     /**
      * Export the full IMET form in json
      * @param int $imet_id
-     * @return BinaryFileResponse|array
-     * @throws AuthorizationException|\Throwable
+     * @return array|\Illuminate\Http\JsonResponse|mixed
+     * @throws \Throwable
      */
     public function post_imet_another_server(int $imet_id)
     {
         if (!is_imet_synced_enabled()) {
             return response()->json(['message' => 'Access denied.'], 403);
         }
-        $this->authorize('sync');
         $json = [];
         $imet = Imet\Imet::find($imet_id);
 
@@ -142,7 +141,7 @@ class ApiController extends Controller
         $imet_form['imet_version'] = imet_offline_version();
 
         // #####  IMET V1  #####
-        if ($imet_form['version'] === Imet::IMET_V1) {
+        if ($imet_form['version'] === Imet\Imet::IMET_V1) {
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\Encoder::exportModule($imet_id),
@@ -188,7 +187,10 @@ class ApiController extends Controller
             )->timeout(600)->post(env('SYNC_SERVER_URL'), [
                 'data' => $json
             ])->throw();
-            $imet->update(['synced' => true, 'sync_unique_id' => $unique_id]);
+
+            if($result->json() && $result->json()['status'] === 200) {
+                $imet->update(['synced' => true, 'sync_unique_id' => $unique_id]);
+            }
             DB::commit();
         } catch (Exception $ex) {
             report($ex);
@@ -205,19 +207,15 @@ class ApiController extends Controller
      * @param Request|null $request
      * @throws \Throwable
      */
-    public function save_imet(Request $request): string
+    public function save_imet(Request $request): object
     {
-
         if (in_array($request->ip(), explode(',', env('SYNC_SLAVES_IPS_TO_RECEIVE_SYNC_DATA', '')))) {
             $response = [];
             try {
-                $this->authorize('sync');
                 if ($request->expectsJson()) {
-
                     $jsonData = $request->json()->all();
                     $json = $jsonData['data'];
 
-                    //$this->authorize('view', $imet);
                     $imet = Imet\Imet::where(['sync_unique_id' =>$json['Imet']['sync_unique_id']])->count();
                     if($imet > 0){
                         return static::sendAPIResponse(trans('imet-core::common.synced.already_synced'));
@@ -234,6 +232,7 @@ class ApiController extends Controller
 
                     // Import modules
                     [$formID, $modules_imported] = static::import_modules($json);
+
                     $response['modules'] = $modules_imported;
                     DB::commit();
                 }
@@ -241,7 +240,7 @@ class ApiController extends Controller
             (Exception $ex) {
                 DB::rollback();
                 report($ex);
-                $response = ['status' => 'error'];
+                $response = ['status' => $ex->getMessage()];
             }
 
         } else {

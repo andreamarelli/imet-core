@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
  */
 function is_imet_synced_enabled()
 {
-    return env('SYNC_SERVER_URL', false);
+    return env('SYNC_SERVER_URL', false) && env('SYNC_SERVER_TOKEN', false);
 }
 
 /**

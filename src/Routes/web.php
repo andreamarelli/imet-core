@@ -1,5 +1,6 @@
 <?php
 
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
@@ -33,7 +34,8 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
         Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
         Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
-
+        Route::post('/move/{item}', [ApiController::class, 'post_imet_another_server'])->name('imet_core::api::imet_item');
+        
 
         // #### IMET Version 1 ####
         Route::group(['prefix' => 'v1'], function () {

@@ -56,8 +56,18 @@ class ImetPolicy
         }
     }
 
-    public function sync():bool{
-        return false;
+    /**
+     * @param $user
+     * @param null $form
+     * @return bool
+     */
+    public function sync($user, $form = null): bool
+    {
+        if (is_null($form)){
+            return false;
+        } else {
+            return Role::isWdpaAllowed($form->wdpa_id, $user);
+        }
     }
 
     /**

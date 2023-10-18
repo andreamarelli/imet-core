@@ -194,11 +194,11 @@ if ($controller === Controllers\Imet\oecm\Controller::class) {
                         @endcan
 
                     @endcan
-
                     {{-- Print --}}
                     @include('imet-core::components.buttons.print', ['form_class' => $form_class])
 
-                    @can('sync')
+                    {{-- Sync imet --}}
+                    @can('sync', $form_class)
                         @if(is_imet_synced_enabled())
                             @include('imet-core::components.buttons.sync', ['form_class' => $form_class])
                         @endif
