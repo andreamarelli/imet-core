@@ -79,14 +79,8 @@ class Imet extends Form
 
     /**
      * Retrieve the IMET assessments list (clean, without statistics):  V1 & v2 merged
-     *
-     * @param Request $request
-     * @param array $relations
-     * @param bool $only_allowed_wdpas
-     * @param array $countries
-     * @return mixed
      */
-    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = [])
+    public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
         $allowed_wdpas = $only_allowed_wdpas
             ? Role::allowedWdpas()
