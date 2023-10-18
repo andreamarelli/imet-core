@@ -173,13 +173,21 @@ class Stakeholders extends Modules\Component\ImetModule
                 $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;
 
                 $sum = $item['GeographicalProximity'] ? 4 : 0;
-                $sum += $UsesCategories ?? 0; // max 5
+                $sum += $UsesCategories ?? 0; // max 4
                 $sum += $item['DirectUser'] ? 7 : 0;
                 $sum += $item['LevelEngagement']!==null ? $item['LevelEngagement'] : 0;
                 $sum += $item['LevelInterest']!==null ? $item['LevelInterest'] : 0;
                 $sum += $item['LevelExpertise']!==null ? $item['LevelExpertise'] : 0;
 
-                $item['__weight'] = round($sum * 100 / 25, 0);
+                $max_score =
+                    4 // GeographicalProximity
+                    + 4 // UsesCategories
+                    + 7 // DirectUser
+                    + 3 // LevelEngagement
+                    + 3 // LevelInterest
+                    + 3; // LevelExpertise
+
+                $item['__weight'] = round($sum * 100 / $max_score, 0);
 
                 $item['Element'] = Str::replace("\n", '', $item['Element']);
 
