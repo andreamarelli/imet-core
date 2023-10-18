@@ -21,12 +21,14 @@ const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
+    Route::view('/welcome', 'imet-core::welcome')->name(IMET_PREFIX.'welcome');
+
     /*
     |--------------------------------------------------------------------------
     | IMET Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'admin/imet', 'middleware' => 'auth'], function (){
+    Route::group(['prefix' => 'imet', 'middleware' => 'auth'], function (){
 
         // ####  common routes (v1 & v2) ####
         Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
@@ -167,7 +169,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
     | IMET OECM Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'admin/oecm', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'oecm', 'middleware' => 'auth'], function () {
 
         Route::match(['get', 'post'],'/',[oecm\Controller::class, 'index'])->name(OECM_ROUTE_PREFIX.'index');
 
