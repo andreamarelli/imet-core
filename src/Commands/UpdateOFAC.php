@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\QueryException;
 
-class updateOFAC extends Command
+class UpdateOFAC extends Command
 {
     use Utils;
 
@@ -62,8 +62,7 @@ class updateOFAC extends Command
         foreach ($sql_files as $sql_file){
             try{
 
-                print ($path.$sql_file);
-//                $this->dispatch(Jobs\ApplySQL::class, $path . $sql_file);
+                $this->dispatch(\AndreaMarelli\ImetCore\Jobs\ApplySQL::class, $path . $sql_file);
 
                 return self::SUCCESS;
 
