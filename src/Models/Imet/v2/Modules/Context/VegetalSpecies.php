@@ -3,12 +3,15 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class VegetalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_species_vegetal_presence';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = []) {
 

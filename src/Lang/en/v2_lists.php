@@ -3,10 +3,10 @@
 return [
 
     'languages' => [
-        'fr'        => 'french',
-        'en'        => 'english',
-        'sp'        => 'spanish',
-        'pt'        => 'portuguese'
+        'fr'        => 'French',
+        'en'        => 'English',
+        'sp'        => 'Spanish',
+        'pt'        => 'Portuguese'
     ],
 
     'NonWdpaPaDef' => [
@@ -35,10 +35,48 @@ return [
         'Established'
     ],
 
+    'OwnershipType' => [
+        'state' => 'State',
+        'communal' => 'Community',
+        'individual_landowners' => 'Individual landowners',
+        'for_profit_organizations' => 'For-profit organisations',
+        'nonprofit_organizations' => 'Non-profit organisations',
+        'joint_ownership' => 'Joint ownership',
+        'multiple_ownership' => 'Multiple ownership',
+        'contested' => 'Contested',
+        'not_reported' => 'Not Reported',
+    ],
+
     'PaType' => [
-        'Terrestrial',
-        'Marine',
-        'Mixed'
+        'terrestrial'           => 'Terrestrial',
+        'marine_and_coastal'    => 'Marine and coastal',
+        'oecm_terrestrial'      => 'OECMs (Other effective area-based conservation measures) - Terrestrial',
+        'oecm_marine'           => 'OECMs (Other effective area-based conservation measures) - Marine',
+        'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
+        'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
+    ],
+
+    'IUCNDesignation' => [
+        'IA' => 'IA Strict Nature Reserve',
+        'IB' => 'IB Wilderness Area',
+        'II' => 'II National Park',
+        'III' => 'III Natural Monument or Feature',
+        'IV' => 'IV HABITAT/Species Management Area',
+        'V' => 'V Protected Seascape',
+        'VI' => 'VI Protected Area with Sustainable Use of Natural Resources',
+        'not_reported' => 'Not reported'
+    ],
+
+    'MarineDesignation' => [
+        'No-Entry zone',
+        'No-Take zone',
+        'Multi-purposes MPA - Buffer zones for traditional use',
+        'Multi-purposes MPA - Buffer zones for educational and/or recreational activities',
+        'Multi-purposes MPA - Other',
+        'Marine reserves',
+        'Wildlife refuges',
+        'Fish management zone',
+        'Other',
     ],
 
     'EcoType' => [
@@ -82,13 +120,21 @@ return [
     ],
 
     'GovernanceType' => [
-        'Governance by the government',
-        'Shared governance',
-        'Private governance',
-        'Governance by local communities and indigenous populations	'
+        'Community-based conservation (CBC)',
+        'CBM (Community-based management (CBM)',
+        'CBA (Conservation Based Area)',
+        'Locally Managed Marine Areas - LMMA',
+        'Indigenous Community Conserved Areas - ICCAs',
+        'Protected and Conserved Areas (PCAs)',
+        'Other'
     ],
 
-    'Designation' => [
+    'TerrestrialOrMarine' => [
+        'terrestrial' => 'Terrestrial',
+        'marine' => 'Marine',
+    ],
+
+    'SpecialDesignation' => [
         'ASEAN Heritage Parks (ASEAN)',
         'Alliance for Zero Extinction Sites (AZE)',
         'Barcelona Convention',
@@ -107,23 +153,35 @@ return [
         'World Heritage Sites'
     ],
 
-    'LandCoverUseTake' => [
-        'Forest',
-        'Savannah shrublands',
-        'Herbaceous savannah',
-        'Grasslands',
-        'Water',
-        'Crops/Plantations',
-        'Dwellings',
-        'Roads'
-    ],
-
     'SpeciesReliability' => [
         'High', 'Medium', 'Poor'
     ],
 
-    'MarineHabitatsPresence' => [
-        'Présent', 'Absent', 'Dominant'
+    'Habitats' => [
+        'artificial'                => 'Artificial - plantations, gardens, pasturelands',
+        'desert'                    => 'Desert – hot, cold, temperate',
+        'forest_temperate_boreal'   => 'Forest - boreal and temperate',
+        'forest_dry'                => 'Forest - subtropical/tropical dry',
+        'forest_moist_lowland'      => 'Forest - subtropical/tropical moist lowland',
+        'forest_moist_montane'      => 'Forest - subtropical/tropical moist montane',
+        'grassland_dry_moist'       => 'Grassland - subtropical/tropical dry or moist',
+        'grassland_temperate'       => 'Grassland - temperate',
+        'marine_coastal'            => 'Marine - coastal',
+        'marine_coral_reefs'        => 'Marine - coral reefs',
+        'marine_intertidal'         => 'Marine - intertidal',
+        'marine_oceanic'            => 'Marine - oceanic and deep ocean',
+        'marine_pelagic'            => 'Marine - pelagic',
+        'marine_subtidal'           => 'Marine - subtidal',
+        'rocky'                     => 'Rocky areas - mountains, cliffs',
+        'savanna_dry'               => 'Savanna - dry',
+        'savanna_moist'             => 'Savanna - moist',
+        'shrubland_temperate_boreal' => 'Shrubland - boreal and temperate',
+        'shrubland_dry_moist'       => 'Shrubland - Subtropical/tropical dry or moist',
+        'shrubland_high_altitude'   => 'Shrubland - Subtropical/tropical high altitude',
+        'swamp'                     => 'Swamp - subtropical/tropical',
+        'wetlands_lakes'            => 'Wetlands (inland) - lake',
+        'wetlands_rivers'           => 'Wetlands (inland) - rivers, streams, waterfalls',
+        'wetlands_shrub'            => 'Wetlands (inland) - shrub dominated wetlands',
     ],
 
     'EcosystemServicesImportance' => [

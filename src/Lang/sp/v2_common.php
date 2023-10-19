@@ -5,10 +5,6 @@ return [
     'management'        => 'IMET management (v2 - Consolidated)',
     'v2' => 'v2 - Consolidated',
 
-    'indicator'     => 'Indicador',
-    'methodology'   => 'Pregunta de evaluación',
-    'criteria'      => 'Clasificación',
-
     'steps' => [
         'general_info'          => 'Información general sobre el área protegida',
         'areas'                 => 'Áreas, límites e índice de forma, nivel de control',
@@ -19,28 +15,6 @@ return [
         'ecosystem_services'    => 'Servicios/funciones ecosistémicas y dependencia de las comunidades',
         'objectives'            => 'Objetivos y gestión',
         'cross_analysis'  => 'Cross Analysis',
-    ],
-
-    'steps_eval' => [
-        'general_info'              => 'Información general',
-        'context'                   => 'Contexto de gestión',
-        'planning'                  => 'Planificación',
-        'inputs'                    => 'Insumos',
-        'process'                   => 'Procesos',
-        'outputs'                   => 'Resultados',
-        'outcomes'                  => 'Efectos/impactos',
-        'objectives'                => 'Objetivos',
-        'management_effectiveness'  => 'Efectividad de manejo',
-    ],
-
-    'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Índice de contexto',
-        'planning'    => 'Índice de planificación',
-        'inputs'      => 'Índice de insumos',
-        'process'     => 'Índice de procesos',
-        'outputs'     => 'Índice de resultados',
-        'outcomes'    => 'Índice de Efectos/impactos',
     ],
 
     'assessment' => [
@@ -212,6 +186,10 @@ return [
         'op3' => [
             'O/P3',
             'Dominio del área'
+        ],
+        'op4' => [
+            'O/P4',
+            'Aplicación de la ley en la AMP'
         ],
         'oc1' => [
             'O/C1',

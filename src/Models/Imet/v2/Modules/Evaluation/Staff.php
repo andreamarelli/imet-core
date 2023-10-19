@@ -3,11 +3,14 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Staff extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_staff';
     protected $fixed_rows = true;
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public function __construct(array $attributes = []) {
 
@@ -37,7 +40,7 @@ class Staff extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null)
     {
-        $predefined_values = (new static())->predefined_values;
+        $predefined_values = parent::getPredefined($form_id);
 
         if($form_id!==null){
             $collection = Modules\Context\ManagementStaff::getModule($form_id);
@@ -50,9 +53,8 @@ class Staff extends Modules\Component\ImetModule_Eval
         return $predefined_values;
     }
 
-    protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
+    protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
-        $predefined_values = static::getPredefined($form_id);
         $new_records = [];
 
         if(count($predefined_values['values'])>1 && count($records)==1){
@@ -93,13 +95,13 @@ class Staff extends Modules\Component\ImetModule_Eval
 
         $result = null;
         $ratio = $actual/$expected;
-        if($ratio<=0.20  || $ratio>=1.8){
+        if($ratio<=0.20  || $ratio>1.8){
             $result = 0;
-        } elseif($ratio<=0.4 || $ratio>=1.6){
+        } elseif($ratio<=0.4 || $ratio>1.6){
             $result = 1;
-        } elseif($ratio<=0.6 || $ratio>=1.4){
+        } elseif($ratio<=0.6 || $ratio>1.4){
             $result = 2;
-        } elseif($ratio<=0.8 || $ratio>=1.2){
+        } elseif($ratio<=0.8 || $ratio>1.2){
             $result = 3;
         } elseif($ratio<=1.2){
             $result = 4;

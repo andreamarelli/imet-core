@@ -1,16 +1,6 @@
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
-@endif
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
     <div id="imet_report">
@@ -50,7 +40,7 @@
         new Vue({
             el: '#imet_report',
             data: {
-                url: '{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController::class, 'get_ajax_responses']) }}'
+                url: '{{ route('imet-core::scaling_up_analysis') }}'
             },
             methods: {
                 goTo: function (event) {

@@ -7,13 +7,13 @@ return [
         'fields' => [
             'Element' => 'Elemento/Indicador',
             'Status' => 'Línea de base',
-            'Objective' => 'Objetivo - Estado de conservación favorable',
+            'Objective' => 'Objetivo – Estado óptimo o favorable',
             'comments' => 'Comentarios'
         ],
     ],
 
     'ImportanceClassification' => [
-        'title' => 'Designaciones especiales',
+        'title' => 'Designaciones',
         'fields' => [
             'Aspect' => 'Criterios - Concepto medido - Variable',
             'EvaluationScore' => 'Integración',
@@ -28,7 +28,7 @@ return [
                 '3' => 'alta integración',
             ]
         ],
-        'module_subTitle' => 'Valor e importancia - Designaciones especiales',
+        'module_subTitle' => 'Valor e importancia - Designaciones',
         'module_info_EvaluationQuestion' => [
             '¿Ha incluido el área protegida los valores y la importancia de las designaciones nacionales, regionales o internacionales en la gestión de la misma?'
         ],
@@ -38,8 +38,7 @@ return [
     ],
 
     'ObjectivesClassification' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>la(s) actual(es) designación(es) nacional(es), regional(es) o internacional(es) </b>del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
-
+        'module_info' => 'Establecer y describir los objetivos para <b>la(s) actual(es) designación(es) nacional(es), regional(es) o internacional(es) </b>del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'ImportanceSpecies' => [
@@ -70,28 +69,23 @@ return [
         'module_info_Rating' => [
             'Evaluar el nivel de integración de 3 a 10 especies clave en la gestión del área protegida (sobre la base de un análisis del Contexto de Intervención, puntos 4.1 y 4.2, que se informa automáticamente a continuación). La representatividad de una especie clave corresponde al grado en que ésta: i) representa una característica natural fuerte de un hábitat, ecosistema o bioma; ii) influye en un proceso o comunidad ecológica o iii) afecta a una política de gestión dirigida por la especie)'
         ],
-        'validation_3to10' => 'Por favor, incluya en las estadísticas no menos de 3 y no más de 10 de las especies clave',
         'warning_on_save' =>
             'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
             los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
     'ObjectivesSpecies' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación de <b>especies (emblemáticas o bandera, en peligro, endémicas, explotadas, invasoras o sobre las que no hay datos suficientes) </b> en el área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos de <b>especies (emblemáticas o bandera, en peligro, endémicas, explotadas, invasoras o sobre las que no hay datos suficientes) </b> en el área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
     ],
 
     'ImportanceHabitats' => [
-        'title' => 'Hábitats terrestre y marino - cobertura de suelo, cambio de uso de suelo y ocupación del territorio',
+        'title' => 'Hábitats terrestre y marino (cobertura de suelo, cambio de uso de suelo y ocupación del territorio)',
         'fields' => [
             'Aspect' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Integración',
             'EvaluationScore2'=> 'Valor/importancia regional y mundial',
             'IncludeInStatistics' => 'Priorizar en la gestión',
             'Comments' => 'Comentarios/explicación',
-        ],
-        'groups' => [
-            'group0' => 'Identificar los hábitats más importantes del área protegida',
-            'group1' => 'Identificar los elementos más importantes de la cobertura del suelo, (cambio de suelo y la ocupación del territorio) dentro y fuera del área protegida.',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -108,19 +102,18 @@ return [
         ],
         'module_subTitle' => 'Valor e importancia - Hábitats terrestres y marinos - cobertura de suelo, cambio de uso de suelo y ocupación del territorio',
         'module_info_EvaluationQuestion' => [
-            '¿Ha identificado e integrado claramente el área protegida los hábitats terrestres y marinos más importantes y las dimensiones de la cobertura de suelo, cambio de uso de suelo y ocupación del territorio en la gestión del área protegida?'
+            '¿Ha identificado e integrado claramente el área protegida los hábitats terrestres y marinos más importantes y las dimensiones relacionadas de la cobertura de suelo, cambio de uso de suelo y ocupación del territorio en la gestión del área protegida?'
         ],
         'module_info_Rating' => [
-            'Evaluar el nivel de integración en la gestión del área protegida de 3 a 10 de los hábitats y dimensiones más representativas e importantes de los tipos de cobertura de suelo, cambio de uso de suelo y ocupación del territorio (sobre la base del análisis del Contexto de la intervención, puntos 4.3.1 y 4.3.2, que se informa automáticamente a continuación). (El valor/importancia regional y mundial de los hábitats y de la cobertura de suelo es un grado en el cual - i - representa a nivel regional o mundial el entorno natural de plantas o animales clave; ii) influye en un proceso ecológico o en una comunidad y - iii) - afecta una política de gestión dirigida a los hábitats/cobertura del suelo)'
+            'Evaluar el nivel de integración en la gestión del área protegida de 3 a 10 de los hábitats y dimensiones relacionadas más representativas e importantes de los tipos de cobertura de suelo, cambio de uso de suelo y ocupación del territorio (sobre la base del análisis del Contexto de la intervención, puntos 4.3, que se informa automáticamente a continuación). (El valor/importancia regional y mundial de los hábitats es un grado en el cual - i - representa a nivel regional o mundial el entorno natural de plantas o animales clave; ii) influye en un proceso ecológico o en una comunidad y - iii) - afecta una política de gestión dirigida a los hábitats)'
         ],
-        'validation_3to10' => 'Por favor, incluya en las estadísticas no menos de 3 y no más de 10 de las especies clave',
         'warning_on_save' =>
             'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
             los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para mantener los <b>hábitats terrestres y marinos y los elementos más importantes de la cobertura de suelo, el cambio de uso de suelos  y la ocupación del territorio</b> del área protegida.<br /> Los objetivos (productos y resultados) que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión en el área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para mantener los <b>hábitats terrestres y marinos y las dimensiones relacionadas de la cobertura de suelo, el cambio de uso de suelos  y la ocupación del territorio</b> del área protegida.<br /> Los objetivos (productos y resultados) que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión en el área protegida.'
     ],
 
     'ImportanceClimateChange' => [
@@ -153,7 +146,7 @@ return [
     ],
 
     'ObjectivesClimateChange' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación a los <b> efectos más significativos del cambio climático</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos a los <b> efectos más significativos del cambio climático</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'ImportanceEcosystemServices' => [
@@ -186,37 +179,17 @@ return [
     ],
 
     'ObjectivesEcosystemServices' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>preservar los servicios/funciones ecosistémicas</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases de los procesos y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>preservar los servicios/funciones ecosistémicas</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases de los procesos y la supervisión de las actividades de gestión del área protegida.'
     ],
 
     'SupportsAndConstraints' => [
-        'title' => 'Limitaciones externas o factores de apoyo',
+        'title' => 'Limitaciones/conflictos externas o factores de apoyo/cumplimiento',
         'fields' => [
             'Aspect' => 'Criterio - Concepto medido - Variable',
             'EvaluationScore' => 'Influencia/poder de los actores en general',
-            'EvaluationScore2'=> 'Nivel de la restricción o del apoyo',
+            'EvaluationScore2'=> 'Nivel de la restricción/conflicto o del apoyo/cumplimiento',
             'Comments' => 'Comentarios/explicación',
         ],
-        /*'predefined_values' => [
-            'Alcalde municipal',
-            'Autoridades territoriales (provinciales y municipales)',
-            'Funcionarios locales electos y líderes comunitarios (autoridades nacionales, ministros, miembros del parlamento y senadores)',
-            'Comunidades locales',
-            'Autoridades tradicionales (campesinas, indígenas, etc)',
-            'Sociedad civil',
-            'Derechos Humanos',
-            'Ministerio responsable de la supervisión técnica',
-            'Dirección de Parques',
-            'Organismos de coordinación intersectorial',
-            'Justicia/autoridad militar',
-            'Justicia civil',
-            'Autoridades locales y policial/control comunal',
-            'Fuerzas naval',
-            'Fuerza policial',
-            'Residentes y autoridades con alto poder de influencia en la zona de amortiguación',
-            'Altos representantes del gobierno'
-        ],*/
-
         'groups' => [
             'group0' => 'Comunidad local',
             'group1' => 'Gobierno',
@@ -228,6 +201,7 @@ return [
                 'Autoridades tradicionales locales',
                 'Pueblos Indígenas y/o campesinos',
                 'Comunidades que viven cerca o en el área protegida',
+                'Comunidades que no viven cerca o en el área protegida',
                 'Titulares con derechos',
                 'Propietarios',
                 'Usuarios locales de los recursos naturales',
@@ -264,26 +238,26 @@ return [
                 '3' => 'Alta influencia/poder'
             ],
             'EvaluationScore2' => [
-                '-3' => 'Severas limitaciones generadas por este actor',
+                '-3' => 'Severas limitaciones/conflictos generadas por este actor',
                 '-2' => 'Restricciones generadas por este actor',
-                '-1' => 'Algunas limitaciones generadas por este actor',
-                '0' => 'No existe apoyo por parte de este actor',
-                '+1' => 'Algo de apoyo por parte de este actor',
-                '+2' => 'Apoyo por parte de este actor',
-                '+3' => 'Apoyo importante por parte de este actor',
+                '-1' => 'Algunas limitaciones/conflictos generadas por este actor',
+                '0' => 'No existe apoyo/cumplimiento por parte de este actor',
+                '+1' => 'Algo de apoyo/cumplimiento por parte de este actor',
+                '+2' => 'Apoyo/cumplimiento por parte de este actor',
+                '+3' => 'Apoyo/cumplimiento importante por parte de este actor',
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            '¿La gestión del área protegida está sujeta a limitaciones o se beneficia de factores de apoyo derivados del entorno político, institucional y social externo?',
-            '<i>El entorno político, institucional y civil puede obstruir (limitaciones externas) o facilitar (apoyos externos) las actividades de conservación del área protegida. Las limitaciones o apoyos del entorno político, institucional y civil externo pueden medirse por su intensidad y por la influencia/poder de los socios directos en la limitación o el apoyo del área protegida.</i>'
+            '¿La gestión del área protegida está sujeta a limitaciones/conflictos o se beneficia de factores de apoyo/cumplimiento derivados del entorno político, institucional y social externo?',
+            '<i>El entorno político, institucional y civil puede obstruir (limitaciones/conflictos externas) o facilitar (apoyos/cumplimientos externos) las actividades de conservación del área protegida. Las limitaciones/conflictos o apoyos/cumplimientos del entorno político, institucional y civil externo pueden medirse por su intensidad y por la influencia/poder de los socios directos en la limitación o el apoyo/cumplimiento del área protegida.</i>'
         ],
         'module_info_Rating' => [
-            'Evaluar las limitaciones o factores de apoyo más importantes del entorno político, institucional y civil externo en la gestión del área protegida'
+            'Evaluar las limitaciones/conflictos o factores de apoyo/cumplimiento más importantes del entorno político, institucional y civil externo en la gestión del área protegida'
         ]
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para <b>limitaciones o factores de apoyo </b>para el área protegida <br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>limitaciones/conflictos o factores de apoyo/cumplimiento </b>para el área protegida <br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
     ],
 
     'Menaces' => [
@@ -305,7 +279,7 @@ return [
     ],
 
     'ObjectivesMenaces' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación para for <b>las amenazas más importantes a las que se enfrenta</b>  el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para for <b>las amenazas más importantes a las que se enfrenta</b>  el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'RegulationsAdequacy' => [
@@ -325,6 +299,13 @@ return [
             'Leyes y convenciones sobre la investigación de la biodiversidad y los recursos naturales',
             'Leyes sobre los derechos de la tierra',
             'Derecho consuetudinario',
+            'Acuerdos voluntarios, incluidas las asociaciones público-privadas (que pueden incluir, por ejemplo, sistemas voluntarios de compensación de la biodiversidad',
+            'Impuestos, tasas, tarifas de usuario (por ejemplo, entradas a parques marinos)',
+            'Certificación, etiquetado ecológico (por ejemplo, MSC Marine Stewardship Council)',
+            'Vedas espaciales y temporales de la pesca; límites del número y tamaño de los buques (controles de entrada); otras restricciones o prohibiciones de uso (por ejemplo, CITES)',
+            'Normas (por ejemplo, MARPOL para los buques); prohibición de la pesca con dinamita o de las artes de pesca',
+            'Límites o cuotas de captura (controles de salida)',
+            'Licencias, por ejemplo, de acuicultura y parques eólicos en alta mar'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -358,7 +339,12 @@ return [
             'Zona fronteriza (zonas cercanas a las fronteras inmediatamente fuera del área protegida que tienen normas especiales sobre el uso de los recursos)',
             'Áreas de amortiguamiento (zonas que rodean una área protegida, en las que se lleva a cabo una gestión especial de la utilización de los recursos y se adoptan medidas especiales de desarrollo a fin de aumentar el valor de conservación del área protegida).',
             'Corredores',
-            'Integridad de las cuencas hidrográficas'
+            'Integridad de las cuencas hidrográficas',
+            'Zona de no utilización (No-Use zone)',
+            'Zona de exclusión (No-take zone)',
+            'Zonas de amortiguación para el uso tradicional',
+            'Zonas de amortiguación para actividades educativas y/o recreativas',
+            'Zona de uso múltiple'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -391,15 +377,17 @@ return [
             'Correspondencia de los límites marcados con respecto a la situación jurídica',
             'Adecuación de los límites marcados',
             'Límites marcados por elementos naturales (por ejemplo, ríos)',
-            'Límites marcados por marcas específicas (por ejemplo, señales, postes, balizas, vallas, etc.)',
+            'Límites claramente demarcados, inequívocos y, por lo tanto, fáciles de interpretar (por ejemplo, señales, postes, marcadores, cercas, boyas, etc.)',
             'Reconocimiento de los límites por parte de las autoridades',
             'Reconocimiento de los límites por parte de las comunidades/usuarios',
-            'Colaboración en la demarcación de fronteras',
+            'Enfoque de colaboración que incluye agencias nacionales y partes interesadas relevantes en la demarcación de fronteras',
             'Publicación de información de la demarcación de fronteras',
             'Demarcación y desarrollo de los límites legales en consonancia con los estatutos jurídicos y el derecho internacional, de ser necesario',
             'Demarcación utilizando la fuente oficial de datos de referencia',
             'Límites registrados con coordenadas geográficas (grado, min, seg)',
             'Demarcación de las zonas de uso de la AP (zonificación)',
+            'Demarcación de límites, o parte de ellos, que son ambulatorios [por ejemplo, riberas, ríos, etc.] y que pueden necesitar ser revisados',
+            'Demarcación por elementos naturales mediante una declaración clara (por ejemplo, datos de las mareas o de las inundaciones fluviales: bajamar media, pleamar media, etc.)'
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -463,22 +451,22 @@ return [
     ],
 
     'WorkPlan' => [
-        'title' => 'Plan de trabajo/acción',
+        'title' => 'Plan de trabajo/acción (terrestre) o Plan de Monitoreo (MPA)',
         'fields' => [
-            'PlanExistence' => 'A) ¿Hay un plan de trabajo/acción? Sí/No',
-            'PlanUptoDate' => '¿El plan de trabajo/acción (que abarca el período actual) está actualizado? Sí/No',
-            'PlanApproved' => '¿El plan de trabajo/acción está aprobado oficialmente? Sí/No',
-            'PlanImplemented' => '¿Se aplicará el plan de trabajo/acción? Sí/No',
-            'VisionAdequacy' => 'B) Adecuación de las actividades y resultados del plan de trabajo/acción en relación con los objetivos del plan de gestión',
-            'PlanAdequacyScore' => 'C) Adecuación en cuanto a la claridad y aplicabilidad de las actividades y los resultados establecidos del plan de trabajo/acción',
+            'PlanExistence' => 'A) ¿Hay un plan de trabajo/acción o plan de monitoreo? Sí/No',
+            'PlanUptoDate' => '¿El plan de trabajo/acción o plan de monitoreo (que abarca el período actual) está actualizado? Sí/No',
+            'PlanApproved' => '¿El plan de trabajo/acción o plan de monitoreo está aprobado oficialmente? Sí/No',
+            'PlanImplemented' => '¿Se aplicará el plan de trabajo/acción o plan de monitoreo? Sí/No',
+            'VisionAdequacy' => 'B) Adecuación de las actividades y resultados del plan de trabajo/acción o plan de monitoreo en relación con los objetivos del plan de gestión',
+            'PlanAdequacyScore' => 'C) Adecuación en cuanto a la claridad y aplicabilidad de las actividades y los resultados establecidos del plan de trabajo/acción o plan de monitoreo',
             'Comments' => 'Comentarios/explicación',
         ],
         'ratingLegend' => [
             'VisionAdequacy' => [
-                '0' => 'Las actividades y resultados del plan de trabajo/acción son totalmente inadecuados en relación con los objetivos del plan de gestión (0-30% de las necesidades)',
-                '1' => 'Las actividades y resultados del plan de trabajo/acción son inadecuados en relación con los objetivos del plan de gestión (31-60% de las necesidades)',
-                '2' => 'Las actividades y los resultados del plan de trabajo/acción son adecuados en relación con los objetivos del plan de gestión (61-90% de las necesidades)',
-                '3' => 'Las actividades y los resultados del plan de trabajo/acción son plenamente adecuados en relación con los objetivos del plan de gestión (91-100% de las necesidades)'
+                '0' => 'Las actividades y resultados del plan de trabajo/acción o plan de monitoreo son totalmente inadecuados en relación con los objetivos del plan de gestión (0-30% de las necesidades)',
+                '1' => 'Las actividades y resultados del plan de trabajo/acción o plan de monitoreo son inadecuados en relación con los objetivos del plan de gestión (31-60% de las necesidades)',
+                '2' => 'Las actividades y los resultados del plan de trabajo/acción o plan de monitoreo son adecuados en relación con los objetivos del plan de gestión (61-90% de las necesidades)',
+                '3' => 'Las actividades y los resultados del plan de trabajo/acción o plan de monitoreo son plenamente adecuados en relación con los objetivos del plan de gestión (91-100% de las necesidades)'
             ],
             'PlanAdequacyScore' => [
                 '0' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son totalmente inadecuados',
@@ -487,10 +475,10 @@ return [
                 '3' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son plenamente adecuados'
             ],
         ],
-        'module_info_Rating' => '•	Evaluar: A) el estado del plan de trabajo/acción, B) la idoneidad de las actividades y resultados del plan de trabajo/acción en relación con los objetivos del plan de gestión y C) la idoneidad en cuanto a la claridad y aplicabilidad de las actividades y resultados establecidos del plan de trabajo/acción',
+        'module_info_Rating' => '•	Evaluar: A) el estado del plan de trabajo/acción o plan de monitoreo, B) la idoneidad de las actividades y resultados del plan de trabajo/acción o plan de monitoreo en relación con los objetivos del plan de gestión y C) la idoneidad en cuanto a la claridad y aplicabilidad de las actividades y resultados establecidos del plan de trabajo/acción o plan de monitoreo',
         'module_info_EvaluationQuestion' => [
-            '¿En el área protegida, existe un plan de trabajo/acción, es adecuado y práctico de implementar?',
-            'Un plan de trabajo/acción es un plan detallado en el que se esbozan las acciones o actividades concretas que deben llevarse a cabo (y por quién, dónde y cuándo) a fin de lograr los productos y resultados establecidos en el plan de gestión del área protegida. Un plan de trabajo/acción, permite monitorear el progreso en el logro de los productos y resultados del área protegida. El plan de trabajo/acción suele abarcar un período fijo (por ejemplo, un año natural) y crea un vínculo dentro del equipo, ya que cada miembro es consciente de su papel individual, además de proporcionar la información necesaria para garantizar el éxito del área protegida en sus esfuerzos de conservación.'
+            '¿En el área protegida, existe un plan de trabajo/acción o plan de monitoreo, es adecuado y práctico de implementar?',
+            'Un plan de trabajo/acción o plan de monitoreo es un plan detallado en el que se esbozan las acciones o actividades concretas que deben llevarse a cabo (y por quién, dónde y cuándo) a fin de lograr los productos y resultados establecidos en el plan de gestión del área protegida. Un plan de trabajo/acción o plan de monitoreo, permite monitorear el progreso en el logro de los productos y resultados del área protegida. El plan de trabajo/acción o plan de monitoreo suele abarcar un período fijo (por ejemplo, un año natural) y crea un vínculo dentro del equipo, ya que cada miembro es consciente de su papel individual, además de proporcionar la información necesaria para garantizar el éxito del área protegida en sus esfuerzos de conservación.'
         ]
     ],
 
@@ -506,10 +494,10 @@ return [
             'Especies animales  - especies bandera, en peligro de extinción, endémico, … –',
             'Especies de plantas  - especies bandera, en peligro, endémicas, … –',
             'Mitigación de las amenazas directas e indirectas al área protegida',
-            'Servicios y funciones ecosistémicas - Provisión (uso sostenible)',
-            'Servicios y funciones ecosistémicas  - Regulación (uso sostenible)',
-            'Servicios y funciones ecosistémicas  - Cultural uso sostenible',
-            'Servicios y funciones ecosistémicas  - Soporte',
+            'Servicios y funciones ecosistémicas - Provisión (alimentos, mariscos, material, calidad del agua, etc. uso sostenible)',
+            'Servicios y funciones ecosistémicas - Regulación (protección frente a tormentas y costas, erosión hídrica, etc.,uso sostenible)',
+            'Servicios y funciones ecosistémicas - Cultural (turismo, pesca tradicional, etc. uso sostenible)',
+            'Servicios y funciones ecosistémicas - Soporte (zonas de desove en el mar - hábitats de cría, etc.)',
             'Adaptación al cambio climátco',
             'Gobernanza',
             'Apoyo a la economía local',
@@ -537,7 +525,7 @@ return [
     ],
 
     'ObjectivesPlanification' => [
-      'module_info' => 'Establecer y describir los objetivos de conservación para <b>la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+      'module_info' => 'Establecer y describir los objetivos para <b>la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
     ],
 
     'InformationAvailability' => [
@@ -550,7 +538,7 @@ return [
         'groups' => [
             'group0' => 'Especies animales (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group1' => 'Especies de plantas (emblemáticas, en peligro de extinción, endémicas, …)',
-            'group2' => 'Hábitats y cobertura de suelos - uso - ocupación del territorio dentro y fuera del área protegida',
+            'group2' => 'Hábitats y las dimensiones relacionadas de cobertura de suelos - uso - ocupación del territorio dentro y fuera del área protegida',
             'group3' => 'Amenazas al área protegida',
             'group4' => 'Efectos del cambio climático en elementos clave del área protegida',
             'group5' => 'Servicios y funciones ecosistémicas que presta el área protegida'
@@ -610,7 +598,6 @@ return [
         'title' => 'Presupuesto actual',
         'fields' => [
             'EvaluationScore' => 'Adecuación del presupuesto actual',
-            'Percentage' => 'Porcentaje que indica la medida en que el presupuesto es adecuado en relación con las necesidades',
             'Comments' => 'Comentarios/explicación',
         ],
         'ratingLegend' => [
@@ -697,7 +684,7 @@ return [
     ],
 
     'ObjectivesIntrants' => [
-      'module_info' => 'Establecer y describir los objetivos de conservación de los <b>insumos</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+      'module_info' => 'Establecer y describir los objetivos de los <b>insumos</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
         ],
 
     'StaffCompetence' => [
@@ -717,7 +704,7 @@ return [
             ],
             'PercentageLevel' => [
                 '0' => 'Actividades de fomento de la capacidad del personal totalmente inadecuadas',
-                '1' => 'Actividades de fomento de la capacidad del personal algo adecuadas',
+                '1' => 'Actividades de fomento de la capacidad del personal algo inadecuadas',
                 '2' => 'Actividades adecuadas de fomento de la capacidad del personal, pero se necesitan mejoras',
                 '3' => 'Actividades de fomento de la capacidad del personal plenamente adecuadas (suficientes y actualizadas)'
             ]
@@ -907,11 +894,10 @@ return [
         'groups' => [
             'group0' => 'Especies animales (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group1' => 'Especies de plantas (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
-            'group2' => 'Los hábitats más importantes del área protegida',
-            'group3' => 'Cubierta terrestre del área protegida (Cobertura del suelo - uso del suelo - tenencia del territorio)',
-            'group4' => 'Gestión para mitigar las amenazas al área protegida',
-            'group5' => 'Servicios/funciones ecosistémicas',
-            'group6' => 'Otros',
+            'group2' => 'Los hábitats más importantes y las dimensiones relacionadas del área protegida',
+            'group3' => 'Gestión para mitigar las amenazas al área protegida',
+            'group4' => 'Servicios/funciones ecosistémicas',
+            'group5' => 'Otros',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -924,7 +910,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Existen medidas de gestión específicas para los valores y amenazas clave del área protegida?',
-            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar estos valores y minimizar las amenazas más significativas, los gestores deben identificar y utilizar las directrices, medidas o mejores prácticas de gestión disponibles. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, la cobertura del suelo y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véanse los PR 17 y PR 18). Ejemplos de acciones: gestión de fauna o vegetación, gestión del entorno físico, gestión de incendios, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimización de amenazas, etc.'
+            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar estos valores y minimizar las amenazas más significativas, los gestores deben identificar y utilizar las directrices, medidas o mejores prácticas de gestión disponibles. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, el hábitat y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véanse los PR 17 y PR 18). Ejemplos de acciones: gestión de fauna o vegetación, gestión del entorno físico, gestión de incendios, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimización de amenazas, etc.'
         ],
         'module_info_Rating' => [
             'Enumere tres o más valores, amenazas y otros elementos clave y evalúe la idoneidad de las medidas de gestión conexas (sobre la base del análisis del contexto de los puntos de intervención CTX 4 y 5).'
@@ -937,22 +923,39 @@ return [
             'Adequacy'=> 'Adecuación de la gestión de patrullajes de guardaparques',
             'Comments' => 'Comentarios/explicación',
         ],
+        'groups' => [
+            'group0' => 'Gestión de las patrullas del parque terrestres',
+            'group1' => 'Gestión de patrullas de parques marinos',
+        ],
         'predefined_values' => [
-            'Gestión estratégica proactive',
-			'Vigilancia en colaboración (protección lograda mediante una combinación de medidas de control y colaboración con las comunidades)',
-            'Procedimientos Operativos Estándar',
-            'Procedimientos operativos de emergencia',
-            'Procedimientos de intervención rápida',
-			'No colaborativo (tecnología: radar, óptico-infrarrojo, vigilancia por radio vs. tecnología de bajo rendimiento, guardaparques calificados)',
-            'Tácticas adaptables y diversas (por ejemplo, tipos de patrullajes complementarias, como puntos de observación, patrullajes asistidos por vehículos y emboscadas, etc.)',
-            'Estrategias de aplicación que combinan la tecnología con los patrullajes marítimos (por ejemplo, vigilancia por satélite y patrullajes asistidos por vehículos/embarcaciones)',
-			'Proceso eficiente de toma de decisiones para los procedimientos operativos estándar y de emergencia',
-            'Gestión de las unidades de élite (los guardaparques/exploradores de mayor rendimiento)',
-            'Salas de control de operaciones',
-            'Puestos de avanzada/cuadrillas – dentro del área protegida',
-            'Patrullajes de varios días – fuera del área protegida',
-            'Patrullajes de varios días',
-            'Uso de la información del SMART-RBM para llevar a cabo la sesión informativa y el informe de patrullajes conjuntos (policiales, militares).',
+            'group0' => [
+                'Gestión estratégica proactive',
+                'Vigilancia en colaboración (protección lograda mediante una combinación de medidas de control y colaboración con las comunidades)',
+                'Procedimientos Operativos Estándar',
+                'Procedimientos operativos de emergencia',
+                'Procedimientos de intervención rápida',
+                'No colaborativo (tecnología: datos digitales, vigilancia por aéreo, etc. vs. tecnología de bajo rendimiento, guardaparques calificados)',
+                'Tácticas adaptables y diversas (por ejemplo, tipos de patrullajes complementarias, como puntos de observación, patrullajes asistidos por vehículos y emboscadas, etc.)',
+                'Estrategias de aplicación que combinan la tecnología con los patrullajes marítimos (por ejemplo, vigilancia por satélite y patrullajes asistidos por vehículos/embarcaciones)',
+                'Proceso eficiente de toma de decisiones para los procedimientos operativos estándar y de emergencia',
+                'Gestión de las unidades de élite (los guardaparques/exploradores de mayor rendimiento)',
+                'Salas de control de operaciones',
+                'Puestos de avanzada/cuadrillas – dentro del área protegida',
+                'Patrullajes de varios días – fuera del área protegida',
+                'Patrullajes de varios días',
+                'Uso de la información del SMART-RBM para llevar a cabo la sesión informativa y el informe de patrullajes conjuntos (policiales, militares).',
+            ],
+            'group1' => [
+                'Estrategias de aplicación que combinan la tecnología con las patrullas marítimas (seguimiento por satélite e hidrófonos, sensores electrónicos, etc.)',
+                'Utilización de sensores visuales y electrónicos básicos para las patrullas marítimas (radar, óptico/infrarrojo)',
+                'La protección se consigue mediante una combinación de aplicación de la ley y colaboración con las comunidades',
+                'Uso de la vigilancia colaborativa (tiempo real y cobertura de gran área, bajas inversiones frente a intervalos de tiempo y costas recurrentes, reglamentos e incentivos, transceptores desactivados)',
+                'Utilización de tecnología no colaborativa (radar, óptica/infrarroja, vigilancia por radio frente a tecnología de bajo rendimiento, personal cualificado)',
+                'Integración entre sistemas de vigilancia colaborativos y no colaborativos en el área protegida',
+                'Patrullas de control realizadas durante la noche y otras horas aleatorias',
+                'Participación periódica en la formación especializada (formación básica de la Organización Marítima Internacional -OMI-, lectura y utilización de cartas náuticas, búsqueda y salvamento, curso de mantenimiento básico de motores fueraborda, etc.)',
+                'Actualización y distribución continuas de una hoja informativa sencilla en la que se exponen la zonificación, los reglamentos, las restricciones y las multas o sanciones',
+            ]
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -981,17 +984,31 @@ return [
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
-            'group0' => 'A) Gestión del seguimiento de indicios y el cruce de información',
-            'group1' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales',
+            'group0' => 'A) Gestión del seguimiento de indicios y el cruce de información - Terrestre',
+            'group0b' => 'A) Gestión del seguimiento de indicios y el cruce de información - Marítimo y costero',
+            'group1' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Terrestre',
+            'group1b' => 'B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales - Marítimo y costero',
         ],
         'predefined_values' => [
             'group0' => [
-                'Las unidades de seguimiento de indicios y cruce de información orientan las acciones de las patrullajes de los guardaparques',
+                'Las unidades de seguimiento de indicios y cruce de información orientan y apoyan las acciones de las patrullajes de los guardaparques',
                 'Organización del un sistema de informantes / contactos',
                 'Apoyo informático a la seguimiento de indicios',
                 'Sistema de organización y análisis de datos de seguimiento de indicios',
                 'Colaboración interinstitucional (por ejemplo, los fiscales del servicio de vida silvestre o la unidad especializada en la persecución de delitos contra la vida silvestre, policia ambinetal, tribunal agroambiental)',
                 'Colaboración interinstitucional con las ONG (por ejemplo, AIDA - Red de Justicia Ambiental, entre otros)'
+            ],
+            'group0b' => [
+                'Unidades de inteligencia e investigación que orientan y apoyan las operaciones de patrulla marítima',
+                'Detección y sanción de las actividades ilegales (como la pesca y la recolección)',
+                'Conocimiento de los requisitos legales de embarque',
+                'Protocolos de embarque: inspecciones, documentos necesarios, qué comprobar y buscar, documentación de la inspección',
+                'Interrogar y confrontar a las tripulaciones sospechosas en actividades ilegales',
+                'Informe de embarque normalizado utilizado de forma coherente y correcta',
+                'Nivel de seguridad personal durante el embarque',
+                'Utilización de un modelo de evaluación de riesgos (GAR -GREEN-AMBER-RED o equivalente/otro)',
+                'Utilización de una base de datos para el registro y el seguimiento de la información sobre las infracciones',
+                'Colaboración con las ONG especializadas en legislación marina, aplicación de la ley, etc. (por ejemplo el Programa Oceánico del Environmental Law Institute - ELI)'
             ],
             'group1' => [
                 'Observación de los delitos',
@@ -1000,7 +1017,15 @@ return [
                 'Denuncia hacia las entidades correspondiente',
                 'Aplicación de la ley (querella)/ multa a los infractores',
                 'Seguimiento a infractores/conclusión del caso'
-            ]
+            ],
+            'group1b' => [
+                'Talleres de formación para jueces, abogados y procuradores sobre la normativa marina y pesquera',
+                'Capacidad de incautación y detención de buques tras una transgresión',
+                'Posibilidad de restringir la navegación dentro de los límites de la AMP mediante la expedición de permisos de autorización',
+                'Incautación de artes de pesca',
+                'Posibilidad de aplicar la suspensión temporal de los permisos de los buques, los miembros de la tripulación o los armadores',
+                'Posibilidad de revocar las licencias de explotación de buques, armadores, agentes, personal marítimo o pescadores',
+            ],
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -1102,7 +1127,7 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Apoyo a las actividades locales (por ejemplo, gestión de los servicios/funciones ecosistémicas, mitigación del cambio climático, etc.)',
+                'Apoyo a las actividades locales (por ejemplo, gestión de los servicios/funciones ecosistémicas - gestión de aprovisionamiento, adaptación al cambio climático, etc.)',
                 'Apoyo a las empresas locales (por ejemplo, procesamiento de productos agrícolas, pesqueros, forestales, etc.)',
                 'Apoyo a las vías de financiación locales',
                 'Apoyo a la producción de alimentos y a la pequeña agricultura',
@@ -1119,10 +1144,14 @@ return [
                 'Provisión de suministro de energía, conexión eléctrica',
                 'Suministro de agua',
                 'Apoyo a la construcción, mantenimiento y mejora de las carreteras exteriores',
+                'Apoyo a la resolución de conflictos entre humanos y fauna salvaje-compensación',
+                'Apoyar la pesca a pequeña escala',
+                'Apoyo a la construcción de cobertizos para barcos',
+                'Apoyo a la construcción de un aparcamiento para barcos'
                 ],
             'group1' => [
                 'Fortalecimiento de la seguridad en la área',
-                'Reducción al mínimo de los conflictos y fortalecimiento de la gestión y el uso sostenible de los servicios/funciones ecosistémicas',
+                'Reducción al mínimo de los conflictos y fortalecimiento de la gestión y el uso sostenible de los servicios/funciones ecosistémicas (avituallamiento y cultura)',
                 'Provisión de acceso a la educación e infraestructura (por ejemplo, edificios)',
                 'Prestación de servicios educativos (enseñanza)',
                 'Provisión de infraestructura (por ejemplo, edificios, agua limpia)',
@@ -1275,10 +1304,8 @@ return [
             'Utilización de los datos de monitoreo para inducir cambios en la gestión del área protegida',
             'Monitoreo de los principales objetivos de conservación',
             'Monitoreo de especies (emblemáticas o bandera, en peligro, endémicas, …) ',
-            'Monitoreo de los ecosistemas y los hábitats',
-            'Monitoreo de la cobertura del suelo  - uso del suelo - tenencia del territorio',
+            'Monitoreo de los hábitats y las dimensiones relacionadas de la cobertura del suelo, uso del suelo y tenencia del territorio',
             'Monitoreo de los ecosistemas de agua dulce (lagos, ríos y los pequeños estanques y arroyos)',
-            'Monitoreo de los ecosistemas y hábitats marinos',
             'Monitoreo del nivel de vida material de las poblaciones en el área protegida y su zona de amortiguación',
             'Monitoreo de los niveles de vida inmateriales de las poblaciones en el área protegida y su zona de amortiguación',
             'Monitoreo de las amenazas directas e indirectas al área protegida',
@@ -1314,12 +1341,11 @@ return [
         ],
         'predefined_values' => [
             'La investigación y la función del monitoreo ecológico/ambiental a largo plazo en la gestión del área protegida',
-            'Utilización de la capacidad institucional y los recursos técnicos para iniciar y coordinar actividades de investigación',
+            'Fondos/instalaciones y capacidades institucionales y/o externas para promover y coordinar actividades de investigación',
             'Accesibilidad y seguridad de los datos de la investigación',
             'Apoyo a la gestión a partir de la investigación y los datos de monitoreo ecológico/ambiental a largo plazo',
             'Investigación y monitoreo ecológico/ambiental a largo plazo de especies (emblemáticas o bandera, en peligro, endémicas, etc.)',
-            'Investigación y monitoreo ecológico/ambiental a largo plazo de los ecosistemas terrestres y el uso de la tierra (tenencia del territorio - uso del suelo - cobertura del suelo)',
-            'Investigación y monitoreo ecológico/ambiental a largo plazo de los ecosistemas y hábitats marinos',
+            'Investigación y monitoreo ecológico/ambiental a largo plazo de los hábitats y las dimensiones relacionadas de la cobertura del suelo, uso del suelo y tenencia del territorio',
             'Investigación y monitoreo ecológico/ambiental a largo plazo de los ecosistemas de agua dulce (lagos, ríos y los estanques y arroyos más pequeños)',
             'La investigación y la monitoreo ecológico/ambiental a largo plazo del bienestar humano y material de la población en el área protegida',
             'Investigación y monitoreo ecológico/ambiental a largo plazo de las amenazas directas e indirectas al área protegida',
@@ -1353,7 +1379,7 @@ return [
         ],
         'predefined_values' => [
             'Gestionar la adaptación de las especies (por ejemplo, reubicar especies, etc.)',
-            'Gestión de la adaptación de los hábitats y la tenencia del territorio  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
+            'Gestión de la adaptación de los hábitats y las dimensiones relacionadas de cobertura de suelos  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
             'Gestión de la adaptación de los servicios/funciones ecosistémicas',
             'Reducir los factores de estrés que amplifican los impactos climáticos (por ejemplo, aumentar la conectividad, controlar las especies invasoras, etc.)',
             'Sostener o restaurar el proceso y la función del ecosistema para promover la resistencia (por ejemplo, restaurar la vegetación degradada, etc.)',
@@ -1424,7 +1450,7 @@ return [
     ],
 
     'ObjectivesProcessus' => [
-        'module_info' => 'Establecer y describir los objetivos de conservación relacionados <b> con el proceso implementación de la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento y monitoreo de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos relacionados <b> con el proceso implementación de la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento y monitoreo de las actividades de gestión del área protegida.'
     ],
 
     'WorkProgramImplementation' => [
@@ -1518,6 +1544,64 @@ return [
         ]
     ],
 
+    'AreaDominationMPA' => [
+        'title' => 'Aplicación de la ley en la AMP',
+        'fields' => [
+            'Activity' => 'Rango de actividades sujetas a análisis',
+            'Patrol' => 'Zona/áreas cubiertas por patrullajes',
+            'RapidIntervention' => 'Capacidad de intervención rápida',
+            'DetectionRemoteSensing' => 'Detección mediante herramientas de teledetección (es decir, sistemas de seguimiento de buques VMS)',
+            'SpecialMeansRapidIntervention' => 'Medios especiales de apoyo a la intervención rápida',
+        ],
+        'groups' => [
+            'group0' => 'Santuario',
+            'group1' => 'Zonas de exclusión de pesca (No-take areas) / Reserva marina',
+            'group2' => 'Zonas de amortiguación para el uso tradicional',
+            'group3' => 'Zonas de amortiguación para actividades educativas y/o recreativas',
+            'group4' => 'Aplicación de la ley en los muelles para los buques que llegan a puerto'
+        ],
+        'predefined_values' => [
+            'group0' => [
+                'Todas las actividades/usos prohibidos'
+            ],
+            'group1' => [
+                'Actividades prohibidas (por ejemplo, pesca o extracción de cualquier tipo, anclaje, navegación, vertido, etc.)',
+                'Actividades permitidas (por ejemplo, investigación y seguimiento, etc.)'
+            ],
+            'group2' => [
+                'Actividades prohibidas (por ejemplo, pesca ilegal y métodos de pesca legales especificados, anclaje, vertido)',
+                'Actividades permitidas (por ejemplo, pesca y navegación tradicionales limitadas y especificadas, natación y buceo, anclaje en boyas de amarre, investigación, etc.)'
+            ],
+            'group3' => [
+                'Actividades permitidas (por ejemplo, pesca y navegación tradicionales limitadas y especificadas, natación y buceo, anclaje en boyas de amarre, investigación y educación, etc.)'
+            ],
+            'group4' => [
+                'Actividades utilizadas para recopilar información que pueda arrojar luz sobre los patrones de comportamientos ilícitos. Las estrategias en los muelles deben adaptarse para promover la aplicación de la ley más adecuada para las grandes AMP o para abordar los problemas de aplicación de la ley en las AMP más pequeñas y cercanas a la costa.'
+            ],
+        ],
+        'ratingLegend' => [
+            'Patrol' => [
+                '0' => 'El área cubierta por patrullajes de vigilancia es mínima (de 0 a 25% de la superficie)',
+                '1' => 'El área cubierta por el estudio de patrullajes es limitada (del 26 al 50% de la superficie)',
+                '2' => 'El área cubierta por la encuesta de patrullajes es justa (del 51 al 75% de la superficie)',
+                '3' => 'El área cubierta por la encuesta de patrullajes es muy buena (más del 76% de la superficie)',
+            ],
+            'RapidIntervention' => [
+                '0' => 'La capacidad de intervención rápida en el área protegida es mínima (de 0 a 25% de la superficie)',
+                '1' => 'La capacidad de intervención rápida en la zona protegida es limitada (del 26 al 50% de la superficie)',
+                '2' => 'La capacidad de intervención rápida en el área protegida es justa (del 51 al 75% de la superficie)',
+                '3' => 'La capacidad de intervención rápida en la zona protegida es muy buena (más del 76% de la superficie)',
+            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            '¿Cuál es el alcance actual de la aplicación de la ley en la AMP?',
+            'La aplicación de la ley en las AMP se refiere a la capacidad de la gestión del parque para crear una presencia en una zona determinada, por ejemplo, mediante patrullas periódicas, intervenciones rápidas o vigilancia aérea o detección mediante herramientas de teledetección. Cuando sea necesario, esta presencia debe imponerse con frecuencia y eficacia para hacer frente a amenazas como la caza furtiva o las actividades ilegales. El objetivo de la aplicación de la ley en las AMP es prevenir o minimizar las actividades ilegales que afectan a la biodiversidad y a los valores culturales o históricos, y hacer cumplir la protección del área protegida y sus límites'
+        ],
+        'module_info_Rating' => [
+            'Evaluar la dominación del área basándose en el porcentaje de la superficie del área protegida en el que la gestión está presente o puede estar presente a través de: (A) estudios de patrullaje; (B) intervenciones rápidas; (C) utilización de medios especiales'
+        ]
+    ],
+
     'AchievedObjectives' => [
         'title' => 'Logro de los objetivos de conservación a largo plazo del plan de manejo/gestión/rector',
         'fields' => [
@@ -1543,7 +1627,7 @@ return [
         ]
     ],
 
-    'KeyConservationTrend'=> [
+    'KeyConservationTrend' => [
         'title' => 'Condiciones y tendencias de los elementos clave de la conservación del área protegida',
         'fields' => [
             'Element' => 'Elemento clave de conservación',
@@ -1555,7 +1639,7 @@ return [
         'groups' => [
             'group0' => 'Condiciones y tendencias de conservación de especies clave de animales',
             'group1' => 'Condiciones y tendencias de conservación de especies clave de plantas',
-            'group2' => 'Condiciones de conservación y tendencias de los hábitats, la tenencia del territorio - uso del suelo - cobertura del suelo',
+            'group2' => 'Condiciones de conservación y tendencias de los hábitats y las dimensiones relacionadas del territorio - uso del suelo - cobertura del suelo',
             'group3' => 'Situaciones y tendencias de las amenazas al área protegida',
             'group4' => 'Adaptación al cambio climático',
             'group5' => 'Condiciones y tendencias de conservación de los servicios y funciones ecosistémicas del área protegida'
@@ -1589,7 +1673,7 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Cuáles son las condiciones y tendencias de los elementos clave de conservación del área protegida?',
-            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, cubierta terrestre, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos'
+            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, hábitats, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos'
         ],
         'module_info_Rating' => [
             'Evaluar: A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, los elementos del proceso PR7 - Gestión de los valores y elementos clave del área protegida con acciones específicas, PR 17 adaptación al cambio climático y PR18 - Gestión de las funciones/servicios de los ecosistemas)'
@@ -1610,8 +1694,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => [
-                'Creación o fortalecimiento de actividades productivas locales (producción de alimentos, pequeña agricultura, artesanía, etc.)',
-                'Contribución al desarrollo local (suministro de energía y/o agua, pequeñas empresas, carreteras entre pueblos, etc.)',
+                'Fortalecimiento de las actividades locales (producción de alimentos, agricultura a pequeña escala, pesca a pequeña escala, artesanía, servicios para la área protegida, etc.)',
+                'Apoyo a las empresas locales (suministro de energía, suministro de agua, comercio, carreteras entre pueblos, cobertizos para barcos, aparcamiento de barcos, etc.)',
                 'Servicios de aprovisionamiento de los ecosistemas: (alimentos, materias primas, etc.)',
                 'Ingresos por turismo',
                 'Conflictos entre el hombre y la fauna silvestre',

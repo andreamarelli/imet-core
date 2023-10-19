@@ -1,11 +1,11 @@
 export default {
     indicators: [
-        window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
-        window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
-        window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
-        window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
-        window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
-        window.Locale.getLabel('imet-core::v2_common.steps_eval.planning')
+        window.Locale.getLabel('imet-core::common.steps_eval.context'),
+        window.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
+        window.Locale.getLabel('imet-core::common.steps_eval.outputs'),
+        window.Locale.getLabel('imet-core::common.steps_eval.process'),
+        window.Locale.getLabel('imet-core::common.steps_eval.inputs'),
+        window.Locale.getLabel('imet-core::common.steps_eval.planning')
     ],
     color: [
         '#00B050',
@@ -45,7 +45,7 @@ export default {
                 ranking_labels: false,
                 columns: [
                     {
-                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                         "field": "name"
                     },
                     {
@@ -61,6 +61,11 @@ export default {
                         "label": `C3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c3')}`,
                         "field": "c3",
                         "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.zero_negative')}`
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.context')}`,
+                        "field": "context",
+                        "extra_label": ``
                     }
                 ]
             },
@@ -77,7 +82,7 @@ export default {
                 ranking_labels: false,
                 columns: [
                     {
-                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                         "field": "name"
                     },
                     {
@@ -99,6 +104,10 @@ export default {
                     {
                         "label": `C1.5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.c15')}`,
                         "field": "c15"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.context')}`,
+                        "field": "context"
                     }
                 ]
             },
@@ -128,7 +137,7 @@ export default {
                 ranking_labels: false,
                 columns: [
                     {
-                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                         "field": "name"
                     },
                     {
@@ -154,6 +163,11 @@ export default {
                     {
                         "label": `P6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.p6')}`,
                         "field": "p6"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.planning')}`,
+                        "field": "planning",
+                        "extra_label": ``
                     }
                 ]
 
@@ -172,7 +186,7 @@ export default {
                 ranking_labels: false,
                 columns: [
                     {
-                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                         "field": "name"
                     },
                     {
@@ -194,6 +208,11 @@ export default {
                     {
                         "label": `I5: ${window.Locale.getLabel('imet-core::analysis_report.assessment.i5')}`,
                         "field": "i5"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.inputs')}`,
+                        "field": "inputs",
+                        "extra_label": ``
                     }
                 ]
 
@@ -213,7 +232,7 @@ export default {
                 ranking_labels: false,
                 columns: [
                     {
-                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                         "field": "name"
                     },
                     {
@@ -239,6 +258,10 @@ export default {
                     {
                         "label": `PR F: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr17_18')}`,
                         "field": "pr17_18"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
+                        "field": "process"
                     }
                 ]
             }],
@@ -253,7 +276,7 @@ export default {
             },
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                    "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -279,6 +302,10 @@ export default {
                 {
                     "label": `PR6: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr6')}`,
                     "field": "pr6"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
 
@@ -294,7 +321,7 @@ export default {
             },
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                    "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -308,6 +335,10 @@ export default {
                 {
                     "label": `PR9: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr9')}`,
                     "field": "pr9"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
 
@@ -323,7 +354,7 @@ export default {
             },
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                    "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -337,6 +368,10 @@ export default {
                 {
                     "label": `PR12: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr12')}`,
                     "field": "pr12"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }],
@@ -351,7 +386,7 @@ export default {
             },
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                    "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -361,6 +396,10 @@ export default {
                 {
                     "label": `PR14: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr14')}`,
                     "field": "pr14"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }],
@@ -375,7 +414,7 @@ export default {
             },
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                    "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -385,6 +424,10 @@ export default {
                 {
                     "label": `PR16: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr16')}`,
                     "field": "pr16"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }],
@@ -401,7 +444,7 @@ export default {
             },
             columns: [
                 {
-                    "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                    "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                     "field": "name"
                 },
                 {
@@ -411,6 +454,10 @@ export default {
                 {
                     "label": `PR18: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr18')}`,
                     "field": "pr18"
+                },
+                {
+                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
+                    "field": "process"
                 }
             ]
         }
@@ -428,7 +475,7 @@ export default {
                 ranking_labels: false,
                 columns: [
                     {
-                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                         "field": "name"
                     },
                     {
@@ -436,12 +483,21 @@ export default {
                         "field": "op1"
                     },
                     {
-                        "label": `O/P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op3')}`,
+                        "label": `O/P2: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op2')}`,
                         "field": "op2",
                     },
                     {
                         "label": `O/P3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op3')}`,
                         "field": "op3"
+                    },
+                    {
+                        "label": `O/P4: ${window.Locale.getLabel('imet-core::analysis_report.assessment.op4')}`,
+                        "field": "op4"
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs')}`,
+                        "field": "outputs",
+                        "extra_label": ``
                     }
                 ]
 
@@ -461,7 +517,7 @@ export default {
                 ranking_labels: false,
                 columns: [
                     {
-                        "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                        "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                         "field": "name"
                     },
                     {
@@ -477,6 +533,11 @@ export default {
                         "label": `O/C3: ${window.Locale.getLabel('imet-core::analysis_report.assessment.oc3')}`,
                         "field": "oc3",
                         "extra_label": ` ${window.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
+                    },
+                    {
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.outcomes')}`,
+                        "field": "outcomes",
+                        "extra_label": ``
                     }
                 ]
 
@@ -682,12 +743,12 @@ export default {
     },
     performance_diagram: {
         indicators: [
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.planning')
+            window.Locale.getLabel('imet-core::common.steps_eval.context'),
+            window.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
+            window.Locale.getLabel('imet-core::common.steps_eval.outputs'),
+            window.Locale.getLabel('imet-core::common.steps_eval.process'),
+            window.Locale.getLabel('imet-core::common.steps_eval.inputs'),
+            window.Locale.getLabel('imet-core::common.steps_eval.planning')
 
         ],
         color: [
@@ -701,36 +762,36 @@ export default {
 
         columns: [
             {
-                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.context'),
                 "field": "context"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.planning'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.planning'),
                 "field": "planning",
 
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.inputs'),
                 "field": "inputs"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.process'),
                 "field": "process"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.outputs'),
                 "field": "outputs"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
                 "field": "outcomes"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.indexes.imet'),
+                "label": window.Locale.getLabel('imet-core::common.indexes.imet'),
                 "field": "imet_index"
             }
         ]
@@ -738,48 +799,48 @@ export default {
     evaluation_of_protected_area_management_cycle: {
         columns: [
             {
-                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.context'),
                 "field": "context"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.planning'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.planning'),
                 "field": "planning",
 
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.inputs'),
                 "field": "inputs"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.process'),
                 "field": "process"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.outputs'),
                 "field": "outputs"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
                 "field": "outcomes"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.indexes.imet'),
+                "label": window.Locale.getLabel('imet-core::common.indexes.imet'),
                 "field": "imet_index"
             }
         ]
     },
     relative_performance_effectiveness_bar_average: {
         indicators: [
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.planning'),
-            window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
+            window.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
+            window.Locale.getLabel('imet-core::common.steps_eval.outputs'),
+            window.Locale.getLabel('imet-core::common.steps_eval.process'),
+            window.Locale.getLabel('imet-core::common.steps_eval.inputs'),
+            window.Locale.getLabel('imet-core::common.steps_eval.planning'),
+            window.Locale.getLabel('imet-core::common.steps_eval.context'),
         ],
         color: [
             '#00B050',
@@ -794,51 +855,51 @@ export default {
     group_analysis_on_demand: {
         scatter_columns: [
             {
-                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.process'),
                 "field": "context"
             },
             {
-                "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.context')}, ${window.Locale.getLabel('imet-core::v2_common.steps_eval.planning')}, ${window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs')}`,
+                "label": `${window.Locale.getLabel('imet-core::common.steps_eval.context')}, ${window.Locale.getLabel('imet-core::common.steps_eval.planning')}, ${window.Locale.getLabel('imet-core::common.steps_eval.inputs')}`,
                 "field": "planning",
 
             },
             {
-                "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs')}, ${window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes')}`,
+                "label": `${window.Locale.getLabel('imet-core::common.steps_eval.outputs')}, ${window.Locale.getLabel('imet-core::common.steps_eval.outcomes')}`,
                 "field": "inputs"
             },
         ],
         columns: [
             {
-                "label": window.Locale.getLabel('imet-core::v2_context.Create.fields.wdpa_id'),
+                "label": window.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
                 "field": "name"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.context'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.context'),
                 "field": "context"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.planning'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.planning'),
                 "field": "planning",
 
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.inputs'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.inputs'),
                 "field": "inputs"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.process'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.process'),
                 "field": "process"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.outputs'),
                 "field": "outputs"
             },
             {
-                "label": window.Locale.getLabel('imet-core::v2_common.steps_eval.outcomes'),
+                "label": window.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
                 "field": "outcomes"
             }
         ]

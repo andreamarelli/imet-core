@@ -2,12 +2,15 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 
 class Governance extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_governance';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = [])
     {
@@ -24,7 +27,7 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'dropdown-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
+            ['name' => 'Type',      'type' => 'suggestion_multiple-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.Comments')],
         ];
 

@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
@@ -11,11 +12,12 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_importance_c14';
     protected $fixed_rows = true;
-    protected $validation_3to10 = '';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = []) {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = 'TABLE';
         $this->module_code = 'C1.3';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceHabitats.title');
         $this->module_fields = [
@@ -26,17 +28,10 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.Comments')],
         ];
 
-        $this->module_groups = [
-            'group0' => trans('imet-core::v2_evaluation.ImportanceHabitats.groups.group0'),
-            'group1' => trans('imet-core::v2_evaluation.ImportanceHabitats.groups.group1'),
-        ];
-
         $this->module_subTitle = trans('imet-core::v2_evaluation.ImportanceHabitats.module_subTitle');
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ImportanceHabitats.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::v2_evaluation.ImportanceHabitats.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v2_evaluation.ImportanceHabitats.ratingLegend');
-
-        $this->validation_3to10 = trans('imet-core::v2_evaluation.ImportanceHabitats.validation_3to10');
 
         parent::__construct($attributes);
 
@@ -57,10 +52,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         $records = $module_records['records'];
         $preLoaded = [
             'field' => 'Aspect',
-            'values' => [
-                'group0' => Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray(),
-                'group1' => Modules\Context\LandCover::getModule($form_id)->pluck('CoverType')->toArray()
-            ]
+            'values' => Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray()
         ];
         $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
         return $module_records;
@@ -85,24 +77,14 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 
         $records = Payload::decode($request->input('records_json'));
         $form_id = $request->input('form_id');
-        $num_valid_records = collect($records)->filter(function($item){
-            return $item['IncludeInStatistics'];
-        })->count();
 
-        if($num_valid_records>=3 && $num_valid_records<=10){
+        static::dropFromDependencies($form_id, $records, [
+            Modules\Evaluation\InformationAvailability::class,
+            Modules\Evaluation\KeyConservationTrend::class,
+            Modules\Evaluation\ManagementActivities::class,
+        ]);
 
-            static::dropFromDependencies($form_id, $records, [
-                Modules\Evaluation\InformationAvailability::class,
-                Modules\Evaluation\KeyConservationTrend::class,
-                Modules\Evaluation\ManagementActivities::class,
-            ]);
-
-            return parent::updateModule($request);
-        } else {
-            return static::validationErrorResponse([
-                'Aspect' => [(new static())->validation_3to10]
-            ]);
-        }
+        return parent::updateModule($request);
     }
 
     /**

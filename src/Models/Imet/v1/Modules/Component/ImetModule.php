@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component;
 
 use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
+use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Module;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use Illuminate\Support\Facades\App;
@@ -13,12 +14,16 @@ class ImetModule extends Module
     use Upgrade;
     use ConvertSQLite;
 
+    protected static $form_class = Imet::class;
+
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
     public const UPDATED_BY = 'UpdateBy';
 
     protected $primaryKey = 'id';
     public static $foreign_key = 'FormID';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public $ratingLegend = null;
     public $module_subTitle = null;

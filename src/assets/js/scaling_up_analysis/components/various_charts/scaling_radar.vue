@@ -20,11 +20,16 @@ export default {
     ],
     methods: {
         draw_chart: function () {
-            if (Object.keys(this.values).length > 1) {
+            if (Object.keys(this.values).length > 0) {
                 this.chart = echarts.init(this.$el);
                 this.chart.setOption(this.radar_options);
 
                 this.chart.on('legendselectchanged', (params) => {
+                    if(this.refresh_average) {
+                        this.radar_options.series[0].data = this.calculateAverage(this.radar_options.series[0].data, params);
+                        this.chart.setOption(this.radar_options);
+                    }
+
                     this.$root.$emit(`radar_data_${this.event_key}`, params);
                 });
                 if (this.unselect_legends_on_load) {
