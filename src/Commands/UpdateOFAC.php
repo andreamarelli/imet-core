@@ -71,10 +71,9 @@ class UpdateOFAC extends Command
                 Log::error($e);
                 return self::FAILURE;
             }
-
-            return self::SUCCESS;
         }
 
+        return self::SUCCESS;
     }
 
 }
