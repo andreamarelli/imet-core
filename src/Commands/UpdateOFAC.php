@@ -6,6 +6,7 @@ use ErrorException;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 class UpdateOFAC extends Command
 {
@@ -46,7 +47,6 @@ class UpdateOFAC extends Command
 
         $sql_files =  [
             'IMET.27-marine_imet.sql',
-            'IMET.31-authorization.sql',
             'IMET.34-ownership_type_in_non_wdpa.sql',
             'IMET.35-OECM_v11.sql',
             'IMET.36-OECM-modifications_v4.sql',
@@ -58,22 +58,21 @@ class UpdateOFAC extends Command
             'IMET.41-OECM-modifications_v5.sql',
         ];
 
-
         foreach ($sql_files as $sql_file){
             try{
-
                 $this->dispatch(\AndreaMarelli\ImetCore\Jobs\ApplySQL::class, $path . $sql_file);
-
-                return self::SUCCESS;
-
 
             } catch (FileNotFoundException $e) {
                 $this->error('File not found at ' . $path . $sql_file. '. Cannot apply SQL!!');
+                Log::error($e);
                 return self::FAILURE;
             } catch (QueryException|ErrorException $e) {
                 $this->error('Error applying file ' . $sql_file. '!!');
+                Log::error($e);
                 return self::FAILURE;
             }
+
+            return self::SUCCESS;
         }
 
     }
