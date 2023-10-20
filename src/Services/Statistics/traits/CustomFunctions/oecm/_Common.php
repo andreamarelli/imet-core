@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeIm
 
 trait _Common{
 
-    public static function score_staff($imet_id, $records): ?float
+    public static function score_staff(int $imet_id, $records): ?float
     {
         $values = collect($records)
             ->filter(function ($record){

@@ -7,7 +7,6 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Cache;
-use Illuminate\Support\Facades\Log;
 
 abstract class StatisticsService
 {
@@ -37,31 +36,18 @@ abstract class StatisticsService
     }
 
     /**
-     * Generate cache key
-     */
-    private static function getCacheKey(Imet|ImetOEMC|int|string $imet): string
-    {
-        $imet_id = ($imet instanceof ImetOEMC or $imet instanceof Imet)
-            ? $imet['FormID']
-            : $imet;
-        return Cache::buildKey(self::CACHE_PREFIX, ['id' => $imet_id]);
-    }
-
-    /**
      * Calculate scores
      */
-    public static function calculate_scores(Imet|ImetOEMC|int|string $imet): array
+    public static function calculate_scores(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-
         // Granular scores per each step
         $scores = [
-            static::CONTEXT => static::scores_context($imet),
-            static::PLANNING => static::scores_planning($imet),
-            static::INPUTS => static::scores_inputs($imet),
-            static::PROCESS => static::scores_process($imet),
-            static::OUTPUTS => static::scores_outputs($imet),
-            static::OUTCOMES => static::scores_outcomes($imet),
+            static::CONTEXT => static::scores_context($imet_id),
+            static::PLANNING => static::scores_planning($imet_id),
+            static::INPUTS => static::scores_inputs($imet_id),
+            static::PROCESS => static::scores_process($imet_id),
+            static::OUTPUTS => static::scores_outputs($imet_id),
+            static::OUTCOMES => static::scores_outcomes($imet_id),
         ];
 
         // Overall steps scores
@@ -92,14 +78,17 @@ abstract class StatisticsService
      */
     public static function get_scores(Imet|ImetOEMC|int|string $imet, string $step = self::SUMMARY_SCORES, bool $cache = true): array
     {
+        $imet = static::get_imet($imet);
+        $imet_id = $imet->getKey();
+
         // Retrieve scores from cache
-        $cache_key = static::getCacheKey($imet);
+        $cache_key = Cache::buildKey(self::CACHE_PREFIX, ['id' => $imet_id]);
         if ($cache && ($cache_value = Cache::get($cache_key)) !== null) {
             $scores = $cache_value;
         }
         // Calculate scores and store in cache
         else {
-            $scores = static::calculate_scores($imet);
+            $scores = static::calculate_scores($imet_id);
             Cache::put($cache_key, $scores, null);
         }
 

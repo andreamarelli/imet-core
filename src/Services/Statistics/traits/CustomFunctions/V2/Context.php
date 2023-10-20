@@ -11,12 +11,12 @@ use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
 
 trait Context
 {
-    protected static function score_c11($imet_id): ?float
+    protected static function score_c11(int $imet_id): ?float
     {
         return V1StatisticsService::score_c12($imet_id);
     }
 
-    protected static function score_c12($imet_id): ?float
+    protected static function score_c12(int $imet_id): ?float
     {
         $records = ImportanceSpecies::getModule($imet_id);
 
@@ -48,7 +48,7 @@ trait Context
             : null;
     }
 
-    protected static function score_c13($imet_id): ?float
+    protected static function score_c13(int $imet_id): ?float
     {
         $records = ImportanceHabitats::getModule($imet_id);
 
@@ -78,7 +78,7 @@ trait Context
             round($score, 2)
             : null;
     }
-    protected static function score_c15($imet_id): ?float
+    protected static function score_c15(int $imet_id): ?float
     {
         $ecosystem_services = EcosystemServices::getModule($imet_id)
             ->map(function ($record){
@@ -121,7 +121,7 @@ trait Context
             round($score, 2)
             : null;
     }
-    protected static function score_c2($imet_id): ?float
+    protected static function score_c2(int $imet_id): ?float
     {
         $records = SupportsAndConstraints::getModule($imet_id);
 
@@ -151,7 +151,7 @@ trait Context
             round($score, 2)
             : null;
     }
-    protected static function score_c3($imet_id): ?float
+    protected static function score_c3(int $imet_id): ?float
     {
         return V1StatisticsService::score_c3($imet_id);
     }

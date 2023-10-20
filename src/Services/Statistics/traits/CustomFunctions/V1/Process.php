@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\StaffCompetence;
 
 trait Process {
 
-    public static function score_pr1($imet_id, $records = null, $staff_weights = null): ?float
+    public static function score_pr1(int $imet_id, $records = null, $staff_weights = null): ?float
     {
         $staff_weights = $staff_weights ?? static::staff_weights($imet_id);
         $records = $records ?? StaffCompetence::getModule($imet_id);
@@ -37,10 +37,8 @@ trait Process {
             : null;
     }
 
-    public static function score_pr9($imet): ?float
+    public static function score_pr9(int $imet_id): ?float
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
         $records = Control::getModule($imet_id)
             ->toArray();
 
@@ -64,7 +62,7 @@ trait Process {
         return $score;
     }
 
-    protected static function score_pr13($imet_id): ?float
+    protected static function score_pr13(int $imet_id): ?float
     {
         $records = ActorsRelations::getModule($imet_id);
 

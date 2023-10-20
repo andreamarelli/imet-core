@@ -13,13 +13,13 @@ use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
 
 trait Process
 {
-    protected static function staff_weights($imet_id): array
+    protected static function staff_weights(int $imet_id): array
     {
         $records = ManagementStaff::getModule($imet_id);
         return V1StatisticsService::staff_weights($imet_id, $records);
     }
 
-    protected static function score_pr1($imet_id): ?float
+    protected static function score_pr1(int $imet_id): ?float
     {
         $staff_weights = static::staff_weights($imet_id);
         $records = StaffCompetence::getModule($imet_id);
@@ -59,7 +59,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr4($imet_id): ?float
+    protected static function score_pr4(int $imet_id): ?float
     {
         $records = GovernanceLeadership::getModule($imet_id);
 
@@ -79,7 +79,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr6($imet_id): ?float
+    protected static function score_pr6(int $imet_id): ?float
     {
         $records = EquipmentMaintenance::getModule($imet_id);
 
@@ -107,7 +107,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr8($imet_id): ?float
+    protected static function score_pr8(int $imet_id): ?float
     {
         $records = LawEnforcementImplementation::getModule($imet_id);
 
@@ -135,7 +135,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr10($imet_id): ?float
+    protected static function score_pr10(int $imet_id): ?float
     {
         $records = StakeholderCooperation::getModule($imet_id);
 
@@ -183,7 +183,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr18($imet_id): ?float
+    protected static function score_pr18(int $imet_id): ?float
     {
         $records = EcosystemServices::getModule($imet_id);
         $scores = $records->map(function($record) {

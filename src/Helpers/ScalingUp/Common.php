@@ -311,8 +311,8 @@ class Common
             $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
 
             $assessments[$k] = $version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
-                ? V1ToV2StatisticsService::get_scores($form_id, StatisticsService::SUMMARY_SCORES)
-                : V2StatisticsService::get_scores($form_id, StatisticsService::SUMMARY_SCORES);
+                ? V1ToV2StatisticsService::get_scores($form_id)
+                : V2StatisticsService::get_scores($form_id);
 
             $name = static::get_pa_name($form_id, $scaling_id);
 

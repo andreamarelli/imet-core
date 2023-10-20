@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDominationMPA;
 
 trait Outputs
 {
-    protected static function score_op3($imet_id): ?float
+    protected static function score_op3(int $imet_id): ?float
     {
         $values = AreaDomination::getModule($imet_id)
             ->toArray();
@@ -36,7 +36,7 @@ trait Outputs
             : null;
     }
 
-    protected static function score_op4($imet_id): ?float
+    protected static function score_op4(int $imet_id): ?float
     {
         $values = AreaDominationMPA::getModule($imet_id);
 

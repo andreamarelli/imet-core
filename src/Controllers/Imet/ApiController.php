@@ -82,9 +82,9 @@ class ApiController extends Controller
 
         foreach ($list as $key => $imet) {
             if (Imet\Imet::IMET_V1 === $imet['version']) {
-                $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], StatisticsService::SUMMARY_SCORES);
+                $result[] = V1ToV2StatisticsService::get_scores($imet['FormID']);
             } else {
-                $result[] = V2StatisticsService::get_scores($imet['FormID'], StatisticsService::SUMMARY_SCORES);
+                $result[] = V2StatisticsService::get_scores($imet['FormID']);
             }
         }
 

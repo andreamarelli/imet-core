@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElementsImpact
 trait Outcomes
 {
 
-    protected static function score_oc2($imet_id): ?float
+    protected static function score_oc2(int $imet_id): ?float
     {
         $records = KeyElementsImpact::getModule($imet_id)
             ->filter(function($item){

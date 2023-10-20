@@ -8,7 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGoverna
 trait Outputs
 {
 
-    protected static function score_op2($imet_id): ?float {
+    protected static function score_op2(int $imet_id): ?float {
         $records = ManagementGovernance::getModuleRecords($imet_id)['records'];
 
         $score = $records[0]['Patrol']!==null ?

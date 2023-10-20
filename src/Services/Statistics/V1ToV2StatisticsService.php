@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
 
@@ -12,15 +11,10 @@ class V1ToV2StatisticsService extends StatisticsService
 
     /**
      * Return CONTEXT step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_context($imet): array
+    public static function scores_context(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-
-        $scores_v1 = V1StatisticsService::scores_context($imet);
+        $scores_v1 = V1StatisticsService::scores_context($imet_id);
         $scores = [
             'c1' => self::average([
                     $scores_v1['c12'], $scores_v1['c13'], $scores_v1['c14'], $scores_v1['c15'], $scores_v1['c16']
@@ -46,13 +40,10 @@ class V1ToV2StatisticsService extends StatisticsService
 
     /**
      * Return PLANNING step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_planning($imet): array
+    public static function scores_planning(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_planning($imet);
+        $scores_v1 = V1StatisticsService::scores_planning($imet_id);
 
         $conditional_p3 = function($value){
             if($value===null) {
@@ -94,13 +85,10 @@ class V1ToV2StatisticsService extends StatisticsService
 
     /**
      * Return INPUTS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_inputs($imet): array
+    public static function scores_inputs(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_inputs($imet);
+        $scores_v1 = V1StatisticsService::scores_inputs($imet_id);
 
         $conditional_i3 = function($value){
             if($value===0) {
@@ -148,13 +136,10 @@ class V1ToV2StatisticsService extends StatisticsService
 
     /**
      * Return PROCESS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_process($imet): array
+    public static function scores_process(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_process($imet);
+        $scores_v1 = V1StatisticsService::scores_process($imet_id);
         $scores = [
             'pr1' => $scores_v1['pr1'],
             'pr2' => $scores_v1['pr2'],
@@ -191,17 +176,14 @@ class V1ToV2StatisticsService extends StatisticsService
 
     /**
      * Return OUTPUTS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_outputs($imet): array
+    public static function scores_outputs(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_outputs($imet);
+        $scores_v1 = V1StatisticsService::scores_outputs($imet_id);
         $scores = [
             'op1' => $scores_v1['r1']!==null ? round($scores_v1['r1'] * 0.76, 2) : null,
             'op2' => $scores_v1['r2']!==null ? round($scores_v1['r2'] * 0.76, 2) : null,
-            'op3' => V1StatisticsService::score_pr9($imet),
+            'op3' => V1StatisticsService::score_pr9($imet_id),
             'op4' => null
         ];
 
@@ -213,13 +195,10 @@ class V1ToV2StatisticsService extends StatisticsService
 
     /**
      * Return OUTCOMES step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_outcomes($imet): array
+    public static function scores_outcomes(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_outcomes($imet);
+        $scores_v1 = V1StatisticsService::scores_outcomes($imet_id);
         $scores = [
             'oc1' => $scores_v1['ei1']!==null ? round($scores_v1['ei1'] * 0.76, 2) : null,
             'oc2' => round(((($scores_v1['ei2'] ?? 0) + $scores_v1['ei3'])/2), 2),

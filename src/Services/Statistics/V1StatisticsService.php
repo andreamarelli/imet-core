@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
@@ -20,15 +19,9 @@ class V1StatisticsService extends StatisticsService
 
     /**
      * Return CONTEXT step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_context($imet): array
+    public static function scores_context(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'c11' => static::score_table($imet_id, Evaluation\ImportanceGovernance::class, 'EvaluationScore'),
             'c12' => static::score_c12($imet_id),
@@ -51,18 +44,11 @@ class V1StatisticsService extends StatisticsService
         return $scores;
     }
 
-
     /**
      * Return PLANNING step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_planning($imet): array
+    public static function scores_planning(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'p1' => static::score_table($imet_id, Evaluation\RegulationsAdequacy::class, 'EvaluationScore'),
             'p2' => static::score_table($imet_id, Evaluation\DesignAdequacy::class, 'EvaluationScore'),
@@ -87,15 +73,9 @@ class V1StatisticsService extends StatisticsService
 
     /**
      * Return INPUTS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_inputs($imet): array
+    public static function scores_inputs(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'i1' => static::score_group($imet_id, Evaluation\InformationAvailability::class, 'EvaluationScore', 'group_key'),
             'i2' => static::score_i2($imet_id),
@@ -112,15 +92,9 @@ class V1StatisticsService extends StatisticsService
 
     /**
      * Return PROCESS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_process($imet): array
+    public static function scores_process(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'pr1' => static::score_pr1($imet_id),
             'pr2' => static::score_table($imet_id, Evaluation\HRmanagementPolitics::class, 'EvaluationScore'),
@@ -130,7 +104,7 @@ class V1StatisticsService extends StatisticsService
             'pr6' => static::score_table($imet_id, Evaluation\EquipmentMaintenance::class, 'EvaluationScore'),
             'pr7' => static::score_group($imet_id, Evaluation\ManagementActivities::class, 'EvaluationScore', 'group_key'),
             'pr8' => static::score_group($imet_id, Evaluation\ProtectionActivities::class, 'EvaluationScore', 'group_key'),
-            'pr9' => static::score_pr9($imet),
+            'pr9' => static::score_pr9($imet_id),
             'pr10' => static::score_table($imet_id, Evaluation\LawEnforcement::class, 'EvaluationScore'),
             'pr11' => static::score_group($imet_id, Evaluation\Implications::class, 'EvaluationScore', 'group_key'),
             'pr12' => static::score_table($imet_id, Evaluation\AssistanceActivities::class, 'EvaluationScore'),
@@ -158,15 +132,9 @@ class V1StatisticsService extends StatisticsService
 
     /**
      * Return OUTPUT step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_outputs($imet): array
+    public static function scores_outputs(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'r1' => static::score_table($imet_id, Evaluation\WorkProgramImplementation::class, 'EvaluationScore'),
             'r2' => static::score_table($imet_id, Evaluation\AchievedResults::class, 'EvaluationScore'),
@@ -180,15 +148,9 @@ class V1StatisticsService extends StatisticsService
 
     /**
      * Return OUTCOME step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_outcomes($imet): array
+    public static function scores_outcomes(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'ei1' => static::score_table($imet_id, Evaluation\AchievedObjectives::class, 'EvaluationScore'),
             'ei2' => static::score_group($imet_id, Evaluation\DesignatedValuesConservation::class, 'EvaluationScore', 'group_key'),

@@ -8,13 +8,13 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooper
 
 trait Process
 {
-    protected static function score_pr1($imet_id): ?float
+    protected static function score_pr1(int $imet_id): ?float
     {
         $records = StaffCompetence::getModuleRecords($imet_id)['records'];
         return _Common::score_staff($imet_id, $records);
     }
 
-    protected static function score_pr5($imet_id): ?float
+    protected static function score_pr5(int $imet_id): ?float
     {
         $records = EquipmentMaintenance::getModule($imet_id);
 
@@ -42,7 +42,7 @@ trait Process
             : null;
     }
 
-    protected static function score_pr9($imet_id): ?float
+    protected static function score_pr9(int $imet_id): ?float
     {
         $records = StakeholderCooperation::getModuleRecords($imet_id)['records'];
 

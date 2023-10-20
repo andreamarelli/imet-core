@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\App;
 trait Inputs
 {
 
-    public static function staff_weights($imet_id, $staff = null): array
+    public static function staff_weights(int $imet_id, $staff = null): array
     {
         $records = $staff ?? ManagementStaff::getModule($imet_id);
 
@@ -42,7 +42,7 @@ trait Inputs
     }
 
 
-    protected static function score_i2($imet_id): ?float
+    protected static function score_i2(int $imet_id): ?float
     {
         $records = Staff::getModule($imet_id);
         $functions = $records->pluck('Theme')->toArray();
@@ -76,7 +76,7 @@ trait Inputs
             : null;
     }
 
-    protected static function score_i3($imet_id)
+    protected static function score_i3(int $imet_id)
     {
         $records = BudgetAdequacy::getModule($imet_id)
             ->toArray();
@@ -99,7 +99,7 @@ trait Inputs
         return $score;
     }
 
-    protected static function score_i4($imet_id)
+    protected static function score_i4(int $imet_id)
     {
         $records = BudgetSecurization::getModule($imet_id)
             ->toArray();
@@ -122,7 +122,7 @@ trait Inputs
         return $score;
     }
 
-    protected static function score_i5($imet_id): ?float
+    protected static function score_i5(int $imet_id): ?float
     {
         $imet_locale = Imet::find($imet_id)->language;
         $current_locale = App::getLocale();

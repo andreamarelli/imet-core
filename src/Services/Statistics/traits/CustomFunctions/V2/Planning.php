@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\WorkPlan;
 
 trait Planning {
 
-    protected static function score_p3($imet_id): ?float
+    protected static function score_p3(int $imet_id): ?float
     {
         $values = BoundaryLevel::getModule($imet_id)
             ->map(function ($record){
@@ -47,21 +47,21 @@ trait Planning {
             : null;
     }
 
-    protected static function score_p4($imet_id): ?float
+    protected static function score_p4(int $imet_id): ?float
     {
         $records = ManagementPlan::getModule($imet_id)
             ->toArray();
         return static::score_p4_p5($imet_id, $records);
     }
 
-    protected static function score_p5($imet_id): ?float
+    protected static function score_p5(int $imet_id): ?float
     {
         $records = WorkPlan::getModule($imet_id)
             ->toArray();
         return static::score_p4_p5($imet_id, $records);
     }
 
-    private static function score_p4_p5($imet_id, $records): ?float
+    private static function score_p4_p5(int $imet_id, $records): ?float
     {
         $record = $records[0] ?? null;
 

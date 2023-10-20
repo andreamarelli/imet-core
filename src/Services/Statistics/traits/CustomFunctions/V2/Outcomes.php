@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\KeyConservationTren
 trait Outcomes
 {
 
-    protected static function score_oc2($imet_id): ?float
+    protected static function score_oc2(int $imet_id): ?float
     {
         $values = KeyConservationTrend::getModule($imet_id)
             ->filter(function($record){

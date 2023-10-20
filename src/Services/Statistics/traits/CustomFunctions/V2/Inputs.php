@@ -12,7 +12,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\Staff;
 trait Inputs
 {
 
-    protected static function score_i2($imet_id): ?float
+    protected static function score_i2(int $imet_id): ?float
     {
         $values = Staff::getModule($imet_id)
             ->map(function($item) {
@@ -27,7 +27,7 @@ trait Inputs
             : null;
     }
 
-    protected static function score_i3($imet_id)
+    protected static function score_i3(int $imet_id)
     {
         $records = BudgetAdequacy::getModule($imet_id)
             ->toArray();
@@ -56,7 +56,7 @@ trait Inputs
             : null;
     }
 
-    protected static function score_i4($imet_id): ?float
+    protected static function score_i4(int $imet_id): ?float
     {
         $records = BudgetSecurization::getModule($imet_id)
             ->toArray();
@@ -74,7 +74,7 @@ trait Inputs
             : null;
     }
 
-    protected static function score_i5($imet_id): ?float
+    protected static function score_i5(int $imet_id): ?float
     {
         $equipment = Equipments::getModule($imet_id)
             ->groupBy('group_key')

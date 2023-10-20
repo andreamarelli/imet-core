@@ -53,15 +53,9 @@ class OEMCStatisticsService extends StatisticsService
 
     /**
      * Return CONTEXT step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_context($imet): array
+    public static function scores_context(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'c1' => static::score_designations($imet_id),
             'c2' => static::score_support_contraints($imet_id),
@@ -96,15 +90,9 @@ class OEMCStatisticsService extends StatisticsService
 
     /**
      * Return PLANNING step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_planning($imet): array
+    public static function scores_planning(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'p1' => static::score_table($imet_id, RegulationsAdequacy::class, 'EvaluationScore'),
             'p2' => static::score_table($imet_id, DesignAdequacy::class, 'EvaluationScore'),
@@ -127,15 +115,9 @@ class OEMCStatisticsService extends StatisticsService
 
     /**
      * Return INPUTS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_inputs($imet): array
+    public static function scores_inputs(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'i1' => static::score_group($imet_id, InformationAvailability::class, 'EvaluationScore', 'group_key'),
             'i2' => static::score_i2($imet_id),
@@ -157,15 +139,9 @@ class OEMCStatisticsService extends StatisticsService
 
     /**
      * Return PROCESS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_process($imet): array
+    public static function scores_process(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'pr1' => static::score_pr1($imet_id),
             'pr2' => static::score_table($imet_id, HRmanagementPolitics::class, 'EvaluationScore'),
@@ -178,9 +154,7 @@ class OEMCStatisticsService extends StatisticsService
             'pr9' => static::score_pr9($imet_id),
             'pr10' => static::score_group($imet_id, AssistanceActivities::class, 'EvaluationScore', 'group_key'),
             'pr11' => static::score_table($imet_id, EnvironmentalEducation::class, 'EvaluationScore'),
-            'pr12' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore'),
-
-
+            'pr12' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore')
         ];
 
         // aggregate step score
@@ -202,15 +176,9 @@ class OEMCStatisticsService extends StatisticsService
 
     /**
      * Return OUTPUTS step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_outputs($imet): array
+    public static function scores_outputs(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'op1' => static::score_table($imet_id, WorkProgramImplementation::class, 'EvaluationScore'),
             'op2' => static::score_op2($imet_id)
@@ -229,15 +197,9 @@ class OEMCStatisticsService extends StatisticsService
 
     /**
      * Return OUTCOMES step scores
-     *
-     * @param Imet|int $imet
-     * @return array
      */
-    public static function scores_outcomes($imet): array
+    public static function scores_outcomes(int $imet_id): array
     {
-        $imet = static::get_imet($imet);
-        $imet_id = $imet->getKey();
-
         $scores = [
             'oc1' => static::score_table($imet_id, AchievedObjectives::class, 'EvaluationScore'),
             'oc2' => self::score_oc2($imet_id),

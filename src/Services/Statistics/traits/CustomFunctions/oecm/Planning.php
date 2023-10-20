@@ -12,7 +12,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
 trait Planning
 {
 
-    protected static function score_p3($imet_id): ?float
+    protected static function score_p3(int $imet_id): ?float
     {
         $records = BoundaryLevel::getModuleRecords($imet_id)['records'];
 
@@ -29,21 +29,21 @@ trait Planning
             : null;
     }
 
-    public static function score_p4($imet_id): ?float
+    public static function score_p4(int $imet_id): ?float
     {
         $records = ManagementPlan::getModule($imet_id)
             ->toArray();
         return static::score_p4_p5($imet_id, $records);
     }
 
-    public static function score_p5($imet_id): ?float
+    public static function score_p5(int $imet_id): ?float
     {
         $records = WorkPlan::getModule($imet_id)
             ->toArray();
         return static::score_p4_p5($imet_id, $records);
     }
 
-    public static function score_p6($imet_id): ?float
+    public static function score_p6(int $imet_id): ?float
     {
         $records = Objectives::getModule($imet_id)
             ->toArray();
@@ -76,7 +76,7 @@ trait Planning
             : null;
     }
 
-    private static function score_p4_p5($imet_id, $records): ?float
+    private static function score_p4_p5(int $imet_id, $records): ?float
     {
         $record = $records[0] ?? null;
 
