@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Jobs;
 
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -44,9 +45,9 @@ class CalculateScores implements ShouldQueue
         $imets = Imet::select(['FormID', 'version'])->get();
         foreach($imets as $imet){
             if($imet->version ===Imet::IMET_V2) {
-                V2StatisticsService::get_scores($imet->FormID, 'ALL', false);
+                V2StatisticsService::get_scores($imet->FormID, StatisticsService::ALL_SCORES, false);
             } else {
-                V1ToV2StatisticsService::get_scores($imet->FormID, 'ALL', false);
+                V1ToV2StatisticsService::get_scores($imet->FormID, StatisticsService::ALL_SCORES, false);
             }
             Log::info('IMET #' . $imet->FormID . ' scores updated');
         }
@@ -54,7 +55,7 @@ class CalculateScores implements ShouldQueue
         // OECM
         $oecms = ImetOECM::select(['FormID'])->get();
         foreach($oecms as $oecm){
-            OEMCStatisticsService::get_scores($oecm->FormID, 'ALL', false);
+            OEMCStatisticsService::get_scores($oecm->FormID, StatisticsService::ALL_SCORES, false);
             Log::info('OECM #' . $oecm->FormID . ' scores updated');
         }
 

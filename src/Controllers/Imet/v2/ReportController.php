@@ -7,6 +7,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\Animal;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use Illuminate\Support\Str;
@@ -47,7 +48,7 @@ class ReportController extends BaseReportController
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
 
-        $assessments_scores = V2StatisticsService::get_scores($form_id, 'ALL', false);
+        $assessments_scores = V2StatisticsService::get_scores($form_id, StatisticsService::ALL_SCORES, false);
 
         return [
             'item' => $item,

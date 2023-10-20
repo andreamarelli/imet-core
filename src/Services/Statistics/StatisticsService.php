@@ -15,7 +15,8 @@ abstract class StatisticsService
 
     const CACHE_PREFIX = 'imet_scores';
 
-    const GLOBAL = 'global';
+    const SUMMARY_SCORES = 'global';
+    const ALL_SCORES = 'ALL';
 
     const CONTEXT = 'context';
     const PLANNING = 'planning';
@@ -64,7 +65,7 @@ abstract class StatisticsService
         ];
 
         // Overall steps scores
-        $scores[self::GLOBAL] = [
+        $scores[self::SUMMARY_SCORES] = [
             static::CONTEXT => $scores[static::CONTEXT]['avg_indicator'],
             static::PLANNING => $scores[static::PLANNING]['avg_indicator'],
             static::INPUTS => $scores[static::INPUTS]['avg_indicator'],
@@ -74,13 +75,13 @@ abstract class StatisticsService
         ];
 
         // Overall IMET score
-        $scores[self::GLOBAL]['imet_index'] = static::average([
-            $scores[self::GLOBAL][static::CONTEXT],
-            $scores[self::GLOBAL][static::PLANNING],
-            $scores[self::GLOBAL][static::INPUTS],
-            $scores[self::GLOBAL][static::PROCESS],
-            $scores[self::GLOBAL][static::OUTPUTS],
-            $scores[self::GLOBAL][static::OUTCOMES],
+        $scores[self::SUMMARY_SCORES]['imet_index'] = static::average([
+            $scores[self::SUMMARY_SCORES][static::CONTEXT],
+            $scores[self::SUMMARY_SCORES][static::PLANNING],
+            $scores[self::SUMMARY_SCORES][static::INPUTS],
+            $scores[self::SUMMARY_SCORES][static::PROCESS],
+            $scores[self::SUMMARY_SCORES][static::OUTPUTS],
+            $scores[self::SUMMARY_SCORES][static::OUTCOMES],
         ]);
 
         return $scores;
@@ -89,7 +90,7 @@ abstract class StatisticsService
     /**
      * Retrieve assessment's scores
      */
-    public static function get_scores(Imet|ImetOEMC|int|string $imet, string $step = self::GLOBAL, bool $cache = true): array
+    public static function get_scores(Imet|ImetOEMC|int|string $imet, string $step = self::SUMMARY_SCORES, bool $cache = true): array
     {
         // Retrieve scores from cache
         $cache_key = static::getCacheKey($imet);
@@ -102,7 +103,7 @@ abstract class StatisticsService
             Cache::put($cache_key, $scores, null);
         }
 
-        return $step==='ALL'
+        return $step === static::ALL_SCORES
             ? $scores
             : $scores[$step];
     }
@@ -135,7 +136,7 @@ abstract class StatisticsService
     /**
      * Retrieve IMET assessment information including scores
      */
-    public static function get_assessment(Imet|ImetOEMC|int|string $imet, string $step = self::GLOBAL): array
+    public static function get_assessment(Imet|ImetOEMC|int|string $imet, string $step = self::SUMMARY_SCORES): array
     {
         $imet = static::get_imet($imet);
         return array_merge(

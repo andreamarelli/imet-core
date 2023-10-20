@@ -212,7 +212,7 @@ class Imet extends BaseImetForm
         Encoder::touchOnFormUpdate($item, $user_info);
 
         // Refresh scores
-        OEMCStatisticsService::get_scores($item, StatisticsService::GLOBAL, false);
+        OEMCStatisticsService::get_scores($item, StatisticsService::SUMMARY_SCORES, false);
 
         return $return;
     }

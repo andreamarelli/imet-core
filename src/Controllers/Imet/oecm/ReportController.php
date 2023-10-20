@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use Illuminate\Http\Request;
 
 class ReportController extends BaseReportController
@@ -34,7 +35,7 @@ class ReportController extends BaseReportController
         }
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
-        $scores = OEMCStatisticsService::get_scores($form_id, 'ALL', false);
+        $scores = OEMCStatisticsService::get_scores($form_id, StatisticsService::ALL_SCORES, false);
         $key_elements = $this->getKeyElements($form_id);
        // dd($this->getBiodiversityThreats($form_id));
         return [

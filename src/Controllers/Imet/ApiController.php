@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use AndreaMarelli\ModularForms\Controllers\Controller;
@@ -81,9 +82,9 @@ class ApiController extends Controller
 
         foreach ($list as $key => $imet) {
             if (Imet\Imet::IMET_V1 === $imet['version']) {
-                $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+                $result[] = V1ToV2StatisticsService::get_scores($imet['FormID'], StatisticsService::SUMMARY_SCORES);
             } else {
-                $result[] = V2StatisticsService::get_scores($imet['FormID'], 'ALL')['global'];
+                $result[] = V2StatisticsService::get_scores($imet['FormID'], StatisticsService::SUMMARY_SCORES);
             }
         }
 

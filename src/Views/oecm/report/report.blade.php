@@ -1,7 +1,15 @@
 <?php
-/** @var string $action */
 
-/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
+use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
+use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ModularForms\Helpers\Template;
+use Illuminate\Support\Facades\App;
+
+/** @var string $action */
+/** @var Imet $item */
 /** @var array $assessment */
 /** @var array $key_elements */
 /** @var array $main_threats */
@@ -14,9 +22,7 @@
 
 
 // Force Language
-use Illuminate\Support\Facades\App;
-
-if ($item->language != App::getLocale()) {
+if($item->language != App::getLocale()){
     App::setLocale($item->language);
 }
 
@@ -61,8 +67,8 @@ if ($item->language != App::getLocale()) {
             </div>
             <div class="module-body">
                 <imet_charts
-                    form_id={{ $item->getKey() }}  :labels='@json(\AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService::steps_labels())'
-                    :show_histogram="true" :version="'oecm'"></imet_charts>
+                        form_id={{ $item->getKey() }}  :labels='@json(OEMCStatisticsService::steps_labels())'
+                        :show_histogram="true" :version="'oecm'"></imet_charts>
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::common.steps_eval.context')</th>
@@ -74,13 +80,13 @@ if ($item->language != App::getLocale()) {
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['context']) !!} >{{ $assessment['global']['context'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['planning']) !!} >{{ $assessment['global']['planning'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['inputs']) !!} >{{ $assessment['global']['inputs'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['process']) !!} >{{ $assessment['global']['process'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['outputs']) !!} >{{ $assessment['global']['outputs'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['outcomes']) !!} >{{ $assessment['global']['outcomes'] }}</td>
-                        <td {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['global']['imet_index']) !!} >{{ $assessment['global']['imet_index'] }}</td>
+                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['context']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['context'] }}</td>
+                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['planning']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['planning'] }}</td>
+                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['inputs']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['inputs'] }}</td>
+                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['process']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['process'] }}</td>
+                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['outputs']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['outputs'] }}</td>
+                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['outcomes']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['outcomes'] }}</td>
+                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['imet_index']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
                 @include('imet-core::oecm.report.components.table_evaluation', ['assessment' => $assessment])
@@ -156,12 +162,12 @@ if ($item->language != App::getLocale()) {
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
                     <form id="imet_report_form" method="post"
-                          action="{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
+                          action="{{ route(Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
                           style="display: inline-block;">
                         @method('PATCH')
                         @csrf
                         <span
-                            @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
+                                @click="saveReport">{!! Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
                 <div class="standalone" v-show=status==='loading'>
@@ -177,7 +183,7 @@ if ($item->language != App::getLocale()) {
 
                 {{-- Print --}}
                 <div class="standalone"
-                     @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
+                     @click="printReport">{!! Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
     </div>

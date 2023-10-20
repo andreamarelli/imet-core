@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
 use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 
@@ -310,8 +311,8 @@ class Common
             $version = \AndreaMarelli\ImetCore\Models\Imet\Imet::getVersion($form_id);
 
             $assessments[$k] = $version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
-                ? V1ToV2StatisticsService::get_scores($form_id, 'global')
-                : V2StatisticsService::get_scores($form_id, 'global');
+                ? V1ToV2StatisticsService::get_scores($form_id, StatisticsService::SUMMARY_SCORES)
+                : V2StatisticsService::get_scores($form_id, StatisticsService::SUMMARY_SCORES);
 
             $name = static::get_pa_name($form_id, $scaling_id);
 
