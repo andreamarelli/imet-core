@@ -11,6 +11,8 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPart
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,14 +140,19 @@ class Imet extends BaseImetForm
     public static function updateModuleAndForm($item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);
+
+        // backup to JSON
         if ($return['status'] == 'success') {
-            (new Controller)->backup($item, Imet::version);
+            (new Controller())->backup($item, Imet::version);
         }
 
+        // Update encoder UPDATED_AT
         $user_info = Auth::user()->getInfo();
         unset($user_info['country']);
-
         Encoder::touchOnFormUpdate($item, $user_info);
+
+        // Refresh scores
+        V2StatisticsService::get_scores($item, StatisticsService::GLOBAL, false);
 
         return $return;
     }
