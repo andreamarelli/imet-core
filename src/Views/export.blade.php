@@ -1,26 +1,24 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
+/** @var string $route_prefix */
 /** @var array $countries */
 /** @var array $years */
-$url = \Illuminate\Support\Facades\URL::route('export_view');
-$filter_selected = false;
+
+use \AndreaMarelli\ImetCore\Models\Imet\Imet;
+
 ?>
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
-    ]])
-@endsection
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
     @include('imet-core::components.common_filters', [
             'request'=>$request,
-            'url' => $url,
-            'filter_selected' => $filter_selected,
+            'url' => route($route_prefix . 'export_view'),
+            'filter_selected' => false,
             'countries' => $countries,
             'years' => $years
         ])
@@ -29,7 +27,7 @@ $filter_selected = false;
         <div class="row">
             <div class="col">
                 <form target="_blank" ref="filterForm" method="POST"
-                      action="{{ \Illuminate\Support\Facades\URL::route('export_json_batch') }}">
+                      action="{{ route($route_prefix . 'export_batch') }}">
                     <button type="submit" class="btn act-btn-active float-left" :disabled="exportDisabled">Export
                     </button>
                     {{ csrf_field() }}
@@ -71,12 +69,12 @@ $filter_selected = false;
                     </div>
                 </td>
                 <td class="align-baseline">
-                    <flag :iso2=item.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country_name }}</i>
+                    <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
                 </td>
                 <td class="align-baseline text-center">
                     <div>
-                        <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
-                        <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
+                        <span v-if="item.version==='{{ Imet::IMET_V2 }}'" class="badge badge-success">v2</span>
+                        <span v-else-if="item.version==='{{ Imet::IMET_V1 }}'" class="badge badge-secondary">v1</span>
                     </div>
                 </td>
                 <td>

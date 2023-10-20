@@ -2,12 +2,16 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
 
+use AndreaMarelli\ImetCore\Helpers\Template;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class Areas extends Modules\Component\ImetModule
 {
     protected $table = 'imet.context_areas';
     public $label_width = 5;
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = [])
     {
@@ -30,12 +34,12 @@ class Areas extends Modules\Component\ImetModule
             [
                 'name' => 'TerrestrialArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.TerrestrialArea')
+                'label' => Template::module_scope(static::TERRESTRIAL).trans('imet-core::v2_context.Areas.fields.TerrestrialArea')
             ],
             [
                 'name' => 'MarineArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.MarineArea')
+                'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.Areas.fields.MarineArea')
             ],
             [
                 'name' => 'PercentageNationalNetwork',

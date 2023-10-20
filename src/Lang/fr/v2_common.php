@@ -5,10 +5,6 @@ return [
     'management'        => 'gestion des formulaires IMET (v2 - Consolidé)',
     'v2' => 'v2 - Consolidé',
 
-    'indicator'     => 'Indicateur',
-    'methodology'   => 'Question posée',
-    'criteria'      => 'Notation',
-
     'steps' => [
         'general_info'          => 'Informations générales sur l\'aire protégée',
         'areas'                 => 'Superficies, limites et indice de forme, niveau de contrôle',
@@ -19,29 +15,6 @@ return [
         'ecosystem_services'    => 'Services écosystémiques et dépendance des collectivités',
         'objectives'            => 'Objectifs et Gestion',
         'cross_analysis'  => 'Cross Analysis',
-    ],
-
-    'steps_eval' => [
-        'general_info'              => 'Informations générales',
-        'context'                   => 'Contexte de gestion',
-        'planning'                  => 'Planification',
-        'inputs'                    => 'Intrants',
-        'process'                   => 'Processus',
-        'outputs'                   => 'Resultats',
-        'outcomes'                  => 'Effects et Impacts',
-        'objectives'                => 'Objectifs',
-        'management_effectiveness'  => 'Efficacité de gestion',
-    ],
-
-
-    'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Contexte index',
-        'planning'    => 'Planification index',
-        'inputs'      => 'Intrants index',
-        'process'     => 'Processus index',
-        'outputs'     => 'Resultats index',
-        'outcomes'    => 'Effects et Impacts index',
     ],
 
     'assessment' => [
@@ -213,6 +186,10 @@ return [
         'op3' => [
             'O/P3',
             'Domination de l’aire protégée',
+        ],
+        'op4' => [
+            'O/P4',
+            'Application de la loi dans l’AMP',
         ],
         'oc1' => [
             'O/C1',

@@ -3,10 +3,13 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use AndreaMarelli\ImetCore\Models\User\Role;
 
 class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'imet.eval_regulations_adequacy';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public function __construct(array $attributes = []) {
 
@@ -29,6 +32,20 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
         $this->ratingLegend = trans('imet-core::v2_evaluation.RegulationsAdequacy.ratingLegend');
 
         parent::__construct($attributes);
+    }
+
+    public static function get_marine_predefined(): array
+    {
+        $predefined = (new static())->predefined_values['values'];
+        return [
+            $predefined[9],
+            $predefined[10],
+            $predefined[11],
+            $predefined[12],
+            $predefined[13],
+            $predefined[14],
+            $predefined[15]
+        ];
     }
 
 

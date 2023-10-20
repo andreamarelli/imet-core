@@ -1,0 +1,71 @@
+<?php
+
+namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use Illuminate\Http\JsonResponse;
+
+use function response;
+
+trait Assessment
+{
+
+    public static function assessment($item, string $step = StatisticsService::SUMMARY_SCORES): JsonResponse
+    {
+        $stats = Imet::getVersion($item)===Imet::IMET_V1
+            ? V1ToV2StatisticsService::get_assessment($item, $step)
+            : V2StatisticsService::get_assessment($item, $step);
+
+        return response()->json($stats);
+    }
+
+    public static function assessment_oecm($item, string $step = StatisticsService::SUMMARY_SCORES): JsonResponse
+    {
+        $stats = OEMCStatisticsService::get_assessment($item, $step);
+
+        return response()->json($stats);
+    }
+
+
+    public static function score_class($value, $additional_classes=''): string
+    {
+        if($value===null){
+            $class = 'score_no';
+        } elseif($value <= -51){
+            $class='score_danger_alert';
+        } elseif($value < -33 && $value > -51){
+            $class='score_danger_warning';
+        } elseif($value <= 0){
+            $class = 'score_danger';
+        } elseif($value < 34){
+            $class = 'score_alert';
+        } elseif($value<51){
+            $class = 'score_warning';
+        } else {
+            $class = 'score_success';
+        }
+        return 'class="'.$class.' '.$additional_classes.'"';
+    }
+
+    public static function score_class_threats($value, $additional_classes=''): string
+    {
+        if($value===null){
+            $class = 'score_no';
+        } elseif($value<-51){
+            $class = 'score_danger';
+        } elseif($value<-34){
+            $class = 'score_alert';
+        } elseif($value<-1){
+            $class = 'score_warning';
+        } else {
+            $class = 'score_success';
+        }
+        return 'class="'.$class.' '.$additional_classes.'"';
+    }
+
+}
+

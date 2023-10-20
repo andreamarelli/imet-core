@@ -7,6 +7,10 @@
 export default {
     name: "radar_multiple_values",
     props: {
+        title: {
+            type: String,
+            default: ''
+        },
         width: {
             type: Number,
             default: 180
@@ -58,6 +62,10 @@ export default {
             default: () => {
                 return [0, 1, 2];
             }
+        },
+        refresh_average: {
+            type: Boolean,
+            default: true
         }
     },
     data: function () {
@@ -77,6 +85,13 @@ export default {
             }
 
             return {
+                title: {
+                    text: this.title,
+                    left: 'center',
+                    textStyle: {
+                        fontWeight: 'normal'
+                    }
+                },
                 color: this.default_colors,
                 tooltip: {
                     trigger: 'axis'
@@ -89,6 +104,7 @@ export default {
                     bottom: "3%",
                     width: "80%",
                     height: "82%",
+                    top: 30,
                     "containLabel": true,
                 },
                 radar: {
@@ -126,6 +142,7 @@ export default {
     },
     mounted() {
         this.draw_chart();
+
     },
     methods: {
         createItemsForScalingNumbers: function () {
@@ -183,10 +200,9 @@ export default {
                         return name;
                     },
                     data: legends,
-                    padding: [5, 5, 10, 5]
+                    padding: [35, 5, 10, 5]
                 }
             }
-
         },
         setLegends: function () {
             const legends = [];
@@ -213,16 +229,55 @@ export default {
             render_items.push(item);
             return {render_items, legends, indicators};
         },
+        calculateAverage: function (items, legends) {
+            let average = items.find((item) => item.name === "Average")?.value.map(v => 0)
+            const averageItems = [...average];
+            if (average) {
+                items.forEach((item, index) => {
+                    if (!['Average', 'upper limit', 'lower limit'].includes(item['name']) && legends.selected[item['name']] === true) {
+                        item['value'].forEach((val, i) => {
+                            if (val !== '-') {
+                                averageItems[i]++;
+                                average[i] += val;
+                            }
+                        });
+                    }
+                });
+
+                average.forEach((value, index) => {
+                    if (averageItems[index] > 0) {
+                        average[index] = parseFloat((average[index] / averageItems[index]).toFixed(1));
+                    } else {
+                        average[index] = "-";
+                    }
+                });
+
+                if (average.every(i => i === '-')) {
+                    average = this.values['Average'];
+                    delete average['color'];
+                    delete average['legend_selected']
+                }
+
+                items.map((item) => {
+                    if (item['name'] === 'Average') {
+                        item['value'] = Object.values(average);
+                    }
+                    return item;
+                });
+            }
+
+            return items;
+        },
         multipleData: function () {
             let indicators = [];
             let legends = [];
             const render_items = [];
-
+            const calculatedValues = this.values;
             if (this.show_legends) {
-                legends = this.setLegends(this.values);
+                legends = this.setLegends(calculatedValues);
             }
             const negative_indicators = [];
-            const values = JSON.parse(JSON.stringify(this.values));
+            const values = JSON.parse(JSON.stringify(calculatedValues));
 
             Object.entries(values).forEach((data, key) => {
                 const item = this.radar_item();
@@ -244,12 +299,12 @@ export default {
                             }
                             item.tooltip = {
                                 trigger: 'item'
-
                             };
                             //todo check it again
                             delete value['lineStyle'];
                             delete value['color'];
                             delete value['width'];
+                            delete value['wdpa_id'];
                             delete value['legend_selected'];
 
                             indicators = Object.values(value);
@@ -268,22 +323,24 @@ export default {
             render_items.push(...this.createItemsForScalingNumbers());
 
             render_items.map(item => {
-                item.tooltip.formatter = (params, ticket) => {
-                    let html = '';
-                    html = params.data.name+"<br/>";
-                    for(const val in params.data.value){
-                        if(indicators[val] !== undefined) {
-                            html += indicators[val]?.text + " : " + params.value[val] + "<br/>";
+                if (item.tooltip) {
+                    item.tooltip.formatter = (params, ticket) => {
+                        let html = '';
+                        html = params.data.name + "<br/>";
+                        for (const val in params.data.value) {
+                            if (indicators[val] !== undefined) {
+                                html += indicators[val]?.text + " : " + params.value[val] + "<br/>";
+                            }
                         }
-                    }
-                    return html
-                };
+                        return html
+                    };
+                }
                 return item;
             });
             return {render_items, legends, indicators};
         },
         find_if_array_has_negative_values: function (array) {
-            return array.findIndex(value => ((value !="-" ? value < 0: false)));
+            return array.findIndex(value => ((value != "-" ? value < 0 : false)));
         },
         radar_item: function () {
             return {
@@ -308,11 +365,15 @@ export default {
         draw_chart() {
             if (Object.keys(this.values).length > 1) {
                 this.chart = echarts.init(this.$el);
+
+
                 this.chart.setOption(this.radar_options);
 
                 if (this.unselect_legends_on_load) {
                     this.unselect_all_legends(this.radar_options?.legend?.data);
                 }
+
+
             }
         },
         unselect_all_legends: function (legends) {

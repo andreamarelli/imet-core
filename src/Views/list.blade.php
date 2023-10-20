@@ -1,67 +1,92 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Controllers\Imet\Controller $controller */
-/** @var \Illuminate\Database\Eloquent\Collection $list */
-/** @var \Illuminate\Http\Request $request */
+
+use \AndreaMarelli\ImetCore\Controllers;
+use \AndreaMarelli\ImetCore\Models\Imet;
+use \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
+use \AndreaMarelli\ModularForms\Helpers\Template;
+use \Illuminate\Database\Eloquent\Collection;
+use \Illuminate\Http\Request;
+
+/** @var Controllers\Imet\Controller|Controllers\Imet\oecm\Controller $controller */
+/** @var Collection $list */
+/** @var Request $request */
 /** @var array $countries */
 /** @var array $years */
 /** @var boolean $filter_selected */
 
-use Illuminate\Support\Facades\URL;
+if($controller === Controllers\Imet\oecm\Controller::class){
+    $form_class = Imet\oecm\Imet::class;
+    $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
+    $scaling_up_enable = false;
+} else {
+    $form_class = Imet\Imet::class;
+    $route_prefix = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
+    $scaling_up_enable = true;
+}
 
-$url        = URL::route('index');
 ?>
 
 @extends('layouts.admin')
 
-@section('admin_breadcrumbs')
-    @include('modular-forms::page.breadcrumbs', ['links' => [
-        action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'index']) => trans('imet-core::common.imet_short')
-    ]])
-@endsection
-
-@if(!is_imet_environment())
-@section('admin_page_title')
-    @lang('imet-core::common.imet')
-@endsection
-@endif
+@include('imet-core::components.breadcrumbs_and_page_title')
 
 @section('content')
 
-    @can('encode-imets')
+    <div class="functional_buttons">
 
-        <div class="functional_buttons">
+        @can('edit', $form_class)
+            {{-- Create new IMET --}}
+            <a class="btn-nav rounded"
+               href="{{ route($route_prefix.'create') }}">
+                {!! Template::icon('plus-circle', 'white') !!}
+                {{ ucfirst(trans('imet-core::common.Create.title')) }}
+            </a>
+            <a class="btn-nav rounded"
+               href="{{ route($route_prefix.'create_non_wdpa') }}">
+                {!! Template::icon('plus-circle', 'white') !!}
+                {{ ucfirst(trans('imet-core::common.CreateNonWdpa.title')) }}
+            </a>
             {{-- Import json IMETs --}}
-            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'import']) }}">
-                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-import', 'white') !!}
+            <a class="btn-nav rounded"
+               href="{{ route($route_prefix.'import') }}">
+                {!! Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
             </a>
+            @if($scaling_up_enable)
+                &nbsp;&nbsp;
+                &nbsp;&nbsp;
+                {{-- Scaling Up --}}
+                <a class="btn-nav rounded"
+                   href="{{ route('imet-core::scaling_up_index') }}">
+                    {!! Template::icon('chart-bar', 'white') !!}
+                    {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
+                </a>
+            @endif
+
+        @endcan
+
+        @can('exportAll', $form_class)
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
             {{-- Export json IMETs --}}
-            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\Controller::class, 'export_view']) }}">
-                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-export', 'white') !!}
+            <a class="btn-nav rounded"
+               href="{{ route($route_prefix.'export_view') }}">
+                {!! Template::icon('file-export', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.export')) }}
             </a>
-            {{-- Create new IMET --}}
-            @include('modular-forms::buttons.create', [
-                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                'label' => trans('imet-core::v2_context.Create.title')
-            ])
-            <a class="btn-nav rounded" href="{{ action([\AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class, 'create_non_wdpa']) }}">
-                {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!}
-                {{ ucfirst(trans('imet-core::v2_context.CreateNonWdpa.title')) }}
-            </a>
-        </div>
+        @endcan
 
-    @endcan
+    </div>
 
     @include('imet-core::components.common_filters', [
-        'request'=>$request,
-        'url' => $url,
+        'request' => $request,
+        'url' => $index_url,
         'filter_selected' => $filter_selected,
         'countries' => $countries,
         'years' => $years
     ])
 
-    <br />
+    <br/>
     <div id="sortable_list">
 
         @include('modular-forms::tables.sort_on_client.num_records')
@@ -90,13 +115,14 @@ $url        = URL::route('index');
                             <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
                             {{-- wdpa_id --}}
                             <span v-if="item.wdpa_id!==null">
-                                (<a target="_blank" :href="'{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
+                                (<a target="_blank"
+                                    :href="'{{ ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
                             </span>
-                            <br />
+                            <br/>
                             {{-- country --}}
                             <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
                         </div>
-                        <br />
+                        <br/>
                         {{-- language --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
@@ -105,80 +131,77 @@ $url        = URL::route('index');
                         {{-- version --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.version')) }}:
-                            <span v-if="item.version==='v2'" class="badge badge-success">v2</span>
-                            <span v-else-if="item.version==='v1'" class="badge badge-secondary">v1</span>
+                            <span v-if="item.version==='{{ $form_class::IMET_V2 }}'"
+                                  class="badge badge-success">v2</span>
+                            <span v-else-if="item.version==='{{ $form_class::IMET_V1 }}'" class="badge badge-secondary">v1</span>
+                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">OECM</span>
+                        </div>
+                        {{-- last update --}}
+                        <div>
+                            @uclang('modular-forms::entities.common.last_update'):&nbsp;
+                            <b><i>@{{ item.last_update.date }}</i></b>
                         </div>
                     </div>
                 </td>
                 <td class="align-baseline">
                     <imet_encoders_responsibles
-                        :items=item.encoders_responsibles
+                            :items=item.encoders_responsibles
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
-                    <imet_radar :width=150 :height=150 :values=item.assessment_radar ></imet_radar>
+                    <imet_radar
+                            style="margin: 0 auto;"
+                            :width=150 :height=150
+                            :values=item.assessment_radar
+                            v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                    ></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
 
                     {{-- Show --}}
-                    <span v-if="item.version==='v2'">
-                            @include('imet-core::components.button_show', ['version' => 'v2'])
-                        </span>
+                    <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
+                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_V1])
+                    </span>
+                    <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
+                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_V2])
+                    </span>
+                    <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
+                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_OECM])
+                    </span>
 
-                    @can('encode-imets')
+                    @can('edit', $form_class)
 
                         {{-- Edit --}}
-                        <span v-if="item.version==='v1'">
-                            @include('imet-core::components.button_edit', ['version' => 'v1'])
+                        <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
+                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_V1])
                         </span>
-                        <span v-else-if="item.version==='v2'">
-                            @include('imet-core::components.button_edit', ['version' => 'v2'])
+                        <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
+                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_V2])
+                        </span>
+                        <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
+                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_OECM])
                         </span>
 
                         {{-- Merge tool --}}
                         <span v-if="item.has_duplicates">
-                                @include('modular-forms::buttons._generic', [
-                                    'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                                    'action' =>'merge_view',
-                                    'item' => 'item.FormID',
-                                    'tooltip' => ucfirst(trans('modular-forms::common.merge')),
-                                    'icon' => 'clone',
-                                    'class' => 'btn-primary'
-                                ])
-                            </span>
-
-                        {{-- Export --}}
-                        @include('modular-forms::buttons._generic', [
-                            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                            'action' =>'export',
-                            'item' => 'item.FormID',
-                            'tooltip' => ucfirst(trans('modular-forms::common.export')),
-                            'icon' => 'cloud-download-alt',
-                            'class' => 'btn-primary'
-                        ])
+                            @include('imet-core::components.buttons.merge', ['form_class' => $form_class])
+                        </span>
 
                     @endcan
 
+                    {{-- Export --}}
+                    @can('export_button', $form_class)
+                        @include('imet-core::components.buttons.export', ['form_class' => $form_class])
+                    @endcan
+
                     {{-- Print --}}
-                    <span v-if="item.version==='v2'">
-                            @include('modular-forms::buttons._generic', [
-                                'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\ControllerV2::class,
-                                'action' =>'print',
-                                'item' => 'item.FormID',
-                                'tooltip' => ucfirst(trans('modular-forms::common.print')),
-                                'icon' => 'print',
-                                'class' => 'btn-primary'
-                            ])
-                        </span>
+                    @include('imet-core::components.buttons.print', ['form_class' => $form_class])
 
-                    @can('encode-imets')
-
-                        {{-- Delete --}}
-                        @include('modular-forms::buttons.delete', [
-                            'controller' => \AndreaMarelli\ImetCore\Controllers\Imet\Controller::class,
-                            'item' => 'item.FormID'
+                    {{-- Delete --}}
+                    @can('edit', $form_class)
+                        @include('imet-core::components.buttons.delete', [
+                            'form_class' => $form_class
                         ])
-
                     @endcan
 
                 </td>
@@ -201,7 +224,7 @@ $url        = URL::route('index');
                 },
 
                 mounted: function () {
-                    this.sort('{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortBy }}', '{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::$sortDirection }}');
+                    this.sort('{{ $form_class::$sortBy }}', '{{ $form_class::$sortDirection }}');
                 }
 
             });
