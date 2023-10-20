@@ -9,6 +9,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesIntervie
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -200,14 +201,18 @@ class Imet extends BaseImetForm
     {
         $return = parent::updateModuleAndForm($item, $request);
 
+        // backup to JSON
         if ($return['status'] == 'success') {
             (new Controller())->backup($item, Imet::version);
         }
 
+        // Update encoder UPDATED_AT
         $user_info = Auth::user()->getInfo();
         unset($user_info['country']);
-
         Encoder::touchOnFormUpdate($item, $user_info);
+
+        // Refresh scores
+        OEMCStatisticsService::get_scores($item, StatisticsService::GLOBAL, false);
 
         return $return;
     }

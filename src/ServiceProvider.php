@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore;
 
 use AndreaMarelli\ImetCore\Commands\ApplySQL;
+use AndreaMarelli\ImetCore\Commands\CalculateScores;
 use AndreaMarelli\ImetCore\Commands\ConvertSQLite;
 use AndreaMarelli\ImetCore\Commands\Export;
 use AndreaMarelli\ImetCore\Commands\GetSerialNumber;
@@ -55,6 +56,7 @@ class ServiceProvider extends BaseServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ApplySQL::class,
+                CalculateScores::class,
                 ConvertSQLite::class,
                 Export::class,
                 GetSerialNumber::class,

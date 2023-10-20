@@ -98,8 +98,10 @@ abstract class StatisticsService
                     static::OUTPUTS => static::get_scores($imet, StatisticsService::OUTPUTS),
                     static::OUTCOMES => static::get_scores($imet, StatisticsService::OUTCOMES),
                 ];
+                break;
             default:
                 $scores = [];
+                break;
         }
 
         Cache::put($cache_key, $scores, null);
