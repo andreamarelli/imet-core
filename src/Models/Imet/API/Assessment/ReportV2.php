@@ -5,8 +5,8 @@ namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
 use Illuminate\Support\Facades\Lang;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Report;
 
@@ -23,7 +23,7 @@ class ReportV2 extends ReportV1
      */
     protected static function assessment_scores(int $form_id): array
     {
-        return V2StatisticsService::get_scores($form_id, StatisticsService::ALL_SCORES);
+        return V2ScoresService::get_scores($form_id, ScoresService::ALL_SCORES);
     }
 
     /**

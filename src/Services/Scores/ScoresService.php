@@ -1,14 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics;
+namespace AndreaMarelli\ImetCore\Services\Scores;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
+use AndreaMarelli\ImetCore\Services\Scores\traits\Math;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Cache;
 
-abstract class StatisticsService
+abstract class ScoresService
 {
     use Math;
 
@@ -38,7 +38,7 @@ abstract class StatisticsService
     /**
      * Calculate scores
      */
-    public static function calculate_scores(int $imet_id): array
+    private static function calculate_scores(int $imet_id): array
     {
         // Granular scores per each step
         $scores = [
@@ -104,14 +104,11 @@ abstract class StatisticsService
     {
         $imet = static::get_imet($imet);
 
-        $labels = static::steps_labels();
+        $labels = static::steps_labels()[$imet->version]['abbreviations'];
         $scores = static::get_scores($imet);
         unset($scores['imet_index']);
 
-        return array_combine(
-            $labels[$imet->version]['abbreviations'],
-            $scores
-        );
+        return array_combine($labels, $scores);
     }
 
     /**

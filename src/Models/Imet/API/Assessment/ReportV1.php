@@ -6,8 +6,8 @@ use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\V1ToV2ScoresService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Report;
@@ -28,7 +28,7 @@ class ReportV1
      */
     protected static function assessment_scores(int $form_id): array
     {
-        return V1ToV2StatisticsService::get_scores($form_id, StatisticsService::ALL_SCORES);
+        return V1ToV2ScoresService::get_scores($form_id, ScoresService::ALL_SCORES);
     }
 
     /**

@@ -7,9 +7,9 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\OEMCScoresService;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
 use Illuminate\Http\Request;
 
 class ReportController extends BaseReportController
@@ -35,7 +35,7 @@ class ReportController extends BaseReportController
         }
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
-        $scores = OEMCStatisticsService::get_scores($form_id, StatisticsService::ALL_SCORES, false);
+        $scores = OEMCScoresService::get_scores($form_id, ScoresService::ALL_SCORES, false);
         $key_elements = $this->getKeyElements($form_id);
        // dd($this->getBiodiversityThreats($form_id));
         return [
@@ -50,7 +50,7 @@ class ReportController extends BaseReportController
             'assessment' => array_merge(
                 $scores,
                 [
-                    'labels' => OEMCStatisticsService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
+                    'labels' => OEMCScoresService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
                 ]
             ),
             'report' => Report::getByForm($form_id),

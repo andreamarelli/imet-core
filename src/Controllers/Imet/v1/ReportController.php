@@ -5,8 +5,8 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
 use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\V1ToV2ScoresService;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
@@ -48,7 +48,7 @@ class ReportController extends BaseReportController
 
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
-        $assessments_scores = V1ToV2StatisticsService::get_scores($form_id, StatisticsService::ALL_SCORES, false);
+        $assessments_scores = V1ToV2ScoresService::get_scores($form_id, ScoresService::ALL_SCORES, false);
         return [
             'item' => $item,
             'key_elements' => [
@@ -66,7 +66,7 @@ class ReportController extends BaseReportController
             'assessment' => array_merge(
                 $assessments_scores,
                 [
-                    'labels' => V1ToV2StatisticsService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1)
+                    'labels' => V1ToV2ScoresService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1)
                 ]
             ),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v1\Report::getByForm($form_id),

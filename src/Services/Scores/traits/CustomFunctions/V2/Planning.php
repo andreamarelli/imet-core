@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\V2;
+namespace AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions\V2;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\BoundaryLevel;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ManagementPlan;

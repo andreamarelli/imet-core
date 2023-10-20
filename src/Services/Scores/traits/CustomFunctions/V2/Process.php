@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions\V2;
+namespace AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions\V2;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
@@ -9,14 +9,14 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadershi
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
-use AndreaMarelli\ImetCore\Services\Statistics\V1StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\V1ScoresService;
 
 trait Process
 {
     protected static function staff_weights(int $imet_id): array
     {
         $records = ManagementStaff::getModule($imet_id);
-        return V1StatisticsService::staff_weights($imet_id, $records);
+        return V1ScoresService::staff_weights($imet_id, $records);
     }
 
     protected static function score_pr1(int $imet_id): ?float

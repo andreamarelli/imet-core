@@ -8,8 +8,8 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesIntervie
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\OEMCScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -157,7 +157,7 @@ class Imet extends BaseImetForm
                 ];
 
                 // Add radar
-                $item['assessment_radar'] = OEMCStatisticsService::get_radar_scores($item);
+                $item['assessment_radar'] = OEMCScoresService::get_radar_scores($item);
 
                 // Non WDPA
                 if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
@@ -212,7 +212,7 @@ class Imet extends BaseImetForm
         Encoder::touchOnFormUpdate($item, $user_info);
 
         // Refresh scores
-        OEMCStatisticsService::get_scores($item, StatisticsService::SUMMARY_SCORES, false);
+        OEMCScoresService::get_scores($item, ScoresService::SUMMARY_SCORES, false);
 
         return $return;
     }

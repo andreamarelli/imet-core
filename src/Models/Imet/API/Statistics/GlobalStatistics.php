@@ -6,8 +6,8 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\V1ToV2ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
@@ -36,8 +36,8 @@ class GlobalStatistics
             $wdpa_ids[$item['wdpa_id']] = [
                 'wdpa_id' => $item['wdpa_id'],
                 'imet_index' => $item['version'] === Imet::IMET_V1
-                    ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
-                    : V2StatisticsService::get_imet_score($item['FormID'])
+                    ? V1ToV2ScoresService::get_imet_score($item['FormID'])
+                    : V2ScoresService::get_imet_score($item['FormID'])
             ];
         }
 
@@ -375,12 +375,12 @@ class GlobalStatistics
 
         if ($global_scores) {
             $new_item = $item['version'] === Imet::IMET_V1
-                ? V1ToV2StatisticsService::get_scores($item['FormID'])
-                : V2StatisticsService::get_scores($item['FormID']);
+                ? V1ToV2ScoresService::get_scores($item['FormID'])
+                : V2ScoresService::get_scores($item['FormID']);
         } else {
             $new_item['imet_index'] = $item['version'] === Imet::IMET_V1
-                ? V1ToV2StatisticsService::get_imet_score($item['FormID'])
-                : V2StatisticsService::get_imet_score($item['FormID']);
+                ? V1ToV2ScoresService::get_imet_score($item['FormID'])
+                : V2ScoresService::get_imet_score($item['FormID']);
 
         }
 

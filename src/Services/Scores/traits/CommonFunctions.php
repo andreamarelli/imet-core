@@ -1,19 +1,13 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics\traits;
+namespace AndreaMarelli\ImetCore\Services\Scores\traits;
 
 trait CommonFunctions {
 
     /**
      * Standard function for TABLE type modules
-     *
-     * @param $imet_id
-     * @param $module_class
-     * @param $module_field
-     * @param int $denominator
-     * @return float|null
      */
-    private static function score_table($imet_id, $module_class, $module_field, int $denominator = 3): ?float
+    private static function score_table(int $imet_id, $module_class, string $module_field, int $denominator = 3): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
@@ -33,14 +27,8 @@ trait CommonFunctions {
 
     /**
      * Standard function for GROUP type modules
-     *
-     * @param $imet_id
-     * @param $module_class
-     * @param $module_field
-     * @param $group_field
-     * @return float|null
      */
-    private static function score_group($imet_id, $module_class, $module_field, $group_field): ?float
+    private static function score_group(int $imet_id, $module_class, string $module_field, string $group_field): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records

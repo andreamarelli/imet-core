@@ -2,16 +2,16 @@
 
 namespace AndreaMarelli\ImetCore\Jobs;
 
-use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\OEMCScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\V1ToV2ScoresService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOECM;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
@@ -45,9 +45,9 @@ class CalculateScores implements ShouldQueue
         $imets = Imet::select(['FormID', 'version'])->get();
         foreach($imets as $imet){
             if($imet->version ===Imet::IMET_V2) {
-                V2StatisticsService::get_scores($imet->FormID, StatisticsService::ALL_SCORES, false);
+                V2ScoresService::get_scores($imet->FormID, ScoresService::ALL_SCORES, false);
             } else {
-                V1ToV2StatisticsService::get_scores($imet->FormID, StatisticsService::ALL_SCORES, false);
+                V1ToV2ScoresService::get_scores($imet->FormID, ScoresService::ALL_SCORES, false);
             }
             Log::info('IMET #' . $imet->FormID . ' scores updated');
         }
@@ -55,7 +55,7 @@ class CalculateScores implements ShouldQueue
         // OECM
         $oecms = ImetOECM::select(['FormID'])->get();
         foreach($oecms as $oecm){
-            OEMCStatisticsService::get_scores($oecm->FormID, StatisticsService::ALL_SCORES, false);
+            OEMCScoresService::get_scores($oecm->FormID, ScoresService::ALL_SCORES, false);
             Log::info('OECM #' . $oecm->FormID . ' scores updated');
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics;
+namespace AndreaMarelli\ImetCore\Services\Scores;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
@@ -18,12 +18,12 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesM
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
-use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
+use AndreaMarelli\ImetCore\Services\Scores\traits\CommonFunctions;
+use AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions;
+use AndreaMarelli\ImetCore\Services\Scores\traits\Math;
 
 
-class OEMCStatisticsService extends StatisticsService
+class OEMCScoresService extends ScoresService
 {
     const CACHE_PREFIX = 'oecm_scores';
 

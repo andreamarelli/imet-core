@@ -11,8 +11,8 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPart
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -152,7 +152,7 @@ class Imet extends BaseImetForm
         Encoder::touchOnFormUpdate($item, $user_info);
 
         // Refresh scores
-        V2StatisticsService::get_scores($item, StatisticsService::SUMMARY_SCORES, false);
+        V2ScoresService::get_scores($item, ScoresService::SUMMARY_SCORES, false);
 
         return $return;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics\traits;
+namespace AndreaMarelli\ImetCore\Services\Scores\traits;
 
 trait Math
 {

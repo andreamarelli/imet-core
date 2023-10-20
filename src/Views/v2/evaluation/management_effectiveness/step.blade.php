@@ -3,7 +3,7 @@
 
 /** @var int $item_id */
 
-$assessment_step = \AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService::get_assessment($item_id, $step);
+$assessment_step = \AndreaMarelli\ImetCore\Services\Scores\V2ScoresService::get_assessment($item_id, $step);
 
 ?>
 

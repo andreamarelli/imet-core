@@ -2,7 +2,7 @@
 
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
-use AndreaMarelli\ImetCore\Services\Statistics\StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
 use Illuminate\Support\Facades\App;
 
 /** @var string $action */
@@ -105,7 +105,7 @@ if($item->language != App::getLocale()){
             </div>
             <div class="module-body">
                 <imet_charts
-                        form_id={{ $item->getKey() }} :labels='@json(StatisticsService::steps_labels())'
+                        form_id={{ $item->getKey() }} :labels='@json(ScoresService::steps_labels())'
                         :show_histogram="true" :version="'v1'"></imet_charts>
                 <table id="global_scores">
                     <tr>
@@ -118,13 +118,13 @@ if($item->language != App::getLocale()){
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['context']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['context'] }}</td>
-                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['planning']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['planning'] }}</td>
-                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['inputs']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['inputs'] }}</td>
-                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['process']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['process'] }}</td>
-                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['outputs']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['outputs'] }}</td>
-                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['outcomes']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['outcomes'] }}</td>
-                        <td {!! Assessment::score_class($assessment[StatisticsService::SUMMARY_SCORES]['imet_index']) !!} >{{ $assessment[StatisticsService::SUMMARY_SCORES]['imet_index'] }}</td>
+                        <td {!! Assessment::score_class($assessment[ScoresService::SUMMARY_SCORES]['context']) !!} >{{ $assessment[ScoresService::SUMMARY_SCORES]['context'] }}</td>
+                        <td {!! Assessment::score_class($assessment[ScoresService::SUMMARY_SCORES]['planning']) !!} >{{ $assessment[ScoresService::SUMMARY_SCORES]['planning'] }}</td>
+                        <td {!! Assessment::score_class($assessment[ScoresService::SUMMARY_SCORES]['inputs']) !!} >{{ $assessment[ScoresService::SUMMARY_SCORES]['inputs'] }}</td>
+                        <td {!! Assessment::score_class($assessment[ScoresService::SUMMARY_SCORES]['process']) !!} >{{ $assessment[ScoresService::SUMMARY_SCORES]['process'] }}</td>
+                        <td {!! Assessment::score_class($assessment[ScoresService::SUMMARY_SCORES]['outputs']) !!} >{{ $assessment[ScoresService::SUMMARY_SCORES]['outputs'] }}</td>
+                        <td {!! Assessment::score_class($assessment[ScoresService::SUMMARY_SCORES]['outcomes']) !!} >{{ $assessment[ScoresService::SUMMARY_SCORES]['outcomes'] }}</td>
+                        <td {!! Assessment::score_class($assessment[ScoresService::SUMMARY_SCORES]['imet_index']) !!} >{{ $assessment[ScoresService::SUMMARY_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>

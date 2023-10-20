@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Statistics;
+namespace AndreaMarelli\ImetCore\Services\Scores;
 
-use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
+use AndreaMarelli\ImetCore\Services\Scores\traits\Math;
 
 
-class V1ToV2StatisticsService extends StatisticsService
+class V1ToV2ScoresService extends ScoresService
 {
     use Math;
 
@@ -14,7 +14,7 @@ class V1ToV2StatisticsService extends StatisticsService
      */
     public static function scores_context(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_context($imet_id);
+        $scores_v1 = V1ScoresService::scores_context($imet_id);
         $scores = [
             'c1' => self::average([
                     $scores_v1['c12'], $scores_v1['c13'], $scores_v1['c14'], $scores_v1['c15'], $scores_v1['c16']
@@ -43,7 +43,7 @@ class V1ToV2StatisticsService extends StatisticsService
      */
     public static function scores_planning(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_planning($imet_id);
+        $scores_v1 = V1ScoresService::scores_planning($imet_id);
 
         $conditional_p3 = function($value){
             if($value===null) {
@@ -88,7 +88,7 @@ class V1ToV2StatisticsService extends StatisticsService
      */
     public static function scores_inputs(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_inputs($imet_id);
+        $scores_v1 = V1ScoresService::scores_inputs($imet_id);
 
         $conditional_i3 = function($value){
             if($value===0) {
@@ -139,7 +139,7 @@ class V1ToV2StatisticsService extends StatisticsService
      */
     public static function scores_process(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_process($imet_id);
+        $scores_v1 = V1ScoresService::scores_process($imet_id);
         $scores = [
             'pr1' => $scores_v1['pr1'],
             'pr2' => $scores_v1['pr2'],
@@ -179,11 +179,11 @@ class V1ToV2StatisticsService extends StatisticsService
      */
     public static function scores_outputs(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_outputs($imet_id);
+        $scores_v1 = V1ScoresService::scores_outputs($imet_id);
         $scores = [
             'op1' => $scores_v1['r1']!==null ? round($scores_v1['r1'] * 0.76, 2) : null,
             'op2' => $scores_v1['r2']!==null ? round($scores_v1['r2'] * 0.76, 2) : null,
-            'op3' => V1StatisticsService::score_pr9($imet_id),
+            'op3' => V1ScoresService::score_pr9($imet_id),
             'op4' => null
         ];
 
@@ -198,7 +198,7 @@ class V1ToV2StatisticsService extends StatisticsService
      */
     public static function scores_outcomes(int $imet_id): array
     {
-        $scores_v1 = V1StatisticsService::scores_outcomes($imet_id);
+        $scores_v1 = V1ScoresService::scores_outcomes($imet_id);
         $scores = [
             'oc1' => $scores_v1['ei1']!==null ? round($scores_v1['ei1'] * 0.76, 2) : null,
             'oc2' => round(((($scores_v1['ei2'] ?? 0) + $scores_v1['ei3'])/2), 2),
