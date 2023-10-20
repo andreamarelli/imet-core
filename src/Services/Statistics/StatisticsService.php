@@ -3,14 +3,16 @@
 namespace AndreaMarelli\ImetCore\Services\Statistics;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 use AndreaMarelli\ModularForms\Helpers\Locale;
+use AndreaMarelli\ModularForms\Models\Cache;
 
 abstract class StatisticsService
 {
     use Math;
+
+    const CACHE_PREFIX = 'imet_scores';
 
     const GLOBAL = 'global';
 
@@ -23,11 +25,8 @@ abstract class StatisticsService
 
     /**
      * Ensure to return IMET model
-     *
-     * @param $imet
-     * @return Imet|ImetOEMC
      */
-    protected static function get_imet($imet)
+    protected static function get_imet(Imet|ImetOEMC|int|string $imet): Imet|ImetOEMC
     {
         if(is_int($imet) or is_string($imet)){
             $imet = Imet::find($imet);
@@ -36,29 +35,29 @@ abstract class StatisticsService
     }
 
     /**
-     * @param $imet
-     * @return array
+     * Generate cache key
      */
-    private static function get_cached_scores($imet): array{
-        return ImetScores::where(['FormID' => $imet['FormID']])->pluck('scores')->first() ?? [];
+    private static function getCacheKey(Imet|ImetOEMC|int|string $imet, string $step): string
+    {
+        $imet_id = ($imet instanceof ImetOEMC or $imet instanceof Imet)
+            ? $imet['FormID']
+            : $imet;
+        return Cache::buildKey(self::CACHE_PREFIX, ['id' => $imet_id, 'step' => $step]);
     }
 
     /**
      * Retrieve assessment's scores
-     *
-     * @param Imet|ImetOEMC|int $imet
-     * @param string $step
-     * @return array
      */
-    public static function get_scores($imet, string $step = self::GLOBAL, bool $cache = true): array
+    public static function get_scores(Imet|ImetOEMC|int|string $imet, string $step = self::GLOBAL, bool $cache = true): array
     {
-        $imet = static::get_imet($imet);
-        if (is_cache_scores_enabled() && $cache) {
-            $scores = static::get_cached_scores($imet);
-            if($scores){
-                return $scores;
-            }
+        // Retrieve from cache
+        $cache_key = static::getCacheKey($imet, $step);
+        if ($cache && ($cache_value = Cache::get($cache_key)) !== null) {
+            return $cache_value;
         }
+
+        $imet = static::get_imet($imet);
+
         switch ($step) {
             case static::GLOBAL:
                 $scores = [
@@ -70,21 +69,27 @@ abstract class StatisticsService
                     static::OUTCOMES => static::scores_outcomes($imet)['avg_indicator'],
                 ];
                 $scores['imet_index'] = static::average($scores);
-                return $scores;
+                break;
             case self::CONTEXT:
-                return static::scores_context($imet);
+                $scores = static::scores_context($imet);
+                break;
             case self::PLANNING:
-                return static::scores_planning($imet);
+                $scores = static::scores_planning($imet);
+                break;
             case self::INPUTS:
-                return static::scores_inputs($imet);
+                $scores = static::scores_inputs($imet);
+                break;
             case self::PROCESS:
-                return static::scores_process($imet);
+                $scores = static::scores_process($imet);
+                break;
             case self::OUTPUTS:
-                return static::scores_outputs($imet);
+                $scores = static::scores_outputs($imet);
+                break;
             case self::OUTCOMES:
-                return static::scores_outcomes($imet);
+                $scores = static::scores_outcomes($imet);
+                break;
             case "ALL":
-                return [
+                $scores = [
                     static::GLOBAL => static::get_scores($imet),
                     static::CONTEXT => static::get_scores($imet, StatisticsService::CONTEXT),
                     static::PLANNING => static::get_scores($imet, StatisticsService::PLANNING),
@@ -94,29 +99,23 @@ abstract class StatisticsService
                     static::OUTCOMES => static::get_scores($imet, StatisticsService::OUTCOMES),
                 ];
             default:
-                return [];
+                $scores = [];
         }
+
+        Cache::put($cache_key, $scores, null);
+
+        return $scores;
     }
 
     /**
      * Retrieve assessment's scores (for radar)
-     *
-     * @param Imet|ImetOEMC|int $imet
-     * @return array
      */
-    public static function get_radar_scores($imet): array
+    public static function get_radar_scores(Imet|ImetOEMC|int|string $imet): array
     {
         $imet = static::get_imet($imet);
 
         $labels = static::steps_labels();
-        $records = ImetScores::where(['FormID' => $imet['FormID']])->get()->toArray();
-
-        if(!$records) {
-            $scores = static::get_scores($imet);
-        } else {
-            $scores = $records[0]['scores']['global'];
-        }
-
+        $scores = static::get_scores($imet);
         unset($scores['imet_index']);
 
         return array_combine(
@@ -127,22 +126,16 @@ abstract class StatisticsService
 
     /**
      * Retrieve the global IMET score
-     * @param $imet
-     * @return float
      */
-    public static function get_imet_score($imet): ?float
+    public static function get_imet_score(Imet|ImetOEMC|int|string $imet): ?float
     {
         return static::get_scores($imet)['imet_index'];
     }
 
     /**
-     *
-     *
-     * @param Imet|ImetOEMC|int $imet
-     * @param string $step
-     * @return array
+     * Retrieve IMET assessment information including scores
      */
-    public static function get_assessment($imet, string $step = self::GLOBAL): array
+    public static function get_assessment(Imet|ImetOEMC|int|string $imet, string $step = self::GLOBAL): array
     {
         $imet = static::get_imet($imet);
         return array_merge(

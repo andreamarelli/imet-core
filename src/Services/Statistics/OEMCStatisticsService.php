@@ -6,9 +6,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AdministrativeManagement;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AssistanceActivities;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
@@ -17,17 +15,18 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LawEnforcementImp
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CommonFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\CustomFunctions;
 use AndreaMarelli\ImetCore\Services\Statistics\traits\Math;
 
+
 class OEMCStatisticsService extends StatisticsService
 {
+    const CACHE_PREFIX = 'oecm_scores';
+
     use CommonFunctions;
     use CustomFunctions\oecm\_Common;
     use CustomFunctions\oecm\Context;

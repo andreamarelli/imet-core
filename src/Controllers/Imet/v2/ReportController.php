@@ -48,9 +48,6 @@ class ReportController extends BaseReportController
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
 
         $assessments_scores = V2StatisticsService::get_scores($form_id, 'ALL', false);
-        if(is_cache_scores_enabled()) {
-            $this->report_cache_scores($form_id, $assessments_scores);
-        }
 
         return [
             'item' => $item,
