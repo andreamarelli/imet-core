@@ -84,9 +84,9 @@ class ImetScores
     /**
      * Retrieve the radar labels
      */
-    public static function labels(string $version = Imet::IMET_OECM, bool $only_abbreviations = false): array
+    public static function labels(string $version = null, bool $only_abbreviations = false): array
     {
-        return static::get_labels(Imet::IMET_OECM, $only_abbreviations);
+        return static::get_labels(null, $only_abbreviations);
     }
 
     /**
