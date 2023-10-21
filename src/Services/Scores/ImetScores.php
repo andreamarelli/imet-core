@@ -23,7 +23,6 @@ class ImetScores
             : $imet;
     }
 
-
     /**
      * Retrieve IMET assessment's scores (all)
      */
@@ -31,8 +30,8 @@ class ImetScores
     {
         $imet = static::get_as_model($imet);
         return $imet->version === Imet::IMET_V1
-            ? V1ToV2Scores::get_scores_2($imet->getKey())
-            : V2Scores::get_scores_2($imet->getKey());
+            ? V1ToV2Scores::get_scores($imet->getKey())
+            : V2Scores::get_scores($imet->getKey());
     }
 
     /**
@@ -41,6 +40,18 @@ class ImetScores
     public static function get_radar(Imet|ImetV1|ImetV2|int|string $imet): array
     {
         return static::get_all($imet)[_Scores::RADAR_SCORES];
+    }
+
+    /**
+     * Retrieve IMET assessment's radar scores with abbreviations instead of keys
+     */
+    public static function get_radar_with_abbreviations(Imet|ImetV1|ImetV2|int|string $imet): array
+    {
+        $imet = static::get_as_model($imet);
+        $labels = static::labels($imet->version, true);
+        $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
+        unset($scores['imet_index']);
+        return array_combine($labels, $scores);
     }
 
     /**
@@ -66,18 +77,16 @@ class ImetScores
     {
         $imet = static::get_as_model($imet);
         return $imet->version === Imet::IMET_V1
-            ? V1ToV2Scores::get_scores_2($imet->getKey(), true)
-            : V2Scores::get_scores_2($imet->getKey(), true);
+            ? V1ToV2Scores::get_scores($imet->getKey(), true)
+            : V2Scores::get_scores($imet->getKey(), true);
     }
 
     /**
-     * Retrieve the radar labels
+     * Retrieve the indicators labels
      */
-    public static function labels(string $version = null, bool $only_abbreviations = false): array
+    public static function indicators_labels(string $version = null, bool $only_abbreviations = false): array
     {
-        return static::get_labels($version, $only_abbreviations);
+        return static::get_indicators_labels($version);
     }
-
-    // TODO indicators_labels()
 
 }

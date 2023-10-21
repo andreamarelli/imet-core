@@ -1,12 +1,11 @@
 <?php
-/** @var String $step */
+use AndreaMarelli\ImetCore\Services\Assessment\OecmAssessment;
+use Illuminate\Support\Facades\App;
 
+/** @var String $step */
 /** @var int $item_id */
 
-use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
-use \Illuminate\Support\Facades\App;
-
-$assessment_step = OEMCScores::get_assessment($item_id, $step);
+$assessment_step = OecmAssessment::get_assessment($item_id, $step);
 
 ?>
 

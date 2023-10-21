@@ -3,6 +3,8 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Services\Assessment\ImetAssessment;
+use AndreaMarelli\ImetCore\Services\Assessment\OecmAssessment;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
@@ -16,16 +18,14 @@ trait Assessment
 
     public static function assessment($item, string $step = _Scores::RADAR_SCORES): JsonResponse
     {
-        $stats = Imet::getVersion($item)===Imet::IMET_V1
-            ? V1ToV2Scores::get_assessment($item, $step)
-            : V2Scores::get_assessment($item, $step);
+        $stats = ImetAssessment::get_assessment($item, $step);
 
         return response()->json($stats);
     }
 
     public static function assessment_oecm($item, string $step = _Scores::RADAR_SCORES): JsonResponse
     {
-        $stats = OEMCScores::get_assessment($item, $step);
+        $stats = OecmAssessment::get_assessment($item, $step);
 
         return response()->json($stats);
     }

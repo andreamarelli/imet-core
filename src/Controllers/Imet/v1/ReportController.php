@@ -64,7 +64,7 @@ class ReportController extends BaseReportController
             'assessment' => array_merge(
                 ImetScores::get_all($item),
                 [
-                    'labels' => V1ToV2Scores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1)
+                    'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1)
                 ]
             ),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v1\Report::getByForm($form_id),

@@ -4,6 +4,7 @@ namespace AndreaMarelli\ImetCore\Services\Scores;
 
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ModularForms\Helpers\Locale;
 
 trait Labels{
 
@@ -58,6 +59,21 @@ trait Labels{
                 ]
             ],
         ];
+    }
+
+    /**
+     * Return indicator's labels
+     */
+    protected static function get_indicators_labels(string $version): array
+    {
+        $labels = [];
+        foreach (trans('imet-core::'.$version.'_common.assessment') as $code => $item){
+            $labels[$code] = [
+                'code_label' => $item[0],
+                'title_' . Locale::lower() => $item[1],
+            ];
+        }
+        return $labels;
     }
 
 }

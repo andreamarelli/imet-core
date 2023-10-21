@@ -12,6 +12,7 @@ use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use AndreaMarelli\ModularForms\Models\Form;
 use Carbon\Carbon;
@@ -151,9 +152,7 @@ class Imet extends Form
             ];
 
             // Add radar
-            $item['assessment_radar'] = $item->version===static::IMET_V1
-                ? V1ToV2Scores::get_radar_scores($item)
-                : V2Scores::get_radar_scores($item);
+            $item['assessment_radar'] = ImetScores::get_radar_with_abbreviations($item);
 
             // Non WDPA
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
