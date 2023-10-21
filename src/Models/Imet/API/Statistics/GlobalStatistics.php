@@ -6,8 +6,6 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

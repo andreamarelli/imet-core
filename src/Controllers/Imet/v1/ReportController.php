@@ -2,11 +2,8 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;

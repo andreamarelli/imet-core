@@ -8,10 +8,6 @@ use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
 use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Controllers\Controller;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
@@ -21,7 +17,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Exception\NotFoundException;
 use \ImetUser as User;
 

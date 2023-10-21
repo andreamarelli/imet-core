@@ -4,9 +4,6 @@ namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
 
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 
 class Common

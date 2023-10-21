@@ -7,8 +7,6 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use Illuminate\Support\Str;

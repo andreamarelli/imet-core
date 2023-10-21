@@ -8,8 +8,6 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesIntervie
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use AndreaMarelli\ModularForms\Helpers\Type\Chars;
 use Illuminate\Database\Eloquent\Collection;

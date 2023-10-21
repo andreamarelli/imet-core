@@ -5,11 +5,9 @@ namespace AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use Illuminate\Http\Request;
 

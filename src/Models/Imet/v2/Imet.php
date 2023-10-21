@@ -11,8 +11,6 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPart
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;

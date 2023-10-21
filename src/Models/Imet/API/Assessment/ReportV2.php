@@ -5,9 +5,6 @@ namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use Illuminate\Support\Facades\Lang;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Report;
 

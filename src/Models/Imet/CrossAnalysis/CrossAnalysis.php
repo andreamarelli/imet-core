@@ -2,11 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\v2\EvalController;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use Illuminate\Database\Eloquent\Model;
 

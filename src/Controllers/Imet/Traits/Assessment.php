@@ -2,13 +2,9 @@
 
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Assessment\ImetAssessment;
 use AndreaMarelli\ImetCore\Services\Assessment\OecmAssessment;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use Illuminate\Http\JsonResponse;
 
 use function response;
