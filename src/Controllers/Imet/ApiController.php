@@ -9,9 +9,10 @@ use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
-use AndreaMarelli\ImetCore\Services\Scores\V1ToV2ScoresService;
-use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Controllers\Controller;
 use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
@@ -80,12 +81,8 @@ class ApiController extends Controller
 
         $list = Imet\Imet::get_assessments_list($request, ['country']);
 
-        foreach ($list as $key => $imet) {
-            if (Imet\Imet::IMET_V1 === $imet['version']) {
-                $result[] = V1ToV2ScoresService::get_scores($imet['FormID']);
-            } else {
-                $result[] = V2ScoresService::get_scores($imet['FormID']);
-            }
+        foreach ($list as $imet) {
+            ImetScores::get_radar($imet);
         }
 
         $items_for_average = count($result);
@@ -189,13 +186,13 @@ class ApiController extends Controller
                 'version' => $record['version']
             ],
                 $record['version'] == Imet\Imet::IMET_V2
-                    ? V2ScoresService::get_radar_scores($record['FormID'])
-                    : V1ToV2ScoresService::get_radar_scores($record['FormID'])
+                    ? V2Scores::get_radar_scores($record['FormID'])
+                    : V1ToV2Scores::get_radar_scores($record['FormID'])
             );
             $api[] = $item;
         }
 
-        $assessment_labels = \AndreaMarelli\ImetCore\Services\Scores\ScoresService::steps_labels();
+        $assessment_labels = \AndreaMarelli\ImetCore\Services\Scores\ImetScores::labels();
         foreach ($assessment_labels as $key => $values) {
             foreach ($values['abbreviations'] as $abb_key => $value) {
                 $labels[$key][$value] = $values['full'][$abb_key];

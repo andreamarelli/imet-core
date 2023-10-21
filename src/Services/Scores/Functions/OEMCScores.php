@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores;
+namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
@@ -18,12 +18,10 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesM
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
-use AndreaMarelli\ImetCore\Services\Scores\traits\CommonFunctions;
-use AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions;
-use AndreaMarelli\ImetCore\Services\Scores\traits\Math;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions;
 
 
-class OEMCScoresService extends ScoresService
+class OEMCScores extends _Scores
 {
     const CACHE_PREFIX = 'oecm_scores';
 
@@ -43,7 +41,7 @@ class OEMCScoresService extends ScoresService
      * @param $imet
      * @return Imet
      */
-    protected static function get_imet($imet): Imet
+    protected static function get_as_model($imet): Imet
     {
         if (is_int($imet) or is_string($imet)) {
             $imet = Imet::find($imet);

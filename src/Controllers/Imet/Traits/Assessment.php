@@ -3,10 +3,10 @@
 namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\OEMCScoresService;
-use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
-use AndreaMarelli\ImetCore\Services\Scores\V1ToV2ScoresService;
-use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
 use Illuminate\Http\JsonResponse;
 
 use function response;
@@ -14,18 +14,18 @@ use function response;
 trait Assessment
 {
 
-    public static function assessment($item, string $step = ScoresService::SUMMARY_SCORES): JsonResponse
+    public static function assessment($item, string $step = _Scores::RADAR_SCORES): JsonResponse
     {
         $stats = Imet::getVersion($item)===Imet::IMET_V1
-            ? V1ToV2ScoresService::get_assessment($item, $step)
-            : V2ScoresService::get_assessment($item, $step);
+            ? V1ToV2Scores::get_assessment($item, $step)
+            : V2Scores::get_assessment($item, $step);
 
         return response()->json($stats);
     }
 
-    public static function assessment_oecm($item, string $step = ScoresService::SUMMARY_SCORES): JsonResponse
+    public static function assessment_oecm($item, string $step = _Scores::RADAR_SCORES): JsonResponse
     {
-        $stats = OEMCScoresService::get_assessment($item, $step);
+        $stats = OEMCScores::get_assessment($item, $step);
 
         return response()->json($stats);
     }

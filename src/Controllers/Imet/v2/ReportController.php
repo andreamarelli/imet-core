@@ -7,10 +7,12 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
-use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
 use Illuminate\Support\Str;
+use ReflectionException;
 
 
 class ReportController extends BaseReportController
@@ -20,12 +22,9 @@ class ReportController extends BaseReportController
 
     /**
      * Retrieve data to populate report view
-     *
-     * @param $item
-     * @return array
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
-    protected function __retrieve_report_data($item): array
+    protected function __retrieve_report_data(Imet $item): array
     {
         $form_id = $item->getKey();
 
@@ -47,8 +46,6 @@ class ReportController extends BaseReportController
 
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
-
-        $assessments_scores = V2ScoresService::get_scores($form_id, ScoresService::ALL_SCORES, false);
 
         return [
             'item' => $item,
@@ -72,9 +69,9 @@ class ReportController extends BaseReportController
                 })->pluck('Aspect')->toArray(),
             ],
             'assessment' => array_merge(
-                $assessments_scores,
+                ImetScores::get_all($item),
                 [
-                    'labels' => V2ScoresService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2)
+                    'labels' => V2Scores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2)
                 ]
             ),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v2\Report::getByForm($form_id),

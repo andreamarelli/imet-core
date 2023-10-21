@@ -1,14 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores;
+namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
-use AndreaMarelli\ImetCore\Services\Scores\traits\CommonFunctions;
-use AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions;
-use AndreaMarelli\ImetCore\Services\Scores\traits\Math;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions;
 
 
-class V2ScoresService extends ScoresService
+class V2Scores extends _Scores
 {
     use CommonFunctions;
     use CustomFunctions\V2\Context;

@@ -6,8 +6,9 @@ use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Services\Scores\V1ToV2ScoresService;
-use AndreaMarelli\ImetCore\Services\Scores\V2ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use AndreaMarelli\ImetCore\Models\Imet\v1;
@@ -35,9 +36,7 @@ class GlobalStatistics
         foreach ($list as $item) {
             $wdpa_ids[$item['wdpa_id']] = [
                 'wdpa_id' => $item['wdpa_id'],
-                'imet_index' => $item['version'] === Imet::IMET_V1
-                    ? V1ToV2ScoresService::get_imet_score($item['FormID'])
-                    : V2ScoresService::get_imet_score($item['FormID'])
+                'imet_index' => ImetScores::get_score($item)
             ];
         }
 
@@ -374,13 +373,9 @@ class GlobalStatistics
         $new_item['country'] = $item->country["$name"];
 
         if ($global_scores) {
-            $new_item = $item['version'] === Imet::IMET_V1
-                ? V1ToV2ScoresService::get_scores($item['FormID'])
-                : V2ScoresService::get_scores($item['FormID']);
+            $new_item = ImetScores::get_radar($item);
         } else {
-            $new_item['imet_index'] = $item['version'] === Imet::IMET_V1
-                ? V1ToV2ScoresService::get_imet_score($item['FormID'])
-                : V2ScoresService::get_imet_score($item['FormID']);
+            $new_item['imet_index'] = ImetScores::get_score($item);
 
         }
 

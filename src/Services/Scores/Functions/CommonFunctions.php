@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\traits;
+namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
 
 trait CommonFunctions {
 

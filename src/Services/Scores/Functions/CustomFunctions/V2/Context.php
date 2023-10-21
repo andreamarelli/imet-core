@@ -1,19 +1,19 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions\V2;
+namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ImportanceEcosystemServices;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ImportanceHabitats;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ImportanceSpecies;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\SupportsAndConstraints;
-use AndreaMarelli\ImetCore\Services\Scores\V1ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V1Scores;
 
 trait Context
 {
     protected static function score_c11(int $imet_id): ?float
     {
-        return V1ScoresService::score_c12($imet_id);
+        return V1Scores::score_c12($imet_id);
     }
 
     protected static function score_c12(int $imet_id): ?float
@@ -153,6 +153,6 @@ trait Context
     }
     protected static function score_c3(int $imet_id): ?float
     {
-        return V1ScoresService::score_c3($imet_id);
+        return V1Scores::score_c3($imet_id);
     }
 }

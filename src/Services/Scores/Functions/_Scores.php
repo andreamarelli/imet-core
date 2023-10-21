@@ -1,20 +1,19 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores;
+namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
-use AndreaMarelli\ImetCore\Services\Scores\traits\Math;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Cache;
 
-abstract class ScoresService
+abstract class _Scores
 {
     use Math;
 
     const CACHE_PREFIX = 'imet_scores';
 
-    const SUMMARY_SCORES = 'global';
+    const RADAR_SCORES = 'global';
     const ALL_SCORES = 'ALL';
 
     const CONTEXT = 'context';
@@ -27,7 +26,7 @@ abstract class ScoresService
     /**
      * Ensure to return IMET model
      */
-    protected static function get_imet(Imet|ImetOEMC|int|string $imet): Imet|ImetOEMC
+    public static function get_as_model(Imet|ImetOEMC|int|string $imet): Imet|ImetOEMC
     {
         if(is_int($imet) or is_string($imet)){
             $imet = Imet::find($imet);
@@ -36,7 +35,7 @@ abstract class ScoresService
     }
 
     /**
-     * Calculate scores
+     * Calculate all assessment scores
      */
     private static function calculate_scores(int $imet_id): array
     {
@@ -51,7 +50,7 @@ abstract class ScoresService
         ];
 
         // Overall steps scores
-        $scores[self::SUMMARY_SCORES] = [
+        $scores[self::RADAR_SCORES] = [
             static::CONTEXT => $scores[static::CONTEXT]['avg_indicator'],
             static::PLANNING => $scores[static::PLANNING]['avg_indicator'],
             static::INPUTS => $scores[static::INPUTS]['avg_indicator'],
@@ -61,24 +60,39 @@ abstract class ScoresService
         ];
 
         // Overall IMET score
-        $scores[self::SUMMARY_SCORES]['imet_index'] = static::average([
-            $scores[self::SUMMARY_SCORES][static::CONTEXT],
-            $scores[self::SUMMARY_SCORES][static::PLANNING],
-            $scores[self::SUMMARY_SCORES][static::INPUTS],
-            $scores[self::SUMMARY_SCORES][static::PROCESS],
-            $scores[self::SUMMARY_SCORES][static::OUTPUTS],
-            $scores[self::SUMMARY_SCORES][static::OUTCOMES],
+        $scores[self::RADAR_SCORES]['imet_index'] = static::average([
+            $scores[self::RADAR_SCORES][static::CONTEXT],
+            $scores[self::RADAR_SCORES][static::PLANNING],
+            $scores[self::RADAR_SCORES][static::INPUTS],
+            $scores[self::RADAR_SCORES][static::PROCESS],
+            $scores[self::RADAR_SCORES][static::OUTPUTS],
+            $scores[self::RADAR_SCORES][static::OUTCOMES],
         ]);
 
+        return $scores;
+    }
+
+    public static function get_scores_2(int $imet_id, bool $refresh_cache = false): array
+    {
+        // Retrieve scores from cache
+        $cache_key = Cache::buildKey(self::CACHE_PREFIX, ['id' => $imet_id]);
+        if (!$refresh_cache && ($cache_value = Cache::get($cache_key)) !== null) {
+            $scores = $cache_value;
+        }
+        // Calculate scores and store in cache
+        else {
+            $scores = static::calculate_scores($imet_id);
+            Cache::put($cache_key, $scores, null);
+        }
         return $scores;
     }
 
     /**
      * Retrieve assessment's scores
      */
-    public static function get_scores(Imet|ImetOEMC|int|string $imet, string $step = self::SUMMARY_SCORES, bool $cache = true): array
+    public static function get_scores(Imet|ImetOEMC|int|string $imet, string $step = self::RADAR_SCORES, bool $cache = true): array
     {
-        $imet = static::get_imet($imet);
+        $imet = static::get_as_model($imet);
         $imet_id = $imet->getKey();
 
         // Retrieve scores from cache
@@ -102,7 +116,7 @@ abstract class ScoresService
      */
     public static function get_radar_scores(Imet|ImetOEMC|int|string $imet): array
     {
-        $imet = static::get_imet($imet);
+        $imet = static::get_as_model($imet);
 
         $labels = static::steps_labels()[$imet->version]['abbreviations'];
         $scores = static::get_scores($imet);
@@ -112,19 +126,11 @@ abstract class ScoresService
     }
 
     /**
-     * Retrieve the global IMET score
-     */
-    public static function get_imet_score(Imet|ImetOEMC|int|string $imet): ?float
-    {
-        return static::get_scores($imet)['imet_index'];
-    }
-
-    /**
      * Retrieve IMET assessment information including scores
      */
-    public static function get_assessment(Imet|ImetOEMC|int|string $imet, string $step = self::SUMMARY_SCORES): array
+    public static function get_assessment(Imet|ImetOEMC|int|string $imet, string $step = self::RADAR_SCORES): array
     {
-        $imet = static::get_imet($imet);
+        $imet = static::get_as_model($imet);
         return array_merge(
             [
                 'formid' => $imet->getKey(),

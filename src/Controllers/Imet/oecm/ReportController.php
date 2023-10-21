@@ -7,9 +7,10 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Scores\OEMCScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
-use AndreaMarelli\ImetCore\Services\Scores\ScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
+use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use Illuminate\Http\Request;
 
 class ReportController extends BaseReportController
@@ -19,12 +20,8 @@ class ReportController extends BaseReportController
 
     /**
      * Retrieve data to populate report view
-     *
-     * @param $item
-     * @return array
-     * @throws \ReflectionException
      */
-    protected function __retrieve_report_data($item): array
+    protected function __retrieve_report_data(Imet $item): array
     {
         $form_id = $item->getKey();
         $show_non_wdpa = false;
@@ -35,9 +32,7 @@ class ReportController extends BaseReportController
         }
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
-        $scores = OEMCScoresService::get_scores($form_id, ScoresService::ALL_SCORES, false);
         $key_elements = $this->getKeyElements($form_id);
-       // dd($this->getBiodiversityThreats($form_id));
         return [
             'item' => $item,
             'main_threats' => $this->getThreats($form_id),
@@ -48,9 +43,9 @@ class ReportController extends BaseReportController
             'stake_holders' => $this->getStakeholderDirectIndirect($form_id),
             'stake_analysis' => $this->getStakeAnalysis($form_id),
             'assessment' => array_merge(
-                $scores,
+                OecmScores::get_all($form_id),
                 [
-                    'labels' => OEMCScoresService::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
+                    'labels' => OEMCScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
                 ]
             ),
             'report' => Report::getByForm($form_id),

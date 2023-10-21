@@ -3,10 +3,10 @@
 
 /** @var int $item_id */
 
-use \AndreaMarelli\ImetCore\Services\Scores\OEMCScoresService;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
 use \Illuminate\Support\Facades\App;
 
-$assessment_step = OEMCScoresService::get_assessment($item_id, $step);
+$assessment_step = OEMCScores::get_assessment($item_id, $step);
 
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions\oecm;
+namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;

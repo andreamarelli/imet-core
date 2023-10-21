@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\traits\CustomFunctions\V1;
+namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
 
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
