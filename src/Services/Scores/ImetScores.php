@@ -57,7 +57,7 @@ class ImetScores
     /**
      * Retrieve IMET assessment's given step scores
      */
-    public static function get_step(ImetV1|ImetV2|int|string $imet, string $step): array
+    public static function get_step(Imet|ImetV1|ImetV2|int|string $imet, string $step): array
     {
         return static::get_all($imet)[$step];
     }

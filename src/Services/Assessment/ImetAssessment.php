@@ -23,7 +23,7 @@ class ImetAssessment
             : $imet;
     }
 
-    public static function get_assessment(ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES): array
+    public static function get_assessment(Imet|ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES): array
     {
         $imet = static::get_as_model($imet);
         $scores = $step === _Scores::ALL_SCORES
