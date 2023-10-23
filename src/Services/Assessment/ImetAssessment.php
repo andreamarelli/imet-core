@@ -52,12 +52,18 @@ class ImetAssessment
     /**
      * Retrieve the number of assessment and the related WDPA IDs for the given country
      */
-    public static function get_assessment_by_country($country): array
+    public static function get_assessment_by_country($country, bool $with_scores = true): array
     {
-        return Imet::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language'])
+        return Imet::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
             ->where('Country', $country)
             ->orderBy('Year', 'DESC')
             ->get()
+            ->map(function ($item) use($with_scores) {
+                if($with_scores) {
+                    $item['scores'] = ImetScores::get_radar($item, true);
+                }
+                return $item;
+            })
             ->toArray();
     }
 

@@ -84,7 +84,7 @@ class ImetScores
      */
     public static function labels(string $version = null, bool $only_abbreviations = false): array
     {
-        return static::get_labels(null, $only_abbreviations);
+        return static::get_labels($version, $only_abbreviations);
     }
 
     /**
