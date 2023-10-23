@@ -53,13 +53,11 @@ class ImetAssessment
     /**
      * Retrieve the last IMET of the given WDPA (return only ID and version)
      */
-    public static function getLast($wdpa_id): ?array
+    public static function getLast($wdpa_id): ?Imet
     {
-        $form = Imet::select(['FormID as id', 'version'])
-            ->where('wdpa_id', $wdpa_id)
+        return Imet::where('wdpa_id', $wdpa_id)
             ->orderBy('Year', 'DESC')
             ->first();
-        return $form?->only(['id', 'version']);
     }
 
     /**
