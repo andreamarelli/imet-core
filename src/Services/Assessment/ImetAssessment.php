@@ -23,6 +23,9 @@ class ImetAssessment
             : $imet;
     }
 
+    /**
+     * Retrieve IMET info and scores
+     */
     public static function get_assessment(Imet|ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES): array
     {
         $imet = static::get_as_model($imet);
@@ -44,6 +47,18 @@ class ImetAssessment
             ],
             $scores
         );
+    }
+
+    /**
+     * Retrieve the number of assessment and the related WDPA IDs for the given country
+     */
+    public static function get_assessment_by_country($country): array
+    {
+        return Imet::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language'])
+            ->where('Country', $country)
+            ->orderBy('Year', 'DESC')
+            ->get()
+            ->toArray();
     }
 
 }

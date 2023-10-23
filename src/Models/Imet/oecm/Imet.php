@@ -156,7 +156,7 @@ class Imet extends BaseImetForm
                 ];
 
                 // Add radar
-                $item['assessment_radar'] = OecmScores::get_radar_with_abbreviations($item);
+                $item['assessment_radar'] = OecmScores::get_radar($item, true);
 
                 // Non WDPA
                 if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {

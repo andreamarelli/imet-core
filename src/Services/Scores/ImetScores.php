@@ -37,21 +37,19 @@ class ImetScores
     /**
      * Retrieve IMET assessment's radar scores
      */
-    public static function get_radar(Imet|ImetV1|ImetV2|int|string $imet): array
-    {
-        return static::get_all($imet)[_Scores::RADAR_SCORES];
-    }
-
-    /**
-     * Retrieve IMET assessment's radar scores with abbreviations instead of keys
-     */
-    public static function get_radar_with_abbreviations(Imet|ImetV1|ImetV2|int|string $imet): array
+    public static function get_radar(Imet|ImetV1|ImetV2|int|string $imet, bool $with_abbreviations = false): array
     {
         $imet = static::get_as_model($imet);
-        $labels = static::labels($imet->version, true);
         $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
-        unset($scores['imet_index']);
-        return array_combine($labels, $scores);
+
+        // use abbreviations instead of keys
+        if($with_abbreviations){
+            $labels = static::labels($imet->version, true);
+            unset($scores['imet_index']);
+            return array_combine($labels, $scores);
+        } else{
+            return $scores;
+        }
     }
 
     /**

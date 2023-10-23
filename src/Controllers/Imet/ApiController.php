@@ -180,7 +180,7 @@ class ApiController extends Controller
                 'year' => $record['Year'],
                 'version' => $record['version']
             ],
-                ImetScores::get_radar_with_abbreviations($record['FormID'])
+                ImetScores::get_radar($record['FormID'], true)
             );
             $api[] = $item;
         }

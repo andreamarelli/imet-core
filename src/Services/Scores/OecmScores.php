@@ -34,20 +34,18 @@ class OecmScores
     /**
      * Retrieve IMET OECM assessment's radar scores
      */
-    public static function get_radar(ImetOecm|int|string $imet): array
+    public static function get_radar(ImetOecm|int|string $imet, bool $with_abbreviations = false): array
     {
-        return static::get_all($imet)[_Scores::RADAR_SCORES];
-    }
-
-    /**
-     * Retrieve IMET assessment's radar scores with abbreviations instead of keys
-     */
-    public static function get_radar_with_abbreviations(ImetOecm|int|string $imet): array
-    {
-        $labels = static::labels(Imet::IMET_OECM, true);
         $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
-        unset($scores['imet_index']);
-        return array_combine($labels, $scores);
+
+        // use abbreviations instead of keys
+        if($with_abbreviations){
+            $labels = static::labels(true);
+            unset($scores['imet_index']);
+            return array_combine($labels, $scores);
+        } else{
+            return $scores;
+        }
     }
 
     /**
@@ -78,7 +76,7 @@ class OecmScores
     /**
      * Retrieve the radar labels
      */
-    public static function labels(string $version = Imet::IMET_OECM, bool $only_abbreviations = false): array
+    public static function labels(bool $only_abbreviations = false): array
     {
         return static::get_labels(Imet::IMET_OECM, $only_abbreviations);
     }

@@ -148,7 +148,7 @@ class Imet extends Form
             ];
 
             // Add radar
-            $item['assessment_radar'] = ImetScores::get_radar_with_abbreviations($item);
+            $item['assessment_radar'] = ImetScores::get_radar($item, true);
 
             // Non WDPA
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
