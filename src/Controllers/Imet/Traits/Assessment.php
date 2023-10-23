@@ -14,14 +14,14 @@ trait Assessment
 
     public static function assessment($item, string $step = _Scores::RADAR_SCORES): JsonResponse
     {
-        $stats = ImetAssessment::get_assessment($item, $step);
+        $stats = ImetAssessment::getAssessment($item, $step);
 
         return response()->json($stats);
     }
 
     public static function assessment_oecm($item, string $step = _Scores::RADAR_SCORES): JsonResponse
     {
-        $stats = OecmAssessment::get_assessment($item, $step);
+        $stats = OecmAssessment::getAssessment($item, $step);
 
         return response()->json($stats);
     }

@@ -14,16 +14,16 @@ class OecmAssessment
     /**
      * Ensure to return IMET model
      */
-    private static function get_as_model(ImetOecm|int|string $imet): ImetOecm
+    private static function getAsModel(ImetOecm|int|string $imet): ImetOecm
     {
         return (is_int($imet) or is_string($imet))
             ? ImetOecm::find($imet)
             : $imet;
     }
 
-    public static function get_assessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES): array
+    public static function getAssessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES): array
     {
-        $imet = static::get_as_model($imet);
+        $imet = static::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES
             ? OecmScores::get_all($imet)
             : (

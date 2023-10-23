@@ -16,7 +16,7 @@ class ImetScores
     /**
      * Ensure to return IMET model
      */
-    private static function get_as_model(Imet|ImetV1|ImetV2|int|string $imet): Imet
+    private static function getAsModel(Imet|ImetV1|ImetV2|int|string $imet): Imet
     {
         return (is_int($imet) or is_string($imet))
             ? Imet::find($imet)
@@ -28,7 +28,7 @@ class ImetScores
      */
     public static function get_all(Imet|ImetV1|ImetV2|int|string $imet): array
     {
-        $imet = static::get_as_model($imet);
+        $imet = static::getAsModel($imet);
         return $imet->version === Imet::IMET_V1
             ? V1ToV2Scores::get_scores($imet->getKey())
             : V2Scores::get_scores($imet->getKey());
@@ -39,7 +39,7 @@ class ImetScores
      */
     public static function get_radar(Imet|ImetV1|ImetV2|int|string $imet, bool $with_abbreviations = false): array
     {
-        $imet = static::get_as_model($imet);
+        $imet = static::getAsModel($imet);
         $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
 
         // use abbreviations instead of keys
@@ -73,7 +73,7 @@ class ImetScores
      */
     public static function refresh_scores(Imet|ImetV1|ImetV2|int|string $imet): array
     {
-        $imet = static::get_as_model($imet);
+        $imet = static::getAsModel($imet);
         return $imet->version === Imet::IMET_V1
             ? V1ToV2Scores::get_scores($imet->getKey(), true)
             : V2Scores::get_scores($imet->getKey(), true);

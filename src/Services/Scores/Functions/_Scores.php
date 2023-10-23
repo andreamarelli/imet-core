@@ -26,7 +26,7 @@ abstract class _Scores
     /**
      * Ensure to return IMET model
      */
-    public static function get_as_model(Imet|ImetOEMC|int|string $imet): Imet|ImetOEMC
+    public static function getAsModel(Imet|ImetOEMC|int|string $imet): Imet|ImetOEMC
     {
         if(is_int($imet) or is_string($imet)){
             $imet = Imet::find($imet);

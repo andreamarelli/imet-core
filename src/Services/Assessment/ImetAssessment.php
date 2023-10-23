@@ -16,7 +16,7 @@ class ImetAssessment
     /**
      * Ensure to return IMET model
      */
-    private static function get_as_model(Imet|ImetV1|ImetV2|int|string $imet): Imet
+    private static function getAsModel(Imet|ImetV1|ImetV2|int|string $imet): Imet
     {
         return (is_int($imet) or is_string($imet))
             ? Imet::find($imet)
@@ -26,9 +26,9 @@ class ImetAssessment
     /**
      * Retrieve IMET info and scores
      */
-    public static function get_assessment(Imet|ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES): array
+    public static function getAssessment(Imet|ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES): array
     {
-        $imet = static::get_as_model($imet);
+        $imet = static::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES
             ? ImetScores::get_all($imet)
             : (
@@ -50,9 +50,24 @@ class ImetAssessment
     }
 
     /**
+     * Retrieve the last IMET of the given PA
+     *
+     * @param $wdpa_id
+     * @return array|null
+     */
+    public static function getLast($wdpa_id): ?array
+    {
+        $form = Imet::select(['FormID as id', 'version'])
+            ->where('wdpa_id', $wdpa_id)
+            ->orderBy('Year', 'DESC')
+            ->first();
+        return $form?->only(['id', 'version']);
+    }
+
+    /**
      * Retrieve the number of assessment and the related WDPA IDs for the given country
      */
-    public static function get_assessment_by_country($country, bool $with_scores = true): array
+    public static function getAssessmentByCountry($country, bool $with_scores = true): array
     {
         return Imet::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
             ->where('Country', $country)

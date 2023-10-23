@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\App;
 /** @var String $step */
 /** @var int $item_id */
 
-$assessment_step = OecmAssessment::get_assessment($item_id, $step);
+$assessment_step = OecmAssessment::getAssessment($item_id, $step);
 
 ?>
 

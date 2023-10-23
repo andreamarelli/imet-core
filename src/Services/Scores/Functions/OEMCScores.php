@@ -41,7 +41,7 @@ class OEMCScores extends _Scores
      * @param $imet
      * @return Imet
      */
-    public static function get_as_model($imet): Imet
+    public static function getAsModel($imet): Imet
     {
         if (is_int($imet) or is_string($imet)) {
             $imet = Imet::find($imet);

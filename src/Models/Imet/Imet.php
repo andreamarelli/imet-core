@@ -299,21 +299,6 @@ class Imet extends Form
     }
 
     /**
-     * Retrieve the last IMET of the given PA
-     *
-     * @param $wdpa_id
-     * @return array|null
-     */
-    public static function getLast($wdpa_id): ?array
-    {
-        $form = static::select(['FormID as id', 'version'])
-            ->where('wdpa_id', $wdpa_id)
-            ->orderBy('Year', 'DESC')
-            ->first();
-        return $form ? $form->only(['id', 'version']) : null;
-    }
-
-    /**
      * Retrieve specific fields and return them in different arrays in an array
      *
      * @param string[] $fields

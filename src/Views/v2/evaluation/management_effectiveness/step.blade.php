@@ -5,7 +5,7 @@ use AndreaMarelli\ImetCore\Services\Assessment\ImetAssessment;
 /** @var String $step */
 /** @var int $item_id */
 
-$assessment_step = ImetAssessment::get_assessment($item_id, $step);
+$assessment_step = ImetAssessment::getAssessment($item_id, $step);
 
 ?>
 
