@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet as ImetV2;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ImetCore\Services\Scores\Labels;
+use Illuminate\Database\Eloquent\Collection;
 
 class ImetAssessment
 {
@@ -50,18 +51,26 @@ class ImetAssessment
     }
 
     /**
-     * Retrieve the last IMET of the given PA
-     *
-     * @param $wdpa_id
-     * @return array|null
+     * Retrieve the last IMET of the given WDPA (return only ID and version)
      */
-    public static function getLast($wdpa_id): ?array
+    public static function getLast($wdpa_id): Imet
     {
         $form = Imet::select(['FormID as id', 'version'])
             ->where('wdpa_id', $wdpa_id)
             ->orderBy('Year', 'DESC')
             ->first();
         return $form?->only(['id', 'version']);
+    }
+
+    /**
+     * Retrieve the last IMET of the given PA
+     */
+    public static function getAvailableYears($wdpa_id): Collection
+    {
+        return Imet
+            ::where('wdpa_id', $wdpa_id)
+            ->orderBy('Year','DESC')
+            ->get();
     }
 
     /**
