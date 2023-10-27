@@ -12,8 +12,10 @@ use AndreaMarelli\ImetCore\Commands\InitDB;
 use AndreaMarelli\ImetCore\Commands\PopulateMetadata;
 use AndreaMarelli\ImetCore\Commands\PopulateSpecies;
 use AndreaMarelli\ImetCore\Commands\SetSerialNumber;
+use AndreaMarelli\ImetCore\Commands\UpdateOFAC;
 use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasAPI;
 use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasCSV;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 
@@ -21,28 +23,28 @@ class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Register services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'imet-core');
     }
 
     /**
      * Bootstrap services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Views
         $this->loadViewsFrom(__DIR__.'/../src/Views', 'imet-core');
         $this->publishes([__DIR__.'/../src/Views' => resource_path('views/vendor/imet-core')], 'views');
 
         // Routes
-        $this->loadRoutesFrom(__DIR__.'/../src/Routes/web.php');
-        $this->loadRoutesFrom(__DIR__.'/../src/Routes/api.php');
+        Route::group($this->routeConfiguration('web'), function () {
+            $this->loadRoutesFrom(__DIR__.'/../src/Routes/web.php');
+        });
+        Route::group($this->routeConfiguration('api'), function () {
+            $this->loadRoutesFrom(__DIR__.'/../src/Routes/api.php');
+        });
 
         // Config
         $this->publishes([__DIR__.'/../config/config.php' => config_path('imet-core.php')], 'config');
@@ -63,10 +65,26 @@ class ServiceProvider extends BaseServiceProvider
                 PopulateMetadata::class,
                 PopulateSpecies::class,
                 SetSerialNumber::class,
+                UpdateOFAC::class,
                 UpdateProtectedAreasAPI::class,
                 UpdateProtectedAreasCSV::class
             ]);
         }
+    }
+
+    private function routeConfiguration($route_file): array
+    {
+        if($route_file === 'web' && config('imet-core.web_routes_prefix')!==null){
+            return [
+                'prefix' => config('imet-core.web_routes_prefix')
+            ];
+        } else if ($route_file === 'api' && config('imet-core.api_routes_prefix')!==null){
+            return [
+                'prefix' => config('imet-core.api_routes_prefix')
+            ];
+        }
+
+        return [];
     }
 
 }

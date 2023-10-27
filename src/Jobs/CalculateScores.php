@@ -2,15 +2,14 @@
 
 namespace AndreaMarelli\ImetCore\Jobs;
 
-use AndreaMarelli\ImetCore\Services\Statistics\OEMCStatisticsService;
-use AndreaMarelli\ImetCore\Services\Statistics\V1ToV2StatisticsService;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOECM;
-use AndreaMarelli\ImetCore\Services\Statistics\V2StatisticsService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
@@ -39,22 +38,17 @@ class CalculateScores implements ShouldQueue
      */
     public function handle(): void
     {
-
         // IMETs
-        $imets = Imet::select(['FormID', 'version'])->get();
-        foreach($imets as $imet){
-            if($imet->version ===Imet::IMET_V2) {
-                V2StatisticsService::get_scores($imet->FormID, 'ALL', false);
-            } else {
-                V1ToV2StatisticsService::get_scores($imet->FormID, 'ALL', false);
-            }
-            Log::info('IMET #' . $imet->FormID . ' scores updated');
+        $IMETs = Imet::select(['FormID', 'version'])->get();
+        foreach($IMETs as $imet){
+            ImetScores::refresh_scores($imet);
+            Log::info('IMET #' . $imet . ' scores updated');
         }
 
         // OECM
-        $oecms = ImetOECM::select(['FormID'])->get();
-        foreach($oecms as $oecm){
-            OEMCStatisticsService::get_scores($oecm->FormID, 'ALL', false);
+        $OECMs = ImetOECM::select(['FormID'])->get();
+        foreach($OECMs as $oecm){
+            OecmScores::refresh_scores($oecm->FormID);
             Log::info('OECM #' . $oecm->FormID . ' scores updated');
         }
 
