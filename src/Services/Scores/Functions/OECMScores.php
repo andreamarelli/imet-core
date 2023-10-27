@@ -21,7 +21,7 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplem
 use AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions;
 
 
-class OEMCScores extends _Scores
+class OECMScores extends _Scores
 {
     const CACHE_PREFIX = 'oecm_scores';
 

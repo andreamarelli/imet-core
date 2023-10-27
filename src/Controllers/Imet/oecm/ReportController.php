@@ -6,7 +6,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportContro
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
 use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use Illuminate\Http\Request;
@@ -43,7 +42,7 @@ class ReportController extends BaseReportController
             'assessment' => array_merge(
                 OecmScores::get_all($form_id),
                 [
-                    'labels' => OEMCScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
+                    'labels' => OecmScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
                 ]
             ),
             'report' => Report::getByForm($form_id),

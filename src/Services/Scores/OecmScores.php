@@ -6,7 +6,7 @@ namespace AndreaMarelli\ImetCore\Services\Scores;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\OEMCScores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\OECMScores as OECMScoresFunctions;
 
 class OecmScores
 {
@@ -28,7 +28,7 @@ class OecmScores
     public static function get_all(ImetOecm|int|string $imet): array
     {
         $imet_id = static::get_as_id($imet);
-        return OEMCScores::get_scores($imet_id);
+        return OECMScoresFunctions::get_scores($imet_id);
     }
 
     /**
@@ -70,7 +70,7 @@ class OecmScores
     public static function refresh_scores(ImetOecm|int|string $imet): array
     {
         $imet_id = static::get_as_id($imet);
-        return OEMCScores::get_scores($imet_id, true);
+        return OECMScoresFunctions::get_scores($imet_id, true);
     }
 
     /**
