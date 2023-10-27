@@ -1,6 +1,5 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\DevUsersController;
 use AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
@@ -10,7 +9,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\v2;
 use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
 use AndreaMarelli\ImetCore\Controllers\SpeciesController;
 use AndreaMarelli\ImetCore\Controllers\UsersController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
