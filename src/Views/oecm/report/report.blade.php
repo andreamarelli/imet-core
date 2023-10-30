@@ -40,7 +40,7 @@ if ($item->language != App::getLocale()) {
 
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.key_elements')</div>
+                <div class="module-title" id="ar2">AR.2 @lang('imet-core::oecm_report.key_elements')</div>
             </div>
             <div class="module-body">
                 @include('imet-core::oecm.report.components.governance_management', [
@@ -49,6 +49,7 @@ if ($item->language != App::getLocale()) {
                 @include('imet-core::oecm.report.components.stakeholders_user_managing', ['stake_holders' => $stake_holders])
                 @include('imet-core::oecm.report.components.ecosystem_services_biodiversity', ['stake_analysis' => $stake_analysis])
                 @include('imet-core::oecm.report.components.key_biodiversity_elements', ['key_elements_impacts' => $key_elements_impacts])
+                @include('imet-core::oecm.report.components.key_ecosystem_elements', ['key_elements_impacts' => $key_elements_impacts])
 
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'key_elements_comment'])
 
@@ -57,7 +58,7 @@ if ($item->language != App::getLocale()) {
 
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.evaluation_elements')</div>
+                <div class="module-title" id="ar3">AR.3 @lang('imet-core::oecm_report.evaluation_elements')</div>
             </div>
             <div class="module-body">
                 <imet_charts
@@ -88,7 +89,7 @@ if ($item->language != App::getLocale()) {
         </div>
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.management_effectiveness')</div>
+                <div class="module-title" id="ar4">AR.4 @lang('imet-core::oecm_report.management_effectiveness')</div>
             </div>
             <div class="module-body">
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'analysis'])
@@ -142,7 +143,7 @@ if ($item->language != App::getLocale()) {
         </div>
         <div class="module-container mt-5">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.key_questions')</div>
+                <div class="module-title" id="ar7">AR.7 @lang('imet-core::oecm_report.key_questions')</div>
             </div>
             <div class="module-body">
                 <h5>@lang('imet-core::oecm_report.operating_budget')</h5>
@@ -180,6 +181,7 @@ if ($item->language != App::getLocale()) {
                      @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
+        @include('imet-core::oecm.report.components.navigation_menu')
     </div>
     <script>
         new Vue({

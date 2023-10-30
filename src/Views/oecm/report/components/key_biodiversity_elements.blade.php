@@ -7,7 +7,7 @@
     <div class="col">
 
         <div>
-            @foreach($key_elements['chart']['values'] as $threat_key => $threat_label)
+            @foreach($key_elements_biodiversity_charts['chart']['values'] as $threat_key => $threat_label)
                 <div class="histogram-row">
                     <div class="histogram-row__title text-left">{{ $threat_key }}</div>
                     <div class="histogram-row__value text-right" style="margin-right: 20px;">

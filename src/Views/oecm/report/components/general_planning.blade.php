@@ -8,7 +8,7 @@
 ?>
 <div class="module-container mt-1">
     <div class="module-header">
-        <div class="module-title">@lang('imet-core::oecm_report.general_planning.name')</div>
+        <div class="module-title" id="ar5">AR.5 @lang('imet-core::oecm_report.general_planning.name')</div>
     </div>
     <div class="module-body">
         <div class="row ">
@@ -81,7 +81,6 @@
         </table>
         <div class="row mb-5">
             <div class="col">
-
                 <div>
                     @foreach($main_threats['chart']['values'] as $threat_key => $threat_label)
                         <div class="histogram-row">
