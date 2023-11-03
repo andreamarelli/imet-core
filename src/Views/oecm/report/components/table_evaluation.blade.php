@@ -14,7 +14,7 @@
     <tr>
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['context']['avg_indicator'], '') !!}>{{ $assessment['context']['avg_indicator']  ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['context']['avg_indicator'], '') !!}>{{ $assessment['context']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
 
@@ -39,7 +39,7 @@
     <tr>
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['planning']['avg_indicator'], '') !!}>{{ $assessment['planning']['avg_indicator']  ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['planning']['avg_indicator'], '') !!}>{{ $assessment['planning']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -62,7 +62,7 @@
     <tr>
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['inputs']['avg_indicator'], '') !!}>{{ $assessment['inputs']['avg_indicator']  ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['inputs']['avg_indicator'], '') !!}>{{ $assessment['inputs']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -85,7 +85,7 @@
     <tr>
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['process']['avg_indicator'], '') !!}>{{ $assessment['process']['avg_indicator'] ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['process']['avg_indicator'], '') !!}>{{ $assessment['process']['avg_indicator'] ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -127,7 +127,7 @@
     <tr>
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outputs']['avg_indicator'], '') !!}>{{ $assessment['outputs']['avg_indicator']  ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outputs']['avg_indicator'], '') !!}>{{ $assessment['outputs']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -147,7 +147,7 @@
     <tr >
         <td colspan="12">
             <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment::score_class($assessment['outcomes']['avg_indicator'], '') !!}>{{ $assessment['outcomes']['avg_indicator']  ?? ' - ' }}</div>
+                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outcomes']['avg_indicator'], '') !!}>{{ $assessment['outcomes']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>

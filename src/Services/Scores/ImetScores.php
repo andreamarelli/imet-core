@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet as ImetV2;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V1Scores;
 
 class ImetScores
 {
@@ -28,9 +29,12 @@ class ImetScores
      */
     public static function get_all(Imet|ImetV1|ImetV2|int|string $imet): array
     {
+
         $imet = static::getAsModel($imet);
         return $imet->version === Imet::IMET_V1
-            ? V1ToV2Scores::get_scores($imet->getKey())
+        //todo V1toV2Scores its only used in scaling up in the other sections we must use V1Scores, so maybe
+        // an extra parameter to call V1toV2Scores were needed and not alwats V1Scores
+            ? V1Scores::get_scores($imet->getKey())
             : V2Scores::get_scores($imet->getKey());
     }
 

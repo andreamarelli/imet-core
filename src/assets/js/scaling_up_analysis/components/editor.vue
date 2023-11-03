@@ -48,6 +48,7 @@ export default {
     }
   },
   mounted(){
+      console.log(window.ClassicEditor);
     const _this = this;
     this.$parent.$on('save_comments', (value, func, attr) => {
 
@@ -82,7 +83,8 @@ export default {
 
   methods: {
     onEditorInput(value) {
-       this.editorData = value;
+        this.$emit('update', this.editorData);
+      // this.editorData = value;
     }
   }
 }

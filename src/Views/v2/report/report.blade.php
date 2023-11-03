@@ -51,7 +51,7 @@ if($item->language != App::getLocale()){
                     <div id="map" v-if=connection></div>
                     <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
                     <div style="display: flex;">
-                        @if($connection)
+                        @if($connection && $dopa_radar['records'])
                             <div id="radar">
                                 <dopa_radar data='@json($dopa_radar)'></dopa_radar>
                                 &copy;Dopa Services
@@ -107,6 +107,7 @@ if($item->language != App::getLocale()){
                 <div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div>
             </div>
             <div class="module-body">
+
                 <imet_charts
                         form_id={{ $item->getKey() }} :labels='@json(ImetScores::labels())'
                         :show_histogram="true" :version="'v2'"></imet_charts>
