@@ -51,7 +51,7 @@ if($item->language != App::getLocale()){
                     <div id="map" v-if=connection></div>
                     <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
                     <div style="display: flex;">
-                        @if($connection && $dopa_radar['records'])
+                        @if($connection)
                             <div id="radar">
                                 <dopa_radar data='@json($dopa_radar)'></dopa_radar>
                                 &copy;Dopa Services

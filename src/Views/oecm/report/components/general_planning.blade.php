@@ -8,7 +8,7 @@
 ?>
 <div class="module-container mt-1">
     <div class="module-header">
-        <div class="module-title" id="ar5">AR.5 @lang('imet-core::oecm_report.general_planning.name')</div>
+        <div class="module-title" id="ar4">AR.4 @lang('imet-core::oecm_report.general_planning.name')</div>
     </div>
     <div class="module-body">
         <div class="row ">
@@ -102,16 +102,8 @@
                                 <div class="histogram-row__progress-bar__limit-right">0%</div>
                             </div>
                         </div>
-
                     @endforeach
-
                 </div>
-{{--                <imet_bar_chart--}}
-{{--                    :values="{{$main_threats['chart']['values'] }}"--}}
-{{--                    :fields="{{$main_threats['chart']['fields'] }}"--}}
-{{--                    :colors="{{$main_threats['chart']['colors'] }}"--}}
-{{--                    :axis_dimensions_y="{max:0,min:-100}"--}}
-{{--                ></imet_bar_chart>--}}
             </div>
         </div>
 

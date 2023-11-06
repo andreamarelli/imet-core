@@ -6,8 +6,7 @@ $scroll_buttons = [
     'ar3' => 'AR.3',
     'ar4' => 'AR.4',
     'ar5' => 'AR.5',
-    'ar6' => 'AR.6',
-    'ar7' => 'AR.7'
+    'ar6' => 'AR.6'
 ];
 
 ?>

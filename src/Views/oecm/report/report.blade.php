@@ -63,7 +63,7 @@ if($item->language != App::getLocale()){
 
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title" id="ar3">AR.3 @lang('imet-core::oecm_report.evaluation_elements')</div>
+                <div class="module-title">@lang('imet-core::oecm_report.evaluation_elements')</div>
             </div>
             <div class="module-body">
                 <imet_charts
@@ -94,13 +94,14 @@ if($item->language != App::getLocale()){
         </div>
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title" id="ar4">AR.4 @lang('imet-core::oecm_report.management_effectiveness')</div>
+                <div class="module-title" id="ar3">AR.3 @lang('imet-core::oecm_report.management_effectiveness')</div>
             </div>
             <div class="module-body">
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'analysis'])
                 <h5>@lang('imet-core::oecm_report.characteristics_elements')</h5>
                 <div class="swot">
                     <div>
+
                         <b>@lang('imet-core::oecm_report.strengths')</b>
                         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'strengths_swot'])
                     </div>
@@ -148,7 +149,7 @@ if($item->language != App::getLocale()){
         </div>
         <div class="module-container mt-5">
             <div class="module-header">
-                <div class="module-title" id="ar7">AR.7 @lang('imet-core::oecm_report.key_questions')</div>
+                <div class="module-title" id="ar6">AR.6 @lang('imet-core::oecm_report.key_questions')</div>
             </div>
             <div class="module-body">
                 <h5>@lang('imet-core::oecm_report.operating_budget')</h5>
@@ -229,6 +230,7 @@ if($item->language != App::getLocale()){
                 },
                 'report': {
                     handler: function (val, oldVal) {
+                        console.log(this);
                         this.status = 'changed';
                     },
                     deep: true

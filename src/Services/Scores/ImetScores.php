@@ -29,12 +29,9 @@ class ImetScores
      */
     public static function get_all(Imet|ImetV1|ImetV2|int|string $imet): array
     {
-
         $imet = static::getAsModel($imet);
         return $imet->version === Imet::IMET_V1
-        //todo V1toV2Scores its only used in scaling up in the other sections we must use V1Scores, so maybe
-        // an extra parameter to call V1toV2Scores were needed and not alwats V1Scores
-            ? V1Scores::get_scores($imet->getKey())
+            ? V1ToV2Scores::get_scores($imet->getKey())
             : V2Scores::get_scores($imet->getKey());
     }
 
@@ -47,11 +44,11 @@ class ImetScores
         $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
 
         // use abbreviations instead of keys
-        if($with_abbreviations){
+        if ($with_abbreviations) {
             $labels = static::labels($imet->version, true);
             unset($scores['imet_index']);
             return array_combine($labels, $scores);
-        } else{
+        } else {
             return $scores;
         }
     }

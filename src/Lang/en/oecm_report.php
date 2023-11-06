@@ -18,7 +18,7 @@ return [
     'key_elements' => 'Key elements',
     'terrestial_marine_habitats' => 'Terrestrial and marine habitats - land-cover, land-change and land-take',
     'threats' => 'Threats',
-    'management_effectiveness' => 'Management effectiveness analysis (analysis + swot analysis)',
+    'management_effectiveness' => 'Management effectiveness',
     'characteristics_elements' => 'Characteristic elements of the OECM in the form of a SWOT exercise',
     'strengths' => 'Strengths',
     'weaknesses' => 'Weaknesses',
