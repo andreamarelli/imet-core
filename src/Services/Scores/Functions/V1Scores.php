@@ -122,7 +122,7 @@ class V1Scores extends _Scores
         $scores['pr1_6'] = static::average([$scores['pr1'],  $scores['pr2'], $scores['pr3'], $scores['pr4'], $scores['pr5'], $scores['pr6']]);
         $scores['pr7_10'] = static::average([$scores['pr7'],  $scores['pr8'],  $scores['pr9'], $scores['pr10']], 1);
         $scores['pr11_13'] = static::average([ $scores['pr11'],  $scores['pr12'],  $scores['pr13']], 1);
-        $scores['pr14_14'] = static::average([$scores['pr14'],  $scores['pr15']], 1);
+        $scores['pr14_15'] = static::average([$scores['pr14'],  $scores['pr15']], 1);
         $scores['pr16_17'] = static::average([$scores['pr16'],  $scores['pr17']], 1);
         $scores['pr18_19'] = static::average([$scores['pr18'],  $scores['pr19']], 1);
         return $scores;

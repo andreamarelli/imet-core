@@ -30,10 +30,14 @@ class ReportController extends BaseReportController
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
         $key_elements = $this->getKeyElements($form_id);
+        $threats = collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
+            ->toArray();
+       // dd($this->getBiodiversityThreats($form_id));
         return [
             'item' => $item,
             'main_threats' => $this->getThreats($form_id),
-            'key_elements' => $this->getBiodiversityThreats($form_id),
+            'key_elements_ecosystem_charts' => $this->getBiodiversityThreats($form_id, $threats,true),
+            'key_elements_biodiversity_charts' => $this->getBiodiversityThreats($form_id, $threats,false),
             'key_elements_biodiversity' => array_values($this->getKeyElementsBiodiversity($key_elements)),
             'key_elements_ecosystem' => array_values($this->getKeyElementsEcosystems($key_elements)),
             'key_elements_impacts' => $this->getElementImpacts($form_id),
@@ -114,10 +118,19 @@ class ReportController extends BaseReportController
         return ['ecosystem_services' => $ecosystem];
     }
 
-    private function getBiodiversityThreats(int $form_id): array{
+    private function getBiodiversityThreats(int $form_id, array $threats, bool $ecosystem = false): array{
         $fields = [];
-        $threats = collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
-            ->toArray();
+
+
+        if($ecosystem){
+            $threats = array_filter($threats, function ($item) {
+                return  $item['__group_stakeholders'] !== null;
+            });
+        } else {
+            $threats = array_filter($threats, function ($item) {
+                return  $item['__group_stakeholders'] === null;
+            });
+        }
 
         uasort($threats, function ($a, $b) {
 

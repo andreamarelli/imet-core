@@ -44,7 +44,6 @@ class ReportController extends BaseReportController
 
         $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
-
         return [
             'item' => $item,
             'key_elements' => [

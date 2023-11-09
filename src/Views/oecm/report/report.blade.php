@@ -1,10 +1,10 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
 
@@ -19,13 +19,12 @@ use Illuminate\Support\Facades\App;
 /** @var Array $non_wdpa */
 /** @var Array $governance */
 /** @var Array $stake_analysis */
-
+//dd(OecmScores::labels());
 
 // Force Language
 if($item->language != App::getLocale()){
     App::setLocale($item->language);
 }
-
 ?>
 
 @extends('layouts.admin')
@@ -46,7 +45,7 @@ if($item->language != App::getLocale()){
 
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.key_elements')</div>
+                <div class="module-title" id="ar2">AR.2 @lang('imet-core::oecm_report.key_elements')</div>
             </div>
             <div class="module-body">
                 @include('imet-core::oecm.report.components.governance_management', [
@@ -55,6 +54,7 @@ if($item->language != App::getLocale()){
                 @include('imet-core::oecm.report.components.stakeholders_user_managing', ['stake_holders' => $stake_holders])
                 @include('imet-core::oecm.report.components.ecosystem_services_biodiversity', ['stake_analysis' => $stake_analysis])
                 @include('imet-core::oecm.report.components.key_biodiversity_elements', ['key_elements_impacts' => $key_elements_impacts])
+                @include('imet-core::oecm.report.components.key_ecosystem_elements', ['key_elements_impacts' => $key_elements_impacts])
 
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'key_elements_comment'])
 
@@ -67,8 +67,8 @@ if($item->language != App::getLocale()){
             </div>
             <div class="module-body">
                 <imet_charts
-                        form_id={{ $item->getKey() }}  :labels='@json(OecmScores::labels())'
-                        :show_histogram="true" :version="'oecm'"></imet_charts>
+                        form_id={{ $item->getKey() }}  :labels='@json(ImetScores::labels())'
+                        :show_histogram="true" :version="'oecm'" ></imet_charts>
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::common.steps_eval.context')</th>
@@ -80,13 +80,13 @@ if($item->language != App::getLocale()){
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
+                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
+                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
+                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
+                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
+                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
+                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
+                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
                 @include('imet-core::oecm.report.components.table_evaluation', ['assessment' => $assessment])
@@ -94,13 +94,14 @@ if($item->language != App::getLocale()){
         </div>
         <div class="module-container">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.management_effectiveness')</div>
+                <div class="module-title" id="ar3">AR.3 @lang('imet-core::oecm_report.management_effectiveness')</div>
             </div>
             <div class="module-body">
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'analysis'])
                 <h5>@lang('imet-core::oecm_report.characteristics_elements')</h5>
                 <div class="swot">
                     <div>
+
                         <b>@lang('imet-core::oecm_report.strengths')</b>
                         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'strengths_swot'])
                     </div>
@@ -128,7 +129,7 @@ if($item->language != App::getLocale()){
                 'main_threats' => $main_threats])
         <div class="item">
 
-            @include('imet-core::oecm.report.components.planning_roadmap', ['report' => $report, 'action' => $action])
+            @include('imet-core::oecm.report.components.planning_roadmap', ['report' => $report[0], 'action' => $action])
             <div class="row">
                 <div class="col">
                     <span class="btn medium" v-if="reportLength < 10">
@@ -148,7 +149,7 @@ if($item->language != App::getLocale()){
         </div>
         <div class="module-container mt-5">
             <div class="module-header">
-                <div class="module-title">@lang('imet-core::oecm_report.key_questions')</div>
+                <div class="module-title" id="ar6">AR.6 @lang('imet-core::oecm_report.key_questions')</div>
             </div>
             <div class="module-body">
                 <h5>@lang('imet-core::oecm_report.operating_budget')</h5>
@@ -186,6 +187,7 @@ if($item->language != App::getLocale()){
                      @click="printReport">{!! Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
+        @include('imet-core::oecm.report.components.navigation_menu')
     </div>
     <script>
         new Vue({
@@ -201,6 +203,13 @@ if($item->language != App::getLocale()){
             mounted() {
 
                 if (this.report.length > 0) {
+                    for(const items in this.report){
+                        for(const item in this.report[items]) {
+                            if (this.report[items][item] === null) {
+                                this.report[items][item] = "";
+                            }
+                        }
+                    }
                     this.table_input_elems = this.report.map((elem, index) => index);
                 }
             },
@@ -221,6 +230,7 @@ if($item->language != App::getLocale()){
                 },
                 'report': {
                     handler: function (val, oldVal) {
+                        console.log(this);
                         this.status = 'changed';
                     },
                     deep: true
@@ -260,7 +270,16 @@ if($item->language != App::getLocale()){
                     if (this.table_input_elems.length < 10) {
                         const id = this.table_input_elems.length;
                         this.table_input_elems.push(id);
-                        this.report.push(JSON.parse(JSON.stringify(this.default_schema)));
+
+                        const new_schema = JSON.parse(JSON.stringify(this.default_schema));
+
+                        for(const item in new_schema){
+                            if(new_schema[item] === null){
+                                new_schema[item] = "";
+                            }
+                        }
+                        console.log({new_schema})
+                        this.report.push(new_schema);
                     }
                 },
                 deleteItem(index) {

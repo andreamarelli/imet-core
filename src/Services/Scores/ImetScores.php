@@ -8,6 +8,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Imet as ImetV2;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\V1Scores;
 
 class ImetScores
 {
@@ -43,11 +44,11 @@ class ImetScores
         $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
 
         // use abbreviations instead of keys
-        if($with_abbreviations){
+        if ($with_abbreviations) {
             $labels = static::labels($imet->version, true);
             unset($scores['imet_index']);
             return array_combine($labels, $scores);
-        } else{
+        } else {
             return $scores;
         }
     }
