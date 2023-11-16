@@ -3,12 +3,9 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use AndreaMarelli\ImetCore\Exceptions\MissingDependencyConfigurationException;
-use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ImetCore\Services\ThreatsService;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use Illuminate\Support\Str;
 
 class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
 
