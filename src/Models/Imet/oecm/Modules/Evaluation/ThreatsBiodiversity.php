@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
+use AndreaMarelli\ImetCore\Exceptions\MissingDependencyConfigurationException;
 use AndreaMarelli\ImetCore\Models\Animal;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
 use AndreaMarelli\ImetCore\Models\User\Role;
@@ -59,9 +60,28 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
             : [];
 
         return [
-            'field' => 'Criteria',
+            'field' => static::$DEPENDENCY_ON,
             'values' => $predefined_values
         ];
+    }
+
+    /**
+     * Override: ensure to removed dropped items
+     * @throws MissingDependencyConfigurationException
+     */
+    protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
+    {
+        $predefined_values = static::getPredefined($form_id);
+        $records = static::arrange_records($predefined_values, $records, $empty_record);
+
+        // Ensure to removed dropped items
+        foreach ($records as $record){
+            if(!in_array($record[static::$DEPENDENCY_ON], $predefined_values['values'][$record['group_key']])){
+                static::dropOrphansDependencyRecords($form_id, [$record[static::$DEPENDENCY_ON]]);
+            }
+        }
+
+        return $records;
     }
 
 
