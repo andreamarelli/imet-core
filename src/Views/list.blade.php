@@ -224,6 +224,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 },
 
                 mounted: function () {
+                    console.log({list:this.list})
                     this.sort('{{ $form_class::$sortBy }}', '{{ $form_class::$sortDirection }}');
                 }
 
