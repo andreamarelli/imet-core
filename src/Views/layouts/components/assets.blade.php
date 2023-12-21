@@ -11,10 +11,8 @@ $script_files = $script_files ?? true;
 
 {{-- packages --}}
 @if($script_files)
-    <script src="{{ asset(mix('modular_forms_vendor.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('modular_forms_vendor.css', 'assets')) }}">
-    <script src="{{ asset(mix('modular_forms_index.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('modular_forms_index.css', 'assets')) }}">
+    {{-- packages --}}
+    @include('modular-forms::layouts.components.assets')
     <script src="{{ asset(mix('imet_core_vendor.js', 'assets')) }}"></script>
     <link rel="stylesheet" href="{{ asset(mix('imet_core_vendor.css', 'assets')) }}">
     <script src="{{ asset(mix('imet_core_index.js', 'assets')) }}"></script>
