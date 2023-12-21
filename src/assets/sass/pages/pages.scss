@@ -1,4 +1,4 @@
-@import "../../../../vendor/andreamarelli/modular-forms/src/assets/sass/abstracts/colors";
+@import "../../../../vendor/andreamarelli/modular-forms/src/resources/assets/sass/abstracts/colors";
 
 .footer_ribbon.imet {
     font-size: 1em;
@@ -7,7 +7,7 @@
 #imet_header {
     display: flex;
     justify-content: space-between;
-    background-color: $gray-50;
+    @apply bg-gray-50;
     padding: 0 10px;
 }
 

@@ -95,8 +95,6 @@
 
 <style lang="scss" scoped>
 
-    @import "vendor/andreamarelli/modular-forms/src/assets/sass/abstracts/all";
-
     .module-container .selector-wdpa_multiple {
 
         .field-preview {
@@ -107,11 +105,11 @@
             vertical-align: top;
 
             i.removeItem {
-                color: $contextual-danger;
+                @apply text-red-400;
                 cursor: pointer;
 
                 &:hover {
-                    color: $gray-800;
+                    @apply text-gray-800;
                 }
             }
         }
