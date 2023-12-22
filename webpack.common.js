@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const CopyPlugin = require("copy-webpack-plugin");
+const tailwindcss = require('tailwindcss');
 
 module.exports = {
 
@@ -40,6 +41,7 @@ module.exports = {
                         },
                     },
                     'css-loader',
+                    'postcss-loader',
                     'sass-loader'
                 ],
             },
@@ -65,6 +67,7 @@ module.exports = {
     },
 
     plugins: [
+        tailwindcss,
         new VueLoaderPlugin(),
         new CopyPlugin({
             patterns: [

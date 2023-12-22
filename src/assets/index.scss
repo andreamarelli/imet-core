@@ -1,2 +1,11 @@
-@import './sass/components/components.scss';
-@import './sass/pages/pages.scss';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "../../vendor/andreamarelli/modular-forms/src/resources/assets/sass/abstracts/colors";
+
+@import './sass/components/common';
+@import './sass/components/header';
+@import './sass/components/module';
+@import './sass/components/page.list';
+@import './sass/components/scores';

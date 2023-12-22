@@ -1,37 +1,24 @@
 <?php
-/** @var String $form_class */
+/** @var String $version */
 
-use AndreaMarelli\ImetCore\Controllers\Imet;
+use AndreaMarelli\ModularForms\Helpers\Template;
+
+if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
+    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
+} else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
+    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class;
+} else {
+    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::class;
+}
 
 ?>
 
-<span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-    @include('modular-forms::buttons._generic', [
-        'controller' => Imet\v1\Controller::class,
-        'action' =>'print',
-        'item' => 'item.FormID',
-        'tooltip' => ucfirst(trans('modular-forms::common.print')),
-        'icon' => 'print',
-        'class' => 'btn-primary'
-    ])
-</span>
-<span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-    @include('modular-forms::buttons._generic', [
-        'controller' => Imet\v2\Controller::class,
-        'action' =>'print',
-        'item' => 'item.FormID',
-        'tooltip' => ucfirst(trans('modular-forms::common.print')),
-        'icon' => 'print',
-        'class' => 'btn-primary'
-    ])
-</span>
-<span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-    @include('modular-forms::buttons._generic', [
-        'controller' => Imet\oecm\Controller::class,
-        'action' =>'print',
-        'item' => 'item.FormID',
-        'tooltip' => ucfirst(trans('modular-forms::common.print')),
-        'icon' => 'print',
-        'class' => 'btn-primary'
-    ])
-</span>
+
+<a id="print_{{ $item->getKey() }}"
+   class="btn-nav small btn-primary"
+   href="{{ action([$controller, 'print'], [$item->getKey()]) }}">
+    {!! Template::icon('print') !!}
+</a>
+<tooltip anchor-elem-id="print_{{ $item->getKey() }}">
+    {{ ucfirst(trans('modular-forms::common.print')) }}
+</tooltip>

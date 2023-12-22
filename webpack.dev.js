@@ -4,7 +4,7 @@ const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
-    mode: 'production',
+    mode: 'development',
 
     output: {
         filename: 'debug/imet_core_[name].js'
@@ -15,4 +15,5 @@ module.exports = merge(common, {
             filename: 'debug/imet_core_[name].css',
         }),
     ]
+
 });

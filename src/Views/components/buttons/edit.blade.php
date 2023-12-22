@@ -1,6 +1,8 @@
 <?php
 /** @var String $version */
 
+use AndreaMarelli\ModularForms\Helpers\Template;
+
 if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
     $controller_context = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::class;
     $controller_eval = \AndreaMarelli\ImetCore\Controllers\Imet\v1\EvalController::class;
@@ -17,59 +19,34 @@ else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
 }
 ?>
 
-<span class="imet_encode_popover">
 
-    <button class="btn-nav small yellow"
-            role="button"
-            data-toggle="popover" data-trigger="focus" data-placement="top"
-            :data-popover-content="'popover_edit_'+item.FormID">
-        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('pen', 'white') !!}
-    </button>
+<span>
+    <span id="edit_{{ $item->getKey() }}">
+        <button class="btn-nav small yellow">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('pen', 'white') !!}</button>
+    </span>
+    <tooltip :on-click=true
+             anchor-elem-id="edit_{{ $item->getKey() }}">
 
-    <div :id="'popover_edit_'+item.FormID" style="display: none">
-        <div class="popover-heading">
-            @uclang('imet-core::common.encode')
-        </div>
-        <div class="popover-body">
+        <div class="flex flex-col gap-y-1">
 
             {{-- Context --}}
-            @include('modular-forms::buttons._generic', [
-                'controller' => $controller_context,
-                'action' =>'edit',
-                'item' => 'item.FormID',
-                'label' => ucfirst(trans('imet-core::common.context')),
-                'icon' => 'list',
-                'class' => 'yellow',
-                'new_page' => false
-            ])
+            <a class="btn-nav small yellow" href="{{ action([$controller_context, 'edit'], [$item->getKey()]) }}">
+                {!! Template::icon('list') . ' ' . ucfirst(trans('imet-core::common.context')) !!}
+            </a>
 
             {{-- Evaluation --}}
-            @include('modular-forms::buttons._generic', [
-                'controller' => $controller_eval,
-                'action' =>'edit',
-                'item' => 'item.FormID',
-                'label' => ucfirst(trans('imet-core::common.evaluation')),
-                'icon' => 'check-circle',
-                'class' => 'yellow',
-                'new_page' => false
-            ])
+            <a class="btn-nav small yellow" href="{{ action([$controller_eval, 'edit'], [$item->getKey()]) }}">
+                {!! Template::icon('check-circle') . ' ' . ucfirst(trans('imet-core::common.evaluation')) !!}
+            </a>
 
             {{-- Analysis Report --}}
-            @include('modular-forms::buttons._generic', [
-                'controller' => $controller_report,
-                'action' =>'report',
-                'item' => 'item.FormID',
-                'label' => ucfirst(trans('imet-core::common.report')),
-                'icon' => 'flag-checkered',
-                'class' => 'yellow',
-                'new_page' => false
-            ])
+            @if($version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2 || $version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
+                <a class="btn-nav small yellow" href="{{ action([$controller_report, 'report'], [$item->getKey()]) }}">
+                {!! Template::icon('flag-checkered') . ' ' . ucfirst(trans('imet-core::common.report')) !!}
+            </a>
+            @endif
 
         </div>
-    </div>
 
+    </tooltip>
 </span>
-
-@push('scripts')
-    @include('imet-core::components.popover')
-@endpush

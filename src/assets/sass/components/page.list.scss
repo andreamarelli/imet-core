@@ -1,0 +1,32 @@
+
+.imet_name {
+  display: flex;
+  flex-direction: column;
+
+  .imet_pa_name {
+    font-size: 1.1em;
+    flex-grow: 1;
+  }
+}
+
+.imet_responsible {
+  font-size: 0.85em;
+  text-align: left;
+
+  ul {
+    margin: 0;
+    padding-inline-start: 15px;
+
+    li {
+      line-height: 1.4em;
+    }
+  }
+
+  button {
+    margin-top: 5px;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+}
