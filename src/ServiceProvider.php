@@ -40,7 +40,7 @@ class ServiceProvider extends BaseServiceProvider
 
 
         // Assets
-        $this->publishes([__DIR__.'/dist' => public_path('vendor/imet-core')]);
+        $this->publishes([__DIR__.'/../dist' => public_path('vendor/imet-core')], ['imet-core', 'laravel-assets']);
 
         // Routes
         Route::group($this->routeConfiguration('web'), function () {
