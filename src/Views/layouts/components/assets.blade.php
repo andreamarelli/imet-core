@@ -13,8 +13,8 @@ $debug = !App::environment('production');
 
 ?>
 
-<script src="{{ Manifest::asset('imet_core_index.js', $debug) }}"></script>
-<link rel="stylesheet" href="{{ Manifest::asset('imet_core_index.css', $debug) }}">
+<script src="{{ Manifest::asset('index.js', $debug) }}"></script>
+<link rel="stylesheet" href="{{ Manifest::asset('index.css', $debug) }}">
 
 <script>
     window.imet_routes = {
