@@ -2,7 +2,7 @@
 /** @var String $mapbox_token */
 /** @var Boolean $script_files */
 
-use AndreaMarelli\ModularForms\Helpers\Manifest;
+use AndreaMarelli\ImetCore\Helpers\Manifest;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
