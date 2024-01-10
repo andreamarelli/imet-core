@@ -38,6 +38,10 @@ class ServiceProvider extends BaseServiceProvider
         $this->loadViewsFrom(__DIR__.'/../src/Views', 'imet-core');
         $this->publishes([__DIR__.'/../src/Views' => resource_path('views/vendor/imet-core')], 'views');
 
+
+        // Assets
+        $this->publishes([__DIR__.'/dist' => public_path('vendor/imet-core')]);
+
         // Routes
         Route::group($this->routeConfiguration('web'), function () {
             $this->loadRoutesFrom(__DIR__.'/../src/Routes/web.php');
