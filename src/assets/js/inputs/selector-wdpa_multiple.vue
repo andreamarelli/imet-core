@@ -139,7 +139,6 @@
     export default {
 
         components: {
-            'flag': window.ModularForms.Template.flag,
             'modal-selector': window.ModularForms.Input.modalSelector,
             'modal_api_search': window.ModularForms.Input.modalApiSearch
         },

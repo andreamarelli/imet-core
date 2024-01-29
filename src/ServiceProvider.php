@@ -35,26 +35,25 @@ class ServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         // Views
-        $this->loadViewsFrom(__DIR__.'/../src/Views', 'imet-core');
-        $this->publishes([__DIR__.'/../src/Views' => resource_path('views/vendor/imet-core')], 'views');
-
+        $this->loadViewsFrom(__DIR__.'/Views', 'imet-core');
+        $this->publishes([__DIR__.'/Views/vendor' => resource_path('views/vendor/')], ['imet-core', 'laravel-assets']);
 
         // Assets
         $this->publishes([__DIR__.'/../dist' => public_path('vendor/imet-core')], ['imet-core', 'laravel-assets']);
 
         // Routes
         Route::group($this->routeConfiguration('web'), function () {
-            $this->loadRoutesFrom(__DIR__.'/../src/Routes/web.php');
+            $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
         });
         Route::group($this->routeConfiguration('api'), function () {
-            $this->loadRoutesFrom(__DIR__.'/../src/Routes/api.php');
+            $this->loadRoutesFrom(__DIR__.'/Routes/api.php');
         });
 
         // Config
         $this->publishes([__DIR__.'/../config/config.php' => config_path('imet-core.php')], 'config');
 
         //Lang
-        $this->loadTranslationsFrom(__DIR__.'/../src/Lang', 'imet-core');
+        $this->loadTranslationsFrom(__DIR__.'/Lang', 'imet-core');
 
         // Commands
         if ($this->app->runningInConsole()) {

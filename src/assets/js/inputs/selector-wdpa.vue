@@ -1,142 +1,164 @@
 <template>
 
-    <modal-selector
-        class="selector-wdpa"
-        :parent-id=id
-        :anchor-label=anchorLabel
+    <selectorDialog
+            :parent-id=id
+            :search-url=searchUrl
+            :enable-free-text=enableFreeText
     >
 
-        <!-- Modal -->
-        <template v-slot:modal_content>
-
-            <modal_api_search
-                :parent-id=id
-                :search-url=searchUrl
-                :key-min-length=3
-                :parent-search-params-valid=searchParamValid
-                :radioTooltip=radioTooltip
-            >
-                <template v-slot:modal_search_filters>&nbsp;
-                    {{ Locale.getLabel('imet-core::common.country') }}
-                    <select v-model=filterByCountry class="field-edit">
-                        <option value="null"> - - </option>
-                        <option v-for="(label, key) in dataCountries" :value=key>
-                            {{ label }}
-                        </option>
-                    </select>
-                </template>
-
-                <template v-slot:modal_search_results_filters>
-
-                </template>
-
-                <template v-slot:resultItem="{ item }">
-                    <td><span class="result_left"><b>{{ item.name }}</b></span></td>
-                    <td><a v-if="item.wdpa_id!==null" target="_blank" href="https://www.protectedplanet.net/'+item.wdpa_id+'">{{ item.wdpa_id }}</a></td>
-                    <td>{{ item.country_name }}</td>
-                    <td>{{ item.iucn_category }}</td>
-                </template>
-
-            </modal_api_search>
-
-            <div class="modal-footer">
-                <button type="button"
-                        class="btn-nav dark small"
-                        :disabled="selectedValue===null"
-                        v-on:click="confirmSelection" >
-                    {{ Locale.getLabel('modular-forms::common.confirm_select') }}
-                </button>
+        <!-- dialog anchor -->
+        <template v-slot:selector-anchor>
+            <div class="field-preview">
+                {{ anchorLabel }}
             </div>
-
         </template>
 
-    </modal-selector>
+        <!-- api search - result search filters -->
+        <template v-slot:selector-api-search-result-filters>
+            hello filters
+        </template>
+
+        <!-- api search - result header -->
+        <template v-slot:selector-api-search-result-header>
+            <th></th>
+            <th></th>
+            <th></th>
+        </template>
+
+        <!-- api search - result items -->
+        <template v-slot:selector-api-search-result-item="{ item }">
+            <td></td>
+            <td></td>
+            <td></td>
+        </template>
+
+    </selectorDialog>
 
 </template>
 
+<style lang="scss" scoped>
+    .result_left{
+        text-align: left;
+    }
+    .field-edit.filterByClass,
+    .field-edit.filterByOrder{
+        width: 200px;
+        margin: 0 5px;
+    }
+</style>
+
 <script>
 
-    export default {
 
-        components: {
-            'flag': window.ModularForms.Template.flag,
-            'modal-selector': window.ModularForms.Input.modalSelector,
-            'modal_api_search': window.ModularForms.Input.modalApiSearch
+export default {
+
+    // components: {
+    //     selectorDialog: selectorDialog
+    // },
+
+    mixins: [
+        window.ModularForms.MixinsVue.values
+    ],
+
+    props: {
+        searchUrl: {
+            type: String,
+            default: null
         },
-
-        mixins: [
-            window.ModularForms.MixinsVue.values
-        ],
-
-        props: {
-            searchUrl: {
-                type: String,
-                default: ''
-            },
-            dataCountries: {
-                type: Object,
-                default: () => {}
-            }
+        enableFreeText: {
+            type: Boolean,
+            default: false,
         },
+    },
 
-        data (){
-            return {
-                Locale: window.Locale,
-                anchorLabel: null,
-                selectedValue: null,
-                confirmedValue: null,
-                confirmedLabel: null,
-                filterByCountry: null,
-                radioTooltip: window.Locale.getLabel('imet-core::common.double_check_wdpa')
-            }
-        },
-
-        computed:{
-            searchParamValid(){
-                return this.filterByCountry!==null && this.filterByCountry!=="null";
-            }
-        },
-
-        watch:{
-            inputValue(value){
-                this.anchorLabel = this.confirmedLabel!==null ? this.confirmedLabel : null;
-                this.confirmedLabel = null;
-                this.confirmedValue = value;
-            }
-        },
-
-        mounted(){
-            this.modalComponent = this.$children[0];
-            this.searchComponent = null;    // will be populated from modalComponent when modal opens
-            this.anchorLabel = this.inputValue;
-        },
-
-        methods: {
-
-            searchParams(){
-                return {
-                    'country': this.filterByCountry
-                }
-            },
-
-            resultTableHeader(){
-                return [
-                    '',
-                    Locale.getLabel('imet-core::common.name'),
-                    Locale.getLabel('imet-core::common.protected_area.wdpa_id',1),
-                    Locale.getLabel('imet-core::common.country'),
-                    Locale.getLabel('imet-core::common.protected_area.iucn_category'),
-                ]
-            },
-
-            confirmSelection(){
-                this.confirmedLabel = this.selectedValue.name;
-                this.confirmedValue = this.selectedValue.wdpa_id;
-                this.emitValue(this.confirmedValue);
-                this.modalComponent.closeModal();
-            },
-
+    data (){
+        return {
+            Locale: window.Locale,
+            assetPath: window.ModularForms.assetPath,
+            searchComponent: null,
+            inputValue: null,
+            filterByClass: null,
+            filterByOrder: null,
+            orders: [],
+            classes: []
         }
+    },
+
+    computed:{
+        anchorLabel(){
+            return this.inputValue;
+        }
+    },
+
+    mounted (){
+        this.searchComponent = this.$children[0].$children[0].$children[0];
+    },
+
+    methods: {
+
+        getScientificName(item) {
+            return item.genus + ' ' + item.species;
+        },
+
+        getFullTaxonomy(item) {
+            return item.phylum + '|' + item.class + '|' + item.order + '|' + item.family + '|' + item.genus + '|' + item.species
+        },
+
+        getSpeciesDescription(item) {
+            let description = '<div>' + item.class + ' ' + item.order + ' ' + item.family + ' <b>' + item.genus + ' ' + item.species + '</b>' + '</div>';
+            if (this.hasCommonNames(item)) {
+                description += '<div class="common_names"><b><i>' + Locale.getLabel('modular-forms::entities.biodiversity.common_names') + ':</i></b><br />';
+                if (item.common_name_en !== null && item.common_name_en.toLowerCase() !== 'null') {
+                    description += '<div><span class="flag-icon flag-icon-gb"></span> ' + item.common_name_en.replace(/\,/g, ', ') + '</div>'
+                }
+                if (item.common_name_fr !== null && item.common_name_fr.toLowerCase() !== 'null') {
+                    description += '<div><span class="flag-icon flag-icon-fr"></span> ' + item.common_name_fr.replace(/\,/g, ', ') + '</div>'
+                }
+                if (item.common_name_sp !== null && item.common_name_sp.toLowerCase() !== 'null') {
+                    description += '<div><span class="flag-icon flag-icon-es"></span> ' + item.common_name_sp.replace(/\,/g, ', ') + '</div>'
+                }
+                description += '</div>';
+            }
+            return description;
+        },
+
+        hasCommonNames(item) {
+            return (item.common_name_en !== null || item.common_name_fr !== null || item.common_name_sp !== null);
+        },
+
+        afterSearch(data){
+            this.orders = data['orders'];
+            this.classes = data['classes'];
+            this.filterByOrder = null;
+            this.filterByClass = null;
+        },
+
+        orderByClass(){
+            return this.filterByClass!=null
+                ? this.orders[this.filterByClass]
+                : [];
+        },
+
+        filterList(alsoResetOrder){
+            if(alsoResetOrder){
+                this.filterByOrder = null;
+            }
+            this.filterByOrder = typeof this.filterByOrder === "undefined" ? null : this.filterByOrder;
+
+            let filters = {
+                'class': this.filterByClass,
+                'order': this.filterByOrder,
+            };
+            this.searchComponent.filterShowList(filters);
+        },
+
+        getSelectedValue(value){
+            return this.getFullTaxonomy(value);
+        }
+
     }
 
+
+
+}
 </script>

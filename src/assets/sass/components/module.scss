@@ -1,7 +1,11 @@
 .imet_modules {
   .module-header{
-    .module-type{   /* for marine/terrestrial icons */
-      padding: 6px 15px;
+    //.module-type{   /* for marine/terrestrial icons */
+    //  padding: 6px 15px;
+    //}
+    .module-title{
+      display: flex;
+      align-items: center;
     }
   }
 }

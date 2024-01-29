@@ -66,7 +66,7 @@ export default {
     },
     draw_chart() {
       if (Object.keys(this.values).length > 0) {
-        this.chart = echarts.init(this.$el);
+        this.chart = window.ImetCoreVendor.echarts.init(this.$el);
         this.chart.setOption(this.bar_options);
       }
     }

@@ -97,7 +97,7 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
             _this.init_properties();
 
             if (_this.current_step === 'process') {
-                _this.chart = echarts.init(document.getElementById('imet_process_radar'));
+                _this.chart = window.ImetCoreVendor.echarts.init(document.getElementById('imet_process_radar'));
                 if (_this.chart !== null) {
                     _this.chart.setOption(_this.get_radar_options());
                 }

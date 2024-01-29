@@ -25,7 +25,7 @@ if($item->version===Imet::IMET_V1){
        class="step @if('context'==$phase) selected @endif"
     >@uclang('imet-core::common.context_long')</a>
 
-    <a href="{{ route($ROUTE_PREFIX.'eval_' . $route_action, [$item->getKey()]) }}"
+    <a href="{{ route($ROUTE_PREFIX.'evaluation_' . $route_action, [$item->getKey()]) }}"
        class="step @if('evaluation'==$phase) selected @endif"
     >@uclang('imet-core::common.evaluation_long')</a>
 

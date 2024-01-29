@@ -13,6 +13,8 @@ $debug = !App::environment('production');
 
 ?>
 
+<script src="{{ Manifest::asset('vendor.js', $debug) }}"></script>
+<link rel="stylesheet" href="{{ Manifest::asset('vendor.css', $debug) }}">
 <script src="{{ Manifest::asset('index.js', $debug) }}"></script>
 <link rel="stylesheet" href="{{ Manifest::asset('index.css', $debug) }}">
 
@@ -30,7 +32,7 @@ $debug = !App::environment('production');
 </script>
 
 
-<!-- mapbox -->
+{{--<!-- mapbox -->--}}
 @if(Str::contains($current_route_name, 'imet-core::v1_report') ||
     Str::contains($current_route_name, 'imet-core::v2_report') ||
     Str::contains($current_route_name, 'imet-core::scaling_up'))

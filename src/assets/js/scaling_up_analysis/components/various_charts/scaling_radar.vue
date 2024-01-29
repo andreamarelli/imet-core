@@ -21,7 +21,7 @@ export default {
     methods: {
         draw_chart: function () {
             if (Object.keys(this.values).length > 0) {
-                this.chart = echarts.init(this.$el);
+                this.chart = window.ImetCoreVendor.echarts.init(this.$el);
                 this.chart.setOption(this.radar_options);
 
                 this.chart.on('legendselectchanged', (params) => {

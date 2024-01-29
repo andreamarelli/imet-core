@@ -48,11 +48,9 @@ class Controller extends __Controller
     /**
      * Override index route
      *
-     * @param Request $request
-     * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function index(Request $request)
+    public function index(Request $request): Application|View|Factory
     {
         $this->authorize('viewAny', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
