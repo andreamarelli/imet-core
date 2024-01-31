@@ -1,22 +1,22 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 $vue_record_index = '0';
 
-$vue_data['AdministrativeArea_ha'] = $vue_data['records'][0]['AdministrativeArea'];
-$vue_data['AdministrativeArea_km2'] = $vue_data['records'][0]['AdministrativeArea']/100;
-$vue_data['WDPAArea_ha'] = $vue_data['records'][0]['WDPAArea'];
-$vue_data['WDPAArea_km2'] = $vue_data['records'][0]['WDPAArea']/100;
-$vue_data['GISArea_ha'] = $vue_data['records'][0]['GISArea'];
-$vue_data['GISArea_km2'] = $vue_data['records'][0]['GISArea']/100;
+$vueData['AdministrativeArea_ha'] = $vueData['records'][0]['AdministrativeArea'];
+$vueData['AdministrativeArea_km2'] = $vueData['records'][0]['AdministrativeArea']/100;
+$vueData['WDPAArea_ha'] = $vueData['records'][0]['WDPAArea'];
+$vueData['WDPAArea_km2'] = $vueData['records'][0]['WDPAArea']/100;
+$vueData['GISArea_ha'] = $vueData['records'][0]['GISArea'];
+$vueData['GISArea_km2'] = $vueData['records'][0]['GISArea']/100;
 
 ?>
 
 @foreach($definitions['fields'] as $field_index => $field)
 
-    @component('modular-forms::module.field_container', [
+    @component('modular-forms::module.components.field_container', [
             'name' => $field['name'],
             'label' => $field['label'] ?? '',
             'label_width' => $definitions['label_width']
@@ -68,7 +68,7 @@ $vue_data['GISArea_km2'] = $vue_data['records'][0]['GISArea']/100;
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             watch: {
                 AdministrativeArea_ha: function(value){

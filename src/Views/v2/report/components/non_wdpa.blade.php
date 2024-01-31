@@ -25,7 +25,7 @@ $fields = [
         <div class="module-body">
 
             @foreach($fields as $field)
-                @component('modular-forms::module.field_container', [
+                @component('modular-forms::module.components.field_container', [
                     'name' => $field,
                     'label' => trans('imet-core::common.CreateNonWdpa.fields.'.$field)
                 ])

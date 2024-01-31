@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 /** @var \AndreaMarelli\ImetCore\Controllers\Imet\Controller $controller */   // ATTENTION: not directly passed the parent blade, but anyway available
 
 $vue_record_index = 0;
@@ -11,7 +11,7 @@ $vue_record_index = 0;
 
 @foreach($definitions['fields'] as $i=>$field)
 
-    @component('modular-forms::module.field_container', [
+    @component('modular-forms::module.components.field_container', [
         'name' => $field['name'],
         'label' => $field['label'] ?? '',
         'label_width' => $definitions['label_width']
@@ -80,7 +80,7 @@ $vue_record_index = 0;
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             props: {
                 current_year: {

@@ -1,10 +1,10 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 
-    $imet = \AndreaMarelli\ImetCore\Models\Imet\v1\Imet::find($vue_data['form_id']);
+    $imet = \AndreaMarelli\ImetCore\Models\Imet\v1\Imet::find($vueData['form_id']);
     if(\AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)){
         $pa = \AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::find($imet->wdpa_id);
     } else {
@@ -12,18 +12,18 @@
     }
 
     if($pa!==null){
-        $vue_data['records'][0]['CompleteName']     = $vue_data['records'][0]['CompleteName']   ?? $pa->name;
-        $vue_data['records'][0]['WDPA']             = $vue_data['records'][0]['WDPA']           ?? $pa->wdpa_id;
-        $vue_data['records'][0]['IUCNCategory1']    = $vue_data['records'][0]['IUCNCategory1']  ?? $pa->iucn_category;
-        $vue_data['records'][0]['Country']          = $vue_data['records'][0]['Country']        ?? $pa->country;
-        $vue_data['records'][0]['CreationYear']     = $vue_data['records'][0]['CreationYear']   ??
+        $vueData['records'][0]['CompleteName']     = $vueData['records'][0]['CompleteName']   ?? $pa->name;
+        $vueData['records'][0]['WDPA']             = $vueData['records'][0]['WDPA']           ?? $pa->wdpa_id;
+        $vueData['records'][0]['IUCNCategory1']    = $vueData['records'][0]['IUCNCategory1']  ?? $pa->iucn_category;
+        $vueData['records'][0]['Country']          = $vueData['records'][0]['Country']        ?? $pa->country;
+        $vueData['records'][0]['CreationYear']     = $vueData['records'][0]['CreationYear']   ??
             ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
     }
-    $vue_data['records'][0]['Type']             = $vue_data['records'][0]['Type']           ?? $imet->Type;
+    $vueData['records'][0]['Type']             = $vueData['records'][0]['Type']           ?? $imet->Type;
 
 ?>
 
-@include('modular-forms::module.edit.body', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.body', compact(['collection', 'vueData', 'definitions']))
 
 
 @push('scripts')
@@ -31,7 +31,7 @@
     // ## Initialize Module controller ##
     let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
         el: '#module_{{ $definitions['module_key'] }}',
-        data: @json($vue_data)
+        data: @json($vueData)
     });
 </script>
 @endpush

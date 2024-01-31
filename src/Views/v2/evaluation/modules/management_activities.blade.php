@@ -81,7 +81,7 @@
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             methods: {
                 plain_name(fullName){

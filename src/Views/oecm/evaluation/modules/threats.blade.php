@@ -1,12 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 $threats = trans('imet-core::oecm_lists.Threats');
-$vue_data['threats'] = $threats;
+$vueData['threats'] = $threats;
 
-$threats_in_sa2 = collect($vue_data['records'])
+$threats_in_sa2 = collect($vueData['records'])
     ->filter(function ($item) {
         return $item['__count_stakeholders_direct'] !== null
             || $item['__count_stakeholders_indirect'] !== null;
@@ -47,14 +47,14 @@ $threats_in_sa2 = collect($vue_data['records'])
     @endforeach
 </div>
 
-@include('modular-forms::module.edit.type.table', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <script>
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             computed:{
 

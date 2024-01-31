@@ -1,14 +1,14 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 ?>
 
 @include('imet-core::components.module.edit.group_with_nothing_to_evaluate', [
     'collection' => $collection,
     'definitions' => $definitions,
-    'vue_data' => $vue_data,
+    'vueData' => $vueData,
 ])
 
 
@@ -17,7 +17,7 @@
     // ## Initialize Module controller ##
     let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
         el: '#module_{{ $definitions['module_key'] }}',
-        data: @json($vue_data),
+        data: @json($vueData),
 
         computed: {
         },

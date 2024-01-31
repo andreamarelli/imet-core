@@ -1,9 +1,9 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
-$vue_data['relative_importance'] = $vue_data['records'][0]['RelativeImportance'] ?? null;
+$vueData['relative_importance'] = $vueData['records'][0]['RelativeImportance'] ?? null;
 
 ?>
 
@@ -65,7 +65,7 @@ $vue_data['relative_importance'] = $vue_data['records'][0]['RelativeImportance']
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             watch: {
                 relative_importance: function (value) {

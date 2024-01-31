@@ -6,13 +6,13 @@ use Illuminate\Support\Str;
 
 /** @var Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 /** @var Array $stakeholders */
 
 $num_cols = count($definitions['fields']);
 $user_mode = ('AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE;
 $stakeholders_categories = Stakeholders::getStakeholders(
-    $vue_data['form_id'],
+    $vueData['form_id'],
     $user_mode,
     true
 );
@@ -154,7 +154,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             methods: {
 

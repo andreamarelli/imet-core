@@ -9,7 +9,7 @@
 
     @if($field['name']==='GovernanceModel' || $field['name']==='SubGovernanceModel' || $field['name']==='AdditionalInfo')
 
-        @component('modular-forms::module.field_container', [
+        @component('modular-forms::module.components.field_container', [
                 'name' => $field['name'],
                 'label' => $field['label'] ?? '',
                 'label_width' => 4
@@ -31,7 +31,7 @@
 
         @if($field['name']==='ManagementUnique' || $records[0]['ManagementUnique']!==null)
 
-            @component('modular-forms::module.field_container', [
+            @component('modular-forms::module.components.field_container', [
                     'name' => $field['name'],
                     'label' => $field['label'] ?? '',
                     'label_width' => 5

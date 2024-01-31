@@ -216,7 +216,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             and !\Illuminate\Support\Str::contains($field['name'], 'SpillOverEval'))
 
 
-        @component('modular-forms::module.field_container', [
+        @component('modular-forms::module.components.field_container', [
                 'name' => $field['name'],
                 'label' => $field['label'] ?? '',
                 'label_width' => $definitions['label_width']
@@ -235,7 +235,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 @endforeach
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <style>

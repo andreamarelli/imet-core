@@ -85,4 +85,4 @@ $tr_record = 'records';
 
 </table>
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))

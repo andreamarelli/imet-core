@@ -32,16 +32,10 @@ $show_scrollbar = true;
 
     {{--  Steps menu --}}
     @include('modular-forms::page.components.steps', [
-        'url' => action([$controller, 'edit'], ['item' => $item->getKey()]),
+        'url' => action([$controller, 'show'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::' . $step_labels . '.',
         'steps' => array_keys($item::modules())
-    ])
-
-    {{-- Global errors --}}
-    @include('modular-forms::page.components.errors', [
-        'url' => action([$controller, 'edit'], ['item' => $item->getKey()]),
-        'item' => $item
     ])
 
     {{-- Cross Analysis --}}
@@ -66,10 +60,10 @@ $show_scrollbar = true;
             @foreach($item::modules()[$step] as $module)
                 @if(Role::hasRequiredAccessLevel($module))
                     <x-modular-forms::module.container
-                        :controller="$controller"
-                        :module="$module"
-                        :formId="$item->getKey()"
-                        :mode="\AndreaMarelli\ModularForms\View\Module\Container::MODE_EDIT"
+                            :controller="$controller"
+                            :module="$module"
+                            :formId="$item->getKey()"
+                            :mode="\AndreaMarelli\ModularForms\View\Module\Container::MODE_SHOW"
                     ></x-modular-forms::module.container>
                 @else
                     @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
@@ -83,5 +77,6 @@ $show_scrollbar = true;
     @if($show_scrollbar)
         @include('modular-forms::module.scroll', ['item' => $item, 'step' => $step])
     @endif
+
 
 @endsection

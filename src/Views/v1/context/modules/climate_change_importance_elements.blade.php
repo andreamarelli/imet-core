@@ -1,25 +1,25 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 $labels = trans('imet-core::v1_context.ClimateChangeImportanceElements.Element');
-foreach ($vue_data['records'] as $index=>$record){
+foreach ($vueData['records'] as $index=>$record){
     if(in_array($index, $labels)){
-        $vue_data['records'][$index]['Element'] = $labels[$index];
+        $vueData['records'][$index]['Element'] = $labels[$index];
     }
 }
 
 ?>
 
-@include('modular-forms::module.edit.body', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.body', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
 <script>
     // ## Initialize Module controller ##
     let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
         el: '#module_{{ $definitions['module_key'] }}',
-        data: @json($vue_data),
+        data: @json($vueData),
 
         mounted: function () {
             let field = 'Element';

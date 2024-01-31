@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 
 $table_id = $definitions['module_type']==='GROUP_TABLE'
@@ -88,4 +88,4 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
 
 </table>
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))

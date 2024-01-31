@@ -1,12 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 
 ?>
 
-@include('modular-forms::module.edit.type.simple', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.simple', compact(['collection', 'vueData', 'definitions']))
 
 
 @push('scripts')
@@ -14,7 +14,7 @@
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             methods: {
 

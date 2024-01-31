@@ -76,7 +76,7 @@ if($item->language != App::getLocale()){
                                 </div>{{ $general_info['Institution'] ?? '-' }}</div>
                             <div>
                                 <div class="strong">@lang('imet-core::v2_report.biome'):
-                                </div>{{ $general_info['Biome']  }}</div>
+                                </div>{{ $general_info['Biome'] ?? '-' }}</div>
                             <div>
                                 <div class="strong">@lang('imet-core::v2_report.main_values_protected'):
                                 </div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>

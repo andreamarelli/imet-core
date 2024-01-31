@@ -1,4 +1,4 @@
-@import "tailwindcss/base";
+//@import "tailwindcss/base"; // this include the tailwind "resets" which at this point will override the modular-forms assets
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 

@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 $group_key = $group_key ?? '';
 
@@ -13,7 +13,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
     ? 'records[\''.$group_key.'\']'
     : 'records';
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vue_data['form_id']);
+$area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
 
 ?>
 
@@ -106,14 +106,14 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
 </table>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <script>
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             computed: {
 
