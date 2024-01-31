@@ -23,14 +23,10 @@ class ImetModule_Eval extends BaseImetEvalModule
 
     /**
      * Override: Check for "warning_on_save" labels
-     * @param $form_id
-     * @param $collection
-     * @return array
-     * @throws ReflectionException
      */
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
         $vue_data = static::warningOnSave($vue_data);
         return $vue_data;
     }
