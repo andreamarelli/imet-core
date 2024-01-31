@@ -1323,7 +1323,8 @@ ul {
       padding: 8px 30px; }
 
 .imet_modules .module-header .module-title {
-  display: flex; }
+  display: flex;
+  align-items: center; }
 
 .nothing_to_evaluate {
   font-weight: 600;
