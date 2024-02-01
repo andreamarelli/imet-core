@@ -38,22 +38,25 @@ if($primary_form->version===Imet\Imet::IMET_V1){
     $imet_class = oecm\Imet::class;
 }
 
-function get_quoted_responsible($form_id, $version){
-    if($version === Imet\Imet::IMET_V1 || $version === Imet\Imet::IMET_V2){
-        $responsible = Imet\Imet::getResponsibles($form_id, $version);
-    } else if($version == Imet\Imet::IMET_OECM){
-        $responsible = oecm\Imet::getResponsibles($form_id, $version);
+if(!function_exists('get_quoted_responsible')){
+
+    function get_quoted_responsible(int $form_id, string $version): string
+    {
+        if($version === Imet\Imet::IMET_V1 || $version === Imet\Imet::IMET_V2){
+            $responsible = Imet\Imet::getResponsibles($form_id, $version);
+        } else if($version == Imet\Imet::IMET_OECM){
+            $responsible = oecm\Imet::getResponsibles($form_id, $version);
+        }
+        return str_replace('\'', '\\\'', json_encode($responsible));
     }
-    return str_replace('\'', '\\\'', json_encode($responsible));
 }
 
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
+
 
     <h1>@lang('imet-core::common.merge_tool')</h1>
 
@@ -99,10 +102,9 @@ function get_quoted_responsible($form_id, $version){
 
                         {{-- Delete --}}
                         <div style="margin-top: 5px">
-                            @include('modular-forms::buttons.delete', [
-                               'controller' => $controller,
+                            @include('imet-core::components.buttons.delete', [
                                'item' => $duplicated_form_id,
-                               'label' => ucfirst(trans('modular-forms::common.delete'))
+                               'version' => $primary_form->version
                            ])
                         </div>
 
@@ -120,7 +122,12 @@ function get_quoted_responsible($form_id, $version){
                             $module_primary_orig = unserialize(serialize($module_primary));
                         @endphp
                         @if(!$module_primary->isEmpty())
-                            @include('imet-core::merge.view_module', ['module' => $module_primary, 'formID' => $primary_form->getKey(), 'module_class' => $module_class ])
+                            @include('imet-core::merge.view_module', [
+                                'controller' => $controller,
+                                'module' => $module_primary,
+                                'formID' => $primary_form->getKey(),
+                                'module_class' => $module_class
+                            ])
                         @else
                             <small><i>@lang('modular-forms::common.no_data')</i></small>
                         @endif
@@ -138,7 +145,12 @@ function get_quoted_responsible($form_id, $version){
                                 @if($module_class::areIdentical($module, $module_primary_orig))
                                      <b class="highlight">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle') !!}  @lang('modular-forms::common.no_differences')</b>
                                 @else
-                                    @include('imet-core::merge.view_module', ['module' => $module, 'formID' => $duplicated_form_id, 'module_class' => $module_class ])
+                                    @include('imet-core::merge.view_module', [
+                                        'controller' => $controller,
+                                        'module' => $module,
+                                        'formID' => $duplicated_form_id,
+                                        'module_class' => $module_class
+                                    ])
                                     @include('imet-core::merge.confirm_merge', [
                                         'route' => $merge_route,
                                         'source' => $imet_class::find($duplicated_form_id),

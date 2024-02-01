@@ -1,4 +1,5 @@
 <?php
+/** @var \AndreaMarelli\ImetCore\Controllers\Imet\Controller $controller */
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
 /** @var string $route_prefix */
@@ -9,26 +10,33 @@ use \AndreaMarelli\ImetCore\Models\Imet\Imet;
 
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
 
-    @include('imet-core::components.common_filters', [
-            'request'=>$request,
-            'url' => route($route_prefix . 'export_view'),
-            'filter_selected' => false,
-            'countries' => $countries,
-            'years' => $years
-        ])
+    {{-- Filters --}}
+    @component('modular-forms::page.components.filters', [
+        'controller' => $controller,
+        'request' => $request,
+        'action' => 'export_view'
+    ])
+        @slot('content')
+            @include('imet-core::components.common_filters', [
+                'request' => $request,
+                'countries' => $countries,
+                'years' => $years
+            ])
+        @endslot
+    @endcomponent
+
     <br/>
+
     <div id="export_list">
         <div class="row">
             <div class="col">
                 <form target="_blank" ref="filterForm" method="POST"
                       action="{{ route($route_prefix . 'export_batch') }}">
-                    <button type="submit" class="btn act-btn-active float-left" :disabled="exportDisabled">Export
+                    <button type="submit" class="btn-nav rounded" :disabled="exportDisabled">Export
                     </button>
                     {{ csrf_field() }}
                     <input type='hidden' name="selection" v-model="checkboxes">

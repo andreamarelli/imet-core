@@ -190,7 +190,10 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
                 {{-- Delete --}}
                 @can('edit', $form_class)
-                    @include('imet-core::components.buttons.delete', ['version' => $item->version])
+                    @include('imet-core::components.buttons.delete', [
+                       'item' => $item,
+                       'version' => $item->version
+                    ])
                 @endcan
 
             </td>

@@ -29,18 +29,23 @@ if ($item->language != App::getLocale()) {
 }
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
+
+    {{--  Heading --}}
+    @include('imet-core::components.heading', ['item' => $item])
+
+    {{--  Phase  --}}
+    @include('imet-core::components.phase', ['phase' => 'report'])
+
     <div id="imet_report">
-        @include('imet-core::components.heading', ['item' => $item])
-        @include('imet-core::components.phase', ['phase' => 'report'])
+
         @include('imet-core::oecm.report.components.non_wdpa', [
             'show_non_wdpa' => $show_non_wdpa,
             'non_wdpa' =>  $non_wdpa
         ])
+
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title" id="ar2">AR.2 @lang('imet-core::oecm_report.key_elements')</div>

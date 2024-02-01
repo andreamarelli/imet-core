@@ -12,9 +12,10 @@
 
 ?>
 
-@extends('layouts.admin')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
+
     <div class="module-container" id="table_list">
         <div class="module-body">
             <form  method="{{ $method }}" action="{{ \Illuminate\Support\Facades\URL::route('imet-core::csv_list') }}">

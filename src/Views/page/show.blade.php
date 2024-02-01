@@ -5,15 +5,26 @@ use \AndreaMarelli\ImetCore\Models;
 use \AndreaMarelli\ImetCore\Models\User\Role;
 use \Illuminate\Support\Str;
 
-/** @var Imet\v2\ContextController|Imet\v1\ContextController|Imet\v1\EvalController|Imet\v2\EvalController $controller */
+/** @var Imet\v2\ContextController|Imet\v1\ContextController|Imet\oecm\ContextController|Imet\v1\EvalController|Imet\v2\EvalController|Imet\oecm\EvalController $controller */
 /** @var Models\Imet\v2\Imet|Models\Imet\v1\Imet|Models\Imet\oecm\Imet|Models\Imet\v2\Imet_Eval|Models\Imet\v1\Imet_Eval|Models\Imet\oecm\Imet_Eval $item */
 /** @var string $step */
-/** @var string $step_labels */
+
+if(Str::contains($controller, Models\Imet\Imet::IMET_V1)){
+    $version =  Models\Imet\Imet::IMET_V1;
+    $step_labels = 'v1_common.steps';
+} else if(Str::contains($controller, Models\Imet\Imet::IMET_V2)){
+    $version = Models\Imet\Imet::IMET_V2;
+    $step_labels = 'v2_common.steps';
+} else if(Str::contains($controller, Models\Imet\Imet::IMET_OECM)){
+    $version = Models\Imet\Imet::IMET_OECM;
+    $step_labels = 'oecm_common.steps';
+}
 
 if(Str::contains($controller, 'ContextController')){
     $phase = 'context';
 } else if(Str::contains($controller, 'EvalController')){
     $phase = 'evaluation';
+    $step_labels = 'common.steps_eval';
 }
 
 $show_scrollbar = true;
@@ -39,8 +50,8 @@ $show_scrollbar = true;
     ])
 
     {{-- Cross Analysis --}}
-    @if($step==='cross_analysis')
-        @include('imet-core::v2.cross_analysis.index', [
+    @if($step==='cross_analysis' and $version==Models\Imet\Imet::IMET_V2)
+        @include('imet-core::'.$version.'.cross_analysis.index', [
             'item_id' => $item->getKey(),
             'warnings' => $warnings
         ])
@@ -49,7 +60,7 @@ $show_scrollbar = true;
 
         {{-- Management effectiveness --}}
         @if($step==='evaluation')
-            @include('imet-core::v2.evaluation.management_effectiveness.management_effectiveness', [
+            @include('imet-core::'.$version.'.evaluation.management_effectiveness.management_effectiveness', [
                 'item_id' => $item->getKey(),
                 'step' => $step
             ])

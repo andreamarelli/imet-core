@@ -12,11 +12,10 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
+
     <div class="module-container" id="import_imet">
         <div class="module-header">
             <div class="module-title">
@@ -31,9 +30,11 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             ></multiple-files-upload>
         </div>
     </div>
+
     <script>
         new Vue({
             el: '#import_imet',
         })
     </script>
+
 @endsection

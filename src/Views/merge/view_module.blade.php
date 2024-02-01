@@ -1,7 +1,12 @@
 <?php
+
+use \AndreaMarelli\ImetCore\Controllers;
+use \AndreaMarelli\ImetCore\Models;
+
+/** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var integer $formID */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class as String */
+/** @var Models\Imet\v1\Modules\Component\ImetModule|Models\Imet\v2\Modules\Component\ImetModule $module */
+/** @var Models\Imet\v1\Modules\Component\ImetModule|Models\Imet\v2\Modules\Component\ImetModule $module_class as String */
 
 $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
 ?>
@@ -24,10 +29,12 @@ $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
                 <b style="font-size: 1.2em;">IMET #{{ $formID }}</b>
             </div>
             <div class="modal-body">
-                @include('modular-forms::module.show.container', [
-                   'module_class' => $module_class,
-                   'collection' => $module,
-                   'form_id' => $formID])
+                <x-modular-forms::module.container
+                        :controller="$controller"
+                        :module="$module_class"
+                        :formId="$formID"
+                        :mode="\AndreaMarelli\ModularForms\View\Module\Container::MODE_SHOW"
+                ></x-modular-forms::module.container>
             </div>
         </div>
     </div>

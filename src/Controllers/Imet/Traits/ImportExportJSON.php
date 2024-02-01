@@ -102,6 +102,7 @@ trait ImportExportJSON
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . '.export', [
+            'controller' => static::class,
             'route_prefix' => static::ROUTE_PREFIX,
             'list' => $filtered_list,
             'request' => $request,
@@ -237,6 +238,7 @@ trait ImportExportJSON
      */
     public function export($item, bool $to_file = true, bool $download = true)
     {
+        $this->authorize('export', (static::$form_class)::find($item));
 
         if (is_string($item)) {
             $imet_id = $item;
@@ -245,8 +247,6 @@ trait ImportExportJSON
             $imet_id = $item->getKey();
             $imet = $item;
         }
-
-        $this->authorize('export', $imet);
 
         $imet_form = $imet
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])

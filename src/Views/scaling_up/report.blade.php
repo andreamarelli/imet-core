@@ -1,8 +1,7 @@
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
+
     <div id="imet_report">
         <app :scaling_up_id="{{$scaling_up_id}}">
             <template>

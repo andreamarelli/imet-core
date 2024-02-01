@@ -7,9 +7,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
 
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
 

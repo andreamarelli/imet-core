@@ -31,16 +31,17 @@ if($item->language != App::getLocale()){
 
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
 
-    <div id="imet_report">
+    {{--  Heading --}}
+    @include('imet-core::components.heading', ['item' => $item])
 
-        @include('imet-core::components.heading', ['item' => $item])
-        @include('imet-core::components.phase', ['phase' => 'report'])
+    {{--  Phase  --}}
+    @include('imet-core::components.phase', ['phase' => 'report'])
+
+    <div id="imet_report">
 
         @if($show_api)
             <div class="module-container">

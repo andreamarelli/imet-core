@@ -9,6 +9,5 @@
 @extends('imet-core::page.edit', [
     'controller' => $controller,
     'item' => $item,
-    'step' => $step,
-    'step_labels' => 'common.steps_eval',
+    'step' => $step
 ])

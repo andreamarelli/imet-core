@@ -1,16 +1,22 @@
 <?php
-/** @var String $version */
-
+use AndreaMarelli\ImetCore\Controllers;
+use AndreaMarelli\ImetCore\Models;
 use AndreaMarelli\ModularForms\Helpers\Template;
 
-if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
-    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
-} else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
-    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class;
+/** @var int|Models\Imet\v2\Imet|Models\Imet\v1\Imet|Models\Imet\oecm\Imet|Models\Imet\v2\Imet_Eval|Models\Imet\v1\Imet_Eval|Models\Imet\oecm\Imet_Eval $item */
+/** @var String $version */
+
+if($version === Models\Imet\Imet::IMET_V1){
+    $controller = Controllers\Imet\v1\Controller::class;
+} else if($version === Models\Imet\Imet::IMET_V2){
+    $controller = Controllers\Imet\v2\Controller::class;
 } else {
-    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::class;
+    $controller = Controllers\Imet\oecm\Controller::class;
 }
 
 ?>
 
-<x-modular-forms::button.form.destroy-dialog :controller="$controller" :item="$item"></x-modular-forms::button.form.destroy-dialog>
+<x-modular-forms::button.form.destroy-dialog
+        :controller="$controller"
+        :item="$item"
+></x-modular-forms::button.form.destroy-dialog>

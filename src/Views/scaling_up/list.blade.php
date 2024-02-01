@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\URL;
 $url = URL::route('imet-core::scaling_up_index');
 ?>
 
-@extends('layouts.admin')
 
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
 
