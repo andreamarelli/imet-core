@@ -8,8 +8,7 @@
 .result_left[data-v-359acd99] {
   text-align: left;
 }
-.field-edit.filterByClass[data-v-359acd99],
-.field-edit.filterByOrder[data-v-359acd99] {
+.field-edit.filterByCountry[data-v-359acd99] {
   width: 200px;
   margin: 0 5px;
 }
