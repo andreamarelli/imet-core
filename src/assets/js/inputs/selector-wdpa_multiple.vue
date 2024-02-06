@@ -1,314 +1,198 @@
 <template>
 
-    <modal-selector
-        class="selector-wdpa_multiple"
-        :disable_modal=disable_modal
+    <selectorDialog
         :parent-id=id
+        :search-url=searchUrl
     >
 
-        <!-- Anchor -->
-        <template v-slot:custom_anchor>
-            <span class="field-preview" v-for="item in inputValuesObj">
-                <i class="fa fa-times removeItem" v-on:click="removeItem(item.id)"></i>
-                {{ item.label }}
+        <!-- dialog anchor -->
+        <template v-slot:selector-anchor>
+            <span class="field-preview">
+                <span class="item dontOpenDialog" v-for="item in inputValuesObj">
+                    {{ item.label }}
+                    <i class="fa fa-times removeItem" @click="removeItem(item.id)"></i>
+                </span>
             </span>
         </template>
-        <template v-slot:modal_anchor>
-            <span class="field-preview"></span>
+
+        <!-- api search - result header -->
+        <template v-slot:selector-api-search-result-header>
+            <th>{{ Locale.getLabel('imet-core::common.name') }}</th>
+            <th>{{ Locale.getLabel('imet-core::common.protected_area.wdpa_id',1) }}</th>
+            <th>{{ Locale.getLabel('imet-core::common.country') }}</th>
+            <th>{{Locale.getLabel('imet-core::common.protected_area.iucn_category') }}</th>
         </template>
 
-
-        <!-- Modal -->
-        <template v-slot:modal_content>
-
-            <div v-show="displaySearch" >
-
-                <modal_api_search
-                        :parent-id=id
-                        :search-url=searchUrl
-                        :key-min-length=3
-                >
-                <template v-slot:modal_search_results_filters>
-                    <i>{{ Locale.getLabel('modular-forms::common.filter_results') }}: </i>&nbsp;&nbsp;&nbsp;&nbsp;
-                    {{ Locale.getLabel('imet-core::common.country') }}
-                    <select v-model=filterByCountry @change="filterList()" class="field-edit">
-                        <option value="null"> - - </option>
-                        <option v-for="(label, key) in countries" :value=key>
-                          {{ label }}
-                        </option>
-                    </select>
-                </template>
-
-                <template v-slot:resultItem="{ item }">
-                    <td><span class="result_left"><b>{{ item.name }}</b></span></td>
-                    <td><a v-if="item.wdpa_id!==null" target="_blank" href="https://www.protectedplanet.net/'+item.wdpa_id+'">{{ item.wdpa_id }}</a></td>
-                    <td>{{ item.country_name }}</td>
-                    <td>{{ item.iucn_category }}</td>
-                </template>
-
-              </modal_api_search>
-
-            </div>
-
-            <div v-show="displayInsert" >
-                <div class="modal-body insert">
-                    <div>
-                        <input type="text" class="field-edit" value="" :id="'selector_item_insert_'+id" />
-                    </div>
-                    <div>
-                        <i>{{ Locale.getLabel('modular-forms::common.be_specific_as_possible') }}</i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <div>
-                    <button type="button"
-                            v-if="enableFreeText && displaySearch"
-                            class="btn-nav dark small"
-                            v-on:click="enableFreeTextItem" >
-                        {{ Locale.getLabel('modular-forms::common.add_if_not_found') }}
-                    </button>
-                </div>
-                <div>
-                    <button type="button"
-                            class="btn-nav dark small"
-                            v-if=displayInsert
-                            v-on:click="confirmInsert" >
-                        {{ Locale.getLabel('modular-forms::common.add') }}
-                    </button>
-                    <button type="button"
-                            class="btn-nav dark small"
-                            :disabled="selectedValue===null"
-                            v-if=displaySearch
-                            v-on:click="confirmSelection" >
-                        {{ Locale.getLabel('modular-forms::common.confirm_select') }}
-                    </button>
-                </div>
-            </div>
-
+        <!-- api search - result items -->
+        <template v-slot:selector-api-search-result-item="{ item }">
+            <td><span class="result_left"><b>{{ item.name }}</b></span></td>
+            <td><a v-if="item.wdpa_id!==null" target="_blank" href="https://www.protectedplanet.net/'+item.wdpa_id+'">{{ item.wdpa_id }}</a></td>
+            <td>{{ item.country_name }}</td>
+            <td>{{ item.iucn_category }}</td>
         </template>
 
-    </modal-selector>
+    </selectorDialog>
 
 </template>
 
 <style lang="scss" scoped>
 
-    .module-container .selector-wdpa_multiple {
+    .result_left{
+      text-align: left;
+    }
+    .field-preview {
+      min-width: 80px;
+      display: flex;
+      gap: 3px;
+      max-width: none;
+      vertical-align: top;
+      padding: 3px 7px;
 
-        .field-preview {
-            min-width: 80px;
-            display: inline-block;
-            margin-right: 10px;
-            margin-bottom: 5px;
-            vertical-align: top;
+      .item{
+        display: flex;
+        gap: 3px;
+        align-items: center;
+        width: fit-content;
+        padding: 0 3px;
+        margin: 1px 0;
+        @apply bg-gray-100 border border-gray-300 rounded;
+        line-height: 1.4;
 
-            i.removeItem {
-                @apply text-red-400;
-                cursor: pointer;
-
-                &:hover {
-                    @apply text-gray-800;
-                }
-            }
+        i.removeItem {
+          @apply text-red-400;
+          cursor: pointer;
+          &:hover {
+            @apply text-gray-800;
+          }
         }
+      }
 
-
-        .modal-body.insert{
-            font-size: 0.8em;
-            text-align: center;
-            div{
-              margin-bottom: 4px;
-            }
-            input{
-              width: 380px
-            }
-        }
-
-        .modal-footer{
-            justify-content: space-between;
-        }
 
     }
-
 </style>
 
 <script>
 
-    export default {
 
-        components: {
-            'modal-selector': window.ModularForms.Input.modalSelector,
-            'modal_api_search': window.ModularForms.Input.modalApiSearch
+export default {
+
+    // components: {
+    //     selectorDialog: selectorDialog
+    // },
+
+    mixins: [
+        window.ModularForms.MixinsVue.values
+    ],
+
+    props: {
+        searchUrl: {
+            type: String,
+            default: null
         },
-
-        mixins: [
-            window.ModularForms.MixinsVue.values
-        ],
-
-        props: {
-            searchUrl: {
-                type: String,
-                default: ''
-            },
-            labelsUrl: {
-                type: String,
-                default: ''
-            },
-            disable_modal: {
-                type: Boolean,
-                default: false
-            },
-            dataObjs : {
-                type: Object,
-                default: null
-            },
-            enableFreeText: {
-                type: Boolean,
-                default: false,
-            },
-        },
-
-        data (){
-            return {
-                Locale: window.Locale,
-                inputValuesObj: [],
-                inputValuesString: '',
-                countries: [],
-                filterByCountry: null,
-                selectedValue: null,
-                displaySearch: true,
-                displayInsert: false,
-            }
-        },
-
-        mounted(){
-            let _this = this;
-            this.getPaLabels(this.value);
-            this.modalComponent = this.$children[0];
-            this.searchComponent = null;    // will be populated from modalComponent when modal opens
-        },
-
-        watch: {
-            value(value) {
-                this.getPaLabels(value);
-            }
-        },
-
-        methods: {
-
-            getPaLabels(value) {
-                let _this = this;
-                this.inputValuesObj = [];
-                this.inputValuesString = '';
-
-                if (value !==null) {
-                    window.axios({
-                        method: 'POST',
-                        url: this.labelsUrl,
-                        data: {
-                            _token: window.Laravel.csrfToken,
-                            ids: value
-                        },
-                    })
-                        .then(function (response) {
-                            if (Object.values(response.data).length > 0) {
-                                Object.values(response.data).forEach(function (item) {
-                                    _this.pushItem(item);
-                                });
-                            }
-                        })
-                        .catch(function () {
-                            // _this.setErrors();
-                        });
-                }
-            },
-
-            afterModalOpen(){
-                this.displayInsert = false;
-                this.displaySearch = true;
-                document.getElementById('selector_item_insert_'+this.id).value = null;
-            },
-
-            afterSearch(response){
-                this.countries = response['countries'];
-            },
-
-            resultTableHeader(){
-                return [
-                    '',
-                    Locale.getLabel('imet-core::common.name'),
-                    Locale.getLabel('imet-core::common.protected_area.wdpa_id',1),
-                    Locale.getLabel('imet-core::common.country'),
-                    Locale.getLabel('imet-core::common.protected_area.iucn_category'),
-                ]
-            },
-
-            filterList(){
-                let filters = {
-                    'country': this.filterByCountry
-                };
-                this.searchComponent.filterShowList(filters);
-            },
-
-            confirmSelection(){
-                this.pushItem({
-                    id: this.selectedValue.wdpa_id,
-                    label: this.selectedValue.name,
-                });
-                this.emitValue(this.inputValuesString);
-                this.modalComponent.closeModal();
-            },
-
-            enableFreeTextItem(){
-                this.displaySearch = false;
-                this.displayInsert = true;
-            },
-
-            confirmInsert(){
-                let value = document.getElementById('selector_item_insert_'+this.id).value;
-                this.pushItem({
-                    id: value,
-                    label: value
-                });
-                this.emitValue(this.inputValuesString);
-                this.modalComponent.closeModal();
-            },
-
-            pushItem(item){
-                if(item!==null && item!==''){
-                    this.inputValuesObj.push({
-                        id: item.id,
-                        label: item.label
-                    });
-                    if(this.inputValuesString!==''){
-                        this.inputValuesString += ',';
-                    }
-                    this.inputValuesString += item.id;
-                }
-            },
-
-            removeItem(id){
-                let _this = this;
-
-                let values = this.inputValuesString
-                    .replace(id, '')
-                    .split(',')
-                    .filter(function(el) { return el !== ''; });
-                this.inputValuesString = values.toString();
-
-                let inputValuesObj = [];
-                this.inputValuesObj.forEach(function (item) {
-                    if(item['id']!==id){
-                        inputValuesObj.push(item);
-                    }
-                });
-                this.inputValuesObj = inputValuesObj;
-                this.emitValue(this.inputValuesString);
-            }
-
+        labelsUrl: {
+            type: String,
+            default: ''
         }
+    },
+
+    data (){
+        return {
+            Locale: window.Locale,
+            assetPath: window.ModularForms.assetPath,
+            searchComponent: null,
+            selectorComponent: null,
+            inputValue: null,
+            inputValuesObj: [],
+            inputValuesString: '',
+        }
+    },
+
+    computed:{
+        anchorLabel(){
+            if(this.selectorComponent!==null && this.selectorComponent.selectedValue !== null){
+                return this.selectorComponent.selectedValue['name'];
+            }
+            return null;
+        },
+    },
+
+    mounted (){
+        this.getPaLabels(this.value);
+        this.selectorComponent = this.$children[0];
+        this.searchComponent = this.$children[0].$children[0].$children[0];
+    },
+
+    methods: {
+
+        getPaLabels(value) {
+            let _this = this;
+            this.inputValuesObj = [];
+            this.inputValuesString = '';
+
+            if (value !==null) {
+                fetch(this.labelsUrl, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-Token": window.Laravel.csrfToken,
+                    },
+                    body: JSON.stringify({
+                        ids: value
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then(function(data){
+                        if (Object.values(data).length > 0) {
+                            Object.values(data).forEach(function (item) {
+                                _this.pushItem(item);
+                            });
+                        }
+                    })
+                    .catch(function (error) {});
+            }
+        },
+
+        getSelectedValue(value){
+            this.pushItem({
+                id: value.wdpa_id,
+                label: value.name,
+            });
+            return this.inputValuesString;
+        },
+
+        pushItem(item){
+            if(item!==null && item!==''){
+                this.inputValuesObj.push({
+                    id: item.id,
+                    label: item.label
+                });
+                if(this.inputValuesString!==''){
+                    this.inputValuesString += ',';
+                }
+                this.inputValuesString += item.id;
+            }
+        },
+
+        removeItem(id){
+            let values = this.inputValuesString
+                .replace(id, '')
+                .split(',')
+                .filter(function(el) { return el !== ''; });
+            this.inputValuesString = values.toString();
+
+            let inputValuesObj = [];
+            this.inputValuesObj.forEach(function (item) {
+                if(item['id']!==id){
+                    inputValuesObj.push(item);
+                }
+            });
+            this.inputValuesObj = inputValuesObj;
+            this.selectorComponent.emitValue(this.inputValuesString);
+        }
+
     }
 
+
+
+}
 </script>
