@@ -1,18 +1,15 @@
 <template>
 
-    <div class="pgr-bar">
+    <div class="progress-bar text-2xs">
 
-        <div v-if="showLimits" class="pgr-bar__limit-left">{{ min }}%</div>
+        <div v-if="showLimits && min!==null" class="progress-bar__limit-left">{{ min }}%</div>
 
-        <!-- bootstrap progress bar -->
-        <div class="pgr-bar__bar progress">
-            <div class="progress-bar progress-bar-striped" role="progressbar"
-                 :style=style>
-                <span v-if="value!==null">{{ value }} %</span>
-            </div>
-        </div>
+        <progress_bar
+            :value=value
+            :color=color
+        />
 
-        <div v-if="showLimits" class="pgr-bar__limit-right">{{ max }}%</div>
+        <div v-if="showLimits && max!==null" class="progress-bar__limit-right">{{ max }}%</div>
 
     </div>
 
@@ -20,22 +17,45 @@
 
 <style lang="scss" scoped>
 
-    .pgr-bar{
-        font-size: 10px;
+    .progress-bar{
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
+        width: 100%;
+        align-items: center;
+        margin: 1px 0;
 
-        .pgr-bar__bar{
-            flex-grow: 1;
-        }
-        .pgr-bar__limit-left{
-            width: 30px;
+        //.progress-bar__container{
+        //    position: relative;
+        //    flex-grow: 1;
+        //    border-radius: 4px;
+        //    min-height: 24px;
+        //    @apply bg-gray-100;
+        //    .progress-bar__bar{
+        //        min-height: 24px;
+        //        border-radius: 4px;
+        //    }
+        //    .progress-bar__label{
+        //        position: absolute;
+        //        top: 35%;
+        //        width: 100%;
+        //        text-align: center;
+        //        font-weight: bold;
+        //      }
+        //}
+
+      .progress-bar__limit-left,
+      .progress-bar__limit-right{
+          width: 40px;
+          font-weight: bold;
+      }
+
+        .progress-bar__limit-left{
             text-align: right;
             padding-right: 3px;
         }
-        .pgr-bar__limit-right{
-            width: 30px;
+
+        .progress-bar__limit-right{
             text-align: left;
             padding-left: 3px;
         }
@@ -45,7 +65,6 @@
 
 <script>
     export default {
-        name: "progress_bar",
 
         props: {
             value: {
@@ -70,14 +89,14 @@
             },
         },
 
-        computed:{
-            width(){
-                return Math.abs(this.value);
-            },
-            style(){
-                return 'width: ' +  this.width + '%; backgroundColor: ' + this.color + ' !important;';
-            }
-        }
+        // computed:{
+        //     width(){
+        //         return Math.abs(this.value);
+        //     },
+        //     style(){
+        //         return 'width: ' +  this.width + '%; backgroundColor: ' + this.color + ' !important;';
+        //     }
+        // }
 
     }
 </script>

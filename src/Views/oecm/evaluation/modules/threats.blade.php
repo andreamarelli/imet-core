@@ -30,17 +30,12 @@ $threats_in_sa2 = collect($vueData['records'])
                 <b v-html="threat_stats['{{ $threat_key }}'] || '-'"></b>
             </div>
             <div class="histogram-row__progress-bar"  v-if="threat_stats['{{ $threat_key }}']!==null">
-                <div class="histogram-row__progress-bar__limit-left">-100%</div>
-                <div class="histogram-row__progress-bar__bar">
-                    <div class="progress">
-                        <div role="progressbar"
-                             class="progress-bar progress-bar-striped  progress-bar-negative"
-                             :style="'width: ' + Math.abs(threat_stats['{{ $threat_key }}']) + '%; background-color: #87c89b !important;'">
-                            <span v-html="threat_stats['{{ $threat_key }}']"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="histogram-row__progress-bar__limit-right">0%</div>
+                <imet_progress_bar
+                        :value=threat_stats['{{ $threat_key }}']
+                        color="#87c89b"
+                        :min=-100
+                        :max=0
+                ></imet_progress_bar>
             </div>
         </div>
 
@@ -85,7 +80,7 @@ $threats_in_sa2 = collect($vueData['records'])
                                     : null;
 
                                 score = score!==null
-                                    ? ((0 - score) * 100 / 3).toFixed(2)
+                                    ? ((0 - score) * 100 / 3).toFixed(1)
                                     : null;
 
                                 stats[key] = score;
@@ -101,38 +96,38 @@ $threats_in_sa2 = collect($vueData['records'])
 
             methods:{
 
-                __get_index(element_id){
-                    return element_id.replace(this.module_key, '').replace('Value', '').replaceAll('_', '');
-                },
-
-                threats_elements(element_id){
-                    let index =  this.__get_index(element_id);
-
-                    let count_stakeholders_direct = this.records[index]['__count_stakeholders_direct'];
-                    let count_stakeholders_indirect = this.records[index]['__count_stakeholders_indirect'];
-                    let elements_legal = this.records[index]['__elements_legal_list'];
-                    let elements_illegal = this.records[index]['__elements_illegal_list'];
-
-                    let label = '';
-                    if(count_stakeholders_direct!==null || count_stakeholders_indirect!==null){
-                        let list = '';
-                        if(elements_illegal.length>0){
-                            list += '<li><b style="color: red;">' + elements_illegal + '</b></li>';
-                        }
-                        if(elements_legal.length>0){
-                            list += '<li>' + elements_legal + '</li>';
-                        }
-
-                        label =
-                            Locale.getLabel('imet-core::oecm_evaluation.Threats.num_stakeholders', {
-                                'num_dir': '<b>' + count_stakeholders_direct + '</b>',
-                                'num_ind': '<b>' + count_stakeholders_indirect + '</b>',
-                            })
-                            + '<br />'
-                            + 'Listed elements: <ul style="padding-inline-start: 20px;">' + list + '</ul>';
-                    }
-                    return label;
-                }
+                // __get_index(element_id){
+                //     return element_id.replace(this.module_key, '').replace('Value', '').replaceAll('_', '');
+                // },
+                //
+                // threats_elements(element_id){
+                //     let index =  this.__get_index(element_id);
+                //
+                //     let count_stakeholders_direct = this.records[index]['__count_stakeholders_direct'];
+                //     let count_stakeholders_indirect = this.records[index]['__count_stakeholders_indirect'];
+                //     let elements_legal = this.records[index]['__elements_legal_list'];
+                //     let elements_illegal = this.records[index]['__elements_illegal_list'];
+                //
+                //     let label = '';
+                //     if(count_stakeholders_direct!==null || count_stakeholders_indirect!==null){
+                //         let list = '';
+                //         if(elements_illegal.length>0){
+                //             list += '<li><b style="color: red;">' + elements_illegal + '</b></li>';
+                //         }
+                //         if(elements_legal.length>0){
+                //             list += '<li>' + elements_legal + '</li>';
+                //         }
+                //
+                //         label =
+                //             Locale.getLabel('imet-core::oecm_evaluation.Threats.num_stakeholders', {
+                //                 'num_dir': '<b>' + count_stakeholders_direct + '</b>',
+                //                 'num_ind': '<b>' + count_stakeholders_indirect + '</b>',
+                //             })
+                //             + '<br />'
+                //             + 'Listed elements: <ul style="padding-inline-start: 20px;">' + list + '</ul>';
+                //     }
+                //     return label;
+                // }
 
             }
 

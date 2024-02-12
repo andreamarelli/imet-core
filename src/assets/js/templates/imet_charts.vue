@@ -192,12 +192,16 @@
                       ? window.imet_routes.assessment_oecm
                       : window.imet_routes.assessment;
 
-                    window.axios({
-                        url: url.replace('__id__', _this.form_id),
-                        type: "get",
+                    fetch(url.replace('__id__', _this.form_id), {
+                        method: 'GET',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-Token": window.Laravel.csrfToken,
+                        }
                     })
-                        .then(function (response) {
-                            _this.api_data = response.data;
+                        .then((response) => response.json())
+                        .then(function(data){
+                            _this.api_data = data;
                         });
                 }
             }

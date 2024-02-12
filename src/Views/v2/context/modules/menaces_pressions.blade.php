@@ -45,17 +45,11 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
                 <b v-html="category_stats[{{ $i }}] || '-'"></b>
             </div>
             <div class="histogram-row__progress-bar"  v-if="category_stats['{{ $i }}']!==null">
-                <div class="histogram-row__progress-bar__limit-left">-100%</div>
-                <div class="histogram-row__progress-bar__bar">
-                    <div class="progress">
-                        <div role="progressbar"
-                             class="progress-bar progress-bar-striped  progress-bar-negative"
-                             :style="'width: ' + Math.abs(category_stats[{{ $i }}]) + '%; background-color: #87c89b !important;'">
-                            <span v-html="'-' +category_stats[{{ $i }}]"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="histogram-row__progress-bar__limit-right">0%</div></div>
+                <imet_progress_bar
+                    :value=category_stats[{{ $i }}]
+                    color="#87c89b"
+                ></imet_progress_bar>
+            </div>
         </div>
 
     @endforeach

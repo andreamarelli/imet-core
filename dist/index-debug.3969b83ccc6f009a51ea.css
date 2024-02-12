@@ -1,6 +1,118 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_progress_bar.vue?vue&type=style&index=0&id=6acae958&lang=scss&scoped=true ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.progress-bar[data-v-6acae958] {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: center;
+  margin: 1px 0;
+}
+.progress-bar .progress-bar__limit-left[data-v-6acae958],
+  .progress-bar .progress-bar__limit-right[data-v-6acae958] {
+    width: 40px;
+    font-weight: bold;
+}
+.progress-bar .progress-bar__limit-left[data-v-6acae958] {
+    text-align: right;
+    padding-right: 3px;
+}
+.progress-bar .progress-bar__limit-right[data-v-6acae958] {
+    text-align: left;
+    padding-left: 3px;
+}
+
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_charts.vue?vue&type=style&index=0&id=02895ee8&lang=scss&scoped=true ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.container[data-v-02895ee8] {
+  display: flex;
+  width: 100%;
+}
+@media (min-width: 1000px) {
+.container[data-v-02895ee8] {
+      flex-direction: row;
+}
+.container .imet_histogram[data-v-02895ee8] {
+        flex-grow: 1;
+}
+}
+@media (max-width: 999px) {
+.container[data-v-02895ee8] {
+      flex-direction: column;
+      align-items: center;
+}
+.container .imet_histogram[data-v-02895ee8] {
+        width: 100%;
+}
+}
+.container .imet_histogram .imet_histogram__row[data-v-02895ee8] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.container .imet_histogram .imet_histogram__row .imet_histogram__label[data-v-02895ee8] {
+      width: 210px;
+      padding-left: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+}
+.container .imet_histogram .imet_histogram__row .imet_histogram__value[data-v-02895ee8] {
+      width: 40px;
+}
+.container .imet_histogram .imet_histogram__row .imet_histogram__progress_bar[data-v-02895ee8] {
+      flex-grow: 1;
+}
+.container .imet_radar[data-v-02895ee8] {
+    text-align: center;
+}
+
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_radar.vue?vue&type=style&index=0&id=f8a1467a&lang=scss&scoped=true ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/multiple-files-upload.vue?vue&type=style&index=0&id=cadb8ebe&lang=scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+#dropzone {
+  display: inline-block;
+  height: 300px;
+  max-height: 300px;
+  overflow: auto;
+  background: #fff;
+  width: 100%;
+}
+#dropzone .dropzone-custom-content {
+    margin: 0 30px;
+}
+#dropzone .dropzone-custom-content .dropzone-custom-title {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+#dropzone .files {
+    display: flex;
+    gap: 30px;
+}
+#dropzone .files .file-row {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 15px;
+}
+#dropzone .files .file-row .progress {
+        flex-grow: 1;
+        border-radius: 4px;
+}
+#dropzone .files .file-row .progress .progress-bar {
+          border-radius: 4px;
+          font-weight: bold;
+          padding: 3px 6px;
+}
+#dropzone a.dz-remove {
+    display: none;
+}
 
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/inputs/selector-wdpa.vue?vue&type=style&index=0&id=359acd99&lang=scss&scoped=true ***!
@@ -634,6 +746,59 @@ a {
 ul {
   list-style: disc; }
 
+.text-2xs {
+  font-size: 0.7rem;
+  line-height: 0.8em; }
+
+.highlight {
+  --tw-text-opacity: 1;
+  color: rgb(22 101 52 / var(--tw-text-opacity)); }
+
+.error {
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity)); }
+
+h1, h2, h3, h4, h5 {
+  --tw-text-opacity: 1;
+  color: rgb(31 41 55 / var(--tw-text-opacity)); }
+
+h1 {
+  font-size: 3rem;
+  line-height: 1; }
+
+h2 {
+  font-size: 2.25rem;
+  line-height: 2.5rem; }
+
+h3 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  margin: 30px 0 15px 0; }
+
+h4 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin: 25px 0 17px 0; }
+
+h5 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin: 20px 0 10px 0; }
+
+h6 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin: 15px 0 5px 0; }
+
+a {
+  font-weight: bold;
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity)); }
+
+ul {
+  list-style: disc; }
+
 .btn-circle {
   padding: 13px 18px;
   border-radius: 60px;
@@ -842,22 +1007,7 @@ nav.steps a.step.cross-analysis-warnings {
   .histogram-row .histogram-row__value {
     width: 55px; }
   .histogram-row .histogram-row__progress-bar {
-    font-size: 10px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap; }
-    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__bar,
-    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__spacer {
-      flex-grow: 1; }
-    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__limit-left {
-      width: 40px;
-      text-align: right;
-      padding-right: 3px; }
-    .histogram-row .histogram-row__progress-bar .histogram-row__progress-bar__limit-right {
-      width: 40px;
-      text-align: left;
-      padding-left: 3px; }
+    flex-grow: 1; }
 
 .progress_bar_label,
 .progress_bar,
@@ -879,16 +1029,6 @@ nav.steps a.step.cross-analysis-warnings {
   vertical-align: bottom;
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity)); }
-
-.progress-bar {
-  color: #000000;
-  font-weight: bold;
-  -webkit-print-color-adjust: exact; }
-
-.progress-bar-negative {
-  float: right;
-  color: Red;
-  margin-left: auto; }
 
 .synthetic_indicator {
   font-size: 1.2em; }

@@ -11,20 +11,17 @@
                 <div class="histogram-row">
                     <div class="histogram-row__title text-left">{{ $threat_key }}</div>
                     <div class="histogram-row__value text-right" style="margin-right: 20px;">
-                        <b v-html="'{{ $threat_label }}' || '-'"></b>
+                        <b>{{ $threat_label ?? '-' }}</b>
                     </div>
-                    <div class="histogram-row__progress-bar" v-if="'{{ $threat_label }}'!=='-'">
-                        <div class="histogram-row__progress-bar__limit-left">-100%</div>
-                        <div class="histogram-row__progress-bar__bar">
-                            <div class="progress">
-                                <div role="progressbar"
-                                     class="progress-bar progress-bar-striped  progress-bar-negative"
-                                     :style="'width: ' + Math.abs('{{ $threat_label }}') + '%; background-color: #87c89b !important;'">
-                                    <span v-html="'{{ $threat_label }}'"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="histogram-row__progress-bar__limit-right">0%</div>
+                    <div class="histogram-row__progress-bar">
+                        @if($threat_label!=='-')
+                            <imet_progress_bar
+                                    :value={{ $threat_label }}
+                                        color="#87c89b"
+                                    :min=-100
+                                    :max=0
+                            ></imet_progress_bar>
+                        @endif
                     </div>
                 </div>
             @endforeach
@@ -39,20 +36,17 @@
                 <div class="histogram-row">
                     <div class="histogram-row__title text-left">{{ $threat_key }}</div>
                     <div class="histogram-row__value text-right" style="margin-right: 20px;">
-                        <b v-html="'{{ $threat_label }}' || '-'"></b>
+                        <b>{{ $threat_label ?? '-' }}</b>
                     </div>
-                    <div class="histogram-row__progress-bar" v-if="'{{ $threat_label }}'!=='-'">
-                        <div class="histogram-row__progress-bar__limit-left">-100%</div>
-                        <div class="histogram-row__progress-bar__bar">
-                            <div class="progress">
-                                <div role="progressbar"
-                                     class="progress-bar progress-bar-striped  progress-bar-negative"
-                                     :style="'width: ' + Math.abs('{{ $threat_label }}') + '%; background-color: #87c89b !important;'">
-                                    <span v-html="'{{ $threat_label }}'"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="histogram-row__progress-bar__limit-right">0%</div>
+                    <div class="histogram-row__progress-bar">
+                        @if($threat_label!=='-')
+                            <imet_progress_bar
+                                :value={{ $threat_label }}
+                                color="#87c89b"
+                                :min=-100
+                                :max=0
+                            ></imet_progress_bar>
+                        @endif
                     </div>
                 </div>
             @endforeach

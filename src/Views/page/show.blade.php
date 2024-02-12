@@ -59,7 +59,7 @@ $show_scrollbar = true;
     @else
 
         {{-- Management effectiveness --}}
-        @if($step==='evaluation')
+        @if($phase==='evaluation')
             @include('imet-core::'.$version.'.evaluation.management_effectiveness.management_effectiveness', [
                 'item_id' => $item->getKey(),
                 'step' => $step

@@ -19,28 +19,7 @@
   }
 
   .histogram-row__progress-bar {
-    font-size: 10px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    .histogram-row__progress-bar__bar,
-    .histogram-row__progress-bar__spacer {
       flex-grow: 1;
-    }
-
-    .histogram-row__progress-bar__limit-left {
-      width: 40px;
-      text-align: right;
-      padding-right: 3px;
-    }
-
-    .histogram-row__progress-bar__limit-right {
-      width: 40px;
-      text-align: left;
-      padding-left: 3px;
-    }
   }
 }
 
@@ -68,17 +47,17 @@
   @apply bg-gray-100;
 }
 
-.progress-bar {
-  color: #000000;
-  font-weight: bold;
-  -webkit-print-color-adjust: exact;
-}
-
-.progress-bar-negative {
-  float: right;
-  color: Red;
-  margin-left: auto;
-}
+//.progress-bar {
+//  color: #000000;
+//  font-weight: bold;
+//  -webkit-print-color-adjust: exact;
+//}
+//
+//.progress-bar-negative {
+//  float: right;
+//  color: Red;
+//  margin-left: auto;
+//}
 
 .synthetic_indicator {
   font-size: 1.2em;

@@ -13,16 +13,16 @@ window.ImetCore = {};
 //     'chart_bar': require('./js/templates/dopa/chart_bar.vue').default,
 //     'chart_doughnut': require('./js/templates/dopa/chart_doughnut.vue').default
 // };
-// Vue.component('imet_charts',                    require('./js/templates/imet_charts.vue').default);
+Vue.component('imet_charts',                    require('./js/templates/imet_charts.vue').default);
 Vue.component('imet_encoders_responsibles',     require('./js/templates/imet_encoders_responsibles.vue').default);
-// Vue.component('imet_progress_bar',              require('./js/templates/imet_progress_bar.vue').default);
-window.ModularFormsVendor.Vue.component('imet_radar',                     require('./js/templates/imet_radar.vue').default);
+Vue.component('imet_progress_bar',              require('./js/templates/imet_progress_bar.vue').default);
+Vue.component('imet_radar',                     require('./js/templates/imet_radar.vue').default);
 // Vue.component('imet_bar_chart',                 require('./js/templates/imet_bar_chart.vue').default);
 //
 // // Inputs
-// Vue.component('multiple-files-upload',          require('./js/inputs/multiple-files-upload.vue').default);
-window.ModularFormsVendor.Vue.component('selector-wdpa',                  require('./js/inputs/selector-wdpa.vue').default);
-window.ModularFormsVendor.Vue.component('selector-wdpa_multiple',         require('./js/inputs/selector-wdpa_multiple.vue').default);
+Vue.component('multiple-files-upload',          require('./js/inputs/multiple-files-upload.vue').default);
+Vue.component('selector-wdpa',                  require('./js/inputs/selector-wdpa.vue').default);
+Vue.component('selector-wdpa_multiple',         require('./js/inputs/selector-wdpa_multiple.vue').default);
 // // Vue.component('selector-user',                  require('./js/inputs/selector-user.vue').default);
 //
 // // Report
