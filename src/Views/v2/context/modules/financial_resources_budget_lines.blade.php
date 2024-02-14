@@ -86,7 +86,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
             </div>
         </td>
         <td colspan="4">
-            <div v-if="!totalIsValid" class="text-danger text-left" style="font-size: 0.9em;">
+            <div v-if="!totalIsValid" class="text-contextual-danger text-left" style="font-size: 0.9em;">
                 <i class="fa fa-exclamation-triangle"></i>
                 {!!  ucfirst(trans('imet-core::v2_context.FinancialResourcesBudgetLines.sum_error')) !!}
             </div>

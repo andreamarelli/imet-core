@@ -1,10 +1,12 @@
 window.ImetCore = {};
 
-// // Vue Mixins
-// window.mixins = {
+// Vue Mixins
+window.ImetCore.Mixins = {
 //     'status': require('./js/mixins/save_or_reset.mixin')
-// };
-//
+    key_elements: require('./js/mixins/key_elements.mixin').default
+};
+
+
 // // Templates
 // Vue.component('dopa_chart_bar',                 require('./js/templates/dopa/chart_bar.vue').default);
 // Vue.component('dopa_indicators_table',          require('./js/templates/dopa/indicators_table.vue').default);

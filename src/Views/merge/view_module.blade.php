@@ -11,13 +11,13 @@ use \AndreaMarelli\ImetCore\Models;
 $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
 ?>
 
-<div style="display: inline-block;"
-     data-toggle="tooltip" data-placement="top" data-original-title="@uclang('modular-forms::common.show')">
+<div style="display: inline-block;">
     <button type="button"
             class="btn-nav small"
             data-toggle="modal" data-target="#{{ $modal_id }}">
         {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
     </button>
+    <tooltip>@uclang('modular-forms::common.show')</tooltip>
 </div>
 
 <div id="{{ $modal_id }}" class="modal fade" tabindex="-1" role="dialog">

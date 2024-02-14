@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col">
                     <button type="button" class="btn btn-success mb-1 float-right exclude-element" @click="save">
-                        <div v-if="loading" class="spinner-border text-success float-right" role="status">
+                        <div v-if="loading" class="spinner-border text-contextual-success float-right" role="status">
                             <span class="sr-only">Loading...</span>
                         </div>
                         <span

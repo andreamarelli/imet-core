@@ -25,25 +25,6 @@
         align-items: center;
         margin: 1px 0;
 
-        //.progress-bar__container{
-        //    position: relative;
-        //    flex-grow: 1;
-        //    border-radius: 4px;
-        //    min-height: 24px;
-        //    @apply bg-gray-100;
-        //    .progress-bar__bar{
-        //        min-height: 24px;
-        //        border-radius: 4px;
-        //    }
-        //    .progress-bar__label{
-        //        position: absolute;
-        //        top: 35%;
-        //        width: 100%;
-        //        text-align: center;
-        //        font-weight: bold;
-        //      }
-        //}
-
       .progress-bar__limit-left,
       .progress-bar__limit-right{
           width: 40px;
@@ -87,16 +68,7 @@
                 value: Number,
                 default: 100
             },
-        },
-
-        // computed:{
-        //     width(){
-        //         return Math.abs(this.value);
-        //     },
-        //     style(){
-        //         return 'width: ' +  this.width + '%; backgroundColor: ' + this.color + ' !important;';
-        //     }
-        // }
+        }
 
     }
 </script>

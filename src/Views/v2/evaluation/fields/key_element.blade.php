@@ -10,4 +10,4 @@ $vue_attributes = \AndreaMarelli\ModularForms\Helpers\DOM::vueAttributes($v_id, 
 ?>
 
 <input type="hidden" {!! $vue_attributes !!} {!! $class !!} {!! $other !!} />
-<div class="field-disabled" data-toggle="tooltip" :title=tooltip({!! $v_value !!})>@{{ plain_name({!! $v_value !!}) }}</div>
+<div class="field-preview field-disabled">@{{ key_element_label({!! $v_value !!}) }}</div>

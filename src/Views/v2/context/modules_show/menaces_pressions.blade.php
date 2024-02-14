@@ -71,15 +71,17 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 
     @endforeach
 
-    <script>
-        new Vue({
-            el: '#threat_histograms',
-        });
-    </script>
-
 </div>
 <br />
 <br />
 
 
 {!! $dom->saveHTML() !!}
+
+@push('scripts')
+    <script>
+        new Vue({
+            el: '#threat_histograms',
+        });
+    </script>
+@endpush

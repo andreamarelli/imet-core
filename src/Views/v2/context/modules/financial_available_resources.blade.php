@@ -76,7 +76,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
     <tr>
     <tr>
         <td colspan="5">
-            <div v-if="!totalIsValid" class="text-danger text-right" style="font-size: 0.9em;">
+            <div v-if="!totalIsValid" class="text-contextual-danger text-right" style="font-size: 0.9em;">
                 <i class="fa fa-exclamation-triangle"></i>
                 {!!  ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.sum_error')) !!}
             </div>

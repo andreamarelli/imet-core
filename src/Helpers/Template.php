@@ -50,14 +50,18 @@ class Template{
      */
     public static function module_scope($scope): string
     {
-        $common_attributes = 'data-toggle="tooltip" data-placement="top"';
+        $terrestrial = '<img src="/vendor/imet-core/images/tree.png" class="inline" />
+                    <tooltip>' . ucfirst(trans('imet-core::common.terrestrial')) .'</tooltip>';
+
+        $marine = '<img src="/vendor/imet-core/images/fish.png" class="inline" />
+                    <tooltip>' . ucfirst(trans('imet-core::common.marine')) .'</tooltip>';
+
         if($scope === ImetModule::TERRESTRIAL_AND_MARINE){
-            return '<img src="/vendor/imet-core/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.terrestrial')) . '" />
-                        <img src="/vendor/imet-core/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.marine')) . '" />';
+            return $terrestrial.$marine;
         } elseif ($scope === ImetModule::TERRESTRIAL){
-            return '<img src="/vendor/imet-core/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.terrestrial')) . '" />';
+            return $terrestrial;
         } elseif ($scope === ImetModule::MARINE){
-            return '<img src="/vendor/imet-core/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.marine')) . '" />';
+            return $marine;
         }
         return '';
     }

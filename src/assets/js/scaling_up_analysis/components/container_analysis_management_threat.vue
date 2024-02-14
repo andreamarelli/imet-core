@@ -5,7 +5,7 @@
         <div class="bg-white collapse mb-2 show">
             <guidance :text="guidance"/>
             <checkboxes_list :items="items" :event="'apply_filter'"/>
-            <div v-if="show_loader" class="spinner-border text-success" role="status">
+            <div v-if="show_loader" class="spinner-border text-contextual-success" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
             <div v-else>

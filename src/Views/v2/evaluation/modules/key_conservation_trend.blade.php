@@ -11,7 +11,6 @@
     'vueData' => $vueData,
 ])
 
-
 @push('scripts')
 <script>
     // ## Initialize Module controller ##
@@ -19,35 +18,9 @@
         el: '#module_{{ $definitions['module_key'] }}',
         data: @json($vueData),
 
-        computed: {
-        },
-
-        methods: {
-            plain_name(fullName){
-                return fullName!=null && this.isTaxonomy(fullName)
-                    ? this.getScientificName(fullName)
-                    : fullName;
-            },
-
-            tooltip(fullName){
-                return fullName!=null && this.isTaxonomy(fullName)
-                    ? fullName.replace(/\|/g, " ")
-                    : '';
-            },
-
-            isTaxonomy(fullName){
-                return (fullName.match(/\|/g) || []).length===5
-            },
-
-            getScientificName (fullName){
-                let sciName = null;
-                if(fullName!==null){
-                    let taxonomy = fullName.split("|");
-                    sciName =  taxonomy[4] + ' ' + taxonomy[5]
-                }
-                return sciName;
-            },
-        }
+        mixins: [
+            window.ImetCore.Mixins.key_elements
+        ]
 
     });
 </script>
