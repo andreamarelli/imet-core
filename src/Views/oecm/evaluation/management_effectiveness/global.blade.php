@@ -9,10 +9,10 @@
 
 </div>
 
-<script>
-
-    new Vue({
-        el: '#assessment_global',
-    });
-
-</script>
+@push('scripts')
+    <script>
+        new Vue({
+            el: '#assessment_global',
+        });
+    </script>
+@endpush

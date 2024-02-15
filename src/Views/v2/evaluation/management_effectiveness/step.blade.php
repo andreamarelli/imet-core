@@ -73,6 +73,7 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
 </div>
 
 
+@push('scripts')
 <script>
 
     new Vue({
@@ -277,3 +278,4 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
     });
 
 </script>
+@endpush

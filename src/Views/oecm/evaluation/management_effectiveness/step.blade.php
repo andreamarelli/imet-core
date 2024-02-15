@@ -53,7 +53,7 @@ $assessment_step = OecmAssessment::getAssessment($item_id, $step);
 
 </div>
 
-
+@push('scripts')
 <script>
 
     new Vue({
@@ -250,3 +250,4 @@ $assessment_step = OecmAssessment::getAssessment($item_id, $step);
     });
 
 </script>
+@endpush

@@ -115,7 +115,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
             el: '#users',
 
             mixins: [
-                window.mixins['status']
+                window.ImetCore.Mixins.status
             ],
 
             data: {

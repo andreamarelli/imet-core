@@ -2,25 +2,25 @@ window.ImetCore = {};
 
 // Vue Mixins
 window.ImetCore.Mixins = {
-//     'status': require('./js/mixins/save_or_reset.mixin')
+    status: require('./js/mixins/save_or_reset.mixin'),
     key_elements: require('./js/mixins/key_elements.mixin').default
 };
 
 
-// // Templates
-// Vue.component('dopa_chart_bar',                 require('./js/templates/dopa/chart_bar.vue').default);
-// Vue.component('dopa_indicators_table',          require('./js/templates/dopa/indicators_table.vue').default);
-// Vue.component('dopa_radar',                     require('./js/templates/dopa/chart_radar.vue').default);
-// window.ImetCore.Dopa = {
-//     'chart_bar': require('./js/templates/dopa/chart_bar.vue').default,
-//     'chart_doughnut': require('./js/templates/dopa/chart_doughnut.vue').default
-// };
+// Templates
+Vue.component('dopa_chart_bar',                 require('./js/templates/dopa/chart_bar.vue').default);
+Vue.component('dopa_indicators_table',          require('./js/templates/dopa/indicators_table.vue').default);
+Vue.component('dopa_radar',                     require('./js/templates/dopa/chart_radar.vue').default);
+window.ImetCore.Dopa = {
+    'chart_bar': require('./js/templates/dopa/chart_bar.vue').default,
+    'chart_doughnut': require('./js/templates/dopa/chart_doughnut.vue').default
+};
 Vue.component('imet_charts',                    require('./js/templates/imet_charts.vue').default);
 Vue.component('imet_encoders_responsibles',     require('./js/templates/imet_encoders_responsibles.vue').default);
 Vue.component('imet_progress_bar',              require('./js/templates/imet_progress_bar.vue').default);
 Vue.component('imet_radar',                     require('./js/templates/imet_radar.vue').default);
-// Vue.component('imet_bar_chart',                 require('./js/templates/imet_bar_chart.vue').default);
-//
+Vue.component('imet_bar_chart',                 require('./js/templates/imet_bar_chart.vue').default);
+
 // // Inputs
 Vue.component('multiple-files-upload',          require('./js/inputs/multiple-files-upload.vue').default);
 Vue.component('selector-wdpa',                  require('./js/inputs/selector-wdpa.vue').default);
