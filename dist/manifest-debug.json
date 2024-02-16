@@ -3,6 +3,8 @@
   "images/tree.png": "images/tree.png",
   "index.css": "index-debug.7f67c609246d308ad0f2.css",
   "index.js": "index-debug.ded64c0f4b43c0ad878d.js",
+  "mapbox.css": "mapbox-debug.446f10f07f7acddb4502.css",
+  "mapbox.js": "mapbox-debug.7146b29b5b108f98abcf.js",
   "vendor.css": "vendor-debug.eaa8c75f5b340b71bab0.css",
   "vendor.js": "vendor-debug.87ee62709a30150ee003.js"
 }

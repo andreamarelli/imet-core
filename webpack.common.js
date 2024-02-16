@@ -9,6 +9,7 @@ module.exports = {
     entry: {
         index: ['./src/assets/index.js', './src/assets/index.scss'],
         vendor: ['./src/assets/vendor.js', './src/assets/vendor.scss'],
+        mapbox: ['./src/assets/mapbox.js', './src/assets/mapbox.scss'],
     },
 
     output: {
