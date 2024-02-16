@@ -300,6 +300,10 @@
   display: grid; }
 .hidden {
   display: none; }
+.h-full {
+  height: 100%; }
+.w-full {
+  width: 100%; }
 .max-w-3xl {
   max-width: 48rem; }
 .flex-grow {
@@ -342,8 +346,13 @@
   padding: 0.5rem; }
 .p-3 {
   padding: 0.75rem; }
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
 .pb-3 {
   padding-bottom: 0.75rem; }
+.pb-4 {
+  padding-bottom: 1rem; }
 .pl-5 {
   padding-left: 1.25rem; }
 .text-left {
@@ -365,6 +374,8 @@
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem; }
+.font-bold {
+  font-weight: 700; }
 .italic {
   font-style: italic; }
 .underline {

@@ -56,12 +56,13 @@ $stats = collect(\AndreaMarelli\ImetCore\Services\ThreatsService::calculateRanki
 </div>
 
 
-<script>
-    new Vue({
-        el: '#threat_histograms',
-    });
-</script>
-
-
 {!! $dom->saveHTML() !!}
+
+@push('scripts')
+    <script>
+        new Vue({
+            el: '#threat_histograms',
+        });
+    </script>
+@endpush
 

@@ -35,10 +35,10 @@ foreach($groupByCategory as $i => $category){
 
 {!! $dom->saveHTML() !!}
 
-<script>
-
-    new Vue({
-        el: '#module_imet__v2__context__ecosystem_services',
-    });
-
-</script>
+@push('scripts')
+    <script>
+        new Vue({
+            el: '#module_imet__v2__context__ecosystem_services',
+        });
+    </script>
+@endpush

@@ -31,10 +31,12 @@ if($controller === Controllers\Imet\oecm\Controller::class){
         </div>
     </div>
 
+@endsection
+
+@push('scripts')
     <script>
         new Vue({
             el: '#import_imet',
         })
     </script>
-
-@endsection
+@endpush

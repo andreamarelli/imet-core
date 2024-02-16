@@ -48,68 +48,72 @@ $categories = $categories !== null ? json_decode($categories) : [];
                 <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title4')</h4>
             @endif
 
-
+            {{-- sub-titles --}}
             <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
-            @lang('imet-core::oecm_context.AnalysisStakeholders.groups_descriptions.' . $group_key)
 
-            @for ($i = 0; $i < 5; $i++)
-                <div class="card">
-                    <div>
-                        <div class="card-body">
+            {{-- Desctiptions --}}
+            <div class="pb-4 px-6 text-sm">
+                @lang('imet-core::oecm_context.AnalysisStakeholders.groups_descriptions.' . $group_key)
+            </div>
 
-                            @foreach($definitions['fields'] as $field)
 
-                                <div class="module-row">
+            <x-modular-forms::accordion.container>
+                @for ($i = 0; $i < 5; $i++)
+                    <x-modular-forms::accordion.item class="show" :is-collapsible=false>
 
-                                    {{-- label  --}}
-                                    @if(isset($field['label']) && $field['label']!='')
-                                        <div class="module-row__label" style="width: 20%;">
-                                            <label for="{{ $field['name'] }}">{!! ucfirst($field['label']) !!}</label>
-                                        </div>
+                        @foreach($definitions['fields'] as $field)
+
+                            <div class="module-row">
+
+                                {{-- label  --}}
+                                @if(isset($field['label']) && $field['label']!='')
+                                    <div class="module-row__label" style="width: 20%;">
+                                        <label for="{{ $field['name'] }}">{!! ucfirst($field['label']) !!}</label>
+                                    </div>
+                                @endif
+
+                                {{-- input --}}
+                                <div class="module-row__input">
+
+
+                                    @if($field['name'] === 'Comments')
+                                        <div class="field-preview" style="max-width: none; height: 120px;"></div>
+                                    @elseif($field['name'] === 'Access')
+                                        @include('modular-forms::module.show.field', [
+                                            'type' => 'checkbox-ImetOECM_Access',
+                                            'value' => []
+                                         ])
+                                    @elseif($field['name'] === 'Threats')
+                                        @include('modular-forms::module.show.field', [
+                                            'type' => 'checkbox-ImetOECM_Threats',
+                                            'value' => []
+                                         ])
+                                    @elseif($field['name'] === 'Guidelines')
+                                        @include('modular-forms::module.show.field', [
+                                            'type' => 'checkbox-ImetOECM_Guidelines',
+                                            'value' => []
+                                         ])
+                                    @else
+                                        @include('modular-forms::module.show.field', [
+                                            'type' => $field['type'],
+                                            'value' => null
+                                       ])
                                     @endif
 
-                                    {{-- input --}}
-                                    <div class="module-row__input">
-
-
-                                        @if($field['name'] === 'Comments')
-                                            <div class="field-preview" style="max-width: none; height: 120px;"></div>
-                                        @elseif($field['name'] === 'Access')
-                                            @include('modular-forms::module.show.field', [
-                                                'type' => 'checkbox-ImetOECM_Access',
-                                                'value' => []
-                                             ])
-                                        @elseif($field['name'] === 'Threats')
-                                            @include('modular-forms::module.show.field', [
-                                                'type' => 'checkbox-ImetOECM_Threats',
-                                                'value' => []
-                                             ])
-                                        @elseif($field['name'] === 'Guidelines')
-                                            @include('modular-forms::module.show.field', [
-                                                'type' => 'checkbox-ImetOECM_Guidelines',
-                                                'value' => []
-                                             ])
-                                        @else
-                                            @include('modular-forms::module.show.field', [
-                                                'type' => $field['type'],
-                                                'value' => null
-                                           ])
-                                        @endif
-
-                                        @if($field['name'] === 'Element')
-                                            <div style="margin-top: 5px;">Accepted Values: <i>{{ implode(', ', trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key)) }}</i></div>
-                                        @endif
-
-                                    </div>
+                                    @if($field['name'] === 'Element')
+                                        <div style="margin-top: 5px;">Accepted Values: <i>{{ implode(', ', trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key)) }}</i></div>
+                                    @endif
 
                                 </div>
 
-                            @endforeach
+                            </div>
 
-                        </div>
-                    </div>
-                </div>
-            @endfor
+                        @endforeach
+
+                    </x-modular-forms::accordion.item>
+                @endfor
+            </x-modular-forms::accordion.container>
+
 
         @endif
     @endforeach

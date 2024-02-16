@@ -33,8 +33,10 @@
         </app>
     </div>
 
-    <script>
+@endsection
 
+@push('scripts')
+    <script>
 
         new Vue({
             el: '#imet_report',
@@ -194,6 +196,4 @@
             }
         }
     </style>
-@endsection
-
-
+@endpush

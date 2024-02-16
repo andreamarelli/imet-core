@@ -9,7 +9,7 @@
 $steps = ['radar', 'context', 'planning', 'inputs', 'process', 'outputs', 'outcomes'];
 
 ?>
-@extends('modular-forms::layouts._base')
+@extends('modular-forms::layouts.print')
 
 
 @section('body')

@@ -1,4 +1,4 @@
-@extends('modular-forms::layouts._base')
+@extends('modular-forms::layouts.print')
 
 @section('body')
     <div class="container">
@@ -27,13 +27,16 @@
         </div>
     </div>
 
-    <style>
 
+@endsection
+
+@push('scripts')
+
+    <style>
         .fill {
             min-height: 100%;
             height: 100%;
         }
-
         @media print {
             #imet_report {
                 visibility: hidden;
@@ -43,16 +46,9 @@
                 margin-top: 5px;
             }
         }
-
     </style>
 
     <script>
-
-        window.Laravel = @json([
-            'csrfToken' => csrf_token(),
-            'baseUrl' => url('/').'/'
-        ]);
-
         new Vue({
             el: '#preview-elements',
             methods: {
@@ -64,9 +60,8 @@
                 }
             }
         });
-
     </script>
-@endsection
+@endpush
 
 
 

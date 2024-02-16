@@ -7,20 +7,25 @@
 $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$module::getShortClassName();
 
 ?>
-<div style="display: inline-block;"
-     data-toggle="tooltip" data-placement="top" data-original-title="@uclang('modular-forms::common.apply')">
-    <button type="button"
-            class="btn-nav small yellow"
-            data-toggle="modal" data-target="#{{ $modal_id }}">
-        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!} @uclang('modular-forms::common.apply')
-    </button>
-</div>
 
 
-<div id="{{ $modal_id }}" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
+<floating_dialog>
+
+    <!-- anchor -->
+    <template slot="dialog-anchor">
+        <button type="button" class="btn-nav small yellow">
+            {!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!}
+            @uclang('modular-forms::common.apply')
+        </button>
+        <tooltip>@uclang('modular-forms::common.apply')</tooltip>
+    </template>
+
+    <!-- dialog -->
+    <template slot="dialog-content">
+        <div class="with_header_and_footer">
+
+            <!-- dialog body -->
+            <div class="body text-center">
                 <div style="padding: 5px 5px 15px 5px;">
                     <div style="text-align: center">
                         <i>{{ (new $module())->module_code }}</i>
@@ -42,11 +47,11 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                     </div>
                 </div>
                 <div class="alert alert-danger" role="alert" style="padding: 10px;">Any existing data will be overwritten!</div>
-                <div style="text-align: right">
-                    <b>@lang('imet-core::common.confirm_merge')?</b>
-                </div>
             </div>
-            <div class="modal-footer">
+
+            <!-- dialog footer -->
+            <div class="footer">
+                <div class="text-right font-bold">@lang('imet-core::common.confirm_merge')?</div>
                 <button type="button"
                         data-dismiss="modal"
                         class="btn-nav small red btn-sm">
@@ -63,6 +68,11 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                     </button>
                 </form>
             </div>
+
         </div>
-    </div>
-</div>
+    </template>
+
+</floating_dialog>
+
+
+

@@ -192,6 +192,10 @@ if ($item->language != App::getLocale()) {
         @endif
         @include('imet-core::oecm.report.components.navigation_menu')
     </div>
+@endsection
+
+@push('scripts')
+
     <script>
         new Vue({
             el: '#imet_report',
@@ -318,4 +322,4 @@ if ($item->language != App::getLocale()) {
             }
         });
     </script>
-@endsection
+@endpush

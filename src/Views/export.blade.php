@@ -97,46 +97,47 @@ use \AndreaMarelli\ImetCore\Models\Imet\Imet;
 
         </table>
     </div>
-    @push('scripts')
-
-        <script>
-
-            new Vue({
-                el: '#export_list',
-
-                data: {
-                    checkboxes: [],
-                    list: @json($list),
-                    status: 'idle',
-                    error_message: null,
-                    isCheckAll: false,
-                    exportDisabled: true,
-                },
-                computed: {
-                    items() {
-                        return this.list;
-                    },
-                    totalCount() {
-                        return this.list.length;
-                    }
-                },
-                methods: {
-                    exportToggle: function () {
-                        this.exportDisabled = this.checkboxes.length === 0;
-                    },
-                    checkAll: function () {
-                        if (!this.isCheckAll) {
-                            for (const item in this.list) {
-                                this.checkboxes.push(this.list[item].FormID);
-                            }
-                        } else {
-                            this.checkboxes = [];
-                        }
-                        this.exportDisabled = this.checkboxes.length === 0;
-                    }
-                }
-            })
-        </script>
-    @endpush
 
 @endsection
+
+@push('scripts')
+
+    <script>
+
+        new Vue({
+            el: '#export_list',
+
+            data: {
+                checkboxes: [],
+                list: @json($list),
+                status: 'idle',
+                error_message: null,
+                isCheckAll: false,
+                exportDisabled: true,
+            },
+            computed: {
+                items() {
+                    return this.list;
+                },
+                totalCount() {
+                    return this.list.length;
+                }
+            },
+            methods: {
+                exportToggle: function () {
+                    this.exportDisabled = this.checkboxes.length === 0;
+                },
+                checkAll: function () {
+                    if (!this.isCheckAll) {
+                        for (const item in this.list) {
+                            this.checkboxes.push(this.list[item].FormID);
+                        }
+                    } else {
+                        this.checkboxes = [];
+                    }
+                    this.exportDisabled = this.checkboxes.length === 0;
+                }
+            }
+        })
+    </script>
+@endpush

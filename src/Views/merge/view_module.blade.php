@@ -11,24 +11,27 @@ use \AndreaMarelli\ImetCore\Models;
 $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
 ?>
 
-<div style="display: inline-block;">
-    <button type="button"
-            class="btn-nav small"
-            data-toggle="modal" data-target="#{{ $modal_id }}">
-        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
-    </button>
-    <tooltip>@uclang('modular-forms::common.show')</tooltip>
-</div>
+<floating_dialog>
 
-<div id="{{ $modal_id }}" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <b class="modal-title" style="font-size: 1.2em;">IMET #{{ $formID }}</b>
-                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times black"></i></button>
-                <b style="font-size: 1.2em;">IMET #{{ $formID }}</b>
+    <!-- anchor -->
+    <template slot="dialog-anchor">
+        <button type="button" class="btn-nav small">
+            {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
+        </button>
+        <tooltip>@uclang('modular-forms::common.show')</tooltip>
+    </template>
+
+    <!-- dialog -->
+    <template slot="dialog-content">
+        <div class="with_header_and_footer">
+
+            <!-- dialog header -->
+            <div class="header">
+                IMET #{{ $formID }}
             </div>
-            <div class="modal-body">
+
+            <!-- dialog body -->
+            <div class="body text-center">
                 <x-modular-forms::module.container
                         :controller="$controller"
                         :module="$module_class"
@@ -36,6 +39,8 @@ $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
                         :mode="\AndreaMarelli\ModularForms\View\Module\Container::MODE_SHOW"
                 ></x-modular-forms::module.container>
             </div>
+
         </div>
-    </div>
-</div>
+    </template>
+
+</floating_dialog>

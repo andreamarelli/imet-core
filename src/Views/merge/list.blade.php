@@ -90,15 +90,13 @@ if(!function_exists('get_quoted_responsible')){
                         </div>
 
                         {{-- Set as destination form --}}
-                        <div style="margin-top: 10px"
-                             data-toggle="tooltip"
-                             data-placement="top"
-                             data-original-title="@uclang('imet-core::common.set_as_destination_form')">
-                            <a href="{{ route($merge_view_route, [$duplicated_form_id]) }}"
-                               class="btn-nav small yellow"
-                            >{!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!} @uclang('imet-core::common.destination_form')
+                        <div style="margin-top: 10px">
+                            <a href="{{ route($merge_view_route, [$duplicated_form_id]) }}" class="btn-nav small yellow">
+                                {!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!}
+                                @uclang('imet-core::common.destination_form')
                             </a>
                         </div>
+                        <tooltip>@uclang('imet-core::common.set_as_destination_form')</tooltip>
 
                         {{-- Delete --}}
                         <div style="margin-top: 5px">
@@ -168,10 +166,12 @@ if(!function_exists('get_quoted_responsible')){
         </tbody>
     </table>
 
+@endsection
+
+@push('scripts')
     <script>
         new Vue({
             el: '#merge_table',
         });
     </script>
-
-@endsection
+@endpush
