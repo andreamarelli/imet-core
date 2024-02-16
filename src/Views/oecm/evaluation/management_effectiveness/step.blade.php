@@ -175,6 +175,7 @@ $assessment_step = OecmAssessment::getAssessment($item_id, $step);
                     .replace('__step__', _this.current_step), {
                     method: "get",
                     headers: {
+                        "Content-Type": "application/json",
                         "X-CSRF-Token": window.Laravel.csrfToken,
                     },
                 })

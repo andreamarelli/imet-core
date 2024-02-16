@@ -104,28 +104,33 @@ export default {
             throw new Error('Not Implemented ')
         },
         retrieve_data: async function () {
+            let _this = this;
             try {
                 this.show_loader = true;
                 this.error_wrong = false;
-                const response = await window.axios({
-                    method: this.method,
-                    url: this.url_parameter,
-                    data: {
-                        _token: window.Laravel.csrfToken,
-                        func: this.func_parameter,
-                        parameter: this.parameters_man(),
-                        scaling_id: this.stores.BaseStore.get_scaling_up()
-                    },
-                    timeout: 3 * 10000
-                });
-                this.success(response.data);
+
+               fetch(this.url_parameter, {
+                   method: this.method,
+                   headers: {
+                       "Content-Type": "application/json",
+                       "X-CSRF-Token": window.Laravel.csrfToken,
+                   },
+                   body: JSON.stringify({
+                       func: this.func_parameter,
+                       parameter: this.parameters_man(),
+                       scaling_id: this.stores.BaseStore.get_scaling_up()
+                   })
+               })
+                   .then((response) => response.json())
+                   .then(function(data) {
+                       _this.success(response.data);
+                       _this.finally();
+                   });
+
             } catch (error) {
-
-                this.error(error);
-            } finally {
-                this.finally();
+                _this.error(error);
+                _this.finally();
             }
-
 
         }
     }

@@ -5,16 +5,17 @@ class DBStorage {
     }
 
     async ajax_request(url, params, method = 'POST'){
-        return await window.axios({
-            method,
-            url: url,
-            data: {
-                _token: window.Laravel.csrfToken,
-                ...params
-            }
+        return fetch(url, {
+            method: method,
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": window.Laravel.csrfToken,
+            },
+            body: JSON.stringify(params)
         })
-            .then(function (response) {
-                return response.data;
+            .then((response) => response.json())
+            .then(function(data){
+                return data;
             })
             .catch(function (error) {
                 console.log(error)

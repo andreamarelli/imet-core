@@ -36,18 +36,21 @@ export default {
     },
     methods: {
         retrieveCoords: async function () {
-            return await window.axios({
+            return fetch(this.url, {
                 method: 'POST',
-                url: this.url,
-                data: {
-                    _token: window.Laravel.csrfToken,
-                    func: 'get_array_of_custom_names',
-                    parameter: this.pa.split(','),
-                    scaling_id: this.stores.BaseStore.scaling_up_id
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRF-Token": window.Laravel.csrfToken,
+                },
+                body: {
+                  func: 'get_array_of_custom_names',
+                  parameter: this.pa.split(','),
+                  scaling_id: this.stores.BaseStore.scaling_up_id
                 }
             })
-                .then(function (response) {
-                    return Object.entries(response.data).map(area => area[1].wdpa_id);
+                .then((response) => response.json())
+                .then(function (data) {
+                    return Object.entries(data).map(area => area[1].wdpa_id);
                 })
                 .catch(function (error) {
                     console.log(error)

@@ -176,9 +176,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
                         method: method,
                         body: form_data
                     })
-                        .then(function(response) {
-                            return response.json();
-                        })
+                        .then((response) => response.json())
                         .then(function(data) {
                             console.log('Success:', data);
                         })

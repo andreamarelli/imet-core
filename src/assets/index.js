@@ -3,6 +3,7 @@ window.ImetCore = {};
 // Vue Mixins
 window.ImetCore.Mixins = {
     status: require('./js/mixins/save_or_reset.mixin'),
+    load_from_previous: require('./js/mixins/load_from_previous.mixin'),
     key_elements: require('./js/mixins/key_elements.mixin').default
 };
 

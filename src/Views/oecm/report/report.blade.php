@@ -250,12 +250,13 @@ if ($item->language != App::getLocale()) {
                     fetch('{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}', {
                         method: 'post',
                         headers: {
+                            "Content-Type": "application/json",
                             "X-CSRF-Token": window.Laravel.csrfToken,
                         },
-                        body: {
+                        body: JSON.stringify({
                             _method: 'PATCH',
                             report: this.report
-                        }
+                        })
                     })
                         .then((response) => response.json())
                         .then(function(data){
@@ -299,6 +300,7 @@ if ($item->language != App::getLocale()) {
                     fetch('{{ route(REPORT_PREFIX.'report_objectives', ['form_id' => $form_id]) }}', {
                         method: 'get',
                         headers: {
+                            "Content-Type": "application/json",
                             "X-CSRF-Token": window.Laravel.csrfToken,
                         }
                     })

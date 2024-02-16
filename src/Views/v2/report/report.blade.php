@@ -440,12 +440,13 @@ if($item->language != App::getLocale()){
                     fetch('{{ route(Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}', {
                         method: 'post',
                         headers: {
+                            "Content-Type": "application/json",
                             "X-CSRF-Token": window.Laravel.csrfToken,
                         },
-                        body: {
+                        body: JSON.stringify({
                             _method: 'PATCH',
                             report: this.report
-                        }
+                        })
                     })
                         .then((response) => response.json())
                         .then(function(data){
