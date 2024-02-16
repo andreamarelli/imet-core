@@ -436,17 +436,20 @@ if($item->language != App::getLocale()){
                     this.status = 'loading';
                     this.loading = true;
                     this.error = false;
-                    window.axios({
+
+                    fetch('{{ route(Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}', {
                         method: 'post',
-                        url: '{{ route(Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
-                        data: {
-                            _token: window.Laravel.csrfToken,
+                        headers: {
+                            "X-CSRF-Token": window.Laravel.csrfToken,
+                        },
+                        body: {
                             _method: 'PATCH',
                             report: this.report
                         }
                     })
-                        .then(function (response) {
-                            if (!(response.data.hasOwnProperty('status') && response.data.status === 'success')) {
+                        .then((response) => response.json())
+                        .then(function(data){
+                            if (!(data.hasOwnProperty('status') && data.status === 'success')) {
                                 _this.status = 'error';
                             }
                             _this.status = 'saved';

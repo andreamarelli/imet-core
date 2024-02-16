@@ -247,27 +247,29 @@ if ($item->language != App::getLocale()) {
                     this.loading = true;
                     this.error = false;
 
-                    window.axios({
+                    fetch('{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}', {
                         method: 'post',
-                        url: '{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
-                        data: {
-                            _token: window.Laravel.csrfToken,
+                        headers: {
+                            "X-CSRF-Token": window.Laravel.csrfToken,
+                        },
+                        body: {
                             _method: 'PATCH',
                             report: this.report
                         }
                     })
-                        .then(function (response) {
-                            if (!(response.data.hasOwnProperty('status') && response.data.status === 'success')) {
+                        .then((response) => response.json())
+                        .then(function(data){
+                            if (!(data.hasOwnProperty('status') && data.status === 'success')) {
                                 _this.status = 'error';
                             }
                             _this.status = 'saved';
                             _this.error_objectives = false;
+                            _this.getObjectives()
                         })
                         .catch(function (error) {
                             _this.status = 'error';
-                        }).finally(async function () {
-                        _this.getObjectives()
-                    })
+                            _this.getObjectives()
+                        })
                 },
                 printReport() {
                     window.print();
@@ -293,20 +295,23 @@ if ($item->language != App::getLocale()) {
                 },
                 getObjectives() {
                     this.loading_objectives = true;
-                    window.axios({
+
+                    fetch('{{ route(REPORT_PREFIX.'report_objectives', ['form_id' => $form_id]) }}', {
                         method: 'get',
-                        url: '{{ route(REPORT_PREFIX.'report_objectives', ['form_id' => $form_id]) }}',
-                        data: {
-                            _token: window.Laravel.csrfToken
+                        headers: {
+                            "X-CSRF-Token": window.Laravel.csrfToken,
                         }
-                    }).then((response) => {
+                    })
+                        .then((response) => response.json())
+                        .then(function(data){
                             this.error_objectives = false;
-                            this.short_long_objectives = response.data;
-                        }).catch( (error) => {
-                        this.error_objectives = true;
-                    }).finally(() => {
+                            this.short_long_objectives =data;
                             this.loading_objectives = false;
-                    });
+                        })
+                        .catch( (error) => {
+                            this.error_objectives = true;
+                            this.loading_objectives = false;
+                        })
                 }
             }
         });
