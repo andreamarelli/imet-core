@@ -84,6 +84,27 @@
     text-align: center;
 }
 
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_encoders_responsibles.vue?vue&type=style&index=0&id=95b11e3c&lang=scss&scoped=true ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.imet_responsible[data-v-95b11e3c] {
+  font-size: 0.85em;
+  text-align: left;
+}
+.imet_responsible ul[data-v-95b11e3c] {
+    margin: 0;
+    padding-inline-start: 15px;
+}
+.imet_responsible ul li[data-v-95b11e3c] {
+      line-height: 1.4em;
+}
+.imet_responsible button[data-v-95b11e3c] {
+    margin-top: 5px;
+}
+.imet_responsible .hidden[data-v-95b11e3c] {
+    display: none !important;
+}
+
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/templates/imet_radar.vue?vue&type=style&index=0&id=f8a1467a&lang=scss&scoped=true ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -289,12 +310,17 @@
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
 .resize {
   resize: both; }
+.flex-row {
+  flex-direction: row; }
 .flex-col {
   flex-direction: column; }
 .flex-wrap {
   flex-wrap: wrap; }
 .gap-1 {
   gap: 0.25rem; }
+.gap-x-8 {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem; }
 .gap-y-1 {
   row-gap: 0.25rem; }
 .rounded {
@@ -1003,19 +1029,6 @@ nav.steps a.step.cross-analysis-warnings {
     font-size: 1.1em;
     flex-grow: 1; }
 
-.imet_responsible {
-  font-size: 0.85em;
-  text-align: left; }
-  .imet_responsible ul {
-    margin: 0;
-    padding-inline-start: 15px; }
-    .imet_responsible ul li {
-      line-height: 1.4em; }
-  .imet_responsible button {
-    margin-top: 5px; }
-  .imet_responsible .hidden {
-    display: none !important; }
-
 .histogram-row {
   display: flex;
   flex-direction: row;
@@ -1054,4 +1067,11 @@ nav.steps a.step.cross-analysis-warnings {
 
 .synthetic_indicator {
   font-size: 1.2em; }
+
+.summary_table {
+  width: auto;
+  background-color: #F5F5F5; }
+  .summary_table th,
+  .summary_table td {
+    padding: 10px; }
 
