@@ -26,12 +26,12 @@ Vue.component('imet_bar_chart',                 require('./js/templates/imet_bar
 Vue.component('multiple-files-upload',          require('./js/inputs/multiple-files-upload.vue').default);
 Vue.component('selector-wdpa',                  require('./js/inputs/selector-wdpa.vue').default);
 Vue.component('selector-wdpa_multiple',         require('./js/inputs/selector-wdpa_multiple.vue').default);
-// // Vue.component('selector-user',                  require('./js/inputs/selector-user.vue').default);
-//
-// // Report
+// Vue.component('selector-user',                  require('./js/inputs/selector-user.vue').default);
+
+// Report
 // Vue.component('table_input',                    require('./js/report/table_input.vue').default);
 // Vue.component('roadmap',                    require('./js/report/roadmap.vue').default);
 // Vue.component('objectives',                    require('./js/report/objectives.vue').default);
-//
-// // Components for IMET scaling up
-// require('./js/scaling_up_analysis/components.js');
+
+// Components for IMET scaling up
+require('./js/scaling_up_analysis/components.js');

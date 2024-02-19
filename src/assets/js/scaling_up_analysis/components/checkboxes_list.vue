@@ -17,11 +17,11 @@
             <div class="col">
             </div>
             <div class="col">
-                <button :disabled="button_status()" @click="enable_overall()" class="btn btn-success">{{
+                <button :disabled="button_status()" @click="enable_overall()" class="btn-nav">{{
                         stores.BaseStore.localization('imet-core::analysis_report.apply')
                     }}
                 </button>
-                <button @click="check_all()" class="btn btn-success">{{
+                <button @click="check_all()" class="btn-nav">{{
                         stores.BaseStore.localization('imet-core::analysis_report.select_all')
                     }}
                 </button>

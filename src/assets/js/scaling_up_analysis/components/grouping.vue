@@ -2,7 +2,7 @@
     <div>
         <div class='row' id="js-grouping-action-buttons">
             <div class="col-24 mb-2">
-                <button type="button" class="btn btn-success mb-1" @click="add_by_country">
+                <button type="button" class="btn-nav mb-1" @click="add_by_country">
                     {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.add_country') }}
                 </button>
                 <button type="button" class="btn btn-danger mb-1" @click="reset">
@@ -49,12 +49,12 @@
         </div>
         <div class="row" id="js-render-buttons">
             <div class="col-24 mt-5 mb-5">
-                <button type="button" @click="show_diagrams('radar')" class="btn btn-success">
+                <button type="button" @click="show_diagrams('radar')" class="btn-nav">
                     {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_radar') }}
 
                 </button>
                 <button type="button" @click="show_diagrams('scatter',{func:'get_scatter_grouping_analysis'})"
-                        class="btn btn-success">
+                        class="btn-nav">
                     {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_scatter') }}
                 </button>
             </div>

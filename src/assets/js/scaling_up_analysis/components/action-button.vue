@@ -14,7 +14,7 @@ export default {
     },
     className: {
       type: String,
-      default: 'btn btn-success float-left'
+      default: 'btn-nav float-left'
     },
     label: {
       type: String,

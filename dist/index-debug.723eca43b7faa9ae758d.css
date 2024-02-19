@@ -202,6 +202,15 @@
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/label-cloud.vue?vue&type=style&index=0&id=37d478c6&lang=scss&scoped=true ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.results-cloud[data-v-37d478c6] {
+  max-height: 300px;
+  overflow: auto;
+  background: #fff;
+}
+
 /*!**********************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/index.scss ***!
   \**********************************************************************************************************************************************************/
@@ -250,6 +259,8 @@
   float: left; }
 .m-1 {
   margin: 0.25rem; }
+.m-4 {
+  margin: 1rem; }
 .m-5 {
   margin: 1.25rem; }
 .mx-1 {
@@ -274,8 +285,6 @@
   margin-left: 0.625rem; }
 .ml-3 {
   margin-left: 0.75rem; }
-.mr-0 {
-  margin-right: 0px; }
 .mr-3 {
   margin-right: 0.75rem; }
 .mt-1 {
@@ -320,8 +329,12 @@
   flex-direction: column; }
 .flex-wrap {
   flex-wrap: wrap; }
+.justify-center {
+  justify-content: center; }
 .gap-1 {
   gap: 0.25rem; }
+.gap-4 {
+  gap: 1rem; }
 .gap-x-8 {
   -moz-column-gap: 2rem;
        column-gap: 2rem; }
@@ -336,12 +349,18 @@
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity)); }
+.border-yellow-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(254 240 138 / var(--tw-border-opacity)); }
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity)); }
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity)); }
+.bg-yellow-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 249 195 / var(--tw-bg-opacity)); }
 .p-2 {
   padding: 0.5rem; }
 .p-3 {
@@ -353,6 +372,8 @@
   padding-bottom: 0.75rem; }
 .pb-4 {
   padding-bottom: 1rem; }
+.pb-6 {
+  padding-bottom: 1.5rem; }
 .pl-5 {
   padding-left: 1.25rem; }
 .text-left {
