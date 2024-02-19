@@ -17,6 +17,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -66,8 +67,7 @@ class ScalingUpAnalysis extends Model
      * get protected area custom names with all the information
      * @param array $form_ids
      * @param bool $show_original_names
-     * @return Imet[]|bool|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
-     * @throws \ReflectionException
+     * @return array
      */
     public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
     {
@@ -76,11 +76,10 @@ class ScalingUpAnalysis extends Model
         foreach ($form_ids as $form_id) {
             $protected_area[$form_id] = Common::protected_areas_duplicate_fixes($form_id, $show_original_names);
             $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);
-            if ($general_info[][0]) {
-                $categories[$form_id] = Common::get_category_of_protected_area($general_info[][0]);
+            if ($general_info['records'][0]) {
+                $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
             }
         }
-
         return ["models" => $protected_area, "categories" => $categories];
     }
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-editor-edit">
-            <ckeditor :editor="editor" v-model="editorData" :config="editorConfig" @input="onEditorInput"/>
+          <ckeditor :editor="editor" v-model="editorData" :config="editorConfig" @input="onEditorInput" />
         </div>
         <div class="text-editor-print" v-html=editorData></div>
     </div>
@@ -9,30 +9,28 @@
 
 
 <style lang="scss" scoped>
-.text-editor-edit {
-    @media print {
-        display: none;
-    }
-}
 
-.text-editor-print {
-    background-color: white !important;
-    padding: 15px;
-    @media screen {
-        display: none;
-    }
-}
+  .text-editor-edit {
+      @media print {
+          display: none;
+      }
+  }
+
+  .text-editor-print {
+      background-color: white !important;
+      padding: 15px;
+      @media screen {
+          display: none;
+      }
+  }
+
 </style>
 
 <script>
 
 export default {
 
-    name: "editor",
     inject: ['state'],
-    components: {
-        ckeditor: window.CKEditor.component
-    },
 
     props: {
         value: '',
@@ -62,7 +60,7 @@ export default {
 
     data() {
         return {
-            editor: window.ClassicEditor,
+            editor: window.ModularFormsVendor.ClassicEditor,
             editorData: "",
             editorConfig: {
                 toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList'],

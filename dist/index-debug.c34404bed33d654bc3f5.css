@@ -202,6 +202,300 @@
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/drag_and_drop/drop_drag_area.vue?vue&type=style&index=0&id=3d51b738&scoped=true&lang=css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.drop-zone[data-v-3d51b738] {
+  background-color: #eee;
+  margin-bottom: 10px;
+  padding: 10px;
+  min-height: 200px;
+  width: 250px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/drag_and_drop/draggable_item.vue?vue&type=style&index=0&id=51b0ed01&scoped=true&lang=css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.default-zone-element[data-v-51b0ed01] {
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 5px;
+  min-height: 100px;
+}
+
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/grouping.vue?vue&type=style&index=0&id=178e51d2&scoped=true&lang=css ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.legend_radars[data-v-178e51d2] {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+}
+.start-zone[data-v-178e51d2] {
+  background-color: #eee;
+  margin-bottom: 10px;
+  padding: 10px;
+  min-height: 200px;
+  width: 100%;
+}
+.dropzone-areas[data-v-178e51d2] {
+  min-height: 200px;
+  max-height: 500px;
+  overflow: auto;
+}
+.add-dropzone-area[data-v-178e51d2] {
+  margin-bottom: 10px;
+  padding: 10px;
+  min-height: 200px;
+  width: 300px;
+}
+
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/text_editor.vue?vue&type=style&index=0&id=692f6cc0&lang=scss&scoped=true ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+@media print {
+.text-editor-edit[data-v-692f6cc0] {
+    display: none;
+}
+}
+.text-editor-print[data-v-692f6cc0] {
+  background-color: white !important;
+  padding: 15px;
+}
+@media screen {
+.text-editor-print[data-v-692f6cc0] {
+      display: none;
+}
+}
+
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/various_charts/scaling_dopa_chart_doughnut.vue?vue&type=style&index=0&id=79452bd2&lang=scss&scoped=true ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.doughnut[data-v-79452bd2] {
+  min-height: 300px;
+  min-width: 400px;
+}
+
+/*!************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-swatches/dist/vue-swatches.css ***!
+  \************************************************************************************************************************************************************************************/
+.vue-swatches__check__wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%; }
+
+.vue-swatches__check__circle {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.15); }
+
+.vue-swatches__check__path {
+  fill: #fff; }
+
+.vue-swatches__swatch {
+  position: relative;
+  display: inline-block;
+  font-size: 0; }
+
+.vue-swatches__swatch:focus, .vue-swatches__swatch:hover {
+  opacity: .9;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.75);
+  outline: none; }
+
+.vue-swatches__swatch.vue-swatches__swatch--border, .vue-swatches__swatch.vue-swatches__swatch--selected {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.75); }
+
+.vue-swatches__swatch__label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: #666;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center; }
+
+.vue-swatches__swatch .vue-swatches__diagonal__wrapper {
+  position: absolute; }
+
+fieldset[disabled] .vue-swatches {
+  pointer-events: none; }
+
+.vue-swatches {
+  position: relative;
+  display: inline-block;
+  outline: none; }
+
+.vue-swatches__trigger__wrapper {
+  display: inline-block;
+  cursor: pointer; }
+
+.vue-swatches__trigger.vue-swatches--is-empty {
+  border: 2px solid #ccc; }
+
+.vue-swatches__trigger.vue-swatches--is-disabled {
+  cursor: not-allowed; }
+
+.vue-swatches__container {
+  box-sizing: content-box; }
+
+.vue-swatches__container.vue-swatches--inline {
+  font-size: 0; }
+
+.vue-swatches__container:not(.vue-swatches--inline) {
+  position: absolute;
+  display: block;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2);
+  z-index: 50; }
+
+.vue-swatches__wrapper {
+  background-color: inherit;
+  box-sizing: content-box; }
+
+.vue-swatches__row {
+  font-size: 0; }
+
+.vue-swatches__fallback__wrapper {
+  display: table; }
+
+.vue-swatches__fallback__input--wrapper {
+  display: table-cell;
+  padding-right: 10px;
+  width: 100%;
+  font-size: 14px; }
+
+.vue-swatches__fallback__input {
+  width: 100%;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 5px;
+  border: 1px solid #dcdcdc;
+  color: #35495e;
+  background: #fff; }
+
+.vue-swatches__fallback__button {
+  display: table-cell;
+  padding: 6px 15px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  color: #fff;
+  background-color: #3571c8;
+  border-radius: 5px; }
+
+.vue-swatches-show-hide-enter-active, .vue-swatches-show-hide-leave-active {
+  transition: all .3s ease; }
+
+.vue-swatches-show-hide-enter, .vue-swatches-show-hide-leave-active {
+  opacity: 0; }
+
+.vue-swatches--has-children-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.vue-swatches__diagonal__wrapper {
+  width: 100%;
+  height: 100%; }
+
+.vue-swatches__diagonal {
+  width: 75%;
+  height: 75%;
+  background: linear-gradient(to top right, transparent 0, transparent calc(50% - 2.4px), #de080a 50%, transparent calc(50% + 2.4px), transparent); }
+
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/basket/preview_item.vue?vue&type=style&index=0&id=7e14b858&scoped=true&lang=css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.img-container[data-v-7e14b858] {
+  position: relative;
+  display: inline-block;
+  margin: 10px 5px 5px;
+  max-width: 450px;
+  max-height: 350px;
+  overflow: auto;
+}
+.img-text[data-v-7e14b858] {
+  top: 28px;
+  margin-top: -25px;
+  position: absolute;
+  display: block;
+  right: 5px;
+}
+
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/basket.vue?vue&type=style&index=0&id=b0a25256&scoped=true&lang=css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.stable[data-v-b0a25256] {
+  right: 40px;
+  z-index: 9999999;
+}
+.stable .scrollPreview[data-v-b0a25256] {
+  z-index: 99;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  width: 400px;
+}
+.stable .basket-menu[data-v-b0a25256] {
+  margin-top: 50px;
+  background-color: #04AA6D;
+  height: 100px;
+  width: 30px;
+  box-sizing: content-box;
+  border-radius: 5px 0px 0px 5px;
+  /* Rounded corners on the top right and bottom right side */
+}
+.basket[data-v-b0a25256] {
+  background-color: #eee;
+  margin-bottom: 10px;
+  padding: 10px;
+  min-height: 200px;
+  width: 490px;
+  max-height: 400px;
+  overflow: auto;
+  border-radius: 5px 5px 5px 5px;
+  border: solid #04AA6D;
+}
+.stable .col[data-v-b0a25256] {
+  flex-grow: 1;
+  max-width: 100%;
+}
+.fa-trash[data-v-b0a25256] {
+  color: red;
+}
+.fa-times[data-v-b0a25256]:hover,
+.fa-trash[data-v-b0a25256]:hover {
+  color: red;
+}
+#sidePreview[data-v-b0a25256] {
+  position: fixed;
+  /* Position them relative to the browser window */
+  right: -490px;
+  /* Position them outside of the screen */
+  transition: 0.5s;
+  /* Add transition on hover */
+  padding: 20px 0px 0px 5px;
+  /* 15px padding */
+  text-decoration: none;
+  /* Remove underline */
+  font-size: 18px;
+  /* Increase font size */
+  color: white;
+  /* White text color */
+  border-radius: 5px 5px 5px 5px;
+  /* Rounded corners on the top right and bottom right side */
+}
+#sidePreview[data-v-b0a25256]:hover {
+  right: 0;
+  /* On mouse-over, make the elements appear as they should */
+}
+
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/label-cloud.vue?vue&type=style&index=0&id=37d478c6&lang=scss&scoped=true ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

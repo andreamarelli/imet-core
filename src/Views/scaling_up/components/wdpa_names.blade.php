@@ -1,22 +1,39 @@
 <?php
-$accordion_title = $accordion_title ?? trans('imet-core::analysis_report.custom_names');
-$submit_button_label = $submit_button_label ?? @trans('imet-core::analysis_report.apply');
-?>
-<div id="form-grid">
-    @component('modular-forms::page.filters-accordion', ['accordion_title' => trans('imet-core::analysis_report.custom_names'), 'submit_button_label' => $submit_button_label, 'url'=>route('imet-core::scaling_up_report', ['items' => $pa_ids]), 'request'=>$request, 'method'=>'POST', 'expanded'=>false])
-        @slot('filter_content')
-            <div style="grid-column: span 3;">
-                <guidance :text="'imet-core::analysis_report.guidance.custom_names'"/>
-            </div>
-            @foreach($protected_areas['models'] as $key => $pa)
-                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::label('name', $pa->name, "exclude-element") !!}
-                {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::text($pa->FormID, $custom_names[$pa->FormID] )!!}
-                <div >
-                    <color_picker :text_box_name="{{$pa->FormID}}" :default_color="'{{$custom_colors[$pa->FormID]}}'"/>
-                </div>
-            @endforeach
-            {!! \AndreaMarelli\ModularForms\Helpers\Input\Input::hidden('save_form', 1) !!}
 
-        @endslot
-    @endcomponent
-</div>
+use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
+use AndreaMarelli\ModularForms\Helpers\Input\Input;
+
+?>
+
+<x-modular-forms::accordion.container class="form-filters">
+
+    <x-modular-forms::accordion.item title="{{ Str::upper(trans('imet-core::analysis_report.custom_names')) }}">
+
+        <form class="form-horizontal" method="GET" action="{{ action([ScalingUpAnalysisController::class, 'report'], ['items' => $pa_ids]) }}">
+            {{ csrf_field() }}
+
+            <div class="filters-grid">
+
+                <div style="grid-column: span 3;">
+                    <guidance :text="'imet-core::analysis_report.guidance.custom_names'"/>
+                </div>
+                @foreach($protected_areas['models'] as $key => $pa)
+                    {!! Input::label('name', $pa->name, "exclude-element") !!}
+                    {!! Input::text($pa->FormID, $custom_names[$pa->FormID] )!!}
+                    <div>
+                        <color_picker :text_box_name="{{$pa->FormID}}" :default_color="'{{$custom_colors[$pa->FormID]}}'"/>
+                    </div>
+                @endforeach
+                {!! Input::hidden('save_form', 1) !!}
+
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="btn-nav rounded">{{ Str::ucfirst(trans('imet-core::analysis_report.apply')) }}</button>
+            </div>
+
+        </form>
+
+    </x-modular-forms::accordion.item>
+
+</x-modular-forms::accordion.container>
