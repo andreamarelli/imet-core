@@ -81,22 +81,6 @@
     </script>
     <style>
         @media screen {
-            .popover-header {
-                font-size: 0.9em;
-                font-style: italic;
-                font-weight: bold;
-                text-align: center;
-            }
-
-            .popover-body {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .popover-body a {
-                margin: 3px;
-            }
-
             .sub-title {
                 font-weight: 600;
                 padding: 8px 8px 8px 10px;
@@ -169,22 +153,6 @@
             .contailer .smallMenu .standalone div:hover {
                 background-color: #4cae4c;
                 color: Black;
-            }
-
-            .popover-header {
-                font-size: 0.9em;
-                font-style: italic;
-                font-weight: bold;
-                text-align: center;
-            }
-
-            .popover-body {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .popover-body a {
-                margin: 3px;
             }
         }
 

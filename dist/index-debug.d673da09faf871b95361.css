@@ -561,6 +561,8 @@ fieldset[disabled] .vue-swatches {
   margin: 1rem; }
 .m-5 {
   margin: 1.25rem; }
+.m-auto {
+  margin: auto; }
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem; }
@@ -628,6 +630,8 @@ fieldset[disabled] .vue-swatches {
   max-width: 48rem; }
 .max-w-5xl {
   max-width: 64rem; }
+.max-w-6xl {
+  max-width: 72rem; }
 .flex-grow {
   flex-grow: 1; }
 .scale-95 {

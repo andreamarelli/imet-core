@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="" @click="toggle_view()">
+        <div @click="toggle_view()">
 
             <div :id="'menu-header-header-main'"
                  :class="parent_class_name+' horizontal'">
@@ -10,9 +10,10 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white collapse mb-2" :class="{show: data.show_view}">
+
+        <div class="mb-2" v-show="data.show_view">
             <guidance :text="guidance"/>
-            <checkboxes_list :items="items" :event="'apply_filter'"/>
+            <checkboxes_list :items="items" :event="'apply_filter'" class="p-2"/>
             <div v-if="show_loader" class="spinner-border text-contextual-success" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
