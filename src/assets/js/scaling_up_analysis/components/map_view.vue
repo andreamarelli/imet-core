@@ -42,11 +42,11 @@ export default {
                   "Content-Type": "application/json",
                   "X-CSRF-Token": window.Laravel.csrfToken,
                 },
-                body: {
+                body: JSON.stringify({
                   func: 'get_array_of_custom_names',
                   parameter: this.pa.split(','),
                   scaling_id: this.stores.BaseStore.scaling_up_id
-                }
+                })
             })
                 .then((response) => response.json())
                 .then(function (data) {

@@ -164,6 +164,7 @@ class ScalingUpAnalysisController extends __Controller
                 $this->authorize('api_scaling_up', (static::$form_class)::find($value));
             }
         }
+
         $response = ModelScalingUpAnalysis::$action($parameters);
         App::setLocale($locale);
         return $response;
@@ -303,7 +304,6 @@ class ScalingUpAnalysisController extends __Controller
             ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => '', 'code' => '8'],
             ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
-
 
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,

@@ -29,7 +29,7 @@
                     <slot :props="data"></slot>
                 </div>
                 <div class="text-right mt-3">
-                    <div class="btn btn-circle btn-outline-danger" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
+                    <div class="btn-nav red" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
                     </div>
                 </div>
             </div>

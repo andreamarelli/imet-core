@@ -102,8 +102,8 @@ class ScalingUpAnalysis extends Model
         ];
 
         foreach ($form_ids as $form_id) {
-            $general_info_data = Modules\Context\GeneralInfo::getModuleRecords($form_id);
-            $vision_data = Modules\Context\Missions::getModuleRecords($form_id);
+            $general_info_data = Modules\Context\GeneralInfo::getModuleRecords($form_id)['records'];
+            $vision_data = Modules\Context\Missions::getModuleRecords($form_id)['records'];
             $generalElements['total_surface_protected_areas'] += Modules\Context\Areas::getArea($form_id);
 
             if ($general_info_data[0]) {
@@ -126,8 +126,8 @@ class ScalingUpAnalysis extends Model
                 }
             }
 
-            if ($vision_data['records'][0]) {
-                $vision = $vision_data['records'][0];
+            if ($vision_data[0]) {
+                $vision = $vision_data[0];
                 if ($vision['LocalMission']) {
                     $generalElements['local_mission'][] = $general_info_data[0]['CompleteName'];
                 }
@@ -141,7 +141,7 @@ class ScalingUpAnalysis extends Model
         }
 
         $generalElements['total_surface_protected_areas'] = Common::round_number($generalElements['total_surface_protected_areas']);
-        $generalElements['network'] = array_flip(array_flip($generalElements['network']));
+        
         return ['status' => 'success', 'data' => ['general_info' => $generalElements]];
     }
 

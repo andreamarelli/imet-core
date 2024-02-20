@@ -1,6 +1,6 @@
 <template>
 
-  <div class="list-key-numbers horizontal" v-if="api_data!==null">
+  <div class="list-key-numbers" v-if="api_data!==null">
 
     <div class="list-head" v-if="title!=null">
       {{ title }}

@@ -41,8 +41,8 @@ export default {
   margin-bottom: 10px;
   padding: 10px;
   min-height: 200px;
-  width: 250px;
-  max-height:400px;
-  overflow:auto;
+  min-width: 250px;
+  max-height: 400px;
+  overflow: auto;
 }
 </style>

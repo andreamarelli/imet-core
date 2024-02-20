@@ -59,37 +59,37 @@ if($item->language != App::getLocale()){
                         @endif
                         <div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.country'):
+                                <div class="highlight">@lang('imet-core::v2_report.country'):
                                 </div>{{ $general_info['Country'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.name'):
+                                <div class="highlight">@lang('imet-core::v2_report.name'):
                                 </div>{{ $general_info['CompleteName'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.category'):
+                                <div class="highlight">@lang('imet-core::v2_report.category'):
                                 </div>{{ $general_info['NationalCategory'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.gazetting'):
+                                <div class="highlight">@lang('imet-core::v2_report.gazetting'):
                                 </div>{{ $general_info['CreationYear'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]
+                                <div class="highlight">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]
                             </div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.agency'):
+                                <div class="highlight">@lang('imet-core::v2_report.agency'):
                                 </div>{{ $general_info['Institution'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.biome'):
+                                <div class="highlight">@lang('imet-core::v2_report.biome'):
                                 </div>{{ $general_info['Biome'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.main_values_protected'):
+                                <div class="highlight">@lang('imet-core::v2_report.main_values_protected'):
                                 </div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.vision'):
+                                <div class="highlight">@lang('imet-core::v2_report.vision'):
                                 </div>{{ $vision['LocalVision'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.mission'):
+                                <div class="highlight">@lang('imet-core::v2_report.mission'):
                                 </div>{{ $vision['LocalMission'] ?? '-' }}</div>
                             <div>
-                                <div class="strong">@lang('imet-core::v2_report.objectives'):
+                                <div class="highlight">@lang('imet-core::v2_report.objectives'):
                                 </div>{{ $vision['LocalObjective'] ?? '-' }}</div>
                         </div>
                     </div>

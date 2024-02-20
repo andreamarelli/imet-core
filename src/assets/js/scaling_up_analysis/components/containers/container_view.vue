@@ -3,7 +3,7 @@
         <div class="" @click="toggle_view()">
 
             <div :id="'menu-header-header-main'"
-                 class="list-key-numbers horizontal">
+                 class="list-key-numbers">
                 <div class="list-head"><span class="fas fa-fw"
                                              :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span>
                     {{ title }}

@@ -5,35 +5,34 @@ use AndreaMarelli\ModularForms\Helpers\Input\Input;
 
 ?>
 
-<x-modular-forms::accordion.container class="form-filters">
-
-    <x-modular-forms::accordion.item title="{{ Str::upper(trans('imet-core::analysis_report.custom_names')) }}">
+<div class="module-container">
+    <div class="module-header">
+        <div class="module-title">{{ Str::upper(trans('imet-core::analysis_report.custom_names')) }}</div>
+    </div>
+    <div class="module-body">
 
         <form class="form-horizontal" method="GET" action="{{ action([ScalingUpAnalysisController::class, 'report'], ['items' => $pa_ids]) }}">
             {{ csrf_field() }}
 
-            <div class="filters-grid">
+            <guidance :text="'imet-core::analysis_report.guidance.custom_names'"></guidance>
 
-                <div style="grid-column: span 3;">
-                    <guidance :text="'imet-core::analysis_report.guidance.custom_names'"/>
-                </div>
+            <table class="max-w-5xl">
                 @foreach($protected_areas['models'] as $key => $pa)
-                    {!! Input::label('name', $pa->name, "exclude-element") !!}
-                    {!! Input::text($pa->FormID, $custom_names[$pa->FormID] )!!}
-                    <div>
-                        <color_picker :text_box_name="{{$pa->FormID}}" :default_color="'{{$custom_colors[$pa->FormID]}}'"/>
-                    </div>
+                    <tr>
+                        <td>{!! Input::label('name', $pa->name, "exclude-element") !!}</td>
+                        <td>{!! Input::text($pa->FormID, $custom_names[$pa->FormID] )!!}</td>
+                        <td><color_picker :text_box_name="{{$pa->FormID}}" :default_color="'{{$custom_colors[$pa->FormID]}}'"></color_picker></td>
+                    </tr>
                 @endforeach
                 {!! Input::hidden('save_form', 1) !!}
-
-            </div>
+            </table>
 
             <div class="text-right">
-                <button type="submit" class="btn-nav rounded">{{ Str::ucfirst(trans('imet-core::analysis_report.apply')) }}</button>
+                <button type="submit" class="btn-nav">{{ Str::ucfirst(trans('imet-core::analysis_report.apply')) }}</button>
             </div>
 
         </form>
 
-    </x-modular-forms::accordion.item>
+    </div>
 
-</x-modular-forms::accordion.container>
+</div>

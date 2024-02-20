@@ -5,7 +5,7 @@
                        :event_image="'save_entire_block_as_image'"
                        :exclude_elements="'{{$exclude_elements}}'">
         <template slot-scope="data_elements">
-            <div class="list-key-numbers horizontal">
+            <div class="list-key-numbers">
                 <div class="list-head" v-html="index">
                 </div>
             </div>

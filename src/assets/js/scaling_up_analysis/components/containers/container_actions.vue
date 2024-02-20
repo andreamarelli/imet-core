@@ -4,27 +4,32 @@
             <slot :props="data"></slot>
         </div>
         <div class="mb-2 mt-2">
-            <div  v-if="show_comments" class="mt-3 text-black-50 font-weight-bold generic-comments">{{ title }} :</div>
-            <p>
-                <editor v-if="show_comments" :save_data="get_data" :event_id="event_data"></editor>
-            </p>
-            <div class="row">
-                <div class="col">
-                    <html_to_image :element="name"
-                                   :exclude_elements="exclude_elements" :event_id="event_image"></html_to_image>
-                </div>
+
+            <div v-if="show_comments" class="mt-3 text-black-50 font-bold generic-comments">{{ title }} :</div>
+
+            <editor
+                v-if="show_comments"
+                :save_data="get_data"
+                :event_id="event_data"
+            ></editor>
+
+            <html_to_image
+                :element="name"
+                :exclude_elements="exclude_elements"
+                :event_id="event_image"
+            ></html_to_image>
+
+            <div class="text-right">
+                <button type="button" class="btn-nav my-3 exclude-element" @click="save">
+                    <span v-if="loading" class="spinner-border">
+                        <span class="sr-only">Loading...</span>
+                    </span>
+                        <span v-if="!loading" class="text-center">
+                        {{ stores.BaseStore.localization('imet-core::analysis_report.add_analysis') }}
+                    </span>
+                </button>
             </div>
-            <div class="row">
-                <div class="col">
-                    <button type="button" class="btn-nav mb-1 float-right exclude-element" @click="save">
-                        <div v-if="loading" class="spinner-border text-contextual-success float-right" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                        <span
-                            v-if="!loading" class="text-center">{{ stores.BaseStore.localization('imet-core::analysis_report.add_analysis') }}</span>
-                    </button>
-                </div>
-            </div>
+
         </div>
     </div>
 

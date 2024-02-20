@@ -25,6 +25,11 @@
   }
 
 </style>
+<style>
+    .ck.ck-editor {
+        max-width: none;
+    }
+</style>
 
 <script>
 

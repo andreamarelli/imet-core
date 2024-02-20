@@ -1,94 +1,94 @@
 <template>
     <div>
-        <div class='row' id="js-grouping-action-buttons">
-            <div class="col-24 mb-2">
+        <div id="js-grouping-action-buttons">
+            <div class="mb-2">
                 <button type="button" class="btn-nav mb-1" @click="add_by_country">
                     {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.add_country') }}
                 </button>
-                <button type="button" class="btn btn-danger mb-1" @click="reset">
+                <button type="button" class="btn-nav red mb-1" @click="reset">
                     {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.reset') }}
                 </button>
                 <button v-if="list_of_components.length < list.length" type="button" @click="add_group()"
-                        class="btn btn-primary mb-1"><i class="fa fa-plus"
-                                                        aria-hidden="true">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.grouping.add_group')
-                    }}</i></button>
+                        class="btn-nav blue mb-1">
+                    <i class="fa fa-plus" aria-hidden="true" />
+                        {{stores.BaseStore.localization('imet-core::analysis_report.grouping.add_group') }}
+                </button>
             </div>
         </div>
-        <div class='row start-zone'
+        <div class="start-zone flex flex-row gap-4"
              id="start-zone"
              @drop='on_drop($event, null)'
              @dragover.prevent
              @dragenter.prevent>
-            <div v-for='item in default_list' class='default-zone-element col-2'>
+            <div v-for='item in default_list' class='default-zone-element'>
                 <draggable_item :is_removable=false :item="item" :item_class="'default-zone-element'"></draggable_item>
             </div>
         </div>
-        <div class="row dropzone-areas d-flex " id="dropzone-areas">
+        <div class="flex flex-row justify-center dropzone-areas d-flex " id="dropzone-areas">
             <div class="ml-1" v-for="i in list_of_components">
                 <drop_drag_area :drop_id="i.id" :key="i.id" :color="i.color">
                     <template>
-                        <div class="bg-white text-center mb-1">
+
+                        <div class="text-center mb-4 py-1 px-2 font-bold" style="background: rgba(255,255,255,0.7);">
                             <span class="text-center " v-if="i.input_visible"> <input type="text" :id="'item-'+i.id" :value="i.name" maxlength="25" size="15"/></span>
                             <span class="text-center " v-if="!i.input_visible"> {{ i.name }}</span>
                             <i class="fa fa-pen" v-if="!i.input_visible"
                                aria-hidden="true" @click='edit_component_name(i.id)'></i>
-
                             <i class="fa fa-save" v-if="i.input_visible"
                                aria-hidden="true" @click='save_component_name(i.id)'></i>
                             <i class="fa fa-trash"
                                aria-hidden="true" @click='remove_component_from_list(i.id)'></i>
-
                         </div>
+
                         <div v-for='item in list_items(i.id)'>
                             <draggable_item :item="item"></draggable_item>
                         </div>
+
                     </template>
                 </drop_drag_area>
             </div>
         </div>
-        <div class="row" id="js-render-buttons">
-            <div class="col-24 mt-5 mb-5">
-                <button type="button" @click="show_diagrams('radar')" class="btn-nav">
-                    {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_radar') }}
+        <div class="flex flex-row gap-1 justify-center" id="js-render-buttons">
+            <button type="button" @click="show_diagrams('radar')" class="btn-nav">
+                {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_radar') }}
+            </button>
+            <button type="button" @click="show_diagrams('scatter',{func:'get_scatter_grouping_analysis'})"
+                    class="btn-nav">
+                {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_scatter') }}
+            </button>
+        </div>
 
+        <div v-if="show_selected_legend" >
+            <div class="list-head" v-if="type==='scatter'">
+                {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.scatter_plot') }}
+                <button class="btn-nav small blue">
+                    <span class="fas fa-fw fa-info-circle"></span>
                 </button>
-                <button type="button" @click="show_diagrams('scatter',{func:'get_scatter_grouping_analysis'})"
-                        class="btn-nav">
-                    {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.render_scatter') }}
+                <tooltip>
+                        {{stores.BaseStore.localization('imet-core::analysis_report.guidance.info.group_scatter')}}
+                </tooltip>
+            </div>
+            <div class="list-head" v-else-if="type==='radar'">
+                {{ stores.BaseStore.localization('imet-core::analysis_report.grouping.radar') }}
+                <button class="btn-nav small blue">
+                    <span class="fas fa-fw fa-info-circle"></span>
                 </button>
+                <tooltip>
+                    {{stores.BaseStore.localization('imet-core::analysis_report.guidance.info.group_radar')}}
+                </tooltip>
             </div>
         </div>
-        <div class="col-sm" v-if="show_selected_legend" >
-            <div class="list-key-numbers horizontal">
-                <div class="list-head" v-if="type==='scatter'">{{ stores.BaseStore.localization('imet-core::analysis_report.grouping.scatter_plot') }}
-                    <popover>
-                        <template>
-                            {{stores.BaseStore.localization('imet-core::analysis_report.guidance.info.group_scatter')}}
-                        </template>
-                    </popover>
-                </div>
-                <div class="list-head"  v-else-if="type==='radar'">{{ stores.BaseStore.localization('imet-core::analysis_report.grouping.radar') }}
-                    <popover>
-                        <template>
-                            {{stores.BaseStore.localization('imet-core::analysis_report.guidance.info.group_radar')}}
-                        </template>
-                    </popover>
-                </div>
-            </div>
-        </div>
-        <div id="render_image">
-            <div class="row mt-5" v-if="show_selected_legend">
-                <div class="col legend_radars" v-for="i in list_of_components">
-                    <div :style="'background-color:'+ i.color" class="text-center mb-1">
-                        <span class="text-center "> {{ i.name }} </span>
+        <div id="render_image" class="mt-3">
+
+            <div class="flex flex-row justify-center gap-2" v-if="show_selected_legend">
+                <div class="legend_radars" v-for="i in list_of_components">
+                    <div :style="'background-color:'+ i.color" class="text-center py-1 px-2 font-bold">
+                        {{ i.name }}
                     </div>
-                    <ul class="list-group">
-                        <li class="list-group-item" v-for='item in list_items(i.id)' v-html="item.name">
-                        </li>
-                    </ul>
+                    <div class="bg-white border border-gray-100 py-1 px-2" v-for='item in list_items(i.id)' v-html="item.name"></div>
                 </div>
             </div>
+
             <div class="row mt-5">
                 <div class="col">
                     <slot></slot>
@@ -100,8 +100,6 @@
 <style scoped>
 
 .legend_radars {
-    margin-bottom: 10px;
-    padding: 10px;
     width: 200px;
 }
 
