@@ -1,7 +1,7 @@
 <div class="scrollButtons mr-3" style="width:200px;">
     <div class="content">
         <span class="m-1">{{trans('imet-core::analysis_report.navigation_menu')}}</span>
-        <select class="form-control" @change="goTo($event)">
+        <select class="field-edit" @change="goTo($event)">
             <option
                 value="names"> </option>
             <option

@@ -41,19 +41,19 @@ if ($item->language != App::getLocale()) {
 
     <div id="imet_report">
 
+        {{-- AR.1 --}}
         @include('imet-core::oecm.report.components.non_wdpa', [
             'show_non_wdpa' => $show_non_wdpa,
             'non_wdpa' =>  $non_wdpa
         ])
 
+        {{-- AR.2 --}}
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title" id="ar2">AR.2 @lang('imet-core::oecm_report.key_elements')</div>
             </div>
             <div class="module-body">
-                @include('imet-core::oecm.report.components.governance_management', [
-                    'governance' => $governance
-                ])
+                @include('imet-core::oecm.report.components.governance_management', ['governance' => $governance])
                 @include('imet-core::oecm.report.components.stakeholders_user_managing', ['stake_holders' => $stake_holders])
                 @include('imet-core::oecm.report.components.ecosystem_services_biodiversity', ['stake_analysis' => $stake_analysis])
                 @include('imet-core::oecm.report.components.key_biodiversity_elements', ['key_elements_impacts' => $key_elements_impacts])
@@ -61,6 +61,8 @@ if ($item->language != App::getLocale()) {
                 @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'key_elements_comment'])
             </div>
         </div>
+
+        {{-- AR.3 --}}
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title" id="ar3">
@@ -82,19 +84,23 @@ if ($item->language != App::getLocale()) {
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
-                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
-                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
-                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
-                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
-                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
-                        <td {!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
                 @include('imet-core::oecm.report.components.table_evaluation', ['assessment' => $assessment])
             </div>
         </div>
-        @include('imet-core::oecm.report.components.objectives', ['report' => $report[0]])
+
+        {{-- SWOT analysis --}}
+        @include('imet-core::oecm.report.components.objectives', ['objectives' => $objectives])
+
+        {{-- SWOT analysis --}}
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title">@lang('imet-core::oecm_report.management_effectiveness.swot_analysis')</div>
@@ -162,7 +168,8 @@ if ($item->language != App::getLocale()) {
             </div>
         </div>
         @if($action==='edit')
-            <div class="scrollButtons" v-cloak>
+            <div class="scrollButtons report" v-cloak>
+
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
                     <form id="imet_report_form" method="post"
@@ -170,8 +177,7 @@ if ($item->language != App::getLocale()) {
                           style="display: inline-block;">
                         @method('PATCH')
                         @csrf
-                        <span
-                            @click="saveReport">{!! Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
+                        <span @click="saveReport">{!! Template::icon('save') !!} {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
                 <div class="standalone" v-show=status==='loading'>
@@ -186,8 +192,7 @@ if ($item->language != App::getLocale()) {
                 </div>
 
                 {{-- Print --}}
-                <div class="standalone"
-                     @click="printReport">{!! Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
+                <div class="standalone" @click="printReport">{!! Template::icon('print') !!} {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
         @include('imet-core::oecm.report.components.navigation_menu')
@@ -195,6 +200,17 @@ if ($item->language != App::getLocale()) {
 @endsection
 
 @push('scripts')
+
+    <style>
+        .scrollButtons{
+            margin-bottom: 0;
+            bottom: 100px;
+        }
+        .scrollButtons.report{
+            margin-bottom: 0;
+            bottom: 20px;
+        }
+    </style>
 
     <script>
         new Vue({

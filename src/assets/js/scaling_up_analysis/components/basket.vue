@@ -1,51 +1,35 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="row">
-      </div>
-    </div>
-    <div class="stable" id="sidePreview">
-      <div class="container">
-        <div class="row">
-          <div class="col-1 basket-menu">
-            <div class="mt-2">
-              <span class="badge badge-pill badge-primary">{{ preview_images.length }}</span>
+    <div>
+
+        <div class="basket">
+
+            <div class="basket-menu">
+                <span class="badge badge-pill badge-primary">{{ preview_images.length }}</span>
+                <i @click="remove_all()" class="fa fa-trash text-red-800"></i>
+                <i class="fas fa-print" @click="printElement"></i>
             </div>
-            <div class="mt-2">
-              <i
-                  @click="remove_all()"
-                  class="fa fa-trash green"></i>
-            </div>
-            <div class="mt-2">
-              <i class="fas fa-print" @click="printElement"></i>
-            </div>
-          </div>
-          <div class="col basket">
-            <div style="" class="scrollPreview mb-2" v-cloak>
-              <div id="preview">
-                <div v-if="preview_images.length > 0" class="row" v-for="(image, idx) in preview_images" :key="image.id">
-                  <div class="col">
-                    <div class="d-flex justify-content-start">
-                      <i @click="remove_item(image.id)" class="fa fa-times fa-2x red_dark"></i>
+
+            <div class="basket-content">
+                <div v-if="preview_images.length > 0" v-for="(image, idx) in preview_images" :key="image.id">
+                    <div class="flex justify-start gap-2">
+                        <i @click="remove_item(image.id)" class="fa fa-times fa-2x text-red-800"></i>
+                        <preview_item :url="image.url" :width="'100%'">
+                        </preview_item>
                     </div>
-                    <preview_item :url="image.url" :width="'100%'">
-                    </preview_item>
-                  </div>
+
                 </div>
                 <div v-else>
-                  Basket is empty
+                    Basket is empty
                 </div>
-              </div>
             </div>
-          </div>
+
         </div>
-      </div>
+
+        <div style="display:none">
+            <div id="template"></div>
+        </div>
+
     </div>
-    <div style="display:none">
-      <div id="template">
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -117,82 +101,57 @@ export default {
       window.open(
           window.imet_routes.scaling_up_preview.replace('__id__', this.stores.BasketStore.get_scaling_up_id()),
           '', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
-    },
-    preview_template_window: function (img_url) {
-      return `<div class='container'><div class="row mb-5"><div class="col-sm"><img class="img-fluid" src="${img_url}"/></div></div></div>`;
     }
   }
 }
 </script>
 
-<style scoped>
-.stable {
-  right: 40px;
-  z-index: 9999999;
-}
-
-.stable .scrollPreview {
-  z-index: 99;
-
-  padding-left: 0px;
-  margin-top: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  width: 400px;
-}
-
-
-.stable .basket-menu {
-  margin-top: 50px;
-  background-color: #04AA6D;
-
-  height: 100px;
-  width: 30px;
-  box-sizing: content-box;
-  border-radius: 5px 0px 0px 5px; /* Rounded corners on the top right and bottom right side */
-}
+<style lang="scss" scoped>
 
 .basket {
-  background-color: #eee;
-  margin-bottom: 10px;
-  padding: 10px;
-  min-height: 200px;
-  width: 490px;
-  max-height: 400px;
-  overflow: auto;
-  border-radius: 5px 5px 5px 5px;
-  border: solid #04AA6D;
-}
+    font-size: 18px;
+    color: white;
 
-.stable .col {
-  flex-grow: 1;
-  max-width: 100%;
-}
+    display: flex;
 
-.fa-trash {
-  color: red;
+    z-index: 9999999;
+    position: fixed;
+    top: 20%;
+    right: -490px;
+    &:hover {
+        right: 0;
+    }
+
+    .basket-menu {
+        width: 30px;
+        height: fit-content;
+        row-gap: 15px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #04AA6D;
+        border-radius: 5px 0 0 5px;
+    }
+
+    .basket-content {
+        width: 490px;
+        border-bottom-left-radius: 5px;
+        overflow: auto;
+        border: 2px solid #04AA6D;
+        border-right: none;
+        background-color: #eee;
+        padding: 10px;
+        min-height: 200px;
+        max-height: 400px;
+    }
+    
 }
 
 .fa-times:hover,
 .fa-trash:hover {
   color: red;
-}
-
-#sidePreview {
-  position: fixed; /* Position them relative to the browser window */
-  right: -490px; /* Position them outside of the screen */
-  transition: 0.5s; /* Add transition on hover */
-  padding: 20px 0px 0px 5px; /* 15px padding */
-
-  text-decoration: none; /* Remove underline */
-  font-size: 18px; /* Increase font size */
-  color: white; /* White text color */
-  border-radius: 5px 5px 5px 5px; /* Rounded corners on the top right and bottom right side */
-}
-
-#sidePreview:hover {
-  right: 0; /* On mouse-over, make the elements appear as they should */
 }
 
 </style>

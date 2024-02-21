@@ -24,7 +24,7 @@
                 <draggable_item :is_removable=false :item="item" :item_class="'default-zone-element'"></draggable_item>
             </div>
         </div>
-        <div class="flex flex-row justify-center dropzone-areas d-flex " id="dropzone-areas">
+        <div class="flex flex-row justify-center dropzone-areas" id="dropzone-areas">
             <div class="ml-1" v-for="i in list_of_components">
                 <drop_drag_area :drop_id="i.id" :key="i.id" :color="i.color">
                     <template>
@@ -89,11 +89,8 @@
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col">
-                    <slot></slot>
-                </div>
-            </div>
+            <slot></slot>
+
         </div>
     </div>
 </template>

@@ -27,7 +27,7 @@ trait Assessment
     }
 
 
-    public static function score_class($value, $additional_classes=''): string
+    public static function score_class($value): string
     {
         if($value===null){
             $class = 'score_no';
@@ -44,10 +44,10 @@ trait Assessment
         } else {
             $class = 'score_success';
         }
-        return 'class="'.$class.' '.$additional_classes.'"';
+        return $class;
     }
 
-    public static function score_class_threats($value, $additional_classes=''): string
+    public static function score_class_threats($value): string
     {
         if($value===null){
             $class = 'score_no';
@@ -60,7 +60,7 @@ trait Assessment
         } else {
             $class = 'score_success';
         }
-        return 'class="'.$class.' '.$additional_classes.'"';
+        return $class;
     }
 
 }

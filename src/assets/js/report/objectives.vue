@@ -66,10 +66,9 @@ export default {
     },
     mounted: function () {
         let data = '{}';
-        if(this.report[0]['objectives'] !== "") {
+        if('objectives' in this.report[0] && this.report[0]['objectives']) {
             data = this.report[0]['objectives'];
         }
-
         const objectives = JSON.parse(data);
         this.checkboxes = Array.isArray(objectives) ? objectives : [];
     },

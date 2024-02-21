@@ -188,20 +188,6 @@ export default {
                 addClass = 'score_success';
             }
             return `${addClass} ${additional_classes}`;
-        },
-        score_class_threats: function (value, $additional_classes = '') {
-            let addClass = '';
-
-            if (value < -51) {
-                addClass = 'score_danger';
-            } else if (value < -34) {
-                addClass = 'score_alert';
-            } else if (value < -1) {
-                addClass = 'score_warning';
-            } else {
-                addClass = 'score_success';
-            }
-            return `${addClass} ${$additional_classes}`;
         }
     }
 }

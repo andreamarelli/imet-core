@@ -1,7 +1,7 @@
 <template>
     <div id="maps" class="align-items-center">
-        <div v-if="!no_internet_connection" class="row" style="width:100%;height: 500px">
-            <div id="map-load" class="ml-3" style="width:100%; height:500px"></div>
+        <div v-if="!no_internet_connection" style="width:100%; height: 500px">
+            <div id="map-load" class="ml-3" style="width:100%; height: 500px"></div>
         </div>
         <div v-else class="dopa_not_available">
             {{ error_message }}
