@@ -430,74 +430,48 @@ fieldset[disabled] .vue-swatches {
   right: 5px;
 }
 
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/basket.vue?vue&type=style&index=0&id=b0a25256&scoped=true&lang=css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-.stable[data-v-b0a25256] {
-  right: 40px;
-  z-index: 9999999;
-}
-.stable .scrollPreview[data-v-b0a25256] {
-  z-index: 99;
-  padding-left: 0px;
-  margin-top: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  width: 400px;
-}
-.stable .basket-menu[data-v-b0a25256] {
-  margin-top: 50px;
-  background-color: #04AA6D;
-  height: 100px;
-  width: 30px;
-  box-sizing: content-box;
-  border-radius: 5px 0px 0px 5px;
-  /* Rounded corners on the top right and bottom right side */
-}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/assets/js/scaling_up_analysis/components/basket.vue?vue&type=style&index=0&id=b0a25256&lang=scss&scoped=true ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 .basket[data-v-b0a25256] {
-  background-color: #eee;
-  margin-bottom: 10px;
-  padding: 10px;
-  min-height: 200px;
-  width: 490px;
-  max-height: 400px;
-  overflow: auto;
-  border-radius: 5px 5px 5px 5px;
-  border: solid #04AA6D;
+  font-size: 18px;
+  color: white;
+  display: flex;
+  z-index: 9999999;
+  position: fixed;
+  top: 20%;
+  right: -490px;
 }
-.stable .col[data-v-b0a25256] {
-  flex-grow: 1;
-  max-width: 100%;
+.basket[data-v-b0a25256]:hover {
+    right: 0;
 }
-.fa-trash[data-v-b0a25256] {
-  color: red;
+.basket .basket-menu[data-v-b0a25256] {
+    width: 30px;
+    height: -moz-fit-content;
+    height: fit-content;
+    row-gap: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #04AA6D;
+    border-radius: 5px 0 0 5px;
+}
+.basket .basket-content[data-v-b0a25256] {
+    width: 490px;
+    border-bottom-left-radius: 5px;
+    overflow: auto;
+    border: 2px solid #04AA6D;
+    border-right: none;
+    background-color: #eee;
+    padding: 10px;
+    min-height: 200px;
+    max-height: 400px;
 }
 .fa-times[data-v-b0a25256]:hover,
 .fa-trash[data-v-b0a25256]:hover {
   color: red;
-}
-#sidePreview[data-v-b0a25256] {
-  position: fixed;
-  /* Position them relative to the browser window */
-  right: -490px;
-  /* Position them outside of the screen */
-  transition: 0.5s;
-  /* Add transition on hover */
-  padding: 20px 0px 0px 5px;
-  /* 15px padding */
-  text-decoration: none;
-  /* Remove underline */
-  font-size: 18px;
-  /* Increase font size */
-  color: white;
-  /* White text color */
-  border-radius: 5px 5px 5px 5px;
-  /* Rounded corners on the top right and bottom right side */
-}
-#sidePreview[data-v-b0a25256]:hover {
-  right: 0;
-  /* On mouse-over, make the elements appear as they should */
 }
 
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
@@ -624,6 +598,8 @@ fieldset[disabled] .vue-swatches {
   height: 100%; }
 .w-5 {
   width: 1.25rem; }
+.w-9\/12 {
+  width: 75%; }
 .w-full {
   width: 100%; }
 .max-w-3xl {
@@ -650,6 +626,8 @@ fieldset[disabled] .vue-swatches {
   flex-wrap: wrap; }
 .items-center {
   align-items: center; }
+.justify-start {
+  justify-content: flex-start; }
 .justify-center {
   justify-content: center; }
 .gap-1 {
@@ -739,8 +717,9 @@ fieldset[disabled] .vue-swatches {
   font-weight: 700; }
 .italic {
   font-style: italic; }
-.underline {
-  text-decoration-line: underline; }
+.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity)); }
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
