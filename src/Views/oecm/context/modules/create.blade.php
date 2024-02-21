@@ -59,14 +59,14 @@ $vueData['previous_url'] = route($controller::ROUTE_PREFIX . 'retrieve_prev_year
 <div class="module-row" v-if="retrieving_years || available_years!==null" style="margin: 40px 0px 20px 0;">
 
     {{--  label  --}}
-    <div class="module-row__label text-lg green_dark" style="width: 40%;">
+    <div class="module-row__label text-lg text-primary-800" style="width: 40%;">
         <label for="prev_year_selector">{!! ucfirst(trans('imet-core::common.Create.fields.prefill_prev_year')) !!}
             ?</label>
     </div>
 
     {{--  loading..  --}}
     <div class="module-row__input" v-if="retrieving_years">
-        <i class="fa fa-spinner fa-spin fa-2x green_dark"></i>
+        <i class="fa fa-spinner fa-spin fa-2x text-primary-800"></i>
     </div>
 
     {{--  selector  --}}

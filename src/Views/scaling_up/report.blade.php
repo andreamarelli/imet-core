@@ -106,11 +106,8 @@
                 color: white;
             }
 
-            .contailer {
-                position: relative;
-            }
 
-            .contailer .smallMenu {
+            .smallMenu {
                 position: -webkit-sticky;
                 display: inline-block;
                 margin-bottom: 0;
@@ -122,7 +119,7 @@
 
             }
 
-            .contailer .smallMenu .standalone {
+            .smallMenu .standalone {
                 text-align: center;
                 background-color: #004A19;
                 color: #fff;
@@ -133,24 +130,24 @@
                 z-index: 999999;
             }
 
-            .contailer .smallMenu .standalone {
+            .smallMenu .standalone {
                 font-size: 1.1rem;
                 padding: 8px 12px;
                 margin-top: 5px;
                 border-radius: 5px;
             }
 
-            .contailer .smallMenu .highlight {
+            .smallMenu .highlight {
                 background-color: #4cae4c;
                 color: Black;
             }
 
-            .contailer .smallMenu .standalone .active {
+            .smallMenu .standalone .active {
                 background-color: #4cae4c;
                 color: Black;
             }
 
-            .contailer .smallMenu .standalone div:hover {
+            .smallMenu .standalone div:hover {
                 background-color: #4cae4c;
                 color: Black;
             }

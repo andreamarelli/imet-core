@@ -2,7 +2,8 @@
 
   <div>
 
-    <div v-if="show_loader" class="spinner-border">
+    <div v-if="show_loader">
+      <i class="fa fa-spinner fa-spin text-primary-800"></i>
       <span class="sr-only">Loading...</span>
     </div>
 

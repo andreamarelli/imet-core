@@ -21,7 +21,8 @@
 
             <div class="text-right">
                 <button type="button" class="btn-nav my-3 exclude-element" @click="save">
-                    <span v-if="loading" class="spinner-border">
+                    <span v-if="loading">
+                        <i class="fa fa-spinner fa-spin text-primary-800"></i>
                         <span class="sr-only">Loading...</span>
                     </span>
                         <span v-if="!loading" class="text-center">

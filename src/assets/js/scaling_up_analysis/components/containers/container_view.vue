@@ -12,7 +12,8 @@
         </div>
 
         <div v-show="data.show_view">
-            <div v-if="show_loader" class="spinner-border text-contextual-success" role="status">
+            <div v-if="show_loader">
+                <i class="fa fa-spinner fa-spin fa-2x text-primary-800"></i>
                 <span class="sr-only">Loading...</span>
             </div>
             <div v-else>

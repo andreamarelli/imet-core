@@ -22,7 +22,7 @@
                         :parameters="'{{$pa_ids}}'"
                         :func="'get_dopa_pa_ecoregions_terrestial_stats'"
                         :guidance="'imet-core::analysis_report.guidance.digital_information.terestial_ecoregions'">
-                        <template slot-scope="data" class="contailer">
+                        <template slot-scope="data">
                             @include('imet-core::scaling_up.components.terestial_ecoregions', ['name' => $name])
                         </template>
                     </container_view>

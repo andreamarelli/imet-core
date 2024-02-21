@@ -14,7 +14,8 @@
         <div class="mb-2" v-show="data.show_view">
             <guidance :text="guidance"/>
             <checkboxes_list :items="items" :event="'apply_filter'" class="p-2"/>
-            <div v-if="show_loader" class="spinner-border text-contextual-success" role="status">
+            <div v-if="show_loader">
+                <i class="fa fa-spinner fa-spin text-primary-800"></i>
                 <span class="sr-only">Loading...</span>
             </div>
             <div v-else>

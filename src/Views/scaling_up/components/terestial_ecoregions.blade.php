@@ -1,4 +1,4 @@
-<div v-for="(value, index) in data.props.values" class="module-body bg-white border-0 contailer"
+<div v-for="(value, index) in data.props.values" class="module-body bg-white border-0"
      :id="'{{$name}}-terestial-'+index.replace(' ','')">
 
     <container_actions :data="value" :name="'{{$name}}-terestial-'+index.replace(' ','')"

@@ -288,7 +288,7 @@ if($item->language != App::getLocale()){
                     </form>
                 </div>
                 <div class="standalone" v-show=status==='loading'>
-                    <i class="fa fa-spinner fa-spin green_dark"></i>
+                    <i class="fa fa-spinner fa-spin text-primary-800"></i>
                     {{ ucfirst(trans('modular-forms::common.saving')) }}
                 </div>
                 <div v-show=status==='saved'

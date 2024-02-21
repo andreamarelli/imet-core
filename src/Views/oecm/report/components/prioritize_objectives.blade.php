@@ -10,7 +10,7 @@
 </div>
 <div v-else>
     <div class="standalone" v-if="loading_objectives">
-        <i class="fa fa-spinner fa-spin green_dark"></i>
+        <i class="fa fa-spinner fa-spin text-primary-800"></i>
     </div>
     <div v-else>
         <div class="module-container">
