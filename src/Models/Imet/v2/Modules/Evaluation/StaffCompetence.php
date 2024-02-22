@@ -60,7 +60,8 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
                     ->first();
                 $item['__num_staff'] = $st!==null ? intval($st->ActualPermanent) : null;
                 return $item;
-            });
+            })
+        ->toArray();
 
         return $module_records;
     }

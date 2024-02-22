@@ -69,9 +69,9 @@ class EcosystemServices extends Modules\Component\ImetModule
 
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
         $vue_data['groupByCategory'] = static::$groupByCategory;
         $vue_data['warning_on_save'] =  trans('imet-core::v2_context.EcosystemServices.warning_on_save');
         return $vue_data;

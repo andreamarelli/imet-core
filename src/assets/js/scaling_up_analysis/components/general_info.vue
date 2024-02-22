@@ -1,57 +1,55 @@
 <template>
-    <div style="display: flex;" id="general-elements">
-        <div>
-            <div>
+    <div id="general-elements">
+        <div class="flex gap-3">
+            <div class="strong">{{
+                    stores.BaseStore.localization('imet-core::analysis_report.general_info.country')
+                }}:
+            </div>
+            {{ info.countries }}
+        </div>
+        <div class="flex gap-3">
+            <template>
                 <div class="strong">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.general_info.country')
+                        stores.BaseStore.localization('imet-core::analysis_report.general_info.network')
                     }}:
                 </div>
-                {{ info.countries }}
+                {{ info.network}}
+            </template>
+        </div>
+        <div class="flex gap-3">
+            <div class="strong">
+                {{
+                    stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_protected')
+                }}:
             </div>
-            <div>
-                <template>
-                    <div class="strong">{{
-                            stores.BaseStore.localization('imet-core::analysis_report.general_info.network')
-                        }}:
-                    </div>
-                    {{ info.network}}
-                </template>
+            {{ info.total_surface_protected_areas }} [km2]
+        </div>
+        <div class="flex gap-3">
+            <div class="strong">
+                {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.ecoregions') }}:
             </div>
-            <div>
-                <div class="strong">
-                    {{
-                        stores.BaseStore.localization('imet-core::analysis_report.general_info.total_surface_protected')
-                    }}:
-                </div>
-                {{ info.total_surface_protected_areas }} [km2]
+            {{ info.eco_regions }}
+        </div>
+        <div class="flex gap-3">
+            <div class="strong">{{
+                    stores.BaseStore.localization('imet-core::analysis_report.general_info.vision')
+                }}:
             </div>
-            <div>
-                <div class="strong">
-                    {{ stores.BaseStore.localization('imet-core::analysis_report.general_info.ecoregions') }}:
-                </div>
-                {{ info.eco_regions }}
+            {{ info.local_vision }}
+        </div>
+        <div class="flex gap-3">
+            <div class="strong">{{
+                    stores.BaseStore.localization('imet-core::analysis_report.general_info.mission')
+                }}:
             </div>
-            <div>
-                <div class="strong">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.general_info.vision')
-                    }}:
-                </div>
-                {{ info.local_vision }}
+            {{ info.local_mission }}
+        </div>
+        <div class="flex gap-3">
+            <div class="strong">{{
+                    stores.BaseStore.localization('imet-core::analysis_report.general_info.objectives')
+                }}:
             </div>
-            <div>
-                <div class="strong">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.general_info.mission')
-                    }}:
-                </div>
-                {{ info.local_mission }}
-            </div>
-            <div>
-                <div class="strong">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.general_info.objectives')
-                    }}:
-                </div>
-                {{ info.local_objective }}
-            </div>
+            {{ info.local_objective }}
         </div>
     </div>
 </template>

@@ -2,15 +2,20 @@
     <div>
 
         <div>
-            <div @click="toggle_species('species')"><h5><span class="fas fa-fw"
-                                                              :class="{'fa-caret-up': !show_species,'fa-caret-down':show_species}"></span>
-                {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.key_species') }}</h5>
-            </div>
-            <container_actions :data="species" :name="'species'"
-                               :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_plants_species')"
-                               :event_image="'save_entire_block_as_image'"
-                               :exclude_elements="''">
+
+            <h5 @click="toggle_species('species')">
+                <span class="fas fa-fw" :class="{'fa-caret-up': !show_species,'fa-caret-down':show_species}"></span>
+                {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.key_species') }}
+            </h5>
+
+            <container_actions
+                :data="species"
+                :name="'species'"
+                :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_plants_species')"
+                :event_image="'save_entire_block_as_image'"
+                :exclude_elements="''">
                 <template slot-scope="species_data">
+
                     <div id="species">
                         <elements :values="species_data.props.group0"
                                   :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.animal_species')"
@@ -47,12 +52,12 @@
         </div>
 
         <div>
-            <div @click="toggle_species('habitats')"><h5><span class="fas fa-fw"
-                                                               :class="{'fa-caret-up': !show_habitats,'fa-caret-down':show_habitats}"></span>
-                {{
-                    stores.BaseStore.localization('imet-core::analysis_report.management_context.terrestrial_marine_habitats')
-                }}
-            </h5></div>
+
+            <h5 @click="toggle_species('habitats')">
+                <span class="fas fa-fw" :class="{'fa-caret-up': !show_habitats,'fa-caret-down':show_habitats}"></span>
+                {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.terrestrial_marine_habitats') }}
+            </h5>
+
             <container_actions :data="habitats" :name="'habitats'"
                                :event_image="'save_entire_block_as_image'"
                                :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_terrestrial')"
@@ -202,14 +207,7 @@ export default {
             show_bar_ecosystem_services: false,
             show_bar_threats: false,
             ecosystem_services_statistics: [],
-            threats_statistics: [],
-            load_pop_over: false
-        }
-    },
-    updated: function () {
-        if (!this.load_pop_over) {
-            this.pop_over();
-            this.load_pop_over = true;
+            threats_statistics: []
         }
     },
     mounted() {
@@ -243,24 +241,7 @@ export default {
         this.threats_statistics = threats_statistics;
     },
     methods: {
-        pop_over: function () {
-            $(document).ready(function () {
-                $('[data-toggle="popover"]').popover({
-                    html: true,
-                    trigger: 'hover',
-                    content: function () {
-                        return document
-                            .getElementById(this.getAttribute('data-popover-content'))
-                            .querySelector(".popover-body").innerHTML;
-                    },
-                    title: function () {
-                        return document
-                            .getElementById(this.getAttribute('data-popover-content'))
-                            .querySelector(".popover-heading").innerHTML;
-                    }
-                });
-            });
-        },
+
         remove_parenthesis_words: function (string) {
             // array of strings remove words in parenthesis
             let words = [];

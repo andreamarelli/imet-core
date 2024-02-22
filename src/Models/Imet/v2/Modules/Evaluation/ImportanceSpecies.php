@@ -21,7 +21,7 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C1.2';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceSpecies.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',      'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Aspect')],
+            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.key_element',      'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Aspect')],
             ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.EvaluationScore')],
             ['name' => 'SignificativeSpecies',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.SignificativeSpecies')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.IncludeInStatistics')],
@@ -66,9 +66,9 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         return $module_records;
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
         $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.ImportanceSpecies.warning_on_save');
         return $vue_data;
     }

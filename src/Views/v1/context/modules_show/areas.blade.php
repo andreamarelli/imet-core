@@ -9,7 +9,7 @@ $record = $records[0];
 
 @foreach($definitions['fields'] as $field_index => $field)
 
-    @component('modular-forms::module.field_container', [
+    @component('modular-forms::module.components.field_container', [
                 'name' => $field['name'],
                 'label' => $field['label'] ?? '',
                 'label_width' => $definitions['label_width']

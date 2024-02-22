@@ -1,7 +1,8 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
-/** @var array $key_elements */
+/** @var array $key_elements_ecosystem_charts */
+/** @var array $key_elements_biodiversity_charts */
 /** @var array $key_elements_biodiversity */
 /** @var array $key_elements_ecosystem */
 /** @var array $report */

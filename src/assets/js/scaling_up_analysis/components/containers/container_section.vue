@@ -9,12 +9,12 @@
                             :class="{'fa-caret-up': !data.show_view,'fa-caret-down':data.show_view}"></span> {{ title }}
             </div>
         </div>
-        <div class="module-body bg-white collapse" :class="{show: data.show_view}">
-            <guidance :text="guidance"/>
+        <guidance :text="guidance" v-show=data.show_view ></guidance>
+        <div class="module-body bg-white scaling_up_module_container_body" v-show=data.show_view>
             <slot :props="data">
             </slot>
             <div class="text-right mt-3">
-                <div class="btn btn-circle btn-outline-danger" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
+                <div class="btn-nav red" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
                 </div>
             </div>
         </div>

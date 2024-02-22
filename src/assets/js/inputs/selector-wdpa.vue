@@ -1,142 +1,156 @@
 <template>
 
-    <modal-selector
-        class="selector-wdpa"
+    <selectorDialog
         :parent-id=id
-        :anchor-label=anchorLabel
+        :search-url=searchUrl
     >
 
-        <!-- Modal -->
-        <template v-slot:modal_content>
-
-            <modal_api_search
-                :parent-id=id
-                :search-url=searchUrl
-                :key-min-length=3
-                :parent-search-params-valid=searchParamValid
-                :radioTooltip=radioTooltip
-            >
-                <template v-slot:modal_search_filters>&nbsp;
-                    {{ Locale.getLabel('imet-core::common.country') }}
-                    <select v-model=filterByCountry class="field-edit">
-                        <option value="null"> - - </option>
-                        <option v-for="(label, key) in dataCountries" :value=key>
-                            {{ label }}
-                        </option>
-                    </select>
-                </template>
-
-                <template v-slot:modal_search_results_filters>
-
-                </template>
-
-                <template v-slot:resultItem="{ item }">
-                    <td><span class="result_left"><b>{{ item.name }}</b></span></td>
-                    <td><a v-if="item.wdpa_id!==null" target="_blank" href="https://www.protectedplanet.net/'+item.wdpa_id+'">{{ item.wdpa_id }}</a></td>
-                    <td>{{ item.country_name }}</td>
-                    <td>{{ item.iucn_category }}</td>
-                </template>
-
-            </modal_api_search>
-
-            <div class="modal-footer">
-                <button type="button"
-                        class="btn-nav dark small"
-                        :disabled="selectedValue===null"
-                        v-on:click="confirmSelection" >
-                    {{ Locale.getLabel('modular-forms::common.confirm_select') }}
-                </button>
+        <!-- dialog anchor -->
+        <template v-slot:selector-anchor>
+            <div class="field-preview">
+                {{ anchorLabel }}
             </div>
-
         </template>
 
-    </modal-selector>
+        <!-- api search - result search filters -->
+        <template v-slot:selector-api-search-result-filters>
+            <i>{{ Locale.getLabel('modular-forms::common.filter_results') }}: </i>&nbsp;&nbsp;
+            {{ Locale.getLabel('imet-core::common.country') }}
+            <select v-model=filterByCountry @change="filterList()" class="field-edit filterByCountry">
+                <option value="null"> - - </option>
+                <option v-for="(label, key) in filteredCountries" :value=key>
+                    {{ label }}
+                </option>
+            </select>
+        </template>
+
+        <!-- api search - result header -->
+        <template v-slot:selector-api-search-result-header>
+            <th>{{ Locale.getLabel('imet-core::common.name') }}</th>
+            <th>{{ Locale.getLabel('imet-core::common.protected_area.wdpa_id',1) }}</th>
+            <th>{{ Locale.getLabel('imet-core::common.country') }}</th>
+            <th>{{Locale.getLabel('imet-core::common.protected_area.iucn_category') }}</th>
+        </template>
+
+        <!-- api search - result items -->
+        <template v-slot:selector-api-search-result-item="{ item }">
+            <td><span class="result_left"><b>{{ item.name }}</b></span></td>
+            <td><a v-if="item.wdpa_id!==null" target="_blank" href="https://www.protectedplanet.net/'+item.wdpa_id+'">{{ item.wdpa_id }}</a></td>
+            <td>{{ item.country_name }}</td>
+            <td>{{ item.iucn_category }}</td>
+        </template>
+
+    </selectorDialog>
 
 </template>
 
+<style lang="scss" scoped>
+    .result_left{
+        text-align: left;
+    }
+    .field-edit.filterByCountry{
+        width: 200px;
+        margin: 0 5px;
+    }
+</style>
+
 <script>
 
-    export default {
 
-        components: {
-            'flag': window.ModularForms.Template.flag,
-            'modal-selector': window.ModularForms.Input.modalSelector,
-            'modal_api_search': window.ModularForms.Input.modalApiSearch
+export default {
+
+    // components: {
+    //     selectorDialog: selectorDialog
+    // },
+
+    mixins: [
+        window.ModularForms.MixinsVue.values
+    ],
+
+    props: {
+        searchUrl: {
+            type: String,
+            default: null
         },
-
-        mixins: [
-            window.ModularForms.MixinsVue.values
-        ],
-
-        props: {
-            searchUrl: {
-                type: String,
-                default: ''
-            },
-            dataCountries: {
-                type: Object,
-                default: () => {}
-            }
-        },
-
-        data (){
-            return {
-                Locale: window.Locale,
-                anchorLabel: null,
-                selectedValue: null,
-                confirmedValue: null,
-                confirmedLabel: null,
-                filterByCountry: null,
-                radioTooltip: window.Locale.getLabel('imet-core::common.double_check_wdpa')
-            }
-        },
-
-        computed:{
-            searchParamValid(){
-                return this.filterByCountry!==null && this.filterByCountry!=="null";
-            }
-        },
-
-        watch:{
-            inputValue(value){
-                this.anchorLabel = this.confirmedLabel!==null ? this.confirmedLabel : null;
-                this.confirmedLabel = null;
-                this.confirmedValue = value;
-            }
-        },
-
-        mounted(){
-            this.modalComponent = this.$children[0];
-            this.searchComponent = null;    // will be populated from modalComponent when modal opens
-            this.anchorLabel = this.inputValue;
-        },
-
-        methods: {
-
-            searchParams(){
-                return {
-                    'country': this.filterByCountry
-                }
-            },
-
-            resultTableHeader(){
-                return [
-                    '',
-                    Locale.getLabel('imet-core::common.name'),
-                    Locale.getLabel('imet-core::common.protected_area.wdpa_id',1),
-                    Locale.getLabel('imet-core::common.country'),
-                    Locale.getLabel('imet-core::common.protected_area.iucn_category'),
-                ]
-            },
-
-            confirmSelection(){
-                this.confirmedLabel = this.selectedValue.name;
-                this.confirmedValue = this.selectedValue.wdpa_id;
-                this.emitValue(this.confirmedValue);
-                this.modalComponent.closeModal();
-            },
-
+        dataCountries: {
+            type: Object,
+            default: () => {}
         }
+    },
+
+    data (){
+        return {
+            Locale: window.Locale,
+            assetPath: window.ModularForms.assetPath,
+            searchComponent: null,
+            selectorComponent: null,
+            inputValue: null,
+            filterByCountry: null,
+        }
+    },
+
+    computed:{
+        anchorLabel(){
+            if(this.selectorComponent!==null && this.selectorComponent.selectedValue !== null){
+                return this.selectorComponent.selectedValue['name'];
+            }
+            return null;
+        },
+        filteredCountries(){
+            // retrieve ISOs from search result
+            let found_ISOs = [];
+            this.searchComponent.showList.forEach(function (item) {
+                if(item.country.includes(';')){
+                    item.country.split(";").forEach((iso) => {
+                        if(!found_ISOs.includes(iso)){
+                            found_ISOs.push(iso);
+                        }
+                    });
+                } else {
+                    if(!found_ISOs.includes(item.country)){
+                        found_ISOs.push(item.country);
+                    }
+                }
+            });
+            // filter list of countries according to search result
+            let filtered_countries = {};
+            for (const [key, value] of Object.entries(this.dataCountries)) {
+                if(found_ISOs.includes(key)){
+                    filtered_countries[key] = value;
+                }
+            }
+            return filtered_countries;
+        }
+    },
+
+    mounted (){
+        this.selectorComponent = this.$children[0];
+        this.searchComponent = this.$children[0].$children[0].$children[0];
+    },
+
+    methods: {
+
+        afterSearch(data){
+            // this.orders = data['orders'];
+            // this.classes = data['classes'];
+            this.filterByCountry = null;
+        },
+
+
+        filterList(){
+            let filters = {
+                'country': this.filterByCountry
+            };
+            this.searchComponent.filterShowList(filters);
+        },
+
+        getSelectedValue(value){
+            return this.selectorComponent.selectedValue['wdpa_id'];
+        }
+
     }
 
+
+
+}
 </script>

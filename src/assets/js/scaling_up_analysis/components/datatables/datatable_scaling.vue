@@ -1,10 +1,12 @@
 <template>
-    <div>
-        <div class="row mb-3 mt-1" style="font-size: 12px" v-if="average.length">
-            <div class="col-sm align-self-center">
+    <div class="mb-4">
+
+        <div class="mb-3 mt-1" style="font-size: 12px" v-if="average.length">
+            <div class="align-center">
                 {{ stores.BaseStore.localization("imet-core::analysis_report.average_explained") }}
             </div>
         </div>
+
         <table id="global_scores">
             <tr>
                 <th v-for="(column, idx) in columns" @click="sort(column.field)"
@@ -20,36 +22,32 @@
                 <td v-else v-html="get_value(value[column.field])"></td>
             </tr>
         </table>
-        <div class="row" style="font-size: 12px">
-            <div class="col-3 text-right">
+
+        <div class="flex flex-row items-center text-sm">
+            <div class="text-right mr-4">
                 {{ stores.BaseStore.localization("imet-core::analysis_report.scaling_legend") }} :
             </div>
-            <div class="col-8">
-                <div class="row">
-                    <div class="col text-center" :class="score_class(null)">
-                        {{ stores.BaseStore.localization("imet-core::analysis_report.no_value").toLowerCase() }}
-                    </div>
-                    <div class="col text-center" :class="score_class(-52)">
-                        -100 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} -51
-                    </div>
-                    <div class="col text-center" :class="score_class(-35)">
-                        -50 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} -34
-                    </div>
-                    <div class="col text-center" :class="score_class(-1)">
-                        -33 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 0
-                    </div>
-                    <div class="col text-center" :class="score_class(10)">1
-                        {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 33
-                    </div>
-                    <div class="col text-center" :class="score_class(34)">34
-                        {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 50
-                    </div>
-                    <div class="col text-center" :class="score_class(51)">51
-                        {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 100
-                    </div>
-                </div>
+            <div class="text-center px-3 py-2" :class="score_class(null)">
+                {{ stores.BaseStore.localization("imet-core::analysis_report.no_value").toLowerCase() }}
             </div>
-            <div class="col-1 align-self-center"></div>
+            <div class="text-center px-3 py-2" :class="score_class(-52)">
+                -100 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} -51
+            </div>
+            <div class="text-center px-3 py-2" :class="score_class(-35)">
+                -50 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} -34
+            </div>
+            <div class="text-center px-3 py-2" :class="score_class(-1)">
+                -33 {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 0
+            </div>
+            <div class="text-center px-3 py-2" :class="score_class(10)">1
+                {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 33
+            </div>
+            <div class="text-center px-3 py-2" :class="score_class(34)">34
+                {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 50
+            </div>
+            <div class="text-center px-3 py-2" :class="score_class(51)">51
+                {{ stores.BaseStore.localization("imet-core::analysis_report.to").toLowerCase() }} 100
+            </div>
         </div>
 
     </div>
@@ -190,20 +188,6 @@ export default {
                 addClass = 'score_success';
             }
             return `${addClass} ${additional_classes}`;
-        },
-        score_class_threats: function (value, $additional_classes = '') {
-            let addClass = '';
-
-            if (value < -51) {
-                addClass = 'score_danger';
-            } else if (value < -34) {
-                addClass = 'score_alert';
-            } else if (value < -1) {
-                addClass = 'score_warning';
-            } else {
-                addClass = 'score_success';
-            }
-            return `${addClass} ${$additional_classes}`;
         }
     }
 }

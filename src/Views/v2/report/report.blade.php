@@ -1,6 +1,6 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
 use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
@@ -31,16 +31,17 @@ if($item->language != App::getLocale()){
 
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
 
-    <div id="imet_report">
+    {{--  Heading --}}
+    @include('imet-core::components.heading', ['item' => $item])
 
-        @include('imet-core::components.heading', ['item' => $item])
-        @include('imet-core::components.phase', ['phase' => 'report'])
+    {{--  Phase  --}}
+    @include('imet-core::components.phase', ['phase' => 'report'])
+
+    <div id="imet_report">
 
         @if($show_api)
             <div class="module-container">
@@ -78,7 +79,7 @@ if($item->language != App::getLocale()){
                                 </div>{{ $general_info['Institution'] ?? '-' }}</div>
                             <div>
                                 <div class="strong">@lang('imet-core::v2_report.biome'):
-                                </div>{{ $general_info['Biome']  }}</div>
+                                </div>{{ $general_info['Biome'] ?? '-' }}</div>
                             <div>
                                 <div class="strong">@lang('imet-core::v2_report.main_values_protected'):
                                 </div>{{ $general_info['ReferenceTextValues'] ?? '-' }}</div>
@@ -122,13 +123,13 @@ if($item->language != App::getLocale()){
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
-                        <td {!! Assessment::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!} >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
+                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>
@@ -287,7 +288,7 @@ if($item->language != App::getLocale()){
                     </form>
                 </div>
                 <div class="standalone" v-show=status==='loading'>
-                    <i class="fa fa-spinner fa-spin green_dark"></i>
+                    <i class="fa fa-spinner fa-spin text-primary-800"></i>
                     {{ ucfirst(trans('modular-forms::common.saving')) }}
                 </div>
                 <div v-show=status==='saved'
@@ -305,6 +306,9 @@ if($item->language != App::getLocale()){
 
     </div>
 
+@endsection
+
+@push('scripts')
     <script>
         new Vue({
             el: '#imet_report',
@@ -435,17 +439,21 @@ if($item->language != App::getLocale()){
                     this.status = 'loading';
                     this.loading = true;
                     this.error = false;
-                    window.axios({
+
+                    fetch('{{ route(Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}', {
                         method: 'post',
-                        url: '{{ route(Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
-                        data: {
-                            _token: window.Laravel.csrfToken,
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-Token": window.Laravel.csrfToken,
+                        },
+                        body: JSON.stringify({
                             _method: 'PATCH',
                             report: this.report
-                        }
+                        })
                     })
-                        .then(function (response) {
-                            if (!(response.data.hasOwnProperty('status') && response.data.status === 'success')) {
+                        .then((response) => response.json())
+                        .then(function(data){
+                            if (!(data.hasOwnProperty('status') && data.status === 'success')) {
                                 _this.status = 'error';
                             }
                             _this.status = 'saved';
@@ -522,5 +530,4 @@ if($item->language != App::getLocale()){
         });
 
     </script>
-
-@endsection
+@endpush

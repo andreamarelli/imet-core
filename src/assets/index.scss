@@ -1,2 +1,11 @@
-@import './sass/components/components.scss';
-@import './sass/pages/pages.scss';
+//@import "tailwindcss/base"; // this include the tailwind "resets" which at this point will override the modular-forms assets
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "../../vendor/andreamarelli/modular-forms/src/resources/assets/sass/abstracts/colors";
+@import "../../vendor/andreamarelli/modular-forms/src/resources/assets/sass/base/typography";
+
+@import './sass/components/common';
+@import './sass/components/header';
+@import './sass/components/module';
+@import './sass/components/custom';

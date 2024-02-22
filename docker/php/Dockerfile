@@ -22,6 +22,9 @@ RUN install-php-extensions \
     pdo_pgsql \
     zip
 
+# Set INI file
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
 WORKDIR /var/www/html
 
 # Install Composer

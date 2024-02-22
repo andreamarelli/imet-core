@@ -102,6 +102,7 @@ trait ImportExportJSON
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . '.export', [
+            'controller' => static::class,
             'route_prefix' => static::ROUTE_PREFIX,
             'list' => $filtered_list,
             'request' => $request,

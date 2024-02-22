@@ -21,7 +21,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C1.3';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceHabitats.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.Aspect')],
+            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.key_element',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.Aspect')],
             ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.EvaluationScore')],
             ['name' => 'EvaluationScore2',  'type' => 'imet-core::rating-1to3',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.EvaluationScore2')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceHabitats.fields.IncludeInStatistics')],
@@ -58,9 +58,9 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         return $module_records;
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
         $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.ImportanceHabitats.warning_on_save');
         return $vue_data;
     }

@@ -57,7 +57,7 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
 ?>
 
 
-@component('modular-forms::module.field_container', [
+@component('modular-forms::module.components.field_container', [
            'name' => $definitions['fields'][0]['name'],
            'label' => $definitions['fields'][0]['label'] ?? '',
            'label_width' => $definitions['label_width']
@@ -72,7 +72,7 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
 @endcomponent
 
 
-@component('modular-forms::module.field_container', [
+@component('modular-forms::module.components.field_container', [
            'name' => $definitions['fields'][1]['name'],
            'label' => $definitions['fields'][1]['label'] ?? '',
            'label_width' => $definitions['label_width']

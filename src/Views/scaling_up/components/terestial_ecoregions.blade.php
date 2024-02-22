@@ -1,11 +1,11 @@
-<div v-for="(value, index) in data.props.values" class="module-body bg-white border-0 contailer"
+<div v-for="(value, index) in data.props.values" class="module-body bg-white border-0"
      :id="'{{$name}}-terestial-'+index.replace(' ','')">
 
     <container_actions :data="value" :name="'{{$name}}-terestial-'+index.replace(' ','')"
                        :event_image="'save_entire_block_as_image'"
                        :exclude_elements="'{{$exclude_elements}}'">
         <template slot-scope="data_elements">
-            <div class="list-key-numbers horizontal">
+            <div class="list-key-numbers">
                 <div class="list-head" v-html="index">
                 </div>
             </div>

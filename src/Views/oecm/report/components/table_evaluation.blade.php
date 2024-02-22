@@ -1,4 +1,6 @@
 <?php
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
+
 /** @var array $assessment */
 
 ?>
@@ -7,43 +9,23 @@
 
     <!-- context -->
     <tr>
-        <td colspan="12" style="background-color: #e5e5e5">
-            <h5>@lang('imet-core::common.steps_eval.context')</h5>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="12">
-            <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['context']['avg_indicator'], '') !!}>{{ $assessment['context']['avg_indicator']  ?? ' - ' }}</div>
-            </h4>
-        </td>
-
-    </tr>
-    <tr>
+        <th>
+            <div>@lang('imet-core::common.steps_eval.context')</div>
+            <div class="{!! ApiController::score_class($assessment['context']['avg_indicator']) !!} badge">{{ $assessment['context']['avg_indicator']  ?? ' - ' }}</div>
+        </th>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c1')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c3'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c3')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c4'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c4')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['context']['c2'], 'assessment_label' => trans('imet-core::oecm_common.assessment.c2')[1]])
         <td colspan="8"></td>
     </tr>
-    <tr>
-
-    </tr>
 
     <!-- planning -->
     <tr>
-        <td colspan="12" style="background-color: #e5e5e5">
-            <h5>@lang('imet-core::common.steps_eval.planning')</h5>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="12">
-            <h4>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['planning']['avg_indicator'], '') !!}>{{ $assessment['planning']['avg_indicator']  ?? ' - ' }}</div>
-            </h4>
-        </td>
-    </tr>
-    <tr>
+        <th>
+            <div>@lang('imet-core::common.steps_eval.planning')</div>
+            <div class="{!! ApiController::score_class($assessment['planning']['avg_indicator']) !!} badge">{{ $assessment['planning']['avg_indicator']  ?? ' - ' }}</div>
+        </th>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.p1')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p2'], 'assessment_label' => trans('imet-core::oecm_common.assessment.p2')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['planning']['p3'], 'assessment_label' => trans('imet-core::oecm_common.assessment.p3')[1]])
@@ -55,18 +37,10 @@
 
     <!-- inputs -->
     <tr>
-        <td colspan="12" style="background-color: #e5e5e5">
-            <h5>@lang('imet-core::common.steps_eval.inputs')</h5>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="12">
-            <h5>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['inputs']['avg_indicator'], '') !!}>{{ $assessment['inputs']['avg_indicator']  ?? ' - ' }}</div>
-            </h5>
-        </td>
-    </tr>
-    <tr>
+        <th>
+            <div>@lang('imet-core::common.steps_eval.inputs')</div>
+            <div class="{!! ApiController::score_class($assessment['inputs']['avg_indicator']) !!} badge">{{ $assessment['inputs']['avg_indicator']  ?? ' - ' }}</div>
+        </th>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.i1')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i2'], 'assessment_label' => trans('imet-core::oecm_common.assessment.i2')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['inputs']['i3'], 'assessment_label' => trans('imet-core::oecm_common.assessment.i3')[1]])
@@ -78,18 +52,10 @@
 
     <!-- process -->
     <tr>
-        <td colspan="12" style="background-color: #e5e5e5">
-            <h5>@lang('imet-core::common.steps_eval.process')</h5>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="12">
-            <h5>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['process']['avg_indicator'], '') !!}>{{ $assessment['process']['avg_indicator'] ?? ' - ' }}</div>
-            </h5>
-        </td>
-    </tr>
-    <tr>
+        <th rowspan="2">
+            <div>@lang('imet-core::common.steps_eval.process')</div>
+            <div class="{!! ApiController::score_class($assessment['process']['avg_indicator']) !!} badge">{{ $assessment['process']['avg_indicator']  ?? ' - ' }}</div>
+        </th>
         <td colspan="5" style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr1_5') }}
             <div>{{ $assessment['process']['pr1_5'] ?? ' - ' }}</div>
         </td>
@@ -102,7 +68,6 @@
         <td colspan="2" style="background-color: #e5e5e5">{{  trans('imet-core::oecm_report.pr11_12') }}
             <div>{{ $assessment['process']['pr11_12'] ?? ' - ' }}</div>
         </td>
-
     </tr>
     <tr>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.pr1')[1]])
@@ -118,40 +83,24 @@
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr11'], 'assessment_label' => trans('imet-core::oecm_common.assessment.pr11')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['process']['pr12'], 'assessment_label' => trans('imet-core::oecm_common.assessment.pr12')[1]])
     </tr>
+
     <!-- outputs -->
     <tr>
-        <td colspan="12" style="background-color: #e5e5e5">
-            <h5>@lang('imet-core::common.steps_eval.outputs')</h5>
+        <td>
+            <div>@lang('imet-core::common.steps_eval.outputs')</div>
+            <div class="{!! ApiController::score_class($assessment['outputs']['avg_indicator']) !!} badge">{{ $assessment['outputs']['avg_indicator']  ?? ' - ' }}</div>
         </td>
-    </tr>
-    <tr>
-        <td colspan="12">
-            <h5>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outputs']['avg_indicator'], '') !!}>{{ $assessment['outputs']['avg_indicator']  ?? ' - ' }}</div>
-            </h5>
-        </td>
-    </tr>
-    <tr>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.op1')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outputs']['op1'], 'assessment_label' => trans('imet-core::v2_common.assessment.op2')[1]])
         <td colspan="10"></td>
     </tr>
 
-
     <!-- outcomes -->
     <tr>
-        <td colspan="12" style="background-color: #e5e5e5">
-            <h5>@lang('imet-core::common.steps_eval.outcomes')</h5>
+        <td>
+            <div>@lang('imet-core::common.steps_eval.outcomes')</div>
+            <div class="{!! ApiController::score_class($assessment['outcomes']['avg_indicator']) !!} badge">{{ $assessment['outcomes']['avg_indicator']  ?? ' - ' }}</div>
         </td>
-    </tr>
-    <tr>
-        <td colspan="12">
-            <h5>
-                <div {!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($assessment['outcomes']['avg_indicator'], '') !!}>{{ $assessment['outcomes']['avg_indicator']  ?? ' - ' }}</div>
-            </h5>
-        </td>
-    </tr>
-    <tr>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc1'], 'assessment_label' => trans('imet-core::oecm_common.assessment.oc1')[1]])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $assessment['outcomes']['oc2'], 'assessment_label' => trans('imet-core::v2_common.assessment.oc2')[1]])
         <td colspan="10"></td>

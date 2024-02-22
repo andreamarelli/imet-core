@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 /** @var String $group_key (optional - only for GROUP_TABLE) */
 
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
@@ -19,7 +19,7 @@ $v_else_condition = $definitions['module_type']==='GROUP_TABLE'
 
 $num_cols = count($definitions['fields']);
 
-$original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', compact(['collection', 'vue_data', 'definitions', 'group_key']))->render();
+$original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions', 'group_key']))->render();
 $nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols, 'attributes' => 'v-if="'.$v_if_condition.'"'])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));

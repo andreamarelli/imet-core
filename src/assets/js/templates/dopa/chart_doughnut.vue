@@ -107,7 +107,7 @@
             draw_chart(){
                 let options = this.set_options();
                 let canvas_container = this.$el.getElementsByClassName('doughnut')[0];
-                echarts.init(canvas_container).setOption(options);
+                window.ImetCoreVendor.echarts.init(canvas_container).setOption(options);
             }
 
         }

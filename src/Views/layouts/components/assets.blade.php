@@ -2,30 +2,21 @@
 /** @var String $mapbox_token */
 /** @var Boolean $script_files */
 
-use \Illuminate\Support\Facades\Route;
-use \Illuminate\Support\Str;
+use AndreaMarelli\ImetCore\Helpers\Manifest;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 $current_route_name = Route::currentRouteName();
-$script_files = $script_files ?? true;
+
+$debug = !App::environment('production');
+
 ?>
 
-{{-- packages --}}
-@if($script_files)
-    <script src="{{ asset(mix('modular_forms_vendor.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('modular_forms_vendor.css', 'assets')) }}">
-    <script src="{{ asset(mix('modular_forms_index.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('modular_forms_index.css', 'assets')) }}">
-    <script src="{{ asset(mix('imet_core_vendor.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('imet_core_vendor.css', 'assets')) }}">
-    <script src="{{ asset(mix('imet_core_index.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('imet_core_index.css', 'assets')) }}">
-    {{-- vendors --}}
-    <script src="{{ asset(mix('vendor.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('vendor.css', 'assets')) }}">
-    {{-- local assets --}}
-    <script src="{{ asset(mix('index.js', 'assets')) }}"></script>
-    <link rel="stylesheet" href="{{ asset(mix('index.css', 'assets')) }}">
-@endif
+<script src="{{ Manifest::asset('vendor.js', $debug) }}"></script>
+<link rel="stylesheet" href="{{ Manifest::asset('vendor.css', $debug) }}">
+<script src="{{ Manifest::asset('index.js', $debug) }}"></script>
+<link rel="stylesheet" href="{{ Manifest::asset('index.css', $debug) }}">
 
 <script>
     window.imet_routes = {
@@ -41,11 +32,11 @@ $script_files = $script_files ?? true;
 </script>
 
 
-<!-- mapbox -->
-@if(Str::contains($current_route_name, 'imet-core::v1_report') ||
-    Str::contains($current_route_name, 'imet-core::v2_report') ||
+{{--<!-- mapbox -->--}}
+@if(Str::contains($current_route_name, 'imet-core::v1.report') ||
+    Str::contains($current_route_name, 'imet-core::v2.report') ||
     Str::contains($current_route_name, 'imet-core::scaling_up'))
-        @include('modular-forms::layouts.components.mapbox')
+        @include('imet-core::layouts.components.assets_mapbox')
         <script>
             window.mapboxgl.accessToken = '{{ $mapbox_token }}';
         </script>

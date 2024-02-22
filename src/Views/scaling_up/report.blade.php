@@ -1,25 +1,27 @@
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
+
     <div id="imet_report">
         <app :scaling_up_id="{{$scaling_up_id}}">
             <template>
+
                 @include('imet-core::scaling_up.components.scaling_up_template')
-                <div class="container">
-                    <div class="row h-150 mb-5">
-                        <div class="col-sm text-center">
-                            <strong>{{trans('imet-core::analysis_report.title')}} ({{$protected_areas_names}})</strong>
-                        </div>
-                    </div>
+
+                <div class="text-center mb-5">
+                    <strong>{{trans('imet-core::analysis_report.title')}} ({{$protected_areas_names}})</strong>
                 </div>
+
                 @include('imet-core::scaling_up.components.navigation_menu', ['templates'=> $templates])
+
                 <div id="names"></div>
-                <div>
-                    <guidance :text="'imet-core::analysis_report.guidance.special_information'"/>
+
+                <div class="module-container">
+                    <guidance :text="'imet-core::analysis_report.guidance.special_information'"></guidance>
                 </div>
+
                 @include('imet-core::scaling_up.components.wdpa_names')
+
                 @foreach($templates as $key => $template)
                     @include('imet-core::scaling_up.components.'.$template['name'],
                                 [   'name' => $template['name'],
@@ -30,12 +32,15 @@
                                    'pas' => ($custom_names)
                                 ])
                 @endforeach
+
             </template>
         </app>
     </div>
 
-    <script>
+@endsection
 
+@push('scripts')
+    <script>
 
         new Vue({
             el: '#imet_report',
@@ -72,22 +77,6 @@
     </script>
     <style>
         @media screen {
-            .popover-header {
-                font-size: 0.9em;
-                font-style: italic;
-                font-weight: bold;
-                text-align: center;
-            }
-
-            .popover-body {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .popover-body a {
-                margin: 3px;
-            }
-
             .sub-title {
                 font-weight: 600;
                 padding: 8px 8px 8px 10px;
@@ -113,11 +102,8 @@
                 color: white;
             }
 
-            .contailer {
-                position: relative;
-            }
 
-            .contailer .smallMenu {
+            .smallMenu {
                 position: -webkit-sticky;
                 display: inline-block;
                 margin-bottom: 0;
@@ -129,7 +115,7 @@
 
             }
 
-            .contailer .smallMenu .standalone {
+            .smallMenu .standalone {
                 text-align: center;
                 background-color: #004A19;
                 color: #fff;
@@ -140,42 +126,26 @@
                 z-index: 999999;
             }
 
-            .contailer .smallMenu .standalone {
+            .smallMenu .standalone {
                 font-size: 1.1rem;
                 padding: 8px 12px;
                 margin-top: 5px;
                 border-radius: 5px;
             }
 
-            .contailer .smallMenu .highlight {
+            .smallMenu .highlight {
                 background-color: #4cae4c;
                 color: Black;
             }
 
-            .contailer .smallMenu .standalone .active {
+            .smallMenu .standalone .active {
                 background-color: #4cae4c;
                 color: Black;
             }
 
-            .contailer .smallMenu .standalone div:hover {
+            .smallMenu .standalone div:hover {
                 background-color: #4cae4c;
                 color: Black;
-            }
-
-            .popover-header {
-                font-size: 0.9em;
-                font-style: italic;
-                font-weight: bold;
-                text-align: center;
-            }
-
-            .popover-body {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .popover-body a {
-                margin: 3px;
             }
         }
 
@@ -195,6 +165,4 @@
             }
         }
     </style>
-@endsection
-
-
+@endpush

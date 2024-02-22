@@ -1,7 +1,7 @@
 <template>
     <div id="maps" class="align-items-center">
-        <div v-if="!no_internet_connection" class="row" style="width:100%;height: 500px">
-            <div id="map-load" class="ml-3" style="width:100%; height:500px"></div>
+        <div v-if="!no_internet_connection" style="width:100%; height: 500px">
+            <div id="map-load" class="ml-3" style="width:100%; height: 500px"></div>
         </div>
         <div v-else class="dopa_not_available">
             {{ error_message }}
@@ -36,18 +36,21 @@ export default {
     },
     methods: {
         retrieveCoords: async function () {
-            return await window.axios({
+            return fetch(this.url, {
                 method: 'POST',
-                url: this.url,
-                data: {
-                    _token: window.Laravel.csrfToken,
-                    func: 'get_array_of_custom_names',
-                    parameter: this.pa.split(','),
-                    scaling_id: this.stores.BaseStore.scaling_up_id
-                }
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRF-Token": window.Laravel.csrfToken,
+                },
+                body: JSON.stringify({
+                  func: 'get_array_of_custom_names',
+                  parameter: this.pa.split(','),
+                  scaling_id: this.stores.BaseStore.scaling_up_id
+                })
             })
-                .then(function (response) {
-                    return Object.entries(response.data).map(area => area[1].wdpa_id);
+                .then((response) => response.json())
+                .then(function (data) {
+                    return Object.entries(data).map(area => area[1].wdpa_id);
                 })
                 .catch(function (error) {
                     console.log(error)

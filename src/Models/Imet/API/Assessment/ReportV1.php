@@ -89,7 +89,7 @@ class ReportV1
      */
     protected static function get_general_info(int $form_id): ?array
     {
-        $general_info = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
+        $general_info = static::$general_info_class::getModuleRecords($form_id)[][0] ?? null;
         if ($general_info) {
             return static::remove_fields($general_info, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
@@ -104,7 +104,7 @@ class ReportV1
      */
     protected static function get_vision(int $form_id): ?array
     {
-        $vision = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
+        $vision = static::$general_info_class::getModuleRecords($form_id)[0] ?? null;
         if ($vision) {
             return static::remove_fields($vision, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }

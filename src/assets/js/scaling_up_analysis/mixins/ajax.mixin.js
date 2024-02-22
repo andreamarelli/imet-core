@@ -86,6 +86,7 @@ export default {
 
         },
         error: function (response) {
+            console.log(response);
             if (!response.response)
                 this.error_wrong = true;
             else if (response.status === false){
@@ -104,28 +105,31 @@ export default {
             throw new Error('Not Implemented ')
         },
         retrieve_data: async function () {
-            try {
-                this.show_loader = true;
-                this.error_wrong = false;
-                const response = await window.axios({
-                    method: this.method,
-                    url: this.url_parameter,
-                    data: {
-                        _token: window.Laravel.csrfToken,
-                        func: this.func_parameter,
-                        parameter: this.parameters_man(),
-                        scaling_id: this.stores.BaseStore.get_scaling_up()
-                    },
-                    timeout: 3 * 10000
-                });
-                this.success(response.data);
-            } catch (error) {
+            let _this = this;
+            this.show_loader = true;
+            this.error_wrong = false;
 
-                this.error(error);
-            } finally {
-                this.finally();
-            }
-
+           fetch(this.url_parameter, {
+               method: this.method,
+               headers: {
+                   "Content-Type": "application/json",
+                   "X-CSRF-Token": window.Laravel.csrfToken,
+               },
+               body: JSON.stringify({
+                   func: this.func_parameter,
+                   parameter: this.parameters_man(),
+                   scaling_id: this.stores.BaseStore.get_scaling_up()
+               })
+           })
+               .then((response) => response.json())
+               .then(function(data) {
+                   _this.success(data);
+                   _this.finally();
+               })
+               .catch(function(error) {
+                   _this.error(error);
+                   _this.finally();
+            });
 
         }
     }

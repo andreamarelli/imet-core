@@ -37,7 +37,7 @@ $i = 0;
                                 <td class="col-1">{{ $warning['code'] }}</td>
                                 <td class="col-11">
                                     <strong> <a
-                                                href="{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'eval_edit', [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
+                                                href="{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'evaluation_edit', [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
                                         >{!! $warning['question'] !!}</a>
                                     </strong>
                                 </td>
@@ -51,9 +51,7 @@ $i = 0;
                 $i++; ?>
         @endforeach
     @else
-        <div class="row mt-5">
-            <div class="col text-center"> {{trans('imet-core::common.nothing_found')}}</div>
-        </div>
+        <div class="text-center">{{trans('imet-core::common.nothing_found')}}</div>
     @endif
 </div>
 

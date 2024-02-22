@@ -26,7 +26,7 @@ export default {
                 let options = this.set_options();
                 options = this.set_names(options);
 
-                this.chart = echarts.init(this.$el);
+                this.chart = window.ImetCoreVendor.echarts.init(this.$el);
                 this.chart.setOption(options);
             }
         }

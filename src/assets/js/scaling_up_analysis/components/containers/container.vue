@@ -1,8 +1,12 @@
 <template>
+
   <div>
-    <div v-if="show_loader" class="spinner-border text-success" role="status">
+
+    <div v-if="show_loader">
+      <i class="fa fa-spinner fa-spin text-primary-800"></i>
       <span class="sr-only">Loading...</span>
     </div>
+
     <div v-else>
       <div v-if="error_returned" class="dopa_not_available"
            v-html="stores.BaseStore.localization('entities.dopa_not_available')"></div>
@@ -15,7 +19,9 @@
         <slot :props="data"></slot>
       </div>
     </div>
+
   </div>
+
 </template>
 
 <script>

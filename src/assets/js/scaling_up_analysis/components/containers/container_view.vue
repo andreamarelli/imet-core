@@ -2,16 +2,18 @@
     <div>
         <div class="" @click="toggle_view()">
 
-            <div :id="'menu-header-header-main'"
-                 class="list-key-numbers horizontal">
-                <div class="list-head"><span class="fas fa-fw"
-                                             :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span>
+            <div :id="'menu-header-header-main'">
+                <div class="list-head">
+                    <span class="fas fa-fw" :class="{'fa-plus': !data.show_view,'fa-minus':data.show_view}"></span>
                     {{ title }}
                 </div>
             </div>
+            
         </div>
-        <div class="bg-white collapse" :class="{show: data.show_view}">
-            <div v-if="show_loader" class="spinner-border text-success" role="status">
+
+        <div v-show="data.show_view">
+            <div v-if="show_loader">
+                <i class="fa fa-spinner fa-spin fa-2x text-primary-800"></i>
                 <span class="sr-only">Loading...</span>
             </div>
             <div v-else>

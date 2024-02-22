@@ -3,7 +3,8 @@
 ?>
 
 <h4>2. @lang('imet-core::oecm_report.stakeholder_users_managing_oecm')</h4>
-<table>
+
+<table class="max-w-6xl">
     <tr>
         <th>
             <b>@lang('imet-core::oecm_report.stakeholder_direct_users')</b>
@@ -18,9 +19,9 @@
                 @foreach($stake_holders['direct'] as $key => $elem)
                     <tr>
                         <td>
-                            <div class="row">
-                                <div class="col-8">{{ $key }}</div>
-                                <div class="col-4 text-left">{{ $elem }}</div>
+                            <div class="flex">
+                                <div class="w-9/12">{{ $key }}</div>
+                                <div class="text-left">{{ $elem }}</div>
                             </div>
                         </td>
                     </tr>
@@ -32,9 +33,9 @@
                 @foreach($stake_holders['indirect'] as $key => $elem)
                     <tr>
                         <td>
-                            <div class="row">
-                                <div class="col-8">{{ $key }}</div>
-                                <div class="col-4 text-left">{{ $elem }}</div>
+                            <div class="flex">
+                                <div class="w-9/12">{{ $key }}</div>
+                                <div class="text-left">{{ $elem }}</div>
                             </div>
                         </td>
                     </tr>
