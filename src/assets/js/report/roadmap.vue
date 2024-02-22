@@ -3,33 +3,28 @@
         <div class="module-header">
             <div class="module-title"></div>
         </div>
-        <div class="module-body" v-if="current_report">
-            <div class="row">
-                <div class="col-8">
-                    <h4>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.possible_roadmap') }}</h4>
-                </div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}1</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}2</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}3</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}4</h5></div>
-                <div class="col"><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}5</h5></div>
+        <div class="module-body flex flex-col gap-y-4" v-if="current_report">
+
+            <div class="flex width-full content-center justify-between">
+                <div class="width w-8/12"><h4>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.possible_roadmap') }}</h4></div>
+                <div><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}1</h5></div>
+                <div><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}2</h5></div>
+                <div><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}3</h5></div>
+                <div><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}4</h5></div>
+                <div><h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.year') }}5</h5></div>
             </div>
-            <div class="row mb-1">
-                <div class="col-6">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.long_term_objectives') }}</h5>
-                </div>
-                <div class="col-6">
-                    <editor v-model=current_report.long_term v-on:update="current_report.long_term = $event"
-                            v-if="action='edit'"></editor>
+
+            <div class="flex">
+                <h5 class="w-6/12">{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.long_term_objectives') }}</h5>
+                <div class="w-6/12">
+                    <editor v-model=current_report.long_term v-on:update="current_report.long_term = $event" v-if="action='edit'"></editor>
                 </div>
             </div>
-            <div class="row mb-1">
-                <div class="col">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.outcome') }} 1</h5>
-                </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-8">
+
+            <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.outcome') }} 1</h5>
+
+            <div class="flex width-full content-center justify-between">
+                <div class="width w-8/12">
                     <editor v-model=current_report.outcome v-on:update="current_report.outcome = $event"
                             v-if="action='edit'"></editor>
                 </div>
@@ -38,82 +33,75 @@
                                       :id="current_report['group_key']+'_outcome_year'+year"></checkbox-boolean>
                 </div>
             </div>
-            <div class="row mb-1">
-                <div class="col-6">
+
+            <div class="flex">
+                <div class="w-6/12">
                     <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.annual_multi_annual_targets') }}</h5>
                 </div>
-                <div class="col-6">
+                <div class="w-6/12">
                     <editor v-model=current_report.annual_targets1 v-on:update="current_report.annual_targets1 = $event"
                             v-if="action='edit'"></editor>
                 </div>
             </div>
+
             <div v-for="activity in this.outcome1_list.length">
-                <div class="row mb-1">
-                    <div class="col">
-                        <h6>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.activity') }} {{ activity }}</h6>
-                    </div>
-                </div>
-                <div class="row mb-1">
-                    <div class="col-8">
+                <h6>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.activity') }} {{ activity }}</h6>
+                <div class="flex width-full content-center justify-between">
+                    <div class="width w-8/12">
                         <editor v-model="current_report['annual_targets1_activity'+activity]"
                                 v-on:update="current_report['annual_targets1_activity'+activity] = $event"
                                 v-if="action='edit'"></editor>
                     </div>
-
                     <div v-for="year in [1,2,3,4,5]" class="col">
                         <checkbox-boolean v-model="current_report['annual_targets1_activity'+activity+'_year'+year]"
                                           :id="current_report['group_key']+'_annual_targets1_activity'+activity+'_year'+year"></checkbox-boolean>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4 mb-5">
-                <div class="col">
-                    <button type="button" v-if="outcome1_list.length < 5"
-                            class="btn-nav small " v-on:click="add_activity_outcome1_item">
-                        <span class="fas fa-fw fa-plus-circle white"></span>
-                        {{ Locale.getLabel('modular-forms::common.add_item') }}
-                    </button>
-                    <button type="button" v-if="outcome1_list.length > 1"
-                            class="btn-nav small red" v-on:click="remove_outcome1_item">
-                        <span class="fas fa-fw fa-trash white"></span>
-                    </button>
-                </div>
+
+            <div class="flex">
+                <button type="button" v-if="outcome1_list.length < 5"
+                        class="btn-nav small " v-on:click="add_activity_outcome1_item">
+                    <span class="fas fa-fw fa-plus-circle white"></span>
+                    {{ Locale.getLabel('modular-forms::common.add_item') }}
+                </button>
+                <button type="button" v-if="outcome1_list.length > 1"
+                        class="btn-nav small red" v-on:click="remove_outcome1_item">
+                    <span class="fas fa-fw fa-trash white"></span>
+                </button>
             </div>
-            <div class="row">
-                <div class="col">
-                    <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.outcome') }} 2</h5>
-                </div>
-            </div>
-            <div class="row mb-1">
-                <div class="col-8">
+
+
+        <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.outcome') }} 2</h5>
+
+            <div class="flex width-full content-center justify-between">
+                <div class="width w-8/12">
                     <editor v-model=current_report.outcome2 v-on:update="current_report.outcome2 = $event"
                             v-if="action='edit'"></editor>
 
                 </div>
-
                 <div v-for="year in [1,2,3,4,5]" class="col">
                     <checkbox-boolean v-model="current_report['outcome2_year'+year]"
                                       :id="current_report['group_key']+'_outcome2_year'+year"></checkbox-boolean>
                 </div>
-
             </div>
-            <div class="row mb-1">
-                <div class="col-6">
+
+            <div class="flex">
+                <div class="w-6/12">
                     <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.annual_multi_annual_targets') }}</h5>
                 </div>
-                <div class="col-6">
+                <div class="w-6/12">
                     <editor v-model=current_report.annual_targets2 v-on:update="current_report.annual_targets2 = $event"
                             v-if="action='edit'"></editor>
                 </div>
             </div>
+
             <div v-for="activity in this.outcome2_list.length">
-                <div class="row">
-                    <div class="col">
-                        <h6>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.activity') }} {{ activity }}</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-8">
+
+                <h6>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.activity') }} {{ activity }}</h6>
+
+                <div class="flex width-full content-center justify-between">
+                    <div class="width w-8/12">
                         <editor v-model="current_report['annual_targets2_activity'+activity]"
                                 v-on:update="current_report['annual_targets2_activity'+activity] = $event"
                                 v-if="action='edit'"></editor>
@@ -125,19 +113,19 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <button type="button" v-if="outcome2_list.length < 5"
-                            class="btn-nav small " v-on:click="add_activity_outcome2_item">
-                        <span class="fas fa-fw fa-plus-circle white"></span>
-                        {{ Locale.getLabel('modular-forms::common.add_item') }}
-                    </button>
-                    <button type="button" v-if="outcome2_list.length > 1"
-                            class="btn-nav small red" v-on:click="remove_outcome2_item">
-                        <span class="fas fa-fw fa-trash white"></span>
-                    </button>
-                </div>
+
+            <div class="flex">
+                <button type="button" v-if="outcome2_list.length < 5"
+                        class="btn-nav small " v-on:click="add_activity_outcome2_item">
+                    <span class="fas fa-fw fa-plus-circle white"></span>
+                    {{ Locale.getLabel('modular-forms::common.add_item') }}
+                </button>
+                <button type="button" v-if="outcome2_list.length > 1"
+                        class="btn-nav small red" v-on:click="remove_outcome2_item">
+                    <span class="fas fa-fw fa-trash white"></span>
+                </button>
             </div>
+
         </div>
     </div>
 </template>

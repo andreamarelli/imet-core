@@ -9,26 +9,16 @@
                 </div>
             </div>
             <div class="module-body bg-white border-0">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm">
-                            <dopa_indicators_table
-                                :indicators=container.props.config.dopa_indicators.land_degradation.indicators
-                                :api_data="Object.assign({}, ...data_elements.props)"
-                                :precision="2"
-                            ></dopa_indicators_table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm">
-                            <scaling_dopa_chart_doughnut
-                                :title="''"
-                                :indicators=container.props.config.dopa_indicators.land_degradation.bar_indicators
-                                :api_data="Object.assign({}, ...data_elements.props)"
-                            ></scaling_dopa_chart_doughnut>
-                        </div>
-                    </div>
-                </div>
+                <dopa_indicators_table
+                    :indicators=container.props.config.dopa_indicators.land_degradation.indicators
+                    :api_data="Object.assign({}, ...data_elements.props)"
+                    :precision="2"
+                ></dopa_indicators_table>
+                <scaling_dopa_chart_doughnut
+                    :title="''"
+                    :indicators=container.props.config.dopa_indicators.land_degradation.bar_indicators
+                    :api_data="Object.assign({}, ...data_elements.props)"
+                ></scaling_dopa_chart_doughnut>
             </div>
             @include('imet-core::scaling_up.components.copyright_dopa')
         </template>

@@ -14,7 +14,7 @@ if (!function_exists('injectTitleAndHistogram')) {
                     <h3>'.$title.'</h3>
                 </div>
                 <div class="module-row__input">
-                    <div class="row progress_bar" style="margin-top: 25px">
+                    <div class="progress_bar" style="margin-top: 25px">
                         <imet_progress_bar
                             :value=category_stats[\''.$category_index.'\']
                             color="#87c89b"

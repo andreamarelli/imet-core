@@ -4,44 +4,51 @@
             <div class="module-title">{{ Locale.getLabel('imet-core::oecm_report.general_planning.objectives_title') }}</div>
         </div>
         <div class="module-body">
-            <div class="row">
-                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.intervention_context') }}</h4></div>
-                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</h4></div>
-            </div>
-            <div v-for="(objective, index) in objectives['context']" class="row mt-3">
-                <div v-html="objective" class="col"></div>
-                <div class="col text-center">
-                    <span class="checkbox">
-                    <input type="checkbox"
-                           :checked="is_checked(index)"
-                           :data-name="objective"
-                           :id="objective"
-                           @click="selectValueByIdAndValue(index, objective)"
-                           class="vue-checkboxes"
-                           :value="index">
+
+            <table class="max-w-6xl">
+                <tr>
+                    <th class="w-8/12">{{ Locale.getLabel('imet-core::oecm_report.general_planning.intervention_context') }}</th>
+                    <th>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</th>
+                </tr>
+                <tr v-for="(objective, index) in objectives['context']" class="mt-3">
+                    <td v-html="objective" ></td>
+                    <td class="col text-center">
+                        <span class="checkbox">
+                        <input type="checkbox"
+                               :checked="is_checked(index)"
+                               :data-name="objective"
+                               :id="objective"
+                               @click="selectValueByIdAndValue(index, objective)"
+                               class="vue-checkboxes"
+                               :value="index">
+                            <label :for="objective"></label>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="max-w-6xl">
+                <tr>
+                    <th class="w-8/12">{{ Locale.getLabel('imet-core::oecm_report.general_planning.management_evaluation') }}</th>
+                    <th>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</th>
+                </tr>
+                <tr v-for="(objective, index) in objectives['evaluation']" class="mt-3">
+                    <td v-html="objective" ></td>
+                    <td class="col text-center">
+                        <span class="checkbox">
+                        <input type="checkbox"
+                               :checked="is_checked(index)"
+                               :data-name="objective"
+                               :id="objective"
+                               @click="selectValueByIdAndValue(index, objective)"
+                               class="vue-checkboxes"
+                               :value="index">
                         <label :for="objective"></label>
                         </span>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.management_evaluation') }}</h4></div>
-                <div class="col"><h4>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</h4></div>
-            </div>
-            <div v-for="(objective, index) in objectives['evaluation']" class="row mt-3">
-                <div v-html="objective" class="col"></div>
-                <div class="col text-center">
-                    <span class="checkbox">
-                    <input type="checkbox"
-                           :checked="is_checked(index)"
-                           :data-name="objective"
-                           :id="objective"
-                           @click="selectValueByIdAndValue(index, objective)"
-                           class="vue-checkboxes"
-                           :value="index">
-                    <label :for="objective"></label>
-                    </span>
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </table>
+
         </div>
     </div>
 </template>

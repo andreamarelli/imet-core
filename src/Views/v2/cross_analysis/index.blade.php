@@ -51,9 +51,7 @@ $i = 0;
                 $i++; ?>
         @endforeach
     @else
-        <div class="row mt-5">
-            <div class="col text-center"> {{trans('imet-core::common.nothing_found')}}</div>
-        </div>
+        <div class="text-center">{{trans('imet-core::common.nothing_found')}}</div>
     @endif
 </div>
 

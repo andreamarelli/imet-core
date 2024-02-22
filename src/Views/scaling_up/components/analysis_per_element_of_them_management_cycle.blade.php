@@ -38,7 +38,7 @@
                 :type="'planning'"
                 :items="{{json_encode($custom_names)}}"
                 :func="'analysis_per_element_of_the_management_cycle'">
-                <template slot-scope="data" class="col-24">
+                <template slot-scope="data">
                     @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false])
                 </template>
             </container_analysis_management_cycle>
@@ -51,7 +51,7 @@
                 :type="'inputs'"
                 :items="{{json_encode($custom_names)}}"
                 :func="'analysis_per_element_of_the_management_cycle'">
-                <template slot-scope="data" class="col-24">
+                <template slot-scope="data">
                     @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false])
                 </template>
             </container_analysis_management_cycle>
@@ -64,7 +64,7 @@
                 :loaded_at_once="container.props.show_view"
                 :title="container.props.config.element_diagrams.process[0].menu.header"
                 :url=url>
-                <template slot-scope="data" class="col-24">
+                <template slot-scope="data">
                     @include('imet-core::scaling_up.components.analysis_process_elements', ['name' => $name, 'sub_class' => 'sub-title-second'])
                 </template>
             </container_view>
@@ -77,7 +77,7 @@
                 :type="'outputs'"
                 :items="{{json_encode($custom_names)}}"
                 :func="'analysis_per_element_of_the_management_cycle'">
-                <template slot-scope="data" class="col-24">
+                <template slot-scope="data">
                     @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false, 'sub_class' => 'sub-title-second'])
                 </template>
             </container_analysis_management_cycle>
@@ -90,7 +90,7 @@
                 :type="'outcomes'"
                 :items="{{json_encode($custom_names)}}"
                 :func="'analysis_per_element_of_the_management_cycle'">
-                <template slot-scope="data" class="col-24">
+                <template slot-scope="data">
                     @include('imet-core::scaling_up.components.analysis_element', ['name' => $name, 'dontShowTitle' => false, 'sub_class' => 'sub-title-second'])
                 </template>
             </container_analysis_management_cycle>

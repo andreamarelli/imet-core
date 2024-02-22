@@ -533,8 +533,6 @@ fieldset[disabled] .vue-swatches {
   margin: 0.25rem; }
 .m-4 {
   margin: 1rem; }
-.m-5 {
-  margin: 1.25rem; }
 .m-auto {
   margin: auto; }
 .mx-1 {
@@ -598,6 +596,10 @@ fieldset[disabled] .vue-swatches {
   height: 100%; }
 .w-5 {
   width: 1.25rem; }
+.w-6\/12 {
+  width: 50%; }
+.w-8\/12 {
+  width: 66.666667%; }
 .w-9\/12 {
   width: 75%; }
 .w-full {
@@ -624,12 +626,16 @@ fieldset[disabled] .vue-swatches {
   flex-direction: column; }
 .flex-wrap {
   flex-wrap: wrap; }
+.content-center {
+  align-content: center; }
 .items-center {
   align-items: center; }
 .justify-start {
   justify-content: flex-start; }
 .justify-center {
   justify-content: center; }
+.justify-between {
+  justify-content: space-between; }
 .gap-1 {
   gap: 0.25rem; }
 .gap-2 {
@@ -643,6 +649,10 @@ fieldset[disabled] .vue-swatches {
        column-gap: 2rem; }
 .gap-y-1 {
   row-gap: 0.25rem; }
+.gap-y-2 {
+  row-gap: 0.5rem; }
+.gap-y-4 {
+  row-gap: 1rem; }
 .rounded {
   border-radius: 0.25rem; }
 .border {

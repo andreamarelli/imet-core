@@ -11,11 +11,8 @@
     </div>
     <div class="module-body">
 
-        <div class="row ">
-            <div class="col text-center mt-4">
-                <h4>1. @lang('imet-core::oecm_report.key_biodiversity_elements')</h4>
-            </div>
-        </div>
+         <h4>1. @lang('imet-core::oecm_report.key_biodiversity_elements')</h4>
+
         <table>
             <tr>
                 <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.priority')</h5></th>
@@ -34,11 +31,9 @@
                 </tr>
             @endforeach
         </table>
-        <div class="row ">
-            <div class="col text-center mt-4">
-                <h4>2. @lang('imet-core::oecm_report.ecosystem_services')</h4>
-            </div>
-        </div>
+
+        <h4>2. @lang('imet-core::oecm_report.ecosystem_services')</h4>
+
         <table>
             <tr>
                 <th style="width:25%"><h5>@lang('imet-core::oecm_report.general_planning.priority')</h5></th>
@@ -58,72 +53,74 @@
                 </tr>
             @endforeach
         </table>
-        <div class="row ">
-            <div class="col text-center mt-4 mb-2">
-                <h4>3. @lang('imet-core::oecm_report.general_planning.general_planning_specific_global')</h4>
-            </div>
-        </div>
-        <div class="row ">
-            <div class="col text-center mt-4 mb-2">
-                <h5>@lang('imet-core::oecm_report.general_planning.general_planning_specific_threats')</h5>
-            </div>
-        </div>
 
 
-        <div class="row mb-5">
-            <div class="col">
-                <div>
-                    @foreach($key_elements_biodiversity_charts_global['integration']['chart']['values'] as $threat_key => $threat_label)
-                        <div class="histogram-row">
-                            <div class="histogram-row__title text-left">{{ $threat_key }}</div>
-                            <div class="histogram-row__value text-right" style="margin-right: 20px;">
-                                <b>{{ $threat_label ?? '-' }}</b>
-                            </div>
-                            <div class="histogram-row__progress-bar">
-                                @if($threat_label!=='-')
-                                    <imet_progress_bar
-                                        :value={{ $threat_label }}
-                                        color="#87c89b"
-                                        :min=-100
-                                        :max=0
-                                    ></imet_progress_bar>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
+        <h4>3. @lang('imet-core::oecm_report.general_planning.general_planning_specific_global')</h4>
+
+        <h5>@lang('imet-core::oecm_report.general_planning.general_planning_specific_threats')</h5>
+
+        @foreach($key_elements_biodiversity_charts_global['integration']['chart']['values'] as $threat_key => $threat_label)
+            <div class="histogram-row">
+                <div class="histogram-row__title text-left">{{ $threat_key }}</div>
+                <div class="histogram-row__value text-right" style="margin-right: 20px;">
+                    <b>{{ $threat_label ?? '-' }}</b>
+                </div>
+                <div class="histogram-row__progress-bar">
+                    @if($threat_label!=='-')
+                        <imet_progress_bar
+                            :value={{ $threat_label }}
+                            color="#87c89b"
+                            :min=-100
+                            :max=0
+                        ></imet_progress_bar>
+                    @endif
+                </div>
+            </div>
+        @endforeach
+
+        <h5>@lang('imet-core::oecm_report.general_planning.general_planning_global_threats')</h5>
+
+        @foreach($key_elements_biodiversity_charts_global['global']['chart']['values'] as $threat_key => $threat_label)
+            <div class="histogram-row">
+                <div class="histogram-row__title text-left">{{ $threat_key }}</div>
+                <div class="histogram-row__value text-right" style="margin-right: 20px;">
+                    <b>{{ $threat_label ?? '-' }}</b>
+                </div>
+                <div class="histogram-row__progress-bar">
+                    @if($threat_label!=='-')
+                        <imet_progress_bar
+                            :value={{ $threat_label }}
+                            color="#87c89b"
+                            :min=-100
+                            :max=0
+                        ></imet_progress_bar>
+                    @endif
+                </div>
+            </div>
+        @endforeach
+
+        <h4>4. @lang('imet-core::oecm_report.general_planning.short_term_prioritize')</h4>
+        <div v-if="error_objectives">
+            <div class="standalone error text-center mb-5 alert alert-danger">
+                {{ ucfirst(trans('imet-core::analysis_report.error_wrong')) }}!
+            </div>
+        </div>
+        <div v-else>
+            <div class="standalone" v-if="loading_objectives">
+                <i class="fa fa-spinner fa-spin text-primary-800"></i>
+            </div>
+
+            <div v-else>
+                <h5>@lang('imet-core::oecm_report.general_planning.intervention_context')</h5>
+                <div v-if="short_long_objectives" v-for="(objective, index) in short_long_objectives['context']" class="mt-3">
+                    @{{ objective}}
+                </div>
+                <h5>@lang('imet-core::oecm_report.general_planning.management_evaluation')</h5>
+                <div v-if="short_long_objectives" v-for=" (objective, index) in short_long_objectives['evaluation']" class="mt-3">
+                    @{{ objective}}
                 </div>
             </div>
         </div>
-        <div class="row ">
-            <div class="col text-center mt-4 mb-2">
-                <h5>@lang('imet-core::oecm_report.general_planning.general_planning_global_threats')</h5>
-            </div>
-        </div>
-        <div class="row mb-5">
-            <div class="col">
-                <div>
-                    @foreach($key_elements_biodiversity_charts_global['global']['chart']['values'] as $threat_key => $threat_label)
-                        <div class="histogram-row">
-                            <div class="histogram-row__title text-left">{{ $threat_key }}</div>
-                            <div class="histogram-row__value text-right" style="margin-right: 20px;">
-                                <b>{{ $threat_label ?? '-' }}</b>
-                            </div>
-                            <div class="histogram-row__progress-bar">
-                                @if($threat_label!=='-')
-                                    <imet_progress_bar
-                                        :value={{ $threat_label }}
-                                        color="#87c89b"
-                                        :min=-100
-                                        :max=0
-                                    ></imet_progress_bar>
-                                @endif
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        @include('imet-core::oecm.report.components.prioritize_objectives', ['report' => $report[0]])
 
         <h5>@lang('imet-core::oecm_report.general_planning.management_priorities')</h5>
         @include('imet-core::oecm.report.components.editor', ['report' => $report[0], 'action' => $action, 'field' => 'priorities'])

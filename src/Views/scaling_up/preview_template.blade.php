@@ -2,21 +2,12 @@
 
 @section('body')
     <div class="container">
-        <div class="row ">
-            <div class="col-sm text-center m-5">
-                <strong>Scaling up analysis report ({{$protected_areas}})</strong>
-            </div>
-        </div>
+        <strong>Scaling up analysis report ({{$protected_areas}})</strong>
+
     </div>
     <div id="preview-elements">
         <div class="container">
-            <div class="row align-items-center fill">
-                <div class="col-sm">
-                    <div class="text-center">
-                        <br/> <preview_template :scaling_up_id="{{$scaling_up_id}}"></preview_template>
-                    </div>
-                </div>
-            </div>
+            <preview_template :scaling_up_id="{{$scaling_up_id}}"></preview_template>
         </div>
 
         <div id="imet_report" class="scrollButtons">

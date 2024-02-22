@@ -9,22 +9,17 @@
                 </div>
             </div>
             <div class="module-body bg-white border-0">
-                <div class="container">
-                    <div class="row">
-                        <scaling_dopa_chart_bar class="col-sm"
-                                                :title=container.props.config.dopa_indicators.protected_area_coverage_and_connectivity.title_chart
-                                                :indicators=container.props.config.dopa_indicators.protected_area_coverage_and_connectivity.bar_indicators
-                                                :api_data="Object.assign({}, ...data_elements.props)"
-                        ></scaling_dopa_chart_bar>
-                    </div>
-                    <div class="row mt-3">
-                        <dopa_indicators_table
-                            :indicators=container.props.config.dopa_indicators.protected_area_coverage_and_connectivity.table_bar_indicators
-                            :api_data="Object.assign({}, ...data_elements.props)"
-                            :precision="2"
-                        ></dopa_indicators_table>
-                    </div>
-                </div>
+                <scaling_dopa_chart_bar class="col-sm"
+                                        :title=container.props.config.dopa_indicators.protected_area_coverage_and_connectivity.title_chart
+                                        :indicators=container.props.config.dopa_indicators.protected_area_coverage_and_connectivity.bar_indicators
+                                        :api_data="Object.assign({}, ...data_elements.props)"
+                ></scaling_dopa_chart_bar>
+
+                <dopa_indicators_table
+                    :indicators=container.props.config.dopa_indicators.protected_area_coverage_and_connectivity.table_bar_indicators
+                    :api_data="Object.assign({}, ...data_elements.props)"
+                    :precision="2"
+                ></dopa_indicators_table>
             </div>
             @include('imet-core::scaling_up.components.copyright_dopa')
         </template>

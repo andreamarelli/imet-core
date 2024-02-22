@@ -32,20 +32,20 @@ use \AndreaMarelli\ImetCore\Models\Imet\Imet;
     <br/>
 
     <div id="export_list">
-        <div class="row">
-            <div class="col">
-                <form target="_blank" ref="filterForm" method="POST"
-                      action="{{ route($route_prefix . 'export_batch') }}">
-                    <button type="submit" class="btn-nav rounded" :disabled="exportDisabled">Export
-                    </button>
-                    {{ csrf_field() }}
-                    <input type='hidden' name="selection" v-model="checkboxes">
-                </form>
-            </div>
-            <div class="col">
-                <span class="float-right mt-3"> <b>@{{ totalCount }}</b> {{ totalCount==1 ? "<?php echo trans_choice('modular-forms::common.record_found', 1); ?>" :  "<?php echo trans_choice('modular-forms::common.record_found', 2); ?>" }}.</span>
-            </div>
+
+        <div class="flex">
+            <form target="_blank" ref="filterForm" method="POST"
+                  action="{{ route($route_prefix . 'export_batch') }}">
+                <button type="submit" class="btn-nav rounded" :disabled="exportDisabled">Export
+                </button>
+                {{ csrf_field() }}
+                <input type='hidden' name="selection" v-model="checkboxes">
+            </form>
+            <span class="float-right mt-3">
+                <b>@{{ totalCount }}</b> {{ totalCount==1 ? "<?php echo trans_choice('modular-forms::common.record_found', 1); ?>" :  "<?php echo trans_choice('modular-forms::common.record_found', 2); ?>" }}.
+            </span>
         </div>
+
         <table class="striped">
             <thead>
             <tr>

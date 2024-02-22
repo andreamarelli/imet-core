@@ -262,7 +262,7 @@ class OECM
         $objectives = ['context' => [], 'evaluation' => []];
         $report = Report::getByForm($form_id);
 
-        if (count($report) && array_key_exists('objectves', $report[0])) {
+        if (count($report) && array_key_exists('objectives', $report[0])) {
             if($report[0]['objectives']) {
                 $result = json_decode($report[0]['objectives'], true);
                 foreach ($result as $item) {

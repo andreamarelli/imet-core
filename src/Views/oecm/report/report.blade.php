@@ -27,6 +27,9 @@ const REPORT_PREFIX = oecm\Controller::ROUTE_PREFIX;
 if ($item->language != App::getLocale()) {
     App::setLocale($item->language);
 }
+
+//dd($assessment);
+
 ?>
 
 @extends('modular-forms::layouts.forms')
@@ -97,7 +100,7 @@ if ($item->language != App::getLocale()) {
             </div>
         </div>
 
-        {{-- SWOT analysis --}}
+        {{-- objectives --}}
         @include('imet-core::oecm.report.components.objectives', ['objectives' => $objectives])
 
         {{-- SWOT analysis --}}
@@ -129,7 +132,7 @@ if ($item->language != App::getLocale()) {
             </div>
         </div>
 
-
+        {{-- AR.4 --}}
         @include('imet-core::oecm.report.components.general_planning', [
                 'report' => $report,
                 'action' => $action,
@@ -137,25 +140,24 @@ if ($item->language != App::getLocale()) {
                 'key_elements_ecosystem' => $key_elements_ecosystem,
                 'main_threats' => $main_threats])
 
+        {{-- AR.5 --}}
         <div class="item">
             @include('imet-core::oecm.report.components.planning_roadmap', ['report' => $report[0], 'action' => $action])
-            <div class="row">
-                <div class="col">
-                    <span class="btn medium" v-if="reportLength < 10">
-                        <button type="button"
-                                class="btn-nav medium " v-on:click="addItem">
-                                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!} {!! ucfirst(trans('modular-forms::common.add_item')) !!}
-                        </button>
-                    </span>
-                    <span v-if="reportLength > 1">
-                        <button type="button"
-                                class="btn-nav medium red" v-on:click="deleteItem">
-                            {!! AndreaMarelli\ModularForms\Helpers\Template::icon('trash', 'white') !!}
-                        </button>
-                    </span>
-                </div>
-            </div>
+            <span class="btn medium" v-if="reportLength < 10">
+                <button type="button"
+                        class="btn-nav medium " v-on:click="addItem">
+                            {!! AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!} {!! ucfirst(trans('modular-forms::common.add_item')) !!}
+                </button>
+            </span>
+            <span v-if="reportLength > 1">
+                <button type="button"
+                        class="btn-nav medium red" v-on:click="deleteItem">
+                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('trash', 'white') !!}
+                </button>
+            </span>
         </div>
+
+        {{-- AR.6 --}}
         <div class="module-container mt-5">
             <div class="module-header">
                 <div class="module-title" id="ar6">AR.6 @lang('imet-core::oecm_report.key_questions.title')</div>
@@ -315,6 +317,7 @@ if ($item->language != App::getLocale()) {
                     this.report.splice(key, 1);
                 },
                 getObjectives() {
+                    let _this = this;
                     this.loading_objectives = true;
 
                     fetch('{{ route(REPORT_PREFIX.'report_objectives', ['form_id' => $form_id]) }}', {
@@ -326,13 +329,13 @@ if ($item->language != App::getLocale()) {
                     })
                         .then((response) => response.json())
                         .then(function(data){
-                            this.error_objectives = false;
-                            this.short_long_objectives =data;
-                            this.loading_objectives = false;
+                            _this.error_objectives = false;
+                            _this.short_long_objectives =data;
+                            _this.loading_objectives = false;
                         })
                         .catch( (error) => {
-                            this.error_objectives = true;
-                            this.loading_objectives = false;
+                            _this.error_objectives = true;
+                            _this.loading_objectives = false;
                         })
                 }
             }

@@ -94,10 +94,8 @@
                                                            :values='data_elements.props'
                                                            :indicators='container.props.config.performance_diagram.indicators'
                                                            :data_table="'test'"></scaling_radar>
-                                            <div class="row mb-1 mt-2" style="font-size: 12px">
-                                                <div class="col-sm align-self-center">
-                                                    {{ trans("imet-core::analysis_report.average_protected_areas") }}
-                                                </div>
+                                            <div style="font-size: 12px" class=align-center">
+                                                {{ trans("imet-core::analysis_report.average_protected_areas") }}
                                             </div>
                                         </template>
                                     </container_actions>
@@ -142,15 +140,11 @@
                                                 :label_axis_y2_show="false"
                                                 :values='data_elements.props'
                                             ></scatter>
-                                            <div class="row mb-1 mt-1" style="font-size: 12px">
-                                                <div class="col-sm align-self-center">
-                                                    {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
-                                                </div>
+                                            <div style="font-size: 12px" class=align-center">
+                                                {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
                                             </div>
-                                            <div class="row mb-3 mt-2" style="font-size: 12px;">
-                                                <div class="col-sm align-self-center">
-                                                    * {{ trans("imet-core::analysis_report.size_of_square") }}
-                                                </div>
+                                            <div style="font-size: 12px" class=align-center">
+                                                * {{ trans("imet-core::analysis_report.size_of_square") }}
                                             </div>
                                         </template>
                                     </container_actions>

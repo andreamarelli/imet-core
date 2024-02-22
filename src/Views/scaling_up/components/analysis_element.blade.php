@@ -46,15 +46,12 @@
                             :values="data_elements.props[tableValue['name']].ranking.values"
                             :percent_values="data_elements.props[tableValue['name']].ranking.percent_value"
                             :raw_values="data_elements.props[tableValue['name']].ranking.raw_values_protected_area"></bar_category_stack>
-                        <div class="row mb-1 mt-1" style="font-size: 12px">
-                            <div class="col-sm align-self-center">
+                        <div style="font-size: 12px">
+
                                 {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
-                            </div>
                         </div>
-                        <div class="row mb-3 mt-1" style="font-size: 12px;">
-                            <div class="col-sm align-self-center" v-if="tableValue['key'] =='overall_scores'">
-                                * {{ trans("imet-core::analysis_report.ranking_rescaled_indicators") }}
-                            </div>
+                        <div style="font-size: 12px;" v-if="tableValue['key'] =='overall_scores'">
+                            * {{ trans("imet-core::analysis_report.ranking_rescaled_indicators") }}
                         </div>
                     </template>
 
@@ -120,10 +117,8 @@
                                            :event_key="'analysis_'+tableValue['name']"
                                            :indicators="data_elements.props[tableValue['name']].radar.indicators"
                                            :values="data_elements.props[tableValue['name']].radar.values"></scaling_radar>
-                            <div class="row mb-1 mt-2" style="font-size: 12px">
-                                <div class="col-sm align-self-center">
-                                    {{ trans("imet-core::analysis_report.average_protected_areas") }}
-                                </div>
+                            <div  style="font-size: 12px">
+                                {{ trans("imet-core::analysis_report.average_protected_areas") }}
                             </div>
                         </template>
                     </container_actions>
