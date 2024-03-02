@@ -36,7 +36,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         // Views
         $this->loadViewsFrom(__DIR__.'/Views', 'imet-core');
-        $this->publishes([__DIR__.'/Views/vendor' => resource_path('views/vendor/')], ['imet-core', 'laravel-assets']);
+        $this->publishes([__DIR__.'/Views/vendor' => resource_path('views/vendor/')], ['imet-core']);
 
         // Assets
         $this->publishes([__DIR__.'/../dist' => public_path('vendor/imet-core')], ['imet-core', 'laravel-assets']);
