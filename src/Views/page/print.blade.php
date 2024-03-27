@@ -3,6 +3,7 @@
 use AndreaMarelli\ImetCore\Controllers\Imet;
 use AndreaMarelli\ImetCore\Models;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use AndreaMarelli\ModularForms\Enums\ModuleViewModes;
 use \Illuminate\Support\Str;
 
 /** @var Imet\v2\ContextController|Imet\v1\ContextController|Imet\oecm\ContextController|Imet\v1\EvalController|Imet\v2\EvalController|Imet\oecm\EvalController $controller */
@@ -52,7 +53,7 @@ if(Str::contains($controller, Models\Imet\Imet::IMET_V1)){
                         :controller="$controller"
                         :module="$module"
                         :formId="$item->getKey()"
-                        :mode="\AndreaMarelli\ModularForms\View\Module\Container::MODE_PRINT"
+                        :mode="ModuleViewModes::SHOW"
                 ></x-modular-forms::module.container>
             @else
                 @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
@@ -69,7 +70,7 @@ if(Str::contains($controller, Models\Imet\Imet::IMET_V1)){
                         :controller="$controller"
                         :module="$module"
                         :formId="$item->getKey()"
-                        :mode="\AndreaMarelli\ModularForms\View\Module\Container::MODE_SHOW"
+                        :mode="ModuleViewModes::SHOW"
                 ></x-modular-forms::module.container>
             @else
                 @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])

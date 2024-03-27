@@ -2,6 +2,7 @@
 
 use \AndreaMarelli\ImetCore\Controllers;
 use \AndreaMarelli\ImetCore\Models;
+use \AndreaMarelli\ModularForms\Enums\ModuleViewModes;
 
 /** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var integer $formID */
@@ -36,7 +37,7 @@ $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
                         :controller="$controller"
                         :module="$module_class"
                         :formId="$formID"
-                        :mode="\AndreaMarelli\ModularForms\View\Module\Container::MODE_SHOW"
+                        :mode="ModuleViewModes::SHOW"
                 ></x-modular-forms::module.container>
             </div>
 
