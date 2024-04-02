@@ -20,7 +20,7 @@ export default {
         },
         wdpa_ids: {
             type: String,
-            default: () => {}
+            default: ''
         },
         url: {
             type: String,
@@ -85,7 +85,7 @@ export default {
                 });
 
                 window.report_map.on('load', function () {
-                    window.BiopamaWDPA.addWdpaLayer(window.report_map, _this.wdpa_ids.split(','));
+                    window.BiopamaWDPA.addWdpaLayer(window.report_map, _this.wdpa_ids);
                 });
 
             }

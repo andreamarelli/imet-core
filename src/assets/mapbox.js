@@ -3,7 +3,7 @@ window.mapboxgl = require('mapbox-gl');
 window.BiopamaWDPA = {
     base_layer: 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc',
 
-    addWdpaLayer: function(map, wdpa_idswdpa_ids) {
+    addWdpaLayer: function(map, wdpa_ids) {
         map.addSource("geospatial_jrc", {
             type: 'vector',
             tiles: [
@@ -29,6 +29,8 @@ window.BiopamaWDPA = {
                 ],
             }
         });
+
+        wdpa_ids = wdpa_ids.split(',');
         map.setFilter("biopama_wdpa", ['in', 'wdpaid', ...wdpa_ids]);
     }
 
