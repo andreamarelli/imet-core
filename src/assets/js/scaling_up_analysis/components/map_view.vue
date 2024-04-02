@@ -85,7 +85,7 @@ export default {
                 });
 
                 window.report_map.on('load', function () {
-                    window.BiopamaWDPA.addWdpaLayer(window.report_map, _this.wdpa_ids);
+                    window.BiopamaWDPA.addWdpaLayer(window.report_map, _this.wdpa_ids.split(','));
                 });
 
             // }
