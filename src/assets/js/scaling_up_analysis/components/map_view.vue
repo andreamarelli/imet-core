@@ -64,8 +64,8 @@ export default {
 
             let _this = this;
 
-            // const pa = await this.retrieveCoords();
-            // if (pa) {
+            const pa = await this.retrieveCoords();
+            if (pa) {
 
                 window.report_map = new window.mapboxgl.Map({
                     container: `map-load`,
@@ -88,7 +88,7 @@ export default {
                     window.BiopamaWDPA.addWdpaLayer(window.report_map, _this.wdpa_ids.split(','));
                 });
 
-            // }
+            }
         }
     }
 }
