@@ -14,11 +14,13 @@ export default {
     name: "map_view",
     inject: ['stores'],
     props: {
-        pa: {
+        form_ids: {
             type: String,
-            default: () => {
-
-            }
+            default: () => {}
+        },
+        wdpa_ids: {
+            type: String,
+            default: () => {}
         },
         url: {
             type: String,
@@ -44,7 +46,7 @@ export default {
                 },
                 body: JSON.stringify({
                   func: 'get_array_of_custom_names',
-                  parameter: this.pa.split(','),
+                  parameter: this.form_ids.split(','),
                   scaling_id: this.stores.BaseStore.scaling_up_id
                 })
             })
@@ -58,10 +60,12 @@ export default {
                 })
         }
         ,
-        loadMap: async function (protected_areas) {
+        loadMap: async function () {
 
-            const pa = await this.retrieveCoords();
-            if (pa) {
+            let _this = this;
+
+            // const pa = await this.retrieveCoords();
+            // if (pa) {
 
                 window.report_map = new window.mapboxgl.Map({
                     container: `map-load`,
@@ -81,10 +85,10 @@ export default {
                 });
 
                 window.report_map.on('load', function () {
-                    window.BiopamaWDPA.addWdpaLayer(window.report_map, pa);
+                    window.BiopamaWDPA.addWdpaLayer(window.report_map, _this.wdpa_ids);
                 });
 
-            }
+            // }
         }
     }
 }
