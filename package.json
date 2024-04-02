@@ -28,7 +28,6 @@
         "webpack-merge": "^5.10.0"
     },
     "dependencies": {
-        "@turf/turf": "^6.5.0",
         "echarts": "^5.4.2",
         "html-to-image": "1.6.1",
         "mapbox-gl": "^3.1.2",

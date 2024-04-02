@@ -62,79 +62,26 @@ export default {
 
             const pa = await this.retrieveCoords();
             if (pa) {
-                let biopamaBaseLayer = 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc';
-                let mapPolyHostURL = "https://tiles.biopama.org/BIOPAMA_poly";
-                let mapPointHostURL = "https://tiles.biopama.org/BIOPAMA_point";
-                let mapPaLayer = "2021_July_ACP";
-                const mapPointLayer = "2021_July_ACP_poly_centers";
 
                 window.report_map = new window.mapboxgl.Map({
                     container: `map-load`,
-                    style: biopamaBaseLayer,
-                    center: [15, 0],
-                    zoom: 3,
-                    minZoom: 0,
-                    maxZoom: 18,
+                    style: window.BiopamaWDPA.base_layer,
+                    center: [30, 0],
+                    zoom: 4,
+                    minZoom: 2,
+                    maxZoom: 12,
                     preserveDrawingBuffer: true
                 });
+
                 window.report_map.on('error', (error) => {
                     if (typeof error.isSourceLoaded === 'undefined') {
                         this.no_internet_connection = true;
                         this.error_message = this.stores.BaseStore.localization('imet-core::analysis_report.error_connection');
                     }
                 });
+
                 window.report_map.on('load', function () {
-                    window.report_map.addSource("BIOPAMA_Poly", {
-                        "type": 'vector',
-                        "tiles": [mapPolyHostURL + "/{z}/{x}/{y}.pbf"],
-                        "minZoom": 0,
-                        "maxZoom": 12,
-                    });
-
-                    window.report_map.addLayer({
-                        "id": "wdpaSelected",
-                        "type": "line",
-                        "source": "BIOPAMA_Poly",
-                        "source-layer": mapPaLayer,
-                        "layout": {"visibility": "visible"},
-                        "paint": {
-                            "line-color": "#ff0000",
-                            "line-width": 2,
-                        },
-                        "transition": {
-                            "duration": 300,
-                            "delay": 0
-                        }
-                    });
-
-                    // window.report_map.addSource("BIOPAMA_Point", {
-                    //     "type": 'vector',
-                    //     "tiles": [mapPointHostURL + "/{z}/{x}/{y}.pbf"],
-                    //     "minZoom": 0,
-                    //     "maxZoom": 12,
-                    // });
-                    //
-                    // window.report_map.addLayer({
-                    //     "id": "wdpaBase",
-                    //     "type": "circle",
-                    //     "source": "BIOPAMA_Point",
-                    //     "source-layer": mapPointLayer,
-                    //     'layout': {
-                    //         'visibility': 'visible'
-                    //     },
-                    //     "minzoom": 1,
-                    //     'paint': {
-                    //         'circle-radius': 8,
-                    //         'circle-color': "#ff0000"
-                    //     }
-                    // });
-
-                    pa.unshift('WDPAID')
-                    pa.unshift('in')
-                    //
-                    window.report_map.setFilter("wdpaSelected", pa);
-                   // window.report_map.setFilter("wdpaBase", pa);
-
+                    window.BiopamaWDPA.addWdpaLayer(window.report_map, pa);
                 });
 
             }
