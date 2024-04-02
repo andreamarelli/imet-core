@@ -10,7 +10,7 @@
                     :exclude_elements="'{{$exclude_elements}}'">
 
                 <template slot-scope="data_elements">
-                    <map_view v-if="container.props.show_view" forms_ids="{{ $pa_ids }}" wdpa_ids="{{ $wdpa_ids }}" :url=url></map_view>
+                    <map_view v-if="container.props.show_view" form_ids="{{ $pa_ids }}" wdpa_ids="{{ $wdpa_ids }}" :url=url></map_view>
                 </template>
 
             </container_actions>

@@ -31,6 +31,8 @@ window.BiopamaWDPA = {
         });
 
         wdpa_ids = wdpa_ids.split(',');
+        // convert as array of strings
+        wdpa_ids = wdpa_ids.map(String);
         map.setFilter("biopama_wdpa", ['in', 'wdpaid', ...wdpa_ids]);
     }
 
