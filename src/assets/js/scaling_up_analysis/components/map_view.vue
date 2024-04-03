@@ -37,7 +37,7 @@ export default {
         await this.loadMap();
     },
     methods: {
-        retrieveCoords: async function () {
+        retrieveWdpaIDs: async function () {
             return fetch(this.url, {
                 method: 'POST',
                 headers: {
@@ -45,14 +45,14 @@ export default {
                   "X-CSRF-Token": window.Laravel.csrfToken,
                 },
                 body: JSON.stringify({
-                  func: 'get_array_of_custom_names',
+                  func: 'get_wdpas_by_form_id',
                   parameter: this.form_ids.split(','),
                   scaling_id: this.stores.BaseStore.scaling_up_id
                 })
             })
                 .then((response) => response.json())
                 .then(function (data) {
-                    return Object.entries(data).map(area => area[1].wdpa_id);
+                    return Object.values(data).map(item => item.wdpa_id);
                 })
                 .catch(function (error) {
                     console.log(error)
@@ -62,10 +62,9 @@ export default {
         ,
         loadMap: async function () {
 
-            let _this = this;
+            const wdpa_ids = await this.retrieveWdpaIDs();
 
-            const pa = await this.retrieveCoords();
-            if (pa) {
+            if (wdpa_ids) {
 
                 window.report_map = new window.mapboxgl.Map({
                     container: `map-load`,
@@ -85,7 +84,7 @@ export default {
                 });
 
                 window.report_map.on('load', function () {
-                    window.BiopamaWDPA.addWdpaLayer(window.report_map, _this.wdpa_ids, 'rgba(255, 0, 0, 0.7)');
+                    window.BiopamaWDPA.addWdpaLayer(window.report_map, wdpa_ids, 'rgba(255, 0, 0, 0.7)');
                 });
 
             }
