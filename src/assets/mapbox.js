@@ -3,7 +3,9 @@ window.mapboxgl = require('mapbox-gl');
 window.BiopamaWDPA = {
     base_layer: 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc',
 
-    addWdpaLayer: function(map, wdpa_ids) {
+    addWdpaLayer: function(map, wdpa_ids, color = null) {
+
+        // Add source: JRC geoserver
         map.addSource("geospatial_jrc", {
             type: 'vector',
             tiles: [
@@ -13,6 +15,15 @@ window.BiopamaWDPA = {
             'scheme': 'xyz',
         });
 
+        color = color || [
+            "match",
+            ["get", "marine"],
+            ["0"],
+            "rgba(141, 191, 79, 0.7)",
+            "rgba(104, 156, 150, 0.7)"
+        ];
+
+        // Add layer: wdpa_latest_biopama
         map.addLayer({
             "id": "biopama_wdpa",
             "type": "fill",
@@ -20,13 +31,7 @@ window.BiopamaWDPA = {
             "source-layer": 'wdpa_latest_biopama',
             "minzoom": 2,
             "paint": {
-                "fill-color": [
-                    "match",
-                    ["get", "marine"],
-                    ["0"],
-                    "hsla(87, 47%, 53%, 0.7)",
-                    "hsla(173, 21%, 51%, 0.7)"
-                ],
+                "fill-color": color
             }
         });
 
