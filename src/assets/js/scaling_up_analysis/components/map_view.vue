@@ -34,6 +34,7 @@ export default {
     },
     methods: {
         retrieveWdpaIDs: async function () {
+            let _this = this;
             return fetch(this.url, {
                 method: 'POST',
                 headers: {
@@ -42,8 +43,8 @@ export default {
                 },
                 body: JSON.stringify({
                     func: 'get_wdpas_by_form_id',
-                    parameter: this.form_ids.split(','),
-                    scaling_id: this.stores.BaseStore.scaling_up_id
+                    parameter: _this.form_ids.split(','),
+                    scaling_id: _this.stores.BaseStore.scaling_up_id
                 })
             })
                 .then((response) => response.json())
