@@ -36,7 +36,6 @@ window.BiopamaWDPA = {
         });
 
         wdpa_ids = wdpa_ids
-            .split(',')
             .map(function(item){
                 return parseInt(item)
             });

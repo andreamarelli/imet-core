@@ -18,10 +18,6 @@ export default {
             type: String,
             default: () => {}
         },
-        wdpa_ids: {
-            type: String,
-            default: ''
-        },
         url: {
             type: String,
             default: ''

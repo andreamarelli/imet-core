@@ -278,14 +278,6 @@ class ScalingUpAnalysisController extends __Controller
 
         $pa_ids = implode(',', array_keys($protected_areas['models']));
 
-        $wdpa_ids = collect($protected_areas['models'])
-            ->map(function ($item) {
-                return $item['wdpa_id'];
-            })
-            ->values()
-            ->toArray();
-        $wdpa_ids = implode(',', $wdpa_ids);
-
         $custom_items = $this->retrieve_custom_names($scaling_up_id);
         $custom_names = array_map(function ($v) {
             return $v->name;
@@ -316,7 +308,6 @@ class ScalingUpAnalysisController extends __Controller
         return view('imet-core::scaling_up.report', [
             'templates' => $templates_names,
             'pa_ids' => $pa_ids,
-            'wdpa_ids' => $wdpa_ids,
             'protected_areas_names' => $protected_areas_names,
             'scaling_up_id' => $scaling_up_id,
             'protected_areas' => $protected_areas,
