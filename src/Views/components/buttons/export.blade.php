@@ -16,7 +16,7 @@ else {
 
 <span class="imet_show_popover">
 
-    <button class="btn-nav small"
+    <button class="btn-nav small blue"
             role="button"
             data-toggle="popover" data-trigger="focus" data-placement="top"
             :data-popover-content="'popover_export_'+item.FormID">
@@ -25,7 +25,7 @@ else {
 
     <div :id="'popover_export_'+item.FormID" style="display: none">
         <div class="popover-heading">
-            @uclang('imet-core::common.export')
+            @uclang('modular-forms::common.export')
         </div>
         <div class="popover-body">
 
@@ -34,9 +34,9 @@ else {
                'controller' => $controller_export,
                'action' =>'export',
                'item' => 'item.FormID',
-               'tooltip' => ucfirst(trans('modular-forms::common.export')),
+               'label' => ucfirst(trans('modular-forms::common.export')),
                'icon' => 'cloud-download-alt',
-               'class' => 'btn-primary'
+               'class' => 'blue'
            ])
 
             {{-- Export without attachments --}}
@@ -44,9 +44,9 @@ else {
                 'controller' => $controller_export,
                 'action' =>'export_no_attachments',
                 'item' => 'item.FormID',
-               'tooltip' => ucfirst(trans('modular-forms::common.export_no_attachments')),
+               'label' => ucfirst(trans('modular-forms::common.export_no_attachments')),
                'icon' => 'cloud-download-alt',
-               'class' => 'btn-primary'
+               'class' => 'blue'
            ])
 
         </div>
