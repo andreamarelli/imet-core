@@ -110,7 +110,7 @@ class ScalingUpAnalysis extends Model
                 $general_info = $general_info_data[0];
                 $lang = Locale::lower();
                 $name = "name_" . (trim($lang) === "" ? "en" : $lang);
-                $country_name = Country::getByISO($general_info['Country'])->$name;
+                $country_name = $general_info['Country'] ? Country::getByISO($general_info['Country'])->$name : "";
 
                 //echo $general_info['Country']."-".$country_name."\n";
                 if (!in_array($country_name, $generalElements['countries'])) {
@@ -141,7 +141,7 @@ class ScalingUpAnalysis extends Model
         }
 
         $generalElements['total_surface_protected_areas'] = Common::round_number($generalElements['total_surface_protected_areas']);
-        
+
         return ['status' => 'success', 'data' => ['general_info' => $generalElements]];
     }
 
