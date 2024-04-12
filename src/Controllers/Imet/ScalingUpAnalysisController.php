@@ -9,8 +9,6 @@ use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScali
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
@@ -21,7 +19,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 
 class ScalingUpAnalysisController extends __Controller
@@ -158,7 +155,7 @@ class ScalingUpAnalysisController extends __Controller
         ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
 
         foreach ($parameters as $value) {
-            if(is_array($value)){
+            if (is_array($value)) {
                 $this->authorize('api_scaling_up', (static::$form_class)::find($value['id']));
             } else if ((int)$value > 0) {
                 $this->authorize('api_scaling_up', (static::$form_class)::find($value));

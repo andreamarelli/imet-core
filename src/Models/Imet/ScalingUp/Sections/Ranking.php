@@ -45,9 +45,8 @@ class Ranking
             if (!isset($items_to_calculate[$i])) {
                 $items_to_calculate[$i] = 0;
             }
-
             foreach ($values as $v => $value) {
-                if ($type === "process" && stripos($v, "_") === true) {
+                if ($type === "process" && stripos($v, "_")) {
                     $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
                 } else {
                     $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.');
@@ -83,7 +82,6 @@ class Ranking
             $ranking['wdpa_ids'][$i] = $wdpa_id;
             $i++;
         }
-
         return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 
@@ -116,10 +114,16 @@ class Ranking
         $average_values = array_map(function ($value, $i) use ($items_to_calculate, $separated_values_by_pa) {
             return $items_to_calculate[$i] > 0 ? Common::round_number($value / $items_to_calculate[$i]) : 0;
         }, $sum_values, array_keys($sum_values));
-
         foreach ($percent_values as $k => $values) {
             foreach ($values as $kk => $value) {
-                $ranking['values'][$k][$kk] = $value !== ScalingUpAnalysis::UNDEFINED_VALUE ? Common::round_number(($value / 100) * $average_values[$kk]) : $value;
+                if($value !== ScalingUpAnalysis::UNDEFINED_VALUE){
+                    if(isset($average_values[$kk])) {
+                        $calculate = Common::round_number(($value / 100) * $average_values[$kk]);
+                        $ranking['values'][$k][$kk] = $calculate;
+                    }
+                } else {
+                    $ranking['values'][$k][$kk] = $value;
+                }
             }
         }
 
@@ -137,7 +141,11 @@ class Ranking
                 $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? "-99999999";
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][$i] = $ranking['wdpa_ids'][$k];
-                $reorder_separated_values_by_pa[$i] = $separated_values_by_pa[$k];
+                if(isset($separated_values_by_pa[$k])) {
+                    $reorder_separated_values_by_pa[$i] = $separated_values_by_pa[$k];
+                } else {
+                    $reorder_separated_values_by_pa[$i] = [];
+                }
                 $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? "-99999999";
                 $i++;
             }
