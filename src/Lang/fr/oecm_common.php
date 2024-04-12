@@ -1,11 +1,11 @@
 <?php
 return [
 
-    'oecm' => 'IMET espace conservé',
-    'oecm_short' => 'IMET espace conservé',
+    'oecm' => 'Autres mesures de conservation efficaces par zone',
+    'oecm_short' => 'AMCE',
 
     'steps' => [
-        'general_info'          => 'Informations générales sur l’IMET espace conservé',
+        'general_info'          => 'Informations générales sur l’AMCE',
         'areas'                 => 'Areas',
         'resources'             => 'Ressources humaines, financières et matérielles',
         'key_elements'          => 'Espèces animales et végétales clés',
@@ -46,11 +46,11 @@ return [
         ],
         'p2' => [
             'P2',
-            'Conception et configuration de l’IMET espace conservé'
+            'Conception et configuration de l’AMCE'
         ],
         'p3' => [
             'P3',
-            'Démarcation de l’IMET espace conservé'
+            'Démarcation de l’AMCE'
         ],
         'p4' => [
             'P4',
@@ -62,7 +62,7 @@ return [
         ],
         'p6' => [
             'P6',
-            ' Objectifs de l’IMET espace conservé'
+            ' Objectifs de l’AMCE'
         ],
         'i1' => [
             'I1',
@@ -154,7 +154,7 @@ return [
         ],
         'oc1' => [
             'O/C1',
-            'Réalisation des objectifs à long terme de la gestion et de la gouvernance de l’IMET espace conservé'
+            'Réalisation des objectifs à long terme de la gestion et de la gouvernance de l’AMCE'
         ],
         'oc2' => [
             'O/C2',

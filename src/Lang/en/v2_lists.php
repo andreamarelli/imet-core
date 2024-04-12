@@ -50,8 +50,8 @@ return [
     'PaType' => [
         'terrestrial'           => 'Terrestrial',
         'marine_and_coastal'    => 'Marine and coastal',
-        'oecm_terrestrial'      => 'IMET conserved areas - Terrestrial',
-        'oecm_marine'           => 'IMET conserved areas - Marine',
+        'oecm_terrestrial'      => 'IMET conserved areas (Other effective area-based conservation measures) - Terrestrial',
+        'oecm_marine'           => 'IMET conserved areas (Other effective area-based conservation measures) - Marine',
         'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
         'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
     ],

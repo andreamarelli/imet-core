@@ -11,7 +11,7 @@ return [
 
     'NonWdpaPaDef' => [
         '1' => 'répond aux définitions des aires protégées de l\'UICN et/ou de la CDB',
-        '0' => 'répond à la définition CBD d\'un IMET conserved area',
+        '0' => 'répond à la définition CBD d\'un OECM',
     ],
 
     'NonWdpaDesignType' => [
@@ -50,8 +50,8 @@ return [
     'PaType' => [
         'terrestrial'           => 'terrestre',
         'marine_and_coastal'    => 'maritime et côtier',
-        'oecm_terrestrial'      => 'IMET conserved area - Terrestrial',
-        'oecm_marine'           => 'IMET conserved area - Marine',
+        'oecm_terrestrial'      => 'OECMs (Other effective area-based conservation measures) - Terrestrial',
+        'oecm_marine'           => 'OECMs (Other effective area-based conservation measures) - Marine',
         'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
         'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
     ],
