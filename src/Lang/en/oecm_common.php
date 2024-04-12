@@ -2,10 +2,10 @@
 return [
 
     'oecm' => 'Other Effective Area-Based Conservation Measures',
-    'oecm_short' => 'IMET conserved area',
+    'oecm_short' => 'OECM',
 
     'steps' => [
-        'general_info'          => 'General Information about the IMET conserved area',
+        'general_info'          => 'General Information about the OECM',
         'areas'                 => 'Areas',
         'resources'             => 'Human, financial and material resources',
         'key_elements'          => 'Animals, plants habitats',
@@ -46,11 +46,11 @@ return [
         ],
         'p2' => [
             'P2',
-            'Design and layout of the IMET conserved area'
+            'Design and layout of the OECM'
         ],
         'p3' => [
             'P3',
-            'Demarcation of the IMET conserved area'
+            'Demarcation of the OECM'
         ],
         'p4' => [
             'P4',
@@ -62,7 +62,7 @@ return [
         ],
         'p6' => [
             'P6',
-            ' Objectives of the IMET conserved area'
+            ' Objectives of the OECM'
         ],
         'i1' => [
             'I1',
@@ -154,7 +154,7 @@ return [
         ],
         'oc1' => [
             'O/C1',
-            'Achievement of long-term objectives of the IMET conserved area management and governance'
+            'Achievement of long-term objectives of the OECM management and governance'
         ],
         'oc2' => [
             'O/C2',
