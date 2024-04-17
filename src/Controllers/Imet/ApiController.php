@@ -52,9 +52,9 @@ class ApiController extends Controller
         }
 
         $form_id = $records[0]['FormID'] ?? null;
-        $form = Imet::find($form_id);
+        $form = Imet\Imet::find($form_id);
 
-        if ($form['version'] == Imet::IMET_V1) {
+        if ($form['version'] == Imet\Imet::IMET_V1) {
             $data = ReportV1::get_assessment_report($request, $form);
         } else {
             $data = ReportV2::get_assessment_report($request, $form);
