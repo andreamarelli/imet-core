@@ -216,7 +216,7 @@ trait ImportExportJSON
 
         $files = [];
         foreach ($imetIds as $imet) {
-            $files[] = $this->export($imet, true, false);
+            $files[] = $this->export($imet, false, true, false);
         }
         $path = $files[0];
         if (count($files) > 1) {
@@ -227,26 +227,21 @@ trait ImportExportJSON
     }
 
     /**
-     * Export the full IMET form in json
+     * Export the IMET form in json
      *
-     * @param Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item
-     * @param bool $to_file
-     * @param bool $download
-     * @return BinaryFileResponse|array
      * @throws AuthorizationException
      */
-    public function export($item, bool $to_file = true, bool $download = true)
+    public function export($item, bool $exclude_attachments = false, bool $to_file = true, bool $download = true): BinaryFileResponse|array|string
     {
+        $this->authorize('export', (static::$form_class)::find($item));
 
-        if (is_string($item)) {
-            $imet_id = $item;
-            $imet = (static::$form_class)::find($item);
-        } else if ($item instanceof Imet\Imet) {
+        if ($item instanceof Imet\Imet) {
             $imet_id = $item->getKey();
             $imet = $item;
+        } else {
+            $imet_id = $item;
+            $imet = (static::$form_class)::find($item);
         }
-
-        $this->authorize('export', $imet);
 
         $imet_form = $imet
             ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
@@ -259,8 +254,8 @@ trait ImportExportJSON
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\Encoder::exportModule($imet_id),
-                'Context' => Imet\v1\Imet::exportModules($imet_id),
-                'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id),
+                'Context' => Imet\v1\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id, $exclude_attachments),
                 'Report' => Imet\Report::export($imet_id)
             ];
         } // #####  IMET V2  #####
@@ -268,8 +263,8 @@ trait ImportExportJSON
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\Encoder::exportModule($imet_id),
-                'Context' => Imet\v2\Imet::exportModules($imet_id),
-                'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id),
+                'Context' => Imet\v2\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
                 'Report' => Imet\Report::export($imet_id)
             ];
         } // #####  IMET OECM  #####
@@ -277,8 +272,8 @@ trait ImportExportJSON
             $json = [
                 'Imet' => $imet_form,
                 'Encoders' => Imet\oecm\Encoder::exportModule($imet_id),
-                'Context' => Imet\oecm\Imet::exportModules($imet_id),
-                'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id),
+                'Context' => Imet\oecm\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id, $exclude_attachments),
                 'Report' => Imet\oecm\Report::export($imet_id)
             ];
         }
@@ -297,6 +292,11 @@ trait ImportExportJSON
         } else {
             return $json;
         }
+    }
+
+    public function export_no_attachments($item, bool $to_file = true, bool $download = true): BinaryFileResponse|array
+    {
+       return $this->export($item, true);
     }
 
     /**
