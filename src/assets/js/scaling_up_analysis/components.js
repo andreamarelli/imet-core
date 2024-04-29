@@ -10,6 +10,7 @@ window.ImetCore.ScalingUp.Mixins = {
 Vue.component('app',    require('./components/app.vue').default);
 
 Vue.component('general_info', require('./components/general_info.vue').default);
+Vue.component('comments', require('./components/comments.vue').default);
 Vue.component('management_context', require('./components/management_context.vue').default);
 Vue.component('grouping', require('./components/grouping.vue').default);
 Vue.component('map_view',    require('./components/map_view.vue').default);

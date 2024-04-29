@@ -48,7 +48,8 @@ return [
         'sixth' => 'Análisis por elemento del ciclo de gestión',
         'seventh' => 'Comparación de un área protegida dentro de una red de áreas protegidas',
         'eighth' => 'Síntesis de los análisis de gestión',
-        'ninth' => 'Información digital por área protegida',
+        'ninth' => 'Comentarios',
+        'tenth' => 'Información digital por área protegida',
         'list_of_names' => 'Lista de áreas protegidas',
     ],
     'element_diagrams' => [

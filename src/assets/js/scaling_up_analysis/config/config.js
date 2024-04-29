@@ -456,8 +456,8 @@ export default {
                     "field": "pr18"
                 },
                 {
-                    "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                    "field": "process"
+                    "label": `${window.Locale.getLabel('imet-core::analysis_report.average')}`,
+                    "field": "avg"
                 }
             ]
         }
@@ -495,7 +495,7 @@ export default {
                         "field": "op4"
                     },
                     {
-                        "label": `${window.Locale.getLabel('imet-core::v2_common.steps_eval.outputs')}`,
+                        "label": `${window.Locale.getLabel('imet-core::common.steps_eval.outputs')}`,
                         "field": "outputs",
                         "extra_label": ``
                     }

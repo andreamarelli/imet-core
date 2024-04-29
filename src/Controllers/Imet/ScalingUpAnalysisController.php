@@ -14,6 +14,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -146,6 +147,7 @@ class ScalingUpAnalysisController extends __Controller
     /**
      * @param Request $request
      * @return array
+     * @throws AuthorizationException
      */
     public function analysis(Request $request): array
     {
@@ -288,6 +290,7 @@ class ScalingUpAnalysisController extends __Controller
         uasort($protected_areas['models'], function ($a, $b) {
             return $a['name'] > $b['name'];
         });
+
         App::setLocale($locale);
         $templates_names = [
             ['name' => "protected_areas", 'title' => trans('imet-core::analysis_report.sections.list_of_names'), 'snapshot_id' => "protected_areas", 'exclude_elements' => '', 'code' => '0'],
@@ -299,7 +302,8 @@ class ScalingUpAnalysisController extends __Controller
             ['name' => "analysis_per_element_of_them_management_cycle", 'title' => trans('imet-core::analysis_report.sections.sixth'), 'snapshot_id' => "elements_diagrams", 'exclude_elements' => '', 'code' => '6'],
             ['name' => "relative_performance_effectiveness_intervals", 'title' => trans('imet-core::analysis_report.sections.seventh'), 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => 'smallMenu', 'code' => '7'],
             ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => '', 'code' => '8'],
-            ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
+            ['name' => "comments", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "comments", 'exclude_elements' => '', 'code' => '9'],
+            ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.tenth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '10'],
         ];
 
 

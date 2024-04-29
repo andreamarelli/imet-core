@@ -9,5 +9,6 @@ class Api
     use Analysis;
     use Group;
     use GeneralInfo;
+    use Comments;
 
 }

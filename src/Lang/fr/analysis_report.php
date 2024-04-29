@@ -48,7 +48,8 @@ return [
         'sixth' => 'Analyse par élément du cycle de gestion',
         'seventh' => 'Comparaison d’une aire protégée au sein d’un réseau d’aires protégées',
         'eighth' => 'Synthèses des analyses de gestion',
-        'ninth' => 'Information digitale par aire protégée',
+        'ninth' => 'Commentaires',
+        'tenth' => 'Information digitale par aire protégée',
         'list_of_names' => 'Liste des aires protégées',
     ],
     'element_diagrams' => [

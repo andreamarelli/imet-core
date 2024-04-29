@@ -48,7 +48,8 @@ return [
         'sixth' => 'Análise por Elemento do Ciclo de Gestão',
         'seventh' => 'Comparação de uma Área Protegida dentro de uma Rede de Área Protegida',
         'eighth' => 'Sínteses de análises de gestão',
-        'ninth' => 'Informação Digital por Área Protegida',
+        'ninth' => 'Comentários',
+        'tenth' => 'Informação Digital por Área Protegida',
         'list_of_names' => 'Lista de Áreas Protegidas',
     ],
     'element_diagrams' => [

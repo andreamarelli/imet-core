@@ -40,6 +40,7 @@ return [
     'add_all' => 'Add all',
     'close' => 'Close',
     'remove_all' => 'Remove all',
+    'average' => 'Average',
     'sections' => [
         'first' => 'Location of the selected protected areas',
         'second' => 'General Information of the protected areas',
@@ -49,7 +50,8 @@ return [
         'sixth' => 'Analysis by elements of the management cycle',
         'seventh' => 'Comparison of a protected area within a protected area network',
         'eighth' => 'Synthesis of Management Analyses',
-        'ninth' => 'Digital Information for protected areas',
+        'ninth' => 'Comments',
+        'tenth' => 'Digital Information for protected areas',
         'list_of_names' => 'List of protected areas',
     ],
     'element_diagrams' => [
