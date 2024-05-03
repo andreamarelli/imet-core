@@ -14,7 +14,6 @@ use AndreaMarelli\ModularForms\Helpers\ModuleKey;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\StatisticsApi;
 use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
-use AndreaMarelli\ImetCore\Models\Imet\API\Comments\Comments;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
@@ -103,30 +102,6 @@ class ApiController extends Controller
         }
         $api['data'] = $sums;
 
-        return static::sendAPIResponse($api);
-    }
-
-    public function get_comments(Request $request, string $lang, int $wdpa_id, int $year = null, bool $internal = false): object
-    {
-        $api = ['data' => [], 'labels' => []];
-
-        $records = $request->attributes->get('records');
-
-        if (!$internal) {
-            $this->authorize('api_assessment', $records[0]);
-        }
-
-        if (count($records) === 0) {
-            return static::sendAPIResponse([]);
-        }
-
-        $form_id = $records[0]['FormID'] ?? null;
-        if ($form_id === null) {
-            throw new NotFoundException(trans('imet-core::api.error_messages.no_records_found'));
-        }
-
-        Comments::get_comments($form_id);
-        $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $comments];
         return static::sendAPIResponse($api);
     }
 

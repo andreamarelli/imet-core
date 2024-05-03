@@ -302,8 +302,7 @@ class ScalingUpAnalysisController extends __Controller
             ['name' => "analysis_per_element_of_them_management_cycle", 'title' => trans('imet-core::analysis_report.sections.sixth'), 'snapshot_id' => "elements_diagrams", 'exclude_elements' => '', 'code' => '6'],
             ['name' => "relative_performance_effectiveness_intervals", 'title' => trans('imet-core::analysis_report.sections.seventh'), 'snapshot_id' => "relative_performance_effectiveness_intervals", 'exclude_elements' => 'smallMenu', 'code' => '7'],
             ['name' => "additional_option_digital_information_per_pa", 'title' => trans('imet-core::analysis_report.sections.eighth'), 'snapshot_id' => "additional_option_digital_information_per_pa", 'exclude_elements' => '', 'code' => '8'],
-            ['name' => "comments", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "comments", 'exclude_elements' => '', 'code' => '9'],
-            ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.tenth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '10'],
+            ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
 
 

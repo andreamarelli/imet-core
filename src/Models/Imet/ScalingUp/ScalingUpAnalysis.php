@@ -64,20 +64,6 @@ class ScalingUpAnalysis extends Model
         return ['status' => 'success', 'data' => $items];
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
-    public static function get_comments(array $form_ids): array
-    {
-        $comments = [];
-        foreach ($form_ids as $form_id) {
-            $custom_name = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-            $comments[$custom_name->name] = Comments::get_comments($form_id);
-        }
-
-        return ['status' => 'success', 'data' => $comments];
-    }
 
     /**
      * get protected area custom names with all the information

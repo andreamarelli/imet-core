@@ -9,7 +9,7 @@ use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 class Common
 {
 
-    private static $protected_areas_ids = [];
+    private static array $protected_areas_ids = [];
 
     /**
      * @return string
@@ -37,7 +37,7 @@ class Common
             return 0;
         }
 
-        return (float)number_format(round($val, $round), 1);
+        return (float)number_format(round($val, $round), 2);
     }
 
     /**
@@ -95,7 +95,7 @@ class Common
      * @param string $search_with
      * @param string $in_value
      * @param string $add_value
-     * @return mixed|string
+     * @return string
      */
     public static function add_the_indicator_to_the_field(string $search_with, string $in_value, string $add_value): string
     {
@@ -166,8 +166,8 @@ class Common
             $length_to_divide = array_sum($process_indicators);
             return static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2);
         }
-        //echo $value ."\n";
-        return static::round_number($value / $length_to_divide, 3);
+
+        return static::round_number($value / $length_to_divide, 2);
     }
 
     /**
@@ -180,6 +180,7 @@ class Common
     public static function filtered_indicators_and_round_values(array $form_ids, string $type, array $indicators = [], bool $add_synthetic_indicator = false): array
     {
         $filtered = [];
+
         foreach ($form_ids as $form_id) {
             $results[$form_id] = ImetScores::get_step($form_id, $type);
 
@@ -197,7 +198,6 @@ class Common
 
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed
-
             $average = static::get_average($filtered[$form_id], $number_of_indicators);
 
             if ($filtered[$form_id] && $add_synthetic_indicator) {
@@ -205,10 +205,9 @@ class Common
             }
 
             $filtered[$form_id]['avg'] = $average !== null ? static::round_number($average) : "-";
-
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
-
+        //print_r($filtered);
         return $filtered;
     }
 
