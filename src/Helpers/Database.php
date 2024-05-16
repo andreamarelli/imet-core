@@ -4,7 +4,11 @@ namespace   AndreaMarelli\ImetCore\Helpers;
 
 class Database
 {
-    public const PUBLIC_SCHEMA = '';
+    public const COMMON_CONNECTION = 'offline_imet';
+    public const IMET_CONNECTION = 'offline_imet';
+    public const OECM_CONNECTION = 'offline_oecm';
+
+    public const COMMON_IMET_SCHEMA = 'imet_common';
     public const IMET_SCHEMA = 'imet';
     public const OECM_SCHEMA = 'oecm';
 
@@ -17,10 +21,24 @@ class Database
         $is_offline = app('APP_ENV') == 'imet_offline';
 
         // Set Connection
-        $connection = $is_offline ? 'offline_imet' : config('database.default');
+        if($is_offline){
+            if($requested_schema === static::IMET_SCHEMA){
+                $connection = static::IMET_CONNECTION;
+            } elseif($requested_schema === static::OECM_SCHEMA){
+                $connection = static::OECM_CONNECTION;
+            } else {
+                $connection = static::COMMON_CONNECTION;
+            }
+        } else {
+            $connection = config('database.default');
+        }
 
         // Set Schema
-        $schema = $is_offline ? '' : ($requested_schema ?? $requested_schema . '.');
+        $schema = $is_offline
+            ? ''
+            :  ($requested_schema===null
+                    ? static::COMMON_IMET_SCHEMA . '.'
+                    : $requested_schema . '.');
 
         return [$schema, $connection];
     }

@@ -2,6 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use AndreaMarelli\ModularForms\Models\Utils\Country as BaseCountry;
@@ -21,9 +22,16 @@ use AndreaMarelli\ImetCore\Models\Region;
  */
 class Country extends BaseCountry
 {
-    protected $table = 'imet.imet_countries';
+    protected string $schema = Database::COMMON_IMET_SCHEMA;
+    protected $table = 'imet_countries';
     public $primaryKey = 'iso3';
     public static $foreign_key = 'region_id';
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+    }
 
     /**
      * Get the region associated with the country.
