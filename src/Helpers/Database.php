@@ -18,7 +18,7 @@ class Database
      */
     static public function getSchemaAndConnection($requested_schema = null): array
     {
-        $is_offline = app('APP_ENV') == 'imet_offline';
+        $is_offline = config('app.env') == 'imet_offline';
 
         // Set Connection
         if($is_offline){
