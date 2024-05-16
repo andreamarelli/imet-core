@@ -1,22 +1,17 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet;
+namespace AndreaMarelli\ImetCore\Models\Imet\Components;
 
-use Illuminate\Database\Eloquent\Model;
+use AndreaMarelli\ImetCore\Models\Imet\Components\BaseModel;
 
-class Report extends Model
+abstract class Report extends BaseModel
 {
-    /**
-     * @var string[]
-     */
-    protected $table = 'imet.imet_report';
-
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
 
     protected $guarded = [];
 
-    protected static $report_fields = [
+    protected static array $report_fields = [
         'key_species_comment',
         'habitats_comment',
         'climate_change_comment',
@@ -68,7 +63,7 @@ class Report extends Model
     {
         $report = static::where('FormID', $form_id)->first();
         if($report==null){
-            $report = new Report();
+            $report = new static();
         }
         $data['FormID'] = $form_id;
         $report->fill($data);

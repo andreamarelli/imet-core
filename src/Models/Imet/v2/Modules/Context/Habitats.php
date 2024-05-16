@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class Habitats extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_habitats';
+    protected $table = 'context_habitats';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

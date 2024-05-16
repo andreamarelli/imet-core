@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Models\User\Role;
 
 class KeyConservationTrend extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_key_conservation_trends';
+    protected $table = 'eval_key_conservation_trends';
     protected $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

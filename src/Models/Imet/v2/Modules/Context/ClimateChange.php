@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ClimateChange extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_climate_change_changements';
+    protected $table = 'context_climate_change_changements';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

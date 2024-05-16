@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class MenacesPressions extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_menaces_pressions';
+    protected $table = 'context_menaces_pressions';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

@@ -2,8 +2,10 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\Components\Modules;
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Module;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 use ReflectionException;
 
@@ -11,6 +13,7 @@ use ReflectionException;
 class ImetModule extends Module
 {
     use InjectInView;
+    protected static $form_class;
 
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
@@ -23,6 +26,7 @@ class ImetModule extends Module
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    protected string $schema;
     protected $primaryKey = 'id';
     public static $foreign_key = 'FormID';
 
@@ -30,6 +34,21 @@ class ImetModule extends Module
     public $module_subTitle = null;
     public $module_info_EvaluationQuestion = null;
     public $module_info_Rating = null;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        [$this->schema, $this->connection] = Database::getSchemaAndConnection($this->schema);
+    }
+
+    /**
+     * Relation to IMET form
+     * @return BelongsTo
+     */
+    public function imet(): BelongsTo
+    {
+        return $this->belongsTo(static::$form_class, 'FormID');
+    }
 
     /**
      * Override: additional info labels

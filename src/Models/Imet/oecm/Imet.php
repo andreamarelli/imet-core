@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
 
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
@@ -19,9 +20,9 @@ use Illuminate\Support\Str;
 
 class Imet extends BaseImetForm
 {
-    protected $table = 'imet_oecm.imet_form';
-
     public const version = 'oecm';
+    protected string $schema = Database::OECM_SCHEMA;
+    protected $table = 'imet_form';
 
     public static $modules = [
 

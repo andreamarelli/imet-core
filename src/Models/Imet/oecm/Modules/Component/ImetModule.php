@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Component;
 
 
+use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
 use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
@@ -17,16 +18,9 @@ class ImetModule extends BaseImetModule
     use Dependencies;
     public const MODULE_SCOPE = null;
 
-    protected static $form_class = Imet::class;
+    protected string $schema = Database::OECM_SCHEMA;
 
-    /**
-     * Relation to IMET form
-     * @return BelongsTo
-     */
-    public function imet(): BelongsTo
-    {
-        return $this->belongsTo(Imet::class, 'FormID');
-    }
+    protected static $form_class = Imet::class;
 
     /**
      * Override: Check for "warning_on_save" labels
@@ -38,8 +32,7 @@ class ImetModule extends BaseImetModule
     public static function getVueData($form_id, $collection = null): array
     {
         $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data = static::warningOnSave($vue_data);
-        return $vue_data;
+        return static::warningOnSave($vue_data);
     }
 
     /**
