@@ -4,7 +4,7 @@ namespace   AndreaMarelli\ImetCore\Helpers;
 
 class Database
 {
-    public const COMMON_CONNECTION = 'offline_imet';
+    public const COMMON_CONNECTION = 'offline_public';
     public const IMET_CONNECTION = 'offline_imet';
     public const OECM_CONNECTION = 'offline_oecm';
 

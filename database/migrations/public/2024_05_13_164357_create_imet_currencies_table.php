@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('name_fr')->nullable();
             $table->text('name_en')->nullable();
             $table->text('name_sp')->nullable();
+            $table->text('name_pt')->nullable();
         });
     }
 
