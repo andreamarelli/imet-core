@@ -26,7 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::table('imet_pas')
-            ->delete();
+        DB::table('imet_pas')->truncate();
     }
 };

@@ -31,7 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::table('imet_regions')
-            ->delete();
+        DB::table('imet_regions')->truncate();
     }
 };
