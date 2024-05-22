@@ -498,17 +498,12 @@ class Imet extends Form
      */
     public static function foundDuplicates(): array
     {
-        $haveDuplicates = [];
-        static::selectRaw('json_agg("FormID")')
+        return static::select("FormID")
             ->groupBy("Year", "wdpa_id", 'version')
             ->havingRaw('count(*) > ?', [1])
             ->get()
-            ->pluck('json_agg')
-            ->map(function ($item) use (&$haveDuplicates) {
-                $haveDuplicates = array_merge($haveDuplicates, json_decode($item));
-                return $item;
-            });
-        return $haveDuplicates;
+            ->plucK('FormID')
+            ->toArray();
     }
 
     /**

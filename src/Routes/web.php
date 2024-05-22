@@ -20,7 +20,7 @@ const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 Route::group(['middleware' => ['setLocale', 'web']], function () {
 
-    // Old routes: to be kept for the moment rto ensure backwards compatibility
+    // Old routes: to be kept for the moment to ensure backwards compatibility
     Route::get('/{url}', function ($url) {
         return Redirect::to('imet/');
     })->where(['url' => 'admin/imet|admin/imet/v1|admin/imet/v2']);
@@ -39,7 +39,7 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
         Route::get('import',        [Imet\Controller::class, 'import_view'])->name(IMET_PREFIX.'import_view');
         Route::post('import',      [Imet\Controller::class, 'import'])->name(IMET_PREFIX.'import');
         Route::post('ajax/upload', [Imet\Controller::class, 'upload'])->name(IMET_PREFIX.'upload_json');
-        Route::match(['get', 'post'],'/',      [Imet\Controller::class, 'index'])->name(IMET_PREFIX.'index');
+        Route::match(['get', 'post'],'/',      [v2\Controller::class, 'index'])->name(IMET_PREFIX.'index');
 
 
         // #### IMET Version 1 ####

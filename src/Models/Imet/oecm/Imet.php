@@ -22,6 +22,7 @@ class Imet extends BaseImetForm
 {
     public const version = 'oecm';
     protected string $schema = Database::OECM_SCHEMA;
+    protected $connection = Database::OECM_CONNECTION;
     protected $table = 'imet_form';
 
     public static $modules = [
@@ -145,9 +146,9 @@ class Imet extends BaseImetForm
      */
     public static function get_assessments_list_with_extras(Request $request)
     {
-        $hasDuplicates = static::foundDuplicates();
+        $duplicates = static::foundDuplicates();
         $list = static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item)  use ($hasDuplicates) {
+            ->map(function ($item)  use ($duplicates) {
 
                 // Add encoders
                 $item->encoders_responsibles = [
@@ -168,7 +169,7 @@ class Imet extends BaseImetForm
                 $item['last_update'] = $item->getLastUpdate();
 
                 // has duplicates
-                $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+                $item['has_duplicates'] = in_array($item->getKey(), $duplicates);
 
                 return $item;
             })

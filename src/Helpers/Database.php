@@ -2,6 +2,8 @@
 
 namespace   AndreaMarelli\ImetCore\Helpers;
 
+use Illuminate\Support\Str;
+
 class Database
 {
     public const COMMON_CONNECTION = 'offline_public';
@@ -18,7 +20,7 @@ class Database
      */
     static public function getSchemaAndConnection($requested_schema = null): array
     {
-        $is_offline = config('app.env') == 'imet_offline';
+        $is_offline = Str::contains(config('app.env'),'offline');
 
         // Set Connection
         if($is_offline){
