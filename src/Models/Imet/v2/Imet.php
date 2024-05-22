@@ -2,7 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Models\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
 use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Encoder;
 use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;

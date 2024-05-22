@@ -17,17 +17,21 @@ class ImetAssessment
     /**
      * Ensure to return IMET model
      */
-    private static function getAsModel(Imet|ImetV1|ImetV2|int|string $imet): Imet
+    private static function getAsModel(ImetV1|ImetV2|int|string $imet): Imet
     {
-        return (is_int($imet) or is_string($imet))
-            ? Imet::find($imet)
-            : $imet;
+        if(is_int($imet) or is_string($imet)) {
+            $imet_model = ImetV2::find($imet);
+            return $imet_model->version===ImetV2::version
+                ? $imet_model
+                : ImetV1::find($imet);
+        }
+        return $imet;
     }
 
     /**
      * Retrieve IMET info and scores
      */
-    public static function getAssessment(Imet|ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES): array
+    public static function getAssessment(ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES): array
     {
         $imet = static::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES

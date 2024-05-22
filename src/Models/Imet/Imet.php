@@ -36,7 +36,7 @@ use function session;
  * @property string $Year
  *
  */
-class Imet extends Form
+abstract class Imet extends Form
 {
     const IMET_V1 = 'v1';
     const IMET_V2 = 'v2';

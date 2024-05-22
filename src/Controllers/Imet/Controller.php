@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use function view;
 
 
-class Controller extends __Controller
+abstract class Controller extends __Controller
 {
     use Backup;
     use ConvertSQLite;
