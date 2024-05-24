@@ -24,11 +24,6 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.SupportsAndConstraints.fields.Comments')],
         ];
 
-        $this->predefined_values = [
-            'field' => 'Aspect',
-            'values' => trans('imet-core::v2_evaluation.SupportsAndConstraints.predefined_values')
-        ];
-
         $this->module_groups = [
             'group0' => trans('imet-core::v2_evaluation.SupportsAndConstraints.groups.group0'),
             'group1' => trans('imet-core::v2_evaluation.SupportsAndConstraints.groups.group1'),

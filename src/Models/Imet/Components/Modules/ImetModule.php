@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\Components\Modules;
 
 use AndreaMarelli\ImetCore\Helpers\Database;
+use AndreaMarelli\ImetCore\Models\Imet\Components\Dependencies;
 use AndreaMarelli\ImetCore\Models\User\Role;
 use AndreaMarelli\ModularForms\Models\Module;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,6 +14,8 @@ use ReflectionException;
 class ImetModule extends Module
 {
     use InjectInView;
+    use Dependencies;
+
     protected static $form_class;
 
     public const CREATED_AT = 'UpdateDate';
@@ -78,6 +81,26 @@ class ImetModule extends Module
     {
         static::forceLanguage($form_id);
         return parent::getPredefined($form_id);
+    }
+
+
+    /**
+     * Override: Check for "warning_on_save" labels
+     * @throws ReflectionException
+     */
+    public static function getVueData($form_id, $collection = null): array
+    {
+        $vue_data = parent::getVueData($form_id, $collection);
+        return static::warningOnSave($vue_data);
+    }
+
+    /**
+     * Override: update dependent modules
+     */
+    public static function updateModuleRecords($records, $form_id): void
+    {
+        static::updateDependencies($records, $form_id);
+        parent::updateModuleRecords($records, $form_id);
     }
 
     /**

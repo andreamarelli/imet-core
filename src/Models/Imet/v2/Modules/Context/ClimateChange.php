@@ -13,6 +13,10 @@ class ClimateChange extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ImportanceClimateChange::class, 'Value'],
+    ];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';

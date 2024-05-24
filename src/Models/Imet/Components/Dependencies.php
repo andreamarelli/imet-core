@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Component;
+namespace AndreaMarelli\ImetCore\Models\Imet\Components;
 
 use AndreaMarelli\ImetCore\Exceptions\MissingDependencyConfigurationException;
 use Illuminate\Support\Str;
@@ -22,11 +22,20 @@ trait Dependencies{
         $array_this_class = explode('\\', $this_class);
         $this_class_name = end($array_this_class);
         $labels = null;
+
+        if(Str::contains($this_class, 'v2')) {
+            $label_prefix = 'imet-core::v2_';
+        } elseif (Str::contains($this_class, 'v1')) {
+            $label_prefix = 'imet-core::v1_';
+        } else {
+            $label_prefix = 'imet-core::oecm_';
+        }
+
         if(Str::contains($this_class, 'Modules\Context')){
-            $label_prefix = 'imet-core::oecm_context.';
+            $label_prefix .= 'context.';
             $labels = trans($label_prefix . $this_class_name);
         } else if(Str::contains($this_class, 'Modules\Evaluation')){
-            $label_prefix = 'imet-core::oecm_evaluation.';
+            $label_prefix .= 'evaluation.';
             $labels = trans($label_prefix . $this_class_name);
         }
         if(is_array($labels) && array_key_exists('warning_on_save', $labels)){
@@ -43,7 +52,7 @@ trait Dependencies{
      * @param $form_id
      * @return void
      */
-    protected static function updateDependencies($records, $form_id)
+    protected static function updateDependencies($records, $form_id): void
     {
         if(static::$DEPENDENCIES !== null){
 
@@ -62,11 +71,6 @@ trait Dependencies{
 
     /**
      * Get the list of removed items (to be dropped from the dependencies)
-     *
-     * @param $records
-     * @param $form_id
-     * @param $dependency_on
-     * @return array
      */
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
@@ -111,12 +115,8 @@ trait Dependencies{
 
     /**
      * Propagate to eventual related dependencies
-     *
-     * @param $form_id
-     * @param $records_to_be_dropped
-     * @return void
      */
-    private static function propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped)
+    private static function propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped): void
     {
         if(static::$DEPENDENCIES !== null){
             foreach (static::$DEPENDENCIES as $dependency){
