@@ -24,7 +24,7 @@ class Common
      * @param int $round
      * @return float
      */
-    public static function round_number($val, int $round = 1): float
+    public static function round_number($val, int $round = 1)
     {
         if ($val == "-") {
             return $val;
