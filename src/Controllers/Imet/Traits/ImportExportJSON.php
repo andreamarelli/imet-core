@@ -6,6 +6,8 @@ use AndreaMarelli\ImetCore\Models\Country;
 use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Models\ProtectedArea;
 use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
 use AndreaMarelli\ModularForms\Helpers\HTTP;
@@ -356,6 +358,16 @@ trait ImportExportJSON
             [$formID, $modules_imported] = static::import_modules($json);
 
             DB::commit();
+
+            // Force refresh scores
+
+            // Refresh scores
+            if ($json['Imet']['version'] === Imet\Imet::IMET_V1 ||
+                $json['Imet']['version'] === Imet\Imet::IMET_V2) {
+                ImetScores::refresh_scores($imet);
+            } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
+                OecmScores::refresh_scores($imet);
+            }
 
             // backup in JSON
             (new static)->backup($formID, $json['Imet']['version']);
