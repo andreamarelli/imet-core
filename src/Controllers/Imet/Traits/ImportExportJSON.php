@@ -333,12 +333,13 @@ trait ImportExportJSON
                 $json = json_decode($fileContent, True);
             }
 
+            $version = $json['Imet']['version'];
 
-            if ($json['Imet']['version'] === Imet\Imet::IMET_V1) {
+            if ($version === Imet\Imet::IMET_V1) {
                 $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($json['Imet']['version'] === Imet\Imet::IMET_V2) {
+            } else if ($version === Imet\Imet::IMET_V2) {
                 $imet = (new Imet\v2\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
+            } else if ($version === Imet\Imet::IMET_OECM) {
                 $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
             }
 
@@ -360,17 +361,15 @@ trait ImportExportJSON
             DB::commit();
 
             // Force refresh scores
-
-            // Refresh scores
-            if ($json['Imet']['version'] === Imet\Imet::IMET_V1 ||
-                $json['Imet']['version'] === Imet\Imet::IMET_V2) {
-                ImetScores::refresh_scores($imet);
-            } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
-                OecmScores::refresh_scores($imet);
+            if ($version === Imet\Imet::IMET_V1 ||
+                $version === Imet\Imet::IMET_V2) {
+                ImetScores::refresh_scores($formID);
+            } else if ($version === Imet\Imet::IMET_OECM) {
+                OecmScores::refresh_scores($formID);
             }
 
             // backup in JSON
-            (new static)->backup($formID, $json['Imet']['version']);
+            (new static)->backup($formID, $version);
 
             $response['modules'] = $modules_imported;
         } catch (Exception $e) {
