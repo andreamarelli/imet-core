@@ -1,8 +1,9 @@
 <template>
-    <div>
-        <div class="row">
-            <div v-if="pas.length > 0" class="col-4" v-for="(selection, i) in pas" :key="i">
-                <div class=" alert alert-warning alert-dismissible" role="alert">
+    <div class="flex flex-col gap-4 items-center">
+
+        <div class="flex flex-row justify-center gap-4">
+            <div v-if="pas.length > 0" v-for="(selection, i) in pas" :key="i">
+                <div class="p-2 bg-yellow-100 rounded border border-yellow-200">
                     <input type="checkbox"
                            :checked="is_checked(selection.FormID)"
                            :data-name="selection.name"
@@ -13,30 +14,26 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
-                <button :disabled="button_status()" @click="enable_overall()" class="btn btn-success">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.apply')
-                    }}
-                </button>
-                <button @click="check_all()" class="btn btn-success">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.select_all')
-                    }}
-                </button>
-                <button @click="clearSelections()" class="btn btn-danger">{{
-                        stores.BaseStore.localization('imet-core::analysis_report.reset')
-                    }}
-                </button>
-            </div>
-            <div class="col">
-            </div>
+
+        <div>
+            <button :disabled="button_status()" @click="enable_overall()" class="btn-nav">{{
+                    stores.BaseStore.localization('imet-core::analysis_report.apply')
+                }}
+            </button>
+            <button @click="check_all()" class="btn-nav">{{
+                    stores.BaseStore.localization('imet-core::analysis_report.select_all')
+                }}
+            </button>
+            <button @click="clearSelections()" class="btn-nav red">{{
+                    stores.BaseStore.localization('imet-core::analysis_report.reset')
+                }}
+            </button>
         </div>
 
         <div v-if="show_overall">
             <slot :props="{'ids':checkboxes_ids(), 'show_view': show_overall }"></slot>
         </div>
+
     </div>
 </template>
 

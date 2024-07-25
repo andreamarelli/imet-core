@@ -42,7 +42,7 @@ class ReportController extends BaseReportController
             $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
         }
 
-        $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
+        $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
         return [
             'item' => $item,
@@ -72,7 +72,7 @@ class ReportController extends BaseReportController
             'dopa_indicators' => $dopa_indicators[0] ?? null,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
-            'general_info' => $general_info['records'][0] ?? null,
+            'general_info' => $general_info[0] ?? null,
             'vision' => $vision['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id)
         ];

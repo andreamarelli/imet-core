@@ -8,11 +8,11 @@
         @dragover='drag_over($event, item)'
 
     >
+        <i class="fa-solid fa-grip-vertical mr-2 cursor-grab"></i>
         <slot></slot>
-        <i v-if="is_removable" class="fa fa-times"
-           aria-hidden="true" @click='remove_item(item.id)'></i>
+        <span >{{ item.name }}</span>
+        <i v-if="is_removable" class="fa fa-times ml-2" aria-hidden="true" @click='remove_item(item.id)'></i>
 
-        <div class="w-50 mx-auto">{{ item.name }}</div>
     </div>
 </template>
 
@@ -67,8 +67,7 @@ export default {
 <style scoped>
 .default-zone-element {
     background-color: #fff;
-    margin-bottom: 10px;
-    padding: 5px;
-    min-height: 100px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
 }
 </style>

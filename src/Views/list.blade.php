@@ -28,13 +28,15 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
 ?>
 
-@extends('layouts.admin')
+@extends('modular-forms::page.list', [
+    'controller' => $controller,
+    'request'=> $request,
+    'list'=> $list,
+])
 
-@include('imet-core::components.breadcrumbs_and_page_title')
 
-@section('content')
-
-    <div class="functional_buttons">
+<!-- functional-buttons -->
+@section('functional-buttons')
 
         @can('edit', $form_class)
             {{-- Create new IMET --}}
@@ -65,51 +67,48 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 </a>
             @endif
 
-        @endcan
+    @endcan
 
-        @can('exportAll', $form_class)
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            {{-- Export json IMETs --}}
-            <a class="btn-nav rounded"
-               href="{{ route($route_prefix.'export_view') }}">
-                {!! Template::icon('file-export', 'white') !!}
-                {{ ucfirst(trans('modular-forms::common.export')) }}
-            </a>
-        @endcan
+    @can('exportAll', $form_class)
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        {{-- Export json IMETs --}}
+        <a class="btn-nav rounded"
+           href="{{ route($route_prefix.'export_view') }}">
+            {!! Template::icon('file-export', 'white') !!}
+{{--            {{ ucfirst(trans('modular-forms::common.export')) }}--}}
+        </a>
+    @endcan
 
-    </div>
+@endsection
 
+<!-- filters -->
+@section('filters')
     @include('imet-core::components.common_filters', [
         'request' => $request,
-        'url' => $index_url,
-        'filter_selected' => $filter_selected,
         'countries' => $countries,
         'years' => $years
     ])
+@endsection
 
-    <br/>
-    <div id="sortable_list">
+<!-- list header -->
+@section('list-header')
+    <th class="text-center width60px">@lang('imet-core::common.id')</th>
+    <th class="text-left width90px">@lang('imet-core::common.year')</th>
+    <th class="text-left">@choice('imet-core::common.protected_area.protected_area', 1)</th>
+    <th class="text-center">@lang('imet-core::common.encoders_responsible')</th>
+    <th>{{-- radar --}}</th>
+    <th class="width200px">{{-- actions --}}</th>
+@endsection
 
-        @include('modular-forms::tables.sort_on_client.num_records')
 
-        <table class="striped">
-            <thead>
-            <tr>
-                <th class="text-center width60px">@lang('imet-core::common.id')</th>
-                @include('modular-forms::tables.sort_on_client.th', ['column' => 'Year', 'label' => trans('imet-core::common.year'), 'class' => 'width90px'])
-                @include('modular-forms::tables.sort_on_client.th', ['column' => 'name', 'label' => trans_choice('imet-core::common.protected_area.protected_area', 1)])
-                <th class="text-center">@lang('imet-core::common.encoders_responsible')</th>
-                <th>{{-- radar --}}</th>
-                <th class="width200px">{{-- actions --}}</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr v-for="item of items">
-                <td class="align-baseline text-center">#@{{ item.FormID }}</td>
-                <td class="align-baseline text-center"><strong>@{{ item.Year }}</strong></td>
-                <td class="align-baseline">
+<!-- list body -->
+@section('list-body')
+    @foreach ($list as $item)
+        <tr>
+            <td class="align-baseline text-center">#{{ $item->FormID }}</td>
+            <td class="align-baseline text-center"><strong>{{ $item->Year }}</strong></td>
+            <td class="align-baseline">
 
                     <div class="imet_name">
                         <div class="imet_pa_name">
@@ -136,7 +135,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             <span v-if="item.version==='{{ $form_class::IMET_V2 }}'"
                                   class="badge badge-success">v2</span>
                             <span v-else-if="item.version==='{{ $form_class::IMET_V1 }}'" class="badge badge-secondary">v1</span>
-                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">@lang('imet-core::oecm_common.oecm_short')</span>
+                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">OECM</span>
                         </div>
                         {{-- last update --}}
                         <div>
@@ -154,92 +153,44 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                     <imet_radar
                             style="margin: 0 auto;"
                             :width=150 :height=150
-                            :values=item.assessment_radar
-                            v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                            :values='@json($item->assessment_radar)'
                     ></imet_radar>
-                </td>
-                <td class="align-baseline text-center" style="white-space: nowrap;">
+                @endif
+            </td>
+            <td class="text-center">
 
-                    {{-- Show --}}
-                    <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_V1])
-                    </span>
-                    <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_V2])
-                    </span>
-                    <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                        @include('imet-core::components.buttons.show', ['version' => $form_class::IMET_OECM])
-                    </span>
+                {{-- Show --}}
+                @include('imet-core::components.buttons.show', ['version' => $item->version])
 
-                    @can('edit', $form_class)
+                @can('edit', $form_class)
 
-                        {{-- Edit --}}
-                        <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_V1])
-                        </span>
-                        <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_V2])
-                        </span>
-                        <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                            @include('imet-core::components.buttons.edit', ['version' => $form_class::IMET_OECM])
-                        </span>
+                    {{-- Edit --}}
+                    @include('imet-core::components.buttons.edit', ['version' => $item->version])
 
-                        {{-- Merge tool --}}
-                        <span v-if="item.has_duplicates">
-                            @include('imet-core::components.buttons.merge', ['form_class' => $form_class])
-                        </span>
+                    {{-- Merge tool --}}
+                    @if($item->has_duplicates)
+                        @include('imet-core::components.buttons.merge', ['version' => $item->version])
+                    @endif
 
-                    @endcan
+                @endcan
 
-                    {{-- Export --}}
-                    @can('export_button', $form_class)
-                        <span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_V1])
-                        </span>
-                        <span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_V2])
-                        </span>
-                        <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-                            @include('imet-core::components.buttons.export', ['version' => $form_class::IMET_OECM])
-                        </span>
-                    @endcan
+                {{-- Export --}}
+                @can('export_button', $form_class)
+                    @include('imet-core::components.buttons.export', ['version' => $item->version])
+                @endcan
 
-                    {{-- Print --}}
-                    @include('imet-core::components.buttons.print', ['form_class' => $form_class])
+                {{-- Print --}}
+                @include('imet-core::components.buttons.print', ['version' => $item->version])
 
-                    {{-- Delete --}}
-                    @can('edit', $form_class)
-                        @include('imet-core::components.buttons.delete', [
-                            'form_class' => $form_class
-                        ])
-                    @endcan
+                {{-- Delete --}}
+                @can('edit', $form_class)
+                    @include('imet-core::components.buttons.delete', [
+                       'item' => $item,
+                       'version' => $item->version
+                    ])
+                @endcan
 
-                </td>
-            </tr>
-            </tbody>
-
-        </table>
-
-    </div>
-
-    @push('scripts')
-
-        <script>
-
-            new window.ModularForms.SortableTable({
-                el: '#sortable_list',
-                data: {
-                    list: @json($list),
-                    pageSize: 10
-                },
-
-                mounted: function () {
-                    console.log({list:this.list})
-                    this.sort('{{ $form_class::$sortBy }}', '{{ $form_class::$sortDirection }}');
-                }
-
-            });
-        </script>
-    @endpush
-
+            </td>
+        </tr>
+    @endforeach
 @endsection

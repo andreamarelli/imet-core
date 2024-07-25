@@ -1,34 +1,47 @@
 <?php
+
+use \AndreaMarelli\ImetCore\Controllers;
+use \AndreaMarelli\ImetCore\Models;
+use \AndreaMarelli\ModularForms\Enums\ModuleViewModes;
+
+/** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var integer $formID */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module_class as String */
+/** @var Models\Imet\v1\Modules\Component\ImetModule|Models\Imet\v2\Modules\Component\ImetModule $module */
+/** @var Models\Imet\v1\Modules\Component\ImetModule|Models\Imet\v2\Modules\Component\ImetModule $module_class as String */
 
 $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
 ?>
 
-<div style="display: inline-block;"
-     data-toggle="tooltip" data-placement="top" data-original-title="@uclang('modular-forms::common.show')">
-    <button type="button"
-            class="btn-nav small"
-            data-toggle="modal" data-target="#{{ $modal_id }}">
-        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
-    </button>
-</div>
+<floating_dialog>
 
-<div id="{{ $modal_id }}" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <b class="modal-title" style="font-size: 1.2em;">IMET #{{ $formID }}</b>
-                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times black"></i></button>
-                <b style="font-size: 1.2em;">IMET #{{ $formID }}</b>
+    <!-- anchor -->
+    <template slot="dialog-anchor">
+        <button type="button" class="btn-nav small">
+            {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
+        </button>
+        <tooltip>@uclang('modular-forms::common.show')</tooltip>
+    </template>
+
+    <!-- dialog -->
+    <template slot="dialog-content">
+        <div class="with_header_and_footer">
+
+            <!-- dialog header -->
+            <div class="header">
+                IMET #{{ $formID }}
             </div>
-            <div class="modal-body">
-                @include('modular-forms::module.show.container', [
-                   'module_class' => $module_class,
-                   'collection' => $module,
-                   'form_id' => $formID])
+
+            <!-- dialog body -->
+            <div class="body text-center">
+                <x-modular-forms::module.container
+                        :controller="$controller"
+                        :module="$module_class"
+                        :formId="$formID"
+                        :mode="ModuleViewModes::SHOW"
+                ></x-modular-forms::module.container>
             </div>
+
         </div>
-    </div>
-</div>
+    </template>
+
+</floating_dialog>

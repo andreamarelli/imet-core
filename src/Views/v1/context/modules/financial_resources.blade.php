@@ -1,16 +1,16 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 $vue_record_index = '0';
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vue_data['form_id']);
+$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
 
 ?>
 
 
-@component('modular-forms::module.field_container', [
+@component('modular-forms::module.components.field_container', [
                'name' => $definitions['fields'][0]['name'],
                'label' => $definitions['fields'][0]['label'] ?? '',
                'label_width' => $definitions['label_width']
@@ -26,7 +26,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
 @endcomponent
 
 
-@component('modular-forms::module.field_container', [
+@component('modular-forms::module.components.field_container', [
                'name' => $definitions['fields'][1]['name'],
                'label' => $definitions['fields'][1]['label'] ?? '',
                'label_width' => $definitions['label_width']
@@ -109,7 +109,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             props: {
                 area: {

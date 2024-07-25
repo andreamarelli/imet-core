@@ -1,9 +1,12 @@
 window.ImetCore = {};
 
 // Vue Mixins
-window.mixins = {
-    'status': require('./js/mixins/save_or_reset.mixin')
+window.ImetCore.Mixins = {
+    status: require('./js/mixins/save_or_reset.mixin'),
+    load_from_previous: require('./js/mixins/load_from_previous.mixin'),
+    key_elements: require('./js/mixins/key_elements.mixin').default
 };
+
 
 window.BiopamaWDPA = {
     base_layer: 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc',
@@ -72,7 +75,7 @@ Vue.component('imet_bar_chart',                 require('./js/templates/imet_bar
 Vue.component('multiple-files-upload',          require('./js/inputs/multiple-files-upload.vue').default);
 Vue.component('selector-wdpa',                  require('./js/inputs/selector-wdpa.vue').default);
 Vue.component('selector-wdpa_multiple',         require('./js/inputs/selector-wdpa_multiple.vue').default);
-Vue.component('selector-user',                  require('./js/inputs/selector-user.vue').default);
+// Vue.component('selector-user',                  require('./js/inputs/selector-user.vue').default);
 
 // Report
 Vue.component('table_input',                    require('./js/report/table_input.vue').default);
@@ -81,4 +84,3 @@ Vue.component('objectives',                    require('./js/report/objectives.v
 
 // Components for IMET scaling up
 require('./js/scaling_up_analysis/components.js');
-

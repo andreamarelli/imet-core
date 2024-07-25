@@ -38,7 +38,7 @@ export default {
       this.list = items;
     },
     percentage: function (value, color) {
-      return `${value} <br/><div class="progress"><div class="progress-bar " style="width: ${value}%;background-color: ${color}" role="progressbar" aria-valuenow="${value}" aria-valuemin="0" aria-valuemax="100"></div></div>`;
+      return `${value} <br/><div class="progress"><div class="progress-bar" style="width: ${value}%; background-color: ${color}"></div></div>`;
     },
     colorArea: function (color, value = '') {
       return `<div class="p-3 mb-2 " style="background-color: ${color}">${value}</div>`;

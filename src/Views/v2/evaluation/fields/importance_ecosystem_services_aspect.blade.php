@@ -9,7 +9,7 @@ $vue_attributes = \AndreaMarelli\ModularForms\Helpers\DOM::vueAttributes($v_id, 
 
 ?>
 <input type="hidden" {!! $vue_attributes !!} {!! $class !!} {!! $other !!} />
-<div class="field-disabled">@{{ {!! $v_value !!} }}</div>
+<div class="field-preview field-disabled">@{{ {!! $v_value !!} }}</div>
 <div class="text-left" style="padding: 4px;" v-if="'_rank' in records[index]">
     <b class="highlight">@{{ '_rank' in records[index] ? records[index]['_rank'].toFixed(2) : '' }}</b>&nbsp;&nbsp;
     <span style="font-size: 0.85em; font-style: italic; ">

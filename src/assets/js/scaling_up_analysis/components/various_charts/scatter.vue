@@ -132,7 +132,7 @@ export default {
     methods: {
         draw_chart() {
             if (this.data.length > 0) {
-                this.chart = echarts.init(this.$el);
+                this.chart = window.ImetCoreVendor.echarts.init(this.$el);
                 this.chart.setOption(this.bar_options);
 
                 this.chart.on('legendselectchanged', (params) => {

@@ -9,26 +9,26 @@ use \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 $last_update = $item->getLastUpdate();
 
 ?>
-<div class="id" style="margin-bottom: 4px;">{{-- version --}}
+<div class="id mx-1" >{{-- version --}}
     @if($item->version===Imet::IMET_V1)
-        &nbsp;<span class="badge badge-secondary" style="vertical-align: text-top;">v1</span>
+        &nbsp;<span class="badge badge-secondary align-top">v1</span>
     @elseif($item->version===Imet::IMET_V2)
-        &nbsp;<span class="badge badge-success" style="vertical-align: text-top;">v2</span>
+        &nbsp;<span class="badge badge-success align-top">v2</span>
     @elseif($item->version===Imet::IMET_OECM)
-        &nbsp;<span class="badge badge-info" style="vertical-align: text-top;">@lang('imet-core::oecm_common.oecm_short')</span>
+        &nbsp;<span class="badge badge-info align-top">OECM</span>
     @endif
     {{-- ID --}}
-    <span style="margin-left: 10px;">
+    <span class="ml-2.5">
         IMET #: {{ $item->getKey() }}
     </span>
     {{-- last update --}}
-    <span style="margin-left: 10px;">
+    <span class="ml-2.5">
         @uclang('modular-forms::entities.common.last_update'):&nbsp;
         <b><i>{{ $last_update['date'] }}</i></b>
     </span>
 </div>
 
-<div class="entity-heading">
+<div class="entity-heading scale-95">
     <div class="subtitle">{{ $item->Year }}</div>
     &nbsp;
     <div class="name">

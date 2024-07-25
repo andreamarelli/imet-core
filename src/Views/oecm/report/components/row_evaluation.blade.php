@@ -14,13 +14,12 @@ $threats            = $threats ?? false;
 $colspan            = isset($colspan) ? "colspan=".$colspan : "";
 $color_scores       = $color_scores ?? true;
 
-
 $classes =$color_scores ? $threats
-    ? ApiController::score_class_threats($assessment_value, $additional_classes)
-    : ApiController::score_class($assessment_value, $additional_classes) : '';
+    ? ApiController::score_class_threats($assessment_value)
+    : ApiController::score_class($assessment_value) : '';
 
 ?>
 
-<td {!! $classes !!} {!! $colspan !!}>{{  $assessment_label }}
+<td class="{!! $classes . ' ' . $additional_classes !!}" {!! $colspan !!}>{{  $assessment_label }}
     <div>{{ $assessment_value ?? ' - ' }}</div>
 </td>

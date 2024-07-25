@@ -37,6 +37,28 @@
 
 <style lang="scss" scoped>
 
+  .imet_responsible {
+    font-size: 0.85em;
+    text-align: left;
+
+    ul {
+      margin: 0;
+      padding-inline-start: 15px;
+
+      li {
+        line-height: 1.4em;
+      }
+    }
+
+    button {
+      margin-top: 5px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  }
+
 </style>
 
 <script>

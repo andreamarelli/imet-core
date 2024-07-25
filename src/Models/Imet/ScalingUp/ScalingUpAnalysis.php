@@ -20,6 +20,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -73,8 +74,7 @@ class ScalingUpAnalysis extends Model
      * get protected area custom names with all the information
      * @param array $form_ids
      * @param bool $show_original_names
-     * @return Imet[]|bool|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
-     * @throws \ReflectionException
+     * @return array
      */
     public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
     {
@@ -82,12 +82,11 @@ class ScalingUpAnalysis extends Model
         $categories = [];
         foreach ($form_ids as $form_id) {
             $protected_area[$form_id] = Common::protected_areas_duplicate_fixes($form_id, $show_original_names);
-            $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
+            $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);
             if ($general_info['records'][0]) {
                 $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
             }
         }
-
         return ["models" => $protected_area, "categories" => $categories];
     }
 
@@ -110,15 +109,15 @@ class ScalingUpAnalysis extends Model
         ];
 
         foreach ($form_ids as $form_id) {
-            $general_info_data = Modules\Context\GeneralInfo::getVueData($form_id);
-            $vision_data = Modules\Context\Missions::getModuleRecords($form_id);
+            $general_info_data = Modules\Context\GeneralInfo::getModuleRecords($form_id)['records'];
+            $vision_data = Modules\Context\Missions::getModuleRecords($form_id)['records'];
             $generalElements['total_surface_protected_areas'] += Modules\Context\Areas::getArea($form_id);
 
-            if ($general_info_data['records'][0]) {
-                $general_info = $general_info_data['records'][0];
+            if ($general_info_data[0]) {
+                $general_info = $general_info_data[0];
                 $lang = Locale::lower();
                 $name = "name_" . (trim($lang) === "" ? "en" : $lang);
-                $country_name = Country::getByISO($general_info['Country'])->$name;
+                $country_name = $general_info['Country'] ? Country::getByISO($general_info['Country'])->$name : "";
 
                 //echo $general_info['Country']."-".$country_name."\n";
                 if (!in_array($country_name, $generalElements['countries'])) {
@@ -134,22 +133,22 @@ class ScalingUpAnalysis extends Model
                 }
             }
 
-            if ($vision_data['records'][0]) {
-                $vision = $vision_data['records'][0];
+            if ($vision_data[0]) {
+                $vision = $vision_data[0];
                 if ($vision['LocalMission']) {
-                    $generalElements['local_mission'][] = $general_info_data['records'][0]['CompleteName'];
+                    $generalElements['local_mission'][] = $general_info_data[0]['CompleteName'];
                 }
                 if ($vision['LocalObjective']) {
-                    $generalElements['local_objective'][] = $general_info_data['records'][0]['CompleteName'];
+                    $generalElements['local_objective'][] = $general_info_data[0]['CompleteName'];
                 }
                 if ($vision['LocalVision']) {
-                    $generalElements['local_vision'][] = $general_info_data['records'][0]['CompleteName'];
+                    $generalElements['local_vision'][] = $general_info_data[0]['CompleteName'];
                 }
             }
         }
 
         $generalElements['total_surface_protected_areas'] = Common::round_number($generalElements['total_surface_protected_areas']);
-        $generalElements['network'] = array_flip(array_flip($generalElements['network']));
+
         return ['status' => 'success', 'data' => ['general_info' => $generalElements]];
     }
 

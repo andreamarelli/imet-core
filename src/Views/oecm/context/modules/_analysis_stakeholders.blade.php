@@ -6,16 +6,17 @@ use Illuminate\Support\Str;
 
 /** @var Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 /** @var Array $stakeholders */
 
 $num_cols = count($definitions['fields']);
 $user_mode = ('AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE;
 $stakeholders_categories = Stakeholders::getStakeholders(
-    $vue_data['form_id'],
+    $vueData['form_id'],
     $user_mode,
     true
 );
+
 
 ?>
 
@@ -23,17 +24,20 @@ $stakeholders_categories = Stakeholders::getStakeholders(
     @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 6])
 @else
 
-    @foreach(array_keys($stakeholders) as $index => $stakeholder)
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title" role="button"
-                    @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
-                    {{ $index + 1 }} -
-                    {{ $stakeholder }}
-                </h4>
-            </div>
-            <div v-if="isCurrentStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
-                <div class="card-body">
+    <x-modular-forms::accordion.container>
+
+        @foreach(array_keys($stakeholders) as $index => $stakeholder)
+            <x-modular-forms::accordion.item>
+
+                <x-slot:title>
+                    <div class="w-full	h-full"
+                         @click="switchStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
+                        {{ $index + 1 }} -
+                        {{ $stakeholder }}
+                    </div>
+                </x-slot:title>
+
+                <div v-if="isCurrentStakeholder('{{ Str::replace("'", "\'", $stakeholder) }}')">
 
                     @php
                         $categories = array_key_exists($stakeholder, $stakeholders_categories)
@@ -73,8 +77,13 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                     <h4 style="margin-bottom: 20px;">@lang('imet-core::oecm_context.AnalysisStakeholders.titles.title3')</h4>
                                 @endif
 
+                                {{-- sub-titles --}}
                                 <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
-                                @lang('imet-core::oecm_context.AnalysisStakeholders.groups_descriptions.' . $group_key)
+
+                                {{-- Desctiptions --}}
+                                <div class="pb-4 px-6 text-sm">
+                                    @lang('imet-core::oecm_context.AnalysisStakeholders.groups_descriptions.' . $group_key)
+                                </div>
 
                                 <table id="{{ $table_id }}" class="table module-table">
 
@@ -106,7 +115,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                                    'vue_record_index' => 'index',
                                                    'group_key' => $group_key
                                                ])
-                                                </td>
+                                            </td>
                                         @endforeach
                                         <td>
                                             {{-- record id  --}}
@@ -115,8 +124,8 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                                 'v_value' => 'item.'.$definitions['primary_key']
                                             ])
                                             <span v-if="typeof item.__predefined === 'undefined'">
-                                                @include('modular-forms::buttons.delete_item')
-                                            </span>
+                                                    @include('modular-forms::buttons.delete_item')
+                                                </span>
                                         </td>
                                     </tr>
 
@@ -124,16 +133,17 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
                                     {{-- add button --}}
                                     <tfoot v-if="numItemPerGroupAndStakeholder('{{ $group_key }}', '{{ $stakeholder }}') < {{ $definitions['max_rows'] }}">
-                                        <tr>
-                                            <td colspan="{{ count($definitions['fields']) + 1 }}">
-                                                @include('modular-forms::buttons.add_item', [
-                                                    'onClick' => "addItem('". $group_key . "', '". Str::replace("'", "\'", $stakeholder)  . "')"
-                                                ])
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="{{ count($definitions['fields']) + 1 }}">
+                                            @include('modular-forms::buttons.add_item', [
+                                                'onClick' => "addItem('". $group_key . "', '". Str::replace("'", "\'", $stakeholder)  . "')"
+                                            ])
+                                        </td>
+                                    </tr>
                                     </tfoot>
 
                                 </table>
+
 
                                 <br/>
                                 <br/>
@@ -143,9 +153,11 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                     @endif
 
                 </div>
-            </div>
-        </div>
-    @endforeach
+
+            </x-modular-forms::accordion.item>
+        @endforeach
+
+    </x-modular-forms::accordion.container>
 
 @endif
 
@@ -154,7 +166,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             methods: {
 
@@ -163,6 +175,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                 },
 
                 switchStakeholder(value) {
+                    console.log(value);
                     if (!this.isCurrentStakeholder(value)) {
                         this.current_stakeholder = value;
                     } else {

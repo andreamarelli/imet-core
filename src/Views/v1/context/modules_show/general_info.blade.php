@@ -10,14 +10,14 @@
     }
 
     if($pa!==null){
-        $vue_data['records'][0]['CompleteName']     = $vue_data['records'][0]['CompleteName']   ?? $pa->name;
-        $vue_data['records'][0]['WDPA']             = $vue_data['records'][0]['WDPA']           ?? $pa->wdpa_id;
-        $vue_data['records'][0]['IUCNCategory1']    = $vue_data['records'][0]['IUCNCategory1']  ?? $pa->iucn_category;
-        $vue_data['records'][0]['Country']          = $vue_data['records'][0]['Country']        ?? $pa->country;
-        $vue_data['records'][0]['CreationYear']     = $vue_data['records'][0]['CreationYear']   ??
+        $vueData['records'][0]['CompleteName']     = $vueData['records'][0]['CompleteName']   ?? $pa->name;
+        $vueData['records'][0]['WDPA']             = $vueData['records'][0]['WDPA']           ?? $pa->wdpa_id;
+        $vueData['records'][0]['IUCNCategory1']    = $vueData['records'][0]['IUCNCategory1']  ?? $pa->iucn_category;
+        $vueData['records'][0]['Country']          = $vueData['records'][0]['Country']        ?? $pa->country;
+        $vueData['records'][0]['CreationYear']     = $vueData['records'][0]['CreationYear']   ??
             ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
     }
-    $vue_data['records'][0]['Type']             = $vue_data['records'][0]['Type']           ?? $item->Type;
+    $vueData['records'][0]['Type']             = $vueData['records'][0]['Type']           ?? $item->Type;
 
 ?>
 @include('modular-forms::module.show.body',  compact(['collection', 'definitions']))

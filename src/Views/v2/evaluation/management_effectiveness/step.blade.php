@@ -73,6 +73,7 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
 </div>
 
 
+@push('scripts')
 <script>
 
     new Vue({
@@ -98,7 +99,7 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
             _this.init_properties();
 
             if (_this.current_step === 'process') {
-                _this.chart = echarts.init(document.getElementById('imet_process_radar'));
+                _this.chart = window.ImetCoreVendor.echarts.init(document.getElementById('imet_process_radar'));
                 if (_this.chart !== null) {
                     _this.chart.setOption(_this.get_radar_options());
                 }
@@ -197,14 +198,18 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
             refresh_values: function () {
                 let _this = this;
 
-                window.axios({
-                    url: '{{ route('imet_core::api::assessment', ['item' => '__id__', 'step' => '__step__']) }}'
-                        .replace('__id__', _this.form_id)
-                        .replace('__step__', _this.current_step),
+                fetch('{{ route('imet_core::api::assessment', ['item' => '__id__', 'step' => '__step__']) }}'
+                    .replace('__id__', _this.form_id)
+                    .replace('__step__', _this.current_step), {
                     method: "get",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-Token": window.Laravel.csrfToken,
+                    }
                 })
-                    .then(function (response) {
-                        _this.api_data = response.data;
+                    .then((response) => response.json())
+                    .then(function(data){
+                        _this.api_data = data;
                         if (_this.chart !== null) {
                             _this.chart.setOption(_this.get_radar_options());
                         }
@@ -277,3 +282,4 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
     });
 
 </script>
+@endpush

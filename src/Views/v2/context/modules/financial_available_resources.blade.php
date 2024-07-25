@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 $group_key = $group_key ?? '';
 
@@ -76,7 +76,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
     <tr>
     <tr>
         <td colspan="5">
-            <div v-if="!totalIsValid" class="text-danger text-right" style="font-size: 0.9em;">
+            <div v-if="!totalIsValid" class="text-contextual-danger text-right" style="font-size: 0.9em;">
                 <i class="fa fa-exclamation-triangle"></i>
                 {!!  ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.sum_error')) !!}
             </div>
@@ -96,14 +96,14 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
 </table>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <script>
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             computed: {
 

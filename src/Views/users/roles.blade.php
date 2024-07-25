@@ -7,9 +7,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
 
 ?>
 
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
 
@@ -117,7 +115,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
             el: '#users',
 
             mixins: [
-                window.mixins['status']
+                window.ImetCore.Mixins.status
             ],
 
             data: {
@@ -178,9 +176,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
                         method: method,
                         body: form_data
                     })
-                        .then(function(response) {
-                            return response.json();
-                        })
+                        .then((response) => response.json())
                         .then(function(data) {
                             console.log('Success:', data);
                         })

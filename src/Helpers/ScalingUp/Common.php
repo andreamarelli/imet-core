@@ -252,28 +252,6 @@ class Common
     }
 
     /**
-     * get protected area custom names with all the information
-     * @param array $form_ids
-     * @param bool $show_original_names
-     * @return Imet[]|bool|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
-     * @throws \ReflectionException
-     */
-    public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
-    {
-        $protected_area = [];
-        $categories = [];
-        foreach ($form_ids as $form_id) {
-            $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id, $show_original_names);
-            $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
-            if ($general_info['records'][0]) {
-                $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
-            }
-        }
-
-        return ["models" => $protected_area, "categories" => $categories];
-    }
-
-    /**
      * @param array $form_ids
      * @param int $scaling_id
      * @return array|array[]

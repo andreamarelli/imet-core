@@ -3,14 +3,14 @@
         <vue-dropzone
             ref="myVueDropzone"
             id="dropzone"
-            :options="options"
+            :options="dropZoneOptions"
             :useCustomSlot="true"
             v-on:vdropzone-error="uploadError"
             v-on:vdropzone-processing="processing"
             v-on:vdropzone-success="uploadedSuccessfully"
             v-on:vdropzone-file-added="fileAdded"
         >
-            <div class="dropzone-custom-content" style="margin-top: 100px">
+            <div class="dropzone-custom-content">
                 <h3 class="dropzone-custom-title">{{ Locale.getLabel('modular-forms::common.upload.multiple_files_description') }}</h3>
             </div>
         </vue-dropzone>
@@ -22,9 +22,9 @@
 
 <script>
 export default {
-    name: "multipleUpload.vue",
+
     components: {
-        vueDropzone: window.VueDropzone
+        vueDropzone: window.ImetCoreVendor.VueDropzone
     },
     props:{
         uploadUrl: {
@@ -41,7 +41,7 @@ export default {
         return {
             Locale: Locale,
             modalIsOpen: false,
-            options: {
+            dropZoneOptions: {
                 url: this.uploadUrl,
                 previewTemplate: this.template(),
                 params: {
@@ -70,9 +70,7 @@ export default {
             files_uploaded: 0
         };
     },
-    beforeCreate: function (){
-      this.options.url = this.uploadUrl;
-    },
+
     mounted: function () {
         window.confirm = function () {
             return true;
@@ -80,7 +78,7 @@ export default {
     },
     methods: {
         template: function () {
-            return `<div class="table table-striped files" id="previews">
+            return `<div class="files text-sm" id="previews">
                 <div id="template" class="file-row">
                     <div>
                         <p class="name" data-dz-name></p>
@@ -88,9 +86,8 @@ export default {
                     <div>
                         <p class="size" data-dz-size></p>
                     </div>
-                    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                             aria-valuenow="0">
-                        <div class="progress-bar progress-bar-success" id="total-progress" style="width:0%;" data-dz-uploadprogress></div>
+                    <div class="progress">
+                        <div class="progress-bar" id="total-progress" style="width:0;" data-dz-uploadprogress></div>
                     </div>
                 </div>
             </div>
@@ -153,12 +150,20 @@ export default {
 </script>
 
 <style lang="scss">
-.vue-dropzone {
+#dropzone {
+    display: inline-block;
     height: 300px;
     max-height:300px;
     overflow:auto;
     background:#fff;
-    margin-bottom: 10px;
+    width: 100%;
+
+    .dropzone-custom-content{
+      margin: 0 30px;
+      .dropzone-custom-title{
+          @apply text-base;
+      }
+    }
 
     .files{
         display: flex;
@@ -167,9 +172,16 @@ export default {
             flex-grow: 1;
             display: flex;
             flex-direction: row;
+            align-items: center;
             gap: 15px;
             .progress{
                 flex-grow: 1;
+                border-radius: 4px;
+                .progress-bar{
+                  border-radius: 4px;
+                  font-weight: bold;
+                  padding: 3px 6px;
+                }
             }
         }
     }

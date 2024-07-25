@@ -21,10 +21,10 @@ $definitions_indirect = AnalysisStakeholderIndirectUsers::getDefinitions($item->
 
 ?>
 
-@extends('modular-forms::layouts._base', ['class_to_body' => 'flex-col'])
+@extends('modular-forms::layouts.print')
 
 
-@section('body')
+@section('content')
 
     <main class="one-col">
         <section class="content">

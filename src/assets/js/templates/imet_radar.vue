@@ -36,7 +36,7 @@
                     .reverse()
                     .forEach(function([key, value]){
                         values.push(value);
-                        labels.push({text: key.replace(' ', '\n'), max: 100});
+                        labels.push({name: key.replace(' ', '\n'), max: 100});
                     });
 
                 return {
@@ -47,11 +47,9 @@
                         indicator: labels,
                         radius: '65%',
                         startAngle: 150,
-                        name: {
-                            textStyle: {
-                                color: '#111',
-                                padding: [0, 0]
-                            }
+                        axisName: {
+                            color: '#111',
+                            padding: [0, 0]
                         },
                     },
 
@@ -71,13 +69,11 @@
                                     symbolSize: 6,
                                     name: 'imet_radar',
                                     label: {
-                                        normal: {
-                                            fontWeight: 'bold',
-                                            color: '#222',
-                                            show: true,
-                                            formatter:function(params) {
-                                                return params.value;
-                                            }
+                                        fontWeight: 'bold',
+                                        color: '#222',
+                                        show: true,
+                                        formatter:function(params) {
+                                            return params.value;
                                         }
                                     }
                                 }
@@ -104,7 +100,7 @@
         methods:{
             draw_chart(){
                 if(Object.keys(this.values).length>1) {
-                    this.chart = echarts.init(this.$el);
+                    this.chart = window.ImetCoreVendor.echarts.init(this.$el);
                     this.chart.setOption(this.radar_options);
                 }
             }

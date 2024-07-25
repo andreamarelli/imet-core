@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 $group_key = $group_key ?? '';
 
@@ -88,14 +88,14 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
 </table>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <script>
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             computed: {
 

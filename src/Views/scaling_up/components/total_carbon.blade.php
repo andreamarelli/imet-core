@@ -16,7 +16,7 @@
                        :exclude_elements="'{{$exclude_elements}}'">
         <template slot-scope="data_elements">
             <div v-for="(area, idx) in data_elements.props">
-                <div class="list-key-numbers horizontal">
+                <div class="list-key-numbers">
                     <div class="list-head" v-html="idx">
                     </div>
                 </div>

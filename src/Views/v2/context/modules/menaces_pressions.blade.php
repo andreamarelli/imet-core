@@ -1,15 +1,15 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
-$vue_data['marine_predefined'] = MenacesPressions::get_marine_predefined();
+$vueData['marine_predefined'] = MenacesPressions::get_marine_predefined();
 
-$view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
+$view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
 
 // Inject marine icon on criteria
 $view_groupTable = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $view_groupTable, "is_marine(item['Value'])");
@@ -45,17 +45,11 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
                 <b v-html="category_stats[{{ $i }}] || '-'"></b>
             </div>
             <div class="histogram-row__progress-bar"  v-if="category_stats['{{ $i }}']!==null">
-                <div class="histogram-row__progress-bar__limit-left">-100%</div>
-                <div class="histogram-row__progress-bar__bar">
-                    <div class="progress">
-                        <div role="progressbar"
-                             class="progress-bar progress-bar-striped  progress-bar-negative"
-                             :style="'width: ' + Math.abs(category_stats[{{ $i }}]) + '%; background-color: #87c89b !important;'">
-                            <span v-html="'-' +category_stats[{{ $i }}]"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="histogram-row__progress-bar__limit-right">0%</div></div>
+                <imet_progress_bar
+                    :value=category_stats[{{ $i }}]
+                    color="#87c89b"
+                ></imet_progress_bar>
+            </div>
         </div>
 
     @endforeach
@@ -64,14 +58,14 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
 <br />
 
 {!! $view_groupTable !!}
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <script>
         // ## Initialize Module controller ##cont
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             computed: {
 

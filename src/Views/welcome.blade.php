@@ -3,13 +3,11 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Controller as ImetController;
 use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller as OecmController;
 ?>
 
-
-
-@extends('layouts.admin')
-
-@include('imet-core::components.breadcrumbs_and_page_title')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
+
+    @include('imet-core::components.breadcrumbs_and_page_title')
 
     <div class="welcome_container">
         <a class="welcome_button" href="{{ route(ImetController::ROUTE_PREFIX . 'index') }}">

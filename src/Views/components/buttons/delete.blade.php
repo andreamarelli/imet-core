@@ -1,33 +1,22 @@
 <?php
-/** @var String $form_class */
-/** @var String $item */
-/** @var String $label */
+use AndreaMarelli\ImetCore\Controllers;
+use AndreaMarelli\ImetCore\Models;
+use AndreaMarelli\ModularForms\Helpers\Template;
 
-use AndreaMarelli\ImetCore\Controllers\Imet;
+/** @var int|Models\Imet\v2\Imet|Models\Imet\v1\Imet|Models\Imet\oecm\Imet|Models\Imet\v2\Imet_Eval|Models\Imet\v1\Imet_Eval|Models\Imet\oecm\Imet_Eval $item */
+/** @var String $version */
 
-$item = $item ?? 'item.FormID';
-$label = $label ?? null;
+if($version === Models\Imet\Imet::IMET_V1){
+    $controller = Controllers\Imet\v1\Controller::class;
+} else if($version === Models\Imet\Imet::IMET_V2){
+    $controller = Controllers\Imet\v2\Controller::class;
+} else {
+    $controller = Controllers\Imet\oecm\Controller::class;
+}
 
 ?>
 
-<span v-if="item.version==='{{ $form_class::IMET_V1 }}'">
-    @include('modular-forms::buttons.delete', [
-        'controller' => Imet\v1\Controller::class,
-        'item' => $item,
-        'label' => $label
-    ])
-</span>
-<span v-else-if="item.version==='{{ $form_class::IMET_V2 }}'">
-    @include('modular-forms::buttons.delete', [
-        'controller' => Imet\v2\Controller::class,
-        'item' => $item,
-        'label' => $label
-    ])
-</span>
-<span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'">
-    @include('modular-forms::buttons.delete', [
-        'controller' => Imet\oecm\Controller::class,
-        'item' => $item,
-        'label' => $label
-    ])
-</span>
+<x-modular-forms::button.form.destroy-dialog
+        :controller="$controller"
+        :item="$item"
+></x-modular-forms::button.form.destroy-dialog>

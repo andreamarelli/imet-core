@@ -7,11 +7,12 @@
 <div class="horizontal">
     <div class="sub-title sub-title-second">
         <span v-html="container.props.config.element_diagrams.threats.menu.ranking"></span>
-        <popover>
-            <template>
-                {{trans('imet-core::analysis_report.guidance.info.ranking')}}
-            </template>
-        </popover>
+        <button class="btn-nav small blue">
+            <span class="fas fa-fw fa-info-circle"></span>
+        </button>
+        <tooltip>
+            {{ trans('imet-core::analysis_report.guidance.info.ranking') }}}
+        </tooltip>
     </div>
 </div>
 <div :id="'{{$name}}-ranking-threat'">
@@ -46,11 +47,12 @@
 <div class="horizontal">
     <div class="sub-title sub-title-second">
         <span v-html="container.props.config.element_diagrams.threats.menu.average_contribution"></span>
-        <popover>
-            <template>
-                {{trans('imet-core::analysis_report.guidance.info.average_contribution')}}
-            </template>
-        </popover>
+        <button class="btn-nav small blue">
+            <span class="fas fa-fw fa-info-circle"></span>
+        </button>
+        <tooltip>
+            {{ trans('imet-core::analysis_report.guidance.info.average_contribution') }}}
+        </tooltip>
     </div>
 </div>
 <div :id="'{{$name}}-average-contribution-threat'">
@@ -75,11 +77,12 @@
 <div class="horizontal">
     <div class="sub-title sub-title-second">
         <span v-html="container.props.config.element_diagrams.threats.menu.radar"></span>
-        <popover>
-            <template>
-                {{trans('imet-core::analysis_report.guidance.info.radar')}}
-            </template>
-        </popover>
+        <button class="btn-nav small blue">
+            <span class="fas fa-fw fa-info-circle"></span>
+        </button>
+        <tooltip>
+            {{ trans('imet-core::analysis_report.guidance.info.radar') }}}
+        </tooltip>
     </div>
 </div>
 <div :id="'{{$name}}-radar-threat'">
@@ -104,11 +107,12 @@
 <div class="horizontal">
     <div class="sub-title sub-title-second">
         <span v-html="container.props.config.element_diagrams.threats.menu.datatable"></span>
-        <popover>
-            <template>
-                {{trans('imet-core::analysis_report.guidance.threats.datatable')}}
-            </template>
-        </popover>
+        <button class="btn-nav small blue">
+            <span class="fas fa-fw fa-info-circle"></span>
+        </button>
+        <tooltip>
+            {{ trans('imet-core::analysis_report.guidance.threats.datatable') }}}
+        </tooltip>
     </div>
 </div>
 

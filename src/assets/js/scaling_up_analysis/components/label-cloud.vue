@@ -1,24 +1,22 @@
 <template>
-    <div class="vue-cloud">
-        <div class="row mb-3 mr-0" v-if="get_selections()">
-            <div class="col">
-                <button class="btn btn-success float-right" @click="scaling_up">
-                    {{this.labelScalingUp}}
-                </button>
-
-            </div>
-            <div class="col">
-                <actionButton :class-name="'btn btn-danger float-left'" :click="clear_all" :label="this.labelRemoveAll"
-                              :event="'remove_values'"></actionButton>
-            </div>
+    <div class="vue-cloud flex flex-col">
+        <div class="flex flex-row justify-center gap-4" v-if="get_selections()">
+          <button class="btn-nav" @click="scaling_up">
+            {{this.labelScalingUp}}
+          </button>
+          <actionButton
+              :class-name="'btn-nav red'"
+              :click="clear_all"
+              :label="this.labelRemoveAll"
+              :event="'remove_values'"
+          ></actionButton>
         </div>
-        <div class="row mr-0 results-cloud">
-            <div class="col-sm-2" v-for="selection in selections" :key="selection.id"
+        <div class="m-4 flex flex-row justify-center gap-4">
+            <div class="" v-for="selection in selections" :key="selection.id"
                  v-on:click="remove_item(selection)">
-                <div class="alert alert-warning alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
+                <div class="p-2 bg-yellow-100 rounded border border-yellow-200">
                     <strong>{{ selection.value }}</strong>
+                    <button type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
@@ -9,7 +9,7 @@
 
     @if($field['name']==='GovernanceModel' || $field['name']==='SubGovernanceModel' || $field['name']==='AdditionalInfo')
 
-        @component('modular-forms::module.field_container', [
+        @component('modular-forms::module.components.field_container', [
                 'name' => $field['name'],
                 'label' => $field['label'] ?? '',
                 'label_width' => 4
@@ -41,7 +41,7 @@
             }
         @endphp
 
-        @component('modular-forms::module.field_container', [
+        @component('modular-forms::module.components.field_container', [
                 'name' => $field['name'],
                 'label' => $field['label'] ?? '',
                 'label_width' => 5,
@@ -65,7 +65,7 @@
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             props:{
                 SubGovernanceModel_SelectionList: {

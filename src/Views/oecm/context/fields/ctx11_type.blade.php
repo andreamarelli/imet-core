@@ -26,12 +26,3 @@
     <input name="{{ $id }}" {!! $vue_attributes !!} type="radio" value="mixed" />
     {{ trans('imet-core::oecm_lists.PaType.mixed') }}
 </label>
-
-@push('scripts')
-    <style>
-        .type_desc{
-            max-width: 800px;
-        }
-    </style>
-@endpush
-

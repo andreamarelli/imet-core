@@ -95,7 +95,7 @@ $ecological_monitoring_patrol_km_percentage = \AndreaMarelli\ImetCore\Models\Ime
     </tr>
 </table>
 
-@component('modular-forms::module.field_container', [
+@component('modular-forms::module.components.field_container', [
                'name' => $definitions['fields'][4]['name'],
                'label' => $definitions['fields'][4]['label'] ?? '',
                'label_width' => $definitions['label_width']
@@ -110,7 +110,7 @@ $ecological_monitoring_patrol_km_percentage = \AndreaMarelli\ImetCore\Models\Ime
 @endcomponent
 
 
-@component('modular-forms::module.field_container', [
+@component('modular-forms::module.components.field_container', [
                'name' => $definitions['fields'][5]['name'],
                'label' => $definitions['fields'][5]['label'] ?? '',
                'label_width' => $definitions['label_width']

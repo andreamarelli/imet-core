@@ -7,9 +7,9 @@ use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 /** @var Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
-$original_table = View::make('modular-forms::module.edit.type.table', compact(['collection', 'vue_data', 'definitions']))->render();
+$original_table = View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions']))->render();
 
 $diff_col = '<input type="text" disabled="disabled" style="width: 80px;"
                 class="field-edit text-right"
@@ -33,7 +33,7 @@ $dom->filter('tbody > tr > td')->eq(5)->append('<td>' . $diff_col . '</td>');
         // ## Initialize Module controller ##
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             computed: {
 

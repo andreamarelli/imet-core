@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="" @click="toggle_view()">
+        <div @click="toggle_view()">
 
             <div :id="'menu-header-header-main'"
                  :class="parent_class_name+' horizontal'">
@@ -10,10 +10,12 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white collapse mb-2" :class="{show: data.show_view}">
+
+        <div class="mb-2" v-show="data.show_view">
             <guidance :text="guidance"/>
-            <checkboxes_list :items="items" :event="'apply_filter'"/>
-            <div v-if="show_loader" class="spinner-border text-success" role="status">
+            <checkboxes_list :items="items" :event="'apply_filter'" class="p-2"/>
+            <div v-if="show_loader">
+                <i class="fa fa-spinner fa-spin text-primary-800"></i>
                 <span class="sr-only">Loading...</span>
             </div>
             <div v-else>
@@ -29,7 +31,7 @@
                     <slot :props="data"></slot>
                 </div>
                 <div class="text-right mt-3">
-                    <div class="btn btn-circle btn-outline-danger" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
+                    <div class="btn-nav red" @click="toggle_view()" v-html="stores.BaseStore.localization('imet-core::analysis_report.close')">
                     </div>
                 </div>
             </div>

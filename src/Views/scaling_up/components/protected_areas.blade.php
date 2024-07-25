@@ -28,10 +28,9 @@
                                 <td class="text-center width60px border">{{ $protected_areas['categories'][$pa->FormID] }}
                                 </td>
                                 <td class="text-center width90px border">
-                                    <div class="row">
-                                        <div class="col-2 ml-3"
-                                             style="background-color: {{ $custom_items[$pa->FormID]->color }}; height:20px;"></div>
-                                        <div class="col-9"> {{ $custom_items[$pa->FormID]->name }}</div>
+                                    <div class="flex">
+                                        <div class="mx-3 h-5 w-5" style="background-color: {{ $custom_items[$pa->FormID]->color }};"></div>
+                                        <div> {{ $custom_items[$pa->FormID]->name }}</div>
                                     </div>
                                 </td>
                             </tr>

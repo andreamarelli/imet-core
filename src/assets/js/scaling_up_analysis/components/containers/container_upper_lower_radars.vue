@@ -5,7 +5,7 @@
                                :event_image="'save_entire_block_as_image'"
             >
                 <template slot-scope="data_elements">
-                    <div class="row mt-5" :id="'upper_lower_'+index">
+                    <div class="w-full" :id="'upper_lower_'+index">
                         <scaling_radar class="col-sm" :width="width" :height="height"
                                        :single="single"
                                        :unselect_legends_on_load="unselect_legends_on_load"
@@ -16,15 +16,11 @@
                                        :refresh_average=false
                                        :key="'asd_'+index"></scaling_radar>
                     </div>
-                    <div class="row">
-                        <div class="col-sm">
-                           <datatable_interact_with_radar
-                                :values_with_indicators_keys="true"
-                                :refresh_average=false
-                                :values="data_elements.props" :columns="columns"
-                                                           :event_key="'up_'+index"></datatable_interact_with_radar>
-                        </div>
-                    </div>
+                   <datatable_interact_with_radar
+                        :values_with_indicators_keys="true"
+                        :refresh_average=false
+                        :values="data_elements.props" :columns="columns"
+                                                   :event_key="'up_'+index"></datatable_interact_with_radar>
 
                 </template>
             </container_actions>

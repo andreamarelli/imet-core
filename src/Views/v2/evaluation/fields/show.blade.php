@@ -10,4 +10,4 @@ $vue_attributes = \AndreaMarelli\ModularForms\Helpers\DOM::vueAttributes($v_id, 
 ?>
 
 <input type="hidden" {!! $vue_attributes !!} {!! $class !!} {!! $other !!} />
-<div class="field-disabled">@{{ {!! $v_value !!} }}</div>
+<div class="field-preview field-disabled">@{{ {!! $v_value !!} }}</div>

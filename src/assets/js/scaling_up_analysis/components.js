@@ -47,11 +47,9 @@ Vue.component('color_picker', require('./tools/color_picker.vue').default);
 
 Vue.component('basket', require('./components/basket.vue').default);
 Vue.component('guidance',    require('./components/guidance.vue').default);
-Vue.component('popover',    require('./components/popover.vue').default);
 
 Vue.component('small_menu',    require('./components/menus/small_menu.vue').default);
 Vue.component('small_menu_analysis_per_elements',    require('./components/menus/small_menu_analysis_per_elements.vue').default);
-
 
 Vue.component('imet_basic_bars',        require('./components/imet_basic_bars.vue').default);
 Vue.component('action-button',          require('./components/action-button.vue').default);

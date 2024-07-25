@@ -1,7 +1,7 @@
 <template>
     <div id="maps" class="align-items-center">
-        <div v-if="!no_internet_connection" class="row" style="width:100%;height: 500px">
-            <div id="map-load" class="ml-3" style="width:100%; height:500px"></div>
+        <div v-if="!no_internet_connection" style="width:100%; height: 500px">
+            <div id="map-load" class="ml-3" style="width:100%; height: 500px"></div>
         </div>
         <div v-else class="dopa_not_available">
             {{ error_message }}
@@ -37,13 +37,13 @@ export default {
             return fetch(this.url, {
                 method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-Token": window.Laravel.csrfToken,
+                  "Content-Type": "application/json",
+                  "X-CSRF-Token": window.Laravel.csrfToken,
                 },
                 body: JSON.stringify({
-                    func: 'get_wdpas_by_form_id',
-                    parameter: this.form_ids.split(','),
-                    scaling_id: this.stores.BaseStore.scaling_up_id
+                  func: 'get_wdpas_by_form_id',
+                  parameter: this.form_ids.split(','),
+                  scaling_id: this.stores.BaseStore.scaling_up_id
                 })
             })
                 .then((response) => response.json())
@@ -54,8 +54,8 @@ export default {
                     console.log(error)
                     return null;
                 })
-        },
-
+        }
+        ,
         loadMap: async function () {
 
             const wdpa_ids = await this.retrieveWdpaIDs();

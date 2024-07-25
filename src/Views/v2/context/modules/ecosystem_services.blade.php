@@ -1,10 +1,10 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-/** @var Mixed $vue_data */
+/** @var Mixed $vueData */
 
 
-$view_groupTable = $view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vue_data', 'definitions']))->render();
+$view_groupTable = $view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
 
 if (!function_exists('injectTitleAndHistogram')) {
     function injectTitleAndHistogram($title, $category_index){
@@ -14,18 +14,11 @@ if (!function_exists('injectTitleAndHistogram')) {
                     <h3>'.$title.'</h3>
                 </div>
                 <div class="module-row__input">
-                    <div class="row progress_bar" style="margin-top: 25px">
-                        <div class="col-lg-1 progress_bar_limits">-100%</div>
-                        <div class="col-lg-10 progress_bar_container">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-negative"
-                                     role="progressbar"
-                                     :style="{ width: Math.abs(category_stats[\''.$category_index.'\']) + \'%\', backgroundColor: \'#87c89b\'}">
-                                    <span v-if="category_stats[\''.$category_index.'\']!==null">{{ category_stats[\''.$category_index.'\'] }} %</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-1 progress_bar_limits">0%</div>
+                    <div class="progress_bar" style="margin-top: 25px">
+                        <imet_progress_bar
+                            :value=category_stats[\''.$category_index.'\']
+                            color="#87c89b"
+                        ></imet_progress_bar>
                     </div>
                 </div>
             </div>';
@@ -46,14 +39,14 @@ $dom->filter('h5.group_title_'.$definitions['module_key'].'_group9')
 
 ?>
 {!! $dom->saveHTML() !!}
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vue_data', 'definitions']))
+@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <script>
         // ## Initialize Module controller ##cont
         let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
             el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vue_data),
+            data: @json($vueData),
 
             computed: {
 

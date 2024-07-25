@@ -43,7 +43,7 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 
 ?>
 
-<div>
+<div id="threat_histograms">
     @foreach(MenacesPressions::$groupByCategory as $i => $category)
         @php
             /** @var $stats */
@@ -59,25 +59,29 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
             </div>
             @if($group_stat>0)
                 <div class="histogram-row__progress-bar">
-                    <div class="histogram-row__progress-bar__limit-left">-100%</div>
-                    <div class="histogram-row__progress-bar__bar">
-                        <div class="progress">
-                            <div role="progressbar"
-                                 class="progress-bar progress-bar-striped  progress-bar-negative"
-                                 style="width: {{ (int) abs($group_stat) }}%; background-color: #87c89b !important;">
-                                <span>{{ $group_stat }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="histogram-row__progress-bar__limit-right">0%</div>
+                    <imet_progress_bar
+                        :value={{ $group_stat }}
+                        color="#87c89b"
+                        :min=-100
+                        :max=0
+                    ></imet_progress_bar>
                 </div>
             @endif
         </div>
 
     @endforeach
+
 </div>
 <br />
 <br />
 
 
 {!! $dom->saveHTML() !!}
+
+@push('scripts')
+    <script>
+        new Vue({
+            el: '#threat_histograms',
+        });
+    </script>
+@endpush

@@ -25,7 +25,7 @@ export default {
     methods: {
         draw_chart() {
             let options = this.set_options();
-            this.chart = echarts.init(this.$el);
+            this.chart = window.ImetCoreVendor.echarts.init(this.$el);
             this.chart.setOption(options);
         }
     }
