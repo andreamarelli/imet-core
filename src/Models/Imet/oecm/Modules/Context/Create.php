@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class Create extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.imet_form';
+    protected $table = 'imet_form';
     protected $primaryKey = 'FormID';
 
     public static $rules = [
@@ -25,7 +25,7 @@ class Create extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::oecm_context.Create.title');
         $this->module_fields = [
             ['name' => 'version',   'type' => 'blade-imet-core::oecm.context.fields.version',   'label' => trans('imet-core::common.version')],
-            ['name' => 'language',  'type' => 'toggle-ImetV2_languages',                        'label' => trans('imet-core::common.language')],
+            ['name' => 'language',  'type' => 'toggle-ImetOECM_languages',                        'label' => trans('imet-core::common.language')],
             ['name' => 'Year',      'type' => 'yearMaxCurrent',                                 'label' => trans('imet-core::oecm_context.Create.fields.Year')],
             ['name' => 'wdpa_id',   'type' => 'imet-core::selector-wdpa',                       'label' => trans('imet-core::oecm_context.Create.fields.wdpa_id')],
         ];

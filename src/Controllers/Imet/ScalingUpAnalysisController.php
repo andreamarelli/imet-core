@@ -7,7 +7,7 @@ use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
 use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use AndreaMarelli\ModularForms\Helpers\File\Zip;
@@ -126,8 +126,8 @@ class ScalingUpAnalysisController extends __Controller
         $filter_selected = !empty(array_filter($request->except('_token')));
 
         // retrieve IMET list
-        $filtered_list = Imet::get_assessments_list_with_extras($request);
-        $full_list = Imet::get_assessments_list(new Request(), ['country']);
+        $filtered_list = (static::$form_class)::get_assessments_list_with_extras($request);
+        $full_list = (static::$form_class)::get_assessments_list(new Request(), ['country']);
         $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
@@ -145,6 +145,7 @@ class ScalingUpAnalysisController extends __Controller
     /**
      * @param Request $request
      * @return array
+     * @throws AuthorizationException
      */
     public function analysis(Request $request): array
     {
@@ -232,7 +233,7 @@ class ScalingUpAnalysisController extends __Controller
         //check if the parameters are an array of numbers and pa exist in the db
         $filtered_array = array_filter($items_array, function ($value) {
             if (is_numeric($value)) {
-                if (Imet::where('FormID', $value)->count() === 0) {
+                if ((static::$form_class)::where('FormID', $value)->count() === 0) {
                     return false;
                 }
             } else {
@@ -288,6 +289,7 @@ class ScalingUpAnalysisController extends __Controller
         uasort($protected_areas['models'], function ($a, $b) {
             return $a['name'] > $b['name'];
         });
+
         App::setLocale($locale);
         $templates_names = [
             ['name' => "protected_areas", 'title' => trans('imet-core::analysis_report.sections.list_of_names'), 'snapshot_id' => "protected_areas", 'exclude_elements' => '', 'code' => '0'],

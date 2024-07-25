@@ -14,6 +14,13 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ImportanceSpecies::class, 'species'],
+        [Modules\Evaluation\InformationAvailability::class, 'species'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'species'],
+        [Modules\Evaluation\ManagementActivities::class, 'species'],
+    ];
+
     protected $validation_min3 = '';
 
     public function __construct(array $attributes = []) {
@@ -39,31 +46,6 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->validation_min3 = trans('imet-core::v2_context.AnimalSpecies.validation_min3');
 
         parent::__construct($attributes);
-
-    }
-
-    public static function getVueData($form_id, $records, $definitions): array
-    {
-        $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.AnimalSpecies.warning_on_save');
-        return $vue_data;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\ImportanceSpecies::class,
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-        ]);
-
-        return parent::updateModule($request);
     }
 
 }

@@ -53,6 +53,10 @@ export default {
         event: {
             type: String,
             default: ''
+        },
+        minimum_valid_items: {
+            type: Number,
+            default: 1
         }
     },
     data: function () {
@@ -102,7 +106,7 @@ export default {
 
         },
         button_status: function () {
-            if (this.checkboxes.length > 1) {
+            if (this.checkboxes.length > this.minimum_valid_items) {
                 return false
             }
 

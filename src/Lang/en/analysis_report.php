@@ -40,6 +40,7 @@ return [
     'add_all' => 'Add all',
     'close' => 'Close',
     'remove_all' => 'Remove all',
+    'average' => 'Average',
     'sections' => [
         'first' => 'Location of the selected protected areas',
         'second' => 'General Information of the protected areas',
@@ -68,6 +69,7 @@ return [
                 'ranking' => '6.1.2.1 Ranking of Value and Importance sub-indicators',
                 'average_contribution' => '6.1.2.2 Average contribution and variability of the Value and Importance sub-indicators',
                 'datatable' => '6.1.2.4 Data table for the Value and Importance sub-indicators',
+                'datatable_average' => 'Value and Importance sub-indicators',
             ]
         ],
         'threats' => [
@@ -111,14 +113,16 @@ return [
                 'radar' => 'Radar visualization of Internal management systems and processes',
                 'ranking' => 'Ranking of Internal management systems and processes',
                 'average_contribution' => 'Average score and variability of Internal management systems and processes indicators',
-                'datatable' => 'Data table of Internal management systems and processes'
+                'datatable' => 'Data table of Internal management systems and processes',
+                'datatable_average' => 'Internal management systems and processes'
             ],
             'process_management_protection_values' => [
                 'title' => 'PR B: Management / Protection of the values',
                 'radar' => 'Radar visualization of Management / Protection of the values',
                 'ranking' => 'Ranking of Management / Protection of the values',
                 'average_contribution' => 'Average score and variability of Management/Protection of the values indicators',
-                'datatable' => 'Data table of Management / Protection of the values'
+                'datatable' => 'Data table of Management / Protection of the values',
+                'datatable_average' => 'Management / Protection of the values'
             ],
             'process_stakeholders_relationships' => [
                 'title' => 'PR C: Stakeholder relations',
@@ -126,24 +130,28 @@ return [
                 'ranking' => 'Ranking of Stakeholder relations',
                 'average_contribution' => 'Average score and variability of Stakeholder relations indicators',
                 'datatable' => 'Data table of Stakeholder relations',
+                'datatable_average' => 'Stakeholder relations'
             ],
             'process_tourism_management' => [
                 'title' => 'PR D: Tourism management',
                 'ranking' => 'Ranking of Tourism management',
                 'average_contribution' => 'Average score and variability of Tourism management indicators',
                 'datatable' => 'Data table of Tourism management',
+                'datatable_average' => 'Tourism management'
             ],
             'process_monitoring_and_research' => [
                 'title' => 'PR E: Monitoring and Research',
                 'ranking' => 'Ranking of Monitoring and Research',
                 'average_contribution' => 'Average score and variability of Monitoring and Research indicators',
                 'datatable' => 'Data table of Monitoring and Research',
+                'datatable_average' => 'Monitoring and Research'
             ],
             'process_effects_of_climate_change' => [
                 'title' => 'PR F: Management of the effects of climate change and ecosystem services',
                 'ranking' => 'Ranking of the indicators of Management of the effects of climate change and ecosystem services',
                 'average_contribution' => 'Average score and variability of the indicators of Management of the effects of climate change and ecosystem services',
                 'datatable' => 'Data table of Management of the effects of climate change and ecosystem services',
+                'datatable_average' => 'Management of the effects of climate change and ecosystem services'
             ]
 
         ],
@@ -388,7 +396,7 @@ return [
         'op2' => 'Annual outputs – targets – achievement',
         'op3' => 'Area domination',
         'op4' => 'Enforcement in MPA',
-        'oc1' => 'Achievement of long-term objectives of the OECM management and governance',
+        'oc1' => 'Achievement of long-term objectives of the conserved area management and governance',
         'oc2' => 'Conditions and trends of the key conservation elements of the protected area',
         'oc3' => 'Effects and outcomes for stakeholders on quality of life',
         'pr1_6' => 'Internal management systems and processes',

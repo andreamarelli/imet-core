@@ -18,10 +18,12 @@ if($controller === Controllers\Imet\oecm\Controller::class){
     $form_class = Imet\oecm\Imet::class;
     $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
     $scaling_up_enable = false;
+    $create_title_prefix = 'imet-core::oecm_context.';
 } else {
     $form_class = Imet\Imet::class;
     $route_prefix = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
     $scaling_up_enable = true;
+    $create_title_prefix = 'imet-core::common.';
 }
 
 ?>
@@ -36,34 +38,34 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 <!-- functional-buttons -->
 @section('functional-buttons')
 
-    @can('edit', $form_class)
-        {{-- Create new IMET --}}
-        <a class="btn-nav rounded"
-           href="{{ route($route_prefix.'create') }}">
-            {!! Template::icon('plus-circle', 'white') !!}
-            {{ ucfirst(trans('imet-core::common.Create.title')) }}
-        </a>
-        <a class="btn-nav rounded"
-           href="{{ route($route_prefix.'create_non_wdpa') }}">
-            {!! Template::icon('plus-circle', 'white') !!}
-            {{ ucfirst(trans('imet-core::common.CreateNonWdpa.title')) }}
-        </a>
-        {{-- Import json IMETs --}}
-        <a class="btn-nav rounded"
-           href="{{ route($route_prefix.'import') }}">
-            {!! Template::icon('file-import', 'white') !!}
-            {{ ucfirst(trans('modular-forms::common.import')) }}
-        </a>
-        @if($scaling_up_enable)
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            {{-- Scaling Up --}}
+        @can('edit', $form_class)
+            {{-- Create new IMET --}}
             <a class="btn-nav rounded"
-               href="{{ route('imet-core::scaling_up_index') }}">
-                {!! Template::icon('chart-bar', 'white') !!}
-                {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
+               href="{{ route($route_prefix.'create') }}">
+                {!! Template::icon('plus-circle', 'white') !!}
+                {{ ucfirst(trans($create_title_prefix.'Create.title')) }}
             </a>
-        @endif
+            <a class="btn-nav rounded"
+               href="{{ route($route_prefix.'create_non_wdpa') }}">
+                {!! Template::icon('plus-circle', 'white') !!}
+                {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
+            </a>
+            {{-- Import json IMETs --}}
+            <a class="btn-nav rounded"
+               href="{{ route($route_prefix.'import') }}">
+                {!! Template::icon('file-import', 'white') !!}
+                {{ ucfirst(trans('modular-forms::common.import')) }}
+            </a>
+            @if($scaling_up_enable)
+                &nbsp;&nbsp;
+                &nbsp;&nbsp;
+                {{-- Scaling Up --}}
+                <a class="btn-nav rounded"
+                   href="{{ route('imet-core::scaling_up_index') }}">
+                    {!! Template::icon('chart-bar', 'white') !!}
+                    {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
+                </a>
+            @endif
 
     @endcan
 
@@ -108,54 +110,46 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             <td class="align-baseline text-center"><strong>{{ $item->Year }}</strong></td>
             <td class="align-baseline">
 
-                <div class="imet_name">
-                    <div class="imet_pa_name">
-                        {{-- name --}}
-                        <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
-                        {{-- wdpa_id --}}
-                        @if($item->wdpa_id !== null)
-                            (<a target="_blank" class="text-primary-600"
-                                href="{{ ProtectedPlanet::WEBSITE_URL . $item->wdpa_id }}">
-                                {{ $item->wdpa_id }}
-                            </a>)
-                        @endif
+                    <div class="imet_name">
+                        <div class="imet_pa_name">
+                            {{-- name --}}
+                            <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
+                            {{-- wdpa_id --}}
+                            <span v-if="item.wdpa_id!==null">
+                                (<a target="_blank"
+                                    :href="'{{ ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
+                            </span>
+                            <br/>
+                            {{-- country --}}
+                            <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
+                        </div>
                         <br/>
-                        {{-- country --}}
-                        <flag iso2="{{ $item->country->iso2 }}"></flag>&nbsp;&nbsp;<i>{{ $item->country->name }}</i>
+                        {{-- language --}}
+                        <div>
+                            {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
+                            <flag :iso2=item.language></flag>
+                        </div>
+                        {{-- version --}}
+                        <div>
+                            {{ ucfirst(trans('imet-core::common.version')) }}:
+                            <span v-if="item.version==='{{ $form_class::IMET_V2 }}'"
+                                  class="badge badge-success">v2</span>
+                            <span v-else-if="item.version==='{{ $form_class::IMET_V1 }}'" class="badge badge-secondary">v1</span>
+                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">OECM</span>
+                        </div>
+                        {{-- last update --}}
+                        <div>
+                            @uclang('modular-forms::entities.common.last_update'):&nbsp;
+                            <b><i>@{{ item.last_update.date }}</i></b>
+                        </div>
                     </div>
-                    <br/>
-                    {{-- language --}}
-                    <div>
-                        {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
-                        <flag iso2="{{ $item->language }}"></flag>
-                    </div>
-                    {{-- version --}}
-                    <div>
-                        {{ ucfirst(trans('imet-core::common.version')) }}:
-                        @if($item->version == $form_class::IMET_V2)
-                            <span class="badge badge-success">v2</span>
-                        @elseif($item->version == $form_class::IMET_V1)
-                            <span class="badge badge-secondary">v1</span>
-                        @elseif($item->version == $form_class::IMET_OECM)
-                            <span class="badge badge-info">OECM</span>
-                        @endif
-                    </div>
-                    {{-- last update --}}
-                    <div>
-                        @uclang('modular-forms::entities.common.last_update'):&nbsp;
-                        <b><i>{{ $item->last_update['date'] }}</i></b>
-                    </div>
-                </div>
-
-            </td>
-
-            <td class="align-baseline">
-                <imet_encoders_responsibles
-                    :items='@json($item->encoders_responsibles)'
-                ></imet_encoders_responsibles>
-            </td>
-            <td>
-                @if(!empty(array_filter($item->assessment_radar, fn ($item) => !is_null($item))))
+                </td>
+                <td class="align-baseline">
+                    <imet_encoders_responsibles
+                            :items=item.encoders_responsibles
+                    ></imet_encoders_responsibles>
+                </td>
+                <td>
                     <imet_radar
                             style="margin: 0 auto;"
                             :width=150 :height=150

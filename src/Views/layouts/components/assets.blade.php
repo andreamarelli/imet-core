@@ -32,7 +32,7 @@ $debug = !App::environment('production');
 </script>
 
 
-{{--<!-- mapbox -->--}}
+<!-- mapbox -->
 @if(Str::contains($current_route_name, 'imet-core::v1.report') ||
     Str::contains($current_route_name, 'imet-core::v2.report') ||
     Str::contains($current_route_name, 'imet-core::scaling_up'))
