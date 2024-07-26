@@ -46,7 +46,7 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
     /**
      * Inject additional predefined values (last 3 groups) retrieved from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? [

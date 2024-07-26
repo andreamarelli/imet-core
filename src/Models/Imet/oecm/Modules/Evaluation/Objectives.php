@@ -38,7 +38,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $key_elements = $form_id != null
             ? array_merge(

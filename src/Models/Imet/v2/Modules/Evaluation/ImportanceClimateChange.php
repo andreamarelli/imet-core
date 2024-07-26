@@ -51,7 +51,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         if($form_id!==null){
             $ctx_records = Modules\Context\ClimateChange::getModule($form_id)

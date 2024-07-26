@@ -1,7 +1,7 @@
 <template>
-    <div>
+
         <vue-dropzone
-            ref="myVueDropzone"
+            ref="dropzoneComponent"
             id="dropzone"
             :options="dropZoneOptions"
             :useCustomSlot="true"
@@ -10,146 +10,164 @@
             v-on:vdropzone-success="uploadedSuccessfully"
             v-on:vdropzone-file-added="fileAdded"
         >
+
             <div class="dropzone-custom-content">
                 <h3 class="dropzone-custom-title">{{ Locale.getLabel('modular-forms::common.upload.multiple_files_description') }}</h3>
             </div>
+
         </vue-dropzone>
         <a class="btn-nav" v-show="files_added>0 && files_added===files_uploaded" :href=backUrl>
           {{ Locale.getLabel('modular-forms::common.go_back') }}
         </a>
-    </div>
+
 </template>
 
-<script>
-export default {
+<script setup>
 
-    components: {
-        vueDropzone: window.ImetCoreVendor.VueDropzone
-    },
-    props:{
-        uploadUrl: {
-            type: String,
-            default: null
-        },
-        backUrl:{
-          type: String,
-          default: null
-        },
-    },
-    data() {
-        const Locale = window.Locale;
-        return {
-            Locale: Locale,
-            modalIsOpen: false,
-            dropZoneOptions: {
-                url: this.uploadUrl,
-                previewTemplate: this.template(),
-                params: {
-                    _token: window.Laravel.csrfToken
-                },
-                addRemoveLinks: true,
-                clickable: true,
-                maxFiles: 20,
-                maxFilesize: 150,
-                timeout: 100000,
-                acceptedFiles: ".json,.zip",
-                autoProcessQueue: true,
-                dictDefaultMessage: Locale.getLabel('modular-forms::common.upload.dict_default_message'),
-                dictFallbackMessage: Locale.getLabel('modular-forms::common.upload.dict_fallback_message'),
-                dictFallbackText: Locale.getLabel('modular-forms::common.upload.dict_fallback_text'),
-                dictFileTooBig: Locale.getLabel('modular-forms::common.upload.dict_file_too_big'),
-                dictInvalidFileType: Locale.getLabel('modular-forms::common.upload.dict_invalid_file_type'),
-                dictResponseError: Locale.getLabel('modular-forms::common.upload.dict_response_error'),
-                dictCancelUpload: Locale.getLabel('modular-forms::common.upload.dict_cancel_upload'),
-                dictUploadCanceled: Locale.getLabel('modular-forms::common.upload.dict_upload_canceled'),
-                dictRemoveFile: Locale.getLabel('modular-forms::common.upload.dict_remove_file'),
-                dictMaxFilesExceeded: Locale.getLabel('modular-forms::common.upload.dictMaxFilesExceeded'),
-            },
-            formatTypes: ["application/json", "application/zip"],
-            files_added: 0,
-            files_uploaded: 0
-        };
-    },
+import { ref } from 'vue';
+import vueDropzone from '~/dropzone-vue3';
 
-    mounted: function () {
-        window.confirm = function () {
-            return true;
-        };
+const props = defineProps({
+    uploadUrl: {
+        type: String,
+        default: null
     },
-    methods: {
-        template: function () {
-            return `<div class="files text-sm" id="previews">
-                <div id="template" class="file-row">
-                    <div>
-                        <p class="name" data-dz-name></p>
-                    </div>
-                    <div>
-                        <p class="size" data-dz-size></p>
-                    </div>
+    backUrl:{
+        type: String,
+        default: null
+    },
+});
+
+const Locale = window.ModularForms.Helpers.Locale;
+
+const files_added = ref(0);
+const files_uploaded = ref(0);
+const formatTypes = ["application/json", "application/zip"];
+const dropzoneComponent = ref(null);
+const dropZoneOptions = {
+    url: props.uploadUrl,
+    previewTemplate:
+        `<div class="dropzone-file-list text-sm">
+            <div class="file-row">
+                <div class="file-details">
+                    <div class="name" data-dz-name></div>
+                    <div class="size" data-dz-size></div>
+                    <div class="dz-remove" data-dz-remove></div>
                     <div class="progress">
-                        <div class="progress-bar" id="total-progress" style="width:0;" data-dz-uploadprogress></div>
+                        <div class="progress-bar total-progress" style="width:0;" data-dz-uploadprogress></div>
                     </div>
                 </div>
             </div>
-        `;
-        },
+        </div>`,
+    // previewTemplate:
+    //     `<div class="files text-sm">
+    //         <div class="file-row dz-preview dz-file-preview">
+    //             <div class="dz-details">
+    //                 <div class="dz-filename"><span data-dz-name></span></div>
+    //                 <div class="dz-size" data-dz-size></div>
+    //             </div>
+    //             <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+    //             <div class="dz-success-mark"><span>✔</span></div>
+    //             <div class="dz-error-mark"><span>✘</span></div>
+    //             <div class="dz-error-message"><span data-dz-errormessage></span></div>
+    //         </div>
+    //     </div>`,
+    params(files, xhr, chunk) {
+        return {
+            _token: window.Laravel.csrfToken
+        };
+    },
+    addRemoveLinks: true,
+    clickable: true,
+    maxFiles: 20,
+    maxFilesize: 150,
+    timeout: 100000,
+    acceptedFiles: ".json,.zip",
+    autoProcessQueue: true,
+    dictDefaultMessage: Locale.getLabel('modular-forms::common.upload.dict_default_message'),
+    dictFallbackMessage: Locale.getLabel('modular-forms::common.upload.dict_fallback_message'),
+    dictFallbackText: Locale.getLabel('modular-forms::common.upload.dict_fallback_text'),
+    dictFileTooBig: Locale.getLabel('modular-forms::common.upload.dict_file_too_big'),
+    dictInvalidFileType: Locale.getLabel('modular-forms::common.upload.dict_invalid_file_type'),
+    dictResponseError: Locale.getLabel('modular-forms::common.upload.dict_response_error'),
+    dictCancelUpload: Locale.getLabel('modular-forms::common.upload.dict_cancel_upload'),
+    dictUploadCanceled: Locale.getLabel('modular-forms::common.upload.dict_upload_canceled'),
+    dictRemoveFile: Locale.getLabel('modular-forms::common.upload.dict_remove_file'),
+    dictMaxFilesExceeded: Locale.getLabel('modular-forms::common.upload.dictMaxFilesExceeded'),
+};
 
-        progressBarConfiguration(file, label, color = 'blue', width = '100%') {
-            const selector = file.previewTemplate.querySelector("#total-progress.progress-bar");
-            selector.innerHTML = label;
-            selector.style.backgroundColor = color;
-            selector.style.color = "white";
-            selector.style.width = width;
-        },
-
-        fileAdded(file) {
-            this.files_added++
-            //remove the last file and added to the top of the list
-            const nodesArray = [...this.$refs.myVueDropzone.$el.children];
-            const fileAdded = nodesArray.pop();
-            nodesArray.unshift(fileAdded);
-            const dropzoneArea = document.querySelector("#dropzone");
-            dropzoneArea.append(...nodesArray);
-        },
-
-        uploadError(file, message) {
-            this.files_uploaded++;
-            let errorMessage = Locale.getLabel('modular-forms::common.upload.upload_error');
-            if (message['message']) {
-                errorMessage += message['message'];
-            } else if (!this.formatTypes.includes(file.type)) {
-                errorMessage = Locale.getLabel('modular-forms::common.upload.not_valid_format');
-            } else {
-                errorMessage += message;
-            }
-            this.progressBarConfiguration(file, errorMessage, 'red', '100%');
-        },
-
-        processing(file) {
-            this.progressBarConfiguration(file, Locale.getLabel('modular-forms::common.upload.uploading'));
-        },
-
-        uploadedSuccessfully(file, response) {
-            this.files_uploaded++;
-            let message = Locale.getLabel('modular-forms::common.upload.uploaded');
-            if (response.length > 1) {
-                let filesDidNotUploaded = 0;
-                response.forEach((r => {
-                    if (r.status !== 'error') {
-                        filesDidNotUploaded++;
-                    }
-                }))
-                const totalFiles = response.length;
-                message += Locale.getLabel('modular-forms::common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
-            }
-            this.progressBarConfiguration(file, message, "green");
-        }
-    }
+function progressBarConfiguration(file, label, color = 'blue', width = '100%') {
+    const selector = file.previewTemplate.querySelector(".total-progress.progress-bar");
+    selector.innerHTML = label;
+    selector.style.backgroundColor = color;
+    selector.style.color = "white";
+    selector.style.width = width;
 }
+
+function fileAdded(file) {
+    files_added.value++
+    // console.log('file added', file);
+    // console.log('dropzoneComponent', dropzoneComponent);
+    // console.log('dropzoneComponent.value', dropzoneComponent.value);
+    // // remove the last file and added to the top of the list
+    // const nodesArray = [...dropzoneComponent.children];
+    // const fileAdded = nodesArray.pop();
+    // nodesArray.unshift(fileAdded);
+    // const dropzoneArea = document.querySelector("#dropzone");
+    // dropzoneArea.append(...nodesArray);
+}
+
+function uploadError(file, message) {
+    files_uploaded.value++;
+    let errorMessage = Locale.getLabel('modular-forms::common.upload.upload_error');
+    if (message['message']) {
+        errorMessage += message['message'];
+    } else if (!formatTypes.includes(file.type)) {
+        errorMessage = Locale.getLabel('modular-forms::common.upload.not_valid_format');
+    } else {
+        errorMessage += message;
+    }
+    progressBarConfiguration(file, errorMessage, 'red', '100%');
+}
+
+function processing(file) {
+    progressBarConfiguration(file, Locale.getLabel('modular-forms::common.upload.uploading'));
+}
+
+function uploadedSuccessfully(file, response) {
+    files_uploaded.value++;
+    let message = Locale.getLabel('modular-forms::common.upload.uploaded');
+    if (response.length > 1) {
+        let filesDidNotUploaded = 0;
+        response.forEach((r => {
+            if (r.status !== 'error') {
+                filesDidNotUploaded++;
+            }
+        }))
+        const totalFiles = response.length;
+        message += Locale.getLabel('modular-forms::common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
+    }
+    progressBarConfiguration(file, message, "green");
+}
+
+
+
+//
+// export default {
+//
+//     mounted: function () {
+//         window.confirm = function () {
+//             return true;
+//         };
+//     },
+//
+// }
 
 </script>
 
+
 <style lang="scss">
+
 #dropzone {
     display: inline-block;
     height: 300px;
@@ -157,38 +175,78 @@ export default {
     overflow:auto;
     background:#fff;
     width: 100%;
+}
 
-    .dropzone-custom-content{
-      margin: 0 30px;
-      .dropzone-custom-title{
-          @apply text-base;
-      }
-    }
+.dropzone-file-list{
+    display: flex;
+    gap: 30px;
 
-    .files{
-        display: flex;
-        gap: 30px;
-        .file-row{
+    .file-row{
+        width: 100%;
+
+        .file-details {
             flex-grow: 1;
             display: flex;
             flex-direction: row;
             align-items: center;
+            justify-content: flex-start;
             gap: 15px;
+
             .progress{
                 flex-grow: 1;
                 border-radius: 4px;
                 .progress-bar{
-                  border-radius: 4px;
-                  font-weight: bold;
-                  padding: 3px 6px;
+                    border-radius: 4px;
+                    font-weight: bold;
+                    padding: 3px 6px;
                 }
             }
+
         }
+
     }
 
-  a.dz-remove{
-    display: none;
-  }
-
 }
+
+.dz-remove{
+    display: none;
+}
+
+//
+//
+//#dropzone {
+//    display: inline-block;
+//    height: 300px;
+//    max-height:300px;
+//    overflow:auto;
+//    background:#fff;
+//    width: 100%;
+//
+//    .dropzone-custom-content{
+//        margin: 0 30px;
+//        .dropzone-custom-title{
+//            @apply text-base;
+//        }
+//    }
+//
+//    //.files{
+//    //    display: flex;
+//    //    gap: 30px;
+//    //
+//    //    .file-details{
+//    //        flex-grow: 1;
+//    //        display: flex;
+//    //        flex-direction: row;
+//    //        align-items: center;
+//    //        gap: 15px;
+//    //
+//
+//    //    }
+//    //}
+//
+//    a.dz-remove{
+//        display: none;
+//    }
+//
+//}
 </style>

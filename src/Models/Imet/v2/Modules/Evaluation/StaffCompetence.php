@@ -44,7 +44,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         return [
             'field' => static::$DEPENDENCY_ON,

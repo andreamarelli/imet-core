@@ -34,9 +34,8 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 @endsection
 
 @push('scripts')
-    <script>
-        new Vue({
-            el: '#import_imet',
-        })
+    <script type="module">
+        (new window.ImetCore.Apps.Base())
+            .mount('#import_imet');
     </script>
 @endpush

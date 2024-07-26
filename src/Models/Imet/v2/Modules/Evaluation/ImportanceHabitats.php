@@ -47,7 +47,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray()

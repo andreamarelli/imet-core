@@ -38,34 +38,34 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 <!-- functional-buttons -->
 @section('functional-buttons')
 
-        @can('edit', $form_class)
-            {{-- Create new IMET --}}
+    @can('edit', $form_class)
+        {{-- Create new IMET --}}
+        <a class="btn-nav rounded"
+           href="{{ route($route_prefix.'create') }}">
+            {!! Template::icon('plus-circle', 'white') !!}
+            {{ ucfirst(trans($create_title_prefix.'Create.title')) }}
+        </a>
+        <a class="btn-nav rounded"
+           href="{{ route($route_prefix.'create_non_wdpa') }}">
+            {!! Template::icon('plus-circle', 'white') !!}
+            {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
+        </a>
+        {{-- Import json IMETs --}}
+        <a class="btn-nav rounded"
+           href="{{ route($route_prefix.'import') }}">
+            {!! Template::icon('file-import', 'white') !!}
+            {{ ucfirst(trans('modular-forms::common.import')) }}
+        </a>
+        @if($scaling_up_enable)
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            {{-- Scaling Up --}}
             <a class="btn-nav rounded"
-               href="{{ route($route_prefix.'create') }}">
-                {!! Template::icon('plus-circle', 'white') !!}
-                {{ ucfirst(trans($create_title_prefix.'Create.title')) }}
+               href="{{ route('imet-core::scaling_up_index') }}">
+                {!! Template::icon('chart-bar', 'white') !!}
+                {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
             </a>
-            <a class="btn-nav rounded"
-               href="{{ route($route_prefix.'create_non_wdpa') }}">
-                {!! Template::icon('plus-circle', 'white') !!}
-                {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
-            </a>
-            {{-- Import json IMETs --}}
-            <a class="btn-nav rounded"
-               href="{{ route($route_prefix.'import') }}">
-                {!! Template::icon('file-import', 'white') !!}
-                {{ ucfirst(trans('modular-forms::common.import')) }}
-            </a>
-            @if($scaling_up_enable)
-                &nbsp;&nbsp;
-                &nbsp;&nbsp;
-                {{-- Scaling Up --}}
-                <a class="btn-nav rounded"
-                   href="{{ route('imet-core::scaling_up_index') }}">
-                    {!! Template::icon('chart-bar', 'white') !!}
-                    {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
-                </a>
-            @endif
+        @endif
 
     @endcan
 
@@ -155,7 +155,6 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             :width=150 :height=150
                             :values='@json($item->assessment_radar)'
                     ></imet_radar>
-                @endif
             </td>
             <td class="text-center">
 

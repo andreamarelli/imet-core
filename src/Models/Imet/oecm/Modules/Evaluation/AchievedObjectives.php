@@ -37,7 +37,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
      * @param $form_id
      * @return array
      */
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $p6_values = $form_id!==null
             ? collect(Objectives::getModuleRecords($form_id)['records'])
