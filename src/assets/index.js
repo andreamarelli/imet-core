@@ -32,6 +32,9 @@ window.ImetCore.Apps.Base = BaseImet;
 import FormListImet from './js/apps/FormList.js';  // Extend FormList from ModularForms
 window.ImetCore.Apps.FormList = FormListImet;
 
+import ModuleImet from './js/apps/Module.js';  // Extend FormList from ModularForms
+window.ImetCore.Apps.Module = ModuleImet;
+
 
 // // Templates
 // Vue.component('dopa_chart_bar',                 require('./js/templates/dopa/chart_bar.vue').default);
