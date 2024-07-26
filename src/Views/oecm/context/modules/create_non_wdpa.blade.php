@@ -27,8 +27,6 @@
                         }
                     }
 
-                    console.log(empty);
-
                     if(empty.includes('version') &&
                         empty.includes('FormID') &&
                         empty.includes('UpdateDate') &&

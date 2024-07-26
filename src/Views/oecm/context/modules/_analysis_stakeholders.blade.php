@@ -175,7 +175,6 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                 },
 
                 switchStakeholder(value) {
-                    console.log(value);
                     if (!this.isCurrentStakeholder(value)) {
                         this.current_stakeholder = value;
                     } else {

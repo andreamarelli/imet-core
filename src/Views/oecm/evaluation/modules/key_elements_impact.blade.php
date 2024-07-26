@@ -102,7 +102,6 @@
 
                 recordChangedCallback(){
                     let _this = this;
-                    console.log('changes', this.records);
 
                     Object.entries(this.records).forEach(([group_key, group]) => {
                         Object.entries(group).forEach(([record_index, record]) => {

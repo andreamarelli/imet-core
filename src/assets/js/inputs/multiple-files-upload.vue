@@ -106,15 +106,6 @@ function progressBarConfiguration(file, label, color = 'blue', width = '100%') {
 
 function fileAdded(file) {
     files_added.value++
-    // console.log('file added', file);
-    // console.log('dropzoneComponent', dropzoneComponent);
-    // console.log('dropzoneComponent.value', dropzoneComponent.value);
-    // // remove the last file and added to the top of the list
-    // const nodesArray = [...dropzoneComponent.children];
-    // const fileAdded = nodesArray.pop();
-    // nodesArray.unshift(fileAdded);
-    // const dropzoneArea = document.querySelector("#dropzone");
-    // dropzoneArea.append(...nodesArray);
 }
 
 function uploadError(file, message) {
