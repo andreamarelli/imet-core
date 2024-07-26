@@ -21,7 +21,7 @@ else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
 
 <span>
     <span id="show_{{ $item->getKey() }}">
-        <button class="btn-nav small">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}</button>
+        <button class="btn-nav mr-1 small">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}</button>
     </span>
     <tooltip :on-click=true
              anchor-elem-id="show_{{ $item->getKey() }}">
@@ -29,18 +29,18 @@ else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
         <div class="flex flex-col gap-1">
 
             {{-- Context --}}
-            <a class="btn-nav small" href="{{ action([$controller_context, 'show'], [$item->getKey()]) }}">
+            <a class="btn-nav my-0.5 small" href="{{ action([$controller_context, 'show'], [$item->getKey()]) }}">
                 {!! Template::icon('list') . ' ' . ucfirst(trans('imet-core::common.context')) !!}
             </a>
 
             {{-- Evaluation --}}
-            <a class="btn-nav small" href="{{ action([$controller_eval, 'show'], [$item->getKey()]) }}">
+            <a class="btn-nav my-0.5 small" href="{{ action([$controller_eval, 'show'], [$item->getKey()]) }}">
                 {!! Template::icon('check-circle') . ' ' . ucfirst(trans('imet-core::common.evaluation')) !!}
             </a>
 
             {{-- Analysis Report --}}
             @if($version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2 || $version===\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM)
-                <a class="btn-nav small" href="{{ action([$controller_report, 'report_show'], [$item->getKey()]) }}">
+                <a class="btn-nav my-0.5 small" href="{{ action([$controller_report, 'report_show'], [$item->getKey()]) }}">
                 {!! Template::icon('flag-checkered') . ' ' . ucfirst(trans('imet-core::common.report')) !!}
             </a>
             @endif

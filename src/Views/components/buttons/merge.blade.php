@@ -14,7 +14,7 @@ if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
 ?>
 
 <a id="merge_{{ $item->getKey() }}"
-   class="btn-nav small yellow"
+   class="btn-nav mr-1 small yellow"
    href="{{ action([$controller, 'merge_view'], [$item->getKey()]) }}">
     {!! Template::icon('clone') !!}
 </a>

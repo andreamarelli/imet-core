@@ -16,7 +16,7 @@ if($version === Models\Imet\Imet::IMET_V1){
 
 ?>
 
-<x-modular-forms::button.form.destroy-dialog
+<x-modular-forms::button.form.destroy
         :controller="$controller"
         :item="$item"
-></x-modular-forms::button.form.destroy-dialog>
+></x-modular-forms::button.form.destroy>

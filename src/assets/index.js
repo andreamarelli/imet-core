@@ -26,8 +26,11 @@ window.ImetCore.Helpers.BiopamaWDPA = BiopamaWDPA;
 // ############################################
 window.ImetCore.Apps = {};
 
-import BaseImet from './js/apps/Base.js';
+import BaseImet from './js/apps/Base.js'; // Extend Base from ModularForms
 window.ImetCore.Apps.Base = BaseImet;
+
+import FormListImet from './js/apps/FormList.js';  // Extend FormList from ModularForms
+window.ImetCore.Apps.FormList = FormListImet;
 
 
 // // Templates

@@ -15,7 +15,7 @@ if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
 
 
 <a id="export_{{ $item->getKey() }}"
-   class="btn-nav small btn-primary"
+   class="btn-nav mr-1 small btn-primary"
    href="{{ action([$controller, 'export'], [$item->getKey()]) }}">
     {!! Template::icon('cloud-download-alt') !!}
 </a>

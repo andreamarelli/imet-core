@@ -113,41 +113,41 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                     <div class="imet_name">
                         <div class="imet_pa_name">
                             {{-- name --}}
-                            <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
+                            <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
                             {{-- wdpa_id --}}
-                            <span v-if="item.wdpa_id!==null">
-                                (<a target="_blank"
-                                    :href="'{{ ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{ item.wdpa_id }}</a>)
-                            </span>
+                            @if($item->wdpa_id!==null)
+                                (<a target="_blank" href="{{ ProtectedPlanet::WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+                            @endif
                             <br/>
                             {{-- country --}}
-                            <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>@{{ item.country.name }}</i>
+                            <flag iso2=>{{ $item->country->iso2 }}></flag>&nbsp;&nbsp;<i>{{ $item->country->name }}</i>
                         </div>
                         <br/>
                         {{-- language --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
-                            <flag :iso2=item.language></flag>
+                            <flag iso2=>{{ $item->language }}></flag>
                         </div>
                         {{-- version --}}
                         <div>
                             {{ ucfirst(trans('imet-core::common.version')) }}:
-                            <span v-if="item.version==='{{ $form_class::IMET_V2 }}'"
-                                  class="badge badge-success">v2</span>
-                            <span v-else-if="item.version==='{{ $form_class::IMET_V1 }}'" class="badge badge-secondary">v1</span>
-                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">OECM</span>
+                            @if($item->version===Imet\Imet::IMET_V2)
+                                <span class="badge badge-success">v2</span>
+                            @elseif($item->version===Imet\Imet::IMET_V1)
+                                <span class="badge badge-secondary">v1</span>
+                            @elseif($item->version===Imet\Imet::IMET_OECM)
+                                <span class="badge badge-info">OECM</span>
+                            @endif
                         </div>
                         {{-- last update --}}
                         <div>
                             @uclang('modular-forms::entities.common.last_update'):&nbsp;
-                            <b><i>@{{ item.last_update.date }}</i></b>
+                            <b><i>{{ $item->last_update['date'] }}</i></b>
                         </div>
                     </div>
                 </td>
                 <td class="align-baseline">
-                    <imet_encoders_responsibles
-                            :items=item.encoders_responsibles
-                    ></imet_encoders_responsibles>
+                    <imet_encoders_responsibles :items='@json($item->encoders_responsibles)'></imet_encoders_responsibles>
                 </td>
                 <td>
                     <imet_radar
@@ -192,4 +192,12 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             </td>
         </tr>
     @endforeach
+@endsection
+
+<!-- scripts -->
+@section('scripts')
+    <script type="module">
+        (new window.ImetCore.Apps.FormList())
+            .mount('#page-container');
+    </script>
 @endsection

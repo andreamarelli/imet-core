@@ -61,84 +61,74 @@
 
 </style>
 
-<script>
+<script setup>
 
-    export default {
+import { computed, ref } from "vue";
 
-        props: {
-            max_visible: {
-                type: Number,
-                default: 4
-            },
-            items: {
-                type: [String, Object],
-                default: () => {
-                    return {
-                        'internal': [],
-                        'external': [],
-                        'encoders': [],
-                    }
-                }
-            }
-        },
+const Locale = window.ModularForms.Helpers.Locale;
+const showHidden = ref(false);
 
-        data: function () {
+const props = defineProps({
+    max_visible: {
+        type: Number,
+        default: 4
+    },
+    items: {
+        type: [String, Object],
+        default: () => {
             return {
-                Locale: window.Locale,
-                showHidden: false
+                'internal': [],
+                'external': [],
+                'encoders': [],
             }
-        },
-
-        computed: {
-            total_count(){
-                return this.items['internal'].length
-                    + this.items['external'].length
-                    + this.items['encoders'].length;
-            },
-            to_be_shown(){
-                let _this = this;
-                let items = {
-                    'internal': [],
-                    'external': [],
-                    'encoders': [],
-                };
-
-                let current_shown = 0;
-                Object.values(this.items['internal']).forEach(function (item) {
-                    if(current_shown<_this.max_visible || _this.showHidden){
-                        if(item['Name']!==null){
-                            items['internal'].push(item);
-                        }
-                    }
-                    current_shown++;
-                });
-                Object.values(this.items['external']).forEach(function (item) {
-                    if(current_shown<_this.max_visible || _this.showHidden){
-                        if(item['Name']!==null) {
-                            items['external'].push(item);
-                        }
-                    }
-                    current_shown++;
-                });
-                Object.values(this.items['encoders']).forEach(function (item) {
-                    if(current_shown<_this.max_visible || _this.showHidden){
-                        if(item['name']!==null && item['name'].trim()!=="") {
-                            items['encoders'].push(item);
-                        }
-                    }
-                    current_shown++;
-                });
-                return items;
-            }
-        },
-
-        methods: {
-
-            toggleShown(){
-                this.showHidden = !this.showHidden;
-            }
-
         }
     }
+});
+
+const total_count = computed(() => {
+    return props.items['internal'].length
+        + props.items['external'].length
+        + props.items['encoders'].length;
+});
+
+const to_be_shown = computed(() => {
+    let items = {
+        'internal': [],
+        'external': [],
+        'encoders': [],
+    };
+
+    let current_shown = 0;
+    Object.values(props.items['internal']).forEach(function (item) {
+        if(current_shown<props.max_visible || showHidden.value){
+            if(item['Name']!==null){
+                items['internal'].push(item);
+            }
+        }
+        current_shown++;
+    });
+    Object.values(props.items['external']).forEach(function (item) {
+        if(current_shown<props.max_visible || showHidden.value){
+            if(item['Name']!==null) {
+                items['external'].push(item);
+            }
+        }
+        current_shown++;
+    });
+    Object.values(props.items['encoders']).forEach(function (item) {
+        if(current_shown<props.max_visible || showHidden.value){
+            if(item['name']!==null && item['name'].trim()!=="") {
+                items['encoders'].push(item);
+            }
+        }
+        current_shown++;
+    });
+    return items;
+});
+
+function  toggleShown(){
+    showHidden.value = !showHidden.value;
+}
+
 
 </script>

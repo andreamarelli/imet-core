@@ -15,7 +15,7 @@ if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
 
 
 <a id="print_{{ $item->getKey() }}"
-   class="btn-nav small btn-primary"
+   class="btn-nav mr-1 small btn-primary"
    href="{{ action([$controller, 'print'], [$item->getKey()]) }}">
     {!! Template::icon('print') !!}
 </a>
