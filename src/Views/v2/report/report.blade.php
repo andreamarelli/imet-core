@@ -110,8 +110,10 @@ if($item->language != App::getLocale()){
             <div class="module-body">
 
                 <imet_charts
-                        form_id={{ $item->getKey() }} :labels='@json(ImetScores::labels())'
-                        :show_histogram="true" :version="'v2'"></imet_charts>
+                    form_id={{ $item->getKey() }}
+                    :labels='@json(ImetScores::labels())'
+                    :version="'v2'"
+                    :show_histogram="true"></imet_charts>
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::common.steps_eval.context')</th>

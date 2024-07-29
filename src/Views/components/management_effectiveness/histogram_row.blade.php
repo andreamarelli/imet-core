@@ -39,20 +39,20 @@ $echo_rating = "{{ ".$rating." }}";
 
         @if($row_type==='0_to_100_full_width')
             <imet_progress_bar
-                :value={{ $rating }}
+                :value={!! $rating !!}
                 :color=step_color
             ></imet_progress_bar>
 
         @elseif($row_type==='0_to_100')
             <div class="histogram-row__progress-bar__spacer"></div>
             <imet_progress_bar
-                :value={{ $rating }}
+                :value={!! $rating !!}
                 :color=step_color
             ></imet_progress_bar>
 
         @elseif($row_type==='minus100_to_0')
             <imet_progress_bar
-                :value={{ $rating }}
+                :value={!! $rating !!}
                 :color=step_color
                 :min=-100
                 :max=0

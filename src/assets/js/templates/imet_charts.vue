@@ -12,7 +12,7 @@
                     <b><span v-if="item.value!==null">{{ item.value }}</span></b>
                 </div>
                 <!-- progress bar -->
-                <div class="imet_histogram__progress_bar">
+                <div class="imet_histogram__progress_bar text-2xs">
                     <progress_bar
                         :value=item.value
                         :color=item.color
@@ -75,137 +75,103 @@
 
 </style>
 
-<script>
+<script setup>
 
-    import progress_bar from "./imet_progress_bar.vue";
+import { ref, computed, onMounted } from 'vue';
+import progress_bar from '@imet-core/js/templates/progress_bar.vue';
 
-    export default {
-
-        components: {
-            progress_bar
-        },
-
-        props: {
-            form_id: {
-                type: [Number, String],
-                default: null
-            },
-            version: {
-                type: String,
-                default: null
-            },
-            input_data:{
-                type: [Object],
-                default: () => null
-            },
-            labels:{
-                type: [Object],
-                default: () => null
-            },
-            show_histogram: {
-                type: Boolean,
-                default: true
-            },
-            steps: {
-                type: Array,
-                default: () => {
-                    return ['context', 'planning', 'inputs', 'process', 'outputs', 'outcomes' ]
-                }
-            },
-            colors: {
-                type: Array,
-                default: () => {
-                    return ['#FFFF00', '#BFBFBF', '#FFC000', '#00B0F0', '#92D050', '#00B050']
-                }
-            }
-        },
-
-        data: function () {
-            return {
-                chart: null,
-                api_data: null
-            }
-        },
-
-        beforeMount() {
-            if(this.input_data!==null){
-                this.api_data = this.input_data;
-            }
-        },
-
-        mounted(){
-            let _this = this;
-            if(this.api_data===null){
-                this.retrieve_api();
-            }
-            window.vueBus.$on('refresh_assessment', function () {
-                _this.retrieve_api();
-            });
-        },
-
-        computed: {
-
-            values(){
-                let _this = this;
-                let values = [];
-                this.steps.forEach(function(step, index){
-                    values.push({
-                        'label': _this.get_label(index),
-                        'value': _this.get_key_from_api(step),
-                        'color': _this.colors[index],
-                    });
-                });
-                return values;
-            },
-
-            radar_values(){
-                let values = {};
-                if(this.values.length>0){
-                    Object.entries(this.values).forEach(function([key, value]){
-                        values[value.label] = parseFloat(value.value).toFixed(1);
-                    });
-                }
-                return values;
-            }
-
-        },
-
-        methods: {
-
-            get_label(index){
-                return this.api_data!==null
-                    ? this.labels[this.version]['full'][index]
-                    : null;
-            },
-
-            get_key_from_api(key){
-                return this.api_data!==null && this.api_data.hasOwnProperty(key) && this.api_data[key]!==null
-                    ? this.api_data[key].toFixed(1)
-                    : null;
-            },
-
-            retrieve_api: function () {
-                let _this = this;
-                if(_this.form_id!==null){
-
-                    let url = _this.version === 'oecm'
-                      ? window.imet_routes.assessment_oecm
-                      : window.imet_routes.assessment;
-
-                    fetch(url.replace('__id__', _this.form_id), {
-                        method: 'GET',
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-CSRF-Token": window.Laravel.csrfToken,
-                        }
-                    })
-                        .then((response) => response.json())
-                        .then(function(data){
-                            _this.api_data = data;
-                        });
-                }
-            }
+const props = defineProps({
+    form_id: {
+        type: [Number, String],
+        default: null
+    },
+    version: {
+        type: String,
+        default: null
+    },
+    labels:{
+        type: [Object],
+        default: () => null
+    },
+    show_histogram: {
+        type: Boolean,
+        default: true
+    },
+    steps: {
+        type: Array,
+        default: () => {
+            return ['context', 'planning', 'inputs', 'process', 'outputs', 'outcomes' ]
         }
-
+    },
+    colors: {
+        type: Array,
+        default: () => {
+            return ['#FFFF00', '#BFBFBF', '#FFC000', '#00B0F0', '#92D050', '#00B050']
+        }
     }
+});
+
+const api_data = ref(null);
+const values = computed(() => {
+    let _values = [];
+    props.steps.forEach(function(step, index){
+        _values.push({
+            'label': get_label(index),
+            'value': get_key_from_api(step),
+            'color': props.colors[index],
+        });
+    });
+    return _values;
+});
+const radar_values = computed(() => {
+    let radar_values = {};
+    if(values.value.length>0){
+        Object.entries(values.value).forEach(function([key, value]){
+            radar_values[value.label] = parseFloat(value.value).toFixed(1);
+        });
+    }
+    return radar_values;
+});
+
+onMounted(() => {
+    retrieve_api();
+});
+
+// window.vueBus.$on('refresh_assessment', function () {
+//     _this.retrieve_api();
+// });
+
+function get_label(index) {
+    return api_data.value!==null
+        ? props.labels[props.version]['full'][index]
+        : null;
+}
+function get_key_from_api(key) {
+    return api_data.value!==null && api_data.value.hasOwnProperty(key) && api_data.value[key]!==null
+        ? api_data.value[key].toFixed(1)
+        : null;
+
+}
+function retrieve_api(){
+    if(props.form_id!==null){
+        let url = props.version === 'oecm'
+          ? window.Routes.assessment_oecm
+          : window.Routes.assessment;
+        fetch(url.replace('__id__', props.form_id), {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": window.Laravel.csrfToken,
+            }
+        })
+            .then((response) => response.json())
+            .then(function(data){
+                api_data.value = data;
+            });
+    }
+}
+
+
+
+
 </script>

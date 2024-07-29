@@ -35,6 +35,9 @@ window.ImetCore.Apps.FormList = FormListImet;
 import ModuleImet from './js/apps/Module.js';  // Extend FormList from ModularForms
 window.ImetCore.Apps.Module = ModuleImet;
 
+import Assessment from './js/apps/Assessment.js';
+window.ImetCore.Apps.Assessment = Assessment;
+
 
 // // Templates
 // Vue.component('dopa_chart_bar',                 require('./js/templates/dopa/chart_bar.vue').default);

@@ -99,7 +99,7 @@ export default {
     },
     printElement: async function (elem, append = false, delimiter) {
       window.open(
-          window.imet_routes.scaling_up_preview.replace('__id__', this.stores.BasketStore.get_scaling_up_id()),
+          window.Routes.scaling_up_preview.replace('__id__', this.stores.BasketStore.get_scaling_up_id()),
           '', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no');
     }
   }

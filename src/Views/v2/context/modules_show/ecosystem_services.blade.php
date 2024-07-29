@@ -34,11 +34,3 @@ foreach($groupByCategory as $i => $category){
 ?>
 
 {!! $dom->saveHTML() !!}
-
-@push('scripts')
-    <script>
-        new Vue({
-            el: '#module_imet__v2__context__ecosystem_services',
-        });
-    </script>
-@endpush

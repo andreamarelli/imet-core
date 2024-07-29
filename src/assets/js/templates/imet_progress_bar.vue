@@ -5,9 +5,9 @@
         <div v-if="showLimits && min!==null" class="progress-bar__limit-left">{{ min }}%</div>
 
         <progress_bar
-            :value=value
+            :value=progress_value
             :color=color
-        />
+        ></progress_bar>
 
         <div v-if="showLimits && max!==null" class="progress-bar__limit-right">{{ max }}%</div>
 
@@ -44,31 +44,39 @@
 
 </style>
 
-<script>
-    export default {
+<script setup>
 
-        props: {
-            value: {
-                value: Number,
-                default: 0
-            },
-            color: {
-                value: String,
-                default: '#ccc'
-            },
-            showLimits: {
-                value: Boolean,
-                default: true
-            },
-            min: {
-                value: Number,
-                default: 0
-            },
-            max: {
-                value: Number,
-                default: 100
-            },
-        }
+import { computed } from 'vue';
+import progress_bar from '@imet-core/js/templates/progress_bar.vue';
 
-    }
+const props = defineProps({
+    value: {
+        type: [String, Number],
+        default: 0
+    },
+    color: {
+        type: String,
+        default: '#ccc'
+    },
+    showLimits: {
+        type: Boolean,
+        default: true
+    },
+    min: {
+        type: Number,
+        default: 0
+    },
+    max: {
+        type: Number,
+        default: 100
+    },
+});
+
+const progress_value = computed(() => {
+    return typeof props.value === 'number'
+        ? parseFloat(props.value)
+        : props.value;
+});
+
+
 </script>

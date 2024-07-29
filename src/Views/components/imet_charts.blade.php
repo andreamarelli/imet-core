@@ -7,7 +7,7 @@ $labels = \AndreaMarelli\ImetCore\Services\Scores\ImetScores::labels();
 ?>
 
 <imet_charts
-        :form_id={{ $form_id }}
-        :labels='@json($labels)'
-        version='{{ $version }}'
+    :form_id={{ $form_id }}
+    :labels='@json($labels)'
+    version='{{ $version }}'
 ></imet_charts>

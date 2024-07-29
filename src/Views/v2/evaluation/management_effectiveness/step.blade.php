@@ -74,8 +74,21 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
 
 
 @push('scripts')
-<script>
 
+
+    <script type="module">
+        (new window.ImetCore.Apps.Assessment(
+                @json([
+                    'api_data' => $assessment_step,
+                    'form_id' => $item_id,
+                    'current_step' => $step
+                ])
+        )).mount('#assessment_step_{{ $step }}');
+    </script>
+
+
+<script>
+    /*
     new Vue({
         el: '#assessment_step_{{ $step }}',
 
@@ -111,45 +124,7 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
         },
 
         computed: {
-            labels() {
-                let _this = this;
-                let labels = {};
-                if (this.api_labels !== null) {
-                    Object.entries(_this.api_labels).forEach(function (item) {
-                        labels[item[0]] = {
-                            code: item[1]['code_label'],
-                            title: item[1]['title_' + Locale.getLocale()],
-                            min: 0,
-                            max: 100
-                        };
-                        if (labels[item[0]].code === 'C2' || labels[item[0]].code === 'C3') {
-                            labels[item[0]].min = -100;
-                        }
-                    });
-                }
-                return labels;
-            },
-            values() {
-                let _this = this;
-                let values = {};
-                _this.step_indexes.forEach(function (index) {
-                    values[index] = _this.get_key_from_api(index);
-                });
-                return values;
-            },
-            intermediate_values() {
-                let _this = this;
-                let values = {};
-                if (_this.step_indexes_intermediate.length > 0) {
-                    _this.step_indexes_intermediate.forEach(function (index) {
-                        values[index] = _this.get_key_from_api(index);
-                    });
-                }
-                return values;
-            },
-            synthetic_indicator() {
-                return this.get_key_from_api('avg_indicator');
-            }
+
         },
 
         methods: {
@@ -280,6 +255,6 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
         }
 
     });
-
+    */
 </script>
 @endpush
