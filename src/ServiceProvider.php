@@ -41,9 +41,9 @@ class ServiceProvider extends BaseServiceProvider
         ]);
 
         // Views
-        $this->loadViewsFrom(static::BASE_PATH . 'src/Views', 'imet-core');
+        $this->loadViewsFrom(static::BASE_PATH . 'src/resources/views', 'imet-core');
         $this->publishes([
-            static::BASE_PATH . 'src/Views/vendor/modular-forms' =>
+            static::BASE_PATH . 'src/resources/views/vendor/modular-forms' =>
                 resource_path('views/vendor/modular-forms') // Override ModularForms views
         ], 'imet-core');
 
