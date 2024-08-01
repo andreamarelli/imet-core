@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import container_event from './container_event.vue';
+import container_event from "./container_event.vue";
 
 export default {
     name: "container_section",

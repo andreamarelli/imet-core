@@ -41,7 +41,7 @@
 
 <script>
 
-import container_event from './containers/container_event.vue';
+import container_event from "./containers/container_event.vue";
 
 export default {
     name: "container_analysis_management_cycle.vue",

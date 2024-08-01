@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import container from './container.vue';
+import container from "./container.vue";
 import Radar_multiple_values from "./../various_charts/radar_multiple_values.vue";
 
 

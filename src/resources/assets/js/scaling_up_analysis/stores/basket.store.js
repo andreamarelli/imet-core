@@ -1,4 +1,4 @@
-import storage from './db.store';
+import storage from "./db.store";
 
 export default class BasketStore {
     constructor(args) {

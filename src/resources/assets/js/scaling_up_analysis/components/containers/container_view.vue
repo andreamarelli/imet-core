@@ -35,8 +35,8 @@
 
 <script>
 
-import small_menu from './../menus/small_menu.vue';
-import container_event from './container_event.vue';
+import small_menu from "./../menus/small_menu.vue";
+import container_event from "./container_event.vue";
 
 export default {
     name: "container_view",

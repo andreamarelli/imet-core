@@ -1,6 +1,7 @@
 import Module from "@modular-forms/js/apps/Module.js";
 
-import scopeIcon from "@imet-core/js/templates/scope_icon.vue";
+import scopeIcon from "../templates/scope_icon.vue";
+import selectorWdpa from "../inputs/selector-wdpa.vue";
 
 export default class ModuleImet extends Module {
 
@@ -9,6 +10,7 @@ export default class ModuleImet extends Module {
         return super(options, input_data)
 
             // Register components
+            .component('selector-wdpa', selectorWdpa)
             .component('scope-icon', scopeIcon);
     }
 

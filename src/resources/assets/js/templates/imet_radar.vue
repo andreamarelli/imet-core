@@ -11,7 +11,7 @@
 
 <script setup>
 
-import * as echarts from '~/echarts';
+import * as echarts from "~/echarts";
 import { computed, ref, onMounted, watch } from "vue";
 
 const props = defineProps({

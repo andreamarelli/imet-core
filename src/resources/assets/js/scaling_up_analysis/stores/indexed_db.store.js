@@ -1,4 +1,4 @@
-import LocalStorage from './local.storage.store';
+import LocalStorage from "./local.storage.store";
 
 class BasketStore {
     constructor() {

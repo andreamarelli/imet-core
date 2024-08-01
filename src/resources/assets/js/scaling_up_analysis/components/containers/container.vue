@@ -26,7 +26,7 @@
 
 <script>
 
-import small_menu from './../menus/small_menu.vue';
+import small_menu from "./../menus/small_menu.vue";
 
 
 export default {

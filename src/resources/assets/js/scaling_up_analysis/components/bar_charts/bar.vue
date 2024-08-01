@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import imet_bar_chart from '../../../templates/imet_bar_chart.vue';
+import imet_bar_chart from "../../../templates/imet_bar_chart.vue";
 export default {
   name: "bar",
   mixins: [

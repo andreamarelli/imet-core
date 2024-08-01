@@ -1,5 +1,6 @@
 import FormList from "@modular-forms/js/apps/FormList.js";
-import imet_encoders_responsibles from "@imet-core/js/templates/imet_encoders_responsibles.vue";
+
+import imet_encoders_responsibles from "../templates/imet_encoders_responsibles.vue";
 import imet_radar from "../templates/imet_radar.vue";
 
 export default class FormListImet extends FormList {

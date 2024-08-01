@@ -16,8 +16,8 @@
 
 <script setup>
 
-import marineIcon from '@imet-core/images/fish.png';
-import terrestrialIcon from '@imet-core/images/tree.png';
+import marineIcon from "../../images/fish.png";
+import terrestrialIcon from "../../images/tree.png";
 
 const Locale = window.ModularForms.Helpers.Locale;
 

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import actionButton from './action-button.vue';
+import actionButton from "./action-button.vue";
 
 export default {
     name: "label-cloud.vue",

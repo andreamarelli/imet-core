@@ -46,8 +46,8 @@
 
 <script setup>
 
-import { computed } from 'vue';
-import progress_bar from '@imet-core/js/templates/progress_bar.vue';
+import { computed } from "vue";
+import progress_bar from "./progress_bar.vue";
 
 const props = defineProps({
     value: {

@@ -27,7 +27,7 @@
 
 <script>
 
-import container_cycle from './container_analysis_management_cycle.vue';
+import container_cycle from "./container_analysis_management_cycle.vue";
 
 export default {
     name: "container_analysis_management_threat.vue",

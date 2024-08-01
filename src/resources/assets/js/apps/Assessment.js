@@ -1,6 +1,6 @@
-import BaseImet from "@imet-core/js/apps/Base";
+import BaseImet from "./Base";
 
-import imetProgressBar from "@imet-core/js/templates/imet_progress_bar.vue";
+import imetProgressBar from "../templates/imet_progress_bar.vue";
 
 import { createApp, ref, computed, onMounted, onBeforeMount } from "vue";
 
