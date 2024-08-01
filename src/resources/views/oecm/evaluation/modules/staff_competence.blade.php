@@ -15,7 +15,7 @@ $first_group = View::make('modular-forms::module.edit.type.group_table', compact
 
 // Second groups: fixed rows
 $definitions['groups'] = array_slice($original_definitions['groups'], 1);
-$definitions['fields'][2]['type'] = 'imet-core::rating-0to3WithNA';
+$definitions['fields'][2]['type'] = 'rating-0to3WithNA';
 $second_group = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
 
 $dom = HtmlPageCrawler::create('<div>'.$first_group.$second_group.'</div>');

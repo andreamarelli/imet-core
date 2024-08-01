@@ -36,8 +36,8 @@ class EcosystemServices extends Modules\Component\ImetModule
         $this->module_fields = [
             ['name' => 'Element',               'type' => 'text-area',          'label' => trans('imet-core::v2_context.EcosystemServices.fields.Element')],
             ['name' => 'Importance',            'type' => 'toggle-ImetV2_EcosystemServicesImportance',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.Importance')],
-            ['name' => 'ImportanceRegional',    'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceRegional')],
-            ['name' => 'ImportanceGlobal',      'type' => 'imet-core::rating-Minus2to2',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceGlobal')],
+            ['name' => 'ImportanceRegional',    'type' => 'rating-0to3',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceRegional')],
+            ['name' => 'ImportanceGlobal',      'type' => 'rating-Minus2to2',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceGlobal')],
             ['name' => 'Observations',          'type' => 'text-area',          'label' => trans('imet-core::v2_context.EcosystemServices.fields.Observations')],
         ];
 

@@ -20,7 +20,7 @@ class Staff extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Theme',                 'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.Staff.fields.Theme')],
             ['name' => 'StaffNumberAdequacy',   'type' => 'disabled',    'label' => trans('imet-core::v2_evaluation.Staff.fields.StaffNumberAdequacy')],
-            ['name' => 'StaffCapacityAdequacy', 'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::v2_evaluation.Staff.fields.StaffCapacityAdequacy')],
+            ['name' => 'StaffCapacityAdequacy', 'type' => 'rating-0to3',    'label' => trans('imet-core::v2_evaluation.Staff.fields.StaffCapacityAdequacy')],
             ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.Staff.fields.Comments')],
         ];
 

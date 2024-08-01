@@ -36,22 +36,4 @@ $only_label = $only_label ?? false;
         {!! $value ?? '&nbsp;' !!}
     </div>
 
-@elseif(Str::startsWith($type, 'imet-core::rating-'))
-    <?php
-        $ratingType = str_replace('imet-core::rating-', '', $type);
-        $ratingType = str_replace('WithNA', '', $ratingType);
-        $ratingType = str_replace('Minus', '-', $ratingType);
-        [$min, $max] = explode('to', $ratingType);
-    ?>
-    <span ref="ratingOptions" class="rating-container">
-        @if(Str::contains($type, 'WithNA'))
-            <span class="rating field-edit ratingNa {{ $value=='-99' ? 'active' : '' }}"
-            >N/A</span>
-        @endif
-        @for($i=$min; $i<=$max; $i++)
-            <span class="rating field-edit ratingNum {{ $value!==null && $i<=$value ? 'active' : '' }}"
-            >{{ $i }}</span>
-        @endfor
-    </span>
-
 @endif

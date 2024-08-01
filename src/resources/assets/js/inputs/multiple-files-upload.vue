@@ -24,8 +24,8 @@
 
 <script setup>
 
-import { ref } from 'vue';
-import vueDropzone from '~/dropzone-vue3';
+import { ref } from "vue";
+import vueDropzone from "~/dropzone-vue3";
 
 const props = defineProps({
     uploadUrl: {

@@ -153,19 +153,21 @@ Route::group(['middleware' => ['setLocale', 'web']], function () {
             Route::get('export_csv/{ids}/{module_key}', [v2\Controller::class, 'exportModuleToCsv'])->name('imet-core::csv');
         });
 
-        /*
-        |--------------------------------------------------------------------------
-        | API Routes - for internal use ONLY
-        |--------------------------------------------------------------------------
-        */
-        Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
+        // ###### Selectors ######
+        Route::group(['prefix' => 'selector'], function () {
 
-            Route::post('species', [SpeciesController::class, 'search'])->name('imet-core::search_species');
-            Route::post('protected_areas', [ProtectedAreaController::class, 'search'])->name('imet-core::search_pas');
-            Route::post('protected_areas_labels', [ProtectedAreaController::class, 'get_pairs'])->name('imet-core::labels_pas');
-            Route::post('users', [UsersController::class, 'search'])->name('imet-core::search_users');
+            Route::group(['prefix' => 'animal'], function () {
+                Route::post('search', [SpeciesController::class, 'search'])->name('selector.animal.search');
+            });
 
+            Route::group(['prefix' => 'pas'], function () {
+                Route::post('search', [ProtectedAreaController::class, 'search'])->name('imet-core::selector.pas.search');
+                Route::post('labels', [ProtectedAreaController::class, 'get_labels'])->name('imet-core::selector.pas.labels');
+            });
 
+            Route::group(['prefix' => 'users'], function () {
+                Route::post('search', [UsersController::class, 'search'])->name('imet-core::selector.users.search');
+            });
         });
 
     });

@@ -48,7 +48,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
                         <!-- user selector -->
                         <td>
                             <selector-user
-                                    search-url="{{ route('imet-core::search_users') }}"
+                                    search-url="{{ route('imet-core::selector.users.search') }}"
                                     v-model="records[index]['user']"
                                     :id="'records_'+index+'_user'"
                                     data-class="field-edit"
@@ -71,8 +71,8 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
                             <!-- WDPA selector -->
                             <td>
                                 <selector-wdpa_multiple
-                                        search-url="{{ route('imet-core::search_pas') }}"
-                                        labels-url="{{ route('imet-core::labels_pas') }}"
+                                        search-url="{{ route('imet-core::selector.pas.search') }}"
+                                        labels-url="{{ route('imet-core::selector.pas.labels') }}"
                                         v-model="records[index]['role_wdpas']"
                                         :id="'records_'+index+'_wdpas'"
                                         data-class="field-edit"

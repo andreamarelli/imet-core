@@ -22,7 +22,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Member',    'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Member')],
             ['name' => 'Weight',    'type' => 'disabled',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Weight')],
-            ['name' => 'Adequacy',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Adequacy')],
+            ['name' => 'Adequacy',  'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Adequacy')],
             ['name' => 'Comments',  'type' => 'text-area',  'label' => trans('imet-core::oecm_evaluation.StaffCompetence.fields.Comments')],
         ];
 

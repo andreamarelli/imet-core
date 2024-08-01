@@ -37,18 +37,23 @@ class ProtectedAreaController extends Controller
 
     /**
      *  Get list of pairs of id/label as JSON
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
-    public static function get_pairs(Request $request): JsonResponse
+    public static function get_labels(Request $request): JsonResponse
     {
-        $result = [];
-        if($request->filled('ids')){
-            $pas = explode(',', $request->input(['ids']));
+        $pairs = [];
+
+        if($request->filled('id')){
+
+            // Retrieve IDs list: can be comma separated string or json array
+            $ids = $request->input(['id']);
+            $pas = json_validate($ids)
+                ? json_decode($ids)
+                : explode(',', $ids);
+
+            // Retrieve labels
             foreach ($pas as $pa){
                 if(is_numeric($pa)){
-                    $result[] = [
+                    $pairs[] = [
                         'id' => $pa,
                         'label' => ProtectedArea
                             ::select(['wdpa_id', 'name'])
@@ -57,14 +62,18 @@ class ProtectedAreaController extends Controller
                             ->name
                     ];
                 } else {
-                    $result[] = [
+                    $pairs[] = [
                         'id' => $pa,
                         'label' => $pa
                     ];
                 }
             }
         }
-        return response()->json($result);
+        return response()->json(
+            [
+                'records' => $pairs
+            ]
+        );
     }
 
 }
