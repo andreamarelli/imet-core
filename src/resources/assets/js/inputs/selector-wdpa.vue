@@ -66,57 +66,22 @@ const selectorDialogComponent = ref(null);
 provide('setLabel', setLabel);
 provide('setValue', setValue);
 // provide('afterSearch', afterSearch);
-provide('AfterLabelRetrieve', AfterLabelRetrieve);
+// provide('AfterLabelRetrieve', AfterLabelRetrieve);
 
 // values
 const inputValue = defineModel();
 
-function AfterLabelRetrieve(data){
-    console.log('AfterLabelRetrieve', data);
-    return data.records;
-}
-
-function setLabel(value) {
-    console.log('setLabel', typeof value, value);
-    if(value !== null){
-        if (props.multiple) {
-            let labels = '';
-            value.forEach(function (item) {
-                labels += '<span class="multiple">' + item.label + '</span>';
-            });
-            return labels;
-        } else {
-            return value[0].label
-        }
-    }
-    return null;
-
-    // console.log(selectorDialogComponent, selectorDialogComponent.value, );
-    // if(value !== null && value !== ''){
-    //     if(typeof value === "string" && value !== '{}'){
-    //         value = JSON.parse(value);
-    //         console.log('setLabel2', typeof value, value);
-    //         return props.multiple
-    //             ? ''
-    //             // : selectorDialogComponent.value.retrieveItemFromId(value[0]);  // TODO: retrieve label
-    //             : value[0];
-    //     }
-    // }
-    // return null;
-}
-
-function setValue(value){
-    console.log('setValue', typeof value, value);
-    // if(typeof value === "object" && value !== null && value !== {}){
-    //     return props.wdpa_id
-    //         ? ''
-    //         : {value.wdpa_id}
-    // }
-    return value;
-}
-
-// function afterSearch(data){
-//     console.log(data);
+// function AfterLabelRetrieve(data){
+//     console.log('AfterLabelRetrieve', data);
+//     return data.records;
 // }
+
+function setLabel(item) {
+   return item?.name
+}
+
+function setValue(item){
+    return item?.wdpa_id;
+}
 
 </script>

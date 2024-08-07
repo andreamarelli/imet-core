@@ -13,9 +13,6 @@ class ProtectedAreaController extends Controller
 
     /**
      * Search by search string or country
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public static function search(Request $request): JsonResponse
     {
@@ -25,14 +22,12 @@ class ProtectedAreaController extends Controller
                 $request->input('search_key'),
                 $request->input('country'));
         }
-        return response()->json(
-            [
-                'records' => $list->toArray(),
-                'countries' => $list->pluck('country_name', 'country')
-                    ->sort()
-                    ->toArray()
-            ]
-        );
+
+        return static::sendAPIResponse($list->toArray(), null, 200, [
+            'countries' => $list->pluck('country_name', 'country')
+                ->sort()
+                ->toArray()
+        ]);
     }
 
     /**
@@ -50,30 +45,12 @@ class ProtectedAreaController extends Controller
                 ? json_decode($ids)
                 : explode(',', $ids);
 
-            // Retrieve labels
-            foreach ($pas as $pa){
-                if(is_numeric($pa)){
-                    $pairs[] = [
-                        'id' => $pa,
-                        'label' => ProtectedArea
-                            ::select(['wdpa_id', 'name'])
-                            ->where('wdpa_id', $pa)
-                            ->firstOrFail()
-                            ->name
-                    ];
-                } else {
-                    $pairs[] = [
-                        'id' => $pa,
-                        'label' => $pa
-                    ];
-                }
-            }
+            $pairs = ProtectedArea::select(['wdpa_id', 'name'])
+                ->whereIn('wdpa_id', $pas)
+                ->get();
         }
-        return response()->json(
-            [
-                'records' => $pairs
-            ]
-        );
+
+        return static::sendAPIResponse($pairs);
     }
 
 }
