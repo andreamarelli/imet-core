@@ -51,8 +51,8 @@
                 ])
                 @if($group_key==='group6')
                     <span v-if="typeof item.__predefined === 'undefined'">
-                            @include('modular-forms::buttons.delete_item')
-                        </span>
+                        <x-modular-forms::module.components.buttons.delete-item />
+                    </span>
                 @endif
             </td>
         </tr>
@@ -63,7 +63,7 @@
             {{-- add button --}}
             <tr>
                 <td colspan="{{ count($definitions['fields']) + 1 }}">
-                    @include('modular-forms::buttons.add_item')
+                    <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
                 </td>
             </tr>
             </tfoot>

@@ -9,13 +9,7 @@ use \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 $group_key = $group_key ?? '';
 
-$table_id = $definitions['module_type'] === 'GROUP_TABLE'
-    ? 'group_table_' . $definitions['module_key'] . '_' . $group_key
-    : 'table_' . $definitions['module_key'];
-
-$tr_record = $definitions['module_type'] === 'GROUP_TABLE'
-    ? 'records[\'' . $group_key . '\']'
-    : 'records'
+$table_id = 'table_' . $definitions['module_key'];
 
 ?>
 
@@ -48,7 +42,8 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
 
     {{-- inputs --}}
     <tbody class="{{ $group_key }}">
-        <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}">
+
+        <tr class="module-table-item" v-for="(item, index) in records">
             {{--  fields  --}}
             @foreach($definitions['fields'] as $index=>$field)
                 <td>
@@ -84,7 +79,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
                 ])
                 @if(!$definitions['fixed_rows'])
                     <span v-if="typeof item.__predefined === 'undefined'">
-                        @include('modular-forms::buttons.delete_item')
+                        <x-modular-forms::module.components.buttons.delete-item />
                     </span>
                 @endif
             </td>
@@ -123,7 +118,7 @@ $tr_record = $definitions['module_type'] === 'GROUP_TABLE'
             {{-- add button --}}
             <tr>
                 <td colspan="{{ count($definitions['fields']) + 1 }}">
-                    @include('modular-forms::buttons.add_item')
+                    <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
                 </td>
             </tr>
         </tfoot>

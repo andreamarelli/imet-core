@@ -2,7 +2,6 @@
 /** @var Mixed $definitions */
 
 $table_id = 'table_'.$definitions['module_key'];
-$tr_record = 'records';
 
 ?>
 
@@ -22,7 +21,7 @@ $tr_record = 'records';
 
     {{-- inputs --}}
     <tbody >
-        <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}">
+        <tr class="module-table-item" v-for="(item, index) in records">
             {{--  fields  --}}
             @foreach($definitions['fields'] as $field)
                 <td>

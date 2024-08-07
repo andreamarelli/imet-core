@@ -24,48 +24,50 @@
 
         {{-- records --}}
         <div class="{{ $group_key }}">
-            <div class="grid_module"
-                 v-for="(item, index) in records['{{ $group_key }}']"
-            >
+            <template v-for="(item, index) in records">
 
-                <div style="grid-row-start: 1; grid-row-end: span 2;">
-                    @include('modular-forms::module.edit.field.module-to-vue', [
-                        'definitions' => $definitions,
-                        'field' => $definitions['fields'][0],
-                        'vue_record_index' => 'index',
-                        'group_key' => $group_key
-                    ])
-                    @include('modular-forms::module.edit.field.vue', [
-                        'type' => 'hidden',
-                        'v_value' => 'item.'.$definitions['primary_key']
-                    ])
+                <div class="grid_module" v-if="recordIsInGroup(item, '{{ $group_key }}')">
+
+                    <div style="grid-row-start: 1; grid-row-end: span 2;">
+                        @include('modular-forms::module.edit.field.module-to-vue', [
+                            'definitions' => $definitions,
+                            'field' => $definitions['fields'][0],
+                            'vue_record_index' => 'index',
+                            'group_key' => $group_key
+                        ])
+                        @include('modular-forms::module.edit.field.vue', [
+                            'type' => 'hidden',
+                            'v_value' => 'item.'.$definitions['primary_key']
+                        ])
+                    </div>
+
+                    <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_sa')</b></div>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <div>
+                            @include('modular-forms::module.edit.field.module-to-vue', [
+                               'definitions' => $definitions,
+                               'field' => $definitions['fields'][$i],
+                               'vue_record_index' => 'index',
+                               'group_key' => $group_key
+                           ])
+                        </div>
+                    @endfor
+
+                    <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
+                    @for ($i = 6; $i <= 10; $i++)
+                        <div>
+                            @include('modular-forms::module.edit.field.module-to-vue', [
+                               'definitions' => $definitions,
+                               'field' => $definitions['fields'][$i],
+                               'vue_record_index' => 'index',
+                               'group_key' => $group_key
+                           ])
+                        </div>
+                    @endfor
+
                 </div>
 
-                <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_sa')</b></div>
-                @for ($i = 1; $i <= 5; $i++)
-                    <div>
-                        @include('modular-forms::module.edit.field.module-to-vue', [
-                           'definitions' => $definitions,
-                           'field' => $definitions['fields'][$i],
-                           'vue_record_index' => 'index',
-                           'group_key' => $group_key
-                       ])
-                    </div>
-                @endfor
-
-                <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
-                @for ($i = 6; $i <= 10; $i++)
-                    <div>
-                        @include('modular-forms::module.edit.field.module-to-vue', [
-                           'definitions' => $definitions,
-                           'field' => $definitions['fields'][$i],
-                           'vue_record_index' => 'index',
-                           'group_key' => $group_key
-                       ])
-                    </div>
-                @endfor
-
-            </div>
+            </template>
         </div>
 
         <br />

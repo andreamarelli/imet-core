@@ -6,14 +6,7 @@
 $record = $records[0];
 
 $group_key = $group_key ?? '';
-
-$table_id = $definitions['module_type'] === 'GROUP_TABLE'
-    ? 'group_table_' . $definitions['module_key'] . '_' . $group_key
-    : 'table_' . $definitions['module_key'];
-
-$tr_record = $definitions['module_type'] === 'GROUP_TABLE'
-    ? $records[$group_key]
-    : $records;
+$table_id = 'table_' . $definitions['module_key'];
 
 $diffs = AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::diffs($records);
 

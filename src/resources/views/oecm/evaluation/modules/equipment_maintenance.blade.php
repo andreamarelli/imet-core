@@ -3,14 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-
-$table_id = $definitions['module_type']==='GROUP_TABLE'
-    ? 'group_table_'.$definitions['module_key'].'_'.$group_key
-    : 'table_'.$definitions['module_key'];
-
-$tr_record = $definitions['module_type']==='GROUP_TABLE'
-    ? 'records[\''.$group_key.'\']'
-    : 'records'
+$table_id = 'table_'.$definitions['module_key'];
 
 ?>
 
@@ -28,7 +21,7 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
 
     {{-- inputs --}}
     <tbody >
-        <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}">
+        <tr class="module-table-item" v-for="(item, index) in records">
             {{--  fields  --}}
 
             <td>
@@ -79,8 +72,8 @@ $tr_record = $definitions['module_type']==='GROUP_TABLE'
                 ])
                 @if(!$definitions['fixed_rows'])
                     <span v-if="typeof item.__predefined === 'undefined'">
-                                @include('modular-forms::buttons.delete_item')
-                            </span>
+                       <x-modular-forms::module.components.buttons.delete-item />
+                    </span>
                 @endif
             </td>
         </tr>

@@ -3,10 +3,7 @@
 /** @var String $group_key (optional - only for GROUP_TABLE) */
 
 $group_key = '';
-
 $table_id = 'table_'.$definitions['module_key'];
-
-$tr_record = 'records';
 
 ?>
 
@@ -24,7 +21,7 @@ $tr_record = 'records';
 
     {{-- inputs --}}
     <tbody class="{{ $group_key }}">
-    <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}">
+    <tr class="module-table-item" v-for="(item, index) in records">
         {{--  fields  --}}
 
 

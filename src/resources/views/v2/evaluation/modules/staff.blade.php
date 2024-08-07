@@ -6,8 +6,6 @@ $group_key = '';
 
 $table_id = 'table_'.$definitions['module_key'];
 
-$tr_record = 'records';
-
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">
@@ -24,11 +22,12 @@ $tr_record = 'records';
 
     {{-- inputs --}}
     <tbody class="{{ $group_key }}">
-        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'attributes' => 'v-if="'.$tr_record.'.length===0 || records[0].' . $definitions['fields'][0]['name'] . '===null"'])
-        <tr v-else class="module-table-item" v-for="(item, index) in {{ $tr_record }}">
+
+        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'attributes' => 'v-if="records.length===0 || records[0].' . $definitions['fields'][0]['name'] . '===null"'])
+
+        <tr class="module-table-item" v-for="(item, index) in records">
 
             {{--  fields  --}}
-
             <td>
                 @include('modular-forms::module.edit.field.vue', [
                    'type' => 'disabled',

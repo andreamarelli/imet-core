@@ -56,7 +56,6 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
                             @php
                                 $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
-                                $tr_record = 'records[\''.$group_key.'\']';
                             @endphp
 
                             @if(
@@ -104,30 +103,32 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                     {{-- records --}}
                                     <tbody class="{{ $group_key }}">
 
-                                    <tr class="module-table-item" v-for="(item, index) in {{ $tr_record }}"
-                                        v-if="isCurrentStakeholder(item['Stakeholder'])">
-                                        {{--  fields  --}}
-                                        @foreach($definitions['fields'] as $index => $field)
-                                            <td>
-                                                @include('modular-forms::module.edit.field.module-to-vue', [
-                                                   'definitions' => $definitions,
-                                                   'field' => $field,
-                                                   'vue_record_index' => 'index',
-                                                   'group_key' => $group_key
-                                               ])
-                                            </td>
-                                        @endforeach
-                                        <td>
-                                            {{-- record id  --}}
-                                            @include('modular-forms::module.edit.field.vue', [
-                                                'type' => 'hidden',
-                                                'v_value' => 'item.'.$definitions['primary_key']
-                                            ])
-                                            <span v-if="typeof item.__predefined === 'undefined'">
-                                                    @include('modular-forms::buttons.delete_item')
-                                                </span>
-                                        </td>
-                                    </tr>
+                                        <template v-for="(item, index) in records">
+                                            <tr class="module-table-item"
+                                                    v-if="recordIsInGroup(item, '{{ $group_key }}') && isCurrentStakeholder(item['Stakeholder'])">
+                                                {{--  fields  --}}
+                                                @foreach($definitions['fields'] as $index => $field)
+                                                    <td>
+                                                        @include('modular-forms::module.edit.field.module-to-vue', [
+                                                           'definitions' => $definitions,
+                                                           'field' => $field,
+                                                           'vue_record_index' => 'index',
+                                                           'group_key' => $group_key
+                                                       ])
+                                                    </td>
+                                                @endforeach
+                                                <td>
+                                                    {{-- record id  --}}
+                                                    @include('modular-forms::module.edit.field.vue', [
+                                                        'type' => 'hidden',
+                                                        'v_value' => 'item.'.$definitions['primary_key']
+                                                    ])
+                                                    <span v-if="typeof item.__predefined === 'undefined'">
+                                                        <x-modular-forms::module.components.buttons.delete-item />
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </template>
 
                                     </tbody>
 

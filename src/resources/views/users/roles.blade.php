@@ -85,7 +85,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
                         <td>
                             <!-- DELETE button -->
                             <span v-if="index < (records.length-1)">
-                                @include('modular-forms::buttons.delete_item')
+                                <x-modular-forms::module.components.buttons.delete-item />
                             </span>
                             <!-- Changed flag -->
                             <input type="hidden"

@@ -28,22 +28,22 @@ class Imet extends BaseImetForm
     public static $modules = [
 
         'general_info' => [
-//            Modules\Context\ResponsablesInterviewers::class,
-//            Modules\Context\ResponsablesInterviewees::class,
-//            Modules\Context\GeneralInfo::class,
-//            Modules\Context\Governance::class,
+            Modules\Context\ResponsablesInterviewers::class,
+            Modules\Context\ResponsablesInterviewees::class,
+            Modules\Context\GeneralInfo::class,
+            Modules\Context\Governance::class,
             Modules\Context\SpecialStatus::class,
             Modules\Context\Networks::class,
-//            Modules\Context\Missions::class,
-//            Modules\Context\Contexts::class,
-//            Modules\Context\Objectives1::class
+            Modules\Context\Missions::class,
+            Modules\Context\Contexts::class,
+            Modules\Context\Objectives1::class
         ],
         'areas'                 => [
             Modules\Context\GeographicalLocation::class,
-            Modules\Context\Areas::class,
-            Modules\Context\Sectors::class,
-            Modules\Context\TerritorialReferenceContext::class,
-            Modules\Context\Objectives2::class,
+//            Modules\Context\Areas::class,
+//            Modules\Context\Sectors::class,
+//            Modules\Context\TerritorialReferenceContext::class,
+//            Modules\Context\Objectives2::class,
         ],
         'resources'             => [
             Modules\Context\ManagementStaff::class,

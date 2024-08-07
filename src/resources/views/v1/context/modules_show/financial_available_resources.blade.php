@@ -7,13 +7,7 @@ $record = $records[0];
 $total_budget = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();
 $group_key = $group_key ?? '';
 
-$table_id = $definitions['module_type'] === 'GROUP_TABLE'
-    ? 'group_table_'.$definitions['module_key'].'_'.$group_key
-    : 'table_'.$definitions['module_key'];
-
-$tr_record = $definitions['module_type'] === 'GROUP_TABLE'
-    ? $records[$group_key]
-    : $records;
+$table_id = 'table_'.$definitions['module_key'];
 
 $result = [];
 $percentage_results = [];
@@ -58,7 +52,7 @@ foreach ($records as $index => $record) {
 
     {{-- inputs --}}
     <tbody>
-    @foreach($tr_record as $index => $record)
+    @foreach($records as $index => $record)
         <tr class="module-table-item">
             @foreach($definitions['fields'] as $idx => $field)
                 <td>

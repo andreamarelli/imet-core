@@ -7,13 +7,7 @@ $record = $records[0];
 
 $group_key = $group_key ?? '';
 
-$table_id = $definitions['module_type'] === 'GROUP_TABLE'
-    ? 'group_table_'.$definitions['module_key'].'_'.$group_key
-    : 'table_'.$definitions['module_key'];
-
-$tr_record = $definitions['module_type'] === 'GROUP_TABLE'
-    ? $records[$group_key]
-    : $records;
+$table_id = 'table_'.$definitions['module_key'];
 
 $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 $totals = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();
@@ -66,7 +60,7 @@ foreach ($records as $index => $record) {
 
     {{-- inputs --}}
     <tbody>
-    @foreach($tr_record as $index => $record)
+    @foreach($records as $index => $record)
         <tr class="module-table-item">
             {{--  fields  --}}
             @foreach($definitions['fields'] as $f_index => $field)
