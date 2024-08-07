@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Collection;
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-$stakeholders = Stakeholders::calculateWeights($vueData['form_id'], Stakeholders::ONLY_DIRECT);
+$stakeholders = Stakeholders::calculateWeights($vueData['form_id'], Stakeholders::ONLY_INDIRECT);
 arsort($stakeholders);
 
 ?>
 
-@include('imet-core::oecm.context.modules._analysis_stakeholders', [
+@include('imet-core::oecm.context.edit.modules._analysis_stakeholders', [
     'collection' => $collection,
     'definitions' => $definitions,
     'vueData' => $vueData,

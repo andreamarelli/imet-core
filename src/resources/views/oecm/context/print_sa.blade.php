@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\App;
 /** @var Imet $item */
 
 // Force Language
-if($item->language != App::getLocale()){
+if ($item->language != App::getLocale()) {
     App::setLocale($item->language);
 }
 
@@ -43,7 +43,7 @@ $definitions_indirect = AnalysisStakeholderIndirectUsers::getDefinitions($item->
                         </div>
                         @include('modular-forms::module.info', ['definitions' => $definitions_direct])
                         <div class="module-body">
-                            @include('imet-core::oecm.context.modules_show.analysis_stakeholder_print', [
+                            @include('imet-core::oecm.context.show.modules.analysis_stakeholder_print', [
                                 'item' => $item,
                                 'stakeholders' => $stakeholders_direct,
                                 'categories' => $categories,
@@ -64,7 +64,7 @@ $definitions_indirect = AnalysisStakeholderIndirectUsers::getDefinitions($item->
                         </div>
                         @include('modular-forms::module.info', ['definitions' => $definitions_indirect])
                         <div class="module-body">
-                            @include('imet-core::oecm.context.modules_show.analysis_stakeholder_print', [
+                            @include('imet-core::oecm.context.show.modules.analysis_stakeholder_print', [
                                 'item' => $item,
                                 'stakeholders' => $stakeholders_indirect,
                                 'categories' => $categories,
