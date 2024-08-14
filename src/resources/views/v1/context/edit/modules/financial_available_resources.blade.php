@@ -45,13 +45,13 @@ $table_id = 'table_'.$definitions['module_key'];
         @endforeach
         <td>
             <input type="numeric" disabled="disabled"
-                   class="input-number field-edit text-right"
+                   class="field-edit field-numeric text-right"
                    v-bind:value="totals[index]"
                    v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
             />        </td>
         <td>
             <input type="text" disabled="disabled" style="width: 80px;"
-                   class="input-number field-edit text-center"
+                   class="field-edit field-numeric text-center"
                    v-bind:value="percentages[index]"
                    v-bind:id="'{{$definitions['module_key'] }}_'+index+'_percentage'"
             />

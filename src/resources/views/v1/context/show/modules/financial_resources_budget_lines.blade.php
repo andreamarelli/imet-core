@@ -73,7 +73,7 @@ foreach ($records as $index => $record) {
             @endforeach
             <td>
                 <input type="numeric" disabled="disabled"
-                       class="input-number field-edit text-right"
+                       class="field-edit field-numeric text-right"
                        value="{{$cost[$index]}}"
 
                 />

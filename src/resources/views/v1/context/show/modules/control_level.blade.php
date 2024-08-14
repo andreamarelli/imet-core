@@ -46,7 +46,7 @@ $ecological_monitoring_patrol_km_percentage = \AndreaMarelli\ImetCore\Models\Ime
         </td>
         <td>
             <input type="text" disabled="disabled" value="{{ $area_percentage  }}"
-                   class="input-number field-edit text-right"/>
+                   class="field-edit field-numeric text-right"/>
         </td>
         <td rowspan="3">
             @include('modular-forms::module.show.field', [
@@ -57,7 +57,7 @@ $ecological_monitoring_patrol_km_percentage = \AndreaMarelli\ImetCore\Models\Ime
         </td>
         <td>
             <input type="text" disabled="disabled"   value="{{ $average_time  }}"
-                   class="input-number field-edit text-right"/>
+                   class="field-edit field-numeric text-right"/>
         </td>
     </tr>
     <tr>
@@ -75,9 +75,9 @@ $ecological_monitoring_patrol_km_percentage = \AndreaMarelli\ImetCore\Models\Ime
             ])
         </td>
         <td><input type="text" disabled="disabled" value="{{ $area_percentage_conversion  }}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td><input type="text" disabled="disabled" value="{{ $average_time_controlled  }}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
     </tr>
     <tr>
         <td><label
@@ -90,7 +90,7 @@ $ecological_monitoring_patrol_km_percentage = \AndreaMarelli\ImetCore\Models\Ime
             ])
         </td>
         <td><input type="text" disabled="disabled"  value="{{ $ecological_monitoring_patrol_km_percentage  }}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td colspan="2"></td>
     </tr>
 </table>

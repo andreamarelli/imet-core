@@ -20,7 +20,7 @@ foreach (MenacesPressions::$groupByCategory as $i => $category) {
             </div>
             <div class="module-row__input">
                 <input type="text" disabled="disabled" value="' . $stats['category_stats'][$i] . '"
-                    class="field-disabled input-number field-edit text-center" style="font-style: bold; margin-top: 20px;"/>
+                    class="field-disabled field-edit field-numeric text-center" style="font-style: bold; margin-top: 20px;"/>
             </div>
         </div>';
     $view_groupTable = str_replace($searchFor, $textToAdd . $searchFor, $view_groupTable);
@@ -34,7 +34,7 @@ foreach (MenacesPressions::$groupByCategory as $i => $category) {
         if (isset($stats['row_stats'][$group])) {
             foreach ($stats['row_stats'][$group] as $r => $value) {
                 preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", $view_groupTable, $matched1);
-                $textToAdd = '<td><input type="text" disabled="disabled" value="' . $value . '" class="field-disabled input-number field-edit text-center"/></td>';
+                $textToAdd = '<td><input type="text" disabled="disabled" value="' . $value . '" class="field-disabled field-edit field-numeric text-center"/></td>';
                 if (count($matched1) > 0) {
                     $matched1[0] = '/' . preg_quote($matched1[0], '/') . '/';
                     $view_groupTable = preg_replace($matched1[0], $textToAdd, $view_groupTable, 1);
@@ -45,7 +45,7 @@ foreach (MenacesPressions::$groupByCategory as $i => $category) {
             preg_match("/(<\/tr\>" . $allSpaces . "\<\/thead\>" . $allSpaces . "\<tbody\sclass\=\"" . $group . "[\s\"])/m", $view_groupTable, $matched);
             $textToAdd = '<th>
                           <input type="text" disabled="disabled" value="' . $stats['group_stats'][$group] . '"
-                                class="field-disabled input-number field-edit text-center"/>
+                                class="field-disabled field-edit field-numeric text-center"/>
                       </th>';
             $view_groupTable = str_replace($matched[0], $textToAdd . $matched[0], $view_groupTable);
         }

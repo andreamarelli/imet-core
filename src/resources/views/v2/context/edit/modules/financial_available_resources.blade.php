@@ -45,13 +45,13 @@ $table_id = 'table_'.$definitions['module_key'];
         @endforeach
         <td>
             <input type="numeric" disabled="disabled"
-                   class="input-number field-edit text-right"
+                   class="field-edit field-numeric text-right"
                    v-bind:value="totals[index]"
                    v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
             />        </td>
         <td>
             <input type="text" disabled="disabled" style="width: 80px;"
-                   class="input-number field-edit text-center"
+                   class="field-edit field-numeric text-center"
                    v-bind:value="percentages[index]"
                    v-bind:id="'{{$definitions['module_key'] }}_'+index+'_percentage'"
             />
@@ -77,7 +77,7 @@ $table_id = 'table_'.$definitions['module_key'];
         <td>
             <div :class="!totalIsValid ? 'has-error' : 'form-group'">
                 <input type="text" disabled="disabled"
-                       class="input-number field-edit text-center"
+                       class="field-edit field-numeric text-center"
                        v-bind:value="sumTotals"
                 />
             </div>
@@ -92,68 +92,8 @@ $table_id = 'table_'.$definitions['module_key'];
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-
-                totals() {
-                    let result = [];
-                    this.records.forEach(function (item, index) {
-                        result[index] = 0;
-                        result[index] += item['NationalBudget'] !== null ? parseFloat(item['NationalBudget']) : 0;
-                        result[index] += item['OwnRevenues'] !== null ? parseFloat(item['OwnRevenues']) : 0;
-                        result[index] += item['Disputes'] !== null ? parseFloat(item['Disputes']) : 0;
-                        result[index] += item['Partners'] !== null ? parseFloat(item['Partners']) : 0;
-                        result[index] = result[index]===0 ? null : result[index];
-                    });
-                    return result;
-                },
-                percentages(){
-                    let _this = this;
-                    let result = [];
-                    let totalPlannedBudget = parseFloat(module_imet__v2__context__financial_resources.records[0]['TotalBudget']);
-                    this.records.forEach(function (item, index) {
-                        let total =  parseFloat(_this.totals[index]);
-                        if(total>0 && totalPlannedBudget>0){
-                            result[index] = (total/totalPlannedBudget*100).toFixed(1) + ' %';
-                        }
-                    });
-                    return result;
-                },
-
-                sumTotals (){
-                    let sum = 0;
-                    this.totals.forEach(function (item) {
-                        if(item!==null){
-                            sum += item;
-                        }
-                    });
-                    sum = sum/2;
-                    return sum;
-                },
-
-                totalIsValid(){
-                    return this.sumTotals===null
-                        || this.sumTotals===''
-                        || isNaN(this.sumTotals)
-                        || (this.sumTotals>0
-                            && parseFloat(this.sumTotals).toFixed(2)===parseFloat(this.get_total_budget()).toFixed(2));
-                }
-
-            },
-
-            methods: {
-
-                get_total_budget(){
-                    return module_imet__v2__context__financial_resources.records[0]['TotalBudget'];
-                },
-
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.FinancialAvailableResources(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

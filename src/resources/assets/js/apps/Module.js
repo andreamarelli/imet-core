@@ -5,9 +5,9 @@ import selectorWdpa from "../inputs/selector-wdpa.vue";
 
 export default class ModuleImet extends Module {
 
-    constructor(options, input_data) {
+    constructor(input_data = {}, custom_props = {}) {
 
-        return super(options, input_data)
+        return super(input_data, custom_props)
 
             // Register components
             .component('selector-wdpa', selectorWdpa)

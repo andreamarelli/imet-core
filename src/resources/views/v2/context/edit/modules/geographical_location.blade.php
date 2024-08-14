@@ -8,10 +8,10 @@ $vue_record_index = '0';
 ?>
 
 @component('modular-forms::module.components.field_container', [
-                    'name' => $definitions['fields'][0]['name'],
-                    'label' => $definitions['fields'][0]['label'],
-                    'label_width' => $definitions['label_width']
-                ])
+    'name' => $definitions['fields'][0]['name'],
+    'label' => $definitions['fields'][0]['label'],
+    'label_width' => $definitions['label_width']
+])
 
     {{-- input field --}}
     @include('modular-forms::module.edit.field.module-to-vue', [
@@ -50,17 +50,8 @@ $vue_record_index = '0';
 </div>
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-                limit_exists (){
-                    return this.records[0]['LimitsExist']==="true" || this.records[0]['LimitsExist']===true;
-                }
-            }
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.GeographicalLocation(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

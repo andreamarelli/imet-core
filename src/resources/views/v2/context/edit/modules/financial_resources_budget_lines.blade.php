@@ -6,8 +6,7 @@
 $group_key = $group_key ?? '';
 $table_id = 'table_'.$definitions['module_key'];
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
-
+$vueData['area'] = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">
@@ -47,7 +46,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
         @endforeach
         <td>
             <input type="numeric" disabled="disabled"
-                   class="input-number field-edit text-right"
+                   class="field-edit field-numeric text-right"
                    v-bind:value="costs[index]"
                    v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
             />        </td>
@@ -73,7 +72,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
         <td>
             <div :class="!totalIsValid ? 'form-group has-error' : 'form-group'">
                 <input type="text" disabled="disabled"
-                       class="input-number field-edit text-center"
+                       class="field-edit field-numeric text-center"
                        v-bind:value="sumBudget"
                 />
             </div>
@@ -102,65 +101,8 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-
-                costs() {
-                    let result = [];
-                    let area = this.get_area();
-                    this.records.forEach(function (item, index) {
-                        result[index] = 0;
-                        if(area!==null && area>0){
-                            result[index] = item['Amount'] / area * 100;
-                        }
-                        result[index] = result[index]===0 ? null : result[index].toFixed(2);
-                    });
-                    return result;
-                },
-                percentages() {
-                    let _this = this;
-                    let result = [];
-                    let totalBudget = this.get_total_budget();
-                    this.records.forEach(function (item, index) {
-                        result[index] = '';
-                        if(item['Amount']>0 && totalBudget>0){
-                            result[index] = (item['Amount']/totalBudget*100).toFixed(1) + ' %';
-                        }
-                    });
-                    return result;
-                },
-
-                sumBudget (){
-                    return this.sumColumnFloat('Amount');
-                },
-
-                totalIsValid(){
-                    return this.sumBudget===null
-                        || this.sumBudget===''
-                        || isNaN(this.sumBudget)
-                        || (this.sumBudget>0
-                            && parseFloat(this.sumBudget).toFixed(2)===parseFloat(this.get_total_budget()).toFixed(2));
-                }
-
-            },
-
-            methods: {
-
-                get_area() {
-                    return {{ $area }};
-                },
-
-                get_total_budget(){
-                    return module_imet__v2__context__financial_resources.records[0]['TotalBudget'];
-                },
-
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.FinancialResourcesBudgetLines(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

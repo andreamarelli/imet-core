@@ -64,13 +64,13 @@ foreach ($records as $index => $record) {
             @endforeach
             <td>
                 <input type="numeric" disabled="disabled"
-                       class="input-number field-edit text-right"
+                       class="field-edit field-numeric text-right"
                        value="{{$result[$index]}}"
                 />
             </td>
             <td>
                 <input type="text" disabled="disabled" style="width: 80px;"
-                       class="input-number field-edit text-center"
+                       class="field-edit field-numeric text-center"
                        value="{{$percentage_results[$index]}}"
                 />
             </td>

@@ -29,7 +29,7 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
     foreach(MenacesPressions::$groupByCategory as $i => $category){
         foreach ($category as $group){
             $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
-            $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
+            $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled field-edit field-numeric text-center"/>';
             $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
         }
     }

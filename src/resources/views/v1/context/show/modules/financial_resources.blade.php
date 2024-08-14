@@ -105,7 +105,7 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
             ])
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_financial_plans_costs_result}}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
         <td></td>
     </tr>
@@ -121,9 +121,9 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
             ])
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_operation_work_plan_costs_result}}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td><input type="text" disabled="disabled" value="{{$value_estimation_financial_plan_2_result}}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
     <tr>
@@ -138,11 +138,11 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
             ])
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_total_budget_result}}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td><input type="text" disabled="disabled" value="{{$value_estimation_financial_plan_3_result}}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td><input type="text" disabled="disabled" value="{{$value_estimation_operational_plan_3_result}}"
-                   class="input-number field-edit text-right"/></td>
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 </table>

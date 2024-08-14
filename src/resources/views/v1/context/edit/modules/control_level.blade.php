@@ -34,7 +34,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
            ])
         </td>
         <td>
-            <input type="text" disabled="disabled" v-bind:value="area_percentage" class="input-number field-edit text-right"/>
+            <input type="text" disabled="disabled" v-bind:value="area_percentage" class="field-edit field-numeric text-right"/>
         </td>
         <td rowspan="3">
             @include('modular-forms::module.edit.field.module-to-vue', [
@@ -44,7 +44,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
             ])
         </td>
         <td>
-            <input type="text" disabled="disabled" v-bind:value="average_time" class="input-number field-edit text-right"/>
+            <input type="text" disabled="disabled" v-bind:value="average_time" class="field-edit field-numeric text-right"/>
         </td>
     </tr>
     <tr>
@@ -60,8 +60,8 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
                'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="area_percentage_conversion" class="input-number field-edit text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="average_time_controlled" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="area_percentage_conversion" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="average_time_controlled" class="field-edit field-numeric text-right"/></td>
     </tr>
     <tr>
         <td><label for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label></td>
@@ -72,7 +72,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
                'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="ecologicalMonitoringPatrolKm_percentage" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="ecologicalMonitoringPatrolKm_percentage" class="field-edit field-numeric text-right"/></td>
         <td colspan="2"></td>
     </tr>
 </table>

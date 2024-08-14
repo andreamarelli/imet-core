@@ -38,6 +38,38 @@ window.ImetCore.Apps.Module = ModuleImet;
 import Assessment from "./js/apps/Assessment.js";
 window.ImetCore.Apps.Assessment = Assessment;
 
+// ############################################
+// #############  Custom Modules  #############
+// ############################################
+window.ImetCore.Apps.Modules = {
+    ImetV1: {},
+    ImetV2: {},
+    Oecm: {}
+}
+
+import GeographicalLocation from "./js/apps/Modules/ImetV2/GeographicalLocation.js";
+window.ImetCore.Apps.Modules.ImetV2.GeographicalLocation = GeographicalLocation;
+
+import Areas from "./js/apps/Modules/ImetV2/Areas";
+window.ImetCore.Apps.Modules.ImetV2.Areas = Areas;
+
+import Sectors from "./js/apps/Modules/ImetV2/Sectors";
+window.ImetCore.Apps.Modules.ImetV2.Sectors = Sectors;
+
+import ManagementStaff from "./js/apps/Modules/ImetV2/ManagementStaff";
+window.ImetCore.Apps.Modules.ImetV2.ManagementStaff = ManagementStaff;
+
+import FinancialResources from "./js/apps/Modules/ImetV2/FinancialResources";
+window.ImetCore.Apps.Modules.ImetV2.FinancialResources = FinancialResources;
+
+import FinancialAvailableResources from "./js/apps/Modules/ImetV2/FinancialAvailableResources";
+window.ImetCore.Apps.Modules.ImetV2.FinancialAvailableResources = FinancialAvailableResources;
+
+import FinancialResourcesBudgetLines from "./js/apps/Modules/ImetV2/FinancialResourcesBudgetLines";
+window.ImetCore.Apps.Modules.ImetV2.FinancialResourcesBudgetLines = FinancialResourcesBudgetLines;
+
+import Equipments from "./js/apps/Modules/ImetV2/Equipments";
+window.ImetCore.Apps.Modules.ImetV2.Equipments = Equipments;
 
 // // Templates
 // Vue.component("dopa_chart_bar",                 require("./js/templates/dopa/chart_bar.vue").default);

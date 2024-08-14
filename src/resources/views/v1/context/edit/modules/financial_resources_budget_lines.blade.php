@@ -46,7 +46,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
         @endforeach
         <td>
             <input type="numeric" disabled="disabled"
-                   class="input-number field-edit text-right"
+                   class="field-edit field-numeric text-right"
                    v-bind:value="costs[index]"
                    v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
             />        </td>
@@ -71,7 +71,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
         <td></td>
         <td>
             <input type="text" disabled="disabled"
-                   class="input-number field-edit text-center"
+                   class="field-edit field-numeric text-center"
                    v-bind:value="sumBudget"
             />
         </td>

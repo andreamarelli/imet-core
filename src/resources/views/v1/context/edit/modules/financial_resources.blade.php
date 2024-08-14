@@ -64,7 +64,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1" class="field-edit field-numeric text-right"/></td>
         <td></td>
         <td></td>
     </tr>
@@ -80,8 +80,8 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2" class="input-number field-edit text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2" class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 
@@ -96,9 +96,9 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3" class="input-number field-edit text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3" class="input-number field-edit text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3" class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 

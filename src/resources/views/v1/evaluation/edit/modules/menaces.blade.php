@@ -7,7 +7,7 @@ use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $view_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions']))->render();
 
-$input = '<input type="text" disabled="disabled" v-model="stats[index]" class="field-disabled input-number field-edit text-center" />';
+$input = '<input type="text" disabled="disabled" v-model="stats[index]" class="field-disabled field-edit field-numeric text-center" />';
 
 $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($view_table)

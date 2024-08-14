@@ -16,23 +16,8 @@ for($i=0; $i<=12; $i++){
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-                averages(){
-                    let _this = this;
-                    let averages = [];
-                    Object.keys(_this.records).forEach(function(group){
-                        averages[group] = _this.calculateAverage('AdequacyLevel', group);
-                    });
-                    return averages;
-                }
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.Equipments(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

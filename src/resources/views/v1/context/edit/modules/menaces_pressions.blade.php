@@ -19,7 +19,7 @@ foreach(MenacesPressions::$groupByCategory as $i => $category){
             </div>
             <div class="module-row__input">
                 <input type="text" disabled="disabled" v-model="category_stats[\''.$i.'\']"
-                    class="field-disabled input-number field-edit text-center" style="font-style: bold; margin-top: 20px;"/>
+                    class="field-disabled field-edit field-numeric text-center" style="font-style: bold; margin-top: 20px;"/>
             </div>
         </div>';
     $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
@@ -30,14 +30,14 @@ foreach(MenacesPressions::$groupByCategory as $i => $category){
     foreach ($category as $group){
 
         $searchFor = '<input type="hidden" v-model="records[\''.$group.'\'][index]';
-        $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled input-number field-edit text-center"/>';
+        $textToAdd = '<input type="text" disabled="disabled" v-model="row_stats[\''.$group.'\'][index]" class="field-disabled field-edit field-numeric text-center"/>';
         $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
 
         $allSpaces = '[\s\t\n\r]*';
         preg_match("/\<th\>\<\/th\>(".$allSpaces."\<\/tr\>".$allSpaces."\<\/thead\>".$allSpaces."\<tbody\sclass\=\"".$group."[\s\"])/m", $view_groupTable, $matched);
         $textToAdd = '<th>
                           <input type="text" disabled="disabled" v-model="group_stats.'.$group.'"
-                                class="field-disabled input-number field-edit text-center"/>
+                                class="field-disabled field-edit field-numeric text-center"/>
                       </th>';
         $view_groupTable = str_replace($matched[0], $textToAdd.$matched[0], $view_groupTable);
     }

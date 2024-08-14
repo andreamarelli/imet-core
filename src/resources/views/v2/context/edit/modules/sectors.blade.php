@@ -57,7 +57,7 @@ $table_id = 'table_' . $definitions['module_key'];
                 @if($index==2)
                     <td>
                         <input type="text" disabled="disabled"
-                               class="input-number field-edit text-right"
+                               class="field-edit field-numeric text-right"
                                v-bind:value="area_percentage[index]"
                         />
                     </td>
@@ -65,7 +65,7 @@ $table_id = 'table_' . $definitions['module_key'];
                 @if($index==4)
                     <td>
                         <input type="text" disabled="disabled"
-                               class="input-number field-edit text-right"
+                               class="field-edit field-numeric text-right"
                                v-bind:value="average_time[index]"
                         />
                     </td>
@@ -89,21 +89,18 @@ $table_id = 'table_' . $definitions['module_key'];
             <td></td>
             <td></td>
             <td>
-                <input type="text" disabled="disabled"
-                   class="input-number field-edit text-right"
-                   v-bind:value="sumUnderControlArea"
-                />
+                <div class="field-preview" v-html="sumUnderControlArea"></div>
             </td>
             <td></td>
             <td>
                 <input type="text" disabled="disabled"
-                       class="input-number field-edit text-right"
+                       class="field-preview field-numeric text-right"
                        v-bind:value="UnderControlPatrolKm"
                 />
             </td>
             <td>
                 <input type="text" disabled="disabled"
-                       class="input-number field-edit text-right"
+                       class="field-preview field-numeric text-right"
                        v-bind:value="UnderControlPatrolManDay"
                 />
             </td>
@@ -130,73 +127,8 @@ $table_id = 'table_' . $definitions['module_key'];
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-
-                area_percentage(){
-                    let _this = this;
-                    let result = [];
-                    let area = this.getPaArea();
-                    _this.records.forEach(function (item, index) {
-                        let underControlArea = item['UnderControlArea'];
-                        if(_this.isValid(area) && _this.isValid(underControlArea) && underControlArea>0){
-                            result[index] = (parseFloat(underControlArea) / parseFloat(area) * 100).toFixed(2);
-                        } else {
-                            result[index] = null;
-                        }
-                    });
-                    return result;
-                },
-
-                average_time(){
-                    let result = [];
-                    let _this = this;
-                    let area = this.getPaArea();
-                    _this.records.forEach(function (item, index) {
-                        let UnderControlPatrolManDay = item['UnderControlPatrolManDay'];
-                        if(_this.isValid(area) && _this.isValid(UnderControlPatrolManDay) && UnderControlPatrolManDay>0){
-                            result[index] = (parseFloat(UnderControlPatrolManDay) / parseFloat(area)).toFixed(2);
-                        } else {
-                            result[index] = null;
-                        }
-                    });
-                    return result;
-                },
-
-                sumUnderControlArea (){
-                    return this.sumColumnFloat('UnderControlArea');
-                },
-                UnderControlPatrolKm(){
-                    return this.sumColumnFloat('UnderControlPatrolKm');
-                },
-                UnderControlPatrolManDay(){
-                    return this.sumColumnFloat('UnderControlPatrolManDay');
-                }
-
-            },
-
-            methods: {
-
-                getPaArea(){
-                    let area =  module_imet__v2__context__areas.getArea();
-                    if(area!==null){
-                        area = parseFloat(area.toString().replace(',', '.'));
-                    }
-                    return area;
-                },
-
-                isValid: function (n) {
-                    return !isNaN(parseFloat(n))
-                        && isFinite(n)
-                        && n!==null;
-                }
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.Sectors(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

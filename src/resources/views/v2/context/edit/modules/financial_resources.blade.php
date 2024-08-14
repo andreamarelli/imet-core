@@ -4,7 +4,8 @@
 /** @var Mixed $vueData */
 
 $vue_record_index = '0';
-$area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
+
+$vueData['area'] = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
 
 ?>
 
@@ -63,7 +64,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1" class="field-edit field-numeric text-right"/></td>
         <td></td>
         <td></td>
     </tr>
@@ -79,8 +80,8 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2" class="input-number field-edit text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2" class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 
@@ -95,88 +96,17 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($v
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3" class="input-number field-edit text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3" class="input-number field-edit text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3" class="input-number field-edit text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3" class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 
 </table>
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-
-            computed: {
-
-                functioning_costs_1 (){
-                    let result = null;
-                    let value = this.records[0]['ManagementFinancialPlanCosts'];
-                    let area = this.get_area();
-                    return this.calc_ratio(value, area);
-                },
-                functioning_costs_2 (){
-                    let result = null;
-                    let value = this.records[0]['OperationalWorkPlanCosts'];
-                    let area = this.get_area();
-                    return this.calc_ratio(value, area);
-                },
-                functioning_costs_3 (){
-                    let result = null;
-                    let value = this.records[0]['TotalBudget'];
-                    let area = this.get_area();
-                    return this.calc_ratio(value, area);
-                },
-                estimation_financial_plan_2 (){
-                    let result = null;
-                    let value = this.records[0]['OperationalWorkPlanCosts'];
-                    let value2 = this.records[0]['ManagementFinancialPlanCosts'];
-                    return this.calc_percentage(value, value2);
-                },
-                estimation_financial_plan_3 (){
-                    let result = null;
-                    let value = this.records[0]['TotalBudget'];
-                    let value2 = this.records[0]['ManagementFinancialPlanCosts'];
-                    return this.calc_percentage(value, value2);
-                },
-                estimation_operational_plan_3 (){
-                    let result = null;
-                    let value = this.records[0]['TotalBudget'];
-                    let value2 = this.records[0]['OperationalWorkPlanCosts'];
-                    return this.calc_percentage(value, value2);
-                },
-
-            },
-
-            methods: {
-
-                get_area() {
-                    return {{ $area }};
-                },
-
-                calc_ratio(value, value2){
-                    if(this.isValid(value2) && this.isValid(value) && value>0 && value2>0){
-                        return (parseFloat(value) / parseFloat(value2)).toFixed(1);
-                    }
-                    return null;
-                },
-
-                calc_percentage(value, value2){
-                    if(this.isValid(value2) && this.isValid(value) && value>0 && value2>0){
-                        return (parseFloat(value) / parseFloat(value2)* 100).toFixed(2);
-                    }
-                    return null;
-                },
-
-                isValid: function (n) {
-                    return !isNaN(parseFloat(n)) && isFinite(n) && n!==null;
-                }
-            }
-
-        });
+    <script type="module">
+        window.imet__v2__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV2.FinancialResources(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush
