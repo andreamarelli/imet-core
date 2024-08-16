@@ -27,10 +27,10 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::oecm_context.AnimalSpecies.title');
         $this->module_fields = [
             ['name' => 'species', 'type' => 'selector-species_animal-withInsert', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.SpeciesID')],
-            ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ExploitedSpecies')],
-            ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ProtectedSpecies')],
-            ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.DisappearingSpecies')],
-            ['name' => 'InvasiveSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.InvasiveSpecies')],
+            ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ExploitedSpecies')],
+            ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ProtectedSpecies')],
+            ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.DisappearingSpecies')],
+            ['name' => 'InvasiveSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.InvasiveSpecies')],
             ['name' => 'PopulationEstimation', 'type' => 'dropdown-ImetOECM_PopulationStatus', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.PopulationEstimation')],
             ['name' => 'DescribeEstimation', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.DescribeEstimation')],
             ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.Comments')],

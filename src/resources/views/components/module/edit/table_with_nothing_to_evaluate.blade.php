@@ -9,23 +9,17 @@ use Wa72\HtmlPageDom\Helpers;
 
 $group_key = $group_key ?? '';
 
-$v_if_condition = $definitions['module_type']==='GROUP_TABLE'
-    ? 'records[\'' . $group_key . '\'][0].' . $definitions['fields'][0]['name'] . '===null'
-    : 'records.length===0 || records[0].' . $definitions['fields'][0]['name'] . '===null';
-
-$v_else_condition = $definitions['module_type']==='GROUP_TABLE'
-    ? 'records[\'' . $group_key . '\'][0].' . $definitions['fields'][0]['name'] . '!==null'
-    : 'records.length!==0 && records[0].' . $definitions['fields'][0]['name'] . '!==null';
+$v_if_condition = 'hasRecordsToToEvaluate(\'' . $definitions['fields'][0]['name'] . '\')';
 
 $num_cols = count($definitions['fields']);
 
 $original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions', 'group_key']))->render();
-$nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols, 'attributes' => 'v-if="'.$v_if_condition.'"'])->render();
+$nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));
 $tbody = HtmlPageCrawler::create($dom->filter('tbody'));
-$tbody->filter('tr')->eq(0)->setAttribute('v-else-if', $v_else_condition);
-$tbody->prepend($nothing_to_evaluate);
+$tbody->setAttribute('v-if', $v_if_condition);
+$tbody->after($nothing_to_evaluate);
 
 ?>
 

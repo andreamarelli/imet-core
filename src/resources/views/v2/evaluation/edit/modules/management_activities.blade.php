@@ -76,17 +76,5 @@
 
 @endforeach
 
-@push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
+@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
 
-            mixins: [
-                window.ImetCore.Mixins.key_elements
-            ]
-
-        });
-    </script>
-@endpush

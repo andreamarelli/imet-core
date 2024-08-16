@@ -7,10 +7,12 @@ $num_cols = $num_cols ?? 3;
 
 ?>
 
-<tr {!! $attributes !!}>
-    <td colspan="{{ $num_cols }}">
-        <div class="nothing_to_evaluate">
-            @lang('imet-core::common.nothing_to_evaluate')
-        </div>
-    </td>
-</tr>
+<tbody v-else>
+    <tr>
+        <td colspan="{{ $num_cols }}" class="py-4">
+            <div class="nothing_to_evaluate">
+                @lang('imet-core::common.nothing_to_evaluate')
+            </div>
+        </td>
+    </tr>
+</tbody>
