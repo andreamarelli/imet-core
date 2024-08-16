@@ -86,7 +86,7 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
         </tr>
     @endforeach
 
-    <tr>
+    <tr class="module-table-item">
         <td></td>
         <td></td>
         <td>

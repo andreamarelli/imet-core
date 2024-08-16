@@ -104,7 +104,7 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
     @elseif($field['name'] === 'SpillOverEvalPredatory0_500')
 
-        <div class="font-weight-bold">{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.spillover_eval') !!}</div>
+        <div class="SpillOver">{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.spillover_eval') !!}</div>
 
         <table class="SpillOverEval">
             <thead>
@@ -222,7 +222,9 @@ use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
         .BenefitSocioEconomicAspects div{
             max-width: 100%;
         }
-
+        .SpillOver ul {
+            margin-left: 30px;
+        }
         table.SpillOverEval{
             max-width: 750px;
         }
