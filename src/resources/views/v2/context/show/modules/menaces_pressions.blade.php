@@ -22,21 +22,21 @@ $page = ImetModule::injectIconToGroups($page, MenacesPressions::get_marine_group
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 
     // Inject titles
-    $groupByCategory = MenacesPressions::$groupByCategory;
-    foreach($groupByCategory as $i => $category){
+    $groupsByCategory = MenacesPressions::$groupsByCategory;
+    foreach($groupsByCategory as $i => $category){
         $title = ' <h3>'.($i+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($i+1)).'</h3>';
         $dom->filter('h5.group_title_'.$definitions['module_key'].'_'.$category[0])->eq(0)->before($title);
     }
 
     // inject column with row stats
     $stats = array_key_exists('FormID', $records[0]) ? MenacesPressions::getStats($records[0]['FormID']) : null;
-    foreach(MenacesPressions::$groupByCategory as $i => $category){
+    foreach(MenacesPressions::$groupsByCategory as $i => $category){
         foreach ($category as $group){
             $dom->filter('table#group_table_imet__v2__context__menaces_pressions_'.$group.' > tbody > tr')
                 ->each(function ($tr, $index) use($group, $stats) {
                     $tr->filter('td')
                         ->eq(6)
-                        ->append('<div class="field-preview">'.$stats['row_stats'][$group][$index].'</div>');
+                        ->append('<div class="field-preview">'.$stats['rowStats'][$group][$index].'</div>');
                 });
         }
     }
@@ -44,11 +44,11 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 ?>
 
 <div id="threat_histograms">
-    @foreach(MenacesPressions::$groupByCategory as $i => $category)
+    @foreach(MenacesPressions::$groupsByCategory as $i => $category)
         @php
             /** @var $stats */
             /** @var $i */
-            $group_stat = (float) $stats['category_stats'][$i];
+            $group_stat = (float) $stats['categoryStats'][$i];
         @endphp
 
         <div class="histogram-row">

@@ -20,7 +20,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         [Modules\Evaluation\ManagementActivities::class, 'Value'],
     ];
 
-    public static $groupByCategory = [
+    public static $groupsByCategory = [
             ['group0'],
             ['group1', 'group2', 'group3', 'group4', 'group5'],
             ['group6'],
@@ -119,7 +119,7 @@ class MenacesPressions extends Modules\Component\ImetModule
     public static function getVueData($form_id, $records, $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupByCategory'] = static::$groupByCategory;
+        $vue_data['groupsByCategory'] = static::$groupsByCategory;
         return $vue_data;
     }
 
@@ -162,7 +162,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupByCategory as $index=>$groups){
+        foreach (static::$groupsByCategory as $index=>$groups){
             $valuesByCategory[$index] = [];
             foreach ($groups as $group){
                 $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;
@@ -174,9 +174,8 @@ class MenacesPressions extends Modules\Component\ImetModule
         }
 
         return [
-            'row_stats' => $row_stats,
-            'group_stats' => $group_stats,
-            'category_stats' => $category_stats,
+            'rowStats' => $row_stats,
+            'categoryStats' => $category_stats,
         ];
     }
 

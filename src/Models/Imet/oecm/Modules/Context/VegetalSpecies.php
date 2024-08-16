@@ -23,10 +23,10 @@ class VegetalSpecies extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::oecm_context.VegetalSpecies.title');
         $this->module_fields = [
             ['name' => 'species', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.SpeciesID')],
-            ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ExploitedSpecies')],
-            ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ProtectedSpecies')],
-            ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DisappearingSpecies')],
-            ['name' => 'InvasiveSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.InvasiveSpecies')],
+            ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ExploitedSpecies')],
+            ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.ProtectedSpecies')],
+            ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DisappearingSpecies')],
+            ['name' => 'InvasiveSpecies', 'type' => 'checkbox-boolean_numeric', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.InvasiveSpecies')],
             ['name' => 'PopulationEstimation', 'type' => 'dropdown-ImetOECM_PopulationStatus', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.PopulationEstimation')],
             ['name' => 'DescribeEstimation', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.DescribeEstimation')],
             ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.VegetalSpecies.fields.Comments')],

@@ -30,12 +30,12 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v2_context.AnimalSpecies.title');
         $this->module_fields = [
             ['name' => 'species',                   'type' => 'selector-species_animal-withInsert',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.SpeciesID')],
-            ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.FlagshipSpecies')],
-            ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndangeredSpecies')],
-            ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndemicSpecies')],
-            ['name' => 'ExploitedSpecies',          'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.ExploitedSpecies')],
-            ['name' => 'InvasiveSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.InvasiveSpecies')],
-            ['name' => 'InsufficientDataSpecies',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.InsufficientDataSpecies')],
+            ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.FlagshipSpecies')],
+            ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndangeredSpecies')],
+            ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.EndemicSpecies')],
+            ['name' => 'ExploitedSpecies',          'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.ExploitedSpecies')],
+            ['name' => 'InvasiveSpecies',           'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.InvasiveSpecies')],
+            ['name' => 'InsufficientDataSpecies',   'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_context.AnimalSpecies.fields.InsufficientDataSpecies')],
             ['name' => 'PopulationEstimation',      'type' => 'numeric',            'label' => trans('imet-core::v2_context.AnimalSpecies.fields.PopulationEstimation')],
             ['name' => 'DesiredPopulation',         'type' => 'numeric',            'label' => trans('imet-core::v2_context.AnimalSpecies.fields.DesiredPopulation')],
             ['name' => 'Comments',                  'type' => 'text-area',           'label' => trans('imet-core::v2_context.AnimalSpecies.fields.Comments')],

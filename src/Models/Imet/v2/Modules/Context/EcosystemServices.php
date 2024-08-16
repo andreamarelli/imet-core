@@ -21,7 +21,7 @@ class EcosystemServices extends Modules\Component\ImetModule
         [Modules\Evaluation\EcosystemServices::class, 'Element'],
     ];
 
-    public static $groupByCategory = [
+    public static $groupsByCategory = [
         ['group0', 'group1', 'group2'],
         ['group3', 'group4'],
         ['group5', 'group6', 'group7', 'group8'],
@@ -80,7 +80,7 @@ class EcosystemServices extends Modules\Component\ImetModule
     public static function getVueData($form_id, $records, $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupByCategory'] = static::$groupByCategory;
+        $vue_data['groupsByCategory'] = static::$groupsByCategory;
         return $vue_data;
     }
 
@@ -99,7 +99,7 @@ class EcosystemServices extends Modules\Component\ImetModule
         $records = static::getModuleRecords($form_id)['records'];
         $category_stats = [];
 
-        foreach (static::$groupByCategory as $category_index=>$groups){
+        foreach (static::$groupsByCategory as $category_index=>$groups){
             $category_sum = 0;
             $category_count = 0;
             foreach ($records as $record){

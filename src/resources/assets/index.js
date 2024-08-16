@@ -71,6 +71,12 @@ window.ImetCore.Apps.Modules.ImetV2.FinancialResourcesBudgetLines = FinancialRes
 import Equipments from "./js/apps/Modules/ImetV2/Equipments";
 window.ImetCore.Apps.Modules.ImetV2.Equipments = Equipments;
 
+import MenacesPressions from "./js/apps/Modules/ImetV2/MenacesPressions";
+window.ImetCore.Apps.Modules.ImetV2.MenacesPressions = MenacesPressions;
+
+import EcosystemServices from "./js/apps/Modules/ImetV2/EcosystemServices";
+window.ImetCore.Apps.Modules.ImetV2.EcosystemServices = EcosystemServices;
+
 // // Templates
 // Vue.component("dopa_chart_bar",                 require("./js/templates/dopa/chart_bar.vue").default);
 // Vue.component("dopa_indicators_table",          require("./js/templates/dopa/indicators_table.vue").default);
