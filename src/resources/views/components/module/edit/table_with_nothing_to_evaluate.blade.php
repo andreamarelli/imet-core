@@ -8,9 +8,6 @@ use \Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;
 
 $group_key = $group_key ?? '';
-
-$v_if_condition = 'hasRecordsToToEvaluate(\'' . $definitions['fields'][0]['name'] . '\')';
-
 $num_cols = count($definitions['fields']);
 
 $original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions', 'group_key']))->render();
@@ -18,7 +15,7 @@ $nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::compon
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));
 $tbody = HtmlPageCrawler::create($dom->filter('tbody'));
-$tbody->setAttribute('v-if', $v_if_condition);
+$tbody->setAttribute('v-if', 'hasRecordsToEvaluate(\'' . $definitions['fields'][0]['name'] . '\')');
 $tbody->after($nothing_to_evaluate);
 
 ?>

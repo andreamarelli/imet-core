@@ -3,6 +3,8 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
+use \AndreaMarelli\ModularForms\Enums\ModuleViewModes;
+
 $group_key = '';
 $table_id = 'table_'.$definitions['module_key'];
 
@@ -21,24 +23,25 @@ $table_id = 'table_'.$definitions['module_key'];
     </thead>
 
     {{-- inputs --}}
-    <tbody class="{{ $group_key }}">
     @if(count($records)===0)
-        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4])
-    @endif
-    @foreach($records as $record)
-        <tr class="module-table-item">
-            @foreach($definitions['fields'] as $f_index=>$field)
-                <td>
-                    @if($record['StaffNumberAdequacy']!==null || $field['name']==='Theme' || $field['name']==='Comments')
-                        @include('modular-forms::module.show.field', [
-                            'type' => $field['type'],
-                            'value' => $record[$field['name']]
-                       ])
-                    @endif
-                </td>
+        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'mode' => ModuleViewModes::SHOW])
+    @else
+        <tbody class="{{ $group_key }}">
+            @foreach($records as $record)
+                <tr class="module-table-item">
+                    @foreach($definitions['fields'] as $f_index=>$field)
+                        <td>
+                            @if($record['StaffNumberAdequacy']!==null || $field['name']==='Theme' || $field['name']==='Comments')
+                                @include('modular-forms::module.show.field', [
+                                    'type' => $field['type'],
+                                    'value' => $record[$field['name']]
+                               ])
+                            @endif
+                        </td>
+                    @endforeach
+                </tr>
             @endforeach
-        </tr>
-    @endforeach
-    </tbody>
+        </tbody>
+    @endif
 
 </table>

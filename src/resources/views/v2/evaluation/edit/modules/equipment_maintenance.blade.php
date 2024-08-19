@@ -3,9 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-
 $table_id = 'table_'.$definitions['module_key'];
-
 
 ?>
 
@@ -24,8 +22,8 @@ $table_id = 'table_'.$definitions['module_key'];
     {{-- inputs --}}
     <tbody >
         <tr class="module-table-item" v-for="(item, index) in records">
-            {{--  fields  --}}
 
+            {{--  fields  --}}
             <td>
                 @include('modular-forms::module.edit.field.vue', [
                    'type' => 'hidden',
@@ -40,11 +38,10 @@ $table_id = 'table_'.$definitions['module_key'];
             </td>
 
             <td>
-                @include('modular-forms::module.edit.field.vue', [
-                    'type' => 'disabled',
-                    'v_value' => 'records[index].AdequacyLevel.toFixed(2)',
-                    'id' => "'".$definitions['module_key']."_'+index+'_AdequacyLevel'",
-                    'class' => 'text-center'
+                @include('modular-forms::module.edit.field.module-to-vue', [
+                    'definitions' => $definitions,
+                    'field' => $definitions['fields'][1],
+                    'vue_record_index' => 'index'
                 ])
             </td>
 
@@ -63,8 +60,6 @@ $table_id = 'table_'.$definitions['module_key'];
                     'vue_record_index' => 'index'
                 ])
             </td>
-
-
 
             <td>
                 {{-- record id  --}}

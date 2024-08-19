@@ -21,9 +21,7 @@ $table_id = 'table_'.$definitions['module_key'];
     </thead>
 
     {{-- inputs --}}
-    <tbody class="{{ $group_key }}">
-
-        @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'attributes' => 'v-if="records.length===0 || records[0].' . $definitions['fields'][0]['name'] . '===null"'])
+    <tbody class="{{ $group_key }}" v-if="hasRecordsToEvaluate('{{ $definitions['fields'][0]['name'] }}')">
 
         <tr class="module-table-item" v-for="(item, index) in records">
 
@@ -81,6 +79,7 @@ $table_id = 'table_'.$definitions['module_key'];
         <tr>
     </tbody>
 
+    @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4])
 
 </table>
 

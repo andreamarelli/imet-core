@@ -106,7 +106,7 @@ $vueData['area'] = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas:
 
 @push('scripts')
     <script type="module">
-        window.imet__v2__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV2.FinancialResources(@json($vueData)))
+        window.imet__v2__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialResources(@json($vueData)))
             .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

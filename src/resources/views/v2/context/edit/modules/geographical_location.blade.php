@@ -51,7 +51,7 @@ $vue_record_index = '0';
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.GeographicalLocation(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.GeographicalLocation(@json($vueData)))
             .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

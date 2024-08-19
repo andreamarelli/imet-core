@@ -1,7 +1,7 @@
-import ModuleImet from "../../Module.js";
+import ModuleImet from "../../../Module.js";
 
 import { ref, computed } from "vue";
-import imetProgressBar from "../../../templates/imet_progress_bar.vue";
+import imetProgressBar from "../../../../templates/imet_progress_bar.vue";
 
 export default class EcosystemServices extends ModuleImet {
 

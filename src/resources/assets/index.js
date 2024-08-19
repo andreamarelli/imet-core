@@ -43,39 +43,63 @@ window.ImetCore.Apps.Assessment = Assessment;
 // ############################################
 window.ImetCore.Apps.Modules = {
     ImetV1: {},
-    ImetV2: {},
+    ImetV2: {
+        context: {},
+        evaluation: {}
+    },
     Oecm: {}
 }
 
-import GeographicalLocation from "./js/apps/Modules/ImetV2/GeographicalLocation.js";
-window.ImetCore.Apps.Modules.ImetV2.GeographicalLocation = GeographicalLocation;
+import GeographicalLocation from "./js/apps/Modules/ImetV2/context/GeographicalLocation";
+window.ImetCore.Apps.Modules.ImetV2.context.GeographicalLocation = GeographicalLocation;
 
-import Areas from "./js/apps/Modules/ImetV2/Areas";
-window.ImetCore.Apps.Modules.ImetV2.Areas = Areas;
+import Areas from "./js/apps/Modules/ImetV2/context/Areas";
+window.ImetCore.Apps.Modules.ImetV2.context.Areas = Areas;
 
-import Sectors from "./js/apps/Modules/ImetV2/Sectors";
-window.ImetCore.Apps.Modules.ImetV2.Sectors = Sectors;
+import Sectors from "./js/apps/Modules/ImetV2/context/Sectors";
+window.ImetCore.Apps.Modules.ImetV2.context.Sectors = Sectors;
 
-import ManagementStaff from "./js/apps/Modules/ImetV2/ManagementStaff";
-window.ImetCore.Apps.Modules.ImetV2.ManagementStaff = ManagementStaff;
+import ManagementStaff from "./js/apps/Modules/ImetV2/context/ManagementStaff";
+window.ImetCore.Apps.Modules.ImetV2.context.ManagementStaff = ManagementStaff;
 
-import FinancialResources from "./js/apps/Modules/ImetV2/FinancialResources";
-window.ImetCore.Apps.Modules.ImetV2.FinancialResources = FinancialResources;
+import FinancialResources from "./js/apps/Modules/ImetV2/context/FinancialResources";
+window.ImetCore.Apps.Modules.ImetV2.context.FinancialResources = FinancialResources;
 
-import FinancialAvailableResources from "./js/apps/Modules/ImetV2/FinancialAvailableResources";
-window.ImetCore.Apps.Modules.ImetV2.FinancialAvailableResources = FinancialAvailableResources;
+import FinancialAvailableResources from "./js/apps/Modules/ImetV2/context/FinancialAvailableResources";
+window.ImetCore.Apps.Modules.ImetV2.context.FinancialAvailableResources = FinancialAvailableResources;
 
-import FinancialResourcesBudgetLines from "./js/apps/Modules/ImetV2/FinancialResourcesBudgetLines";
-window.ImetCore.Apps.Modules.ImetV2.FinancialResourcesBudgetLines = FinancialResourcesBudgetLines;
+import FinancialResourcesBudgetLines from "./js/apps/Modules/ImetV2/context/FinancialResourcesBudgetLines";
+window.ImetCore.Apps.Modules.ImetV2.context.FinancialResourcesBudgetLines = FinancialResourcesBudgetLines;
 
-import Equipments from "./js/apps/Modules/ImetV2/Equipments";
-window.ImetCore.Apps.Modules.ImetV2.Equipments = Equipments;
+import Equipments from "./js/apps/Modules/ImetV2/context/Equipments";
+window.ImetCore.Apps.Modules.ImetV2.context.Equipments = Equipments;
 
-import MenacesPressions from "./js/apps/Modules/ImetV2/MenacesPressions";
-window.ImetCore.Apps.Modules.ImetV2.MenacesPressions = MenacesPressions;
+import MenacesPressions from "./js/apps/Modules/ImetV2/context/MenacesPressions";
+window.ImetCore.Apps.Modules.ImetV2.context.MenacesPressions = MenacesPressions;
 
-import EcosystemServices from "./js/apps/Modules/ImetV2/EcosystemServices";
-window.ImetCore.Apps.Modules.ImetV2.EcosystemServices = EcosystemServices;
+import EcosystemServices from "./js/apps/Modules/ImetV2/context/EcosystemServices";
+window.ImetCore.Apps.Modules.ImetV2.context.EcosystemServices = EcosystemServices;
+
+import RegulationsAdequacy from "./js/apps/Modules/ImetV2/evaluation/RegulationsAdequacy";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.RegulationsAdequacy = RegulationsAdequacy;
+
+import DesignAdequacy from "./js/apps/Modules/ImetV2/evaluation/DesignAdequacy";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.DesignAdequacy = DesignAdequacy;
+
+import BoundaryLevel from "./js/apps/Modules/ImetV2/evaluation/BoundaryLevel";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.BoundaryLevel = BoundaryLevel;
+
+import ManagementPlan from "./js/apps/Modules/ImetV2/evaluation/ManagementPlan";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.ManagementPlan = ManagementPlan;
+
+import WorkPlan from "./js/apps/Modules/ImetV2/evaluation/WorkPlan";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkPlan = WorkPlan;
+
+import AssistanceActivities from "./js/apps/Modules/ImetV2/evaluation/AssistanceActivities";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.AssistanceActivities = AssistanceActivities;
+
+import LifeQualityImpact from "./js/apps/Modules/ImetV2/evaluation/LifeQualityImpact";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.LifeQualityImpact = LifeQualityImpact;
 
 // // Templates
 // Vue.component("dopa_chart_bar",                 require("./js/templates/dopa/chart_bar.vue").default);

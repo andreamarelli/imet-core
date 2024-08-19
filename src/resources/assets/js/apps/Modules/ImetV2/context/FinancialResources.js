@@ -1,8 +1,8 @@
-import ModuleImet from "../../Module.js";
+import ModuleImet from "../../../Module.js";
 
 import { ref, computed } from "vue";
-import selectorWdpa from "../../../inputs/selector-wdpa.vue";
-import scopeIcon from "../../../templates/scope_icon.vue";
+import selectorWdpa from "../../../../inputs/selector-wdpa.vue";
+import scopeIcon from "../../../../templates/scope_icon.vue";
 
 export default class FinancialResources extends ModuleImet {
 

@@ -1,4 +1,4 @@
-import ModuleImet from "../../Module.js";
+import ModuleImet from "../../../Module.js";
 
 import { ref, computed } from "vue";
 

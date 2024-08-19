@@ -87,7 +87,7 @@ $table_id = 'table_'.$definitions['module_key'];
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.ManagementStaff(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.ManagementStaff(@json($vueData)))
             .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

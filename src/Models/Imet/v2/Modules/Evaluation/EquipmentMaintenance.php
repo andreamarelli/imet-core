@@ -77,6 +77,12 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
                 : null;
         }
 
+        foreach ($result as $i=>$r){
+            if($r!==null){
+                $result[$i] = round($r, 2);
+            }
+        }
+
         return $result;
     }
 }

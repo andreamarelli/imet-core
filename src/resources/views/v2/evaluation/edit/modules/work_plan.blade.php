@@ -48,19 +48,8 @@ $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['m
 </div>
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-                plan_exists(){
-                    let exists = this.records[0]['PlanExistence'];
-                    return (exists==="true" || exists===true);
-                }
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkPlan(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

@@ -64,7 +64,7 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.MenacesPressions(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.MenacesPressions(@json($vueData)))
             .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

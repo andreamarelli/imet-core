@@ -16,7 +16,6 @@ class Imet_Eval extends Imet{
             Modules\Evaluation\ImportanceClimateChange::class,
             Modules\Evaluation\ObjectivesClimateChange::class,
             Modules\Evaluation\ImportanceEcosystemServices::class,
-
             Modules\Evaluation\ObjectivesEcosystemServices::class,
             Modules\Evaluation\SupportsAndConstraints::class,
             Modules\Evaluation\ObjectivesSupportsAndConstraints::class,

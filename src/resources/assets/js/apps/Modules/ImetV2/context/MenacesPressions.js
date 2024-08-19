@@ -1,7 +1,6 @@
-import ModuleImet from "../../Module.js";
+import ModuleImet from "../../../Module.js";
 
 import { ref, computed } from "vue";
-import imetProgressBar from "../../../templates/imet_progress_bar.vue";
 
 export default class MenacesPressions extends ModuleImet {
 
@@ -18,10 +17,7 @@ export default class MenacesPressions extends ModuleImet {
             }
         };
 
-        return super(input_data, custom_props)
-
-            // Register components
-            .component('imet_progress_bar', imetProgressBar);
+        return super(input_data, custom_props);
     }
 
     setupApp(props, input_data) {

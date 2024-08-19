@@ -1,7 +1,6 @@
 <?php
 /** @var Mixed $definitions */
-$vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['module_type']==="GROUP_ACCORDION"
-    ? 'index' : '0';
+$vue_record_index = '0';
 
 ?>
 
@@ -48,19 +47,8 @@ $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['m
 </div>
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-                plan_exists(){
-                    let exists = this.records[0]['PlanExistence'];
-                    return (exists==="true" || exists===true);
-                }
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.ManagementPlan(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

@@ -22,21 +22,8 @@ $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $v
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##cont
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            methods: {
-                is_marine(value){
-                    return this.marine_predefined.includes(value);
-                },
-                is_terrestrial(value){
-                    return this.terrestrial_predefined.includes(value);
-                }
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.AssistanceActivities(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

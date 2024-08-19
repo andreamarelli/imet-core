@@ -128,7 +128,7 @@ $table_id = 'table_' . $definitions['module_key'];
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.Sectors(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.Sectors(@json($vueData)))
             .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

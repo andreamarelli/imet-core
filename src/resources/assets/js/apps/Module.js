@@ -2,6 +2,7 @@ import Module from "@modular-forms/js/apps/Module.js";
 
 import scopeIcon from "../templates/scope_icon.vue";
 import selectorWdpa from "../inputs/selector-wdpa.vue";
+import imetProgressBar from "../templates/imet_progress_bar.vue";
 
 export default class ModuleImet extends Module {
 
@@ -11,7 +12,8 @@ export default class ModuleImet extends Module {
 
             // Register components
             .component('selector-wdpa', selectorWdpa)
-            .component('scope-icon', scopeIcon);
+            .component('scope-icon', scopeIcon)
+            .component('imet_progress_bar', imetProgressBar);
     }
 
     setupApp(props, input_data) {
@@ -20,8 +22,14 @@ export default class ModuleImet extends Module {
 
         const Locale = window.ModularForms.Helpers.Locale;
 
-        function hasRecordsToToEvaluate(criteria_field){
-            return setup_obj.records.length !== 0 && setup_obj.records[0][criteria_field]!==null;
+        function hasRecordsToEvaluate(criteria_field, group_key) {
+            group_key = group_key || null;
+            if(group_key == null){
+                return setup_obj.records.length !== 0 && setup_obj.records[0][criteria_field]!==null;
+            } else {
+                let records_in_group = setup_obj.records.filter(record => record[props.group_key_field] === group_key);
+                return records_in_group.length !== 0 && records_in_group[0][criteria_field]!==null;
+            }
         }
 
         function key_element_label(value) {
@@ -55,7 +63,7 @@ export default class ModuleImet extends Module {
         return {
             ...setup_obj,
             key_element_label,
-            hasRecordsToToEvaluate
+            hasRecordsToEvaluate
         };
     }
 

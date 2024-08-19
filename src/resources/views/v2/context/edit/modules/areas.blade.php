@@ -119,7 +119,7 @@ if (!function_exists('formatNum')) {
     </style>
 
     <script type="module">
-        window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.ImetV2.Areas(@json($vueData)))
+        window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($vueData)))
             .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush
