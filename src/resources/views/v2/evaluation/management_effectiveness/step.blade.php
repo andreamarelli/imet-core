@@ -39,9 +39,10 @@ $assessment_step = ImetAssessment::getAssessment($item_id, $step);
             </div>
         </div>
 
-        <div style="margin-bottom: 30px;">
-            <div id="imet_process_radar" style="height: 250px;"></div>
-        </div>
+        <imet_process_radar
+            :values=intermediate_values
+            :labels=labels
+        ></imet_process_radar>
 
     @elseif($step=='outcomes')
 

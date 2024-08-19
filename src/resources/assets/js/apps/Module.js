@@ -63,7 +63,7 @@ export default class ModuleImet extends Module {
         return {
             ...setup_obj,
             key_element_label,
-            hasRecordsToEvaluate
+            hasRecordsToEvaluate,
         };
     }
 

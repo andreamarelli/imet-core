@@ -28,6 +28,10 @@ if (Str::contains($controller, 'ContextController')) {
     $step_labels = 'common.steps_eval';
 }
 
+$steps = Str::contains($controller, Models\Imet\Imet::IMET_V2)
+    ? Imet\v2\EvalController::steps($item)
+    : array_keys($item::modules());
+
 $show_scrollbar = true;
 
 ?>
@@ -47,7 +51,7 @@ $show_scrollbar = true;
         'url' => action([$controller, 'edit'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::' . $step_labels . '.',
-        'steps' => array_keys($item::modules())
+        'steps' => $steps
     ])
 
     {{-- Global errors --}}

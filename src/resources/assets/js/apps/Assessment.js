@@ -1,6 +1,7 @@
 import BaseImet from "./Base";
 
 import imetProgressBar from "../templates/imet_progress_bar.vue";
+import imetProcessRadar from "../templates/imet_process_radar.vue";
 
 import { createApp, ref, computed, onMounted, onBeforeMount } from "vue";
 
@@ -38,7 +39,6 @@ export default class Assessment {
                 const step_indexes = ref(null);
                 const step_indexes_intermediate = ref(null);
                 const step_color = ref('#000');
-                const chart = ref(null);
 
                 onBeforeMount(() => {
                     initProperties();
@@ -74,8 +74,7 @@ export default class Assessment {
                     let intermediate_values = [];
                     if(step_indexes_intermediate.value.length > 0){
                         step_indexes_intermediate.value.forEach(index => {
-                            intermediate_values[index] = intermediate_values[index] || [];
-                            intermediate_values[index].push(get_key_from_api[index]);
+                            intermediate_values[index] = get_key_from_api(index);
                         });
                     }
                     return intermediate_values;
@@ -137,7 +136,8 @@ export default class Assessment {
 
         return createApp(options, input_data)
 
-            .component('imet_progress_bar', imetProgressBar);
+            .component('imet_progress_bar', imetProgressBar)
+            .component('imet_process_radar', imetProcessRadar);
     }
 
 }

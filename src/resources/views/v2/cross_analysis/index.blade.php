@@ -10,16 +10,18 @@ if ($item->language != App::getLocale()) {
 }
 $i = 0;
 ?>
-
-<div class="module-bar info-bar mt-2 mb-2 guidance">
-    <div class="icon blue"><span class="fas fa-fw fa-info-circle" style="font-size: 1.4em;"></span>
-    </div>
-    <div class="message">
-        <div>
-            <span>{{trans('imet-core::common.cross_analysis_info')}}</span>
+<div class="module-container">
+    <div class="module-bar info-bar mt-2 mb-2 guidance">
+        <div class="icon blue"><span class="fas fa-fw fa-info-circle" style="font-size: 1.4em;"></span>
+        </div>
+        <div class="message">
+            <div>
+                <span>{{trans('imet-core::common.cross_analysis_info')}}</span>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="imet_modules">
     @if(count($warnings) > 0)
         @foreach($warnings as $k => $w)
