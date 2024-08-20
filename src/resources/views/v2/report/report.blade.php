@@ -109,11 +109,11 @@ if($item->language != App::getLocale()){
             </div>
             <div class="module-body">
 
-                <imet_charts
-                    form_id={{ $item->getKey() }}
-                    :labels='@json(ImetScores::labels())'
-                    :version="'v2'"
-                    :show_histogram="true"></imet_charts>
+                @include('imet-core::components.imet_charts', [
+                    'form_id' => $item->getKey(),
+                    'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2
+                ])
+
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::common.steps_eval.context')</th>

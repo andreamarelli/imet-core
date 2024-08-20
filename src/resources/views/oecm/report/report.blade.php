@@ -73,11 +73,12 @@ if ($item->language != App::getLocale()) {
             </div>
             <div class="module-body">
                 <h4>@lang('imet-core::oecm_report.management_effectiveness.evaluation_elements')</h4>
-                <imet_charts
-                    form_id={{ $item->getKey() }}
-                    :labels='@json(ImetScores::labels())'
-                    :version="'oecm'"
-                    :show_histogram="true"></imet_charts>
+
+                @include('imet-core::components.imet_charts', [
+                    'form_id' => $item->getKey(),
+                    'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM
+                ])
+
                 <table id="global_scores">
                     <tr>
                         <th>@lang('imet-core::common.steps_eval.context')</th>
