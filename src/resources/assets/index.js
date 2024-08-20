@@ -38,6 +38,9 @@ window.ImetCore.Apps.Module = ModuleImet;
 import Assessment from "./js/apps/Assessment.js";
 window.ImetCore.Apps.Assessment = Assessment;
 
+import AssessmentScores from "./js/apps/AssessmentScores.js";
+window.ImetCore.Apps.AssessmentScores = AssessmentScores;
+
 // ############################################
 // #############  Custom Modules  #############
 // ############################################
@@ -111,7 +114,7 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.LifeQualityImpact = LifeQualityIm
 // };
 // Vue.component("imet_charts",                    require("./js/templates/imet_charts.vue").default);
 // Vue.component("imet_encoders_responsibles",     require("./js/templates/imet_encoders_responsibles.vue").default);
-// Vue.component("imet_progress_bar",              require("./js/templates/imet_progress_bar.vue").default);
+// Vue.component("imet_score_bar",              require("./js/templates/imet_score_bar.vue").default);
 // Vue.component("imet_radar",                     require("./js/templates/imet_radar.vue").default);
 // Vue.component("imet_bar_chart",                 require("./js/templates/imet_bar_chart.vue").default);
 //

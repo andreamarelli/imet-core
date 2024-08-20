@@ -11,17 +11,17 @@ use \Illuminate\Support\Str;
 /** @var string $mode */
 
 
-if(Str::contains($controller, Models\Imet\Imet::IMET_V1)){
-    $version =  Models\Imet\Imet::IMET_V1;
-    $context_modules =  Models\Imet\v1\Imet::modules();
+if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
+    $version = Models\Imet\Imet::IMET_V1;
+    $context_modules = Models\Imet\v1\Imet::modules();
     $evaluation_modules = Models\Imet\v1\Imet_Eval::modules();
-} else if(Str::contains($controller, Models\Imet\Imet::IMET_V2)){
+} else if (Str::contains($controller, Models\Imet\Imet::IMET_V2)) {
     $version = Models\Imet\Imet::IMET_V2;
-    $context_modules =  Models\Imet\v2\Imet::modules();
+    $context_modules = Models\Imet\v2\Imet::modules();
     $evaluation_modules = Models\Imet\v2\Imet_Eval::modules();
-} else if(Str::contains($controller, Models\Imet\Imet::IMET_OECM)){
+} else if (Str::contains($controller, Models\Imet\Imet::IMET_OECM)) {
     $version = Models\Imet\Imet::IMET_OECM;
-    $context_modules =  Models\Imet\oecm\Imet::modules();
+    $context_modules = Models\Imet\oecm\Imet::modules();
     $evaluation_modules = Models\Imet\oecm\Imet_Eval::modules();
 }
 
@@ -39,7 +39,7 @@ if(Str::contains($controller, Models\Imet\Imet::IMET_V1)){
     @include('imet-core::components.heading', ['item' => $item])
 
     {{-- Management effectiveness --}}
-    @include('imet-core::'.$version.'.evaluation.management_effectiveness.management_effectiveness', [
+    @include('imet-core::components.scores', [
         'item_id' => $item->getKey(),
         'step' => 'management_effectiveness'
     ])
@@ -79,10 +79,11 @@ if(Str::contains($controller, Models\Imet\Imet::IMET_V1)){
     @endforeach
 
     <style>
-        .print_body{
+        .print_body {
             margin: 20px;
         }
-        .entity-heading{
+
+        .entity-heading {
             margin-top: 20px;
         }
 
@@ -90,12 +91,10 @@ if(Str::contains($controller, Models\Imet\Imet::IMET_V1)){
 
     <script>
         window.onload = function () {
-            setTimeout(function(){
+            setTimeout(function () {
                 window.print();
             }, 2000);
         }
     </script>
-
-
 
 @endsection

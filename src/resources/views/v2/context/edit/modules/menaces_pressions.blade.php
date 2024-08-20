@@ -48,10 +48,10 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
                 <b v-html="categoryStats[{{ $i }}] || '-'"></b>
             </div>
             <div class="histogram-row__progress-bar"  v-if="categoryStats['{{ $i }}']!==null">
-                <imet_progress_bar
+                <imet_score_bar
                     :value=categoryStats[{{ $i }}]
                     color="#87c89b"
-                ></imet_progress_bar>
+                ></imet_score_bar>
             </div>
         </div>
     @endforeach

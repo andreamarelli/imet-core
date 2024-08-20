@@ -27,7 +27,7 @@ const radar_options = computed(() => {
 
     let values = Object.values(props.values).reverse();
     let labels = Object.keys(props.values).reverse().map((item) => {
-        return {name: props.labels[item].title, max: 100};
+        return {name: props.labels[item], max: 100};
     });
 
     return {

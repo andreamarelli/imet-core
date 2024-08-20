@@ -1,15 +1,16 @@
 <template>
 
-    <div class="progress-bar text-2xs">
+    <div class="score-bar text-2xs">
 
-        <div v-if="showLimits && min!==null" class="progress-bar__limit-left">{{ min }}%</div>
+        <div v-if="showLimits && min!==null" class="score-bar__limit-left">{{ min }}%</div>
 
         <progress_bar
-            :value=progress_value
+            :value=score_value
             :color=color
+            :negative=negative
         ></progress_bar>
 
-        <div v-if="showLimits && max!==null" class="progress-bar__limit-right">{{ max }}%</div>
+        <div v-if="showLimits && max!==null" class="score-bar__limit-right">{{ max }}%</div>
 
     </div>
 
@@ -17,7 +18,7 @@
 
 <style lang="scss" scoped>
 
-    .progress-bar{
+    .score-bar{
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -25,18 +26,18 @@
         align-items: center;
         margin: 1px 0;
 
-      .progress-bar__limit-left,
-      .progress-bar__limit-right{
+      .score-bar__limit-left,
+      .score-bar__limit-right{
           width: 40px;
           font-weight: bold;
       }
 
-        .progress-bar__limit-left{
+        .score-bar__limit-left{
             text-align: right;
             padding-right: 3px;
         }
 
-        .progress-bar__limit-right{
+        .score-bar__limit-right{
             text-align: left;
             padding-left: 3px;
         }
@@ -72,10 +73,15 @@ const props = defineProps({
     },
 });
 
-const progress_value = computed(() => {
+const score_value = computed(() => {
+    if(props.value === null) return null;
     return typeof props.value === 'number'
-        ? parseFloat(props.value)
-        : props.value;
+        ? props.value.toFixed(1)
+        : parseFloat(props.value).toFixed(1);
+});
+
+const negative = computed(() => {
+    return props.value < 0 || props.min < 0;
 });
 
 

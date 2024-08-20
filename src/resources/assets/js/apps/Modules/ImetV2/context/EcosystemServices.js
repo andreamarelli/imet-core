@@ -1,7 +1,7 @@
 import ModuleImet from "../../../Module.js";
 
 import { ref, computed } from "vue";
-import imetProgressBar from "../../../../templates/imet_progress_bar.vue";
+import imetScoreBar from "../../../../templates/imet_score_bar.vue";
 
 export default class EcosystemServices extends ModuleImet {
 
@@ -17,7 +17,7 @@ export default class EcosystemServices extends ModuleImet {
         return super(input_data, custom_props)
 
             // Register components
-            .component('imet_progress_bar', imetProgressBar);
+            .component('imet_score_bar', imetScoreBar);
     }
 
     setupApp(props, input_data) {

@@ -1,6 +1,6 @@
 import BaseImet from "./Base";
 
-import imetProgressBar from "../templates/imet_progress_bar.vue";
+import imetScoreBar from "../templates/imet_score_bar.vue";
 import imetProcessRadar from "../templates/imet_process_radar.vue";
 
 import { createApp, ref, computed, onMounted, onBeforeMount } from "vue";
@@ -136,7 +136,7 @@ export default class Assessment {
 
         return createApp(options, input_data)
 
-            .component('imet_progress_bar', imetProgressBar)
+            .component('imet_score_bar', imetScoreBar)
             .component('imet_process_radar', imetProcessRadar);
     }
 

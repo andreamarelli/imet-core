@@ -1,7 +1,7 @@
 <template>
 
     <div class="progress-bar" >
-        <div class="bar" :style=progress_style v-if="value!==null"></div>
+        <div class="bar" :class="{'float-right': negative}" :style=style v-if="value!==null"></div>
         <div class="label" v-if="value!==null">
             {{ value }}% {{ additional_label }}
         </div>
@@ -53,9 +53,13 @@ const props = defineProps({
         type: Number,
         default: () => 2
     },
+    negative: {
+        type: Boolean,
+        default: false
+    }
 });
 
-const progress_style = computed(() => {
+const style = computed(() => {
     return 'width: ' +  Math.abs(props.value).toFixed(props.digit) + '%; background-color: ' + props.color + ' !important;';
 });
 

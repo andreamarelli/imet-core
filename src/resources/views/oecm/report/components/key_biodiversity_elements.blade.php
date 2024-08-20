@@ -13,12 +13,12 @@
             </div>
             <div class="histogram-row__progress-bar">
                 @if($threat_label!=='-')
-                    <imet_progress_bar
+                    <imet_score_bar
                             :value={{ $threat_label }}
                                 color="#87c89b"
                             :min=-100
                             :max=0
-                    ></imet_progress_bar>
+                    ></imet_score_bar>
                 @endif
             </div>
         </div>
@@ -36,12 +36,12 @@
             </div>
             <div class="histogram-row__progress-bar">
                 @if($threat_label!=='-')
-                    <imet_progress_bar
+                    <imet_score_bar
                         :value={{ $threat_label }}
                         color="#87c89b"
                         :min=-100
                         :max=0
-                    ></imet_progress_bar>
+                    ></imet_score_bar>
                 @endif
             </div>
         </div>

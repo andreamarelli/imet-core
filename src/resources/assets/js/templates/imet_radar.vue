@@ -1,13 +1,8 @@
 <template>
 
-    <div ref=radar class="imet_radar" :style="'width:' + width +'px; height: ' + height +'px;'"></div>
+    <div ref=radar :style="'width:' + width +'px; height: ' + height +'px;'"></div>
 
 </template>
-
-<style lang="scss" scoped>
-    .imet_radar{}
-</style>
-
 
 <script setup>
 

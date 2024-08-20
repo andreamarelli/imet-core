@@ -4,11 +4,12 @@ namespace AndreaMarelli\ImetCore\Services\Scores;
 
 
 use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 
 trait Labels{
 
-    protected static function get_labels(string $version = null, $only_abbreviations = false): array
+    protected static function get_labels(string $version = null, $only_abbreviations = false, $with_keys = false): array
     {
         $labels = static::all_labels();
 
@@ -17,6 +18,11 @@ trait Labels{
             if($only_abbreviations){
                 $labels = $labels['abbreviations'];
             }
+        }
+        if($with_keys){
+            $labels['full'] = array_combine(
+                [_Scores::CONTEXT, _Scores::PLANNING, _Scores::INPUTS, _Scores::PROCESS, _Scores::OUTPUTS, _Scores::OUTCOMES],
+                $labels['full']);
         }
 
         return $labels;
@@ -73,6 +79,7 @@ trait Labels{
                 'title_' . Locale::lower() => $item[1],
             ];
         }
+        $labels['global'] = static::get_labels($version, false, true);
         return $labels;
     }
 
