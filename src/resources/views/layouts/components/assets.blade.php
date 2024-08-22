@@ -13,8 +13,8 @@ $window_js = [
 ];
 
 $routes = [
-    'assessment' => route('imet_core::api::assessment', ['item' => '__id__']),
-    'assessment_oecm' => route('imet_core::api::assessment_oecm', ['item' => '__id__']),
+    'scores' => route('imet_core::api::scores', ['item' => '__id__']),
+    'scores_oecm' => route('imet_core::api::scores_oecm', ['item' => '__id__']),
     'scaling_up_preview' => route('imet-core::scaling_up_preview', ['id' => '__id__']),
     'scaling_up_basket_add' => route('imet-core::scaling_up_basket_add'),
     'scaling_up_basket_get' => route('imet-core::scaling_up_basket_get'),

@@ -6,8 +6,8 @@
         <div class="grow">
             <div v-for="(step_props, step_key) in properties">
                 <imet_score_row
-                    :label="api_data['labels']['global']['full'][step_key]"
-                    :value=api_data[step_key].avg_indicator
+                    :label="labels[step_key]"
+                    :value="api_data['scores'][step_key].avg_indicator"
                     :color=step_props.color
                 ></imet_score_row>
             </div>
@@ -17,14 +17,14 @@
     </div>
 
     <!-- ##### STEPS ##### -->
-    <div class="my-6" v-for="(step_props, step_key) in properties">
+    <template v-for="(step_props, step_key) in properties">
 
-        <template v-if="current_step===step_key || current_step==='management_effectiveness'">
+        <div class="mb-10" v-if="current_step===step_key || current_step==='management_effectiveness'">
 
             <!-- Title + synthetic score-->
             <imet_score_row
-                :label="api_data['labels']['global']['full'][step_key]"
-                :value=api_data[step_key].avg_indicator
+                :label="labels[step_key]"
+                :value="api_data['scores'][step_key].avg_indicator"
                 :color=step_props.color
                 :is-header=true
             ></imet_score_row>
@@ -32,9 +32,9 @@
             <!-- Scores-->
             <div v-for="(index, idx) in step_props.indexes">
                 <imet_score_row
-                    :label="api_data['labels'][index]['title_fr']"
-                    :code="api_data['labels'][index]['code_label']"
-                    :value=api_data[step_key][index]
+                    :label="labels[index]['title_fr']"
+                    :code="labels[index]['code_label']"
+                    :value="api_data['scores'][step_key][index]"
                     :histogram_type="histogram_type(step_key, idx)"
                     :color=step_props.color
                 ></imet_score_row>
@@ -44,9 +44,9 @@
             <div class="mt-4" v-if="step_key==='context'">
                 <template v-for="ctx_key in ['c11', 'c12', 'c13', 'c14', 'c15']">
                     <imet_score_row
-                        :label="api_data['labels'][ctx_key]['title_fr']"
-                        :code="api_data['labels'][ctx_key]['code_label']"
-                        :value="api_data['context'][ctx_key]"
+                        :label="labels[ctx_key]['title_fr']"
+                        :code="labels[ctx_key]['code_label']"
+                        :value="api_data['scores']['context'][ctx_key]"
                         histogram_type="0_to_100"
                         :color=step_props.color
                     ></imet_score_row>
@@ -55,47 +55,51 @@
             <div class="mt-4" v-else-if="step_key==='process'">
                 <imet_process_radar
                     :values="[
-                        api_data['process']['pr1_6'],
-                        api_data['process']['pr7_9'],
-                        api_data['process']['pr10_12'],
-                        api_data['process']['pr13_14'],
-                        api_data['process']['pr15_16'],
-                        api_data['process']['pr17_18']
+                        api_data['scores']['process']['pr1_6'],
+                        api_data['scores']['process']['pr7_9'],
+                        api_data['scores']['process']['pr10_12'],
+                        api_data['scores']['process']['pr13_14'],
+                        api_data['scores']['process']['pr15_16'],
+                        api_data['scores']['process']['pr17_18']
                     ]"
                     :labels="[
-                        api_data['labels']['pr1_6']['title_fr'],
-                        api_data['labels']['pr7_9']['title_fr'],
-                        api_data['labels']['pr10_12']['title_fr'],
-                        api_data['labels']['pr13_14']['title_fr'],
-                        api_data['labels']['pr15_16']['title_fr'],
-                        api_data['labels']['pr17_18']['title_fr']
+                        labels['pr1_6']['title_fr'],
+                        labels['pr7_9']['title_fr'],
+                        labels['pr10_12']['title_fr'],
+                        labels['pr13_14']['title_fr'],
+                        labels['pr15_16']['title_fr'],
+                        labels['pr17_18']['title_fr']
                     ]"
                 ></imet_process_radar>
             </div>
 
-        </template>
+        </div>
 
-    </div>
+    </template>
 
 </template>
 
 <script setup>
 
 import { computed } from "vue";
+import { storeToRefs } from "~/pinia";
 import imet_score_row from "./imet_score_row.vue";
 import imet_process_radar from "./imet_process_radar.vue";
 import imet_radar from "./imet_radar.vue";
 
 const props = defineProps({
-    api_data: {
-        type: Object,
-        default: () => {}
-    },
     current_step: {
         type: String,
         default: null
     },
+    labels: {
+        type: Object,
+        default: () => {}
+    },
+    store: null
 });
+
+const { api_data } = storeToRefs(props.store);
 
 const properties = {
     'context': {
@@ -134,8 +138,8 @@ const radar_values = computed(() => {
     let radar_values = {};
     if(props.api_data){
         Object.keys(properties).forEach(function(step){
-            let label = props.api_data['labels']['global']['full'][step];
-            radar_values[label] = props.api_data[step].avg_indicator;
+            let label = props.labels[step];
+            radar_values[label] = props.api_data['scores'][step].avg_indicator;
         });
     }
     return radar_values;

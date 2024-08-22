@@ -2,8 +2,7 @@
 
 namespace AndreaMarelli\ImetCore\Services\Scores;
 
-
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ModularForms\Helpers\Locale;
 
@@ -31,7 +30,7 @@ trait Labels{
     private static function all_labels(): array
     {
         return [
-            Imet::IMET_V1 => [
+            Imet\Imet::IMET_V1 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'R', 'EI'],
                 'full' => [
                     trans('imet-core::common.steps_eval.context'),
@@ -42,7 +41,7 @@ trait Labels{
                     trans('imet-core::common.steps_eval.outcomes'),
                 ]
             ],
-            Imet::IMET_V2 => [
+            Imet\Imet::IMET_V2 => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'OP', 'OC'],
                 'full' => [
                     trans('imet-core::common.steps_eval.context'),
@@ -53,7 +52,7 @@ trait Labels{
                     trans('imet-core::common.steps_eval.outcomes'),
                 ]
             ],
-            Imet::IMET_OECM => [
+            Imet\Imet::IMET_OECM => [
                 'abbreviations' => ['C', 'P', 'I', 'PR', 'OP', 'OC'],
                 'full' => [
                     trans('imet-core::common.steps_eval.context'),
@@ -70,7 +69,7 @@ trait Labels{
     /**
      * Return indicator's labels
      */
-    protected static function get_indicators_labels(string $version): array
+    public static function get_indicators_labels(string $version): array
     {
         $labels = [];
         foreach (trans('imet-core::'.$version.'_common.assessment') as $code => $item){
@@ -79,8 +78,10 @@ trait Labels{
                 'title_' . Locale::lower() => $item[1],
             ];
         }
-        $labels['global'] = static::get_labels($version, false, true);
-        return $labels;
+        return array_merge(
+            $labels,
+            static::get_labels($version, false, true)['full']
+        );
     }
 
 }

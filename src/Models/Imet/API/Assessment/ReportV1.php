@@ -163,7 +163,7 @@ class ReportV1
      * @param array $fields_to_extract
      * @return array
      */
-    protected static function remove_fields(array $values, array $fields_to_extract = ['name' => '', 'iso3' => '', 'formid' => '', 'wdpa_id' => '', 'year' => '', 'version' => '']): array
+    protected static function remove_fields(array $values, array $fields_to_extract = ['name' => '', 'iso3' => '', 'form_id' => '', 'wdpa_id' => '', 'year' => '', 'version' => '']): array
     {
         return array_diff_key($values, $fields_to_extract);
     }

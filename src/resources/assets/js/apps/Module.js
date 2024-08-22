@@ -23,8 +23,7 @@ export default class ModuleImet extends Module {
         const Locale = window.ModularForms.Helpers.Locale;
 
         setup_obj.emitter.on('moduleSaved', (data) => {
-           // TODO: refresh assessments:
-            console.log('imet moduleSaved - TODO');
+            window.AssessmentScores.refresh_scores();
         });
 
         function hasRecordsToEvaluate(criteria_field, group_key) {
@@ -70,6 +69,10 @@ export default class ModuleImet extends Module {
             key_element_label,
             hasRecordsToEvaluate,
         };
+    }
+
+    createApp(options, input_data) {
+        return super.createApp(options, input_data);
     }
 
 }

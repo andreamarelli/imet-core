@@ -21,6 +21,7 @@ window.ImetCore.Components = {};
 import BiopamaWDPA from "./js/helpers/biopamaWDPA.js";
 window.ImetCore.Helpers.BiopamaWDPA = BiopamaWDPA;
 
+
 // ############################################
 // ##################  Apps  ##################
 // ############################################
@@ -34,9 +35,6 @@ window.ImetCore.Apps.FormList = FormListImet;
 
 import ModuleImet from "./js/apps/Module.js";  // Extend FormList from ModularForms
 window.ImetCore.Apps.Module = ModuleImet;
-
-import Assessment from "./js/apps/Assessment.js";
-window.ImetCore.Apps.Assessment = Assessment;
 
 import AssessmentScores from "./js/apps/AssessmentScores.js";
 window.ImetCore.Apps.AssessmentScores = AssessmentScores;
@@ -112,7 +110,6 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.LifeQualityImpact = LifeQualityIm
 //     "chart_bar": require("./js/templates/dopa/chart_bar.vue").default,
 //     "chart_doughnut": require("./js/templates/dopa/chart_doughnut.vue").default
 // };
-// Vue.component("imet_charts",                    require("./js/templates/imet_charts.vue").default);
 // Vue.component("imet_encoders_responsibles",     require("./js/templates/imet_encoders_responsibles.vue").default);
 // Vue.component("imet_score_bar",              require("./js/templates/imet_score_bar.vue").default);
 // Vue.component("imet_radar",                     require("./js/templates/imet_radar.vue").default);

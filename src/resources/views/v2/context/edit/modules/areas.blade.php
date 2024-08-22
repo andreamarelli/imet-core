@@ -11,18 +11,6 @@ if (!function_exists('formatNum')) {
     }
 }
 
-//$vueData['AdministrativeArea_ha'] = $vueData['AdministrativeArea_ha_full'] = formatNum($vueData['records'][0]['AdministrativeArea']);
-//$vueData['AdministrativeArea_km2'] = $vueData['AdministrativeArea_km2_full'] = formatNum($vueData['records'][0]['AdministrativeArea']/100);
-//$vueData['WDPAArea_ha'] = $vueData['WDPAArea_ha_full'] = formatNum($vueData['records'][0]['WDPAArea']);
-//$vueData['WDPAArea_km2'] = $vueData['WDPAArea_ha_full'] = formatNum($vueData['records'][0]['WDPAArea']/100);
-//$vueData['GISArea_ha'] = $vueData['GISArea_ha_full'] = formatNum($vueData['records'][0]['GISArea']);
-//$vueData['GISArea_km2'] = $vueData['GISArea_km2_full'] = formatNum($vueData['records'][0]['GISArea']/100);
-
-//$vueData['AdministrativeArea_km2'] = formatNum($vueData['records'][0]['AdministrativeArea']/100);
-//$vueData['WDPAArea_km2'] = formatNum($vueData['records'][0]['WDPAArea']/100);
-//$vueData['GISArea_km2'] = formatNum($vueData['records'][0]['GISArea']/100);
-
-
 ?>
 
 @foreach($definitions['fields'] as $field_index => $field)

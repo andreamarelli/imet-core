@@ -1,11 +1,18 @@
 <?php
 /** @var String $step */
 /** @var int $item_id */
+/** @var String $version */
 
+use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Assessment\ImetAssessment;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 
-$assessment_scores = ImetAssessment::getAssessment($item_id, _Scores::ALL_SCORES);
+$scores = $version === Imet::IMET_OECM
+    ? ApiController::scores_oecm($item_id)->getData()
+    : ApiController::scores($item_id)->getData();
+
+$labels = ImetAssessment::get_indicators_labels($version);
 
 ?>
 
@@ -18,14 +25,17 @@ $assessment_scores = ImetAssessment::getAssessment($item_id, _Scores::ALL_SCORES
     <div class="module-body">
         <imet_scores
             current_step="{{ $step }}"
-            :api_data='@json($assessment_scores)'
+            :labels='@json($labels)'
+            :store=store
         ></imet_scores>
     </div>
 </div>
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.AssessmentScores())
+        window.AssessmentScores = (new window.ImetCore.Apps.AssessmentScores({
+            api_data: @json($scores),
+        }))
             .mount('#assessment_scores');
     </script>
 @endpush
