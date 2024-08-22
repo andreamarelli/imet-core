@@ -11,7 +11,7 @@ $stats = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions
 
 
 // Inject titles (with category stats)
-foreach (MenacesPressions::$groupByCategory as $i => $category) {
+foreach (MenacesPressions::$groupsByCategory as $i => $category) {
     $searchFor = '<h5 class="highlight group_title_' . $definitions['module_key'] . '_' . $category[0] . '">';
     $textToAdd = '
         <div class="module-row">
@@ -28,7 +28,7 @@ foreach (MenacesPressions::$groupByCategory as $i => $category) {
 
 // inject row and group stats
 $allSpaces = '[\s\t\n\r]*';
-foreach (MenacesPressions::$groupByCategory as $i => $category) {
+foreach (MenacesPressions::$groupsByCategory as $i => $category) {
 
     foreach ($category as $index => $group) {
         if (isset($stats['row_stats'][$group])) {

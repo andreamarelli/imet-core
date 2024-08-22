@@ -50,13 +50,50 @@ window.ImetCore.Apps.AssessmentScores = AssessmentScores;
 // #############  Custom Modules  #############
 // ############################################
 window.ImetCore.Apps.Modules = {
-    ImetV1: {},
+    ImetV1: {
+        context: {},
+        evaluation: {}
+    },
     ImetV2: {
         context: {},
         evaluation: {}
     },
     Oecm: {}
 }
+
+// ##### ImetV1 - context #####
+
+import {default as AreasV1} from "./js/apps/Modules/ImetV1/context/Areas";
+window.ImetCore.Apps.Modules.ImetV1.context.Areas = AreasV1;
+
+import ControlLevel from "./js/apps/Modules/ImetV1/context/ControlLevel";
+window.ImetCore.Apps.Modules.ImetV1.context.ControlLevel = ControlLevel;
+
+import {default as ManagementStaffV1} from "./js/apps/Modules/ImetV1/context/ManagementStaff";
+window.ImetCore.Apps.Modules.ImetV1.context.ManagementStaff = ManagementStaffV1;
+
+import {default as FinancialResourcesV1} from "./js/apps/Modules/ImetV1/context/FinancialResources";
+window.ImetCore.Apps.Modules.ImetV1.context.FinancialResources = FinancialResourcesV1;
+
+import {default as FinancialAvailableResourcesV1} from "./js/apps/Modules/ImetV1/context/FinancialAvailableResources";
+window.ImetCore.Apps.Modules.ImetV1.context.FinancialAvailableResources = FinancialAvailableResourcesV1;
+
+import {default as FinancialResourcesBudgetLinesV1} from "./js/apps/Modules/ImetV1/context/FinancialResourcesBudgetLines";
+window.ImetCore.Apps.Modules.ImetV1.context.FinancialResourcesBudgetLines = FinancialResourcesBudgetLinesV1;
+
+import {default as EquipmentsV1} from "./js/apps/Modules/ImetV1/context/Equipments";
+window.ImetCore.Apps.Modules.ImetV1.context.Equipments = EquipmentsV1;
+
+import {default as MenacesPressionsV1} from "./js/apps/Modules/ImetV1/context/MenacesPressions";
+window.ImetCore.Apps.Modules.ImetV1.context.MenacesPressions = MenacesPressionsV1;
+
+import {default as EcosystemServicesV1} from "./js/apps/Modules/ImetV1/context/EcosystemServices";
+window.ImetCore.Apps.Modules.ImetV1.context.EcosystemServices = EcosystemServicesV1;
+
+// ##### ImetV1 - evaluation  #####
+
+
+// ##### ImetV2 - context #####
 
 import GeographicalLocation from "./js/apps/Modules/ImetV2/context/GeographicalLocation";
 window.ImetCore.Apps.Modules.ImetV2.context.GeographicalLocation = GeographicalLocation;
@@ -87,6 +124,8 @@ window.ImetCore.Apps.Modules.ImetV2.context.MenacesPressions = MenacesPressions;
 
 import EcosystemServices from "./js/apps/Modules/ImetV2/context/EcosystemServices";
 window.ImetCore.Apps.Modules.ImetV2.context.EcosystemServices = EcosystemServices;
+
+// ##### ImetV2 - evaluation #####
 
 import RegulationsAdequacy from "./js/apps/Modules/ImetV2/evaluation/RegulationsAdequacy";
 window.ImetCore.Apps.Modules.ImetV2.evaluation.RegulationsAdequacy = RegulationsAdequacy;

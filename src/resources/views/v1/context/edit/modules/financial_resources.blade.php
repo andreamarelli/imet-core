@@ -5,7 +5,7 @@
 
 $vue_record_index = '0';
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
+$vueData['area'] = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
 
 ?>
 
@@ -105,91 +105,8 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
 </table>
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            props: {
-                area: {
-                    type: Number,
-                    default: {{ $area }}
-                },
-            },
-
-            computed: {
-
-                functioning_costs_1 (){
-                    let result = null;
-                    let value = this.records[0]['ManagementFinancialPlanCosts'];
-                    let value2 = this.area;
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2);
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                },
-                functioning_costs_2 (){
-                    let result = null;
-                    let value = this.records[0]['OperationalWorkPlanCosts'];
-                    let value2 = this.area;
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2);
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                },
-                functioning_costs_3 (){
-                    let result = null;
-                    let value = this.records[0]['TotalBudget'];
-                    let value2 = this.area;
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2);
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                },
-                estimation_financial_plan_2 (){
-                    let result = null;
-                    let value = this.records[0]['OperationalWorkPlanCosts'];
-                    let value2 = this.records[0]['ManagementFinancialPlanCosts'];
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2) * 100;
-                        result = result.toFixed(1);
-                    }
-                    return result;
-                },
-                estimation_financial_plan_3 (){
-                    let result = null;
-                    let value = this.records[0]['TotalBudget'];
-                    let value2 = this.records[0]['ManagementFinancialPlanCosts'];
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2) * 100;
-                        result = result.toFixed(1);
-                    }
-                    return result;
-                },
-                estimation_operational_plan_3 (){
-                    let result = null;
-                    let value = this.records[0]['TotalBudget'];
-                    let value2 = this.records[0]['OperationalWorkPlanCosts'];
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2) * 100;
-                        result = result.toFixed(1);
-                    }
-                    return result;
-                },
-
-
-            },
-
-            methods: {
-                isValid: function (n) {
-                    return !isNaN(parseFloat(n)) && isFinite(n) && n!==null;
-                }
-            }
-
-        });
+    <script type="module">
+        window.imet__v1__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResources(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

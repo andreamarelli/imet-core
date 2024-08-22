@@ -84,42 +84,8 @@ $table_id = 'table_'.$definitions['module_key'];
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-
-                totals() {
-                    let result = [];
-                    this.records.forEach(function (item, index) {
-                        result[index] = 0;
-                        result[index] += item['NationalBudget'] !== null ? parseFloat(item['NationalBudget']) : 0;
-                        result[index] += item['OwnRevenues'] !== null ? parseFloat(item['OwnRevenues']) : 0;
-                        result[index] += item['Disputes'] !== null ? parseFloat(item['Disputes']) : 0;
-                        result[index] += item['Partners'] !== null ? parseFloat(item['Partners']) : 0;
-                        result[index] = result[index]===0 ? null : result[index];
-                    });
-                    return result;
-                },
-                percentages(){
-                    let _this = this;
-                    let result = [];
-                    let totalPlannedBudget = parseFloat(module_imet__v1__context__financial_resources.records[0]['TotalBudget']);
-                    this.records.forEach(function (item, index) {
-                        let total =  parseFloat(_this.totals[index]);
-                        if(total>0 && totalPlannedBudget > 0){
-                            result[index] = (total/totalPlannedBudget*100).toFixed(1) + ' %';
-                        }else{
-                            result[index] = "";
-                        }
-                    });
-                    return result;
-                }
-
-            }
-        });
+    <script type="module">
+        window.imet__v1__context__financial_available_resources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialAvailableResources(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

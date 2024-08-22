@@ -11,7 +11,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
 
 
 <table id="table_imet__context__control_level" class="table module-table">
-    <tr>
+    <tr class="border-b border-solid border-gray-300">
         <td></td>
         <th class="text-center" colspan="2">@lang('imet-core::v1_context.ControlLevel.area')</th>
         <td></td>
@@ -52,7 +52,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
         <th>@lang('imet-core::v1_context.ControlLevel.area_percentage_conversion')</th>
         <th>@lang('imet-core::v1_context.ControlLevel.average_time_controlled')</th>
     </tr>
-    <tr>
+    <tr class="border-b border-solid border-gray-300">
         <td>
             @include('modular-forms::module.edit.field.module-to-vue', [
                'definitions' => $definitions,
@@ -63,7 +63,7 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
         <td><input type="text" disabled="disabled" v-bind:value="area_percentage_conversion" class="field-edit field-numeric text-right"/></td>
         <td><input type="text" disabled="disabled" v-bind:value="average_time_controlled" class="field-edit field-numeric text-right"/></td>
     </tr>
-    <tr>
+    <tr class="border-b border-solid border-gray-300">
         <td><label for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label></td>
         <td>
             @include('modular-forms::module.edit.field.module-to-vue', [
@@ -109,81 +109,15 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
 @endcomponent
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            props: {
-                area: {
-                    type: Number,
-                    default: {{ $area }}
-                },
-            },
-
-            computed: {
-
-                area_percentage (){
-                    let result = null;
-                    let value = this.records[0]['UnderControlArea'];
-                    let value2 = this.area;
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2) * 100;
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                },
-                average_time (){
-                    let result = null;
-                    let value = this.records[0]['UnderControlPatrolManDay'];
-                    let value2 = this.area;
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2);
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                },
-                area_percentage_conversion (){
-                    let result = null;
-                    let value = this.records[0]['UnderControlPatrolKm'];
-                    let value2 = this.area;
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2) * 10;
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                },
-                average_time_controlled (){
-                    let result = null;
-                    let value = this.records[0]['UnderControlPatrolKm'];
-                    let value2 = this.records[0]['UnderControlArea'];
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2);
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                    //UnderControlPatrolManDay/UnderControlArea
-                },
-                ecologicalMonitoringPatrolKm_percentage(){
-                    let result = null;
-                    let value = this.records[0]['EcologicalMonitoringPatrolKm'];
-                    let value2 = this.area;
-                    if(this.isValid(this.area) && this.isValid(value) && value>0){
-                        result = parseFloat(value) / parseFloat(value2) * 10;
-                        result = result.toFixed(2);
-                    }
-                    return result;
-                },
-
-            },
-
-            methods: {
-                isValid: function (n) {
-                    return !isNaN(parseFloat(n)) && isFinite(n) && n!==null;
-                }
-            }
-
-        });
+    <style>
+        #table_imet__context__control_level td{
+            border: none;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script type="module">
+        window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.ControlLevel(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

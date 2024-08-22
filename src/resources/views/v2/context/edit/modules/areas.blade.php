@@ -31,18 +31,6 @@ if (!function_exists('formatNum')) {
                 'vue_record_index' => $vue_record_index,
                 'vue_directives' => '@input=convertToKm("' . $field['name'] . '")'
             ])
-{{--            --}}
-{{--            @include('modular-forms::module.edit.field.vue', [--}}
-{{--                'type' => 'hidden',--}}
-{{--                'v_value' => 'records['.$vue_record_index.'].'.$field['name'],--}}
-{{--                'id' => "'".$definitions['module_key']."_'+".$vue_record_index."+'_".$field['name']."'"--}}
-{{--            ])--}}
-
-{{--            @include('modular-forms::module.edit.field.vue', [--}}
-{{--                'type' => $field['type'],--}}
-{{--                'v_value' => $field['name'].'_ha',--}}
-{{--                'id' =>"'".$definitions['module_key'].\AndreaMarelli\ModularForms\Helpers\ModuleKey::separator.$field['name']."_ha'"--}}
-{{--            ])--}}
             <span class="ml-2 mr-4">[ha]</span>
 
             @include('modular-forms::module.edit.field.vue', [
@@ -62,7 +50,7 @@ if (!function_exists('formatNum')) {
                 'vue_record_index' => $vue_record_index,
                 'vue_directives' => 'v-on:change="calculateShapeIndex()"'
             ])
-            &nbsp;[km]
+            <span class="ml-2">[km2]</span>
 
         @elseif($field_index===4 || $field_index===5)
 
@@ -72,7 +60,7 @@ if (!function_exists('formatNum')) {
                 'field' => $field,
                 'vue_record_index' => $vue_record_index
             ])
-            &nbsp;[km2]
+            <span class="ml-2">[km2]</span>
 
         @elseif($field_index<10)
 
@@ -82,7 +70,8 @@ if (!function_exists('formatNum')) {
                 'field' => $field,
                 'vue_record_index' => $vue_record_index
             ])
-            &nbsp;%
+
+            <span class="ml-2">%</span>
 
         @elseif($field_index===10)
 

@@ -84,26 +84,8 @@ $table_id = 'table_'.$definitions['module_key'];
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-
-                diffs() {
-                    let diffs = [];
-                    this.records.forEach(function (item, index) {
-                        diffs[index] = null;
-                        if (item['ExpectedPermanent'] !== null && item['ActualPermanent']) {
-                            diffs[index] += parseInt(item['ActualPermanent']) - parseInt(item['ExpectedPermanent']);
-                        }
-                    });
-                    return diffs;
-                }
-
-            }
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV1.context.ManagementStaff(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush
