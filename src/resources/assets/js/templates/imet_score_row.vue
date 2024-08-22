@@ -6,7 +6,7 @@
         <div class="histogram-row__code text-center font-bold" v-if="!isHeader && code!=null">{{ code }}</div>
 
         <!-- label -->
-        <div class="histogram-row__title text-left" :class="{'short text-xl font-bold text-primary-600': isHeader}">{{ label }}</div>
+        <div class="histogram-row__title text-left" :class="{'text-xl font-bold text-primary-600': isHeader, 'short': shortLabel || isHeader}">{{ label }}</div>
 
         <!-- value -->
         <div class="histogram-row__value text-right font-bold">{{ format(value) }}</div>
@@ -87,6 +87,10 @@ const props = defineProps({
         default: '0_to_100_full_width'
     },
     isHeader: {
+        type: Boolean,
+        default: false
+    },
+    shortLabel: {
         type: Boolean,
         default: false
     }

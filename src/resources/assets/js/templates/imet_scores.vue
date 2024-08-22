@@ -9,6 +9,7 @@
                     :label="labels[step_key]"
                     :value="api_data['scores'][step_key].avg_indicator"
                     :color=step_props.color
+                    :short-label=true
                 ></imet_score_row>
             </div>
         </div>
@@ -136,12 +137,10 @@ const properties = {
 
 const radar_values = computed(() => {
     let radar_values = {};
-    if(props.api_data){
-        Object.keys(properties).forEach(function(step){
-            let label = props.labels[step];
-            radar_values[label] = props.api_data['scores'][step].avg_indicator;
-        });
-    }
+    Object.keys(properties).forEach(function(step){
+        let label = props.labels[step];
+        radar_values[label] = api_data.value['scores'][step].avg_indicator || null;
+    });
     return radar_values;
 });
 

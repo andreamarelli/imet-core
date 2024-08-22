@@ -18,6 +18,13 @@ window.ImetCore.Components = {};
 //     key_elements: require("./js/mixins/key_elements.mixin").default
 // };
 
+// ########################################
+// ###############  MAPBOX  ###############
+// ########################################
+import mapboxgl from '~/mapbox-gl';
+window.mapboxgl = mapboxgl;
+window.mapboxgl.accessToken = import.meta.env.MAPBOX_ACCESS_TOKEN;
+
 import BiopamaWDPA from "./js/helpers/biopamaWDPA.js";
 window.ImetCore.Helpers.BiopamaWDPA = BiopamaWDPA;
 

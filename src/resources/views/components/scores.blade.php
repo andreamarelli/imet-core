@@ -16,19 +16,12 @@ $labels = ImetAssessment::get_indicators_labels($version);
 
 ?>
 
-<div class="module-container" id="assessment_scores">
-    <div class="module-header">
-        <div class="module-title">
-            @lang('imet-core::common.steps_eval.management_effectiveness')
-        </div>
-    </div>
-    <div class="module-body">
-        <imet_scores
-            current_step="{{ $step }}"
-            :labels='@json($labels)'
-            :store=store
-        ></imet_scores>
-    </div>
+<div id="assessment_scores">
+    <imet_scores
+        current_step="{{ $step }}"
+        :labels='@json($labels)'
+        :store=store
+    ></imet_scores>
 </div>
 
 @push('scripts')

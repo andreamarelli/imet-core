@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Env;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -30,15 +31,14 @@ $routes = [
     window.Routes = @json($routes);
 </script>
 
+{{-- mapbox --}}
+{{--@push('scripts')--}}
+{{--    @if(Str::contains($current_route_name, 'report') || Str::contains($current_route_name, 'scaling_up'))--}}
+{{--        <script>--}}
+{{--            window.mapboxgl.accessToken = '{{ Env::getOrFail('MAPBOX_ACCESS_TOKEN') }}';--}}
+{{--        </script>--}}
+{{--    @endif--}}
+{{--@endpush--}}
 
-<!-- mapbox -->
-@if(Str::contains($current_route_name, 'imet-core::v1.report') ||
-    Str::contains($current_route_name, 'imet-core::v2.report') ||
-    Str::contains($current_route_name, 'imet-core::scaling_up'))
-        @include('imet-core::layouts.components.assets_mapbox')
-        <script>
-            window.mapboxgl.accessToken = '{{ $mapbox_token }}';
-        </script>
-@endif
 
 

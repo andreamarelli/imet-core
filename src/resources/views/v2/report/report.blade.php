@@ -109,8 +109,14 @@ if($item->language != App::getLocale()){
             </div>
             <div class="module-body">
 
-                @include('imet-core::components.imet_charts', [
-                    'form_id' => $item->getKey(),
+{{--                @include('imet-core::components.imet_charts', [--}}
+{{--                    'form_id' => $item->getKey(),--}}
+{{--                    'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2--}}
+{{--                ])--}}
+
+                @include('imet-core::components.scores', [
+                    'item_id' => $item->getKey(),
+                    'step' => null,
                     'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2
                 ])
 
