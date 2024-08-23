@@ -1,7 +1,8 @@
 <?php
+use AndreaMarelli\ImetCore\Models\Imet;
+
 /** @var String $step */
-/** @var int $item_id */
-/** @var String $version */
+/** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
 
 ?>
 
@@ -13,9 +14,8 @@
     </div>
     <div class="module-body">
         @include('imet-core::components.scores', [
-            'item_id' => $item_id,
-            'step' => $step,
-            'version' => $version
+            'item' => $item,
+            'step' => $step
         ])
     </div>
 </div>

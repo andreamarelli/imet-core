@@ -3,6 +3,7 @@
 namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
 
 use AndreaMarelli\ImetCore\Models\Animal;
+use AndreaMarelli\ImetCore\Models\Imet\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
@@ -51,7 +52,8 @@ class ReportV1
         return [
             'data' => [
                 'key_elements' => static::get_key_elements($form_id),
-                'assessment' => ImetScores::get_all($form_id),
+                'scores' => ImetScores::get_all($form_id),
+                'labels' => ImetScores::indicators_labels(Imet::IMET_V1),
                 'report' => $report,
                 'dopa_radar' => $dopa_radar,
                 'dopa_indicators' => $dopa_indicators[0] ?? null,

@@ -3,10 +3,7 @@ import { defineStore } from "~/pinia";
 export const useScoreStore = defineStore('score', {
 
     state: () => ({
-        api: {
-            hello: 'world',
-            keys: [],
-        }
+        api: {}
     }),
 
     getters: {

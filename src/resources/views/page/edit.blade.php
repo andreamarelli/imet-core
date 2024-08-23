@@ -69,12 +69,11 @@ $show_scrollbar = true;
 
     @else
 
-        {{-- Management effectiveness --}}
+        {{-- Management effectiveness scores --}}
         @if($phase==='evaluation')
             @include('imet-core::components.score-container', [
-                'item_id' => $item->getKey(),
-                'step' => $step,
-                'version' => $version
+                'item' => $item,
+                'step' => $step
             ])
         @endif
 

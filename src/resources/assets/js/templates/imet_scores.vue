@@ -33,8 +33,8 @@
             <!-- Scores-->
             <div v-for="(index, idx) in step_props.indexes">
                 <imet_score_row
-                    :label="labels[index]['title_fr']"
-                    :code="labels[index]['code_label']"
+                    :label="labels[index]"
+                    :code=index
                     :value="api_data['scores'][step_key][index]"
                     :histogram_type="histogram_type(step_key, idx)"
                     :color=step_props.color
@@ -43,33 +43,33 @@
 
             <!-- custom additional scores -->
             <div class="mt-4" v-if="step_key==='context'">
-                <template v-for="ctx_key in ['c11', 'c12', 'c13', 'c14', 'c15']">
+                <template v-for="ctx_key in ['C11', 'C12', 'C13', 'C14', 'C15']">
                     <imet_score_row
-                        :label="labels[ctx_key]['title_fr']"
-                        :code="labels[ctx_key]['code_label']"
+                        :label="labels[ctx_key]"
+                        :code=ctx_key
                         :value="api_data['scores']['context'][ctx_key]"
                         histogram_type="0_to_100"
                         :color=step_props.color
                     ></imet_score_row>
                 </template>
             </div>
-            <div class="mt-4" v-else-if="step_key==='process'">
+            <div class="mt-4" v-else-if="step_key==='process' && version==='v1' || version==='v2'">
                 <imet_process_radar
                     :values="[
-                        api_data['scores']['process']['pr1_6'],
-                        api_data['scores']['process']['pr7_9'],
-                        api_data['scores']['process']['pr10_12'],
-                        api_data['scores']['process']['pr13_14'],
-                        api_data['scores']['process']['pr15_16'],
-                        api_data['scores']['process']['pr17_18']
+                        api_data['scores']['process']['PRA'],
+                        api_data['scores']['process']['PRB'],
+                        api_data['scores']['process']['PRC'],
+                        api_data['scores']['process']['PRD'],
+                        api_data['scores']['process']['PRE'],
+                        api_data['scores']['process']['PRF']
                     ]"
                     :labels="[
-                        labels['pr1_6']['title_fr'],
-                        labels['pr7_9']['title_fr'],
-                        labels['pr10_12']['title_fr'],
-                        labels['pr13_14']['title_fr'],
-                        labels['pr15_16']['title_fr'],
-                        labels['pr17_18']['title_fr']
+                        labels['PRA'],
+                        labels['PRB'],
+                        labels['PRC'],
+                        labels['PRD'],
+                        labels['PRE'],
+                        labels['PRF']
                     ]"
                 ></imet_process_radar>
             </div>
@@ -88,8 +88,14 @@ import imet_score_row from "./imet_score_row.vue";
 import imet_process_radar from "./imet_process_radar.vue";
 import imet_radar from "./imet_radar.vue";
 
+const Locale = window.ModularForms.Helpers.Locale;
+
 const props = defineProps({
     current_step: {
+        type: String,
+        default: null
+    },
+    version: {
         type: String,
         default: null
     },
@@ -102,42 +108,55 @@ const props = defineProps({
 
 const { api_data } = storeToRefs(props.store);
 
-const properties = {
-    'context': {
-        'indexes': ['c1', 'c2', 'c3'],
-        'histogram_types': ['0_to_100', 'minus100_to_100', 'minus100_to_0'],
-        'color': '#FFFF00',
+const score_properties = {
+
+    'v1&2': {
+        'context': {
+            'indexes': ['C1', 'C2', 'C3'],
+            'histogram_types': ['0_to_100', 'minus100_to_100', 'minus100_to_0'],
+            'color': '#FFFF00',
+        },
+        'planning': {
+            'indexes': ['P1', 'P2', 'P3', 'P4', 'P5', 'P6'],
+            'color': '#BFBFBF',
+        },
+        'inputs': {
+            'indexes': ['I1', 'I2', 'I3', 'I4', 'I5'],
+            'color': '#FFC000'
+        },
+        'process': {
+            'indexes': [
+                'PR1', 'PR2', 'PR3', 'PR4', 'PR5', 'PR6', 'PR7', 'PR8', 'PR9', 'PR10',
+                'PR11', 'PR12', 'PR13', 'PR14', 'PR15', 'PR16', 'PR17', 'PR18', 'PR19'
+            ],
+            'color': '#00B0F0'
+        },
+        'outputs': {
+            'indexes': ['OP1', 'OP2', 'OP3', 'OP4'],
+            'color': '#92D050'
+        },
+        'outcomes': {
+            'indexes': ['OC1', 'OC2', 'OC3'],
+            'histogram_types': ['0_to_100', 'minus100_to_0', 'minus100_to_0'],
+            'color': '#00B050'
+        },
     },
-    'planning': {
-        'indexes': ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
-        'color': '#BFBFBF',
-    },
-    'inputs': {
-        'indexes': ['i1', 'i2', 'i3', 'i4', 'i5'],
-        'color': '#FFC000'
-    },
-    'process': {
-        'indexes': [
-            'pr1', 'pr2', 'pr3', 'pr4', 'pr5', 'pr6', 'pr7', 'pr8', 'pr9', 'pr10',
-            'pr11', 'pr12', 'pr13', 'pr14', 'pr15', 'pr16', 'pr17', 'pr18'
-        ],
-        'intermediate_indexes': ['pr1_6', 'pr7_9', 'pr10_12', 'pr13_14', 'pr15_16', 'pr17_18'],
-        'color': '#00B0F0'
-    },
-    'outputs': {
-        'indexes': ['op1', 'op2', 'op3', 'op4'],
-        'color': '#92D050'
-    },
-    'outcomes': {
-        'indexes': ['oc1', 'oc2', 'oc3'],
-        'histogram_types': ['0_to_100', 'minus100_to_0', 'minus100_to_0'],
-        'color': '#00B050'
-    },
+
+    'oecm': {
+
+    }
+
 };
+
+const properties = computed(() => {
+    return props.version==='oecm'
+        ? score_properties[props.version]
+        : score_properties['v1&2'];
+});
 
 const radar_values = computed(() => {
     let radar_values = {};
-    Object.keys(properties).forEach(function(step){
+    Object.keys(properties.value).forEach(function(step){
         let label = props.labels[step];
         radar_values[label] = api_data.value['scores'][step].avg_indicator || null;
     });
@@ -146,8 +165,8 @@ const radar_values = computed(() => {
 
 
 function histogram_type(step_key, idx){
-    return properties[step_key].hasOwnProperty('histogram_types')
-        ? properties[step_key].histogram_types[idx]
+    return properties.value[step_key].hasOwnProperty('histogram_types')
+        ? properties.value[step_key].histogram_types[idx]
         : '0_to_100_full_width';
 }
 

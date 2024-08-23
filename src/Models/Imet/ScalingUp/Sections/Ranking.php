@@ -22,7 +22,7 @@ class Ranking
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => [], 'actual_value' => []];
 
         // only for process sub-indicators average
-        if (isset($indicators['pr15_16'])) {
+        if (isset($indicators['PRE'])) {
             $result = static::process_subindicators_for_ranking_protected_areas($form_ids, $type);
             $filtered = $result[0];
             $indicators_numbers = $result[1];
@@ -166,12 +166,12 @@ class Ranking
     private static function process_subindicators_for_ranking_protected_areas(array $form_ids, string $type): array
     {
         $overall_ranking = [
-            'pr1_6' => ['pr1' => [], 'pr2' => [], 'pr3' => [], 'pr4' => [], 'pr5' => [], 'pr6' => []],
-            'pr7_9' => ['pr7' => [], 'pr8' => [], 'pr9' => []],
-            'pr10_12' => ['pr10' => [], 'pr11' => [], 'pr12' => []],
-            'pr13_14' => ['pr13' => [], 'pr14' => []],
-            'pr15_16' => ['pr15' => [], 'pr16' => []],
-            'pr17_18' => ['pr17' => [], 'pr18' => []]
+            'PRA' => ['PR1' => [], 'PR2' => [], 'PR3' => [], 'PR4' => [], 'PR5' => [], 'PR6' => []],
+            'PRB' => ['PR7' => [], 'PR8' => [], 'PR9' => []],
+            'PRC' => ['PR10' => [], 'PR11' => [], 'PR12' => []],
+            'PRD' => ['PR13' => [], 'PR14' => []],
+            'PRE' => ['PR15' => [], 'PR16' => []],
+            'PRF' => ['PR17' => [], 'PR18' => []]
         ];
 
         $indicators_numbers = [];

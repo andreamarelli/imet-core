@@ -1,6 +1,7 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $assessment */
+/** @var array $labels */
 /** @var array $key_elements_ecosystem_charts */
 /** @var array $key_elements_biodiversity_charts */
 /** @var array $key_elements_biodiversity */
@@ -15,7 +16,8 @@
 
 @include('imet-core::oecm.report.report', [
     'action' => 'show',
-    'assessment' => $assessment,
+    'scores' => $scores,
+    'labels' => $labels,
     'key_elements_ecosystem_charts' => $key_elements_ecosystem_charts,
     'key_elements_biodiversity_charts' => $key_elements_biodiversity_charts,
     'key_elements_biodiversity' => $key_elements_biodiversity,

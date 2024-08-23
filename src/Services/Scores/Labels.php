@@ -5,10 +5,12 @@ namespace AndreaMarelli\ImetCore\Services\Scores;
 use AndreaMarelli\ImetCore\Models\Imet;
 use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
 use AndreaMarelli\ModularForms\Helpers\Locale;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
 
 trait Labels{
 
-    protected static function get_labels(string $version = null, $only_abbreviations = false, $with_keys = false): array
+    protected static function get_labels(string $version = null, $only_abbreviations = false): array
     {
         $labels = static::all_labels();
 
@@ -17,11 +19,6 @@ trait Labels{
             if($only_abbreviations){
                 $labels = $labels['abbreviations'];
             }
-        }
-        if($with_keys){
-            $labels['full'] = array_combine(
-                [_Scores::CONTEXT, _Scores::PLANNING, _Scores::INPUTS, _Scores::PROCESS, _Scores::OUTPUTS, _Scores::OUTCOMES],
-                $labels['full']);
         }
 
         return $labels;
@@ -67,21 +64,40 @@ trait Labels{
     }
 
     /**
-     * Return indicator's labels
+     * Return score's labels
      */
-    public static function get_indicators_labels(string $version): array
+    public static function get_scores_labels(string $version, $locale = null): array
     {
-        $labels = [];
-        foreach (trans('imet-core::'.$version.'_common.assessment') as $code => $item){
-            $labels[$code] = [
-                'code_label' => $item[0],
-                'title_' . Locale::lower() => $item[1],
-            ];
+        $current_locale = App::getLocale();
+        if(Str::upper($locale)!==Str::upper($current_locale)){
+            App::setLocale($locale);
         }
-        return array_merge(
-            $labels,
-            static::get_labels($version, false, true)['full']
+
+        // Labels per each module
+        $step_labels = [];
+        $all_modules = $version===Imet\Imet::IMET_V2 || $version===Imet\Imet::IMET_V1
+            ? Imet\v2\Imet_Eval::allModules() // v1 & v2 are sharing the same labels - due to V1ToV2Scores compatibility layer
+            : Imet\oecm\Imet_Eval::allModules();
+        foreach ($all_modules as $module){
+            $code = Str::replace(['.', '/'], '', (new $module)->module_code);
+            $step_labels[$code] = (new $module)->module_title;
+        }
+
+        // Global scores
+        $global_labels =  array_combine(
+            [_Scores::CONTEXT, _Scores::PLANNING, _Scores::INPUTS, _Scores::PROCESS, _Scores::OUTPUTS, _Scores::OUTCOMES],
+            static::all_labels()[$version]['full']
         );
+
+        // Custom scores
+        $custom_labels = [];
+        foreach (trans('imet-core::'.$version.'_common.assessment') as $code => $item){
+            $custom_labels[$code] = $item;
+        }
+
+        App::setLocale($current_locale);
+
+        return array_merge($global_labels, $step_labels, $custom_labels);
     }
 
 }

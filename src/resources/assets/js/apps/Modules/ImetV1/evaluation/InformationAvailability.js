@@ -2,7 +2,7 @@ import ModuleImet from "../../../Module.js";
 
 import { computed } from "vue";
 
-export default class LifeQualityImpact extends ModuleImet {
+export default class InformationAvailability extends ModuleImet {
 
     setupApp(props, input_data) {
 

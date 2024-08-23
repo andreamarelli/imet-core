@@ -51,7 +51,7 @@ class ImetAssessment
         ];
 
         return $with_labels
-            ? array_merge($result, ['labels' => static::get_indicators_labels($imet->version)])
+            ? array_merge($result, ['labels' => static::get_scores_labels($imet->version)])
             : $result;
     }
 

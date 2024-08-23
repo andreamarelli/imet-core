@@ -58,12 +58,8 @@ class ReportController extends BaseReportController
                 'ecosystem_services' => array_values(Modules\Evaluation\ImportanceEcosystemServices::getPredefined()['values']),
                 'threats' => array_values(Modules\Evaluation\Menaces::getPredefined()['values'])
             ],
-            'assessment' => array_merge(
-                ImetScores::get_all($item),
-                [
-                    'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1)
-                ]
-            ),
+            'scores' => ImetScores::get_all($item),
+            'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v1\Report::getByForm($form_id),
             'connection' => $api_available,
             'show_api' => $show_api,

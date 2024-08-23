@@ -38,11 +38,10 @@ if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
     {{--  Heading --}}
     @include('imet-core::components.heading', ['item' => $item])
 
-    {{-- Management effectiveness --}}
+    {{-- Management effectiveness scores --}}
     @include('imet-core::components.score-container', [
-        'item_id' => $item->getKey(),
-        'step' => 'management_effectiveness',
-        'version' => $version
+        'item' => $item,
+        'step' => 'management_effectiveness'
     ])
 
     {{--  Modules (by step): CONTEXT --}}

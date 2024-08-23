@@ -1,6 +1,7 @@
 <?php
 /** @var \AndreaMarelli\ImetCore\Models\Imet\v2\Imet $item */
-/** @var array $assessment */
+/** @var array $scores */
+/** @var array $labels */
 /** @var array $key_elements */
 /** @var array $report */
 /** @var array $wdpa_extent */
@@ -17,7 +18,8 @@
 
 @include('imet-core::v2.report.report', [
     'action' => 'show',
-    'assessment' => $assessment,
+    'scores' => $scores,
+    'labels' => $labels,
     'key_elements' => $key_elements,
     'report' => $report,
     'wdpa_extent' => $wdpa_extent,

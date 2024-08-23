@@ -354,102 +354,102 @@ class ScalingUpAnalysis extends Model
         $table_indicators = [
             'context' => [
                 'main' => [
-                    'c1' => [],
-                    'c2' => [],
-                    'c3' => []
+                    'C1' => [],
+                    'C2' => [],
+                    'C3' => []
                 ],
                 'context_value_and_importance' => [
-                    'c11' => [],
-                    'c12' => [],
-                    'c13' => [],
-                    'c14' => [],
-                    'c15' => []
+                    'C11' => [],
+                    'C12' => [],
+                    'C13' => [],
+                    'C14' => [],
+                    'C15' => []
                 ]
             ],
             'planning' => [
                 'main' => [
-                    'p1' => [],
-                    'p2' => [],
-                    'p3' => [],
-                    'p4' => [],
-                    'p5' => [],
-                    'p6' => []
+                    'P1' => [],
+                    'P2' => [],
+                    'P3' => [],
+                    'P4' => [],
+                    'P5' => [],
+                    'P6' => []
                 ]
             ],
             'inputs' => [
                 'main' => [
-                    'i1' => [],
-                    'i2' => [],
-                    'i3' => [],
-                    'i4' => [],
-                    'i5' => []
+                    'I1' => [],
+                    'I2' => [],
+                    'I3' => [],
+                    'I4' => [],
+                    'I5' => []
                 ]
             ],
             'process' => [
                 'process_sub_indicators' => [
-                    'pr15_16' => [],
-                    'pr10_12' => [],
-                    'pr13_14' => [],
-                    'pr17_18' => [],
-                    'pr1_6' => [],
-                    'pr7_9' => [],
+                    'PRE' => [],
+                    'PRC' => [],
+                    'PRD' => [],
+                    'PRF' => [],
+                    'PRA' => [],
+                    'PRB' => [],
                 ]
             ],
-            'process_pr1_pr6' => [
+            'process_PRA' => [
                 'process_internal_management' => [
-                    'pr1' => [],
-                    'pr2' => [],
-                    'pr3' => [],
-                    'pr4' => [],
-                    'pr5' => [],
-                    'pr6' => [],
+                    'PR1' => [],
+                    'PR2' => [],
+                    'PR3' => [],
+                    'PR4' => [],
+                    'PR5' => [],
+                    'PR6' => [],
                 ]
             ],
-            'process_pr7_pr9' => [
+            'process_PRB' => [
                 'process_management_protection_values' => [
-                    'pr7' => [],
-                    'pr8' => [],
-                    'pr9' => []
+                    'PR7' => [],
+                    'PR8' => [],
+                    'PR9' => []
                 ]
             ],
-            'process_pr10_pr12' => [
+            'process_PRC' => [
                 'process_stakeholders_relationships' => [
-                    'pr10' => [],
-                    'pr11' => [],
-                    'pr12' => []
+                    'PR10' => [],
+                    'PR11' => [],
+                    'PR12' => []
                 ]
             ],
-            'process_pr13_pr14' => [
+            'process_PRD' => [
                 'process_tourism_management' => [
-                    'pr13' => [],
-                    'pr14' => []
+                    'PR13' => [],
+                    'PR14' => []
                 ]
             ],
-            'process_pr15_pr16' => [
+            'process_PRE' => [
                 'process_monitoring_and_research' => [
-                    'pr15' => [],
-                    'pr16' => []
+                    'PR15' => [],
+                    'PR16' => []
                 ]
             ],
-            'process_pr17_pr18' => [
+            'process_PRF' => [
                 'process_effects_of_climate_change' => [
-                    'pr17' => [],
-                    'pr18' => []
+                    'PR17' => [],
+                    'PR18' => []
                 ]
             ],
             'outputs' => [
                 'main' => [
-                    'op1' => [],
-                    'op2' => [],
-                    'op3' => [],
-                    'op4' => []
+                    'OP1' => [],
+                    'OP2' => [],
+                    'OP3' => [],
+                    'OP4' => []
                 ]
             ],
             'outcomes' => [
                 'main' => [
-                    'oc1' => [],
-                    'oc2' => [],
-                    'oc3' => []
+                    'OC1' => [],
+                    'OC2' => [],
+                    'OC3' => []
                 ]
             ]
         ];

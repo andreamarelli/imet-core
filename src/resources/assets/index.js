@@ -92,6 +92,12 @@ window.ImetCore.Apps.Modules.ImetV1.context.EcosystemServices = EcosystemService
 
 // ##### ImetV1 - evaluation  #####
 
+import Menaces from "./js/apps/Modules/ImetV1/evaluation/Menaces";
+window.ImetCore.Apps.Modules.ImetV1.evaluation.Menaces = Menaces;
+
+import InformationAvailability from "./js/apps/Modules/ImetV1/evaluation/InformationAvailability";
+window.ImetCore.Apps.Modules.ImetV1.evaluation.InformationAvailability = InformationAvailability;
+
 
 // ##### ImetV2 - context #####
 

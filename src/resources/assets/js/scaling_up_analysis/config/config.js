@@ -236,28 +236,28 @@ export default {
                         "field": "name"
                     },
                     {
-                        "label": `PR A: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr1_6')}`,
-                        "field": "pr1_6"
+                        "label": `PR A: ${window.Locale.getLabel('imet-core::analysis_report.assessment.PRA')}`,
+                        "field": "PRA"
                     },
                     {
-                        "label": `PR B: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr7_9')}`,
-                        "field": "pr7_9",
+                        "label": `PR B: ${window.Locale.getLabel('imet-core::analysis_report.assessment.PRB')}`,
+                        "field": "PRB",
                     },
                     {
-                        "label": `PR C: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr10_12')}`,
-                        "field": "pr10_12"
+                        "label": `PR C: ${window.Locale.getLabel('imet-core::analysis_report.assessment.PRC')}`,
+                        "field": "PRC"
                     },
                     {
-                        "label": `PR D: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr13_14')}`,
-                        "field": "pr13_14"
+                        "label": `PR D: ${window.Locale.getLabel('imet-core::analysis_report.assessment.PRD')}`,
+                        "field": "PRD"
                     },
                     {
-                        "label": `PR E: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr15_16')}`,
-                        "field": "pr15_16"
+                        "label": `PR E: ${window.Locale.getLabel('imet-core::analysis_report.assessment.PRE')}`,
+                        "field": "PRE"
                     },
                     {
-                        "label": `PR F: ${window.Locale.getLabel('imet-core::analysis_report.assessment.pr17_18')}`,
-                        "field": "pr17_18"
+                        "label": `PR F: ${window.Locale.getLabel('imet-core::analysis_report.assessment.PRF')}`,
+                        "field": "PRF"
                     },
                     {
                         "label": `${window.Locale.getLabel('imet-core::common.steps_eval.process')}`,
@@ -265,7 +265,7 @@ export default {
                     }
                 ]
             }],
-        process_pr1_pr6: [{
+        process_PRA: [{
             name: 'process_internal_management',
             menu: {
                 title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.title'),
@@ -310,7 +310,7 @@ export default {
             ]
 
         }],
-        process_pr7_pr9: [{
+        process_PRB: [{
             name: 'process_management_protection_values',
             menu: {
                 title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.title'),
@@ -343,7 +343,7 @@ export default {
             ]
 
         }],
-        process_pr10_pr12: [{
+        process_PRC: [{
             name: 'process_stakeholders_relationships',
             menu: {
                 title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.title'),
@@ -375,7 +375,7 @@ export default {
                 }
             ]
         }],
-        process_pr13_pr14: [{
+        process_PRD: [{
             name: 'process_tourism_management',
             menu: {
                 title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.title'),
@@ -403,7 +403,7 @@ export default {
                 }
             ]
         }],
-        process_pr15_pr16: [{
+        process_PRE: [{
             name: 'process_monitoring_and_research',
             menu: {
                 title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.title'),
@@ -431,7 +431,7 @@ export default {
                 }
             ]
         }],
-        process_pr17_pr18: [{
+        process_PRF: [{
             name: 'process_effects_of_climate_change',
             menu: {
                 title: window.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.title'),
