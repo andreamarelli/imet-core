@@ -98,6 +98,11 @@ window.ImetCore.Apps.Modules.ImetV1.evaluation.Menaces = Menaces;
 import InformationAvailability from "./js/apps/Modules/ImetV1/evaluation/InformationAvailability";
 window.ImetCore.Apps.Modules.ImetV1.evaluation.InformationAvailability = InformationAvailability;
 
+import DesignatedValuesConservation from "./js/apps/Modules/ImetV1/evaluation/DesignatedValuesConservation";
+window.ImetCore.Apps.Modules.ImetV1.evaluation.DesignatedValuesConservation = DesignatedValuesConservation;
+
+import DesignatedValuesConservationTendency from "./js/apps/Modules/ImetV1/evaluation/DesignatedValuesConservationTendency";
+window.ImetCore.Apps.Modules.ImetV1.evaluation.DesignatedValuesConservationTendency = DesignatedValuesConservationTendency;
 
 // ##### ImetV2 - context #####
 
