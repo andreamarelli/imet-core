@@ -5,22 +5,16 @@ import "./index.css";
 window.Laravel = window.Laravel || {};
 window.ImetCore = {};
 
-// ##############################################
-// ###########  Helpers & Components  ###########
-// ##############################################
+// ############################################
+// ##########  Helpers & Components  ##########
+// ############################################
 window.ImetCore.Helpers = {};
 window.ImetCore.Components = {};
 
-// Vue Mixins
-// window.ImetCore.Mixins = {
-//     status: require("./js/mixins/save_or_reset.mixin"),
-//     load_from_previous: require("./js/mixins/load_from_previous.mixin"),
-//     key_elements: require("./js/mixins/key_elements.mixin").default
-// };
 
-// ########################################
-// ###############  MAPBOX  ###############
-// ########################################
+// ############################################
+// #################  MAPBOX  #################
+// ############################################
 import mapboxgl from '~/mapbox-gl';
 window.mapboxgl = mapboxgl;
 window.mapboxgl.accessToken = import.meta.env.MAPBOX_ACCESS_TOKEN;
@@ -45,6 +39,7 @@ window.ImetCore.Apps.Module = ModuleImet;
 
 import AssessmentScores from "./js/apps/AssessmentScores.js";
 window.ImetCore.Apps.AssessmentScores = AssessmentScores;
+
 
 // ############################################
 // #############  Custom Modules  #############
@@ -165,6 +160,12 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.AssistanceActivities = Assistance
 import LifeQualityImpact from "./js/apps/Modules/ImetV2/evaluation/LifeQualityImpact";
 window.ImetCore.Apps.Modules.ImetV2.evaluation.LifeQualityImpact = LifeQualityImpact;
 
+
+
+
+
+// TODO: Below are OLD imports: need to be reviewed/removed
+
 // // Templates
 // Vue.component("dopa_chart_bar",                 require("./js/templates/dopa/chart_bar.vue").default);
 // Vue.component("dopa_indicators_table",          require("./js/templates/dopa/indicators_table.vue").default);
@@ -177,13 +178,7 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.LifeQualityImpact = LifeQualityIm
 // Vue.component("imet_score_bar",              require("./js/templates/imet_score_bar.vue").default);
 // Vue.component("imet_radar",                     require("./js/templates/imet_radar.vue").default);
 // Vue.component("imet_bar_chart",                 require("./js/templates/imet_bar_chart.vue").default);
-//
-// // Inputs
-// Vue.component("multiple-files-upload",          require("./js/inputs/multiple-files-upload.vue").default);
-// Vue.component("selector-wdpa",                  require("./js/inputs/selector-wdpa.vue").default);
-// Vue.component("selector-wdpa_multiple",         require("./js/inputs/selector-wdpa_multiple.vue").default);
-// // Vue.component("selector-user",                  require("./js/inputs/selector-user.vue").default);
-//
+
 // // Report
 // Vue.component("table_input",                    require("./js/report/table_input.vue").default);
 // Vue.component("roadmap",                    require("./js/report/roadmap.vue").default);
