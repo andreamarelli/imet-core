@@ -61,6 +61,12 @@ window.ImetCore.Apps.Modules = {
     Oecm: {}
 }
 
+import Create from "./js/apps/Modules/ImetV2/Create";
+window.ImetCore.Apps.Modules.ImetV2.Create = Create;
+
+import CreateNonWDPA from "./js/apps/Modules/ImetV2/CreateNonWDPA";
+window.ImetCore.Apps.Modules.ImetV2.CreateNonWDPA = CreateNonWDPA;
+
 // ##### ImetV1 - context #####
 
 import {default as AreasV1} from "./js/apps/Modules/ImetV1/context/Areas";
