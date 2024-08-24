@@ -5,12 +5,6 @@
 
 $vue_record_index = '0';
 
-if (!function_exists('formatNum')) {
-    function formatNum($value){
-        return str_replace('.', ',', $value);
-    }
-}
-
 ?>
 
 @foreach($definitions['fields'] as $field_index => $field)

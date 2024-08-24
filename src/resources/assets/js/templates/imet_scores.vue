@@ -42,7 +42,7 @@
             </div>
 
             <!-- custom additional scores -->
-            <div class="mt-4" v-if="step_key==='context'">
+            <div class="mt-4" v-if="step_key==='context' && version!=='oecm'">
                 <template v-for="ctx_key in ['C11', 'C12', 'C13', 'C14', 'C15']">
                     <imet_score_row
                         :label="labels[ctx_key]"
@@ -53,7 +53,7 @@
                     ></imet_score_row>
                 </template>
             </div>
-            <div class="mt-4" v-else-if="step_key==='process' && version==='v1' || version==='v2'">
+            <div class="mt-4" v-else-if="step_key==='process' && version!=='oecm'">
                 <imet_process_radar
                     :values="[
                         api_data['scores']['process']['PRA'],
@@ -143,7 +143,32 @@ const score_properties = {
     },
 
     'oecm': {
-
+        'context': {
+            'indexes': ['C1', 'C2', 'C3', 'C4'],
+            'histogram_types': ['0_to_100', 'minus100_to_100', 'minus100_to_0', '0_to_100'],
+            'color': '#FFFF00',
+        },
+        'planning': {
+            'indexes': ['P1', 'P2', 'P3', 'P4', 'P5', 'P6'],
+            'color': '#BFBFBF',
+        },
+        'inputs': {
+            'indexes': ['I1', 'I2', 'I3', 'I4', 'I5'],
+            'color': '#FFC000'
+        },
+        'process': {
+            'indexes': ['PR1', 'PR2', 'PR3', 'PR4', 'PR5', 'PR6', 'PR7', 'PR8', 'PR9', 'PR10', 'PR11', 'PR12'],
+            'color': '#00B0F0'
+        },
+        'outputs': {
+            'indexes': ['OP1', 'OP2'],
+            'color': '#92D050'
+        },
+        'outcomes': {
+            'indexes': ['OC1', 'OC2', 'OC3'],
+            'histogram_types': ['0_to_100', '0_to_100', 'minus100_to_100'],
+            'color': '#00B050'
+        },
     }
 
 };

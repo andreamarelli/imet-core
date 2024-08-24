@@ -20,7 +20,6 @@ export function useLoadFromPrevious(component_data) {
     function validateRecord(){
 
         let status;
-        console.log('validateRecord');
 
         // empty prev_year_selection if wdpa or year changes
         if(current_year.value !== records[0]['Year'] &&

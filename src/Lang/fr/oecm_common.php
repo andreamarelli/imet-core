@@ -17,6 +17,9 @@ return [
 
     'assessment' => [
 
+        'C2' => 'Contraintes ou soutien des parties prenantes',
+        'C3' => 'Menaces',
+
         'PRA' => 'Systèmes et processus de gestion interne',
         'PRB' => 'Gestion / Protection des valeurs',
         'PRC' => 'Relations avec les parties prenantes',

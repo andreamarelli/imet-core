@@ -23,7 +23,9 @@ export default class ModuleImet extends Module {
         const Locale = window.ModularForms.Helpers.Locale;
 
         setup_obj.emitter.on('moduleSaved', (data) => {
-            window.AssessmentScores.refresh_scores();
+            if(window.AssessmentScores){
+                window.AssessmentScores.refresh_scores();
+            }
         });
 
         function hasRecordsToEvaluate(criteria_field, group_key) {

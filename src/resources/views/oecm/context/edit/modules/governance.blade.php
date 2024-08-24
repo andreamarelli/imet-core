@@ -3,6 +3,10 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
+use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+
+$vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
+
 ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
 @foreach($definitions['fields'] as $field)
@@ -60,56 +64,11 @@
 
 @endforeach
 
+
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            props:{
-                SubGovernanceModel_SelectionList: {
-                    type: Object,
-                    default: () => {
-                        return @json(\AndreaMarelli\ModularForms\Helpers\Input\SelectionList::getList('ImetOECM_SubGovernanceModel'))
-                    }
-                }
-            },
-
-            computed: {
-                management_unique(){
-                    return this.records[0]['ManagementUnique'];
-                },
-                SubGovernanceModel_options(){
-                    return this.records[0]['GovernanceModel'] !== null && this.records[0]['GovernanceModel'] in this.SubGovernanceModel_SelectionList
-                        ? JSON.stringify(this.SubGovernanceModel_SelectionList[this.records[0]['GovernanceModel']])
-                        : JSON.stringify([]);
-                }
-            },
-
-            methods:{
-
-                recordChangedCallback(){
-                    if(this.records[0]['GovernanceModel'] === null
-                        || !(this.records[0]['GovernanceModel'] in this.SubGovernanceModel_SelectionList)
-                        || !(this.records[0]['SubGovernanceModel'] in this.SubGovernanceModel_SelectionList[this.records[0]['GovernanceModel']])
-                    ){
-                        this.records[0]['SubGovernanceModel'] = null;
-                    }
-                },
-
-                resetManagement(){
-                    this.records[0]['ManagementName'] = null;
-                    this.records[0]['ManagementType'] = null;
-                    if(this.management_unique === null){
-                        this.records[0]['DateOfCreation'] = null;
-                        this.records[0]['OfficialRecognition'] = null;
-                        this.records[0]['SupervisoryInstitution'] = null;
-                    }
-                }
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.Oecm.context.Governance(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush
 

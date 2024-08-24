@@ -81,18 +81,11 @@ $vueData['previous_url'] = route($controller::ROUTE_PREFIX . 'retrieve_prev_year
 </div>
 
 
+
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            mixins: [
-                window.ImetCore.Mixins.load_from_previous
-            ]
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.Oecm.Create(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush
 

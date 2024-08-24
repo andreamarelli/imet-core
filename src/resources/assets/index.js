@@ -53,7 +53,10 @@ window.ImetCore.Apps.Modules = {
         context: {},
         evaluation: {}
     },
-    Oecm: {}
+    Oecm: {
+        context: {},
+        evaluation: {}
+    }
 }
 
 import Create from "./js/apps/Modules/ImetV2/Create";
@@ -61,6 +64,12 @@ window.ImetCore.Apps.Modules.ImetV2.Create = Create;
 
 import CreateNonWDPA from "./js/apps/Modules/ImetV2/CreateNonWDPA";
 window.ImetCore.Apps.Modules.ImetV2.CreateNonWDPA = CreateNonWDPA;
+
+import CreateOecm from "./js/apps/Modules/ImetV2/Create";
+window.ImetCore.Apps.Modules.Oecm.Create = CreateOecm;
+
+import CreateNonWDPAOecm from "./js/apps/Modules/ImetV2/CreateNonWDPA";
+window.ImetCore.Apps.Modules.Oecm.CreateNonWDPA = CreateNonWDPAOecm;
 
 // ##### ImetV1 - context #####
 
@@ -160,8 +169,15 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.AssistanceActivities = Assistance
 import LifeQualityImpact from "./js/apps/Modules/ImetV2/evaluation/LifeQualityImpact";
 window.ImetCore.Apps.Modules.ImetV2.evaluation.LifeQualityImpact = LifeQualityImpact;
 
+// ##### OECM - context #####
 
+import Governance from "./js/apps/Modules/Oecm/context/Governance";
+window.ImetCore.Apps.Modules.Oecm.context.Governance = Governance;
 
+import { default as AreasOecm } from "./js/apps/Modules/Oecm/context/Areas";
+window.ImetCore.Apps.Modules.Oecm.context.Areas = AreasOecm;
+
+// ##### OECM - evaluation #####
 
 
 // TODO: Below are OLD imports: need to be reviewed/removed

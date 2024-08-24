@@ -17,6 +17,9 @@ return [
 
     'assessment' => [
 
+        'C2' => 'Constraints or supports from stakeholders',
+        'C3' => 'Threats',
+
         'PRA' => 'Internal management systems and processes',
         'PRB' => 'Management / Protection of the values',
         'PRC' => 'Stakeholder relations',
