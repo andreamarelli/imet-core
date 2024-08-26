@@ -8,7 +8,9 @@ use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 $stakeholders = Stakeholders::calculateWeights($form_id);
 arsort($stakeholders);
 
-$key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id);
+$data = [
+    'key_elements_importance' => AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id)
+];
 
 ?>
 
@@ -81,32 +83,8 @@ $key_elements_importance = AnalysisStakeholderDirectUsers::calculateKeyElementsI
 
 
 @push('scripts')
-
-    <script>
-
-        let module_analysis_stakeholder_summary = new Vue({
-            el: '#module_analysis_stakeholder_summary',
-            data: {
-                key_elements_importance: @json($key_elements_importance),
-            },
-
-            methods: {
-
-                refresh_importances(key_elements_importance) {
-                    this.key_elements_importance = key_elements_importance;
-                },
-
-                key_elements_importance_composition(element) {
-                    return Locale.getLabel('imet-core::oecm_evaluation.KeyElements.key_elements_importance_composition', {
-                        'imp_dir': '<b>' + element['importance_direct'] + '</b>',
-                        'imp_ind': '<b>' + element['importance_indirect'] + '</b>',
-                        'num_dir': '<b>' + element['stakeholder_direct_count'] + '</b>',
-                        'num_ind': '<b>' + element['stakeholder_indirect_count'] + '</b>',
-                    })
-                }
-
-            }
-        });
-
+    <script type="module">
+        window.AnalysisStakeholderSummary = (new window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholderSummary(@json($data)))
+            .mount('#module_analysis_stakeholder_summary');
     </script>
 @endpush

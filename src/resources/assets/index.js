@@ -183,6 +183,12 @@ window.ImetCore.Apps.Modules.Oecm.context.ManagementRelativeImportance = Managem
 import ManagementStaffOecm from "./js/apps/Modules/Oecm/context/ManagementStaff";
 window.ImetCore.Apps.Modules.Oecm.context.ManagementStaff = ManagementStaffOecm;
 
+import AnalysisStakeholderSummary from "./js/apps/Modules/Oecm/context/AnalysisStakeholderSummary";
+window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholderSummary = AnalysisStakeholderSummary;
+
+import AnalysisStakeholder from "./js/apps/Modules/Oecm/context/AnalysisStakeholder";
+window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder = AnalysisStakeholder;
+
 // ##### OECM - evaluation #####
 
 

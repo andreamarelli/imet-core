@@ -1,6 +1,10 @@
 <?php
 
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use AndreaMarelli\ModularForms\Helpers\DOM;
+use AndreaMarelli\ModularForms\Helpers\Template;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
@@ -10,7 +14,11 @@ use Illuminate\Support\Str;
 /** @var Array $stakeholders */
 
 $num_cols = count($definitions['fields']);
-$user_mode = ('AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE;
+
+$user_mode = Str::contains($definitions['module_class'], 'AnalysisStakeholderDirectUsers')
+    ? AnalysisStakeholderDirectUsers::$USER_MODE
+    : AnalysisStakeholderIndirectUsers::$USER_MODE;
+
 $stakeholders_categories = Stakeholders::getStakeholders(
     $vueData['form_id'],
     $user_mode,
@@ -56,6 +64,8 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
                             @php
                                 $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
+                                $element_list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
+                                $element_list = array_combine($element_list, $element_list);
                             @endphp
 
                             @if(
@@ -108,13 +118,22 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                                     v-if="recordIsInGroup(item, '{{ $group_key }}') && isCurrentStakeholder(item['Stakeholder'])">
                                                 {{--  fields  --}}
                                                 @foreach($definitions['fields'] as $index => $field)
+
                                                     <td>
-                                                        @include('modular-forms::module.edit.field.module-to-vue', [
-                                                           'definitions' => $definitions,
-                                                           'field' => $field,
-                                                           'vue_record_index' => 'index',
-                                                           'group_key' => $group_key
-                                                       ])
+
+                                                        @if($field['name'] === 'Element')
+                                                            <dropdown
+                                                                data-values='@json($element_list)'
+                                                                {!! DOM::vueAttributes("'".$definitions['module_key']."_'+index+'_".$field['name']."'", 'records[index].'.$field['name']) !!}
+                                                            ></dropdown>
+                                                        @else
+                                                                @include('modular-forms::module.edit.field.module-to-vue', [
+                                                                   'definitions' => $definitions,
+                                                                   'field' => $field,
+                                                                   'vue_record_index' => 'index',
+                                                                   'group_key' => $group_key
+                                                               ])
+                                                        @endif
                                                     </td>
                                                 @endforeach
                                                 <td>
@@ -124,7 +143,9 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                                         'v_value' => 'item.'.$definitions['primary_key']
                                                     ])
                                                     <span v-if="typeof item.__predefined === 'undefined'">
-                                                        <x-modular-forms::module.components.buttons.delete-item />
+                                                         <button type="button" class="btn-nav small red" v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">
+                                                             {!! Template::icon('trash', 'white') !!}
+                                                        </button>
                                                     </span>
                                                 </td>
                                             </tr>
@@ -134,13 +155,13 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
                                     {{-- add button --}}
                                     <tfoot v-if="numItemPerGroupAndStakeholder('{{ $group_key }}', '{{ $stakeholder }}') < {{ $definitions['max_rows'] }}">
-                                    <tr>
-                                        <td colspan="{{ count($definitions['fields']) + 1 }}">
-                                            @include('modular-forms::buttons.add_item', [
-                                                'onClick' => "addItem('". $group_key . "', '". Str::replace("'", "\'", $stakeholder)  . "')"
-                                            ])
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="{{ count($definitions['fields']) + 1 }}">
+                                                <button type="button" class="btn-nav small " v-on:click="addItem('{{ $group_key }}', '{{ $stakeholder }}')">
+                                                    {!! Template::icon('plus-circle', 'white') !!} {!! Str::ucfirst((trans('modular-forms::common.add_item'))) !!}
+                                                </button>
+                                            </td>
+                                        </tr>
                                     </tfoot>
 
                                 </table>
@@ -163,79 +184,8 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 @endif
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            methods: {
-
-                isCurrentStakeholder(value) {
-                    return this.current_stakeholder === value;
-                },
-
-                switchStakeholder(value) {
-                    if (!this.isCurrentStakeholder(value)) {
-                        this.current_stakeholder = value;
-                    } else {
-                        this.current_stakeholder = null;
-                    }
-                    this.resetModule();
-                },
-
-                showAddButton(group_key, stakeholder){
-                    let count = 0;
-                    this.records[group_key].forEach(function (item, index) {
-                        if (item['Stakeholder'] === stakeholder){
-                            count++;
-                        }
-                    });
-                },
-
-                numItemPerGroupAndStakeholder: function (group_key, stakeholder) {
-                    let count = 0;
-                    this.records[group_key].forEach(function (item, index) {
-                        if (item['Stakeholder'] === stakeholder){
-                            count++;
-                        }
-                    });
-                    return count;
-                },
-
-                addItem: function (group_key, stakeholder) {
-                    this.records[group_key].push(this.__no_reactive_copy(this.empty_record));
-                    this.records[group_key][this.records[group_key].length - 1][this.group_key_field] = group_key;
-                    this.records[group_key][this.records[group_key].length - 1]['Stakeholder'] = stakeholder;
-                },
-
-                deleteItem: function (event) {
-                    let _this = this;
-
-                    let table_row_index = event.currentTarget.closest('tr').rowIndex - 1; // force to start at 0
-                    let group_key = event.currentTarget.closest('table').id.replace('group_table_' + this.module_key + '_', '');
-
-                    let same_stakeholder_count = 0;
-                    this.records[group_key].forEach(function (item, index) {
-
-                        if (item['Stakeholder'] === _this.current_stakeholder && group_key === item['group_key']) {
-                            if (same_stakeholder_count === table_row_index) {
-                                _this.records[group_key].splice(index, 1);
-                            }
-                            same_stakeholder_count++;
-                        }
-                    });
-
-                },
-
-                saveModuleDoneCallback(data) {
-                    this.current_stakeholder = null;
-                    window.ModularForms.Mixins.Animation.scrollPageToAnchor('module_{{ $definitions['module_key'] }}');
-                    module_analysis_stakeholder_summary.refresh_importances(data.key_elements_importance);
-                },
-
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush
