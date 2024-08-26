@@ -60,7 +60,6 @@ class Stakeholders extends Modules\Component\ImetModule
      */
     public static function updateModuleRecords($records, $form_id): void
     {
-
         foreach ($records as $index => $record){
             // Ensure no "newline" (or other not allowed entities) are saved
             $record['Element'] = Str::replace("\n", '', $record['Element']);
@@ -73,6 +72,8 @@ class Stakeholders extends Modules\Component\ImetModule
                 unset($records[$index]);
             }
         }
+
+        parent::updateModuleRecords($records, $form_id);
     }
 
     public const ALL_USERS = 0;

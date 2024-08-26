@@ -177,6 +177,12 @@ window.ImetCore.Apps.Modules.Oecm.context.Governance = Governance;
 import { default as AreasOecm } from "./js/apps/Modules/Oecm/context/Areas";
 window.ImetCore.Apps.Modules.Oecm.context.Areas = AreasOecm;
 
+import ManagementRelativeImportance from "./js/apps/Modules/Oecm/context/ManagementRelativeImportance";
+window.ImetCore.Apps.Modules.Oecm.context.ManagementRelativeImportance = ManagementRelativeImportance;
+
+import ManagementStaffOecm from "./js/apps/Modules/Oecm/context/ManagementStaff";
+window.ImetCore.Apps.Modules.Oecm.context.ManagementStaff = ManagementStaffOecm;
+
 // ##### OECM - evaluation #####
 
 

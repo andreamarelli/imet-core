@@ -3,8 +3,6 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-$vueData['relative_importance'] = $vueData['records'][0]['RelativeImportance'] ?? null;
-
 ?>
 
 <div id="relative_importance">
@@ -61,26 +59,9 @@ $vueData['relative_importance'] = $vueData['records'][0]['RelativeImportance'] ?
             display: inline-block;
         }
     </style>
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
 
-            watch: {
-                relative_importance: function (value) {
-                    this.records[0]['RelativeImportance'] = value;
-                }
-            },
-
-            methods:{
-                recordChangedCallback(){
-                    if(this.records[0]['RelativeImportance'] !== this.relative_importance){
-                        this.relative_importance = this.records[0]['RelativeImportance'];
-                    }
-                }
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.Oecm.context.ManagementRelativeImportance(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush
