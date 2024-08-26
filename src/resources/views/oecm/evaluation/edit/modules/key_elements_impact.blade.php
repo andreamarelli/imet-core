@@ -92,45 +92,9 @@
             align-self: center;
         }
     </style>
-
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-
-            methods:{
-
-                recordChangedCallback(){
-                    let _this = this;
-
-                    Object.entries(this.records).forEach(([group_key, group]) => {
-                        Object.entries(group).forEach(([record_index, record]) => {
-                            _this.records[group_key][record_index]['EffectSH']
-                                = _this.calculate_effect(record['StatusSH'],  record['TrendSH']);
-                            _this.records[group_key][record_index]['EffectER']
-                                = _this.calculate_effect(record['StatusER'],  record['TrendER']);
-                        });
-                    });
-                },
-
-                calculate_effect(status, trend){
-                    let effect = null;
-                    if(status!==null || trend!==null){
-                        // average
-                        effect = (
-                            (status!==null ? parseFloat(status): 0) +
-                            (trend!==null ? parseFloat(trend): 0)
-                        ) / (status!==null && trend!==null ? 2 : 1);
-                        // rescale scale -100 to 100
-                        effect = effect * 100 / 2;
-                    }
-                    return effect;
-                }
-
-            }
-
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
+
 @endpush

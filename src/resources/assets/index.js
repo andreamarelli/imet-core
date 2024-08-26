@@ -191,6 +191,17 @@ window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder = AnalysisStakehol
 
 // ##### OECM - evaluation #####
 
+import Threats from "./js/apps/Modules/Oecm/evaluation/Threats";
+window.ImetCore.Apps.Modules.Oecm.evaluation.Threats = Threats;
+
+import KeyElements from "./js/apps/Modules/Oecm/evaluation/KeyElements";
+window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElements = KeyElements;
+
+import KeyElementsImpact from "./js/apps/Modules/Oecm/evaluation/KeyElementsImpact";
+window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact = KeyElementsImpact;
+
+import LifeQualityImpactOecm from "./js/apps/Modules/Oecm/evaluation/LifeQualityImpact";
+window.ImetCore.Apps.Modules.Oecm.evaluation.LifeQualityImpact = LifeQualityImpactOecm;
 
 // TODO: Below are OLD imports: need to be reviewed/removed
 
