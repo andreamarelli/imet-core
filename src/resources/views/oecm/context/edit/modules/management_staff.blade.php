@@ -17,7 +17,6 @@ $diff_col = '<input type="text" disabled="disabled" style="width: 80px;"
             />';
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
-$dom = HtmlPageCrawler::create($view);
 $dom->filter('thead tr th')->eq(5)->append('<th class="text-center">' . trans('imet-core::oecm_context.ManagementStaff.fields.Difference') . '</th>');
 $dom->filter('tbody tr td')->eq(5)->append('<td>' . $diff_col . '</td>');
 

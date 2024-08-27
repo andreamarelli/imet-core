@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
-$value = $records[0]['RelativeImportance'];
+$value = strval($records[0]['RelativeImportance']);
 
 ?>
 
