@@ -32,6 +32,9 @@ window.ImetCore.Apps.Base = BaseImet;
 import FormListImet from "./js/apps/FormList.js";  // Extend FormList from ModularForms
 window.ImetCore.Apps.FormList = FormListImet;
 
+import ScalingList from "./js/scaling_up_analysis/ScalingList";  // Extend FormList from ModularForms
+window.ImetCore.Apps.ScalingList = ScalingList;
+
 import ModuleImet from "./js/apps/Module.js";  // Extend FormList from ModularForms
 window.ImetCore.Apps.Module = ModuleImet;
 

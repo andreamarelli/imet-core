@@ -35,10 +35,10 @@ $routes = [
 @if(Str::contains($current_route_name, 'imet-core::v1.report') ||
     Str::contains($current_route_name, 'imet-core::v2.report') ||
     Str::contains($current_route_name, 'imet-core::scaling_up'))
-        @include('imet-core::layouts.components.assets_mapbox')
-        <script>
-            window.mapboxgl.accessToken = '{{ $mapbox_token }}';
-        </script>
+{{--        @include('imet-core::layouts.components.assets_mapbox')--}}
+{{--        <script>--}}
+{{--            window.mapboxgl.accessToken = '{{ $mapbox_token }}';--}}
+{{--        </script>--}}
 @endif
 
 
