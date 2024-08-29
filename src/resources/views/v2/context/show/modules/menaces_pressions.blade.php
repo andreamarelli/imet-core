@@ -59,12 +59,12 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
             </div>
             @if($group_stat>0)
                 <div class="histogram-row__progress-bar">
-                    <imet_progress_bar
+                    <imet_score_bar
                         :value={{ $group_stat }}
                         color="#87c89b"
                         :min=-100
                         :max=0
-                    ></imet_progress_bar>
+                    ></imet_score_bar>
                 </div>
             @endif
         </div>

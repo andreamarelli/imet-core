@@ -65,12 +65,8 @@ class ReportController extends BaseReportController
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
             ],
-            'assessment' => array_merge(
-                ImetScores::get_all($item),
-                [
-                    'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2)
-                ]
-            ),
+            'scores' => ImetScores::get_all($item),
+            'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2),
             'report' => \AndreaMarelli\ImetCore\Models\Imet\v2\Report::getByForm($form_id),
             'connection' => $api_available,
             'show_api' => $show_api,

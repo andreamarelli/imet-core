@@ -17,7 +17,8 @@
 
 @include('imet-core::v2.report.report', [
     'action' => 'edit',
-    'assessment' => $assessment,
+    'scores' => $scores,
+    'labels' => $labels,
     'key_elements' => $key_elements,
     'report' => $report,
     'wdpa_extent' => $wdpa_extent,

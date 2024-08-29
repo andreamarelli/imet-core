@@ -43,12 +43,12 @@ $stats = collect(\AndreaMarelli\ImetCore\Services\ThreatsService::calculateRanki
             </div>
             <div class="histogram-row__progress-bar">
                 @if($stats[$threat_key]!==null)
-                    <imet_progress_bar
+                    <imet_score_bar
                             :value={{ $stats[$threat_key] }}
                             color="#87c89b"
                             :min=-100
                             :max=0
-                    ></imet_progress_bar>
+                    ></imet_score_bar>
                 @endif
             </div>
         </div>

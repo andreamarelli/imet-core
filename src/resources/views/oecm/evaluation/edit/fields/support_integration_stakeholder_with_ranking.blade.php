@@ -7,10 +7,7 @@
 /** @var String $other */
 /** @var Mixed $definitions */
 
-$group_key = \Illuminate\Support\Str::replace('records[', '', $v_value);
-$group_key = \Illuminate\Support\Str::replace('][index].Stakeholder', '', $group_key);
-
-$score = 'records['.$group_key.'][index][\'__score\']';
+$score = 'records[index][\'__score\']';
 
 ?>
 

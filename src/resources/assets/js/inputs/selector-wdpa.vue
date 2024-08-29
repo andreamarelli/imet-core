@@ -65,16 +65,9 @@ const props = defineProps({
 const selectorDialogComponent = ref(null);
 provide('setLabel', setLabel);
 provide('setValue', setValue);
-// provide('afterSearch', afterSearch);
-// provide('AfterLabelRetrieve', AfterLabelRetrieve);
 
 // values
 const inputValue = defineModel();
-
-// function AfterLabelRetrieve(data){
-//     console.log('AfterLabelRetrieve', data);
-//     return data.records;
-// }
 
 function setLabel(item) {
    return item?.name

@@ -54,7 +54,7 @@
                     if(element === '#'){
                         return;
                     }
-                    if (['process', 'process_pr1_pr6', 'process_pr7_pr9', 'process_pr10_pr12', 'process_pr13_pr14', 'process_pr15_pr16', 'process_pr17_pr18'].includes(element)) {
+                    if (['process', 'process_PRA', 'process_PRB', 'process_PRC', 'process_PRD', 'process_PRE', 'process_PRF'].includes(element)) {
                         let event_element = 'analysis_per_element_of_them_management_cycle';
                         this.$root.$emit(event_element);
                         setTimeout(() => {

@@ -14,10 +14,10 @@
 </container_analysis_management_cycle>
 
 <container_analysis_management_cycle
-    id="process_pr1_pr6"
-    :title="container.props.config.element_diagrams.process_pr1_pr6[0].menu.title"
+    id="process_PRA"
+    :title="container.props.config.element_diagrams.process_PRA[0].menu.title"
     :url=url
-    :type="'process_pr1_pr6'"
+    :type="'process_PRA'"
     :class_name="'sub-title'"
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
@@ -28,10 +28,10 @@
 </container_analysis_management_cycle>
 
 <container_analysis_management_cycle
-    id="process_pr7_pr9"
-    :title="container.props.config.element_diagrams.process_pr7_pr9[0].menu.title"
+    id="process_PRB"
+    :title="container.props.config.element_diagrams.process_PRB[0].menu.title"
     :url=url
-    :type="'process_pr7_pr9'"
+    :type="'process_PRB'"
     :class_name="'sub-title'"
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
@@ -42,10 +42,10 @@
 </container_analysis_management_cycle>
 
 <container_analysis_management_cycle
-    id="process_pr10_pr12"
-    :title="container.props.config.element_diagrams.process_pr10_pr12[0].menu.title"
+    id="process_PRC"
+    :title="container.props.config.element_diagrams.process_PRC[0].menu.title"
     :url=url
-    :type="'process_pr10_pr12'"
+    :type="'process_PRC'"
     :class_name="'sub-title'"
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
@@ -56,10 +56,10 @@
 </container_analysis_management_cycle>
 
 <container_analysis_management_cycle
-    id="process_pr13_pr14"
-    :title="container.props.config.element_diagrams.process_pr13_pr14[0].menu.title"
+    id="process_PRD"
+    :title="container.props.config.element_diagrams.process_PRD[0].menu.title"
     :url=url
-    :type="'process_pr13_pr14'"
+    :type="'process_PRD'"
     :class_name="'sub-title'"
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
@@ -70,10 +70,10 @@
 </container_analysis_management_cycle>
 
 <container_analysis_management_cycle
-    id="process_pr15_pr16"
-    :title="container.props.config.element_diagrams.process_pr15_pr16[0].menu.title"
+    id="process_PRE"
+    :title="container.props.config.element_diagrams.process_PRE[0].menu.title"
     :url=url
-    :type="'process_pr15_pr16'"
+    :type="'process_PRE'"
     :class_name="'sub-title'"
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"
@@ -84,10 +84,10 @@
 </container_analysis_management_cycle>
 
 <container_analysis_management_cycle
-    id="process_pr17_pr18"
-    :title="container.props.config.element_diagrams.process_pr17_pr18[0].menu.title"
+    id="process_PRF"
+    :title="container.props.config.element_diagrams.process_PRF[0].menu.title"
     :url=url
-    :type="'process_pr17_pr18'"
+    :type="'process_PRF'"
     :class_name="'sub-title'"
     :parent_class_name="''"
     :items="{{json_encode($custom_names)}}"

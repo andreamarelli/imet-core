@@ -57,15 +57,9 @@ class Stakeholders extends Modules\Component\ImetModule
 
     /**
      * Remove all empty records: where "Element" is empty
-     *
-     * @param $records
-     * @param $form_id
-     * @return array|void
-     * @throws FileNotFoundException
      */
-    public static function updateModuleRecords($records, $form_id)
+    public static function updateModuleRecords($records, $form_id): void
     {
-
         foreach ($records as $index => $record){
             // Ensure no "newline" (or other not allowed entities) are saved
             $record['Element'] = Str::replace("\n", '', $record['Element']);
@@ -78,7 +72,8 @@ class Stakeholders extends Modules\Component\ImetModule
                 unset($records[$index]);
             }
         }
-        return parent::updateModuleRecords($records, $form_id);
+
+        parent::updateModuleRecords($records, $form_id);
     }
 
     public const ALL_USERS = 0;

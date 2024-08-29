@@ -21,9 +21,13 @@
   }
 
   .histogram-row__title {
-    width: 340px;
+    width: 35%;
+    min-width: 300px;
     padding-left: 5px;
     padding-right: 5px;
+  }
+  .histogram-row__title.short{
+    width: 20%;
   }
 
   .histogram-row__value {

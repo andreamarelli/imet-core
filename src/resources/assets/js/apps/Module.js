@@ -2,7 +2,7 @@ import Module from "@modular-forms/js/apps/Module.js";
 
 import scopeIcon from "../templates/scope_icon.vue";
 import selectorWdpa from "../inputs/selector-wdpa.vue";
-import imetProgressBar from "../templates/imet_progress_bar.vue";
+import imetScoreBar from "../templates/imet_score_bar.vue";
 
 export default class ModuleImet extends Module {
 
@@ -13,7 +13,7 @@ export default class ModuleImet extends Module {
             // Register components
             .component('selector-wdpa', selectorWdpa)
             .component('scope-icon', scopeIcon)
-            .component('imet_progress_bar', imetProgressBar);
+            .component('imet_score_bar', imetScoreBar);
     }
 
     setupApp(props, input_data) {
@@ -21,6 +21,12 @@ export default class ModuleImet extends Module {
         let setup_obj = super.setupApp(props, input_data);
 
         const Locale = window.ModularForms.Helpers.Locale;
+
+        setup_obj.emitter.on('moduleSaved', (data) => {
+            if(window.AssessmentScores){
+                window.AssessmentScores.refresh_scores();
+            }
+        });
 
         function hasRecordsToEvaluate(criteria_field, group_key) {
             group_key = group_key || null;
@@ -65,6 +71,10 @@ export default class ModuleImet extends Module {
             key_element_label,
             hasRecordsToEvaluate,
         };
+    }
+
+    createApp(options, input_data) {
+        return super.createApp(options, input_data);
     }
 
 }

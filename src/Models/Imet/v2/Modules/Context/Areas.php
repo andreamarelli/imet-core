@@ -31,7 +31,8 @@ class Areas extends Modules\Component\ImetModule
             [
                 'name' => 'GISArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.GISArea')],
+                'label' => trans('imet-core::v2_context.Areas.fields.GISArea')
+            ],
             [
                 'name' => 'BoundaryLength',
                 'type' => 'numeric',

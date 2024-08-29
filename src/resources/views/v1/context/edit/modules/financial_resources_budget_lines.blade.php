@@ -5,7 +5,8 @@
 
 $group_key = $group_key ?? '';
 $table_id = 'table_'.$definitions['module_key'];
-$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
+
+$vueData['area'] = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
 
 ?>
 
@@ -97,48 +98,8 @@ $area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($v
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
-    <script>
-        // ## Initialize Module controller ##
-        let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-            el: '#module_{{ $definitions['module_key'] }}',
-            data: @json($vueData),
-
-            computed: {
-
-                costs() {
-                    let result = [];
-                    this.records.forEach(function (item, index) {
-                        let area = {{ $area }};
-                        result[index] = 0;
-                        if(area!==null){
-                            result[index] = item['Amount'] / area * 100;
-                        }
-                        result[index] = result[index]===0 ? null : result[index].toFixed(2);
-                    });
-                    return result;
-                },
-                percentages() {
-                    let _this = this;
-                    let result = [];
-                    let totalBudget = module_imet__v1__context__financial_available_resources.totals.reduce(
-                        (accumulator, currentValue) => accumulator + currentValue
-                    );
-                    this.records.forEach(function (item, index) {
-                        let cost =  parseFloat(_this.costs[index]);
-                        if(cost>0 && totalBudget > 0){
-                            result[index] = (cost/totalBudget*100).toFixed(1) + ' %';
-                        }else{
-                            result[index] = "";
-                        }
-                    });
-                    return result;
-                },
-
-                sumBudget (){
-                    return this.sumColumnFloat('Amount');
-                },
-
-            }
-        });
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResourcesBudgetLines(@json($vueData)))
+            .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

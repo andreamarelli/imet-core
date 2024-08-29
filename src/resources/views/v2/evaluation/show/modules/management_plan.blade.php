@@ -5,11 +5,13 @@
 
 $records = $records[0];
 
+$PlanExistence = boolval($records['PlanExistence']);
+
 ?>
 
 @foreach($definitions['fields'] as $index=>$field)
 
-    @if($index==0 || $records['PlanExistence']===true)
+    @if($index==0 || $PlanExistence)
         <div class="module-row">
 
             {{-- label  --}}

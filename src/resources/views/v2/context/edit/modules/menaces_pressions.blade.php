@@ -17,7 +17,6 @@ $view_groupTable = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule:
 // Inject marine/terrestrial icon on title
 $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPressions::get_marine_groups(), MenacesPressions::get_terrestrial_groups());
 
-
     // Inject titles
     foreach(MenacesPressions::$groupsByCategory as $i => $category){
         $view_groupTable = AndreaMarelli\ModularForms\Helpers\Module::injectGroupTitle(
@@ -25,18 +24,10 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
             ($i+1).'. '.trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i+1)));
     }
 
-
     // inject column with row stats
-//    foreach(MenacesPressions::$groupsByCategory as $i => $category){
-//        foreach ($category as $group){
-            $searchFor = '<input type="hidden" v-model="records[index].group_key"';
-            $textToAdd = '<div class="field-preview field-numeric">{{ recordStats[index] }}</div>';
-            $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
-//        }
-//    }
-
-
-
+    $searchFor = '<input type="hidden" v-model="records[index].group_key"';
+    $textToAdd = '<div class="field-preview field-numeric">{{ recordStats[index] }}</div>';
+    $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
 ?>
 
 <div>
@@ -48,10 +39,10 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
                 <b v-html="categoryStats[{{ $i }}] || '-'"></b>
             </div>
             <div class="histogram-row__progress-bar"  v-if="categoryStats['{{ $i }}']!==null">
-                <imet_progress_bar
+                <imet_score_bar
                     :value=categoryStats[{{ $i }}]
                     color="#87c89b"
-                ></imet_progress_bar>
+                ></imet_score_bar>
             </div>
         </div>
     @endforeach

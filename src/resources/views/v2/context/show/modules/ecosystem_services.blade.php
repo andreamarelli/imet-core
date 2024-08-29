@@ -20,10 +20,10 @@ foreach ($fistGroupPerCategory as $i => $group){
                     </div>
                     <div  class="module-row__input">
                         <div class="row progress_bar" style="margin-top: 25px">
-                            <imet_progress_bar
+                            <imet_score_bar
                                 value='.round($stats[$i], 1).'
                                 color="#87c89b"
-                            ></imet_progress_bar>
+                            ></imet_score_bar>
                         </div>
                     </div>
                </div>';

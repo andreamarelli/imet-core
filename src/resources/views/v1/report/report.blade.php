@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\App;
 
 /** @var string $action */
 /** @var Imet $item */
-/** @var array $assessment */
+/** @var array $scores */
+/** @var array $labels */
 /** @var array $key_elements */
 /** @var array $report */
 /** @var array $wdpa_extent */
@@ -108,8 +109,9 @@ if($item->language != App::getLocale()){
             </div>
             <div class="module-body">
 
-                @include('imet-core::components.imet_charts', [
-                    'form_id' => $item->getKey(),
+                @include('imet-core::components.scores', [
+                    'item' => $item,
+                    'step' => null,
                     'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1
                 ])
 
@@ -124,13 +126,13 @@ if($item->language != App::getLocale()){
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['context']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['context'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['planning']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['planning'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['inputs']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['inputs'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['process']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['process'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['outputs']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['outputs'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['outcomes']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['outcomes'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['imet_index']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>
@@ -176,7 +178,7 @@ if($item->language != App::getLocale()){
                     @endforeach
                 </ul>
                 @include('imet-core::v1.report.components.editor', ['report' => $report, 'action' => $action, 'field' => 'threats_comment'])
-                @include('imet-core::v1.report.components.table_evaluation', ['assessment' => $assessment])
+                @include('imet-core::v1.report.components.table_evaluation', ['scores' => $scores, 'labels' => $labels])
             </div>
         </div>
 

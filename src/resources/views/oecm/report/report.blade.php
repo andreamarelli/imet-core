@@ -11,7 +11,8 @@ use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
 
 /** @var string $action */
 /** @var Imet $item */
-/** @var array $assessment */
+/** @var array $scores */
+/** @var array $labels */
 /** @var array $key_elements */
 /** @var array $main_threats */
 /** @var array $report */
@@ -74,8 +75,9 @@ if ($item->language != App::getLocale()) {
             <div class="module-body">
                 <h4>@lang('imet-core::oecm_report.management_effectiveness.evaluation_elements')</h4>
 
-                @include('imet-core::components.imet_charts', [
-                    'form_id' => $item->getKey(),
+                @include('imet-core::components.scores', [
+                    'item' => $item,
+                    'step' => null,
                     'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM
                 ])
 
@@ -90,16 +92,16 @@ if ($item->language != App::getLocale()) {
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['context']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['context'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['planning']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['planning'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['inputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['inputs'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['process']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['process'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outputs']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outputs'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['outcomes']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['outcomes'] }}</td>
-                        <td class="{!! ApiController::score_class($assessment[_Scores::RADAR_SCORES]['imet_index']) !!}" >{{ $assessment[_Scores::RADAR_SCORES]['imet_index'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['context']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['context'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['planning']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['planning'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['inputs']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['inputs'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['process']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['process'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['outputs']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['outputs'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['outcomes']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['outcomes'] }}</td>
+                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['imet_index']) !!}" >{{ $scores[_Scores::RADAR_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
-                @include('imet-core::oecm.report.components.table_evaluation', ['assessment' => $assessment])
+                @include('imet-core::oecm.report.components.table_evaluation', ['scores' => $scores, 'labels' => $labels])
             </div>
         </div>
 

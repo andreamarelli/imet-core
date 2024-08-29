@@ -28,7 +28,7 @@ if (Str::contains($controller, 'ContextController')) {
     $step_labels = 'common.steps_eval';
 }
 
-$steps = Str::contains($controller, Models\Imet\Imet::IMET_V2)
+$steps = $phase=='evaluation' && Str::contains($controller, Models\Imet\Imet::IMET_V2)
     ? Imet\v2\EvalController::steps($item)
     : array_keys($item::modules());
 
@@ -69,10 +69,10 @@ $show_scrollbar = true;
 
     @else
 
-        {{-- Management effectiveness --}}
+        {{-- Management effectiveness scores --}}
         @if($phase==='evaluation')
-            @include('imet-core::'.$version.'.evaluation.management_effectiveness.management_effectiveness', [
-                'item_id' => $item->getKey(),
+            @include('imet-core::components.score-container', [
+                'item' => $item,
                 'step' => $step
             ])
         @endif

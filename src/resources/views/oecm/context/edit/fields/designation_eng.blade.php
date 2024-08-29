@@ -20,8 +20,8 @@
 ])
 
 
-<ul class="text-2xs" style="margin-top: 10px; padding-inline-start: 20px;">
-    <li>
+<ul class="text-xs" style="margin-top: 10px; padding-inline-start: 30px;">
+    <li style="padding-inline-start: 30px;">
         <b>@lang('imet-core::common.CreateNonWdpa.allowed_international')</b>:
         <ul>
             <li>Ramsar Site, Wetland of International Importance</li>
@@ -29,7 +29,7 @@
             <li>World Heritage Site (natural or mixed)</li>
         </ul>
     </li>
-    <li>
+    <li style="padding-inline-start: 30px;">
         <b>@lang('imet-core::common.CreateNonWdpa.allowed_regional')</b>:
         <ul>
             <li>Baltic Sea Protected Area (HELCOM)</li>

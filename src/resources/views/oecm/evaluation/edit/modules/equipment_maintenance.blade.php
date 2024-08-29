@@ -40,7 +40,7 @@ $table_id = 'table_'.$definitions['module_key'];
             <td>
                 @include('modular-forms::module.edit.field.vue', [
                     'type' => 'disabled',
-                    'v_value' => 'records[index].AdequacyLevel.toFixed(2)',
+                    'v_value' => 'records[index].AdequacyLevel',
                     'id' => "'".$definitions['module_key']."_'+index+'_AdequacyLevel'",
                     'class' => 'text-center'
                 ])

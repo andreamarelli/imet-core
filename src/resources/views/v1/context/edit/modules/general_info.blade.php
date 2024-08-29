@@ -25,13 +25,4 @@
 
 @include('modular-forms::module.edit.body', compact(['collection', 'vueData', 'definitions']))
 
-
-@push('scripts')
-<script>
-    // ## Initialize Module controller ##
-    let module_{{ $definitions['module_key'] }} = new window.ModularForms.ModuleController({
-        el: '#module_{{ $definitions['module_key'] }}',
-        data: @json($vueData)
-    });
-</script>
-@endpush
+@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
