@@ -10,9 +10,9 @@ class Database
     public const OECM_CONNECTION = 'offline_oecm';
 
     // Schemas: used as schema for PostGreSQL online version
-    public const COMMON_IMET_SCHEMA = 'imet';
+    public const COMMON_IMET_SCHEMA = 'imet_common';
     public const IMET_SCHEMA = 'imet';
-    public const OECM_SCHEMA = 'oecm';
+    public const OECM_SCHEMA = 'imet_oecm';
 
     /**
      * Get connection and table according to the environment (offline or online)
