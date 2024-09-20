@@ -76,14 +76,14 @@ abstract class _Scores
     {
         // Retrieve scores from cache
         $cache_key = Cache::buildKey(static::CACHE_PREFIX, ['id' => $imet_id]);
-//        if (!$refresh_cache && ($cache_value = Cache::get($cache_key)) !== null) {
-//            $scores = $cache_value;
-//        }
+        if (!$refresh_cache && ($cache_value = Cache::get($cache_key)) !== null) {
+            $scores = $cache_value;
+        }
         // Calculate scores and store in cache
-//        else {
+        else {
             $scores = static::calculate_scores($imet_id);
             Cache::put($cache_key, $scores, null);
-//        }
+        }
         return $scores;
     }
 
