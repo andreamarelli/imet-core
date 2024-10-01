@@ -44,7 +44,7 @@ class Database
 
         // Set Table
         $table = $is_offline
-            ? $schema
+            ? $requested_table
             : $schema . $requested_table;
 
         return [$table, $connection];
