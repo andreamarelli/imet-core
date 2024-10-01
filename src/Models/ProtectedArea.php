@@ -80,7 +80,9 @@ class ProtectedArea extends BaseProtectedArea
      */
     public static function getCountriesISO(\Closure $custom_where = null): array
     {
-        return (new ProtectedArea)->selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
+        $iso3s = [];
+
+        ProtectedArea::select('country')
             ->distinct()
             ->where(function ($query)  use ($custom_where){
                 if($custom_where !== null){
@@ -88,9 +90,13 @@ class ProtectedArea extends BaseProtectedArea
                 }
             })
             ->get()
-            ->pluck('iso3')
+            ->pluck('country')
             ->sort()
-            ->toArray();
+            ->each(function($iso) use (&$iso3s){
+                $iso3s = array_merge($iso3s, explode(';', $iso));
+            });
+
+        return $iso3s;
     }
 
     /**
