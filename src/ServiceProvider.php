@@ -7,9 +7,6 @@ use AndreaMarelli\ImetCore\Commands\ConvertSQLite;
 use AndreaMarelli\ImetCore\Commands\Export;
 use AndreaMarelli\ImetCore\Commands\Import;
 use AndreaMarelli\ImetCore\Commands\PopulateSpecies;
-use AndreaMarelli\ImetCore\Commands\UpdateOFAC;
-use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasAPI;
-use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasCSV;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
@@ -70,10 +67,7 @@ class ServiceProvider extends BaseServiceProvider
                 ConvertSQLite::class,
                 Export::class,
                 Import::class,
-                PopulateSpecies::class,
-                UpdateOFAC::class,
-                UpdateProtectedAreasAPI::class,
-                UpdateProtectedAreasCSV::class
+                PopulateSpecies::class
             ]);
         }
     }

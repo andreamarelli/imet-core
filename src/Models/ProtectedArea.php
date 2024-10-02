@@ -29,6 +29,11 @@ class ProtectedArea extends BaseProtectedArea
     protected $table = 'imet_pas';
     public $primaryKey = 'global_id';
 
+    public const CREATED_AT = null;
+    public const UPDATED_AT = null;
+    public const UPDATED_BY = null;
+    public const CREATED_BY = null;
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -38,11 +43,8 @@ class ProtectedArea extends BaseProtectedArea
     /**
      * @deprecated
      * Get by global_id
-     *
-     * @param $global_id
-     * @return \AndreaMarelli\ImetCore\Models\ProtectedArea|\Illuminate\Database\Eloquent\Model|object|null
      */
-    public static function getByGlobalId($global_id)
+    public static function getByGlobalId($global_id) : ?ProtectedArea
     {
         return static::where('global_id', '=', $global_id)
             ->first();
@@ -50,11 +52,8 @@ class ProtectedArea extends BaseProtectedArea
 
     /**
      * Parse for over-national WDPAs
-     *
-     * @param array $countries
-     * @return array
      */
-    public static function parseISOs(array $countries)
+    public static function parseISOs(array $countries): array
     {
         $parsed_isos = [];
         foreach ($countries as $iso) {
@@ -74,9 +73,6 @@ class ProtectedArea extends BaseProtectedArea
 
     /**
      * Get protected areas' countries ISO
-     *
-     * @param \Closure|null $custom_where
-     * @return array
      */
     public static function getCountriesISO(\Closure $custom_where = null): array
     {
@@ -101,9 +97,6 @@ class ProtectedArea extends BaseProtectedArea
 
     /**
      * Get protected areas' countries
-     *
-     * @param bool $only_allowed
-     * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function getCountries(bool $only_allowed = true): Collection
     {
@@ -122,10 +115,6 @@ class ProtectedArea extends BaseProtectedArea
 
     /**
      * Search by key or country
-     *
-     * @param string|null $search_key
-     * @param string|null $country
-     * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function searchByKeyOrCountry(?string $search_key = null, string $country = null): Collection
     {
