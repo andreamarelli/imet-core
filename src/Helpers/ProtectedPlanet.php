@@ -8,6 +8,7 @@ use AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet as Pr
 use AndreaMarelli\ModularForms\Helpers\File\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProtectedPlanet
 {
@@ -51,6 +52,7 @@ class ProtectedPlanet
                 $attributes['global_id'] = $country->region_id!==null
                     ? $country->region_id . '_' . $pa_API->wdpa_id
                     : $country->iso3 . '_' . $pa_API->wdpa_id;
+                $attributes['global_id'] = Str::upper($attributes['global_id']);
 
                 // Not found in DB: INSERT
                 if($pa===null){
