@@ -1,37 +1,38 @@
-export default {
-    inject: ['state'],
-    props: {
-        event_id: {
-            type: String,
-            default: 'save_image'
-        },
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 
-    },
-    data: function () {
-        return {chart: null}
-    },
-    async mounted() {
-        const _this = this;
-        this.draw_chart();
-        window.addEventListener('resize', this.handleResize)
-        // this.$parent.$on('save_data', (value, func, attr) => {
-        //     if (_this.chart) {
-        //         const value = _this.chart.getDataURL({
-        //             pixelRatio: 2,
-        //             backgroundColor: '#fff'
-        //         });
-        //         func(value, attr)
-        //     }
-        // });
-    },
-    beforeDestroy: function () {
-        window.removeEventListener('resize', this.handleResize)
-    },
-    methods: {
-        handleResize: function () {
-            if (this.chart) {
-                this.chart.resize();
-            }
+export function useResize(component_data) {
+    const chart = component_data.chart || ref(null);
+    const emitter = component_data.emitter;
+
+    function handleResize(echartObject) {
+        echartObject.resize();
+    }
+
+    function initResize(echartObject) {
+        save_data(echartObject);
+        const resize_event = () => handleResize(echartObject);
+        window.addEventListener('resize', resize_event)
+    }
+
+    function save_data(charContainer) {
+        if (charContainer) {
+            emitter.on('save_data',(value) => {
+                const {comments, image_src, attr, func} = value;
+                if (charContainer) {
+                    const value = charContainer.getDataURL({
+                        pixelRatio: 2,
+                        backgroundColor: '#fff'
+                    });
+
+                    func(value, attr)
+                }
+            });
         }
     }
+
+    onBeforeUnmount(() => {
+        window.removeEventListener('resize', handleResize);
+    });
+
+    return { initResize, save_data };
 }

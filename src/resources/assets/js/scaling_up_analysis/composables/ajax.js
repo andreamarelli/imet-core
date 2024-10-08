@@ -1,137 +1,117 @@
+import {ref} from "vue";
 
-export default {
-    inject: ['stores'],
-    props: {
-        url: {
-            type: String,
-            default: ''
-        },
-        parameters: {
-            type: String,
-            default: ''
-        },
-        func: {
-            type: String,
-            default: () => null
-        },
-        method: {
-            type: String,
-            default: 'Post'
-        },
-        lazy_load_parameters: {
-            type: Boolean,
-            default: false
-        },
-        loaded_at_once: {
-            type: Boolean,
-            default: true
-        }
-    },
-    watch: {
-        loaded_at_once: {
-            deep: true,
-            handler() {
+export function useAjax(component_data) {
 
-                this.init();
-            }
-        }
-    },
-    data: function () {
-        return {
-            event_parameters: {},
-            scaling_up: null,
-            func_parameter: {},
-            url_parameter: {},
-            show_loader: false,
-            loaded_once: false,
-            error_returned: false,
-            timeout: false,
-            error_wrong: false
-        }
-    },
-    async mounted() {
-        if (this.loaded_at_once === true) {
-            await this.init();
-        }
-    },
-    computed: {},
-    methods: {
-        init: async function () {
-            if (this.loaded_once === false) {
-                this.initialize_values();
-                await this.load_procedure();
-            }
-        },
-        initialize_values: function () {
-            this.event_parameters = !Array.isArray(this.parameters) ? this.parameters.split(',') : this.parameters
-            this.func_parameter = this.func;
-            this.url_parameter = this.url;
-        },
-        load_procedure: async function () {
-            if(!this.func_parameter){
-                return null;
-            }
-            if (this.lazy_load_parameters) {
-                this.$root.$on('incoming-data', async (parameters) => {
-                    this.event_parameters = parameters.parameters ?? this.parameters;
-                    this.func_parameter = parameters.func ?? this.func;
-                    this.url_parameter = parameters.url ?? this.url;
-                    await this.retrieve_data();
-                });
-            } else {
-                await this.retrieve_data();
-            }
-        },
-        parameters_man: function () {
-            return this.event_parameters;
+    let event_parameters = {};
+    let scaling_up = null;
+    let func_parameter = {};
+    let url_parameter = {};
+    let data = ref({});
+    let loaded_once = ref(false);
+    let error_returned = ref(false);
+    let timeout = ref(false);
+    let error_wrong = false;
+    let is_loaded = true;
+    const url = component_data.url || '';
+    const parameters = component_data.parameters || '';
+    const func = component_data.func || null;
+    const method = component_data.method || 'Post';
+    const lazy_load_parameters = component_data.lazy_load_parameters || false;
+    let loaded_at_once = component_data.loaded_at_once || true;
+    const stores = component_data.stores || null;
+    const success_func = component_data.success || null;
+    const error_func = component_data.error || null;
 
-        },
-        error: function (response) {
-            console.log(response);
-            if (!response.response)
-                this.error_wrong = true;
-            else if (response.status === false){
-                this.timeout = true;
-            }
-            else if (response.code === 'ECONNABORTED')
-                this.timeout = true;
-            else if (response.response.status === 500)
-                this.error_wrong = true;
-        },
-        finally: function (response) {
-            this.show_loader = false;
-            this.loaded_once = true;
-        },
-        success: function (response) {
-            throw new Error('Not Implemented ')
-        },
-        retrieve_data: async function () {
-            let _this = this;
-            this.show_loader = true;
-            this.error_wrong = false;
+    async function init() {
+        if (loaded_once.value === false) {
+            initialize_values();
+            await load_procedure();
+        }
+    }
 
-           fetch(this.url_parameter, {
-               method: this.method,
-               headers: {
-                   "Content-Type": "application/json",
-                   "X-CSRF-Token": window.Laravel.csrfToken,
-               },
-               body: JSON.stringify({
-                   func: this.func_parameter,
-                   parameter: this.parameters_man(),
-                   scaling_id: this.stores.BaseStore.get_scaling_up()
-               })
-           })
-               .then((response) => response.json())
-               .then(function(data) {
-                   _this.success(data);
-                   _this.finally();
-               })
-               .catch(function(error) {
-                   _this.error(error);
-                   _this.finally();
+    function initialize_values() {
+        event_parameters = !Array.isArray(parameters) ? parameters.split(',').filter(item => item.trim() !== '') : parameters
+        func_parameter = func;
+        url_parameter = url;
+    }
+
+    async function on_event_load(parameters = {}) {
+        event_parameters = parameters.parameters ?? parameters;
+        func_parameter = parameters.func ?? func;
+        url_parameter = parameters.url ?? url;
+        await retrieve_data();
+    }
+
+    async function load_procedure() {
+        if (!func_parameter) {
+            return null;
+        }
+        if (lazy_load_parameters) {
+            // emitter('incoming-data', async (parameters) => {
+            //     event_parameters = parameters.parameters ?? parameters;
+            //     func_parameter = parameters.func ?? func;
+            //     url_parameter = parameters.url ?? url;
+            //     await retrieve_data();
+            // });
+        } else {
+            await retrieve_data();
+        }
+    }
+
+    function parameters_man() {
+        return event_parameters;
+    }
+
+    function conclude(response) {
+        is_loaded = false;
+        loaded_once.value = true;
+    }
+
+    async function retrieve_data() {
+        is_loaded = true;
+        error_wrong = false;
+        const fetchOptions = {
+            method: method,
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": window.Laravel.csrfToken,
+            }
+        };
+
+        if (method !== 'GET') {
+            fetchOptions.body = JSON.stringify({
+                func: func_parameter,
+                parameter: parameters_man(),
+                scaling_id: stores.BaseStore.get_scaling_up()
+            });
+        } else {
+            url_parameter = url_parameter + '?func=' + func_parameter + '&parameter=' + parameters + '&scaling_id=' + stores.BaseStore.get_scaling_up();
+        }
+
+        fetch(url_parameter, fetchOptions)
+            .then((response) => response.json())
+            .then(function (response) {
+                data.value = response;
+                conclude();
+                success_func(response ,false);
+            })
+            .catch(function (response) {
+                error_func(response);
+                conclude();
             });
 
-        }
+        return data;
+    }
+
+    return {
+        loaded_once,
+        init,
+        is_loaded,
+        data,
+        error_returned,
+        timeout,
+        error_wrong,
+        on_event_load,
+        initialize_values
     }
 }

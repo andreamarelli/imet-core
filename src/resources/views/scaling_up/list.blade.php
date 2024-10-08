@@ -154,7 +154,6 @@ $form_class = Imet::class;
 @section('scripts')
     <script type="module">
         const list = @json($list);
-        console.log({list});
         (new window.ImetCore.Apps.ScalingList({
             checkboxes: [],
             listItems: list.map(item => {

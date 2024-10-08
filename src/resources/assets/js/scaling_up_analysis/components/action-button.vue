@@ -42,7 +42,6 @@ function resetValues() {
     data.value = [];
 }
 function action() {
-    debugger;
     if (props.event) {
         emitter.emit(props.event);
         resetValues();

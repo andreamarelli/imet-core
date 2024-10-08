@@ -4,10 +4,10 @@ export function useEvent(component_data){
     const event_name = component_data.event_name || '';
     const emitter = component_data.emitter || null;
 
-    function load_event(data){
+    function load_event(show_view){
         if (event_name) {
             emitter.on(event_name, () => {
-                data.show_view.value = true;
+                show_view = true;
             });
         }
     }
