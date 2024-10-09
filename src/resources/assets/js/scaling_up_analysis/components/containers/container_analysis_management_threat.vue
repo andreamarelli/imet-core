@@ -3,7 +3,7 @@
         <div class="sub-title" v-html="stores.BaseStore.localization('imet-core::analysis_report.element_diagrams.threats.threats.title')"></div>
 
         <div class="bg-white collapse mb-2 show">
-            <guidance :text="guidance"/>
+            <guidance :label="props.info_label"/>
             <checkboxes_list :items="items" :event="'apply_filter'"/>
             <div v-if="show_loader">
                 <i class="fa fa-spinner fa-spin text-primary-800"></i>
@@ -25,16 +25,9 @@
     </div>
 </template>
 
-<script>
 
-import container_cycle from "./container_analysis_management_cycle.vue";
+<script setup>
+import { inject } from 'vue';
 
-export default {
-    name: "container_analysis_management_threat.vue",
-    mixins: [
-        window.ImetCore.ScalingUp.Mixins.ajax,
-        container_cycle
-    ]
-
-}
+const stores = inject('stores');
 </script>
