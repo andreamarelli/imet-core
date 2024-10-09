@@ -261,7 +261,7 @@ export default {
                     },
                     {
                         "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                        "field": "avg"
+                        "field": "process"
                     }
                 ]
             }],

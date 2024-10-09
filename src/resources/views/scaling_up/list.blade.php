@@ -50,7 +50,7 @@ $form_class = Imet::class;
         ></label_cloud>
     </div>
     <action_button_cookie
-        :class-name="'btn-nav'"
+        :class-name="'btn-nav mr-2'"
         :cookie-name="'analysis'"
         :event="'update_cloud_tags'"
         :label="'@lang('imet-core::analysis_report.add_choices')'"

@@ -75,7 +75,6 @@ let { init, on_event_load } = useAjax(component_data);
 watch(() => props.loaded_at_once, async (newVal) => {
     if (newVal) {
         show_loader.value = true;
-        debugger;
         try {
             await init();
         } catch (error) {
@@ -104,7 +103,6 @@ watch(() => props.trigger_incoming_data, async (newVal) => {
 onMounted(async () => {
     if (props.loaded_at_once === true) {
         show_loader.value = true;
-        debugger;
         try {
             await init();
         } catch (error) {
