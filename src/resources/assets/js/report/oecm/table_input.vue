@@ -7,19 +7,19 @@
         </div>
         <div class="module-body" v-if="current_report">
             <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.previous_state') }}</h5>
-            <editor v-model=current_report.previous_state v-on:update="current_report.previous_state = $event"
+            <editor v-model="current_report['previous_state']" v-on:update="current_report['previous_state'] = $event"
                     v-if="action='edit'"></editor>
             <div v-else class="field-preview" style="max-width: none; margin-bottom: 10px;">
                 {{ current_report.previous_state }}}
             </div>
             <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.impacts') }}</h5>
-            <editor v-model=current_report.impacts v-on:update="current_report.impacts = $event"></editor>
+            <editor v-model="current_report['impacts']" v-on:update="current_report['impacts'] = $event"></editor>
             <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.responses') }}</h5>
-            <editor v-model=current_report.responses v-on:update="current_report.responses = $event"></editor>
+            <editor v-model="current_report['responses']" v-on:update="current_report['responses'] = $event"></editor>
             <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.proposed_short') }} </h5>
-            <editor v-model=current_report.proposed_short v-on:update="current_report.proposed_short = $event"></editor>
+            <editor v-model="current_report['proposed_short']" v-on:update="current_report['proposed_short'] = $event"></editor>
             <h5>{{ Locale.getLabel('imet-core::oecm_report.table_of_planning.proposed_long') }}</h5>
-            <editor v-model=current_report.proposed_long v-on:update="current_report.proposed_long = $event"></editor>
+            <editor v-model="current_report['proposed_long']" v-on:update="current_report['proposed_long'] = $event"></editor>
         </div>
     </div>
 </template>
@@ -44,7 +44,7 @@ export default {
     },
     data() {
         return {
-            Locale: window.Locale,
+            Locale: window.ModularForms.Helpers.Locale,
             current_report: null
         }
     },

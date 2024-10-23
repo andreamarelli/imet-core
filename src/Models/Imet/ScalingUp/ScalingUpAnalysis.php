@@ -834,7 +834,7 @@ class ScalingUpAnalysis extends Model
                 }
             }
             return $i;
-        }, DOPA::get_de_wdpa_all_inds($wdpa_id))->records;
+        }, DOPA::get_de_wdpa_all_inds($wdpa_id)->records);
     }
 
     /**
