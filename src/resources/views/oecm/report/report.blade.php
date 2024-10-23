@@ -167,7 +167,7 @@ if ($item->language != App::getLocale()) {
                 'report' => $report[0],
                 'action' => $action,
             ])
-            <span class="btn medium" v-if="reportLength < 10">
+            <span class="btn medium mr-1" v-if="reportLength < 10">
                 <button type="button" class="btn-nav medium " v-on:click="addItem">
                     {!! AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!} {!! ucfirst(trans('modular-forms::common.add_item')) !!}
                 </button>
