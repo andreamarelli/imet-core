@@ -1,5 +1,5 @@
 import {ref, onMounted} from 'vue';
-import * as htmlToImage from 'html-to-image';
+import * as htmlToImage from '~/html-to-image';
 
 export function useHtmlToImage(props, emit) {
     const randomElement = ref('');

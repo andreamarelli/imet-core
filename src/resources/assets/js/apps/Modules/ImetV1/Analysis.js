@@ -2,7 +2,7 @@ import { createApp, ref, reactive, watch, onMounted } from "vue";
 import dopa_indicators_table from './../../../templates/dopa/indicators_table.vue';
 import dopa_chart_bar from './../../../templates/dopa/chart_bar.vue';
 import dopa_radar from './../../../templates/dopa/chart_radar.vue';
-import editor from 'modular-forms/src/resources/assets/js/inputs/text-editor.vue';
+import editor from '@modular-forms/js/inputs/text-editor.vue';
 import report_editor from './../../../inputs/editor.vue';
 import BiopamaWDPA from './../../../helpers/biopamaWDPA';
 import imet_radar from './../../../templates/imet_radar.vue';
