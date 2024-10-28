@@ -59,6 +59,7 @@
 
 
 import datatable_custom from './datatable_custom.vue';
+import {sort} from "css-loader/dist/utils";
 
 export default {
     name: "datatable_scaling.vue",
@@ -111,6 +112,7 @@ export default {
         })
     },
     methods: {
+        sort,
         calculateAverage: function (items) {
             const notAverageItems = items.filter((item) => item['name'] !== 'Average')
             const averageItem = items.find((item) => item['name'] === 'Average');

@@ -2,11 +2,10 @@
     <div
         :id="item.id"
         :class="'item_class'" class="default-zone-element"
-        draggable
+        draggable="true"
         @drop="onDrop($event, item)"
         @dragstart='start_drag($event, item)'
         @dragover='drag_over($event, item)'
-
     >
         <slot></slot>
         <i v-if="is_removable" class="fa fa-times"
