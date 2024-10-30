@@ -11,7 +11,7 @@
     "require": {
         "php": ">=8.1",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "dev-master"
+        "andreamarelli/modular-forms": "^20.0"
     },
     "require-dev": {
         "orchestra/testbench": "^8.0"
