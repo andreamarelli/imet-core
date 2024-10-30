@@ -1,6 +1,7 @@
 {
     "name": "andreamarelli/imet-core",
     "description": "Imet core package",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Andrea Marelli",
