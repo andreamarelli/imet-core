@@ -4,9 +4,13 @@ namespace AndreaMarelli\ImetCore\Controllers;
 
 use AndreaMarelli\ModularForms\Models\Traits\Payload;
 use AndreaMarelli\ImetCore\Models\User\Role;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+/**  */
 use \ImetUser as User;
 
 
@@ -15,16 +19,10 @@ class UsersController extends __Controller
     protected static $form_class = Role::class;
     protected static $form_view_prefix = 'imet-core::users/';
 
-
     /**
-     * Manage "list" route
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param $role_type
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * Manage "list_by_role" route
      */
-    public function index(Request $request, $role_type = null)
+    public function list_by_role(Request $request, $role_type = null): Application|View|Factory
     {
         $this->authorize('manage', static::$form_class);
 
@@ -73,10 +71,6 @@ class UsersController extends __Controller
 
     /**
      * Manage "update_roles" route
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return string[]
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update_roles(Request $request): array
     {
