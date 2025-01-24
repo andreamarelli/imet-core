@@ -14,7 +14,7 @@ use \Illuminate\Http\Request;
 /** @var array $years */
 /** @var boolean $filter_selected */
 
-if($controller === Controllers\Imet\oecm\Controller::class){
+if ($controller === Controllers\Imet\oecm\Controller::class) {
     $form_class = Imet\oecm\Imet::class;
     $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
     $scaling_up_enable = false;
@@ -37,7 +37,6 @@ if($controller === Controllers\Imet\oecm\Controller::class){
     <div class="functional_buttons">
 
         @can('edit', $form_class)
-            {{-- Create new IMET --}}
             <a class="btn-nav rounded"
                href="{{ route($route_prefix.'create') }}">
                 {!! Template::icon('plus-circle', 'white') !!}
@@ -54,22 +53,20 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 {!! Template::icon('file-import', 'white') !!}
                 {{ ucfirst(trans('modular-forms::common.import')) }}
             </a>
-            @if($scaling_up_enable)
-                &nbsp;&nbsp;
-                &nbsp;&nbsp;
+        @endcan
+
+        @if($scaling_up_enable)
+            @can('scaling_up', $form_class)
                 {{-- Scaling Up --}}
                 <a class="btn-nav rounded"
                    href="{{ route('imet-core::scaling_up_index') }}">
                     {!! Template::icon('chart-bar', 'white') !!}
                     {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
                 </a>
-            @endif
-
-        @endcan
+            @endcan
+        @endif
 
         @can('exportAll', $form_class)
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
             {{-- Export json IMETs --}}
             <a class="btn-nav rounded"
                href="{{ route($route_prefix.'export_view') }}">
@@ -136,7 +133,8 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                             <span v-if="item.version==='{{ $form_class::IMET_V2 }}'"
                                   class="badge badge-success">v2</span>
                             <span v-else-if="item.version==='{{ $form_class::IMET_V1 }}'" class="badge badge-secondary">v1</span>
-                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'" class="badge badge-info">@lang('imet-core::oecm_common.oecm_short')</span>
+                            <span v-else-if="item.version==='{{ $form_class::IMET_OECM }}'"
+                                  class="badge badge-info">@lang('imet-core::oecm_common.oecm_short')</span>
                         </div>
                         {{-- last update --}}
                         <div>
@@ -147,15 +145,15 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 </td>
                 <td class="align-baseline">
                     <imet_encoders_responsibles
-                            :items=item.encoders_responsibles
+                        :items=item.encoders_responsibles
                     ></imet_encoders_responsibles>
                 </td>
                 <td>
                     <imet_radar
-                            style="margin: 0 auto;"
-                            :width=150 :height=150
-                            :values=item.assessment_radar
-                            v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
+                        style="margin: 0 auto;"
+                        :width=150 :height=150
+                        :values=item.assessment_radar
+                        v-if="!Object.values(item.assessment_radar).every(elem => elem === null)"
                     ></imet_radar>
                 </td>
                 <td class="align-baseline text-center" style="white-space: nowrap;">
