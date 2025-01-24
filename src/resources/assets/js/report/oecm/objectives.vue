@@ -78,10 +78,10 @@ onMounted(() => {
 });
 
 const selectValue = (value) => {
-    if (checkboxes.includes(value)) {
-        checkboxes = checkboxes.filter(item => item !== value);
+    if (checkboxes.value.includes(value)) {
+        checkboxes.value = checkboxes.value.filter(item => item !== value);
     } else {
-        checkboxes.push(value);
+        checkboxes.value.push(value);
         selected();
     }
 }
