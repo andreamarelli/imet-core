@@ -197,7 +197,7 @@ return [
             'PercentageEcoregion' => '% par rapport à l’écorégion ou à chacune des écorégions pour le cas des aires protégées appartenant à plusieurs réseaux',
             'PercentageTransnationalNetwork' => '% par rapport réseau transfrontalier',
             'PercentageLandscapeNetwork' => '% par rapport au landscape/network',
-            'Index' => 'Indice de forme (RACINE(3.14)/(6.28)*périmètre/RACINE(superficie) = bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2)',
+            'Index' => 'Indice de forme <br />&radic;(3.14)/(6.28)*périmètre/&radic;(superficie) =<br /> bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2',
             'Observations' => 'Observations',
         ]
     ],

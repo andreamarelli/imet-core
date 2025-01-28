@@ -24,7 +24,7 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
             @if($field['type']!=='hidden')
                 @if($f_index==3)
                     <th class="text-center">
-                        {!! Template::module_scope(ImetModule::TERRESTRIAL) . ' sectors.blade.php' . ucfirst($field['label'] ?? '') !!}
+                        {!! Template::module_scope(ImetModule::TERRESTRIAL) . ' ' . ucfirst($field['label'] ?? '') !!}
                     </th>
                 @else
                     <th class="text-center">{{ ucfirst($field['label'] ?? '') }}</th>

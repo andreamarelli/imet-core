@@ -225,7 +225,8 @@ class MenacesPressions extends Modules\Component\ImetModule
             $groups['group2'],
             $groups['group3'],
             $groups['group8'],
-            $groups['group9']
+            $groups['group9'],
+            $groups['group10']
         ];
     }
 
