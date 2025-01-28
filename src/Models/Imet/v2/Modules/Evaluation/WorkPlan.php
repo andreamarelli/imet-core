@@ -38,11 +38,12 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
     private static function ensureNullValues($data)
     {
         if($data['PlanExistence'] === false || $data['PlanExistence'] === "false"){
-            $data['PlanUptoDate'] = false;
-            $data['PlanApproved'] = false;
-            $data['PlanImplemented'] = false;
-            $data['VisionAdequacy'] = 0;
-            $data['PlanAdequacyScore'] = 0;
+            $data['PlanUptoDate'] = null;
+            $data['PlanApproved'] = null;
+            $data['PlanImplemented'] = null;
+            $data['VisionAdequacy'] = null;
+            $data['PlanAdequacyScore'] = null;
+            $data['Comments'] = null;
         }
         return $data;
     }
