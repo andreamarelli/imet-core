@@ -243,9 +243,8 @@ trait ImportExportJSON
         }
 
         $imet_form = $imet
-            ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
+            ->makeHidden(['FormID', 'UpdateDate', 'UpdateBy', 'protected_area_global_id', 'sync_unique_id', 'synced'])
             ->toArray();
-
 
         $imet_form['imet_version'] = function_exists('imet_offline_tool_version')
             ? imet_offline_tool_version()
@@ -298,7 +297,7 @@ trait ImportExportJSON
 
     public function export_no_attachments($item, bool $to_file = true, bool $download = true): BinaryFileResponse|array
     {
-       return $this->export($item, true);
+        return $this->export($item, true);
     }
 
     /**

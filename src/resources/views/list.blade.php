@@ -109,52 +109,51 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             <td class="align-baseline text-center">#{{ $item->FormID }}</td>
             <td class="align-baseline text-center"><strong>{{ $item->Year }}</strong></td>
             <td class="align-baseline">
-
-                    <div class="imet_name">
-                        <div class="imet_pa_name">
-                            {{-- name --}}
-                            <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
-                            {{-- wdpa_id --}}
-                            @if($item->wdpa_id!==null)
-                                (<a target="_blank" href="{{ ProtectedPlanet::WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
-                            @endif
-                            <br/>
-                            {{-- country --}}
-                            <flag iso2=>{{ $item->country->iso2 }}></flag>&nbsp;&nbsp;<i>{{ $item->country->name }}</i>
-                        </div>
+                <div class="imet_name">
+                    <div class="imet_pa_name">
+                        {{-- name --}}
+                        <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
+                        {{-- wdpa_id --}}
+                        @if($item->wdpa_id!==null)
+                            (<a target="_blank" href="{{ ProtectedPlanet::WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+                        @endif
                         <br/>
-                        {{-- language --}}
-                        <div>
-                            {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
-                            <flag iso2=>{{ $item->language }}></flag>
-                        </div>
-                        {{-- version --}}
-                        <div>
-                            {{ ucfirst(trans('imet-core::common.version')) }}:
-                            @if($item->version===Imet\Imet::IMET_V2)
-                                <span class="badge badge-success">v2</span>
-                            @elseif($item->version===Imet\Imet::IMET_V1)
-                                <span class="badge badge-secondary">v1</span>
-                            @elseif($item->version===Imet\Imet::IMET_OECM)
-                                <span class="badge badge-info">OECM</span>
-                            @endif
-                        </div>
-                        {{-- last update --}}
-                        <div>
-                            @uclang('modular-forms::entities.common.last_update'):&nbsp;
-                            <b><i>{{ $item->last_update['date'] }}</i></b>
-                        </div>
+                        {{-- country --}}
+                        <flag iso2="{{ $item->country->iso2 }}"></flag>&nbsp;&nbsp;<i>{{ $item->country->name }}</i>
                     </div>
-                </td>
-                <td class="align-baseline">
-                    <imet_encoders_responsibles :items='@json($item->encoders_responsibles)'></imet_encoders_responsibles>
-                </td>
-                <td>
-                    <imet_radar
-                            style="margin: 0 auto;"
-                            :width=150 :height=150
-                            :values='@json($item->assessment_radar)'
-                    ></imet_radar>
+                    <br/>
+                    {{-- language --}}
+                    <div>
+                        {{ ucfirst(trans('imet-core::common.encoding_language')) }}:
+                        <flag iso2="{{ $item->language }}"></flag>
+                    </div>
+                    {{-- version --}}
+                    <div>
+                        {{ ucfirst(trans('imet-core::common.version')) }}:
+                        @if($item->version===Imet\Imet::IMET_V2)
+                            <span class="badge badge-success">v2</span>
+                        @elseif($item->version===Imet\Imet::IMET_V1)
+                            <span class="badge badge-secondary">v1</span>
+                        @elseif($item->version===Imet\Imet::IMET_OECM)
+                            <span class="badge badge-info">OECM</span>
+                        @endif
+                    </div>
+                    {{-- last update --}}
+                    <div>
+                        @uclang('modular-forms::entities.common.last_update'):&nbsp;
+                        <b><i>{{ $item->last_update['date'] }}</i></b>
+                    </div>
+                </div>
+            </td>
+            <td class="align-baseline">
+                <imet_encoders_responsibles :items='@json($item->encoders_responsibles)'></imet_encoders_responsibles>
+            </td>
+            <td>
+                <imet_radar
+                        style="margin: 0 auto;"
+                        :width=150 :height=150
+                        :values='@json($item->assessment_radar)'
+                ></imet_radar>
             </td>
             <td class="text-center">
 
