@@ -47,7 +47,7 @@ return [
             'Aspect' => 'Criterios - Concepto medido - Variable',
             'EvaluationScore' => 'Integración',
             'SignificativeSpecies' => 'Especie altamente representativa',
-            'IncludeInStatistics' => 'Priorizar en la gestión',
+            'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
@@ -84,7 +84,7 @@ return [
             'Aspect' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Integración',
             'EvaluationScore2'=> 'Valor/importancia regional y mundial',
-            'IncludeInStatistics' => 'Priorizar en la gestión',
+            'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'Comments' => 'Comentarios/explicación',
         ],
         'ratingLegend' => [
@@ -121,7 +121,7 @@ return [
         'fields' => [
             'Aspect' => 'Criterios - Concepto medido - Variable',
             'EvaluationScore' => 'Integración',
-            'IncludeInStatistics' => 'Priorizar en la gestión',
+            'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'Comments' => 'Comentarios/explicación',
         ],
         'ratingLegend' => [
@@ -154,7 +154,7 @@ return [
         'fields' => [
             'Aspect' => 'Criterio - Concepto medido - Variable',
             'EvaluationScore' => 'Clasificación',
-            'IncludeInStatistics' => 'Priorizar en la gestión',
+            'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'Comments' => 'Comentarios/explicación',
         ],
         'ratingLegend' => [
@@ -264,7 +264,7 @@ return [
         'title' => 'Amenazas',
         'fields' => [
             'Aspect' => 'Evaluación de amenazas (reportada automáticamente desde CTX 5.1)',
-            'IncludeInStatistics' => 'Priorizar en la gestión',
+            'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'Comments' => 'Comentarios/explicación',
         ],
         'module_info_EvaluationQuestion' => [

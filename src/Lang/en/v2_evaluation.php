@@ -47,7 +47,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'SignificativeSpecies' => 'Highly representative specie',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
@@ -84,7 +84,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'EvaluationScore2'=> 'Regional and global value/importance',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -121,7 +121,7 @@ return [
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -154,7 +154,7 @@ return [
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Rating',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -264,7 +264,7 @@ return [
         'title' => 'Threats',
         'fields' => [
             'Aspect' => 'Threats evaluation (automatically reported from CTX 5.1)',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'module_info_EvaluationQuestion' => [

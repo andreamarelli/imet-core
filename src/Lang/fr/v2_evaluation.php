@@ -47,7 +47,7 @@ return [
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Intégration',
             'SignificativeSpecies' => 'Espèce très représentative',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -84,7 +84,7 @@ return [
             'Aspect' => 'Critère — Concept mesuré — Variable ',
             'EvaluationScore' => 'Intégration',
             'EvaluationScore2' => 'Valeur/importance régionale et mondiale',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
@@ -122,7 +122,7 @@ return [
             'N/A' => 'cet élément n\'est pas en rapport avec la gestion de l\'aire protégée',
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
@@ -154,7 +154,7 @@ return [
         'fields' => [
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
@@ -264,7 +264,7 @@ return [
         'title' => 'Menaces',
         'fields' => [
             'Aspect' => 'Evaluation des menaces (automatiquement reportées de CTX 5.1)',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'module_info_EvaluationQuestion' => [

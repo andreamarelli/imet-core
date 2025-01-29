@@ -65,7 +65,7 @@ return [
         'intervention_context' => 'Contexte d’intervention',
         'management_evaluation' => 'Évaluation de la gestion',
         'objectives_title' => 'Liste des objectifs à court et à long terme pour l’élément',
-        'prioritize_in_management' => 'À prioriser dans la gestion'
+        'prioritize_in_management' => 'Doit-il être prioritaire dans la gestion?'
     ],
     'stakeholder_users_managing_oecm' => 'Utilisateurs des parties prenantes et gestion de l’espace conservé',
     'stakeholder_direct_users' => 'Utilisateurs directs des parties prenantes',

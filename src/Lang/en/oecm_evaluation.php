@@ -17,7 +17,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'SignificativeClassification' => 'Highly significant designation',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -41,7 +41,7 @@ return [
             'Aspect' => 'Key element / service',
             'Importance' => 'Importance',
             'EvaluationScore' => 'Integration',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
@@ -107,7 +107,7 @@ return [
         'fields' => [
             'Stakeholder'       => 'Stakeholder',
             'Integration'       => 'Integration',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments'          => 'Comments/Explanation',
         ],
         'groups' => [
@@ -244,7 +244,7 @@ return [
         'fields' => [
             'Threat'       => 'Threat',
             'Integration'       => 'Integration',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments'          => 'Comments/Explanation',
         ],
         'ratingLegend' => [

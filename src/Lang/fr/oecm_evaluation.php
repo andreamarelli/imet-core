@@ -17,7 +17,7 @@ return [
             'Aspect' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Intégration',
             'SignificativeClassification' => 'Désignation hautement significative',
-            'IncludeInStatistics' => 'Fixer des priorités dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explications',
         ],
         'ratingLegend' => [
@@ -41,7 +41,7 @@ return [
             'Aspect' => 'Key element / service',
             'Importance' => 'Importance',
             'EvaluationScore' => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -107,7 +107,7 @@ return [
         'fields' => [
             'Partie prenante'       => 'Partie prenante',
             'Intégration'       => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments'          => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -245,7 +245,7 @@ return [
         'fields' => [
             'Threat'       => 'Menace',
             'Intégration'       => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments'          => 'Commentaires/Explication',
         ],
         'ratingLegend' => [

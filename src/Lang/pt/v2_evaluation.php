@@ -47,7 +47,7 @@ return [
             'Aspect' => 'Criterio - Conceito Medido - Variável',
             'EvaluationScore' => 'Integração',
             'SignificativeSpecies' => 'Espécies altamente representativas',
-            'IncludeInStatistics' => 'Dar prioridade na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
@@ -84,7 +84,7 @@ return [
             'Aspect' => 'Critério - Conceito medido - Variável',
             'EvaluationScore' => 'Integração',
             'EvaluationScore2' => 'Valor/importância regional e global',
-            'IncludeInStatistics' => 'Dar prioridade na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Comentários/Explicação',
         ],
         'ratingLegend' => [
@@ -121,7 +121,7 @@ return [
         'fields' => [
             'Aspect' => 'Criterio – Conceito medido – Variável',
             'EvaluationScore' => 'integração',
-            'IncludeInStatistics' => 'Para priorizar na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Commentários/Explicação',
         ],
         'ratingLegend' => [
@@ -154,7 +154,7 @@ return [
         'fields' => [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Classificação',
-            'IncludeInStatistics' => 'Para priorizar na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Commentário/Explicação',
         ],
         'ratingLegend' => [
@@ -264,7 +264,7 @@ return [
         'title' => 'Ameaçada',
         'fields' => [
             'Aspect' => 'Avaliação das ameaças (automaticamente reportado de CTX 5.1)',
-            'IncludeInStatistics' => 'Para priorizar na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Comentários/Explicação',
         ],
         'module_info_EvaluationQuestion' => [
