@@ -49,6 +49,15 @@ class ManagementStaff extends Modules\Component\ImetModule
         ];
     }
 
+    public static function upgradeModule($record, $imet_version = null): array
+    {
+        // Fix wrong value found in few assessments
+        if($record['Function'] === 'Responsable ErE') {
+            $record['Function'] = 'Responsable EE';
+        }
+        return $record;
+    }
+
     /**
      * @param $records
      * @return array
