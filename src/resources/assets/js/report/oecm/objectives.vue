@@ -7,41 +7,49 @@
         <div class="module-body">
 
             <table class="max-w-12xl">
+                <thead>
                 <tr>
                     <th class="w-8/12">{{
-                        Locale.getLabel('imet-core::oecm_report.general_planning.intervention_context') }}</th>
+                            Locale.getLabel('imet-core::oecm_report.general_planning.intervention_context') }}</th>
                     <th>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr v-for="(objective, index) in objectives['context']" class="mt-3" :key="index">
                     <td v-html="objective"></td>
                     <td class="col text-center">
-                        <span class="checkbox">
-                            <input type="checkbox" :checked="is_checked(index)" :data-name="objective" :id="objective"
-                                @click="selectValueByIdAndValue(index, objective)" class="vue-checkboxes"
-                                :value="index">
-                            <label :for="objective"></label>
-                        </span>
+                            <span class="checkbox">
+                                <input type="checkbox" :checked="is_checked(index)" :data-name="objective" :id="objective"
+                                       @click="selectValueByIdAndValue(index, objective)" class="vue-checkboxes"
+                                       :value="index">
+                                <label :for="objective"></label>
+                            </span>
                     </td>
                 </tr>
+                </tbody>
             </table>
 
             <table class="max-w-12xl">
+                <thead>
                 <tr>
                     <th class="w-8/12">{{
-                        Locale.getLabel('imet-core::oecm_report.general_planning.management_evaluation') }}</th>
+                            Locale.getLabel('imet-core::oecm_report.general_planning.management_evaluation') }}</th>
                     <th>{{ Locale.getLabel('imet-core::oecm_report.general_planning.prioritize_in_management') }}</th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr v-for="(objective, index) in objectives['evaluation']" class="mt-3" :key="index">
                     <td v-html="objective"></td>
                     <td class="col text-center">
-                        <span class="checkbox">
-                            <input type="checkbox" :checked="is_checked(index)" :data-name="objective" :id="objective"
-                                @click="selectValueByIdAndValue(index, objective)" class="vue-checkboxes"
-                                :value="index">
-                            <label :for="objective"></label>
-                        </span>
+                            <span class="checkbox">
+                                <input type="checkbox" :checked="is_checked(index)" :data-name="objective" :id="objective"
+                                       @click="selectValueByIdAndValue(index, objective)" class="vue-checkboxes"
+                                       :value="index">
+                                <label :for="objective"></label>
+                            </span>
                     </td>
                 </tr>
+                </tbody>
             </table>
 
         </div>
@@ -120,18 +128,18 @@ const toggle = () => {
 const check_all = () => {
     if (!are_checked_all.value) {
         const checkboxes = [...document.querySelectorAll(".vue-checkboxes")];
-                for (const key in checkboxes) {
-                    if (key > 0) {
-                        const check_box = checkboxes[key];
-                        const exist = is_value_included(parseInt(check_box.defaultValue));
-                        if(!exist) {
-                            checkboxes.push({
-                                id: check_box.defaultValue,
-                                value: check_box.getAttribute('data-name')
-                            });
-                        }
-                    }
+        for (const key in checkboxes) {
+            if (key > 0) {
+                const check_box = checkboxes[key];
+                const exist = is_value_included(parseInt(check_box.defaultValue));
+                if(!exist) {
+                    checkboxes.push({
+                        id: check_box.defaultValue,
+                        value: check_box.getAttribute('data-name')
+                    });
                 }
+            }
+        }
     } else {
         clearSelections();
     }
