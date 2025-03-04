@@ -33,7 +33,7 @@
 <script setup>
 import { ref, watch, inject, onMounted } from 'vue';
 import { ClassicEditor, Essentials, Paragraph, Undo, Bold, Italic, Link, List, Heading } from "~/ckeditor5";
-import CKEditor from "~/@ckeditor/ckeditor5-vue";
+import CKEditor from "@ckeditor/ckeditor5-vue";
 import "~/ckeditor5/dist/ckeditor5.css";
 
 const props = defineProps({
