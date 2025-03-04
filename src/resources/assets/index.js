@@ -15,7 +15,7 @@ window.ImetCore.Components = {};
 // ############################################
 // #################  MAPBOX  #################
 // ############################################
-import mapboxgl from '~/mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 window.mapboxgl = mapboxgl;
 window.mapboxgl.accessToken = window.accessToken;
 
