@@ -18,7 +18,6 @@ use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
-use Intervention\Image\Exception\NotFoundException;
 
 
 class ApiController extends Controller
@@ -134,7 +133,7 @@ class ApiController extends Controller
 
                 $form_id = $records[0]['FormID'] ?? null;
                 if ($form_id === null) {
-                    throw new NotFoundException(trans('imet-core::api.error_messages.no_records_found'));
+                    throw new ErrorException(trans('imet-core::api.error_messages.no_records_found'));
                 }
 
                 $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
