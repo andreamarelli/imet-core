@@ -2,7 +2,6 @@
 
 namespace AndreaMarelli\ImetCore\Models\User;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
 use AndreaMarelli\ImetCore\Models\Country;
 use \AndreaMarelli\ModularForms\Models\User\User as BaseUser;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,8 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class User extends BaseUser
 {
-    protected $connection = Database::COMMON_CONNECTION;
-
     /**
      * Override: set the fillable attributes
      * @var string[]
