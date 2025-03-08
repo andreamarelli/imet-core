@@ -1,6 +1,8 @@
 <?php
 return [
 
+    'user' => \AndreaMarelli\ImetCore\Models\User\User::class,
+
     // API tokens
     'mapbox_token' => \Illuminate\Support\Env::getOrFail('MAPBOX_ACCESS_TOKEN'),
 
