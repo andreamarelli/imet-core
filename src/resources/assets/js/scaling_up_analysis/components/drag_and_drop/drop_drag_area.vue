@@ -1,5 +1,5 @@
 <template>
-    <div :style="'background-color:'+ color" class="drop-zones d-grid gap-1 rounded"
+    <div :style="'background-color:'+ color" class="drop-zones d-grid gap-1 rounded-sm"
          @drop='onDrop($event)' @dragover.prevent
          @dragenter.prevent>
       <slot></slot>

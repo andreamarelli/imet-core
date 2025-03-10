@@ -55,7 +55,7 @@
         width: fit-content;
         padding: 0 3px;
         margin: 1px 0;
-        @apply bg-gray-100 border border-gray-300 rounded;
+        @apply bg-gray-100 border border-gray-300 rounded-sm;
         line-height: 1.4;
 
         i.removeItem {
