@@ -33,7 +33,7 @@
 
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="postcss" scoped></style>
 
 <script setup>
 
