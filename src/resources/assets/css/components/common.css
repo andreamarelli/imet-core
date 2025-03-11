@@ -1,3 +1,6 @@
+@use "@modular-forms/sass/abstracts/_colors.scss";
+@use "@modular-forms/sass/base/_typography.scss";
+
 .btn-circle {
   padding: 13px 18px;
   border-radius: 60px;

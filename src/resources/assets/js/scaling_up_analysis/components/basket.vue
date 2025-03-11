@@ -85,7 +85,7 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 
 .basket {
     font-size: 18px;

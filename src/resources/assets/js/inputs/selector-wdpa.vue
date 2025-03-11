@@ -33,6 +33,8 @@
 
 </template>
 
+<style lang="scss" scoped></style>
+
 <script setup>
 
 import {ref, provide, onBeforeMount, onMounted} from "vue";

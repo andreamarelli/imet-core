@@ -111,7 +111,7 @@ onMounted(() => {
 });
 </script>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 .bar {
     min-height: 200px;
     min-width: 200px;
@@ -125,7 +125,7 @@ onMounted(() => {
 
 </template>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
     .bar{
         min-height: 200px;
         min-width: 200px;

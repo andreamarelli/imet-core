@@ -35,7 +35,7 @@
 
 </template>
 
-<style lang="postcss" scoped>
+<style lang="scss" scoped>
 
   .imet_responsible {
     font-size: 0.85em;

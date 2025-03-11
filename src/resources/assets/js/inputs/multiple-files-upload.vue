@@ -157,7 +157,7 @@ function uploadedSuccessfully(file, response) {
 </script>
 
 
-<style lang="postcss">
+<style lang="scss">
 
 #dropzone {
     display: inline-block;
