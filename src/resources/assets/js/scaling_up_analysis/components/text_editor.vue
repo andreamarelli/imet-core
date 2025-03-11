@@ -8,7 +8,7 @@
 </template>
 
 
-<style lang="postcss" scoped>
+<style scoped>
 .text-editor-edit {
     @media print {
         display: none;

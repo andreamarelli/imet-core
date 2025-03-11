@@ -9,7 +9,7 @@
 
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
 
     .progress-bar{
         position: relative;

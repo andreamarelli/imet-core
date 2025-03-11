@@ -142,22 +142,10 @@ function uploadedSuccessfully(file, response) {
 }
 
 
-
-//
-// export default {
-//
-//     mounted: function () {
-//         window.confirm = function () {
-//             return true;
-//         };
-//     },
-//
-// }
-
 </script>
 
 
-<style lang="postcss">
+<style>
 
 #dropzone {
     display: inline-block;
@@ -203,41 +191,4 @@ function uploadedSuccessfully(file, response) {
     display: none;
 }
 
-//
-//
-//#dropzone {
-//    display: inline-block;
-//    height: 300px;
-//    max-height:300px;
-//    overflow:auto;
-//    background:#fff;
-//    width: 100%;
-//
-//    .dropzone-custom-content{
-//        margin: 0 30px;
-//        .dropzone-custom-title{
-//            @apply text-base;
-//        }
-//    }
-//
-//    //.files{
-//    //    display: flex;
-//    //    gap: 30px;
-//    //
-//    //    .file-details{
-//    //        flex-grow: 1;
-//    //        display: flex;
-//    //        flex-direction: row;
-//    //        align-items: center;
-//    //        gap: 15px;
-//    //
-//
-//    //    }
-//    //}
-//
-//    a.dz-remove{
-//        display: none;
-//    }
-//
-//}
 </style>

@@ -35,7 +35,7 @@
 
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
 
     .result_left{
       text-align: left;
