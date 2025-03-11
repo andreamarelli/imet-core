@@ -31,7 +31,7 @@ const onDrop = (evt) => {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .drop-zones {
   background-color: #eee;
   margin-bottom: 10px;

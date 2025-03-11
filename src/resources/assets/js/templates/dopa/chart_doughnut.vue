@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .doughnut {
     min-height: 200px;
     min-width: 400px;

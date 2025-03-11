@@ -133,7 +133,7 @@ function update() {
 }
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .results-cloud {
     max-height: 300px;
     overflow: auto;

@@ -16,7 +16,7 @@
 
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 
     .score-bar{
         display: flex;
