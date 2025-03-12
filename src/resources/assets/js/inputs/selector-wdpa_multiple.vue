@@ -35,7 +35,9 @@
 
 </template>
 
-<style lang="postcss" scoped>
+<style scoped>
+
+    @import "tailwindcss";
 
     .result_left{
       text-align: left;
