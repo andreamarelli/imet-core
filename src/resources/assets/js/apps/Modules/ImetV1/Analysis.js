@@ -1,4 +1,6 @@
 import { createApp, ref, reactive, watch, onMounted } from "vue";
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import dopa_indicators_table from './../../../templates/dopa/indicators_table.vue';
 import dopa_chart_bar from './../../../templates/dopa/chart_bar.vue';
 import dopa_radar from './../../../templates/dopa/chart_radar.vue';
@@ -91,9 +93,9 @@ export default class Analysis {
 
         function loadMap() {
 
-            const report_map = new window.mapboxgl.Map({
+            const report_map = new maplibregl.Map({
                 container: 'map',
-                style: BiopamaWDPA.base_layer,
+                style: BiopamaWDPA.openstreetmap,
                 center: [30, 0],
                 zoom: 4,
                 minZoom: 2,
