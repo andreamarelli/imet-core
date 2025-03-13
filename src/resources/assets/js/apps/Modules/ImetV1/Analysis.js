@@ -7,6 +7,7 @@ import dopa_radar from './../../../templates/dopa/chart_radar.vue';
 import editor from '@modular-forms/js/inputs/text-editor.vue';
 import report_editor from './../../../inputs/editor.vue';
 import BiopamaWDPA from './../../../helpers/biopamaWDPA';
+import Map from './../../../helpers/map';
 import imet_radar from './../../../templates/imet_radar.vue';
 
 export default class Analysis {
@@ -95,7 +96,7 @@ export default class Analysis {
 
             const report_map = new maplibregl.Map({
                 container: 'map',
-                style: BiopamaWDPA.openstreetmap,
+                style: Map.openstreetmap,
                 center: [30, 0],
                 zoom: 4,
                 minZoom: 2,
@@ -104,7 +105,7 @@ export default class Analysis {
             });
 
             report_map.on('load', function () {
-                BiopamaWDPA.addWdpaLayer(report_map, input_data.wdpa_id);
+                BiopamaWDPA.vectorTileLayer(report_map, input_data.wdpa_id);
             });
         }
         return {
