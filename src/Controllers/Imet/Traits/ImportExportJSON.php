@@ -1,17 +1,17 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\File\Zip;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
-use AndreaMarelli\ModularForms\Helpers\Module;
-use AndreaMarelli\ModularForms\Helpers\ModuleKey;
-use AndreaMarelli\ModularForms\Models\Traits\Upload;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ModularForms\Helpers\File\File;
+use ModularForms\Helpers\File\Zip;
+use ModularForms\Helpers\HTTP;
+use ModularForms\Helpers\Module;
+use ModularForms\Helpers\ModuleKey;
+use ModularForms\Models\Traits\Upload;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;

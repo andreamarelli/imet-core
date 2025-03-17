@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
+namespace ImetCore\Models\Imet\ScalingUp;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
+use ImetCore\Helpers\Database;
+use ModularForms\Helpers\File\File;
+use ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 

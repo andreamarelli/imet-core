@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
+namespace ImetCore\Helpers\ScalingUp;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Support\Facades\Cache;
 
 class Common

@@ -1,24 +1,24 @@
 <?php
 
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
+namespace ImetCore\Models\Imet\ScalingUp;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
-use AndreaMarelli\ImetCore\Helpers\API\DOPA\DOPA;
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\API\Comments\Comments;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\DataTable;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Group;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ModularForms\Helpers\Locale;
+use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Helpers\API\DOPA\DOPA;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Animal;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\API\Comments\Comments;
+use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
+use ImetCore\Models\Imet\ScalingUp\Sections\DataTable;
+use ImetCore\Models\Imet\ScalingUp\Sections\Group;
+use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
+use ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
+use ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Helpers\ScalingUp\Common;
+use ModularForms\Helpers\Locale;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

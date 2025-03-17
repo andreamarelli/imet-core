@@ -10,7 +10,7 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "dev-main"
+        "andreamarelli/modular-forms": "dev-namespace"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0"
@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AndreaMarelli\\ImetCore\\": "src"
+            "ImetCore\\": "src"
         },
         "files": [
             "src/helpers.php"
@@ -32,10 +32,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "AndreaMarelli\\ImetCore\\ServiceProvider"
+                "ImetCore\\ServiceProvider"
             ],
             "aliases": {
-                "ImetUser": "AndreaMarelli\\ImetCore\\Models\\User"
+                "ImetUser": "ImetCore\\Models\\User"
             }
         }
     },

@@ -1,15 +1,15 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V2;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1Scores;
+use ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
+use ImetCore\Services\Scores\Functions\V1Scores;
 
 trait Process
 {

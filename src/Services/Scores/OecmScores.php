@@ -1,12 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores;
+namespace ImetCore\Services\Scores;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOecm;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\OECMScores as OECMScoresFunctions;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Scores\Functions\OECMScores as OECMScoresFunctions;
 
 class OecmScores
 {
