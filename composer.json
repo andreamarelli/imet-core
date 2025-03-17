@@ -10,7 +10,7 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "dev-namespace"
+        "andreamarelli/modular-forms": "dev-main"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0"
