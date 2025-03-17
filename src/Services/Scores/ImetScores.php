@@ -1,14 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores;
+namespace ImetCore\Services\Scores;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet as ImetV1;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet as ImetV2;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1ToV2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V2Scores;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1Scores;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\Imet\v1\Imet as ImetV1;
+use ImetCore\Models\Imet\v2\Imet as ImetV2;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Scores\Functions\V1ToV2Scores;
+use ImetCore\Services\Scores\Functions\V2Scores;
+use ImetCore\Services\Scores\Functions\V1Scores;
 
 class ImetScores
 {
